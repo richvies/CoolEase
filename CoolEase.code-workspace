@@ -1,0 +1,24 @@
+{
+	"folders": [
+		{
+			"path": "."
+		}
+	],
+	"settings": {
+		"files.exclude": {
+			"**/.git": true,
+			"**/.svn": true,
+			"**/.hg": true,
+			"**/CVS": true,
+			"**/.DS_Store": true,
+			"000Webhost":true,
+			"CoolTerm":true,
+			"Development Invoices": true, 
+			"Old Code": true,
+			".gitignore": true,
+			"Hardware": true,
+			"README.md": true,
+			"Docs": false
+		}
+	}
+}

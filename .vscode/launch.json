@@ -1,0 +1,27 @@
+{
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "name": "Cortex debug",
+            "type": "cortex-debug",
+            "request": "launch",
+            "servertype": "openocd",
+            "cwd": "${workspaceFolder}",
+            "executable": "build/CubeMXTest.elf",
+            "svdFile": ".vscode/STM32L052.svd",
+            "configFiles": [
+                "/Users/richarddavies/Desktop/Projects/Learn:Practice/CubeMXTest/.vscode/stlink.cfg",
+                ".vscode/stm32l0.cfg"
+            ],
+            "preLaunchTask": "Build project"
+        },
+        {
+            "name": "Debug current Python file",
+            "type": "python",
+            "request": "launch",
+            "cwd": "${workspaceFolder}",
+            "program": "${file}",
+            "console": "integratedTerminal"
+        }
+    ]
+}

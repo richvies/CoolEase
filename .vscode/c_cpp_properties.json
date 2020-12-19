@@ -1,0 +1,104 @@
+{
+    "env": {
+        "____________________USER_FIELDS_CAN_BE_MODIFIED____________________": "",
+        "user_cSources": [],
+        "user_asmSources": [],
+        "user_ldSources": [],
+        "user_cIncludes": [],
+        "user_asmIncludes": [],
+        "user_ldIncludes": [],
+        "user_cDefines": [],
+        "user_asmDefines": [],
+        "user_cFlags": [],
+        "user_asmFlags": [],
+        "user_ldFlags": [],
+        "____________________DO_NOT_MODIFY_FIELDS_BELOW____________________": "",
+        "cubemx_sourceFiles": [
+            "Core/Src/main.c",
+            "Core/Src/stm32l0xx_it.c",
+            "Core/Src/stm32l0xx_hal_msp.c",
+            "USB_DEVICE/App/usb_device.c",
+            "USB_DEVICE/App/usbd_desc.c",
+            "USB_DEVICE/App/usbd_custom_hid_if.c",
+            "USB_DEVICE/Target/usbd_conf.c",
+            "Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_pcd.c",
+            "Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_pcd_ex.c",
+            "Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_ll_usb.c",
+            "Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal.c",
+            "Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_i2c.c",
+            "Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_i2c_ex.c",
+            "Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_rcc.c",
+            "Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_rcc_ex.c",
+            "Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_flash_ramfunc.c",
+            "Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_flash.c",
+            "Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_flash_ex.c",
+            "Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_gpio.c",
+            "Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_dma.c",
+            "Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_pwr.c",
+            "Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_pwr_ex.c",
+            "Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_cortex.c",
+            "Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_exti.c",
+            "Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_tim.c",
+            "Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_tim_ex.c",
+            "Core/Src/system_stm32l0xx.c",
+            "Middlewares/ST/STM32_USB_Device_Library/Core/Src/usbd_core.c",
+            "Middlewares/ST/STM32_USB_Device_Library/Core/Src/usbd_ctlreq.c",
+            "Middlewares/ST/STM32_USB_Device_Library/Core/Src/usbd_ioreq.c",
+            "Middlewares/ST/STM32_USB_Device_Library/Class/CustomHID/Src/usbd_customhid.c",
+            "startup_stm32l052xx.s"
+        ],
+        "cubemx_includes": [
+            "USB_DEVICE/App",
+            "USB_DEVICE/Target",
+            "Core/Inc",
+            "Drivers/STM32L0xx_HAL_Driver/Inc",
+            "Drivers/STM32L0xx_HAL_Driver/Inc/Legacy",
+            "Middlewares/ST/STM32_USB_Device_Library/Core/Inc",
+            "Middlewares/ST/STM32_USB_Device_Library/Class/CustomHID/Inc",
+            "Drivers/CMSIS/Device/ST/STM32L0xx/Include",
+            "Drivers/CMSIS/Include",
+            "Drivers/CMSIS/Include"
+        ],
+        "cubemx_defines": [
+            "USE_HAL_DRIVER",
+            "STM32L052xx"
+        ],
+        "gccExePath": "/usr/local/bin/arm-none-eabi-gcc",
+        "gccIncludePath": "/usr/local/lib/gcc/arm-none-eabi/9.3.1/include"
+    },
+    "configurations": [
+        {
+            "name": "workspace",
+            "intelliSenseMode": "gcc-arm",
+            "includePath": [
+                "${workspaceFolder}",
+                "${cubemx_includes}",
+                "${gccIncludePath}",
+                "${user_cIncludes}",
+                "${user_asmIncludes}",
+                "${user_ldIncludes}"
+            ],
+            "browse": {
+                "path": [
+                    "${workspaceFolder}",
+                    "${cubemx_includes}",
+                    "${gccIncludePath}",
+                    "${user_cIncludes}",
+                    "${user_asmIncludes}",
+                    "${user_ldIncludes}"
+                ],
+                "limitSymbolsToIncludedHeaders": true
+            },
+            "defines": [
+                "${cubemx_defines}",
+                "${user_cDefines}",
+                "${user_asmDefines}"
+            ],
+            "forcedInclude": [],
+            "compilerPath": "${gccExePath}",
+            "cStandard": "c11",
+            "cppStandard": "c++17"
+        }
+    ],
+    "version": 4
+}
