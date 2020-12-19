@@ -193,7 +193,7 @@
         {
             "label": "Run Python file",
             "type": "shell",
-            "command": "python3",
+            "command": "python",
             "args": [
                 "${file}"
             ],

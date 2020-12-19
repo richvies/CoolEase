@@ -30,7 +30,7 @@ class EnterBootloaderCommand(Command):
     def __init__(self):
         super().__init__(EnterBootloaderCommand.COMMAND, b'')
 
-class Device(hid.device):
+class Device(hid.Device):
     MANUFACTURER='kevincuzner.com'
     PRODUCT='LED Wristwatch'
     def __init__(self, path):

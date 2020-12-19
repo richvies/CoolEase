@@ -19,6 +19,11 @@
 			"Hardware": true,
 			"README.md": true,
 			"Docs": false
+		},
+		"python.pythonPath": "/usr/local/anaconda3/bin/python",
+		"terminal.integrated.inheritEnv": false,
+		"terminal.integrated.env.osx": {
+			"PATH":"/usr/local/anaconda3/bin"
 		}
 	}
 }
