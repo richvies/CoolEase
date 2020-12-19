@@ -10,7 +10,7 @@
 			"**/.svn": true,
 			"**/.hg": true,
 			"**/CVS": true,
-			"**/.DS_Store": false,
+			"**/.DS_Store": true,
 			"000Webhost":true,
 			"CoolTerm":true,
 			"Development Invoices": true, 
