@@ -1,3 +1,7 @@
+"""
+File used for testing python in VSCode
+"""
+
 import sys
 
 def main():
