@@ -3,3 +3,5 @@
 CoolTerm
 Development Invoices
 Old Code
+*.d
+*.o

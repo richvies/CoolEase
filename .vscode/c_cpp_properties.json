@@ -4,29 +4,21 @@
         "user_cSources": [],
         "user_asmSources": [],
         "user_ldSources": [],
-
         "user_cIncludes": [],
         "user_asmIncludes": [],
         "user_ldIncludes": [],
-
         "user_cDefines": [],
         "user_asmDefines": [],
-
         "user_cFlags": [],
         "user_asmFlags": [],
         "user_ldFlags": [],
         "____________________DO_NOT_MODIFY_FIELDS_BELOW____________________": "",
         "libopencm3_sourceFiles": [],
         "libopencm3_includes": [
-            "libopencm3/include/libopencm3/cm3",
-            "libopencm3/include/libopencm3/usb",
-
-            "libopencm3/include/libopencm3/stm32",
-            "libopencm3/include/libopencm3/stm32/common",
-            "libopencm3/include/libopencm3/stm32/l0",
-
-            "libopencm3/include/libopencmsis",
-            "libopencm3/include/libopencmsis/stm32/l0"
+            "libopencm3/include"
+        ],
+        "libopencm3_defines": [
+            "STM32L0"
         ],
         "gccExePath": "/usr/local/bin/arm-none-eabi-gcc",
         "gccIncludePath": "/usr/local/lib/gcc/arm-none-eabi/9.3.1/include"
@@ -36,7 +28,7 @@
             "name": "workspace",
             "intelliSenseMode": "gcc-arm",
             "includePath": [
-                "${workspaceFolder}",
+                // "${workspaceFolder}",
                 "${libopencm3_includes}",
                 "${gccIncludePath}",
                 "${user_cIncludes}",
@@ -45,7 +37,7 @@
             ],
             "browse": {
                 "path": [
-                    "${workspaceFolder}",
+                    // "${workspaceFolder}",
                     "${libopencm3_includes}",
                     "${gccIncludePath}",
                     "${user_cIncludes}",
@@ -56,12 +48,17 @@
             },
             "defines": [
                 "${user_cDefines}",
+                "${libopencm3_defines}",
                 "${user_asmDefines}"
             ],
             "forcedInclude": [],
             "compilerPath": "${gccExePath}",
             "cStandard": "c11",
-            "cppStandard": "c++17"
+            "cppStandard": "c++17",
+            "macFrameworkPath": [
+                "/System/Library/Frameworks",
+                "/Library/Frameworks"
+            ]
         }
     ],
     "version": 4

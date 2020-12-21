@@ -15,15 +15,16 @@
 			"CoolTerm":true,
 			"Development Invoices": true, 
 			"Old Code": false,
-			".gitignore": true,
 			"Hardware": true,
 			"README.md": true,
-			"Docs": false
+			"Docs": false,
+			".gitignore": false,
 		},
 		"python.pythonPath": "/usr/local/anaconda3/bin/python",
 		"terminal.integrated.inheritEnv": false,
 		"terminal.integrated.env.osx": {
 			"PATH":"/usr/local/anaconda3/bin"
-		}
+		},
+		"explorer.autoReveal": false
 	}
 }
