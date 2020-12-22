@@ -1,7 +1,3 @@
-OPT ?= -Os
-CSTD ?= -std=c99
-BUILD_DIR = ../build
-
 # Be silent per default, but 'make V=1' will show all compiler calls.
 # If you're insane, V=99 will print out all sorts of things.
 ifeq ($(V),0)
@@ -9,9 +5,8 @@ Q	:= @
 NULL	:= 2>/dev/null
 endif
 
-
 # Tool paths.
-PREFIX	?= ../util/gcc-arm/bin/arm-none-eabi-
+PREFIX	= arm-none-eabi-
 CC	= $(PREFIX)gcc
 LD	= $(PREFIX)gcc
 OBJCOPY	= $(PREFIX)objcopy
@@ -19,16 +14,25 @@ OBJDUMP	= $(PREFIX)objdump
 SIZE	:= $(PREFIX)size
 OOCD	?= openocd
 
-OPENCM3_INC = $(OPENCM3_DIR)/include
-
-# Inclusion of library header files
-INCLUDES += $(patsubst %,-I%, . $(OPENCM3_INC) )
-
-OBJS = $(CFILES:%.c=$(BUILD_DIR)/%.o)
+# Files and build location
+BUILD_DIR = $(PROJECT)/build
+CFILES = $(wildcard $(PROJECT)/*.c)
+OBJS = $(CFILES:$(PROJECT)/%.c=$(BUILD_DIR)/%.o)
 OBJS += $(AFILES:%.S=$(BUILD_DIR)/%.o)
 
+# Libopencm3 Includes
+OPENCM3_DIR  =	libopencm3
+OPENCM3_INC = $(OPENCM3_DIR)/include
+INCLUDES += $(patsubst %,-I%, . $(OPENCM3_INC) )
+
+include $(OPENCM3_DIR)/mk/genlink-config.mk
+
 # List of files for make_clean
-GENERATED_BINS = $(PROJECT)*.elf $(PROJECT)*.bin $(PROJECT)*.map $(PROJECT)*.list $(PROJECT)*.lss
+GENERATED_BINS = $(BUILD_DIR)/*.elf $(BUILD_DIR)/*.bin $(BUILD_DIR)/*.map $(BUILD_DIR)/*.list $(BUILD_DIR)/*.lss
+
+# Options & Flags
+OPT ?= -Os
+CSTD ?= -std=c99
 
 TGT_CPPFLAGS += -MD
 TGT_CPPFLAGS += -Wall -Wundef $(INCLUDES)
@@ -55,7 +59,7 @@ TGT_LDFLAGS += -specs=nano.specs
 TGT_LDFLAGS += -Wl,--gc-sections
 
 # OPTIONAL
-TGT_LDFLAGS += -Wl,-Map=$(PROJECT).map
+TGT_LDFLAGS += -Wl,-Map=$(BUILD_DIR)/$(PROJECT).map
 ifeq ($(V),99)
 TGT_LDFLAGS += -Wl,--print-gc-sections
 endif
@@ -68,9 +72,11 @@ endif
 #LDLIBS += -specs=nosys.specs
 LDLIBS += -Wl,--start-group -lc -lgcc -lnosys -Wl,--end-group
 
+print:
+	@echo $(GENERATED_BINS)
 
-all: $(PROJECT).elf $(PROJECT).bin $(PROJECT).lss $(PROJECT).list
-	$(SIZE) $(PROJECT).elf
+all: print $(BUILD_DIR)/$(PROJECT).elf $(BUILD_DIR)/$(PROJECT).bin $(BUILD_DIR)/$(PROJECT).lss $(BUILD_DIR)/$(PROJECT).list
+	$(SIZE) $(BUILD_DIR)/$(PROJECT).elf
 
 
 # error if not using linker script generator
@@ -85,18 +91,14 @@ GENERATED_BINS += $(LDSCRIPT)
 endif
 
 # Need a special rule to have a bin dir
-$(BUILD_DIR)/%.o: %.c
+$(BUILD_DIR)/%.o: $(PROJECT)/%.c
 	@printf "  CC\t$<\n"
 	@mkdir -p $(dir $@)
 	$(Q)$(CC) $(TGT_CFLAGS) $(CFLAGS) $(TGT_CPPFLAGS) $(CPPFLAGS) -o $@.S -E $<
 	$(Q)$(CC) $(TGT_CFLAGS) $(CFLAGS) $(TGT_CPPFLAGS) $(CPPFLAGS) -o $@ -c $<
 
-$(BUILD_DIR)/%.o: %.cxx
-	@printf "  CXX\t$<\n"
-	@mkdir -p $(dir $@)
 
-
-$(PROJECT).elf: $(OBJS) $(LDSCRIPT) $(LIBDEPS)
+$(BUILD_DIR)/$(PROJECT).elf: $(OBJS) $(LDSCRIPT) $(LIBDEPS)
 	@printf "  LD\t$@\n"
 	$(Q)$(LD) $(TGT_LDFLAGS) $(LDFLAGS) $(OBJS) $(LDLIBS) -o $@
 
@@ -115,3 +117,5 @@ clean:
 
 .PHONY: all clean flash
 -include $(OBJS:.o=.d)
+
+include $(OPENCM3_DIR)/mk/genlink-rules.mk
