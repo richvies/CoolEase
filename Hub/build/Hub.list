@@ -69,19 +69,19 @@ Disassembly of section .text:
 
 080000f8 <hid_in_callback>:
 uint8_t const hid_in_report_buf[64] = "In Report";
-uint8_t hid_out_report_buf[64];
+uint8_t const hid_out_report_buf[64];
 
 /** @brief HID IN Callback */
 void hid_in_callback(usbd_device *usbd_dev, uint8_t ea);
 void hid_in_callback(usbd_device *usbd_dev, uint8_t ea){
  80000f8:	b510      	push	{r4, lr}
-    usbd_ep_write_packet(usbd_dev, ea, hid_in_report_buf, sizeof(hid_in_report_buf) / sizeof(uint8_t));
+    usbd_ep_write_packet(usbd_dev, ea, hid_out_report_buf, sizeof(hid_out_report_buf) / sizeof(uint8_t));
  80000fa:	2340      	movs	r3, #64	; 0x40
  80000fc:	4a01      	ldr	r2, [pc, #4]	; (8000104 <hid_in_callback+0xc>)
  80000fe:	f000 fa08 	bl	8000512 <usbd_ep_write_packet>
 }
  8000102:	bd10      	pop	{r4, pc}
- 8000104:	080017e8 	.word	0x080017e8
+ 8000104:	08001820 	.word	0x08001820
 
 08000108 <hid_out_callback>:
 
@@ -91,12 +91,12 @@ void hid_out_callback(usbd_device *usbd_dev, uint8_t ea){
  8000108:	b570      	push	{r4, r5, r6, lr}
  800010a:	0004      	movs	r4, r0
  800010c:	000d      	movs	r5, r1
-    usbd_ep_read_packet(usbd_dev, ea, hid_in_report_buf, sizeof(hid_in_report_buf) / sizeof(uint8_t));
+    usbd_ep_read_packet(usbd_dev, ea, hid_out_report_buf, sizeof(hid_out_report_buf) / sizeof(uint8_t));
  800010e:	4e06      	ldr	r6, [pc, #24]	; (8000128 <hid_out_callback+0x20>)
  8000110:	2340      	movs	r3, #64	; 0x40
  8000112:	0032      	movs	r2, r6
  8000114:	f000 fa04 	bl	8000520 <usbd_ep_read_packet>
-    usbd_ep_write_packet(usbd_dev, ea, hid_in_report_buf, sizeof(hid_in_report_buf) / sizeof(uint8_t));
+    usbd_ep_write_packet(usbd_dev, ea, hid_out_report_buf, sizeof(hid_out_report_buf) / sizeof(uint8_t));
  8000118:	2340      	movs	r3, #64	; 0x40
  800011a:	0032      	movs	r2, r6
  800011c:	0029      	movs	r1, r5
@@ -105,7 +105,7 @@ void hid_out_callback(usbd_device *usbd_dev, uint8_t ea){
 }
  8000124:	bd70      	pop	{r4, r5, r6, pc}
  8000126:	46c0      	nop			; (mov r8, r8)
- 8000128:	080017e8 	.word	0x080017e8
+ 8000128:	08001820 	.word	0x08001820
 
 0800012c <hid_set_config>:
 /** @brief Configuration callback to setup device as HID 
@@ -4295,24 +4295,23 @@ void st_usbfs_poll(usbd_device *dev)
 080017dc <hid_function>:
  80017dc:	01112109 19220100 00000000              .!....".....
 
-080017e8 <hid_in_report_buf>:
- 80017e8:	52206e49 726f7065 00000074 00000000     In Report.......
+080017e8 <hid_interface>:
+ 80017e8:	00000409 00000302 00180005 0017dc08     ................
+ 80017f8:	00000908 00000000                       ........
+
+08001800 <hid_interface_endpoints>:
+ 8001800:	03810507 00010040 00000000 07000000     ....@...........
+ 8001810:	40030105 00000100 00000000 00000000     ...@............
+
+08001820 <hid_out_report_buf>:
 	...
-
-08001828 <hid_interface>:
- 8001828:	00000409 00000302 00184005 0017dc08     .........@......
- 8001838:	00000908 00000000                       ........
-
-08001840 <hid_interface_endpoints>:
- 8001840:	03810507 00010040 00000000 07000000     ....@...........
- 8001850:	40030105 00000100 00000000 00000000     ...@............
 
 08001860 <hid_report_descriptor>:
  8001860:	09ff0006 0901a101 26001501 087500ff     ...........&..u.
  8001870:	02814095 02910109 000000c0              .@..........
 
 0800187c <interfaces>:
- 800187c:	00000000 00000001 00000000 08001828     ............(...
+ 800187c:	00000000 00000001 00000000 080017e8     ................
 
 0800188c <string_desc>:
  800188c:	0800176c 08001778 08001788 08001790     l...x...........

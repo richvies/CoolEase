@@ -69,7 +69,7 @@ Discarded input sections
  .text          0x0000000000000000        0x0 Hub/build/main.o
  .data          0x0000000000000000        0x0 Hub/build/main.o
  .bss           0x0000000000000000        0x0 Hub/build/main.o
- .bss.hid_out_report_buf
+ .rodata.hid_in_report_buf
                 0x0000000000000000       0x40 Hub/build/main.o
  .group         0x0000000000000000        0xc libopencm3/lib/libopencm3_stm32l0.a(flash_common_all.o)
  .group         0x0000000000000000        0xc libopencm3/lib/libopencm3_stm32l0.a(flash_common_all.o)
@@ -903,16 +903,16 @@ END GROUP
  .rodata.hid_function
                 0x00000000080017dc        0x9 Hub/build/main.o
  *fill*         0x00000000080017e5        0x3 
- .rodata.hid_in_report_buf
-                0x00000000080017e8       0x40 Hub/build/main.o
-                0x00000000080017e8                hid_in_report_buf
  .rodata.hid_interface
-                0x0000000008001828       0x15 Hub/build/main.o
-                0x0000000008001828                hid_interface
- *fill*         0x000000000800183d        0x3 
+                0x00000000080017e8       0x15 Hub/build/main.o
+                0x00000000080017e8                hid_interface
+ *fill*         0x00000000080017fd        0x3 
  .rodata.hid_interface_endpoints
-                0x0000000008001840       0x1e Hub/build/main.o
- *fill*         0x000000000800185e        0x2 
+                0x0000000008001800       0x1e Hub/build/main.o
+ *fill*         0x000000000800181e        0x2 
+ .rodata.hid_out_report_buf
+                0x0000000008001820       0x40 Hub/build/main.o
+                0x0000000008001820                hid_out_report_buf
  .rodata.hid_report_descriptor
                 0x0000000008001860       0x19 Hub/build/main.o
  *fill*         0x0000000008001879        0x3 
@@ -1016,17 +1016,17 @@ END GROUP
 OUTPUT(Hub/build/Hub.elf elf32-littlearm)
 LOAD linker stubs
 
-.debug_info     0x0000000000000000     0x9a8e
- .debug_info    0x0000000000000000     0x1419 Hub/build/main.o
- .debug_info    0x0000000000001419       0xf6 libopencm3/lib/libopencm3_stm32l0.a(flash_common_all.o)
- .debug_info    0x000000000000150f      0xbbd libopencm3/lib/libopencm3_stm32l0.a(rcc.o)
- .debug_info    0x00000000000020cc      0x648 libopencm3/lib/libopencm3_stm32l0.a(rcc_common_all.o)
- .debug_info    0x0000000000002714     0x17fd libopencm3/lib/libopencm3_stm32l0.a(usb.o)
- .debug_info    0x0000000000003f11     0x1939 libopencm3/lib/libopencm3_stm32l0.a(usb_control.o)
- .debug_info    0x000000000000584a     0x202f libopencm3/lib/libopencm3_stm32l0.a(usb_standard.o)
- .debug_info    0x0000000000007879      0xe9e libopencm3/lib/libopencm3_stm32l0.a(st_usbfs_v2.o)
- .debug_info    0x0000000000008717      0x2dc libopencm3/lib/libopencm3_stm32l0.a(vector.o)
- .debug_info    0x00000000000089f3     0x109b libopencm3/lib/libopencm3_stm32l0.a(st_usbfs_core.o)
+.debug_info     0x0000000000000000     0x9a7e
+ .debug_info    0x0000000000000000     0x1409 Hub/build/main.o
+ .debug_info    0x0000000000001409       0xf6 libopencm3/lib/libopencm3_stm32l0.a(flash_common_all.o)
+ .debug_info    0x00000000000014ff      0xbbd libopencm3/lib/libopencm3_stm32l0.a(rcc.o)
+ .debug_info    0x00000000000020bc      0x648 libopencm3/lib/libopencm3_stm32l0.a(rcc_common_all.o)
+ .debug_info    0x0000000000002704     0x17fd libopencm3/lib/libopencm3_stm32l0.a(usb.o)
+ .debug_info    0x0000000000003f01     0x1939 libopencm3/lib/libopencm3_stm32l0.a(usb_control.o)
+ .debug_info    0x000000000000583a     0x202f libopencm3/lib/libopencm3_stm32l0.a(usb_standard.o)
+ .debug_info    0x0000000000007869      0xe9e libopencm3/lib/libopencm3_stm32l0.a(st_usbfs_v2.o)
+ .debug_info    0x0000000000008707      0x2dc libopencm3/lib/libopencm3_stm32l0.a(vector.o)
+ .debug_info    0x00000000000089e3     0x109b libopencm3/lib/libopencm3_stm32l0.a(st_usbfs_core.o)
 
 .debug_abbrev   0x0000000000000000     0x1b9d
  .debug_abbrev  0x0000000000000000      0x304 Hub/build/main.o

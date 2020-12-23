@@ -291,22 +291,13 @@ static enum usbd_request_return_codes hid_control_request(usbd_device *dev, stru
 }
 
 /** @brief HID Report buffer */
-uint8_t const hid_in_report_buf[64] = "In Report";
-uint8_t hid_out_report_buf[64];
+uint8_t hid_report_buf[64];
 
-/** @brief HID IN Callback */
-void hid_in_callback(usbd_device *usbd_dev, uint8_t ea);
-void hid_in_callback(usbd_device *usbd_dev, uint8_t ea){
-    usbd_ep_write_packet(usbd_dev, ea, hid_in_report_buf, sizeof(hid_in_report_buf) / sizeof(uint8_t));
+/** @brief HID Resport Callback */
+void hid_report_callback(usbd_device *usbd_dev, uint8_t ea);
+void hid_report_callback(usbd_device *usbd_dev, uint8_t ea){
+    usbd_ep_write_packet(usbd_dev, ea, hid_report_buf, sizeof(hid_report_buf) / sizeof(uint8_t));
 }
-
-/** @brief HID OUT Callback */
-void hid_out_callback(usbd_device *usbd_dev, uint8_t ea);
-void hid_out_callback(usbd_device *usbd_dev, uint8_t ea){
-    usbd_ep_read_packet(usbd_dev, ea, hid_in_report_buf, sizeof(hid_in_report_buf) / sizeof(uint8_t));
-    usbd_ep_write_packet(usbd_dev, ea, hid_in_report_buf, sizeof(hid_in_report_buf) / sizeof(uint8_t));
-}
-
 
 /** @brief Configuration callback to setup device as HID 
  * 

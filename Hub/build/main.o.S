@@ -3876,19 +3876,19 @@ static enum usbd_request_return_codes hid_control_request(usbd_device *dev, stru
 
 
 uint8_t const hid_in_report_buf[64] = "In Report";
-uint8_t hid_out_report_buf[64];
+uint8_t const hid_out_report_buf[64];
 
 
 void hid_in_callback(usbd_device *usbd_dev, uint8_t ea);
 void hid_in_callback(usbd_device *usbd_dev, uint8_t ea){
-    usbd_ep_write_packet(usbd_dev, ea, hid_in_report_buf, sizeof(hid_in_report_buf) / sizeof(uint8_t));
+    usbd_ep_write_packet(usbd_dev, ea, hid_out_report_buf, sizeof(hid_out_report_buf) / sizeof(uint8_t));
 }
 
 
 void hid_out_callback(usbd_device *usbd_dev, uint8_t ea);
 void hid_out_callback(usbd_device *usbd_dev, uint8_t ea){
-    usbd_ep_read_packet(usbd_dev, ea, hid_in_report_buf, sizeof(hid_in_report_buf) / sizeof(uint8_t));
-    usbd_ep_write_packet(usbd_dev, ea, hid_in_report_buf, sizeof(hid_in_report_buf) / sizeof(uint8_t));
+    usbd_ep_read_packet(usbd_dev, ea, hid_out_report_buf, sizeof(hid_out_report_buf) / sizeof(uint8_t));
+    usbd_ep_write_packet(usbd_dev, ea, hid_out_report_buf, sizeof(hid_out_report_buf) / sizeof(uint8_t));
 }
 
 
