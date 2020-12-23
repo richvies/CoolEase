@@ -25,8 +25,13 @@
 		"python.pythonPath": "/usr/local/anaconda3/bin/python",
 		"terminal.integrated.inheritEnv": false,
 		"terminal.integrated.env.osx": {
-			"PATH":"/usr/local/anaconda3/bin"
+			"PATH":"/usr/local/anaconda3/bin:/usr/local/anaconda3/condabin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/opt/X11/bin:/usr/local/CrossPack-AVR/bin:/Applications/Wireshark.app/Contents/MacOS"
 		},
-		"explorer.autoReveal": false
+		"explorer.autoReveal": false,
+		"files.associations": {
+			"*.include": "makefile",
+			"*.inc": "makefile",
+			"type_traits": "c"
+		},
 	}
 }

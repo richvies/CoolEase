@@ -14,7 +14,6 @@
 #define __ATOMIC_RELEASE 3
 #define __ATOMIC_ACQ_REL 4
 #define __ATOMIC_CONSUME 1
-#define __OPTIMIZE_SIZE__ 1
 #define __OPTIMIZE__ 1
 #define __FINITE_MATH_ONLY__ 0
 #define __SIZEOF_INT__ 4
@@ -483,15 +482,107 @@
 #define STM32L0 1
 #define STM32L052C8T6 1
 # 1 "Hub/main.c"
+# 9 "Hub/main.c"
+# 1 "/usr/local/Cellar/arm-gcc-bin/9-2020-q2-update/lib/gcc/arm-none-eabi/9.3.1/include/stddef.h" 1 3 4
+# 39 "/usr/local/Cellar/arm-gcc-bin/9-2020-q2-update/lib/gcc/arm-none-eabi/9.3.1/include/stddef.h" 3 4
+#define _STDDEF_H 
+#define _STDDEF_H_ 
+
+#define _ANSI_STDDEF_H 
+# 131 "/usr/local/Cellar/arm-gcc-bin/9-2020-q2-update/lib/gcc/arm-none-eabi/9.3.1/include/stddef.h" 3 4
+#define _PTRDIFF_T 
+#define _T_PTRDIFF_ 
+#define _T_PTRDIFF 
+#define __PTRDIFF_T 
+#define _PTRDIFF_T_ 
+#define _BSD_PTRDIFF_T_ 
+#define ___int_ptrdiff_t_h 
+#define _GCC_PTRDIFF_T 
+#define _PTRDIFF_T_DECLARED 
+
+
+
+
+# 143 "/usr/local/Cellar/arm-gcc-bin/9-2020-q2-update/lib/gcc/arm-none-eabi/9.3.1/include/stddef.h" 3 4
+typedef int ptrdiff_t;
+# 155 "/usr/local/Cellar/arm-gcc-bin/9-2020-q2-update/lib/gcc/arm-none-eabi/9.3.1/include/stddef.h" 3 4
+#undef __need_ptrdiff_t
+# 181 "/usr/local/Cellar/arm-gcc-bin/9-2020-q2-update/lib/gcc/arm-none-eabi/9.3.1/include/stddef.h" 3 4
+#define __size_t__ 
+#define __SIZE_T__ 
+#define _SIZE_T 
+#define _SYS_SIZE_T_H 
+#define _T_SIZE_ 
+#define _T_SIZE 
+#define __SIZE_T 
+#define _SIZE_T_ 
+#define _BSD_SIZE_T_ 
+#define _SIZE_T_DEFINED_ 
+#define _SIZE_T_DEFINED 
+#define _BSD_SIZE_T_DEFINED_ 
+#define _SIZE_T_DECLARED 
+#define ___int_size_t_h 
+#define _GCC_SIZE_T 
+#define _SIZET_ 
 
 
 
 
 
 
+#define __size_t 
 
-# 1 "libopencm3/include/libopencm3/stm32/rcc.h" 1
-# 20 "libopencm3/include/libopencm3/stm32/rcc.h"
+
+
+
+
+typedef unsigned int size_t;
+# 231 "/usr/local/Cellar/arm-gcc-bin/9-2020-q2-update/lib/gcc/arm-none-eabi/9.3.1/include/stddef.h" 3 4
+#undef __need_size_t
+# 260 "/usr/local/Cellar/arm-gcc-bin/9-2020-q2-update/lib/gcc/arm-none-eabi/9.3.1/include/stddef.h" 3 4
+#define __wchar_t__ 
+#define __WCHAR_T__ 
+#define _WCHAR_T 
+#define _T_WCHAR_ 
+#define _T_WCHAR 
+#define __WCHAR_T 
+#define _WCHAR_T_ 
+#define _BSD_WCHAR_T_ 
+#define _WCHAR_T_DEFINED_ 
+#define _WCHAR_T_DEFINED 
+#define _WCHAR_T_H 
+#define ___int_wchar_t_h 
+#define __INT_WCHAR_T_H 
+#define _GCC_WCHAR_T 
+#define _WCHAR_T_DECLARED 
+# 287 "/usr/local/Cellar/arm-gcc-bin/9-2020-q2-update/lib/gcc/arm-none-eabi/9.3.1/include/stddef.h" 3 4
+#undef _BSD_WCHAR_T_
+# 321 "/usr/local/Cellar/arm-gcc-bin/9-2020-q2-update/lib/gcc/arm-none-eabi/9.3.1/include/stddef.h" 3 4
+typedef unsigned int wchar_t;
+# 340 "/usr/local/Cellar/arm-gcc-bin/9-2020-q2-update/lib/gcc/arm-none-eabi/9.3.1/include/stddef.h" 3 4
+#undef __need_wchar_t
+# 390 "/usr/local/Cellar/arm-gcc-bin/9-2020-q2-update/lib/gcc/arm-none-eabi/9.3.1/include/stddef.h" 3 4
+#undef NULL
+
+
+
+
+#define NULL ((void *)0)
+
+
+
+
+
+#undef __need_NULL
+
+
+
+
+#define offsetof(TYPE,MEMBER) __builtin_offsetof (TYPE, MEMBER)
+# 10 "Hub/main.c" 2
+
+# 1 "libopencm3/include/libopencm3/stm32/syscfg.h" 1
+# 20 "libopencm3/include/libopencm3/stm32/syscfg.h"
 # 1 "libopencm3/include/libopencm3/cm3/common.h" 1
 # 21 "libopencm3/include/libopencm3/cm3/common.h"
 #define LIBOPENCM3_CM3_COMMON_H 
@@ -623,8 +714,6 @@
 
 
 
-
-# 41 "/usr/local/Cellar/arm-gcc-bin/9-2020-q2-update/arm-none-eabi/include/machine/_default_types.h" 3 4
 typedef signed char __int8_t;
 
 typedef unsigned char __uint8_t;
@@ -1156,7 +1245,7 @@ typedef __uint_least64_t uint_least64_t;
 #define BIT29 (1<<29)
 #define BIT30 (1<<30)
 #define BIT31 (1<<31)
-# 21 "libopencm3/include/libopencm3/stm32/rcc.h" 2
+# 21 "libopencm3/include/libopencm3/stm32/syscfg.h" 2
 # 1 "libopencm3/include/libopencm3/stm32/memorymap.h" 1
 # 21 "libopencm3/include/libopencm3/stm32/memorymap.h"
 #define LIBOPENCM3_MEMORYMAP_COMMON_H 
@@ -1276,7 +1365,93 @@ typedef __uint_least64_t uint_least64_t;
 #define ST_TSENSE_CAL1_30C MMIO16((INFO_BASE + 0x7A))
 #define ST_TSENSE_CAL2_110C MMIO16((INFO_BASE + 0x7E))
 # 37 "libopencm3/include/libopencm3/stm32/memorymap.h" 2
-# 22 "libopencm3/include/libopencm3/stm32/rcc.h" 2
+# 22 "libopencm3/include/libopencm3/stm32/syscfg.h" 2
+# 34 "libopencm3/include/libopencm3/stm32/syscfg.h"
+# 1 "libopencm3/include/libopencm3/stm32/l0/syscfg.h" 1
+# 36 "libopencm3/include/libopencm3/stm32/l0/syscfg.h"
+#define LIBOPENCM3_SYSCFG_H 
+# 47 "libopencm3/include/libopencm3/stm32/l0/syscfg.h"
+#define SYSCFG_CFGR1 MMIO32(SYSCFG_BASE + 0x00)
+#define SYSCFG_CFGR2 MMIO32(SYSCFG_BASE + 0x04)
+#define SYSCFG_EXTICR(i) MMIO32(SYSCFG_BASE + 0x08 + (i)*4)
+#define SYSCFG_EXTICR1 SYSCFG_EXTICR(0)
+#define SYSCFG_EXTICR2 SYSCFG_EXTICR(1)
+#define SYSCFG_EXTICR3 SYSCFG_EXTICR(2)
+#define SYSCFG_EXTICR4 SYSCFG_EXTICR(3)
+#define COMP1_CTRL MMIO32(SYSCFG_BASE + 0x18)
+#define COMP2_CTRL MMIO32(SYSCFG_BASE + 0x1C)
+#define SYSCFG_CFGR3 MMIO32(SYSCFG_BASE + 0x20)
+
+
+
+
+
+
+
+#define SYSCFG_CFGR1_MEM_MODE_SHIFT 0
+#define SYSCFG_CFGR1_MEM_MODE (3 << SYSCFG_CFGR1_MEM_MODE_SHIFT)
+#define SYSCFG_CFGR1_MEM_MODE_FLASH (0 << SYSCFG_CFGR1_MEM_MODE_SHIFT)
+#define SYSCFG_CFGR1_MEM_MODE_SYSTEM (1 << SYSCFG_CFGR1_MEM_MODE_SHIFT)
+#define SYSCFG_CFGR1_MEM_MODE_SRAM (3 << SYSCFG_CFGR1_MEM_MODE_SHIFT)
+
+#define SYSCFG_CFGR1_UFB (1<<3)
+
+#define SYSCFG_CFGR1_BOOT_MODE_SHIFT 8
+#define SYSCFG_CFGR1_BOOT_MODE (3 << SYSCFG_CFGR1_BOOT_MODE_SHIFT)
+#define SYSCFG_CFGR1_BOOT_MODE_FLASH (0 << SYSCFG_CFGR1_BOOT_MODE_SHIFT)
+#define SYSCFG_CFGR1_BOOT_MODE_SYSTEM (1 << SYSCFG_CFGR1_BOOT_MODE_SHIFT)
+#define SYSCFG_CFGR1_BOOT_MODE_SRAM (3 << SYSCFG_CFGR1_BOOT_MODE_SHIFT)
+
+
+
+#define SYSCFG_CFGR2_FWDIS (1 << 0)
+
+#define SYSCFG_CFGR2_I2C_PB6_FMP (1 << 8)
+#define SYSCFG_CFGR2_I2C_PB7_FMP (1 << 9)
+#define SYSCFG_CFGR2_I2C_PB8_FMP (1 << 10)
+#define SYSCFG_CFGR2_I2C_PB9_FMP (1 << 11)
+
+#define SYSCFG_CFGR2_I2C1_FMP (1 << 12)
+#define SYSCFG_CFGR2_I2C2_FMP (1 << 13)
+#define SYSCFG_CFGR2_I2C3_FMP (1 << 14)
+
+
+
+#define SYSCFG_CFGR3_EN_VREFINT (1 << 0)
+
+#define SYSCFG_CFGR3_SEL_VREF_OUT_SHIFT 4
+#define SYSCFG_CFGR3_SEL_VREF_OUT (3 << SYSCFG_CFGR3_EN_VREFINT_SHIFT)
+#define SYSCFG_CFGR3_SEL_VREF_OUT_PB0 (1 << SYSCFG_CFGR3_EN_VREFINT_SHIFT)
+#define SYSCFG_CFGR3_SEL_VREF_OUT_PB1 (2 << SYSCFG_CFGR3_EN_VREFINT_SHIFT)
+
+#define SYSCFG_CFGR3_ENBUF_VREFINT_ADC (1 << 8)
+#define SYSCFG_CFGR3_ENBUF_SENSOR_ADC (1 << 9)
+#define SYSCFG_CFGR3_ENBUF_VREFINT_COMP (1 << 12)
+#define SYSCFG_CFGR3_ENREF_HSI48 (1 << 13)
+
+#define SYSCFG_CFGR3_REF_HSI48_RDYF (1 << 26)
+#define SYSCFG_CFGR3_SENSOR_ADC_RDYF (1 << 27)
+#define SYSCFG_CFGR3_VREFINT_ADC_RDYF (1 << 28)
+#define SYSCFG_CFGR3_VREFINT_COMP_RDYF (1 << 29)
+#define SYSCFG_CFGR3_VREFINT_RDYF (1 << 30)
+#define SYSCFG_CFGR3_REF_LOCK (1 << 31)
+
+
+
+#define SYSCFG_EXTICR_FIELDSIZE 4
+#define SYSCFG_EXTICR_GPIOA 0
+#define SYSCFG_EXTICR_GPIOB 1
+#define SYSCFG_EXTICR_GPIOC 2
+#define SYSCFG_EXTICR_GPIOD 3
+#define SYSCFG_EXTICR_GPIOE 4
+#define SYSCFG_EXTICR_GPIOH 5
+# 130 "libopencm3/include/libopencm3/stm32/l0/syscfg.h"
+
+
+
+# 35 "libopencm3/include/libopencm3/stm32/syscfg.h" 2
+# 12 "Hub/main.c" 2
+# 1 "libopencm3/include/libopencm3/stm32/rcc.h" 1
 # 36 "libopencm3/include/libopencm3/stm32/rcc.h"
 # 1 "libopencm3/include/libopencm3/stm32/l0/rcc.h" 1
 # 41 "libopencm3/include/libopencm3/stm32/l0/rcc.h"
@@ -2177,7 +2352,7 @@ void rcc_set_usart2_sel(uint32_t usart2_sel);
 
 
 # 37 "libopencm3/include/libopencm3/stm32/rcc.h" 2
-# 9 "Hub/main.c" 2
+# 13 "Hub/main.c" 2
 # 1 "libopencm3/include/libopencm3/stm32/flash.h" 1
 # 36 "libopencm3/include/libopencm3/stm32/flash.h"
 # 1 "libopencm3/include/libopencm3/stm32/l0/flash.h" 1
@@ -2350,7 +2525,256 @@ void eeprom_program_words(uint32_t address, uint32_t *data, int length_in_words)
 
 
 # 37 "libopencm3/include/libopencm3/stm32/flash.h" 2
-# 10 "Hub/main.c" 2
+# 14 "Hub/main.c" 2
+# 1 "libopencm3/include/libopencm3/stm32/crs.h" 1
+# 26 "libopencm3/include/libopencm3/stm32/crs.h"
+# 1 "libopencm3/include/libopencm3/stm32/common/crs_common_all.h" 1
+# 33 "libopencm3/include/libopencm3/stm32/common/crs_common_all.h"
+#define LIBOPENCM3_CRS_H 
+
+
+
+
+
+
+#define CRS CRS_BASE
+
+
+
+
+
+#define CRS_CR MMIO32(CRS_BASE + 0x00)
+#define CRS_CFGR MMIO32(CRS_BASE + 0x04)
+#define CRS_ISR MMIO32(CRS_BASE + 0x08)
+#define CRS_ICR MMIO32(CRS_BASE + 0x0c)
+
+
+
+
+
+
+
+#define CRS_CR_TRIM_SHIFT 8
+#define CRS_CR_TRIM (0x3F << CRS_CR_TRIM_SHIFT)
+
+#define CRS_CR_SWSYNC (1 << 7)
+#define CRS_CR_AUTOTRIMEN (1 << 6)
+#define CRS_CR_CEN (1 << 5)
+#define CRS_CR_ESYNCIE (1 << 3)
+#define CRS_CR_ERRIE (1 << 2)
+#define CRS_CR_SYNCWARNIE (1 << 1)
+#define CRS_CR_SYNCOKIE (1 << 0)
+
+
+
+#define CRS_CFGR_SYNCPOL (1 << 31)
+
+#define CRS_CFGR_SYNCSRC_SHIFT 28
+#define CRS_CFGR_SYNCSRC (3 << CRS_CFGR_SYNCSRC_SHIFT)
+#define CRS_CFGR_SYNCSRC_GPIO (0 << CRS_CFGR_SYNCSRC_SHIFT)
+#define CRS_CFGR_SYNCSRC_LSE (1 << CRS_CFGR_SYNCSRC_SHIFT)
+#define CRS_CFGR_SYNCSRC_USB_SOF (2 << CRS_CFGR_SYNCSRC_SHIFT)
+
+#define CRS_CFGR_SYNCDIV_SHIFT 24
+#define CRS_CFGR_SYNCDIV (7 << CRS_CFGR_SYNCDIV_SHIFT)
+#define CRS_CFGR_SYNCDIV_NODIV (0 << CRS_CFGR_SYNCDIV_SHIFT)
+#define CRS_CFGR_SYNCDIV_DIV2 (1 << CRS_CFGR_SYNCDIV_SHIFT)
+#define CRS_CFGR_SYNCDIV_DIV4 (2 << CRS_CFGR_SYNCDIV_SHIFT)
+#define CRS_CFGR_SYNCDIV_DIV8 (3 << CRS_CFGR_SYNCDIV_SHIFT)
+#define CRS_CFGR_SYNCDIV_DIV16 (4 << CRS_CFGR_SYNCDIV_SHIFT)
+#define CRS_CFGR_SYNCDIV_DIV32 (5 << CRS_CFGR_SYNCDIV_SHIFT)
+#define CRS_CFGR_SYNCDIV_DIV64 (6 << CRS_CFGR_SYNCDIV_SHIFT)
+#define CRS_CFGR_SYNCDIV_DIV128 (7 << CRS_CFGR_SYNCDIV_SHIFT)
+
+#define CRS_CFGR_FELIM_SHIFT 16
+#define CRS_CFGR_FELIM (0xFF << CRS_CFGR_FELIM_SHIFT)
+#define CRS_CFGR_FELIM_VAL(x) ((x) << CRS_CFGR_FELIM_SHIFT)
+
+#define CRS_CFGR_RELOAD_SHIFT 0
+#define CRS_CFGR_RELOAD (0xFFFF << CRS_CFGR_RELOAD_SHIFT)
+#define CRS_CFGR_RELOAD_VAL(x) ((x) << CRS_CFGR_RELOAD_SHIFT)
+
+
+
+#define CRS_ISR_FECAP_SHIFT 16
+#define CRS_ISR_FECAP (0xFFFF << CRS_ISR_FECAP_SHIFT)
+
+#define CRS_ISR_FEDIR (1 << 15)
+#define CRS_ISR_TRIMOVF (1 << 10)
+#define CRS_ISR_SYNCMISS (1 << 9)
+#define CRS_ISR_SYNCERR (1 << 8)
+#define CRS_ISR_ESYNCF (1 << 3)
+#define CRS_ISR_ERRF (1 << 2)
+#define CRS_ISR_SYNCWARNF (1 << 1)
+#define CRS_ISR_SYNCOOKF (1 << 0)
+
+
+
+#define CRS_ICR_ESYNCC (1 << 3)
+#define CRS_ICR_ERRC (1 << 2)
+#define CRS_ICR_SYNCWARNC (1 << 1)
+#define CRS_ICR_SYNCOKC (1 << 0)
+# 126 "libopencm3/include/libopencm3/stm32/common/crs_common_all.h"
+
+
+void crs_autotrim_usb_enable(void);
+
+
+# 27 "libopencm3/include/libopencm3/stm32/crs.h" 2
+# 15 "Hub/main.c" 2
+# 1 "libopencm3/include/libopencm3/cm3/nvic.h" 1
+# 38 "libopencm3/include/libopencm3/cm3/nvic.h"
+#define LIBOPENCM3_NVIC_H 
+# 51 "libopencm3/include/libopencm3/cm3/nvic.h"
+#define NVIC_ISER(iser_id) MMIO32(NVIC_BASE + 0x00 + ((iser_id) * 4))
+# 60 "libopencm3/include/libopencm3/cm3/nvic.h"
+#define NVIC_ICER(icer_id) MMIO32(NVIC_BASE + 0x80 + ((icer_id) * 4))
+# 69 "libopencm3/include/libopencm3/cm3/nvic.h"
+#define NVIC_ISPR(ispr_id) MMIO32(NVIC_BASE + 0x100 + ((ispr_id) * 4))
+# 78 "libopencm3/include/libopencm3/cm3/nvic.h"
+#define NVIC_ICPR(icpr_id) MMIO32(NVIC_BASE + 0x180 + ((icpr_id) * 4))
+# 98 "libopencm3/include/libopencm3/cm3/nvic.h"
+#define NVIC_IPR32(ipr_id) MMIO32(NVIC_BASE + 0x300 + ((ipr_id) * 4))
+# 120 "libopencm3/include/libopencm3/cm3/nvic.h"
+#define NVIC_NMI_IRQ -14
+#define NVIC_HARD_FAULT_IRQ -13
+# 131 "libopencm3/include/libopencm3/cm3/nvic.h"
+#define NVIC_SV_CALL_IRQ -5
+
+
+
+
+
+
+
+#define NVIC_PENDSV_IRQ -2
+#define NVIC_SYSTICK_IRQ -1
+
+
+
+
+
+
+# 1 "libopencm3/include/libopencm3/dispatch/nvic.h" 1
+# 18 "libopencm3/include/libopencm3/dispatch/nvic.h"
+# 1 "libopencm3/include/libopencm3/stm32/l0/nvic.h" 1
+
+
+
+
+
+
+#define LIBOPENCM3_STM32_L0_NVIC_H 
+
+# 1 "libopencm3/include/libopencm3/cm3/nvic.h" 1
+# 10 "libopencm3/include/libopencm3/stm32/l0/nvic.h" 2
+
+
+
+
+
+
+#define NVIC_WWDG_IRQ 0
+#define NVIC_PVD_IRQ 1
+#define NVIC_RTC_IRQ 2
+#define NVIC_FLASH_IRQ 3
+#define NVIC_RCC_IRQ 4
+#define NVIC_EXTI0_1_IRQ 5
+#define NVIC_EXTI2_3_IRQ 6
+#define NVIC_EXTI4_15_IRQ 7
+#define NVIC_TSC_IRQ 8
+#define NVIC_DMA1_CHANNEL1_IRQ 9
+#define NVIC_DMA1_CHANNEL2_3_IRQ 10
+#define NVIC_DMA1_CHANNEL4_5_IRQ 11
+#define NVIC_ADC_COMP_IRQ 12
+#define NVIC_LPTIM1_IRQ 13
+#define NVIC_USART4_5_IRQ 14
+#define NVIC_TIM2_IRQ 15
+#define NVIC_TIM3_IRQ 16
+#define NVIC_TIM6_DAC_IRQ 17
+#define NVIC_TIM7_IRQ 18
+#define NVIC_RESERVED4_IRQ 19
+#define NVIC_TIM21_IRQ 20
+#define NVIC_I2C3_IRQ 21
+#define NVIC_TIM22_IRQ 22
+#define NVIC_I2C1_IRQ 23
+#define NVIC_I2C2_IRQ 24
+#define NVIC_SPI1_IRQ 25
+#define NVIC_SPI2_IRQ 26
+#define NVIC_USART1_IRQ 27
+#define NVIC_USART2_IRQ 28
+#define NVIC_LPUART1_AES_RNG_IRQ 29
+#define NVIC_LCD_IRQ 30
+#define NVIC_USB_IRQ 31
+
+#define NVIC_IRQ_COUNT 32
+# 58 "libopencm3/include/libopencm3/stm32/l0/nvic.h"
+
+
+void wwdg_isr(void);
+void pvd_isr(void);
+void rtc_isr(void);
+void flash_isr(void);
+void rcc_isr(void);
+void exti0_1_isr(void);
+void exti2_3_isr(void);
+void exti4_15_isr(void);
+void tsc_isr(void);
+void dma1_channel1_isr(void);
+void dma1_channel2_3_isr(void);
+void dma1_channel4_5_isr(void);
+void adc_comp_isr(void);
+void lptim1_isr(void);
+void usart4_5_isr(void);
+void tim2_isr(void);
+void tim3_isr(void);
+void tim6_dac_isr(void);
+void tim7_isr(void);
+void reserved4_isr(void);
+void tim21_isr(void);
+void i2c3_isr(void);
+void tim22_isr(void);
+void i2c1_isr(void);
+void i2c2_isr(void);
+void spi1_isr(void);
+void spi2_isr(void);
+void usart1_isr(void);
+void usart2_isr(void);
+void lpuart1_aes_rng_isr(void);
+void lcd_isr(void);
+void usb_isr(void);
+
+
+# 19 "libopencm3/include/libopencm3/dispatch/nvic.h" 2
+# 148 "libopencm3/include/libopencm3/cm3/nvic.h" 2
+
+
+
+
+
+void nvic_enable_irq(uint8_t irqn);
+void nvic_disable_irq(uint8_t irqn);
+uint8_t nvic_get_pending_irq(uint8_t irqn);
+void nvic_set_pending_irq(uint8_t irqn);
+void nvic_clear_pending_irq(uint8_t irqn);
+uint8_t nvic_get_irq_enabled(uint8_t irqn);
+void nvic_set_priority(uint8_t irqn, uint8_t priority);
+
+
+
+
+
+
+
+void reset_handler(void);
+void nmi_handler(void);
+void hard_fault_handler(void);
+void sv_call_handler(void);
+void pend_sv_handler(void);
+void sys_tick_handler(void);
+# 182 "libopencm3/include/libopencm3/cm3/nvic.h"
+
+# 16 "Hub/main.c" 2
 
 # 1 "libopencm3/include/libopencm3/usb/usbd.h" 1
 # 39 "libopencm3/include/libopencm3/usb/usbd.h"
@@ -2692,7 +3116,144 @@ extern uint8_t usbd_ep_stall_get(usbd_device *usbd_dev, uint8_t addr);
 extern void usbd_ep_nak_set(usbd_device *usbd_dev, uint8_t addr, uint8_t nak);
 
 
-# 12 "Hub/main.c" 2
+# 18 "Hub/main.c" 2
+# 1 "Hub/../libopencm3/lib/usb/usb_private.h" 1
+# 39 "Hub/../libopencm3/lib/usb/usb_private.h"
+#define __USB_PRIVATE_H 
+
+#define MAX_USER_CONTROL_CALLBACK 4
+#define MAX_USER_SET_CONFIG_CALLBACK 4
+
+#define MIN(a,b) ((a) < (b) ? (a) : (b))
+
+
+struct _usbd_device {
+ const struct usb_device_descriptor *desc;
+ const struct usb_config_descriptor *config;
+ const char * const *strings;
+ int num_strings;
+
+ uint8_t *ctrl_buf;
+ uint16_t ctrl_buf_len;
+
+ uint8_t current_address;
+ uint8_t current_config;
+
+ uint16_t pm_top;
+
+
+ void (*user_callback_reset)(void);
+ void (*user_callback_suspend)(void);
+ void (*user_callback_resume)(void);
+ void (*user_callback_sof)(void);
+
+ struct usb_control_state {
+  enum {
+   IDLE, STALLED,
+   DATA_IN, LAST_DATA_IN, STATUS_IN,
+   DATA_OUT, LAST_DATA_OUT, STATUS_OUT,
+  } state;
+  struct usb_setup_data req __attribute__((aligned(4)));
+  uint8_t *ctrl_buf;
+  uint16_t ctrl_len;
+  usbd_control_complete_callback complete;
+  
+# 77 "Hub/../libopencm3/lib/usb/usb_private.h" 3 4
+ _Bool 
+# 77 "Hub/../libopencm3/lib/usb/usb_private.h"
+      needs_zlp;
+ } control_state;
+
+ struct user_control_callback {
+  usbd_control_callback cb;
+  uint8_t type;
+  uint8_t type_mask;
+ } user_control_callback[4];
+
+ usbd_endpoint_callback user_callback_ctr[8][3];
+
+
+ usbd_set_config_callback user_callback_set_config[4];
+
+ usbd_set_altsetting_callback user_callback_set_altsetting;
+
+ const struct _usbd_driver *driver;
+
+
+
+ uint16_t fifo_mem_top;
+ uint16_t fifo_mem_top_ep0;
+ uint8_t force_nak[4];
+
+
+
+
+ uint32_t doeptsiz[4];
+
+
+
+
+
+ uint16_t rxbcnt;
+};
+
+enum _usbd_transaction {
+ USB_TRANSACTION_IN,
+ USB_TRANSACTION_OUT,
+ USB_TRANSACTION_SETUP,
+};
+
+
+
+
+void _usbd_control_in(usbd_device *usbd_dev, uint8_t ea);
+void _usbd_control_out(usbd_device *usbd_dev, uint8_t ea);
+void _usbd_control_setup(usbd_device *usbd_dev, uint8_t ea);
+
+enum usbd_request_return_codes _usbd_standard_request_device(usbd_device *usbd_dev,
+      struct usb_setup_data *req, uint8_t **buf,
+      uint16_t *len);
+enum usbd_request_return_codes _usbd_standard_request_interface(usbd_device *usbd_dev,
+         struct usb_setup_data *req, uint8_t **buf,
+         uint16_t *len);
+enum usbd_request_return_codes _usbd_standard_request_endpoint(usbd_device *usbd_dev,
+        struct usb_setup_data *req, uint8_t **buf,
+        uint16_t *len);
+enum usbd_request_return_codes _usbd_standard_request(usbd_device *usbd_dev, struct usb_setup_data *req,
+      uint8_t **buf, uint16_t *len);
+
+void _usbd_reset(usbd_device *usbd_dev);
+
+
+struct _usbd_driver {
+ usbd_device *(*init)(void);
+ void (*set_address)(usbd_device *usbd_dev, uint8_t addr);
+ void (*ep_setup)(usbd_device *usbd_dev, uint8_t addr, uint8_t type,
+    uint16_t max_size, usbd_endpoint_callback cb);
+ void (*ep_reset)(usbd_device *usbd_dev);
+ void (*ep_stall_set)(usbd_device *usbd_dev, uint8_t addr,
+        uint8_t stall);
+ void (*ep_nak_set)(usbd_device *usbd_dev, uint8_t addr, uint8_t nak);
+ uint8_t (*ep_stall_get)(usbd_device *usbd_dev, uint8_t addr);
+ uint16_t (*ep_write_packet)(usbd_device *usbd_dev, uint8_t addr,
+        const void *buf, uint16_t len);
+ uint16_t (*ep_read_packet)(usbd_device *usbd_dev, uint8_t addr,
+       void *buf, uint16_t len);
+ void (*poll)(usbd_device *usbd_dev);
+ void (*disconnect)(usbd_device *usbd_dev, 
+# 156 "Hub/../libopencm3/lib/usb/usb_private.h" 3 4
+                                          _Bool 
+# 156 "Hub/../libopencm3/lib/usb/usb_private.h"
+                                               disconnected);
+ uint32_t base_address;
+ 
+# 158 "Hub/../libopencm3/lib/usb/usb_private.h" 3 4
+_Bool 
+# 158 "Hub/../libopencm3/lib/usb/usb_private.h"
+     set_address_before_status;
+ uint16_t rx_fifo_size;
+};
+# 19 "Hub/main.c" 2
 # 1 "libopencm3/include/libopencm3/stm32/st_usbfs.h" 1
 # 21 "libopencm3/include/libopencm3/stm32/st_usbfs.h"
 #define LIBOPENCM3_ST_USBFS_H 
@@ -3011,7 +3572,7 @@ extern void usbd_ep_nak_set(usbd_device *usbd_dev, uint8_t addr, uint8_t nak);
 #define USB_GET_EP_RX_BUFF(ep) (USB_PMA_BASE + (uint8_t *)(USB_GET_EP_RX_ADDR(ep) * 1))
 # 26 "libopencm3/include/libopencm3/stm32/l0/st_usbfs.h" 2
 # 34 "libopencm3/include/libopencm3/stm32/st_usbfs.h" 2
-# 13 "Hub/main.c" 2
+# 20 "Hub/main.c" 2
 # 1 "libopencm3/include/libopencm3/usb/hid.h" 1
 # 39 "libopencm3/include/libopencm3/usb/hid.h"
 #define __HID_H 
@@ -3062,7 +3623,8 @@ struct usb_hid_descriptor {
  uint8_t bCountryCode;
  uint8_t bNumDescriptors;
 } __attribute__((packed));
-# 14 "Hub/main.c" 2
+# 21 "Hub/main.c" 2
+
 
 
 
@@ -3070,7 +3632,7 @@ struct usb_hid_descriptor {
 
 
 enum {
-    INTERFACE_RAW_HID = 0,
+    INTERFACE_HID = 0,
 
 
 
@@ -3080,9 +3642,10 @@ enum {
     INTERFACE_COUNT = 1,
 };
 
+
 enum {
-    ENDPOINT_RAW_HID_IN = 0x81,
-    ENDPOINT_RAW_HID_OUT = 0x01,
+    ENDPOINT_HID_IN = 0x81,
+    ENDPOINT_HID_OUT = 0x01,
     ENDPOINT_CDC_COMM_IN = 0x83,
     ENDPOINT_CDC_DATA_IN = 0x82,
     ENDPOINT_CDC_DATA_OUT = 0x02,
@@ -3098,25 +3661,62 @@ enum {
     HID_SET_PROTOCOL = 11,
 };
 
-static const struct usb_device_descriptor dev_desc = {
-  18,
-  1,
-  0x0200,
-  0x00,
-  0x00,
-  0x00,
-  64,
-  0x16c0,
-  0x05dc,
-  0x0011,
-  1,
-  2,
-  0,
-  1,
+
+#define USB_VID 0x0483
+#define USB_PID 0x5750
+
+#define USB_LANGID_STRING USB_LANGID_ENGLISH_US
+#define USB_MANUFACTURER_STRING "CoolEase"
+#define USB_PRODUCT_STRING "CoolEase Hub"
+#define USB_SERIAL_STRING "12345"
+#define USB_CONFIGURATION_STRING "Custom HID Config"
+#define USB_INTERFACE_STRING "Custom HID Interface"
+
+static const char * langid[] = {0x09, 0x04};
+
+
+enum usb_strings_index{
+    USB_LANGID_IDX = 0,
+    USB_MANUFACTURER_IDX,
+    USB_PRODUCT_IDX,
+    USB_SERIAL_IDX,
+    USB_CONFIGURATION_IDX,
+    USB_INTERFACE_IDX,
+
 };
 
 
-static const struct usb_endpoint_descriptor raw_hid_interface_endpoints[] = {
+static const char * const string_desc[] = {
+    langid,
+    "CoolEase",
+    "CoolEase Hub",
+    "12345"
+    "Custom HID Config",
+    "Custom HID Interface"
+    };
+
+
+
+static const struct usb_device_descriptor dev_desc = {
+    .bLength = sizeof(struct usb_device_descriptor),
+ .bDescriptorType = 1,
+ .bcdUSB = 0x0200,
+ .bDeviceClass = 0x00,
+ .bDeviceSubClass = 0x00,
+ .bDeviceProtocol = 0x00,
+ .bMaxPacketSize0 = 64,
+ .idVendor = 0x0483,
+ .idProduct = 0x5750,
+ .bcdDevice = 0x0200,
+ .iManufacturer = USB_MANUFACTURER_IDX,
+ .iProduct = USB_PRODUCT_IDX,
+ .iSerialNumber = USB_SERIAL_IDX,
+ .bNumConfigurations = 1
+};
+
+
+
+static const struct usb_endpoint_descriptor hid_interface_endpoints[] = {
     {
 
         .bLength = 7,
@@ -3126,14 +3726,14 @@ static const struct usb_endpoint_descriptor raw_hid_interface_endpoints[] = {
 
 
 
-        .bEndpointAddress = ENDPOINT_RAW_HID_IN,
-# 86 "Hub/main.c"
+        .bEndpointAddress = ENDPOINT_HID_IN,
+# 132 "Hub/main.c"
         .bmAttributes = 0x03,
 
         .wMaxPacketSize = 64,
 
 
-        .bInterval = 10,
+        .bInterval = 1,
     },
     {
 
@@ -3144,58 +3744,33 @@ static const struct usb_endpoint_descriptor raw_hid_interface_endpoints[] = {
 
 
 
-        .bEndpointAddress = ENDPOINT_RAW_HID_OUT,
-# 111 "Hub/main.c"
+        .bEndpointAddress = ENDPOINT_HID_OUT,
+# 157 "Hub/main.c"
         .bmAttributes = 0x03,
 
         .wMaxPacketSize = 64,
 
 
-        .bInterval = 10,
+        .bInterval = 1,
     }
 };
-
-
-
-
-
-static const uint8_t raw_hid_report_descriptor[] = {
-
-    0x06, 0x00, 0xFF,
-
+# 174 "Hub/main.c"
+static const uint8_t hid_report_descriptor[] = {
+    0x06, 0x00, 0xff,
     0x09, 0x01,
-
-    0xA1, 0x01,
-
-    0x19, 0x01,
-
-    0x29, 0x40,
-
-
+    0xa1, 0x01,
+    0x09, 0x01,
     0x15, 0x00,
-
-
-
-    0x26, 0xFF, 0x00,
-
+    0x26, 0xff, 0x00,
     0x75, 0x08,
-
-
     0x95, 0x40,
-
-
-    0x81, 0x00,
-
-    0x19, 0x01,
-
-    0x29, 0x40,
-
-
-
-    0x91, 0x00,
-
-    0xC0,
+    0x81, 0x02,
+    0x09, 0x01,
+    0x91, 0x02,
+    0xc0
 };
+
+
 
 static const struct {
     struct usb_hid_descriptor hid_descriptor;
@@ -3203,10 +3778,10 @@ static const struct {
         uint8_t bReportDescriptorType;
         uint16_t wDescriptorLength;
     } __attribute__((packed)) hid_report;
-} __attribute__((packed)) raw_hid_function = {
+} __attribute__((packed)) hid_function = {
     .hid_descriptor = {
 
-        .bLength = sizeof(raw_hid_function),
+        .bLength = sizeof(hid_function),
 
         .bDescriptorType = 0x21,
 
@@ -3224,17 +3799,18 @@ static const struct {
 
         .bReportDescriptorType = 0x22,
 
-        .wDescriptorLength = sizeof(raw_hid_report_descriptor),
+        .wDescriptorLength = sizeof(hid_report_descriptor),
     },
 };
 
-const struct usb_interface_descriptor raw_hid_interface = {
+
+const struct usb_interface_descriptor hid_interface = {
 
     .bLength = 9,
 
     .bDescriptorType = 4,
 
-    .bInterfaceNumber = INTERFACE_RAW_HID,
+    .bInterfaceNumber = INTERFACE_HID,
 
     .bAlternateSetting = 0,
 
@@ -3246,156 +3822,149 @@ const struct usb_interface_descriptor raw_hid_interface = {
     .bInterfaceSubClass = 0,
     .bInterfaceProtocol = 0,
 
-    .iInterface = 0,
+    .iInterface = USB_INTERFACE_IDX,
 
 
 
-    .endpoint = raw_hid_interface_endpoints,
+    .endpoint = hid_interface_endpoints,
 
 
 
 
-    .extra = &raw_hid_function,
+    .extra = &hid_function,
 
-    .extralen = sizeof(raw_hid_function),
+    .extralen = sizeof(hid_function),
 };
+
 
 const struct usb_interface interfaces[] = {
     {
         .num_altsetting = 1,
-        .altsetting = &raw_hid_interface,
+        .altsetting = &hid_interface,
     }
 };
-# 279 "Hub/main.c"
+
+
+
 static const struct usb_config_descriptor cfg_desc = {
-
     .bLength = 9,
-
     .bDescriptorType = 2,
-
-
-
     .wTotalLength = 0,
-
     .bNumInterfaces = INTERFACE_COUNT,
-
     .bConfigurationValue = 1,
-
-    .iConfiguration = 0,
-
-
-
-
-
-
+    .iConfiguration = USB_CONFIGURATION_IDX,
     .bmAttributes = 0b10000000,
-
-
     .bMaxPower = 200,
-
-
-
     .interface = interfaces,
 };
 
 
-static const char lang_desc[] = {
-    4,
-    3,
-    0x09, 0x04
-};
 
-static const char manuf_desc[] = {
-    2 + 15 * 2,
-    3,
-    'k', 0x00,
-    'e', 0x00,
-    'v', 0x00,
-    'i', 0x00,
-    'n', 0x00,
-    'c', 0x00,
-    'u', 0x00,
-    'z', 0x00,
-    'n', 0x00,
-    'e', 0x00,
-    'r', 0x00,
-    '.', 0x00,
-    'c', 0x00,
-    'o', 0x00,
-    'm', 0x00
-};
+uint8_t usbd_control_buffer[128];
 
-static const char product_desc[] = {
-    2 + 25 * 2,
-    3,
-    'L', 0x00,
-    'E', 0x00,
-    'D', 0x00,
-    ' ', 0x00,
-    'W', 0x00,
-    'r', 0x00,
-    'i', 0x00,
-    's', 0x00,
-    't', 0x00,
-    'w', 0x00,
-    'a', 0x00,
-    't', 0x00,
-    'c', 0x00,
-    'h', 0x00,
-    ' ', 0x00,
-    'B', 0x00,
-    'o', 0x00,
-    'o', 0x00,
-    't', 0x00,
-    'l', 0x00,
-    'o', 0x00,
-    'a', 0x00,
-    'd', 0x00,
-    'e', 0x00,
-    'r', 0x00
-};
 
-static const char * string_desc[] = {
-  lang_desc,
-  manuf_desc,
-  product_desc
-};
+
+
+
+static enum usbd_request_return_codes hid_control_request(usbd_device *dev, struct usb_setup_data *req, uint8_t **buf, uint16_t *len,
+   void (**complete)(usbd_device *, struct usb_setup_data *))
+{
+ (void)complete;
+ (void)dev;
+
+ if((req->bmRequestType != 0x81) ||
+    (req->bRequest != 6) ||
+    (req->wValue != 0x2200))
+  return USBD_REQ_NOTSUPP;
+
+
+ *buf = (uint8_t *)hid_report_descriptor;
+ *len = sizeof(hid_report_descriptor);
+
+ return USBD_REQ_HANDLED;
+}
+
+
+
+
+
+static void hid_set_config(usbd_device *dev, uint16_t wValue)
+{
+ (void)wValue;
+ (void)dev;
+
+ usbd_ep_setup(dev, ENDPOINT_HID_IN, 0x03, 64, 
+# 312 "Hub/main.c" 3 4
+                                                                     ((void *)0)
+# 312 "Hub/main.c"
+                                                                         );
+    usbd_ep_setup(dev, ENDPOINT_HID_OUT, 0x03, 64, 
+# 313 "Hub/main.c" 3 4
+                                                                         ((void *)0)
+# 313 "Hub/main.c"
+                                                                             );
+
+ usbd_register_control_callback(
+    dev,
+    0x00 | 0x01,
+    0x60 | 0x1F,
+    hid_control_request);
+
+
+
+
+
+
+}
+
 
 static void usb_clock_init(void);
 
+
 int main(void)
 {
-  uint8_t control_buf[256];
+
+    usb_clock_init();
 
 
-  usb_clock_init();
+    (*((&(*(volatile uint32_t *)((((0x40000000U) + 0x00000) + 0x5c00) + 0x40)))) = (uint16_t)(0x0001));
+    (*((&(*(volatile uint32_t *)((((0x40000000U) + 0x00000) + 0x5c00) + 0x40)))) = (uint16_t)(0));
+    (*((&(*(volatile uint32_t *)((((0x40000000U) + 0x00000) + 0x5c00) + 0x44)))) = (uint16_t)(0));
 
 
-  usbd_device *dev = usbd_init(&st_usbfs_v2_usb_driver, &dev_desc, &cfg_desc, string_desc, 3, control_buf, 256);
+    usbd_device *usbd_dev = usbd_init(&st_usbfs_v2_usb_driver, &dev_desc, &cfg_desc, string_desc, sizeof(string_desc), usbd_control_buffer, sizeof(usbd_control_buffer));
 
-  return 0;
+
+    usbd_register_set_config_callback(usbd_dev, hid_set_config);
+# 355 "Hub/main.c"
+    while (1)
+    {
+      usbd_poll(usbd_dev);
+    }
+
+
+    return 0;
 }
+
 
 static void usb_clock_init(void)
 {
 
- flash_set_ws(0x01);
+ flash_set_ws(0x00);
 
 
-  rcc_osc_on(RCC_HSI16);
-  rcc_wait_for_osc_ready(RCC_HSI16);
-  rcc_set_sysclk_source(RCC_HSI16);
+    rcc_osc_on(RCC_HSI16);
+    rcc_wait_for_osc_ready(RCC_HSI16);
 
 
-  (*(volatile uint32_t *)((((0x40000000U) + 0x20000) + 0x01000) + 0x0c)) |= (1<<15);
+    rcc_set_sysclk_source(RCC_HSI16);
+
+    (*(volatile uint32_t *)((((0x40000000U) + 0x20000) + 0x01000) + 0x0c)) |= (1<<15);
 
 
-  rcc_osc_on(RCC_MSI);
-
-
- rcc_set_hpre(0x0);
- rcc_set_ppre1(0x0);
- rcc_set_ppre2(0x0);
+    rcc_set_hpre(0x0);
+    rcc_set_ppre1(0x0);
+    rcc_set_ppre2(0x0);
 
 
  rcc_ahb_frequency = 16000000;
@@ -3403,11 +3972,22 @@ static void usb_clock_init(void)
  rcc_apb2_frequency = 16000000;
 
 
+
+    rcc_periph_clock_enable(RCC_SYSCFG);
+    (*(volatile uint32_t *)((((0x40000000U) + 0x10000) + 0x0000) + 0x20)) |= 0x01;
+    while (!((*(volatile uint32_t *)((((0x40000000U) + 0x10000) + 0x0000) + 0x20)) & (1 << 30))) { }
+    (*(volatile uint32_t *)((((0x40000000U) + 0x10000) + 0x0000) + 0x20)) |= (1 << 13);
+    while (!((*(volatile uint32_t *)((((0x40000000U) + 0x10000) + 0x0000) + 0x20)) & (1 << 26))) { }
+
+
  rcc_osc_on(RCC_HSI48);
  rcc_wait_for_osc_ready(RCC_HSI48);
-  rcc_set_hsi48_source_rc48();
 
-  rcc_periph_clock_enable((1 << 0));
-  rcc_periph_clock_enable((1 << 23));
-  rcc_periph_clock_enable((1 << 27));
+    rcc_periph_clock_enable(RCC_USB);
+    rcc_periph_clock_enable(RCC_CRS);
+
+    rcc_set_hsi48_source_rc48();
+
+
+    rcc_osc_off(RCC_MSI);
 }

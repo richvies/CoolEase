@@ -10,10 +10,8 @@
                 "isDefault": true
             },
             "type": "shell",
-            "command": "/usr/bin/make",
+            "command": "/usr/bin/make -fHub/Makefile all",
             "args": [
-                "GCC_PATH=/usr/local/bin",
-                "-j12"
             ],
             "problemMatcher": {
                 "pattern": {
@@ -95,9 +93,8 @@
         {
             "label": "Delete build folder",
             "type": "shell",
-            "command": "/usr/bin/make",
+            "command": "/usr/bin/make -fHub/Makefile clean",
             "args": [
-                "clean"
             ],
             "problemMatcher": [],
             "presentation": {
@@ -112,11 +109,11 @@
             "command": "/usr/local/bin/openocd",
             "args": [
                 "-f",
-                "/Users/richarddavies/Desktop/Projects/Learn:Practice/CubeMXTest/.vscode/stlink.cfg",
+                "Tools/OpenOCD/stlink.cfg",
                 "-f",
-                ".vscode/stm32l0.cfg",
+                "Tools/OpenOCD/stm32l0.cfg",
                 "-c",
-                "program build/CubeMXTest.elf verify reset exit"
+                "program Hub/build/Hub.elf verify reset exit"
             ],
             "problemMatcher": [],
             "dependsOn": "Build project"

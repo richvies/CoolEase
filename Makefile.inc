@@ -31,7 +31,7 @@ include $(OPENCM3_DIR)/mk/genlink-config.mk
 GENERATED_BINS = $(BUILD_DIR)/*.elf $(BUILD_DIR)/*.bin $(BUILD_DIR)/*.map $(BUILD_DIR)/*.list $(BUILD_DIR)/*.lss
 
 # Options & Flags
-OPT ?= -Os
+OPT ?= -Og
 CSTD ?= -std=c99
 
 TGT_CPPFLAGS += -MD
@@ -73,9 +73,9 @@ endif
 LDLIBS += -Wl,--start-group -lc -lgcc -lnosys -Wl,--end-group
 
 print:
-	@echo $(GENERATED_BINS)
+	@echo $(%)
 
-all: print $(BUILD_DIR)/$(PROJECT).elf $(BUILD_DIR)/$(PROJECT).bin $(BUILD_DIR)/$(PROJECT).lss $(BUILD_DIR)/$(PROJECT).list
+all: $(BUILD_DIR)/$(PROJECT).elf $(BUILD_DIR)/$(PROJECT).bin $(BUILD_DIR)/$(PROJECT).lss $(BUILD_DIR)/$(PROJECT).list
 	$(SIZE) $(BUILD_DIR)/$(PROJECT).elf
 
 
