@@ -3,10 +3,11 @@ Basic methods and classes for interfacing with the wristwatch
 """
 
 import hid
+import sys
 import struct, time
 
-VID = 0x16c0
-PID = 0x05dc
+VID = 0x0483
+PID = 0x5750
 
 class Command(object):
     """
@@ -19,20 +20,20 @@ class Command(object):
     def pack(self):
         return struct.pack('<I60s', self.code, self.data_bytes)
 
-class SetTimeCommand(Command):
+class TestCommand(Command):
     COMMAND = 1
-    def __init__(self, timestamp):
-        parts = bytes([int(s) for s in time.strftime('%y,%m,%d,%H,%M,%S', timestamp).split(',')])
-        super().__init__(SetTimeCommand.COMMAND, parts)
+    def __init__(self):
+        parts = bytes('Test Command', 'utf-8')
+        super().__init__(self.COMMAND, parts)
 
 class EnterBootloaderCommand(Command):
     COMMAND = 2
     def __init__(self):
         super().__init__(EnterBootloaderCommand.COMMAND, b'')
 
-class Device(hid.Device):
-    MANUFACTURER='kevincuzner.com'
-    PRODUCT='LED Wristwatch'
+class Device(hid.device):
+    MANUFACTURER='CoolEase'
+    PRODUCT='CoolEase Hub'
     def __init__(self, path):
         self.path = path
 
@@ -43,12 +44,12 @@ class Device(hid.Device):
     def __exit__(self, *args):
         self.close()
 
-    def set_time(self):
-        """
-        Sets the watch time to the current time
-        """
-        cmd = SetTimeCommand(time.localtime())
-        self.write_command(cmd)
+    # def set_time(self):
+    #     """
+    #     Sets the watch time to the current time
+    #     """
+    #     cmd = SetTimeCommand(time.localtime())
+    #     self.write_command(cmd)
 
     def enter_bootloader(self):
         cmd = EnterBootloaderCommand()
@@ -63,10 +64,25 @@ class Device(hid.Device):
 
 def find_device(cls=Device):
     info = hid.enumerate(VID, PID)
+    n = 0
     for i in info:
-        if i['manufacturer_string'] == cls.MANUFACTURER and\
-                i['product_string'] == cls.PRODUCT:
+        n += 1
+        print('HID Device', n)
+        print('\t Manufacturer :\t', i['manufacturer_string'])
+        print('\t Product :\t', i['product_string'])
+        print()
+        if i['manufacturer_string'] == cls.MANUFACTURER and i['product_string'] == cls.PRODUCT:
             return cls(i['path'])
     return None
 
+def main():
+    dev = find_device()
+    if dev is None:
+        sys.exit('No hub found')
+    with dev:
+        print('Hub Found')
+        cmd = TestCommand()
+        dev.write_command(cmd)
 
+if __name__ == '__main__':
+    main()

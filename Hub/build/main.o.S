@@ -3665,15 +3665,6 @@ enum {
 #define USB_VID 0x0483
 #define USB_PID 0x5750
 
-#define USB_LANGID_STRING USB_LANGID_ENGLISH_US
-#define USB_MANUFACTURER_STRING "CoolEase"
-#define USB_PRODUCT_STRING "CoolEase Hub"
-#define USB_SERIAL_STRING "12345"
-#define USB_CONFIGURATION_STRING "Custom HID Config"
-#define USB_INTERFACE_STRING "Custom HID Interface"
-
-static const char * langid[] = {0x09, 0x04};
-
 
 enum usb_strings_index{
     USB_LANGID_IDX = 0,
@@ -3687,12 +3678,11 @@ enum usb_strings_index{
 
 
 static const char * const string_desc[] = {
-    langid,
     "CoolEase",
     "CoolEase Hub",
-    "12345"
-    "Custom HID Config",
-    "Custom HID Interface"
+    "12345",
+    "Custom HID Config"
+    "Custom HID Interface",
     };
 
 
@@ -3727,7 +3717,7 @@ static const struct usb_endpoint_descriptor hid_interface_endpoints[] = {
 
 
         .bEndpointAddress = ENDPOINT_HID_IN,
-# 132 "Hub/main.c"
+# 122 "Hub/main.c"
         .bmAttributes = 0x03,
 
         .wMaxPacketSize = 64,
@@ -3745,7 +3735,7 @@ static const struct usb_endpoint_descriptor hid_interface_endpoints[] = {
 
 
         .bEndpointAddress = ENDPOINT_HID_OUT,
-# 157 "Hub/main.c"
+# 147 "Hub/main.c"
         .bmAttributes = 0x03,
 
         .wMaxPacketSize = 64,
@@ -3754,7 +3744,7 @@ static const struct usb_endpoint_descriptor hid_interface_endpoints[] = {
         .bInterval = 1,
     }
 };
-# 174 "Hub/main.c"
+# 164 "Hub/main.c"
 static const uint8_t hid_report_descriptor[] = {
     0x06, 0x00, 0xff,
     0x09, 0x01,
@@ -3885,6 +3875,24 @@ static enum usbd_request_return_codes hid_control_request(usbd_device *dev, stru
 }
 
 
+uint8_t const hid_in_report_buf[64] = "In Report";
+uint8_t hid_out_report_buf[64];
+
+
+void hid_in_callback(usbd_device *usbd_dev, uint8_t ea);
+void hid_in_callback(usbd_device *usbd_dev, uint8_t ea){
+    usbd_ep_write_packet(usbd_dev, ea, hid_in_report_buf, sizeof(hid_in_report_buf) / sizeof(uint8_t));
+}
+
+
+void hid_out_callback(usbd_device *usbd_dev, uint8_t ea);
+void hid_out_callback(usbd_device *usbd_dev, uint8_t ea){
+    usbd_ep_read_packet(usbd_dev, ea, hid_in_report_buf, sizeof(hid_in_report_buf) / sizeof(uint8_t));
+    usbd_ep_write_packet(usbd_dev, ea, hid_in_report_buf, sizeof(hid_in_report_buf) / sizeof(uint8_t));
+}
+
+
+
 
 
 
@@ -3893,16 +3901,8 @@ static void hid_set_config(usbd_device *dev, uint16_t wValue)
  (void)wValue;
  (void)dev;
 
- usbd_ep_setup(dev, ENDPOINT_HID_IN, 0x03, 64, 
-# 312 "Hub/main.c" 3 4
-                                                                     ((void *)0)
-# 312 "Hub/main.c"
-                                                                         );
-    usbd_ep_setup(dev, ENDPOINT_HID_OUT, 0x03, 64, 
-# 313 "Hub/main.c" 3 4
-                                                                         ((void *)0)
-# 313 "Hub/main.c"
-                                                                             );
+ usbd_ep_setup(dev, ENDPOINT_HID_IN, 0x03, 64, hid_in_callback);
+    usbd_ep_setup(dev, ENDPOINT_HID_OUT, 0x03, 64, hid_out_callback);
 
  usbd_register_control_callback(
     dev,
@@ -3932,11 +3932,11 @@ int main(void)
     (*((&(*(volatile uint32_t *)((((0x40000000U) + 0x00000) + 0x5c00) + 0x44)))) = (uint16_t)(0));
 
 
-    usbd_device *usbd_dev = usbd_init(&st_usbfs_v2_usb_driver, &dev_desc, &cfg_desc, string_desc, sizeof(string_desc), usbd_control_buffer, sizeof(usbd_control_buffer));
+    usbd_device *usbd_dev = usbd_init(&st_usbfs_v2_usb_driver, &dev_desc, &cfg_desc, string_desc, sizeof(string_desc) / sizeof(const char*), usbd_control_buffer, sizeof(usbd_control_buffer));
 
 
     usbd_register_set_config_callback(usbd_dev, hid_set_config);
-# 355 "Hub/main.c"
+
     while (1)
     {
       usbd_poll(usbd_dev);

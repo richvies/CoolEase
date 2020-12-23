@@ -59,15 +59,6 @@ enum {
 #define USB_VID                         0x0483
 #define USB_PID                         0x5750
 
-#define USB_LANGID_STRING               USB_LANGID_ENGLISH_US
-#define USB_MANUFACTURER_STRING         "CoolEase"
-#define USB_PRODUCT_STRING              "CoolEase Hub"
-#define USB_SERIAL_STRING               "12345"
-#define USB_CONFIGURATION_STRING        "Custom HID Config"
-#define USB_INTERFACE_STRING            "Custom HID Interface"
-
-static const char * langid[] = {0x09, 0x04};
-
 /** @brief Location of specific strings within string descriptors stuct */
 enum usb_strings_index{
     USB_LANGID_IDX = 0,
@@ -81,12 +72,11 @@ enum usb_strings_index{
 
 /** @brief Structure containing all string descriptors, indexed by @ref usb_strings_index */
 static const char * const string_desc[] = {
-    langid, 
-    USB_MANUFACTURER_STRING, 
-    USB_PRODUCT_STRING,
-    USB_SERIAL_STRING
-    USB_CONFIGURATION_STRING,
-    USB_INTERFACE_STRING
+    "CoolEase",
+    "CoolEase Hub",
+    "12345",
+    "Custom HID Config"
+    "Custom HID Interface",
     };
 
 
@@ -300,6 +290,24 @@ static enum usbd_request_return_codes hid_control_request(usbd_device *dev, stru
 	return USBD_REQ_HANDLED;
 }
 
+/** @brief HID Report buffer */
+uint8_t const hid_in_report_buf[64] = "In Report";
+uint8_t hid_out_report_buf[64];
+
+/** @brief HID IN Callback */
+void hid_in_callback(usbd_device *usbd_dev, uint8_t ea);
+void hid_in_callback(usbd_device *usbd_dev, uint8_t ea){
+    usbd_ep_write_packet(usbd_dev, ea, hid_in_report_buf, sizeof(hid_in_report_buf) / sizeof(uint8_t));
+}
+
+/** @brief HID OUT Callback */
+void hid_out_callback(usbd_device *usbd_dev, uint8_t ea);
+void hid_out_callback(usbd_device *usbd_dev, uint8_t ea){
+    usbd_ep_read_packet(usbd_dev, ea, hid_in_report_buf, sizeof(hid_in_report_buf) / sizeof(uint8_t));
+    usbd_ep_write_packet(usbd_dev, ea, hid_in_report_buf, sizeof(hid_in_report_buf) / sizeof(uint8_t));
+}
+
+
 /** @brief Configuration callback to setup device as HID 
  * 
  * Sets up HID endpoints 
@@ -309,8 +317,8 @@ static void hid_set_config(usbd_device *dev, uint16_t wValue)
 	(void)wValue;
 	(void)dev;
 
-	usbd_ep_setup(dev, ENDPOINT_HID_IN, USB_ENDPOINT_ATTR_INTERRUPT, 64, NULL);
-    usbd_ep_setup(dev, ENDPOINT_HID_OUT, USB_ENDPOINT_ATTR_INTERRUPT, 64, NULL);
+	usbd_ep_setup(dev, ENDPOINT_HID_IN, USB_ENDPOINT_ATTR_INTERRUPT, 64, hid_in_callback);
+    usbd_ep_setup(dev, ENDPOINT_HID_OUT, USB_ENDPOINT_ATTR_INTERRUPT, 64, hid_out_callback);
 
 	usbd_register_control_callback(
 				dev,
@@ -340,7 +348,7 @@ int main(void)
     SET_REG(USB_ISTR_REG, 0);
 
     /** Initialize USB */
-    usbd_device *usbd_dev = usbd_init(&st_usbfs_v2_usb_driver, &dev_desc, &cfg_desc, string_desc, sizeof(string_desc), usbd_control_buffer, sizeof(usbd_control_buffer));
+    usbd_device *usbd_dev = usbd_init(&st_usbfs_v2_usb_driver, &dev_desc, &cfg_desc, string_desc, sizeof(string_desc) / sizeof(const char*), usbd_control_buffer, sizeof(usbd_control_buffer));
     
     /** Register Configuration Callback for HID */
     usbd_register_set_config_callback(usbd_dev, hid_set_config);
