@@ -1,0 +1,453 @@
+\hypertarget{w25qxx_8c}{}\doxysection{/\+Users/richarddavies/\+Desktop/\+Projects/\+Cool\+Ease/\+Code/stm32l051c8t6\+\_\+rfm/coolease/lib/w25qxx.c File Reference}
+\label{w25qxx_8c}\index{/Users/richarddavies/Desktop/Projects/CoolEase/Code/stm32l051c8t6\_rfm/coolease/lib/w25qxx.c@{/Users/richarddavies/Desktop/Projects/CoolEase/Code/stm32l051c8t6\_rfm/coolease/lib/w25qxx.c}}
+{\ttfamily \#include \char`\"{}w25.\+h\char`\"{}}\newline
+{\ttfamily \#include $<$stdint.\+h$>$}\newline
+{\ttfamily \#include $<$stdbool.\+h$>$}\newline
+{\ttfamily \#include $<$libopencm3/stm32/rcc.\+h$>$}\newline
+{\ttfamily \#include $<$libopencm3/stm32/gpio.\+h$>$}\newline
+{\ttfamily \#include $<$libopencm3/stm32/flash.\+h$>$}\newline
+{\ttfamily \#include $<$libopencm3/stm32/spi.\+h$>$}\newline
+{\ttfamily \#include $<$libopencm3/stm32/exti.\+h$>$}\newline
+{\ttfamily \#include $<$libopencm3/stm32/syscfg.\+h$>$}\newline
+{\ttfamily \#include $<$libopencm3/cm3/nvic.\+h$>$}\newline
+{\ttfamily \#include \char`\"{}coolease/board\+\_\+defs.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}coolease/serial\+\_\+spf\+\_\+serial\+\_\+printf.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}coolease/timers.\+h\char`\"{}}\newline
+\doxysubsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define \mbox{\hyperlink{w25qxx_8c_af2ca036fe464f8edae5409e5c970d535}{W25\+\_\+\+D\+U\+M\+M\+Y\+\_\+\+B\+Y\+TE}}~0x\+A5
+\item 
+\#define \mbox{\hyperlink{w25qxx_8c_ae87c33f6261b516a95c2dcbbbc42b402}{\+\_\+\+W25\+\_\+\+D\+E\+B\+UG}}
+\item 
+\#define \mbox{\hyperlink{w25qxx_8c_a19f2e44beda998f03b70130991ba913d}{spi\+\_\+chip\+\_\+select}}()~gpio\+\_\+clear(W25\+\_\+\+S\+P\+I\+\_\+\+N\+S\+S\+\_\+\+P\+O\+RT, W25\+\_\+\+S\+P\+I\+\_\+\+N\+SS)
+\item 
+\#define \mbox{\hyperlink{w25qxx_8c_a6abbade827ea980e386bc08a8a3b495e}{spi\+\_\+chip\+\_\+deselect}}()~gpio\+\_\+set(W25\+\_\+\+S\+P\+I\+\_\+\+N\+S\+S\+\_\+\+P\+O\+RT, W25\+\_\+\+S\+P\+I\+\_\+\+N\+SS)
+\end{DoxyCompactItemize}
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+static void \mbox{\hyperlink{w25qxx_8c_a1172bdb0b37a8539e8d87a316d5583ff}{clock\+\_\+setup}} (void)
+\item 
+static void \mbox{\hyperlink{w25qxx_8c_a66fc9d680f96347b60f9fba28a2094bc}{spi\+\_\+setup}} (void)
+\item 
+bool \mbox{\hyperlink{w25qxx_8c_a25f35ac447bbd611ed7684f920a90c2a}{w25\+\_\+\+Init}} (void)
+\item 
+uint32\+\_\+t \mbox{\hyperlink{w25qxx_8c_a6496ac869d939380f51d4697149e7446}{w25\+\_\+\+Read\+ID}} (void)
+\item 
+void \mbox{\hyperlink{w25qxx_8c_a21c9a374eeb3f346beb31ff905b9ec83}{w25\+\_\+\+Read\+Uniq\+ID}} (void)
+\item 
+void \mbox{\hyperlink{w25qxx_8c_ac071864fac69adbe4345c6e93113c4d5}{w25\+\_\+\+Write\+Enable}} (void)
+\item 
+void \mbox{\hyperlink{w25qxx_8c_a1ca2afc1c4c5e76b03b7180b7a19ce52}{w25\+\_\+\+Write\+Disable}} (void)
+\item 
+void \mbox{\hyperlink{w25qxx_8c_a9f98d3f482da7bb5cb3c1c952861e06e}{w25\+\_\+\+Wait\+For\+Write\+End}} (void)
+\item 
+uint8\+\_\+t \mbox{\hyperlink{w25qxx_8c_a590b48264f172204e2f3004f161ec87a}{w25\+\_\+\+Read\+Status\+Register}} (uint8\+\_\+t Select\+Status\+Register\+\_\+1\+\_\+2\+\_\+3)
+\item 
+void \mbox{\hyperlink{w25qxx_8c_aecf30541806c5187d42b2dfb16342595}{w25\+\_\+\+Write\+Status\+Register}} (uint8\+\_\+t Select\+Status\+Register\+\_\+1\+\_\+2\+\_\+3, uint8\+\_\+t Data)
+\item 
+void \mbox{\hyperlink{w25qxx_8c_a207bf5e9633a22dca0729ccc9636bdb9}{w25\+\_\+\+Erase\+Chip}} (void)
+\item 
+void \mbox{\hyperlink{w25qxx_8c_a1521ce8b5d33062298173889d8d7e7d0}{w25\+\_\+\+Erase\+Sector}} (uint32\+\_\+t Sector\+Addr)
+\item 
+void \mbox{\hyperlink{w25qxx_8c_a42a3566da042af312033016f3cf5e95d}{w25\+\_\+\+Erase\+Block}} (uint32\+\_\+t Block\+Addr)
+\item 
+uint32\+\_\+t \mbox{\hyperlink{w25qxx_8c_a54de76e862fbc7447847c26f3167a2db}{w25\+\_\+\+Page\+To\+Sector}} (uint32\+\_\+t Page\+Address)
+\item 
+uint32\+\_\+t \mbox{\hyperlink{w25qxx_8c_af23cf132d48fa4dae00a7045a283df76}{w25\+\_\+\+Page\+To\+Block}} (uint32\+\_\+t Page\+Address)
+\item 
+uint32\+\_\+t \mbox{\hyperlink{w25qxx_8c_ae7cc437e87c8e0a7c38ae9ba13622b13}{w25\+\_\+\+Sector\+To\+Block}} (uint32\+\_\+t Sector\+Address)
+\item 
+uint32\+\_\+t \mbox{\hyperlink{w25qxx_8c_aa71ac15ba2a37184807c9ffd2dc39217}{w25\+\_\+\+Sector\+To\+Page}} (uint32\+\_\+t Sector\+Address)
+\item 
+uint32\+\_\+t \mbox{\hyperlink{w25qxx_8c_ac1971e669409e5047e901df02351a9da}{w25\+\_\+\+Block\+To\+Page}} (uint32\+\_\+t Block\+Address)
+\item 
+bool \mbox{\hyperlink{w25qxx_8c_a1b46313b4349ac0f79e199832d9aa57d}{w25\+\_\+\+Is\+Empty\+Page}} (uint32\+\_\+t Page\+\_\+\+Address, uint32\+\_\+t Offset\+In\+Byte, uint32\+\_\+t Num\+Byte\+To\+Check\+\_\+up\+\_\+to\+\_\+\+Page\+Size)
+\item 
+bool \mbox{\hyperlink{w25qxx_8c_a6177d5168c3fef2215aebad9b13bc1d1}{w25\+\_\+\+Is\+Empty\+Sector}} (uint32\+\_\+t Sector\+\_\+\+Address, uint32\+\_\+t Offset\+In\+Byte, uint32\+\_\+t Num\+Byte\+To\+Check\+\_\+up\+\_\+to\+\_\+\+Sector\+Size)
+\item 
+bool \mbox{\hyperlink{w25qxx_8c_a1098d36a84b154cb9299686c43798a5f}{w25\+\_\+\+Is\+Empty\+Block}} (uint32\+\_\+t Block\+\_\+\+Address, uint32\+\_\+t Offset\+In\+Byte, uint32\+\_\+t Num\+Byte\+To\+Check\+\_\+up\+\_\+to\+\_\+\+Block\+Size)
+\item 
+void \mbox{\hyperlink{w25qxx_8c_af75ffc026827e59c6786975c972cb81c}{w25\+\_\+\+Write\+Byte}} (uint8\+\_\+t p\+Buffer, uint32\+\_\+t Write\+Addr\+\_\+in\+Bytes)
+\item 
+void \mbox{\hyperlink{w25qxx_8c_a9ebf945c43e1ccc869ab442113810520}{w25\+\_\+\+Write\+Page}} (uint8\+\_\+t $\ast$p\+Buffer, uint32\+\_\+t Page\+\_\+\+Address, uint32\+\_\+t Offset\+In\+Byte, uint32\+\_\+t Num\+Byte\+To\+Write\+\_\+up\+\_\+to\+\_\+\+Page\+Size)
+\item 
+void \mbox{\hyperlink{w25qxx_8c_a7d8f42f9939eb71d5be28f657a1e95c3}{w25\+\_\+\+Write\+Sector}} (uint8\+\_\+t $\ast$p\+Buffer, uint32\+\_\+t Sector\+\_\+\+Address, uint32\+\_\+t Offset\+In\+Byte, uint32\+\_\+t Num\+Byte\+To\+Write\+\_\+up\+\_\+to\+\_\+\+Sector\+Size)
+\item 
+void \mbox{\hyperlink{w25qxx_8c_a95eb44379007a87bfe87286659545361}{w25\+\_\+\+Write\+Block}} (uint8\+\_\+t $\ast$p\+Buffer, uint32\+\_\+t Block\+\_\+\+Address, uint32\+\_\+t Offset\+In\+Byte, uint32\+\_\+t Num\+Byte\+To\+Write\+\_\+up\+\_\+to\+\_\+\+Block\+Size)
+\item 
+void \mbox{\hyperlink{w25qxx_8c_aeb79f53178c142e41c95356bc0ccd4ff}{w25\+\_\+\+Read\+Byte}} (uint8\+\_\+t $\ast$p\+Buffer, uint32\+\_\+t Bytes\+\_\+\+Address)
+\item 
+void \mbox{\hyperlink{w25qxx_8c_ac0fdad4b9d39251cd379d9b3f544ef04}{w25\+\_\+\+Read\+Bytes}} (uint8\+\_\+t $\ast$p\+Buffer, uint32\+\_\+t Read\+Addr, uint32\+\_\+t Num\+Byte\+To\+Read)
+\item 
+void \mbox{\hyperlink{w25qxx_8c_aa7fa1645693957c722a2c1609f2cc222}{w25\+\_\+\+Read\+Page}} (uint8\+\_\+t $\ast$p\+Buffer, uint32\+\_\+t Page\+\_\+\+Address, uint32\+\_\+t Offset\+In\+Byte, uint32\+\_\+t Num\+Byte\+To\+Read\+\_\+up\+\_\+to\+\_\+\+Page\+Size)
+\item 
+void \mbox{\hyperlink{w25qxx_8c_a0362e1a6fdd978990f35b5198e947897}{w25\+\_\+\+Read\+Sector}} (uint8\+\_\+t $\ast$p\+Buffer, uint32\+\_\+t Sector\+\_\+\+Address, uint32\+\_\+t Offset\+In\+Byte, uint32\+\_\+t Num\+Byte\+To\+Read\+\_\+up\+\_\+to\+\_\+\+Sector\+Size)
+\item 
+void \mbox{\hyperlink{w25qxx_8c_aef2d0e02c34e93afbae0bb3b36840ad7}{w25\+\_\+\+Read\+Block}} (uint8\+\_\+t $\ast$p\+Buffer, uint32\+\_\+t Block\+\_\+\+Address, uint32\+\_\+t Offset\+In\+Byte, uint32\+\_\+t Num\+Byte\+To\+Read\+\_\+up\+\_\+to\+\_\+\+Block\+Size)
+\end{DoxyCompactItemize}
+\doxysubsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{structw25__t}{w25\+\_\+t}} \mbox{\hyperlink{w25qxx_8c_a4d22808bf2bc6b6d5e5b8db79da7291d}{w25}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Macro Definition Documentation}
+\mbox{\Hypertarget{w25qxx_8c_ae87c33f6261b516a95c2dcbbbc42b402}\label{w25qxx_8c_ae87c33f6261b516a95c2dcbbbc42b402}} 
+\index{w25qxx.c@{w25qxx.c}!\_W25\_DEBUG@{\_W25\_DEBUG}}
+\index{\_W25\_DEBUG@{\_W25\_DEBUG}!w25qxx.c@{w25qxx.c}}
+\doxysubsubsection{\texorpdfstring{\_W25\_DEBUG}{\_W25\_DEBUG}}
+{\footnotesize\ttfamily \#define \+\_\+\+W25\+\_\+\+D\+E\+B\+UG}
+
+
+
+Definition at line 20 of file w25qxx.\+c.
+
+\mbox{\Hypertarget{w25qxx_8c_a6abbade827ea980e386bc08a8a3b495e}\label{w25qxx_8c_a6abbade827ea980e386bc08a8a3b495e}} 
+\index{w25qxx.c@{w25qxx.c}!spi\_chip\_deselect@{spi\_chip\_deselect}}
+\index{spi\_chip\_deselect@{spi\_chip\_deselect}!w25qxx.c@{w25qxx.c}}
+\doxysubsubsection{\texorpdfstring{spi\_chip\_deselect}{spi\_chip\_deselect}}
+{\footnotesize\ttfamily \#define spi\+\_\+chip\+\_\+deselect(\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})~gpio\+\_\+set(W25\+\_\+\+S\+P\+I\+\_\+\+N\+S\+S\+\_\+\+P\+O\+RT, W25\+\_\+\+S\+P\+I\+\_\+\+N\+SS)}
+
+
+
+Definition at line 24 of file w25qxx.\+c.
+
+\mbox{\Hypertarget{w25qxx_8c_a19f2e44beda998f03b70130991ba913d}\label{w25qxx_8c_a19f2e44beda998f03b70130991ba913d}} 
+\index{w25qxx.c@{w25qxx.c}!spi\_chip\_select@{spi\_chip\_select}}
+\index{spi\_chip\_select@{spi\_chip\_select}!w25qxx.c@{w25qxx.c}}
+\doxysubsubsection{\texorpdfstring{spi\_chip\_select}{spi\_chip\_select}}
+{\footnotesize\ttfamily \#define spi\+\_\+chip\+\_\+select(\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})~gpio\+\_\+clear(W25\+\_\+\+S\+P\+I\+\_\+\+N\+S\+S\+\_\+\+P\+O\+RT, W25\+\_\+\+S\+P\+I\+\_\+\+N\+SS)}
+
+
+
+Definition at line 23 of file w25qxx.\+c.
+
+\mbox{\Hypertarget{w25qxx_8c_af2ca036fe464f8edae5409e5c970d535}\label{w25qxx_8c_af2ca036fe464f8edae5409e5c970d535}} 
+\index{w25qxx.c@{w25qxx.c}!W25\_DUMMY\_BYTE@{W25\_DUMMY\_BYTE}}
+\index{W25\_DUMMY\_BYTE@{W25\_DUMMY\_BYTE}!w25qxx.c@{w25qxx.c}}
+\doxysubsubsection{\texorpdfstring{W25\_DUMMY\_BYTE}{W25\_DUMMY\_BYTE}}
+{\footnotesize\ttfamily \#define W25\+\_\+\+D\+U\+M\+M\+Y\+\_\+\+B\+Y\+TE~0x\+A5}
+
+
+
+Definition at line 19 of file w25qxx.\+c.
+
+
+
+\doxysubsection{Function Documentation}
+\mbox{\Hypertarget{w25qxx_8c_a1172bdb0b37a8539e8d87a316d5583ff}\label{w25qxx_8c_a1172bdb0b37a8539e8d87a316d5583ff}} 
+\index{w25qxx.c@{w25qxx.c}!clock\_setup@{clock\_setup}}
+\index{clock\_setup@{clock\_setup}!w25qxx.c@{w25qxx.c}}
+\doxysubsubsection{\texorpdfstring{clock\_setup()}{clock\_setup()}}
+{\footnotesize\ttfamily static void clock\+\_\+setup (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Definition at line 977 of file w25qxx.\+c.
+
+\mbox{\Hypertarget{w25qxx_8c_a66fc9d680f96347b60f9fba28a2094bc}\label{w25qxx_8c_a66fc9d680f96347b60f9fba28a2094bc}} 
+\index{w25qxx.c@{w25qxx.c}!spi\_setup@{spi\_setup}}
+\index{spi\_setup@{spi\_setup}!w25qxx.c@{w25qxx.c}}
+\doxysubsubsection{\texorpdfstring{spi\_setup()}{spi\_setup()}}
+{\footnotesize\ttfamily static void spi\+\_\+setup (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Definition at line 999 of file w25qxx.\+c.
+
+\mbox{\Hypertarget{w25qxx_8c_ac1971e669409e5047e901df02351a9da}\label{w25qxx_8c_ac1971e669409e5047e901df02351a9da}} 
+\index{w25qxx.c@{w25qxx.c}!w25\_BlockToPage@{w25\_BlockToPage}}
+\index{w25\_BlockToPage@{w25\_BlockToPage}!w25qxx.c@{w25qxx.c}}
+\doxysubsubsection{\texorpdfstring{w25\_BlockToPage()}{w25\_BlockToPage()}}
+{\footnotesize\ttfamily uint32\+\_\+t w25\+\_\+\+Block\+To\+Page (\begin{DoxyParamCaption}\item[{uint32\+\_\+t}]{Block\+Address }\end{DoxyParamCaption})}
+
+
+
+Definition at line 406 of file w25qxx.\+c.
+
+\mbox{\Hypertarget{w25qxx_8c_a42a3566da042af312033016f3cf5e95d}\label{w25qxx_8c_a42a3566da042af312033016f3cf5e95d}} 
+\index{w25qxx.c@{w25qxx.c}!w25\_EraseBlock@{w25\_EraseBlock}}
+\index{w25\_EraseBlock@{w25\_EraseBlock}!w25qxx.c@{w25qxx.c}}
+\doxysubsubsection{\texorpdfstring{w25\_EraseBlock()}{w25\_EraseBlock()}}
+{\footnotesize\ttfamily void w25\+\_\+\+Erase\+Block (\begin{DoxyParamCaption}\item[{uint32\+\_\+t}]{Block\+Addr }\end{DoxyParamCaption})}
+
+
+
+Definition at line 356 of file w25qxx.\+c.
+
+\mbox{\Hypertarget{w25qxx_8c_a207bf5e9633a22dca0729ccc9636bdb9}\label{w25qxx_8c_a207bf5e9633a22dca0729ccc9636bdb9}} 
+\index{w25qxx.c@{w25qxx.c}!w25\_EraseChip@{w25\_EraseChip}}
+\index{w25\_EraseChip@{w25\_EraseChip}!w25qxx.c@{w25qxx.c}}
+\doxysubsubsection{\texorpdfstring{w25\_EraseChip()}{w25\_EraseChip()}}
+{\footnotesize\ttfamily void w25\+\_\+\+Erase\+Chip (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})}
+
+
+
+Definition at line 296 of file w25qxx.\+c.
+
+\mbox{\Hypertarget{w25qxx_8c_a1521ce8b5d33062298173889d8d7e7d0}\label{w25qxx_8c_a1521ce8b5d33062298173889d8d7e7d0}} 
+\index{w25qxx.c@{w25qxx.c}!w25\_EraseSector@{w25\_EraseSector}}
+\index{w25\_EraseSector@{w25\_EraseSector}!w25qxx.c@{w25qxx.c}}
+\doxysubsubsection{\texorpdfstring{w25\_EraseSector()}{w25\_EraseSector()}}
+{\footnotesize\ttfamily void w25\+\_\+\+Erase\+Sector (\begin{DoxyParamCaption}\item[{uint32\+\_\+t}]{Sector\+Addr }\end{DoxyParamCaption})}
+
+
+
+Definition at line 327 of file w25qxx.\+c.
+
+\mbox{\Hypertarget{w25qxx_8c_a25f35ac447bbd611ed7684f920a90c2a}\label{w25qxx_8c_a25f35ac447bbd611ed7684f920a90c2a}} 
+\index{w25qxx.c@{w25qxx.c}!w25\_Init@{w25\_Init}}
+\index{w25\_Init@{w25\_Init}!w25qxx.c@{w25qxx.c}}
+\doxysubsubsection{\texorpdfstring{w25\_Init()}{w25\_Init()}}
+{\footnotesize\ttfamily bool w25\+\_\+\+Init (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})}
+
+
+
+Definition at line 30 of file w25qxx.\+c.
+
+\mbox{\Hypertarget{w25qxx_8c_a1098d36a84b154cb9299686c43798a5f}\label{w25qxx_8c_a1098d36a84b154cb9299686c43798a5f}} 
+\index{w25qxx.c@{w25qxx.c}!w25\_IsEmptyBlock@{w25\_IsEmptyBlock}}
+\index{w25\_IsEmptyBlock@{w25\_IsEmptyBlock}!w25qxx.c@{w25qxx.c}}
+\doxysubsubsection{\texorpdfstring{w25\_IsEmptyBlock()}{w25\_IsEmptyBlock()}}
+{\footnotesize\ttfamily bool w25\+\_\+\+Is\+Empty\+Block (\begin{DoxyParamCaption}\item[{uint32\+\_\+t}]{Block\+\_\+\+Address,  }\item[{uint32\+\_\+t}]{Offset\+In\+Byte,  }\item[{uint32\+\_\+t}]{Num\+Byte\+To\+Check\+\_\+up\+\_\+to\+\_\+\+Block\+Size }\end{DoxyParamCaption})}
+
+
+
+Definition at line 557 of file w25qxx.\+c.
+
+\mbox{\Hypertarget{w25qxx_8c_a1b46313b4349ac0f79e199832d9aa57d}\label{w25qxx_8c_a1b46313b4349ac0f79e199832d9aa57d}} 
+\index{w25qxx.c@{w25qxx.c}!w25\_IsEmptyPage@{w25\_IsEmptyPage}}
+\index{w25\_IsEmptyPage@{w25\_IsEmptyPage}!w25qxx.c@{w25qxx.c}}
+\doxysubsubsection{\texorpdfstring{w25\_IsEmptyPage()}{w25\_IsEmptyPage()}}
+{\footnotesize\ttfamily bool w25\+\_\+\+Is\+Empty\+Page (\begin{DoxyParamCaption}\item[{uint32\+\_\+t}]{Page\+\_\+\+Address,  }\item[{uint32\+\_\+t}]{Offset\+In\+Byte,  }\item[{uint32\+\_\+t}]{Num\+Byte\+To\+Check\+\_\+up\+\_\+to\+\_\+\+Page\+Size }\end{DoxyParamCaption})}
+
+
+
+Definition at line 413 of file w25qxx.\+c.
+
+\mbox{\Hypertarget{w25qxx_8c_a6177d5168c3fef2215aebad9b13bc1d1}\label{w25qxx_8c_a6177d5168c3fef2215aebad9b13bc1d1}} 
+\index{w25qxx.c@{w25qxx.c}!w25\_IsEmptySector@{w25\_IsEmptySector}}
+\index{w25\_IsEmptySector@{w25\_IsEmptySector}!w25qxx.c@{w25qxx.c}}
+\doxysubsubsection{\texorpdfstring{w25\_IsEmptySector()}{w25\_IsEmptySector()}}
+{\footnotesize\ttfamily bool w25\+\_\+\+Is\+Empty\+Sector (\begin{DoxyParamCaption}\item[{uint32\+\_\+t}]{Sector\+\_\+\+Address,  }\item[{uint32\+\_\+t}]{Offset\+In\+Byte,  }\item[{uint32\+\_\+t}]{Num\+Byte\+To\+Check\+\_\+up\+\_\+to\+\_\+\+Sector\+Size }\end{DoxyParamCaption})}
+
+
+
+Definition at line 485 of file w25qxx.\+c.
+
+\mbox{\Hypertarget{w25qxx_8c_af23cf132d48fa4dae00a7045a283df76}\label{w25qxx_8c_af23cf132d48fa4dae00a7045a283df76}} 
+\index{w25qxx.c@{w25qxx.c}!w25\_PageToBlock@{w25\_PageToBlock}}
+\index{w25\_PageToBlock@{w25\_PageToBlock}!w25qxx.c@{w25qxx.c}}
+\doxysubsubsection{\texorpdfstring{w25\_PageToBlock()}{w25\_PageToBlock()}}
+{\footnotesize\ttfamily uint32\+\_\+t w25\+\_\+\+Page\+To\+Block (\begin{DoxyParamCaption}\item[{uint32\+\_\+t}]{Page\+Address }\end{DoxyParamCaption})}
+
+
+
+Definition at line 394 of file w25qxx.\+c.
+
+\mbox{\Hypertarget{w25qxx_8c_a54de76e862fbc7447847c26f3167a2db}\label{w25qxx_8c_a54de76e862fbc7447847c26f3167a2db}} 
+\index{w25qxx.c@{w25qxx.c}!w25\_PageToSector@{w25\_PageToSector}}
+\index{w25\_PageToSector@{w25\_PageToSector}!w25qxx.c@{w25qxx.c}}
+\doxysubsubsection{\texorpdfstring{w25\_PageToSector()}{w25\_PageToSector()}}
+{\footnotesize\ttfamily uint32\+\_\+t w25\+\_\+\+Page\+To\+Sector (\begin{DoxyParamCaption}\item[{uint32\+\_\+t}]{Page\+Address }\end{DoxyParamCaption})}
+
+
+
+Definition at line 390 of file w25qxx.\+c.
+
+\mbox{\Hypertarget{w25qxx_8c_aef2d0e02c34e93afbae0bb3b36840ad7}\label{w25qxx_8c_aef2d0e02c34e93afbae0bb3b36840ad7}} 
+\index{w25qxx.c@{w25qxx.c}!w25\_ReadBlock@{w25\_ReadBlock}}
+\index{w25\_ReadBlock@{w25\_ReadBlock}!w25qxx.c@{w25qxx.c}}
+\doxysubsubsection{\texorpdfstring{w25\_ReadBlock()}{w25\_ReadBlock()}}
+{\footnotesize\ttfamily void w25\+\_\+\+Read\+Block (\begin{DoxyParamCaption}\item[{uint8\+\_\+t $\ast$}]{p\+Buffer,  }\item[{uint32\+\_\+t}]{Block\+\_\+\+Address,  }\item[{uint32\+\_\+t}]{Offset\+In\+Byte,  }\item[{uint32\+\_\+t}]{Num\+Byte\+To\+Read\+\_\+up\+\_\+to\+\_\+\+Block\+Size }\end{DoxyParamCaption})}
+
+
+
+Definition at line 934 of file w25qxx.\+c.
+
+\mbox{\Hypertarget{w25qxx_8c_aeb79f53178c142e41c95356bc0ccd4ff}\label{w25qxx_8c_aeb79f53178c142e41c95356bc0ccd4ff}} 
+\index{w25qxx.c@{w25qxx.c}!w25\_ReadByte@{w25\_ReadByte}}
+\index{w25\_ReadByte@{w25\_ReadByte}!w25qxx.c@{w25qxx.c}}
+\doxysubsubsection{\texorpdfstring{w25\_ReadByte()}{w25\_ReadByte()}}
+{\footnotesize\ttfamily void w25\+\_\+\+Read\+Byte (\begin{DoxyParamCaption}\item[{uint8\+\_\+t $\ast$}]{p\+Buffer,  }\item[{uint32\+\_\+t}]{Bytes\+\_\+\+Address }\end{DoxyParamCaption})}
+
+
+
+Definition at line 786 of file w25qxx.\+c.
+
+\mbox{\Hypertarget{w25qxx_8c_ac0fdad4b9d39251cd379d9b3f544ef04}\label{w25qxx_8c_ac0fdad4b9d39251cd379d9b3f544ef04}} 
+\index{w25qxx.c@{w25qxx.c}!w25\_ReadBytes@{w25\_ReadBytes}}
+\index{w25\_ReadBytes@{w25\_ReadBytes}!w25qxx.c@{w25qxx.c}}
+\doxysubsubsection{\texorpdfstring{w25\_ReadBytes()}{w25\_ReadBytes()}}
+{\footnotesize\ttfamily void w25\+\_\+\+Read\+Bytes (\begin{DoxyParamCaption}\item[{uint8\+\_\+t $\ast$}]{p\+Buffer,  }\item[{uint32\+\_\+t}]{Read\+Addr,  }\item[{uint32\+\_\+t}]{Num\+Byte\+To\+Read }\end{DoxyParamCaption})}
+
+
+
+Definition at line 812 of file w25qxx.\+c.
+
+\mbox{\Hypertarget{w25qxx_8c_a6496ac869d939380f51d4697149e7446}\label{w25qxx_8c_a6496ac869d939380f51d4697149e7446}} 
+\index{w25qxx.c@{w25qxx.c}!w25\_ReadID@{w25\_ReadID}}
+\index{w25\_ReadID@{w25\_ReadID}!w25qxx.c@{w25qxx.c}}
+\doxysubsubsection{\texorpdfstring{w25\_ReadID()}{w25\_ReadID()}}
+{\footnotesize\ttfamily uint32\+\_\+t w25\+\_\+\+Read\+ID (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})}
+
+
+
+Definition at line 160 of file w25qxx.\+c.
+
+\mbox{\Hypertarget{w25qxx_8c_aa7fa1645693957c722a2c1609f2cc222}\label{w25qxx_8c_aa7fa1645693957c722a2c1609f2cc222}} 
+\index{w25qxx.c@{w25qxx.c}!w25\_ReadPage@{w25\_ReadPage}}
+\index{w25\_ReadPage@{w25\_ReadPage}!w25qxx.c@{w25qxx.c}}
+\doxysubsubsection{\texorpdfstring{w25\_ReadPage()}{w25\_ReadPage()}}
+{\footnotesize\ttfamily void w25\+\_\+\+Read\+Page (\begin{DoxyParamCaption}\item[{uint8\+\_\+t $\ast$}]{p\+Buffer,  }\item[{uint32\+\_\+t}]{Page\+\_\+\+Address,  }\item[{uint32\+\_\+t}]{Offset\+In\+Byte,  }\item[{uint32\+\_\+t}]{Num\+Byte\+To\+Read\+\_\+up\+\_\+to\+\_\+\+Page\+Size }\end{DoxyParamCaption})}
+
+
+
+Definition at line 851 of file w25qxx.\+c.
+
+\mbox{\Hypertarget{w25qxx_8c_a0362e1a6fdd978990f35b5198e947897}\label{w25qxx_8c_a0362e1a6fdd978990f35b5198e947897}} 
+\index{w25qxx.c@{w25qxx.c}!w25\_ReadSector@{w25\_ReadSector}}
+\index{w25\_ReadSector@{w25\_ReadSector}!w25qxx.c@{w25qxx.c}}
+\doxysubsubsection{\texorpdfstring{w25\_ReadSector()}{w25\_ReadSector()}}
+{\footnotesize\ttfamily void w25\+\_\+\+Read\+Sector (\begin{DoxyParamCaption}\item[{uint8\+\_\+t $\ast$}]{p\+Buffer,  }\item[{uint32\+\_\+t}]{Sector\+\_\+\+Address,  }\item[{uint32\+\_\+t}]{Offset\+In\+Byte,  }\item[{uint32\+\_\+t}]{Num\+Byte\+To\+Read\+\_\+up\+\_\+to\+\_\+\+Sector\+Size }\end{DoxyParamCaption})}
+
+
+
+Definition at line 896 of file w25qxx.\+c.
+
+\mbox{\Hypertarget{w25qxx_8c_a590b48264f172204e2f3004f161ec87a}\label{w25qxx_8c_a590b48264f172204e2f3004f161ec87a}} 
+\index{w25qxx.c@{w25qxx.c}!w25\_ReadStatusRegister@{w25\_ReadStatusRegister}}
+\index{w25\_ReadStatusRegister@{w25\_ReadStatusRegister}!w25qxx.c@{w25qxx.c}}
+\doxysubsubsection{\texorpdfstring{w25\_ReadStatusRegister()}{w25\_ReadStatusRegister()}}
+{\footnotesize\ttfamily uint8\+\_\+t w25\+\_\+\+Read\+Status\+Register (\begin{DoxyParamCaption}\item[{uint8\+\_\+t}]{Select\+Status\+Register\+\_\+1\+\_\+2\+\_\+3 }\end{DoxyParamCaption})}
+
+
+
+Definition at line 235 of file w25qxx.\+c.
+
+\mbox{\Hypertarget{w25qxx_8c_a21c9a374eeb3f346beb31ff905b9ec83}\label{w25qxx_8c_a21c9a374eeb3f346beb31ff905b9ec83}} 
+\index{w25qxx.c@{w25qxx.c}!w25\_ReadUniqID@{w25\_ReadUniqID}}
+\index{w25\_ReadUniqID@{w25\_ReadUniqID}!w25qxx.c@{w25qxx.c}}
+\doxysubsubsection{\texorpdfstring{w25\_ReadUniqID()}{w25\_ReadUniqID()}}
+{\footnotesize\ttfamily void w25\+\_\+\+Read\+Uniq\+ID (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})}
+
+
+
+Definition at line 178 of file w25qxx.\+c.
+
+\mbox{\Hypertarget{w25qxx_8c_ae7cc437e87c8e0a7c38ae9ba13622b13}\label{w25qxx_8c_ae7cc437e87c8e0a7c38ae9ba13622b13}} 
+\index{w25qxx.c@{w25qxx.c}!w25\_SectorToBlock@{w25\_SectorToBlock}}
+\index{w25\_SectorToBlock@{w25\_SectorToBlock}!w25qxx.c@{w25qxx.c}}
+\doxysubsubsection{\texorpdfstring{w25\_SectorToBlock()}{w25\_SectorToBlock()}}
+{\footnotesize\ttfamily uint32\+\_\+t w25\+\_\+\+Sector\+To\+Block (\begin{DoxyParamCaption}\item[{uint32\+\_\+t}]{Sector\+Address }\end{DoxyParamCaption})}
+
+
+
+Definition at line 398 of file w25qxx.\+c.
+
+\mbox{\Hypertarget{w25qxx_8c_aa71ac15ba2a37184807c9ffd2dc39217}\label{w25qxx_8c_aa71ac15ba2a37184807c9ffd2dc39217}} 
+\index{w25qxx.c@{w25qxx.c}!w25\_SectorToPage@{w25\_SectorToPage}}
+\index{w25\_SectorToPage@{w25\_SectorToPage}!w25qxx.c@{w25qxx.c}}
+\doxysubsubsection{\texorpdfstring{w25\_SectorToPage()}{w25\_SectorToPage()}}
+{\footnotesize\ttfamily uint32\+\_\+t w25\+\_\+\+Sector\+To\+Page (\begin{DoxyParamCaption}\item[{uint32\+\_\+t}]{Sector\+Address }\end{DoxyParamCaption})}
+
+
+
+Definition at line 402 of file w25qxx.\+c.
+
+\mbox{\Hypertarget{w25qxx_8c_a9f98d3f482da7bb5cb3c1c952861e06e}\label{w25qxx_8c_a9f98d3f482da7bb5cb3c1c952861e06e}} 
+\index{w25qxx.c@{w25qxx.c}!w25\_WaitForWriteEnd@{w25\_WaitForWriteEnd}}
+\index{w25\_WaitForWriteEnd@{w25\_WaitForWriteEnd}!w25qxx.c@{w25qxx.c}}
+\doxysubsubsection{\texorpdfstring{w25\_WaitForWriteEnd()}{w25\_WaitForWriteEnd()}}
+{\footnotesize\ttfamily void w25\+\_\+\+Wait\+For\+Write\+End (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})}
+
+
+
+Definition at line 216 of file w25qxx.\+c.
+
+\mbox{\Hypertarget{w25qxx_8c_a95eb44379007a87bfe87286659545361}\label{w25qxx_8c_a95eb44379007a87bfe87286659545361}} 
+\index{w25qxx.c@{w25qxx.c}!w25\_WriteBlock@{w25\_WriteBlock}}
+\index{w25\_WriteBlock@{w25\_WriteBlock}!w25qxx.c@{w25qxx.c}}
+\doxysubsubsection{\texorpdfstring{w25\_WriteBlock()}{w25\_WriteBlock()}}
+{\footnotesize\ttfamily void w25\+\_\+\+Write\+Block (\begin{DoxyParamCaption}\item[{uint8\+\_\+t $\ast$}]{p\+Buffer,  }\item[{uint32\+\_\+t}]{Block\+\_\+\+Address,  }\item[{uint32\+\_\+t}]{Offset\+In\+Byte,  }\item[{uint32\+\_\+t}]{Num\+Byte\+To\+Write\+\_\+up\+\_\+to\+\_\+\+Block\+Size }\end{DoxyParamCaption})}
+
+
+
+Definition at line 745 of file w25qxx.\+c.
+
+\mbox{\Hypertarget{w25qxx_8c_af75ffc026827e59c6786975c972cb81c}\label{w25qxx_8c_af75ffc026827e59c6786975c972cb81c}} 
+\index{w25qxx.c@{w25qxx.c}!w25\_WriteByte@{w25\_WriteByte}}
+\index{w25\_WriteByte@{w25\_WriteByte}!w25qxx.c@{w25qxx.c}}
+\doxysubsubsection{\texorpdfstring{w25\_WriteByte()}{w25\_WriteByte()}}
+{\footnotesize\ttfamily void w25\+\_\+\+Write\+Byte (\begin{DoxyParamCaption}\item[{uint8\+\_\+t}]{p\+Buffer,  }\item[{uint32\+\_\+t}]{Write\+Addr\+\_\+in\+Bytes }\end{DoxyParamCaption})}
+
+
+
+Definition at line 632 of file w25qxx.\+c.
+
+\mbox{\Hypertarget{w25qxx_8c_a1ca2afc1c4c5e76b03b7180b7a19ce52}\label{w25qxx_8c_a1ca2afc1c4c5e76b03b7180b7a19ce52}} 
+\index{w25qxx.c@{w25qxx.c}!w25\_WriteDisable@{w25\_WriteDisable}}
+\index{w25\_WriteDisable@{w25\_WriteDisable}!w25qxx.c@{w25qxx.c}}
+\doxysubsubsection{\texorpdfstring{w25\_WriteDisable()}{w25\_WriteDisable()}}
+{\footnotesize\ttfamily void w25\+\_\+\+Write\+Disable (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})}
+
+
+
+Definition at line 207 of file w25qxx.\+c.
+
+\mbox{\Hypertarget{w25qxx_8c_ac071864fac69adbe4345c6e93113c4d5}\label{w25qxx_8c_ac071864fac69adbe4345c6e93113c4d5}} 
+\index{w25qxx.c@{w25qxx.c}!w25\_WriteEnable@{w25\_WriteEnable}}
+\index{w25\_WriteEnable@{w25\_WriteEnable}!w25qxx.c@{w25qxx.c}}
+\doxysubsubsection{\texorpdfstring{w25\_WriteEnable()}{w25\_WriteEnable()}}
+{\footnotesize\ttfamily void w25\+\_\+\+Write\+Enable (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})}
+
+
+
+Definition at line 197 of file w25qxx.\+c.
+
+\mbox{\Hypertarget{w25qxx_8c_a9ebf945c43e1ccc869ab442113810520}\label{w25qxx_8c_a9ebf945c43e1ccc869ab442113810520}} 
+\index{w25qxx.c@{w25qxx.c}!w25\_WritePage@{w25\_WritePage}}
+\index{w25\_WritePage@{w25\_WritePage}!w25qxx.c@{w25qxx.c}}
+\doxysubsubsection{\texorpdfstring{w25\_WritePage()}{w25\_WritePage()}}
+{\footnotesize\ttfamily void w25\+\_\+\+Write\+Page (\begin{DoxyParamCaption}\item[{uint8\+\_\+t $\ast$}]{p\+Buffer,  }\item[{uint32\+\_\+t}]{Page\+\_\+\+Address,  }\item[{uint32\+\_\+t}]{Offset\+In\+Byte,  }\item[{uint32\+\_\+t}]{Num\+Byte\+To\+Write\+\_\+up\+\_\+to\+\_\+\+Page\+Size }\end{DoxyParamCaption})}
+
+
+
+Definition at line 660 of file w25qxx.\+c.
+
+\mbox{\Hypertarget{w25qxx_8c_a7d8f42f9939eb71d5be28f657a1e95c3}\label{w25qxx_8c_a7d8f42f9939eb71d5be28f657a1e95c3}} 
+\index{w25qxx.c@{w25qxx.c}!w25\_WriteSector@{w25\_WriteSector}}
+\index{w25\_WriteSector@{w25\_WriteSector}!w25qxx.c@{w25qxx.c}}
+\doxysubsubsection{\texorpdfstring{w25\_WriteSector()}{w25\_WriteSector()}}
+{\footnotesize\ttfamily void w25\+\_\+\+Write\+Sector (\begin{DoxyParamCaption}\item[{uint8\+\_\+t $\ast$}]{p\+Buffer,  }\item[{uint32\+\_\+t}]{Sector\+\_\+\+Address,  }\item[{uint32\+\_\+t}]{Offset\+In\+Byte,  }\item[{uint32\+\_\+t}]{Num\+Byte\+To\+Write\+\_\+up\+\_\+to\+\_\+\+Sector\+Size }\end{DoxyParamCaption})}
+
+
+
+Definition at line 707 of file w25qxx.\+c.
+
+\mbox{\Hypertarget{w25qxx_8c_aecf30541806c5187d42b2dfb16342595}\label{w25qxx_8c_aecf30541806c5187d42b2dfb16342595}} 
+\index{w25qxx.c@{w25qxx.c}!w25\_WriteStatusRegister@{w25\_WriteStatusRegister}}
+\index{w25\_WriteStatusRegister@{w25\_WriteStatusRegister}!w25qxx.c@{w25qxx.c}}
+\doxysubsubsection{\texorpdfstring{w25\_WriteStatusRegister()}{w25\_WriteStatusRegister()}}
+{\footnotesize\ttfamily void w25\+\_\+\+Write\+Status\+Register (\begin{DoxyParamCaption}\item[{uint8\+\_\+t}]{Select\+Status\+Register\+\_\+1\+\_\+2\+\_\+3,  }\item[{uint8\+\_\+t}]{Data }\end{DoxyParamCaption})}
+
+
+
+Definition at line 266 of file w25qxx.\+c.
+
+
+
+\doxysubsection{Variable Documentation}
+\mbox{\Hypertarget{w25qxx_8c_a4d22808bf2bc6b6d5e5b8db79da7291d}\label{w25qxx_8c_a4d22808bf2bc6b6d5e5b8db79da7291d}} 
+\index{w25qxx.c@{w25qxx.c}!w25@{w25}}
+\index{w25@{w25}!w25qxx.c@{w25qxx.c}}
+\doxysubsubsection{\texorpdfstring{w25}{w25}}
+{\footnotesize\ttfamily \mbox{\hyperlink{structw25__t}{w25\+\_\+t}} w25}
+
+
+
+Definition at line 25 of file w25qxx.\+c.
+

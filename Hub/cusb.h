@@ -24,3 +24,6 @@
   * 
   * @}
   */
+
+ void cusb_init(void);
+ void cusb_test_poll(void);

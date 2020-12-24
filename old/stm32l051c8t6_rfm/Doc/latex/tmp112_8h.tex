@@ -1,0 +1,171 @@
+\hypertarget{tmp112_8h}{}\doxysection{/\+Users/richarddavies/\+Desktop/\+Projects/\+Cool\+Ease/\+Code/stm32l051c8t6\+\_\+rfm/coolease/include/coolease/tmp112.h File Reference}
+\label{tmp112_8h}\index{/Users/richarddavies/Desktop/Projects/CoolEase/Code/stm32l051c8t6\_rfm/coolease/include/coolease/tmp112.h@{/Users/richarddavies/Desktop/Projects/CoolEase/Code/stm32l051c8t6\_rfm/coolease/include/coolease/tmp112.h}}
+{\ttfamily \#include $<$stdint.\+h$>$}\newline
+\doxysubsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define \mbox{\hyperlink{tmp112_8h_a224d7fb24e2b65745920a665d4a4eb8e}{T\+M\+P112\+\_\+\+I2\+C\+\_\+\+A\+D\+D\+R\+E\+SS}}~0x49
+\item 
+\#define \mbox{\hyperlink{tmp112_8h_aa927dab6504f74cefc28936c18619a84}{T\+M\+P112\+\_\+\+S\+E\+L\+\_\+\+T\+E\+M\+P\+\_\+\+R\+EG}}~0x00
+\item 
+\#define \mbox{\hyperlink{tmp112_8h_abcb2030d5735993c4f448dfef8e247bd}{T\+M\+P112\+\_\+\+S\+E\+L\+\_\+\+C\+O\+N\+F\+I\+G\+\_\+\+R\+EG}}~0x01
+\item 
+\#define \mbox{\hyperlink{tmp112_8h_a8eead227967b2b1a0ecbdccc5ba85fbf}{T\+M\+P112\+\_\+\+C\+O\+N\+F\+I\+G\+\_\+\+O\+S\+\_\+\+M\+SB}}~0\+X\+E1
+\item 
+\#define \mbox{\hyperlink{tmp112_8h_a889086ff4be67ae74106ec2bd1451229}{T\+M\+P112\+\_\+\+C\+O\+N\+F\+I\+G\+\_\+\+O\+S\+\_\+\+L\+SB}}~0\+X\+A0
+\item 
+\#define \mbox{\hyperlink{tmp112_8h_a6ad2b79051be4f18761b64308b10ebb6}{T\+M\+P112\+\_\+\+C\+O\+N\+F\+I\+G\+\_\+\+C\+M\+\_\+\+M\+SB}}~0\+X60
+\item 
+\#define \mbox{\hyperlink{tmp112_8h_a7f75d447b67d853d6c7670d344510c56}{T\+M\+P112\+\_\+\+C\+O\+N\+F\+I\+G\+\_\+\+C\+M\+\_\+\+L\+SB}}~0\+X\+A0
+\item 
+\#define \mbox{\hyperlink{tmp112_8h_a0bb8e2e4f3f812d92d69754c6ea24600}{T\+M\+P112\+\_\+\+G\+E\+N\+\_\+\+C\+A\+L\+L\+\_\+\+A\+D\+DR}}~0\+X00
+\item 
+\#define \mbox{\hyperlink{tmp112_8h_a9536420db87442f6692f4fcd0dbb387b}{T\+M\+P112\+\_\+\+R\+E\+S\+E\+T\+\_\+\+C\+MD}}~0\+X06
+\end{DoxyCompactItemize}
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{tmp112_8h_a5931f5b3204ec45e73d23ca558657c08}{tmp112\+\_\+init}} (void)
+\item 
+void \mbox{\hyperlink{tmp112_8h_aad3c5f9aa9739d1383c62c4f2f5f80d6}{tmp112\+\_\+end}} (void)
+\item 
+void \mbox{\hyperlink{tmp112_8h_ad0e06b101f04ed0c699ffc93385cdf82}{tmp112\+\_\+reset}} (void)
+\item 
+void \mbox{\hyperlink{tmp112_8h_a41ef1d275de1f1ff9da68c8f3d8551e0}{tmp112\+\_\+read\+\_\+temperature}} (int16\+\_\+t $\ast$readings, uint8\+\_\+t num\+\_\+readings)
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Macro Definition Documentation}
+\mbox{\Hypertarget{tmp112_8h_a7f75d447b67d853d6c7670d344510c56}\label{tmp112_8h_a7f75d447b67d853d6c7670d344510c56}} 
+\index{tmp112.h@{tmp112.h}!TMP112\_CONFIG\_CM\_LSB@{TMP112\_CONFIG\_CM\_LSB}}
+\index{TMP112\_CONFIG\_CM\_LSB@{TMP112\_CONFIG\_CM\_LSB}!tmp112.h@{tmp112.h}}
+\doxysubsubsection{\texorpdfstring{TMP112\_CONFIG\_CM\_LSB}{TMP112\_CONFIG\_CM\_LSB}}
+{\footnotesize\ttfamily \#define T\+M\+P112\+\_\+\+C\+O\+N\+F\+I\+G\+\_\+\+C\+M\+\_\+\+L\+SB~0\+X\+A0}
+
+
+
+Definition at line 16 of file tmp112.\+h.
+
+\mbox{\Hypertarget{tmp112_8h_a6ad2b79051be4f18761b64308b10ebb6}\label{tmp112_8h_a6ad2b79051be4f18761b64308b10ebb6}} 
+\index{tmp112.h@{tmp112.h}!TMP112\_CONFIG\_CM\_MSB@{TMP112\_CONFIG\_CM\_MSB}}
+\index{TMP112\_CONFIG\_CM\_MSB@{TMP112\_CONFIG\_CM\_MSB}!tmp112.h@{tmp112.h}}
+\doxysubsubsection{\texorpdfstring{TMP112\_CONFIG\_CM\_MSB}{TMP112\_CONFIG\_CM\_MSB}}
+{\footnotesize\ttfamily \#define T\+M\+P112\+\_\+\+C\+O\+N\+F\+I\+G\+\_\+\+C\+M\+\_\+\+M\+SB~0\+X60}
+
+
+
+Definition at line 15 of file tmp112.\+h.
+
+\mbox{\Hypertarget{tmp112_8h_a889086ff4be67ae74106ec2bd1451229}\label{tmp112_8h_a889086ff4be67ae74106ec2bd1451229}} 
+\index{tmp112.h@{tmp112.h}!TMP112\_CONFIG\_OS\_LSB@{TMP112\_CONFIG\_OS\_LSB}}
+\index{TMP112\_CONFIG\_OS\_LSB@{TMP112\_CONFIG\_OS\_LSB}!tmp112.h@{tmp112.h}}
+\doxysubsubsection{\texorpdfstring{TMP112\_CONFIG\_OS\_LSB}{TMP112\_CONFIG\_OS\_LSB}}
+{\footnotesize\ttfamily \#define T\+M\+P112\+\_\+\+C\+O\+N\+F\+I\+G\+\_\+\+O\+S\+\_\+\+L\+SB~0\+X\+A0}
+
+
+
+Definition at line 13 of file tmp112.\+h.
+
+\mbox{\Hypertarget{tmp112_8h_a8eead227967b2b1a0ecbdccc5ba85fbf}\label{tmp112_8h_a8eead227967b2b1a0ecbdccc5ba85fbf}} 
+\index{tmp112.h@{tmp112.h}!TMP112\_CONFIG\_OS\_MSB@{TMP112\_CONFIG\_OS\_MSB}}
+\index{TMP112\_CONFIG\_OS\_MSB@{TMP112\_CONFIG\_OS\_MSB}!tmp112.h@{tmp112.h}}
+\doxysubsubsection{\texorpdfstring{TMP112\_CONFIG\_OS\_MSB}{TMP112\_CONFIG\_OS\_MSB}}
+{\footnotesize\ttfamily \#define T\+M\+P112\+\_\+\+C\+O\+N\+F\+I\+G\+\_\+\+O\+S\+\_\+\+M\+SB~0\+X\+E1}
+
+
+
+Definition at line 12 of file tmp112.\+h.
+
+\mbox{\Hypertarget{tmp112_8h_a0bb8e2e4f3f812d92d69754c6ea24600}\label{tmp112_8h_a0bb8e2e4f3f812d92d69754c6ea24600}} 
+\index{tmp112.h@{tmp112.h}!TMP112\_GEN\_CALL\_ADDR@{TMP112\_GEN\_CALL\_ADDR}}
+\index{TMP112\_GEN\_CALL\_ADDR@{TMP112\_GEN\_CALL\_ADDR}!tmp112.h@{tmp112.h}}
+\doxysubsubsection{\texorpdfstring{TMP112\_GEN\_CALL\_ADDR}{TMP112\_GEN\_CALL\_ADDR}}
+{\footnotesize\ttfamily \#define T\+M\+P112\+\_\+\+G\+E\+N\+\_\+\+C\+A\+L\+L\+\_\+\+A\+D\+DR~0\+X00}
+
+
+
+Definition at line 18 of file tmp112.\+h.
+
+\mbox{\Hypertarget{tmp112_8h_a224d7fb24e2b65745920a665d4a4eb8e}\label{tmp112_8h_a224d7fb24e2b65745920a665d4a4eb8e}} 
+\index{tmp112.h@{tmp112.h}!TMP112\_I2C\_ADDRESS@{TMP112\_I2C\_ADDRESS}}
+\index{TMP112\_I2C\_ADDRESS@{TMP112\_I2C\_ADDRESS}!tmp112.h@{tmp112.h}}
+\doxysubsubsection{\texorpdfstring{TMP112\_I2C\_ADDRESS}{TMP112\_I2C\_ADDRESS}}
+{\footnotesize\ttfamily \#define T\+M\+P112\+\_\+\+I2\+C\+\_\+\+A\+D\+D\+R\+E\+SS~0x49}
+
+
+
+Definition at line 7 of file tmp112.\+h.
+
+\mbox{\Hypertarget{tmp112_8h_a9536420db87442f6692f4fcd0dbb387b}\label{tmp112_8h_a9536420db87442f6692f4fcd0dbb387b}} 
+\index{tmp112.h@{tmp112.h}!TMP112\_RESET\_CMD@{TMP112\_RESET\_CMD}}
+\index{TMP112\_RESET\_CMD@{TMP112\_RESET\_CMD}!tmp112.h@{tmp112.h}}
+\doxysubsubsection{\texorpdfstring{TMP112\_RESET\_CMD}{TMP112\_RESET\_CMD}}
+{\footnotesize\ttfamily \#define T\+M\+P112\+\_\+\+R\+E\+S\+E\+T\+\_\+\+C\+MD~0\+X06}
+
+
+
+Definition at line 19 of file tmp112.\+h.
+
+\mbox{\Hypertarget{tmp112_8h_abcb2030d5735993c4f448dfef8e247bd}\label{tmp112_8h_abcb2030d5735993c4f448dfef8e247bd}} 
+\index{tmp112.h@{tmp112.h}!TMP112\_SEL\_CONFIG\_REG@{TMP112\_SEL\_CONFIG\_REG}}
+\index{TMP112\_SEL\_CONFIG\_REG@{TMP112\_SEL\_CONFIG\_REG}!tmp112.h@{tmp112.h}}
+\doxysubsubsection{\texorpdfstring{TMP112\_SEL\_CONFIG\_REG}{TMP112\_SEL\_CONFIG\_REG}}
+{\footnotesize\ttfamily \#define T\+M\+P112\+\_\+\+S\+E\+L\+\_\+\+C\+O\+N\+F\+I\+G\+\_\+\+R\+EG~0x01}
+
+
+
+Definition at line 10 of file tmp112.\+h.
+
+\mbox{\Hypertarget{tmp112_8h_aa927dab6504f74cefc28936c18619a84}\label{tmp112_8h_aa927dab6504f74cefc28936c18619a84}} 
+\index{tmp112.h@{tmp112.h}!TMP112\_SEL\_TEMP\_REG@{TMP112\_SEL\_TEMP\_REG}}
+\index{TMP112\_SEL\_TEMP\_REG@{TMP112\_SEL\_TEMP\_REG}!tmp112.h@{tmp112.h}}
+\doxysubsubsection{\texorpdfstring{TMP112\_SEL\_TEMP\_REG}{TMP112\_SEL\_TEMP\_REG}}
+{\footnotesize\ttfamily \#define T\+M\+P112\+\_\+\+S\+E\+L\+\_\+\+T\+E\+M\+P\+\_\+\+R\+EG~0x00}
+
+
+
+Definition at line 9 of file tmp112.\+h.
+
+
+
+\doxysubsection{Function Documentation}
+\mbox{\Hypertarget{tmp112_8h_aad3c5f9aa9739d1383c62c4f2f5f80d6}\label{tmp112_8h_aad3c5f9aa9739d1383c62c4f2f5f80d6}} 
+\index{tmp112.h@{tmp112.h}!tmp112\_end@{tmp112\_end}}
+\index{tmp112\_end@{tmp112\_end}!tmp112.h@{tmp112.h}}
+\doxysubsubsection{\texorpdfstring{tmp112\_end()}{tmp112\_end()}}
+{\footnotesize\ttfamily void tmp112\+\_\+end (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})}
+
+
+
+Definition at line 24 of file tmp112.\+c.
+
+\mbox{\Hypertarget{tmp112_8h_a5931f5b3204ec45e73d23ca558657c08}\label{tmp112_8h_a5931f5b3204ec45e73d23ca558657c08}} 
+\index{tmp112.h@{tmp112.h}!tmp112\_init@{tmp112\_init}}
+\index{tmp112\_init@{tmp112\_init}!tmp112.h@{tmp112.h}}
+\doxysubsubsection{\texorpdfstring{tmp112\_init()}{tmp112\_init()}}
+{\footnotesize\ttfamily void tmp112\+\_\+init (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})}
+
+
+
+Definition at line 16 of file tmp112.\+c.
+
+\mbox{\Hypertarget{tmp112_8h_a41ef1d275de1f1ff9da68c8f3d8551e0}\label{tmp112_8h_a41ef1d275de1f1ff9da68c8f3d8551e0}} 
+\index{tmp112.h@{tmp112.h}!tmp112\_read\_temperature@{tmp112\_read\_temperature}}
+\index{tmp112\_read\_temperature@{tmp112\_read\_temperature}!tmp112.h@{tmp112.h}}
+\doxysubsubsection{\texorpdfstring{tmp112\_read\_temperature()}{tmp112\_read\_temperature()}}
+{\footnotesize\ttfamily void tmp112\+\_\+read\+\_\+temperature (\begin{DoxyParamCaption}\item[{int16\+\_\+t $\ast$}]{readings,  }\item[{uint8\+\_\+t}]{num\+\_\+readings }\end{DoxyParamCaption})}
+
+
+
+Definition at line 47 of file tmp112.\+c.
+
+\mbox{\Hypertarget{tmp112_8h_ad0e06b101f04ed0c699ffc93385cdf82}\label{tmp112_8h_ad0e06b101f04ed0c699ffc93385cdf82}} 
+\index{tmp112.h@{tmp112.h}!tmp112\_reset@{tmp112\_reset}}
+\index{tmp112\_reset@{tmp112\_reset}!tmp112.h@{tmp112.h}}
+\doxysubsubsection{\texorpdfstring{tmp112\_reset()}{tmp112\_reset()}}
+{\footnotesize\ttfamily void tmp112\+\_\+reset (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})}
+
+
+
+Definition at line 41 of file tmp112.\+c.
+

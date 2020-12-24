@@ -10,7 +10,7 @@
                 "isDefault": true
             },
             "type": "shell",
-            "command": "/usr/bin/make -fHub/Makefile all",
+            "command": "make -fHub/Makefile all",
             "args": [
             ],
             "problemMatcher": {
@@ -214,18 +214,14 @@
             "problemMatcher": []
         },
         
-        // Update Workspace
+        // Generate Doxygen Documentation
         {
-            "label": "Update workspace",
+            "label": "Generate Doxygen",
             "type": "shell",
-            "command": "python3",
-            "args": [
-                "${workspaceFolder}/ideScripts/update.py"
-            ],
+            "command": "doxygen Docs/doxygen/Doxyfile",
             "presentation": {
                 "focus": true
-            },
-            "problemMatcher": []
+            }
         }
     ]
 }

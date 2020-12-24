@@ -1,0 +1,48 @@
+\hypertarget{group___r_f_m___m_a_c_r_o_s}{}\doxysection{Macros}
+\label{group___r_f_m___m_a_c_r_o_s}\index{Macros@{Macros}}
+\doxysubsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define \mbox{\hyperlink{group___r_f_m___m_a_c_r_o_s_ga19f2e44beda998f03b70130991ba913d}{spi\+\_\+chip\+\_\+select}}()~gpio\+\_\+clear(\mbox{\hyperlink{board__defs_8h_a28956dadc92b127ee9c77c8f0620b0d6}{R\+F\+M\+\_\+\+S\+P\+I\+\_\+\+N\+S\+S\+\_\+\+P\+O\+RT}}, \mbox{\hyperlink{board__defs_8h_a1eec8f69c765fdb51efc02bef3afc7d4}{R\+F\+M\+\_\+\+S\+P\+I\+\_\+\+N\+SS}})
+\begin{DoxyCompactList}\small\item\em Set R\+FM N\+SS Pin. Start S\+PI transaction. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{group___r_f_m___m_a_c_r_o_s_ga6abbade827ea980e386bc08a8a3b495e}{spi\+\_\+chip\+\_\+deselect}}()~gpio\+\_\+set(\mbox{\hyperlink{board__defs_8h_a28956dadc92b127ee9c77c8f0620b0d6}{R\+F\+M\+\_\+\+S\+P\+I\+\_\+\+N\+S\+S\+\_\+\+P\+O\+RT}}, \mbox{\hyperlink{board__defs_8h_a1eec8f69c765fdb51efc02bef3afc7d4}{R\+F\+M\+\_\+\+S\+P\+I\+\_\+\+N\+SS}})
+\begin{DoxyCompactList}\small\item\em Clear R\+FM N\+SS Pin. End S\+PI transaction. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{group___r_f_m___m_a_c_r_o_s_gaab0414c85b2bcf68acfce7963a3673bb}{wait\+\_\+rf\+\_\+io\+\_\+0\+\_\+high}}()~while(!(gpio\+\_\+get(\mbox{\hyperlink{board__defs_8h_ae851adba0bf4a362713c0d1020a1f9a4}{R\+F\+M\+\_\+\+I\+O\+\_\+0\+\_\+\+P\+O\+RT}}, \mbox{\hyperlink{board__defs_8h_a6122279c13fb22d9a33f635a11dd664d}{R\+F\+M\+\_\+\+I\+O\+\_\+0}})))
+\begin{DoxyCompactList}\small\item\em Stalls until R\+FM IO Pin 0 is asserted high. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+
+
+\doxysubsection{Macro Definition Documentation}
+\mbox{\Hypertarget{group___r_f_m___m_a_c_r_o_s_ga6abbade827ea980e386bc08a8a3b495e}\label{group___r_f_m___m_a_c_r_o_s_ga6abbade827ea980e386bc08a8a3b495e}} 
+\index{Macros@{Macros}!spi\_chip\_deselect@{spi\_chip\_deselect}}
+\index{spi\_chip\_deselect@{spi\_chip\_deselect}!Macros@{Macros}}
+\doxysubsubsection{\texorpdfstring{spi\_chip\_deselect}{spi\_chip\_deselect}}
+{\footnotesize\ttfamily \#define spi\+\_\+chip\+\_\+deselect(\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})~gpio\+\_\+set(\mbox{\hyperlink{board__defs_8h_a28956dadc92b127ee9c77c8f0620b0d6}{R\+F\+M\+\_\+\+S\+P\+I\+\_\+\+N\+S\+S\+\_\+\+P\+O\+RT}}, \mbox{\hyperlink{board__defs_8h_a1eec8f69c765fdb51efc02bef3afc7d4}{R\+F\+M\+\_\+\+S\+P\+I\+\_\+\+N\+SS}})}
+
+
+
+Clear R\+FM N\+SS Pin. End S\+PI transaction. 
+
+\mbox{\Hypertarget{group___r_f_m___m_a_c_r_o_s_ga19f2e44beda998f03b70130991ba913d}\label{group___r_f_m___m_a_c_r_o_s_ga19f2e44beda998f03b70130991ba913d}} 
+\index{Macros@{Macros}!spi\_chip\_select@{spi\_chip\_select}}
+\index{spi\_chip\_select@{spi\_chip\_select}!Macros@{Macros}}
+\doxysubsubsection{\texorpdfstring{spi\_chip\_select}{spi\_chip\_select}}
+{\footnotesize\ttfamily \#define spi\+\_\+chip\+\_\+select(\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})~gpio\+\_\+clear(\mbox{\hyperlink{board__defs_8h_a28956dadc92b127ee9c77c8f0620b0d6}{R\+F\+M\+\_\+\+S\+P\+I\+\_\+\+N\+S\+S\+\_\+\+P\+O\+RT}}, \mbox{\hyperlink{board__defs_8h_a1eec8f69c765fdb51efc02bef3afc7d4}{R\+F\+M\+\_\+\+S\+P\+I\+\_\+\+N\+SS}})}
+
+
+
+Set R\+FM N\+SS Pin. Start S\+PI transaction. 
+
+\mbox{\Hypertarget{group___r_f_m___m_a_c_r_o_s_gaab0414c85b2bcf68acfce7963a3673bb}\label{group___r_f_m___m_a_c_r_o_s_gaab0414c85b2bcf68acfce7963a3673bb}} 
+\index{Macros@{Macros}!wait\_rf\_io\_0\_high@{wait\_rf\_io\_0\_high}}
+\index{wait\_rf\_io\_0\_high@{wait\_rf\_io\_0\_high}!Macros@{Macros}}
+\doxysubsubsection{\texorpdfstring{wait\_rf\_io\_0\_high}{wait\_rf\_io\_0\_high}}
+{\footnotesize\ttfamily \#define wait\+\_\+rf\+\_\+io\+\_\+0\+\_\+high(\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})~while(!(gpio\+\_\+get(\mbox{\hyperlink{board__defs_8h_ae851adba0bf4a362713c0d1020a1f9a4}{R\+F\+M\+\_\+\+I\+O\+\_\+0\+\_\+\+P\+O\+RT}}, \mbox{\hyperlink{board__defs_8h_a6122279c13fb22d9a33f635a11dd664d}{R\+F\+M\+\_\+\+I\+O\+\_\+0}})))}
+
+
+
+Stalls until R\+FM IO Pin 0 is asserted high. 
+
+R\+FM is setup to assert this pin upon succesful transmission of a packet. See \mbox{\hyperlink{group___r_f_m___a_p_i_gae92d1597fc479b67c71e1c126cc6b59a}{rfm\+\_\+transmit\+\_\+packet()}} 

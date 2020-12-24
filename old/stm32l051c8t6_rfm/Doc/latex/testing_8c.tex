@@ -1,0 +1,316 @@
+\hypertarget{testing_8c}{}\doxysection{/\+Users/richarddavies/\+Desktop/\+Projects/\+Cool\+Ease/\+Code/stm32l051c8t6\+\_\+rfm/coolease/lib/testing.c File Reference}
+\label{testing_8c}\index{/Users/richarddavies/Desktop/Projects/CoolEase/Code/stm32l051c8t6\_rfm/coolease/lib/testing.c@{/Users/richarddavies/Desktop/Projects/CoolEase/Code/stm32l051c8t6\_rfm/coolease/lib/testing.c}}
+{\ttfamily \#include \char`\"{}coolease/testing.\+h\char`\"{}}\newline
+{\ttfamily \#include $<$string.\+h$>$}\newline
+{\ttfamily \#include $<$stdbool.\+h$>$}\newline
+{\ttfamily \#include $<$libopencm3/stm32/rcc.\+h$>$}\newline
+{\ttfamily \#include $<$libopencm3/stm32/flash.\+h$>$}\newline
+{\ttfamily \#include $<$libopencm3/stm32/gpio.\+h$>$}\newline
+{\ttfamily \#include $<$libopencm3/stm32/timer.\+h$>$}\newline
+{\ttfamily \#include $<$libopencm3/stm32/lptimer.\+h$>$}\newline
+{\ttfamily \#include $<$libopencm3/stm32/pwr.\+h$>$}\newline
+{\ttfamily \#include \char`\"{}coolease/aes.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}coolease/battery.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}coolease/board\+\_\+defs.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}coolease/memory.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}coolease/reset.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}coolease/rfm.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}coolease/serial\+\_\+printf.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}coolease/si7051.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}coolease/sim.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}coolease/timers.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}coolease/tmp112.\+h\char`\"{}}\newline
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{testing_8c_aa36d436356eb01cac7de6dec14e5b939}{flash\+\_\+led}} (uint16\+\_\+t milliseconds, uint8\+\_\+t num\+\_\+flashes)
+\item 
+void \mbox{\hyperlink{testing_8c_a9454fbe151c64e85c606635ec207ba72}{testing\+\_\+wakeup}} (void)
+\item 
+void \mbox{\hyperlink{testing_8c_a2746642a6cdc6698e7fb25195fbf28ab}{testing\+\_\+standby}} (uint32\+\_\+t standby\+\_\+time)
+\item 
+void \mbox{\hyperlink{testing_8c_ac4217c19989864ef3c15691c63e77aab}{testing\+\_\+rf}} (void)
+\item 
+void \mbox{\hyperlink{testing_8c_a934caf696d1ba05201894bf08cd45394}{testing\+\_\+rf\+\_\+listen}} (void)
+\item 
+void \mbox{\hyperlink{testing_8c_ad212d4b4d0af2220c6464e1505e76411}{testing\+\_\+sensor}} (uint32\+\_\+t dev\+\_\+num)
+\item 
+void \mbox{\hyperlink{testing_8c_a68eb568ef73ef7b13edb79f993b28a5a}{testing\+\_\+receiver}} (uint32\+\_\+t dev\+\_\+num)
+\item 
+void \mbox{\hyperlink{testing_8c_a8cc55fe6a51dfcbd7ae87761fe543144}{testing\+\_\+hub}} (void)
+\item 
+void \mbox{\hyperlink{testing_8c_a1f8d52d3363616782f93113dd62d2e46}{testing\+\_\+voltage\+\_\+scale}} (uint8\+\_\+t scale)
+\item 
+void \mbox{\hyperlink{testing_8c_a132a082891749a1e634e27f71fbb91c0}{testing\+\_\+low\+\_\+power\+\_\+run}} (void)
+\item 
+void \mbox{\hyperlink{testing_8c_a5d514d7c6b4a83090cdc7db54b38625b}{testing\+\_\+eeprom}} (void)
+\item 
+void \mbox{\hyperlink{testing_8c_a2f4a633637b6c8524131e90f79b9e69b}{testing\+\_\+eeprom\+\_\+keys}} (void)
+\item 
+void \mbox{\hyperlink{testing_8c_a4f43e43c7a045dce3b46b04191b87c62}{testing\+\_\+eeprom\+\_\+wipe}} (void)
+\item 
+void \mbox{\hyperlink{testing_8c_a7825e7259f1d5872f0cb05caf51c7cce}{testing\+\_\+lptim}} (void)
+\item 
+void \mbox{\hyperlink{testing_8c_a6937c7ee636aa3a681e31d8b41241712}{testing\+\_\+si7051}} (uint8\+\_\+t num\+\_\+readings)
+\item 
+void \mbox{\hyperlink{testing_8c_a5274f1c6527e85b53bd0947fdb126e4a}{testing\+\_\+tmp112}} (uint8\+\_\+t num\+\_\+readings)
+\item 
+void \mbox{\hyperlink{testing_8c_a5ba3939dd5f070848a085f8414e3ba64}{testing\+\_\+rfm}} (void)
+\item 
+void \mbox{\hyperlink{testing_8c_ad70586eb3676286947469dab8c3053ee}{testing\+\_\+reset\+\_\+eeprom}} (void)
+\item 
+void \mbox{\hyperlink{testing_8c_ad88d36b7110e6ab612c17dc140052f51}{testing\+\_\+encryption}} (void)
+\item 
+void \mbox{\hyperlink{testing_8c_a93fbecb9b1b6ac1b0480ac4dea4e3115}{testing\+\_\+sim}} (void)
+\item 
+void \mbox{\hyperlink{testing_8c_a7abb7b161f6b7e6e3e523b12a9ab3867}{testing\+\_\+sim\+\_\+serial\+\_\+pass\+\_\+through}} (void)
+\item 
+bool \mbox{\hyperlink{testing_8c_a88f09e327e7d08417c45b25a96a113c2}{testing\+\_\+timeout}} (void)
+\item 
+void \mbox{\hyperlink{testing_8c_ae6b65f8373b60f08e7e08abe5c9ce6c8}{testing\+\_\+log}} (void)
+\item 
+void \mbox{\hyperlink{testing_8c_a965571c3c3130939797eb25d3d624e26}{testing\+\_\+analog\+\_\+watchdog}} (void)
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Function Documentation}
+\mbox{\Hypertarget{testing_8c_aa36d436356eb01cac7de6dec14e5b939}\label{testing_8c_aa36d436356eb01cac7de6dec14e5b939}} 
+\index{testing.c@{testing.c}!flash\_led@{flash\_led}}
+\index{flash\_led@{flash\_led}!testing.c@{testing.c}}
+\doxysubsubsection{\texorpdfstring{flash\_led()}{flash\_led()}}
+{\footnotesize\ttfamily void flash\+\_\+led (\begin{DoxyParamCaption}\item[{uint16\+\_\+t}]{milliseconds,  }\item[{uint8\+\_\+t}]{num\+\_\+flashes }\end{DoxyParamCaption})}
+
+
+
+Definition at line 26 of file testing.\+c.
+
+\mbox{\Hypertarget{testing_8c_a965571c3c3130939797eb25d3d624e26}\label{testing_8c_a965571c3c3130939797eb25d3d624e26}} 
+\index{testing.c@{testing.c}!testing\_analog\_watchdog@{testing\_analog\_watchdog}}
+\index{testing\_analog\_watchdog@{testing\_analog\_watchdog}!testing.c@{testing.c}}
+\doxysubsubsection{\texorpdfstring{testing\_analog\_watchdog()}{testing\_analog\_watchdog()}}
+{\footnotesize\ttfamily void testing\+\_\+analog\+\_\+watchdog (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})}
+
+
+
+Definition at line 802 of file testing.\+c.
+
+\mbox{\Hypertarget{testing_8c_a5d514d7c6b4a83090cdc7db54b38625b}\label{testing_8c_a5d514d7c6b4a83090cdc7db54b38625b}} 
+\index{testing.c@{testing.c}!testing\_eeprom@{testing\_eeprom}}
+\index{testing\_eeprom@{testing\_eeprom}!testing.c@{testing.c}}
+\doxysubsubsection{\texorpdfstring{testing\_eeprom()}{testing\_eeprom()}}
+{\footnotesize\ttfamily void testing\+\_\+eeprom (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})}
+
+
+
+Definition at line 522 of file testing.\+c.
+
+\mbox{\Hypertarget{testing_8c_a2f4a633637b6c8524131e90f79b9e69b}\label{testing_8c_a2f4a633637b6c8524131e90f79b9e69b}} 
+\index{testing.c@{testing.c}!testing\_eeprom\_keys@{testing\_eeprom\_keys}}
+\index{testing\_eeprom\_keys@{testing\_eeprom\_keys}!testing.c@{testing.c}}
+\doxysubsubsection{\texorpdfstring{testing\_eeprom\_keys()}{testing\_eeprom\_keys()}}
+{\footnotesize\ttfamily void testing\+\_\+eeprom\+\_\+keys (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})}
+
+
+
+Definition at line 539 of file testing.\+c.
+
+\mbox{\Hypertarget{testing_8c_a4f43e43c7a045dce3b46b04191b87c62}\label{testing_8c_a4f43e43c7a045dce3b46b04191b87c62}} 
+\index{testing.c@{testing.c}!testing\_eeprom\_wipe@{testing\_eeprom\_wipe}}
+\index{testing\_eeprom\_wipe@{testing\_eeprom\_wipe}!testing.c@{testing.c}}
+\doxysubsubsection{\texorpdfstring{testing\_eeprom\_wipe()}{testing\_eeprom\_wipe()}}
+{\footnotesize\ttfamily void testing\+\_\+eeprom\+\_\+wipe (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})}
+
+
+
+Definition at line 569 of file testing.\+c.
+
+\mbox{\Hypertarget{testing_8c_ad88d36b7110e6ab612c17dc140052f51}\label{testing_8c_ad88d36b7110e6ab612c17dc140052f51}} 
+\index{testing.c@{testing.c}!testing\_encryption@{testing\_encryption}}
+\index{testing\_encryption@{testing\_encryption}!testing.c@{testing.c}}
+\doxysubsubsection{\texorpdfstring{testing\_encryption()}{testing\_encryption()}}
+{\footnotesize\ttfamily void testing\+\_\+encryption (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})}
+
+
+
+Definition at line 679 of file testing.\+c.
+
+\mbox{\Hypertarget{testing_8c_a8cc55fe6a51dfcbd7ae87761fe543144}\label{testing_8c_a8cc55fe6a51dfcbd7ae87761fe543144}} 
+\index{testing.c@{testing.c}!testing\_hub@{testing\_hub}}
+\index{testing\_hub@{testing\_hub}!testing.c@{testing.c}}
+\doxysubsubsection{\texorpdfstring{testing\_hub()}{testing\_hub()}}
+{\footnotesize\ttfamily void testing\+\_\+hub (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})}
+
+
+
+Definition at line 352 of file testing.\+c.
+
+\mbox{\Hypertarget{testing_8c_ae6b65f8373b60f08e7e08abe5c9ce6c8}\label{testing_8c_ae6b65f8373b60f08e7e08abe5c9ce6c8}} 
+\index{testing.c@{testing.c}!testing\_log@{testing\_log}}
+\index{testing\_log@{testing\_log}!testing.c@{testing.c}}
+\doxysubsubsection{\texorpdfstring{testing\_log()}{testing\_log()}}
+{\footnotesize\ttfamily void testing\+\_\+log (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})}
+
+
+
+Definition at line 786 of file testing.\+c.
+
+\mbox{\Hypertarget{testing_8c_a132a082891749a1e634e27f71fbb91c0}\label{testing_8c_a132a082891749a1e634e27f71fbb91c0}} 
+\index{testing.c@{testing.c}!testing\_low\_power\_run@{testing\_low\_power\_run}}
+\index{testing\_low\_power\_run@{testing\_low\_power\_run}!testing.c@{testing.c}}
+\doxysubsubsection{\texorpdfstring{testing\_low\_power\_run()}{testing\_low\_power\_run()}}
+{\footnotesize\ttfamily void testing\+\_\+low\+\_\+power\+\_\+run (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})}
+
+
+
+Definition at line 493 of file testing.\+c.
+
+\mbox{\Hypertarget{testing_8c_a7825e7259f1d5872f0cb05caf51c7cce}\label{testing_8c_a7825e7259f1d5872f0cb05caf51c7cce}} 
+\index{testing.c@{testing.c}!testing\_lptim@{testing\_lptim}}
+\index{testing\_lptim@{testing\_lptim}!testing.c@{testing.c}}
+\doxysubsubsection{\texorpdfstring{testing\_lptim()}{testing\_lptim()}}
+{\footnotesize\ttfamily void testing\+\_\+lptim (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})}
+
+
+
+Definition at line 602 of file testing.\+c.
+
+\mbox{\Hypertarget{testing_8c_a68eb568ef73ef7b13edb79f993b28a5a}\label{testing_8c_a68eb568ef73ef7b13edb79f993b28a5a}} 
+\index{testing.c@{testing.c}!testing\_receiver@{testing\_receiver}}
+\index{testing\_receiver@{testing\_receiver}!testing.c@{testing.c}}
+\doxysubsubsection{\texorpdfstring{testing\_receiver()}{testing\_receiver()}}
+{\footnotesize\ttfamily void testing\+\_\+receiver (\begin{DoxyParamCaption}\item[{uint32\+\_\+t}]{dev\+\_\+num }\end{DoxyParamCaption})}
+
+
+
+Definition at line 240 of file testing.\+c.
+
+\mbox{\Hypertarget{testing_8c_ad70586eb3676286947469dab8c3053ee}\label{testing_8c_ad70586eb3676286947469dab8c3053ee}} 
+\index{testing.c@{testing.c}!testing\_reset\_eeprom@{testing\_reset\_eeprom}}
+\index{testing\_reset\_eeprom@{testing\_reset\_eeprom}!testing.c@{testing.c}}
+\doxysubsubsection{\texorpdfstring{testing\_reset\_eeprom()}{testing\_reset\_eeprom()}}
+{\footnotesize\ttfamily void testing\+\_\+reset\+\_\+eeprom (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})}
+
+
+
+Definition at line 662 of file testing.\+c.
+
+\mbox{\Hypertarget{testing_8c_ac4217c19989864ef3c15691c63e77aab}\label{testing_8c_ac4217c19989864ef3c15691c63e77aab}} 
+\index{testing.c@{testing.c}!testing\_rf@{testing\_rf}}
+\index{testing\_rf@{testing\_rf}!testing.c@{testing.c}}
+\doxysubsubsection{\texorpdfstring{testing\_rf()}{testing\_rf()}}
+{\footnotesize\ttfamily void testing\+\_\+rf (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})}
+
+
+
+Definition at line 78 of file testing.\+c.
+
+\mbox{\Hypertarget{testing_8c_a934caf696d1ba05201894bf08cd45394}\label{testing_8c_a934caf696d1ba05201894bf08cd45394}} 
+\index{testing.c@{testing.c}!testing\_rf\_listen@{testing\_rf\_listen}}
+\index{testing\_rf\_listen@{testing\_rf\_listen}!testing.c@{testing.c}}
+\doxysubsubsection{\texorpdfstring{testing\_rf\_listen()}{testing\_rf\_listen()}}
+{\footnotesize\ttfamily void testing\+\_\+rf\+\_\+listen (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})}
+
+
+
+Definition at line 116 of file testing.\+c.
+
+\mbox{\Hypertarget{testing_8c_a5ba3939dd5f070848a085f8414e3ba64}\label{testing_8c_a5ba3939dd5f070848a085f8414e3ba64}} 
+\index{testing.c@{testing.c}!testing\_rfm@{testing\_rfm}}
+\index{testing\_rfm@{testing\_rfm}!testing.c@{testing.c}}
+\doxysubsubsection{\texorpdfstring{testing\_rfm()}{testing\_rfm()}}
+{\footnotesize\ttfamily void testing\+\_\+rfm (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})}
+
+
+
+Definition at line 653 of file testing.\+c.
+
+\mbox{\Hypertarget{testing_8c_ad212d4b4d0af2220c6464e1505e76411}\label{testing_8c_ad212d4b4d0af2220c6464e1505e76411}} 
+\index{testing.c@{testing.c}!testing\_sensor@{testing\_sensor}}
+\index{testing\_sensor@{testing\_sensor}!testing.c@{testing.c}}
+\doxysubsubsection{\texorpdfstring{testing\_sensor()}{testing\_sensor()}}
+{\footnotesize\ttfamily void testing\+\_\+sensor (\begin{DoxyParamCaption}\item[{uint32\+\_\+t}]{dev\+\_\+num }\end{DoxyParamCaption})}
+
+
+
+Definition at line 147 of file testing.\+c.
+
+\mbox{\Hypertarget{testing_8c_a6937c7ee636aa3a681e31d8b41241712}\label{testing_8c_a6937c7ee636aa3a681e31d8b41241712}} 
+\index{testing.c@{testing.c}!testing\_si7051@{testing\_si7051}}
+\index{testing\_si7051@{testing\_si7051}!testing.c@{testing.c}}
+\doxysubsubsection{\texorpdfstring{testing\_si7051()}{testing\_si7051()}}
+{\footnotesize\ttfamily void testing\+\_\+si7051 (\begin{DoxyParamCaption}\item[{uint8\+\_\+t}]{num\+\_\+readings }\end{DoxyParamCaption})}
+
+
+
+Definition at line 615 of file testing.\+c.
+
+\mbox{\Hypertarget{testing_8c_a93fbecb9b1b6ac1b0480ac4dea4e3115}\label{testing_8c_a93fbecb9b1b6ac1b0480ac4dea4e3115}} 
+\index{testing.c@{testing.c}!testing\_sim@{testing\_sim}}
+\index{testing\_sim@{testing\_sim}!testing.c@{testing.c}}
+\doxysubsubsection{\texorpdfstring{testing\_sim()}{testing\_sim()}}
+{\footnotesize\ttfamily void testing\+\_\+sim (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})}
+
+
+
+Definition at line 699 of file testing.\+c.
+
+\mbox{\Hypertarget{testing_8c_a7abb7b161f6b7e6e3e523b12a9ab3867}\label{testing_8c_a7abb7b161f6b7e6e3e523b12a9ab3867}} 
+\index{testing.c@{testing.c}!testing\_sim\_serial\_pass\_through@{testing\_sim\_serial\_pass\_through}}
+\index{testing\_sim\_serial\_pass\_through@{testing\_sim\_serial\_pass\_through}!testing.c@{testing.c}}
+\doxysubsubsection{\texorpdfstring{testing\_sim\_serial\_pass\_through()}{testing\_sim\_serial\_pass\_through()}}
+{\footnotesize\ttfamily void testing\+\_\+sim\+\_\+serial\+\_\+pass\+\_\+through (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})}
+
+
+
+Definition at line 762 of file testing.\+c.
+
+\mbox{\Hypertarget{testing_8c_a2746642a6cdc6698e7fb25195fbf28ab}\label{testing_8c_a2746642a6cdc6698e7fb25195fbf28ab}} 
+\index{testing.c@{testing.c}!testing\_standby@{testing\_standby}}
+\index{testing\_standby@{testing\_standby}!testing.c@{testing.c}}
+\doxysubsubsection{\texorpdfstring{testing\_standby()}{testing\_standby()}}
+{\footnotesize\ttfamily void testing\+\_\+standby (\begin{DoxyParamCaption}\item[{uint32\+\_\+t}]{standby\+\_\+time }\end{DoxyParamCaption})}
+
+
+
+Definition at line 53 of file testing.\+c.
+
+\mbox{\Hypertarget{testing_8c_a88f09e327e7d08417c45b25a96a113c2}\label{testing_8c_a88f09e327e7d08417c45b25a96a113c2}} 
+\index{testing.c@{testing.c}!testing\_timeout@{testing\_timeout}}
+\index{testing\_timeout@{testing\_timeout}!testing.c@{testing.c}}
+\doxysubsubsection{\texorpdfstring{testing\_timeout()}{testing\_timeout()}}
+{\footnotesize\ttfamily bool testing\+\_\+timeout (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})}
+
+
+
+Definition at line 768 of file testing.\+c.
+
+\mbox{\Hypertarget{testing_8c_a5274f1c6527e85b53bd0947fdb126e4a}\label{testing_8c_a5274f1c6527e85b53bd0947fdb126e4a}} 
+\index{testing.c@{testing.c}!testing\_tmp112@{testing\_tmp112}}
+\index{testing\_tmp112@{testing\_tmp112}!testing.c@{testing.c}}
+\doxysubsubsection{\texorpdfstring{testing\_tmp112()}{testing\_tmp112()}}
+{\footnotesize\ttfamily void testing\+\_\+tmp112 (\begin{DoxyParamCaption}\item[{uint8\+\_\+t}]{num\+\_\+readings }\end{DoxyParamCaption})}
+
+
+
+Definition at line 634 of file testing.\+c.
+
+\mbox{\Hypertarget{testing_8c_a1f8d52d3363616782f93113dd62d2e46}\label{testing_8c_a1f8d52d3363616782f93113dd62d2e46}} 
+\index{testing.c@{testing.c}!testing\_voltage\_scale@{testing\_voltage\_scale}}
+\index{testing\_voltage\_scale@{testing\_voltage\_scale}!testing.c@{testing.c}}
+\doxysubsubsection{\texorpdfstring{testing\_voltage\_scale()}{testing\_voltage\_scale()}}
+{\footnotesize\ttfamily void testing\+\_\+voltage\+\_\+scale (\begin{DoxyParamCaption}\item[{uint8\+\_\+t}]{scale }\end{DoxyParamCaption})}
+
+
+
+Definition at line 463 of file testing.\+c.
+
+\mbox{\Hypertarget{testing_8c_a9454fbe151c64e85c606635ec207ba72}\label{testing_8c_a9454fbe151c64e85c606635ec207ba72}} 
+\index{testing.c@{testing.c}!testing\_wakeup@{testing\_wakeup}}
+\index{testing\_wakeup@{testing\_wakeup}!testing.c@{testing.c}}
+\doxysubsubsection{\texorpdfstring{testing\_wakeup()}{testing\_wakeup()}}
+{\footnotesize\ttfamily void testing\+\_\+wakeup (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})}
+
+
+
+Definition at line 39 of file testing.\+c.
+

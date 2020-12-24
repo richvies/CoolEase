@@ -1,0 +1,269 @@
+\hypertarget{memory_8h}{}\doxysection{/\+Users/richarddavies/\+Desktop/\+Projects/\+Cool\+Ease/\+Code/stm32l051c8t6\+\_\+rfm/coolease/include/coolease/memory.h File Reference}
+\label{memory_8h}\index{/Users/richarddavies/Desktop/Projects/CoolEase/Code/stm32l051c8t6\_rfm/coolease/include/coolease/memory.h@{/Users/richarddavies/Desktop/Projects/CoolEase/Code/stm32l051c8t6\_rfm/coolease/include/coolease/memory.h}}
+{\ttfamily \#include $<$stdint.\+h$>$}\newline
+{\ttfamily \#include $<$libopencm3/stm32/flash.\+h$>$}\newline
+{\ttfamily \#include $<$libopencm3/stm32/rcc.\+h$>$}\newline
+\doxysubsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define \mbox{\hyperlink{memory_8h_a609a6de2c7ff0a69b55d3b3c5e260cc5}{L\+O\+G\+\_\+\+S\+I\+ZE}}~1024
+\end{DoxyCompactItemize}
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{memory_8h_a44a136e3b70c36abb6f8dc060c778113}{mem\+\_\+init}} (void)
+\item 
+void \mbox{\hyperlink{memory_8h_a950b4539fa09602eae64bdd56bf8aabc}{mem\+\_\+program\+\_\+word}} (uint32\+\_\+t address, uint32\+\_\+t data)
+\item 
+bool \mbox{\hyperlink{memory_8h_ac26504ba7051222c930fd24f509c4099}{mem\+\_\+program\+\_\+half\+\_\+word}} (uint32\+\_\+t address, uint16\+\_\+t data)
+\item 
+bool \mbox{\hyperlink{memory_8h_ad21731a061c19da006781f052cc0f17f}{mem\+\_\+program\+\_\+byte}} (uint32\+\_\+t address, uint8\+\_\+t data)
+\item 
+void \mbox{\hyperlink{memory_8h_a2bf09ee33673f9723edb18056fdc1dfa}{mem\+\_\+save\+\_\+reading}} (int16\+\_\+t reading)
+\item 
+uint32\+\_\+t \mbox{\hyperlink{memory_8h_a7c52ca7050332c29a4bc7698e8fb7584}{mem\+\_\+get\+\_\+dev\+\_\+state}} (void)
+\item 
+uint32\+\_\+t \mbox{\hyperlink{memory_8h_a28cd894274c6fc9d41dc965629227606}{mem\+\_\+get\+\_\+dev\+\_\+num}} (void)
+\item 
+uint32\+\_\+t \mbox{\hyperlink{memory_8h_a703303645061e96c4b9876bae0a383d3}{mem\+\_\+get\+\_\+msg\+\_\+num}} (void)
+\item 
+void \mbox{\hyperlink{memory_8h_abbb4238ff271c8e34226874f464e4e6d}{mem\+\_\+update\+\_\+msg\+\_\+num}} (uint32\+\_\+t new)
+\item 
+uint32\+\_\+t \mbox{\hyperlink{memory_8h_afccd2b82ea731e3d5436749025ebca7d}{mem\+\_\+get\+\_\+num\+\_\+readings}} (void)
+\item 
+int16\+\_\+t \mbox{\hyperlink{memory_8h_a09c56996bd368d16dff462250e441840}{mem\+\_\+get\+\_\+reading}} (uint32\+\_\+t reading\+\_\+num)
+\item 
+int \mbox{\hyperlink{memory_8h_af5069adee43c55c11f99501f540b933e}{mem\+\_\+log\+\_\+printf}} (const char $\ast$format,...)
+\item 
+void \mbox{\hyperlink{memory_8h_afd161243801728b1fab67f3db6633877}{mem\+\_\+get\+\_\+log}} (char log\mbox{[}\mbox{\hyperlink{memory_8h_a609a6de2c7ff0a69b55d3b3c5e260cc5}{L\+O\+G\+\_\+\+S\+I\+ZE}}\mbox{]})
+\item 
+void \mbox{\hyperlink{memory_8h_a70af5f77dc31a0f90877bf1102844d0a}{mem\+\_\+wipe\+\_\+log}} (void)
+\item 
+void \mbox{\hyperlink{memory_8h_a802da42f5bc56d08e8df145109a6913e}{mem\+\_\+print\+\_\+log}} (void)
+\item 
+void \mbox{\hyperlink{memory_8h_ad98fe7b14d8ca526cc51bb1c2ffd605a}{mem\+\_\+get\+\_\+aes\+\_\+key}} (uint8\+\_\+t $\ast$aes\+\_\+key)
+\item 
+void \mbox{\hyperlink{memory_8h_ae351ba63bf858610b7cd3f789f070c68}{mem\+\_\+set\+\_\+aes\+\_\+key}} (uint8\+\_\+t $\ast$aes\+\_\+key)
+\item 
+void \mbox{\hyperlink{memory_8h_a0bb31d9f064706851c73a8ac045a4f71}{mem\+\_\+get\+\_\+aes\+\_\+key\+\_\+exp}} (uint8\+\_\+t $\ast$aes\+\_\+key\+\_\+exp)
+\item 
+void \mbox{\hyperlink{memory_8h_a96e02578abe4de252a64c24c38c35b43}{mem\+\_\+set\+\_\+aes\+\_\+key\+\_\+exp}} (uint8\+\_\+t $\ast$aes\+\_\+key\+\_\+exp)
+\item 
+void \mbox{\hyperlink{memory_8h_ae4a09c62aadfb5b457e6ff9022dc657b}{mem\+\_\+wipe\+\_\+readings}} (void)
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Macro Definition Documentation}
+\mbox{\Hypertarget{memory_8h_a609a6de2c7ff0a69b55d3b3c5e260cc5}\label{memory_8h_a609a6de2c7ff0a69b55d3b3c5e260cc5}} 
+\index{memory.h@{memory.h}!LOG\_SIZE@{LOG\_SIZE}}
+\index{LOG\_SIZE@{LOG\_SIZE}!memory.h@{memory.h}}
+\doxysubsubsection{\texorpdfstring{LOG\_SIZE}{LOG\_SIZE}}
+{\footnotesize\ttfamily \#define L\+O\+G\+\_\+\+S\+I\+ZE~1024}
+
+
+
+Definition at line 9 of file memory.\+h.
+
+
+
+\doxysubsection{Function Documentation}
+\mbox{\Hypertarget{memory_8h_ad98fe7b14d8ca526cc51bb1c2ffd605a}\label{memory_8h_ad98fe7b14d8ca526cc51bb1c2ffd605a}} 
+\index{memory.h@{memory.h}!mem\_get\_aes\_key@{mem\_get\_aes\_key}}
+\index{mem\_get\_aes\_key@{mem\_get\_aes\_key}!memory.h@{memory.h}}
+\doxysubsubsection{\texorpdfstring{mem\_get\_aes\_key()}{mem\_get\_aes\_key()}}
+{\footnotesize\ttfamily void mem\+\_\+get\+\_\+aes\+\_\+key (\begin{DoxyParamCaption}\item[{uint8\+\_\+t $\ast$}]{aes\+\_\+key }\end{DoxyParamCaption})}
+
+
+
+Definition at line 211 of file memory.\+c.
+
+\mbox{\Hypertarget{memory_8h_a0bb31d9f064706851c73a8ac045a4f71}\label{memory_8h_a0bb31d9f064706851c73a8ac045a4f71}} 
+\index{memory.h@{memory.h}!mem\_get\_aes\_key\_exp@{mem\_get\_aes\_key\_exp}}
+\index{mem\_get\_aes\_key\_exp@{mem\_get\_aes\_key\_exp}!memory.h@{memory.h}}
+\doxysubsubsection{\texorpdfstring{mem\_get\_aes\_key\_exp()}{mem\_get\_aes\_key\_exp()}}
+{\footnotesize\ttfamily void mem\+\_\+get\+\_\+aes\+\_\+key\+\_\+exp (\begin{DoxyParamCaption}\item[{uint8\+\_\+t $\ast$}]{aes\+\_\+key\+\_\+exp }\end{DoxyParamCaption})}
+
+
+
+Definition at line 243 of file memory.\+c.
+
+\mbox{\Hypertarget{memory_8h_a28cd894274c6fc9d41dc965629227606}\label{memory_8h_a28cd894274c6fc9d41dc965629227606}} 
+\index{memory.h@{memory.h}!mem\_get\_dev\_num@{mem\_get\_dev\_num}}
+\index{mem\_get\_dev\_num@{mem\_get\_dev\_num}!memory.h@{memory.h}}
+\doxysubsubsection{\texorpdfstring{mem\_get\_dev\_num()}{mem\_get\_dev\_num()}}
+{\footnotesize\ttfamily uint32\+\_\+t mem\+\_\+get\+\_\+dev\+\_\+num (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})}
+
+
+
+Definition at line 143 of file memory.\+c.
+
+\mbox{\Hypertarget{memory_8h_a7c52ca7050332c29a4bc7698e8fb7584}\label{memory_8h_a7c52ca7050332c29a4bc7698e8fb7584}} 
+\index{memory.h@{memory.h}!mem\_get\_dev\_state@{mem\_get\_dev\_state}}
+\index{mem\_get\_dev\_state@{mem\_get\_dev\_state}!memory.h@{memory.h}}
+\doxysubsubsection{\texorpdfstring{mem\_get\_dev\_state()}{mem\_get\_dev\_state()}}
+{\footnotesize\ttfamily uint32\+\_\+t mem\+\_\+get\+\_\+dev\+\_\+state (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})}
+
+
+
+Definition at line 138 of file memory.\+c.
+
+\mbox{\Hypertarget{memory_8h_afd161243801728b1fab67f3db6633877}\label{memory_8h_afd161243801728b1fab67f3db6633877}} 
+\index{memory.h@{memory.h}!mem\_get\_log@{mem\_get\_log}}
+\index{mem\_get\_log@{mem\_get\_log}!memory.h@{memory.h}}
+\doxysubsubsection{\texorpdfstring{mem\_get\_log()}{mem\_get\_log()}}
+{\footnotesize\ttfamily void mem\+\_\+get\+\_\+log (\begin{DoxyParamCaption}\item[{char}]{log\mbox{[}\+L\+O\+G\+\_\+\+S\+I\+Z\+E\mbox{]} }\end{DoxyParamCaption})}
+
+
+
+Definition at line 192 of file memory.\+c.
+
+\mbox{\Hypertarget{memory_8h_a703303645061e96c4b9876bae0a383d3}\label{memory_8h_a703303645061e96c4b9876bae0a383d3}} 
+\index{memory.h@{memory.h}!mem\_get\_msg\_num@{mem\_get\_msg\_num}}
+\index{mem\_get\_msg\_num@{mem\_get\_msg\_num}!memory.h@{memory.h}}
+\doxysubsubsection{\texorpdfstring{mem\_get\_msg\_num()}{mem\_get\_msg\_num()}}
+{\footnotesize\ttfamily uint32\+\_\+t mem\+\_\+get\+\_\+msg\+\_\+num (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})}
+
+
+
+Definition at line 148 of file memory.\+c.
+
+\mbox{\Hypertarget{memory_8h_afccd2b82ea731e3d5436749025ebca7d}\label{memory_8h_afccd2b82ea731e3d5436749025ebca7d}} 
+\index{memory.h@{memory.h}!mem\_get\_num\_readings@{mem\_get\_num\_readings}}
+\index{mem\_get\_num\_readings@{mem\_get\_num\_readings}!memory.h@{memory.h}}
+\doxysubsubsection{\texorpdfstring{mem\_get\_num\_readings()}{mem\_get\_num\_readings()}}
+{\footnotesize\ttfamily uint32\+\_\+t mem\+\_\+get\+\_\+num\+\_\+readings (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})}
+
+
+
+Definition at line 159 of file memory.\+c.
+
+\mbox{\Hypertarget{memory_8h_a09c56996bd368d16dff462250e441840}\label{memory_8h_a09c56996bd368d16dff462250e441840}} 
+\index{memory.h@{memory.h}!mem\_get\_reading@{mem\_get\_reading}}
+\index{mem\_get\_reading@{mem\_get\_reading}!memory.h@{memory.h}}
+\doxysubsubsection{\texorpdfstring{mem\_get\_reading()}{mem\_get\_reading()}}
+{\footnotesize\ttfamily int16\+\_\+t mem\+\_\+get\+\_\+reading (\begin{DoxyParamCaption}\item[{uint32\+\_\+t}]{reading\+\_\+num }\end{DoxyParamCaption})}
+
+
+
+Definition at line 164 of file memory.\+c.
+
+\mbox{\Hypertarget{memory_8h_a44a136e3b70c36abb6f8dc060c778113}\label{memory_8h_a44a136e3b70c36abb6f8dc060c778113}} 
+\index{memory.h@{memory.h}!mem\_init@{mem\_init}}
+\index{mem\_init@{mem\_init}!memory.h@{memory.h}}
+\doxysubsubsection{\texorpdfstring{mem\_init()}{mem\_init()}}
+{\footnotesize\ttfamily void mem\+\_\+init (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})}
+
+
+
+Definition at line 51 of file memory.\+c.
+
+\mbox{\Hypertarget{memory_8h_af5069adee43c55c11f99501f540b933e}\label{memory_8h_af5069adee43c55c11f99501f540b933e}} 
+\index{memory.h@{memory.h}!mem\_log\_printf@{mem\_log\_printf}}
+\index{mem\_log\_printf@{mem\_log\_printf}!memory.h@{memory.h}}
+\doxysubsubsection{\texorpdfstring{mem\_log\_printf()}{mem\_log\_printf()}}
+{\footnotesize\ttfamily int mem\+\_\+log\+\_\+printf (\begin{DoxyParamCaption}\item[{const char $\ast$}]{format,  }\item[{}]{... }\end{DoxyParamCaption})}
+
+
+
+Definition at line 170 of file memory.\+c.
+
+\mbox{\Hypertarget{memory_8h_a802da42f5bc56d08e8df145109a6913e}\label{memory_8h_a802da42f5bc56d08e8df145109a6913e}} 
+\index{memory.h@{memory.h}!mem\_print\_log@{mem\_print\_log}}
+\index{mem\_print\_log@{mem\_print\_log}!memory.h@{memory.h}}
+\doxysubsubsection{\texorpdfstring{mem\_print\_log()}{mem\_print\_log()}}
+{\footnotesize\ttfamily void mem\+\_\+print\+\_\+log (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})}
+
+
+
+Definition at line 200 of file memory.\+c.
+
+\mbox{\Hypertarget{memory_8h_ad21731a061c19da006781f052cc0f17f}\label{memory_8h_ad21731a061c19da006781f052cc0f17f}} 
+\index{memory.h@{memory.h}!mem\_program\_byte@{mem\_program\_byte}}
+\index{mem\_program\_byte@{mem\_program\_byte}!memory.h@{memory.h}}
+\doxysubsubsection{\texorpdfstring{mem\_program\_byte()}{mem\_program\_byte()}}
+{\footnotesize\ttfamily bool mem\+\_\+program\+\_\+byte (\begin{DoxyParamCaption}\item[{uint32\+\_\+t}]{address,  }\item[{uint8\+\_\+t}]{data }\end{DoxyParamCaption})}
+
+
+
+Definition at line 105 of file memory.\+c.
+
+\mbox{\Hypertarget{memory_8h_ac26504ba7051222c930fd24f509c4099}\label{memory_8h_ac26504ba7051222c930fd24f509c4099}} 
+\index{memory.h@{memory.h}!mem\_program\_half\_word@{mem\_program\_half\_word}}
+\index{mem\_program\_half\_word@{mem\_program\_half\_word}!memory.h@{memory.h}}
+\doxysubsubsection{\texorpdfstring{mem\_program\_half\_word()}{mem\_program\_half\_word()}}
+{\footnotesize\ttfamily bool mem\+\_\+program\+\_\+half\+\_\+word (\begin{DoxyParamCaption}\item[{uint32\+\_\+t}]{address,  }\item[{uint16\+\_\+t}]{data }\end{DoxyParamCaption})}
+
+
+
+Definition at line 87 of file memory.\+c.
+
+\mbox{\Hypertarget{memory_8h_a950b4539fa09602eae64bdd56bf8aabc}\label{memory_8h_a950b4539fa09602eae64bdd56bf8aabc}} 
+\index{memory.h@{memory.h}!mem\_program\_word@{mem\_program\_word}}
+\index{mem\_program\_word@{mem\_program\_word}!memory.h@{memory.h}}
+\doxysubsubsection{\texorpdfstring{mem\_program\_word()}{mem\_program\_word()}}
+{\footnotesize\ttfamily void mem\+\_\+program\+\_\+word (\begin{DoxyParamCaption}\item[{uint32\+\_\+t}]{address,  }\item[{uint32\+\_\+t}]{data }\end{DoxyParamCaption})}
+
+
+
+Definition at line 73 of file memory.\+c.
+
+\mbox{\Hypertarget{memory_8h_a2bf09ee33673f9723edb18056fdc1dfa}\label{memory_8h_a2bf09ee33673f9723edb18056fdc1dfa}} 
+\index{memory.h@{memory.h}!mem\_save\_reading@{mem\_save\_reading}}
+\index{mem\_save\_reading@{mem\_save\_reading}!memory.h@{memory.h}}
+\doxysubsubsection{\texorpdfstring{mem\_save\_reading()}{mem\_save\_reading()}}
+{\footnotesize\ttfamily void mem\+\_\+save\+\_\+reading (\begin{DoxyParamCaption}\item[{int16\+\_\+t}]{reading }\end{DoxyParamCaption})}
+
+
+
+Definition at line 123 of file memory.\+c.
+
+\mbox{\Hypertarget{memory_8h_ae351ba63bf858610b7cd3f789f070c68}\label{memory_8h_ae351ba63bf858610b7cd3f789f070c68}} 
+\index{memory.h@{memory.h}!mem\_set\_aes\_key@{mem\_set\_aes\_key}}
+\index{mem\_set\_aes\_key@{mem\_set\_aes\_key}!memory.h@{memory.h}}
+\doxysubsubsection{\texorpdfstring{mem\_set\_aes\_key()}{mem\_set\_aes\_key()}}
+{\footnotesize\ttfamily void mem\+\_\+set\+\_\+aes\+\_\+key (\begin{DoxyParamCaption}\item[{uint8\+\_\+t $\ast$}]{aes\+\_\+key }\end{DoxyParamCaption})}
+
+
+
+Definition at line 226 of file memory.\+c.
+
+\mbox{\Hypertarget{memory_8h_a96e02578abe4de252a64c24c38c35b43}\label{memory_8h_a96e02578abe4de252a64c24c38c35b43}} 
+\index{memory.h@{memory.h}!mem\_set\_aes\_key\_exp@{mem\_set\_aes\_key\_exp}}
+\index{mem\_set\_aes\_key\_exp@{mem\_set\_aes\_key\_exp}!memory.h@{memory.h}}
+\doxysubsubsection{\texorpdfstring{mem\_set\_aes\_key\_exp()}{mem\_set\_aes\_key\_exp()}}
+{\footnotesize\ttfamily void mem\+\_\+set\+\_\+aes\+\_\+key\+\_\+exp (\begin{DoxyParamCaption}\item[{uint8\+\_\+t $\ast$}]{aes\+\_\+key\+\_\+exp }\end{DoxyParamCaption})}
+
+
+
+Definition at line 258 of file memory.\+c.
+
+\mbox{\Hypertarget{memory_8h_abbb4238ff271c8e34226874f464e4e6d}\label{memory_8h_abbb4238ff271c8e34226874f464e4e6d}} 
+\index{memory.h@{memory.h}!mem\_update\_msg\_num@{mem\_update\_msg\_num}}
+\index{mem\_update\_msg\_num@{mem\_update\_msg\_num}!memory.h@{memory.h}}
+\doxysubsubsection{\texorpdfstring{mem\_update\_msg\_num()}{mem\_update\_msg\_num()}}
+{\footnotesize\ttfamily void mem\+\_\+update\+\_\+msg\+\_\+num (\begin{DoxyParamCaption}\item[{uint32\+\_\+t}]{new }\end{DoxyParamCaption})}
+
+
+
+Definition at line 153 of file memory.\+c.
+
+\mbox{\Hypertarget{memory_8h_a70af5f77dc31a0f90877bf1102844d0a}\label{memory_8h_a70af5f77dc31a0f90877bf1102844d0a}} 
+\index{memory.h@{memory.h}!mem\_wipe\_log@{mem\_wipe\_log}}
+\index{mem\_wipe\_log@{mem\_wipe\_log}!memory.h@{memory.h}}
+\doxysubsubsection{\texorpdfstring{mem\_wipe\_log()}{mem\_wipe\_log()}}
+{\footnotesize\ttfamily void mem\+\_\+wipe\+\_\+log (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})}
+
+
+
+Definition at line 187 of file memory.\+c.
+
+\mbox{\Hypertarget{memory_8h_ae4a09c62aadfb5b457e6ff9022dc657b}\label{memory_8h_ae4a09c62aadfb5b457e6ff9022dc657b}} 
+\index{memory.h@{memory.h}!mem\_wipe\_readings@{mem\_wipe\_readings}}
+\index{mem\_wipe\_readings@{mem\_wipe\_readings}!memory.h@{memory.h}}
+\doxysubsubsection{\texorpdfstring{mem\_wipe\_readings()}{mem\_wipe\_readings()}}
+{\footnotesize\ttfamily void mem\+\_\+wipe\+\_\+readings (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})}
+
+
+
+Definition at line 275 of file memory.\+c.
+

@@ -6,7 +6,9 @@
         "user_ldSources": [],
         "user_cIncludes": [],
         "user_asmIncludes": [],
-        "user_ldIncludes": [],
+        "user_ldIncludes": [
+            "hub"
+        ],
         "user_cDefines": [],
         "user_asmDefines": [],
         "user_cFlags": [],
