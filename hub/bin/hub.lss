@@ -15,27 +15,27 @@ Idx Name          Size      VMA       LMA       File off  Algn
                   CONTENTS, ALLOC, LOAD, DATA
   5 .bss          00000188  2000004c  080018d4  0002004c  2**2
                   ALLOC
-  6 .debug_info   00009a4b  00000000  00000000  0002004c  2**0
+  6 .debug_info   00009a57  00000000  00000000  0002004c  2**0
                   CONTENTS, READONLY, DEBUGGING, OCTETS
-  7 .debug_abbrev 00001be5  00000000  00000000  00029a97  2**0
+  7 .debug_abbrev 00001bbf  00000000  00000000  00029aa3  2**0
                   CONTENTS, READONLY, DEBUGGING, OCTETS
-  8 .debug_loc    00003618  00000000  00000000  0002b67c  2**0
+  8 .debug_loc    00003618  00000000  00000000  0002b662  2**0
                   CONTENTS, READONLY, DEBUGGING, OCTETS
-  9 .debug_aranges 00000418  00000000  00000000  0002ec94  2**0
+  9 .debug_aranges 00000418  00000000  00000000  0002ec7a  2**0
                   CONTENTS, READONLY, DEBUGGING, OCTETS
- 10 .debug_ranges 00000508  00000000  00000000  0002f0ac  2**0
+ 10 .debug_ranges 00000508  00000000  00000000  0002f092  2**0
                   CONTENTS, READONLY, DEBUGGING, OCTETS
- 11 .debug_macro  00004d54  00000000  00000000  0002f5b4  2**0
+ 11 .debug_macro  00004d54  00000000  00000000  0002f59a  2**0
                   CONTENTS, READONLY, DEBUGGING, OCTETS
- 12 .debug_line   000045df  00000000  00000000  00034308  2**0
+ 12 .debug_line   000045df  00000000  00000000  000342ee  2**0
                   CONTENTS, READONLY, DEBUGGING, OCTETS
- 13 .debug_str    00010872  00000000  00000000  000388e7  2**0
+ 13 .debug_str    0001089c  00000000  00000000  000388cd  2**0
                   CONTENTS, READONLY, DEBUGGING, OCTETS
- 14 .comment      0000004c  00000000  00000000  00049159  2**0
+ 14 .comment      0000004c  00000000  00000000  00049169  2**0
                   CONTENTS, READONLY
- 15 .ARM.attributes 0000002a  00000000  00000000  000491a5  2**0
+ 15 .ARM.attributes 0000002a  00000000  00000000  000491b5  2**0
                   CONTENTS, READONLY
- 16 .debug_frame  00000a28  00000000  00000000  000491d0  2**2
+ 16 .debug_frame  00000a28  00000000  00000000  000491e0  2**2
                   CONTENTS, READONLY, DEBUGGING, OCTETS
 
 Disassembly of section .text:
@@ -105,7 +105,7 @@ Disassembly of section .text:
 
 080000f8 <hid_report_callback>:
 */
-uint8_t hid_report_buf[64] = "Default Report Buffer";
+static uint8_t hid_report_buf[64] = "Default Report Buffer";
 
 /** @brief HID Resport Callback */
 void hid_report_callback(usbd_device *usbd_dev, uint8_t ea);
@@ -302,7 +302,7 @@ static void cusb_clock_init(void)
   SET_REG(USB_ISTR_REG, 0);
  800020e:	4a0b      	ldr	r2, [pc, #44]	; (800023c <cusb_init+0x40>)
  8000210:	6013      	str	r3, [r2, #0]
-  usbd_dev = usbd_init(&st_usbfs_v2_usb_driver, &dev_desc, &cfg_desc, string_desc, sizeof(string_desc) / sizeof(const char*), usbd_control_buffer, sizeof(usbd_control_buffer));
+  usbd_dev = usbd_init(&st_usbfs_v2_usb_driver, &dev_desc, &cfg_desc, usb_strings, sizeof(usb_strings) / sizeof(const char*), usbd_control_buffer, sizeof(usbd_control_buffer));
  8000212:	3380      	adds	r3, #128	; 0x80
  8000214:	9302      	str	r3, [sp, #8]
  8000216:	4b0a      	ldr	r3, [pc, #40]	; (8000240 <cusb_init+0x44>)
@@ -4351,7 +4351,7 @@ void st_usbfs_poll(usbd_device *dev)
 08001834 <interfaces>:
  8001834:	00000000 00000001 00000000 080017e0     ................
 
-08001844 <string_desc>:
+08001844 <usb_strings>:
  8001844:	08001764 08001770 08001780 08001788     d...p...........
 
 08001854 <st_usbfs_v2_usb_driver>:

@@ -41,7 +41,7 @@
  */
 
 /** @brief Interfaces used */
-enum 
+enum dev_interfaces
 {
   INTERFACE_HID = 0,
   // The next two must be consecutive since they are used in an Interface
@@ -54,7 +54,7 @@ enum
 };
 
 /** @brief Required endpoint addresses for interfaces */
-enum 
+enum dev_endpoints
 {
   ENDPOINT_HID_IN = 0x81,
   ENDPOINT_HID_OUT = 0x01,
@@ -62,16 +62,6 @@ enum
   ENDPOINT_CDC_DATA_IN = 0x82,
   ENDPOINT_CDC_DATA_OUT = 0x02,
   ENDPOINT_KEYBOARD_HID_IN = 0x84,
-};
-
-enum 
-{
-  HID_GET_REPORT = 1,
-  HID_GET_IDLE = 2,
-  HID_GET_PROTOCOL = 3,
-  HID_SET_REPORT = 9,
-  HID_SET_IDLE = 10,
-  HID_SET_PROTOCOL = 11,
 };
 
 /** @brief String Descriptors */
@@ -90,7 +80,7 @@ enum usb_strings_index
 };
 
 /** @brief Structure containing all string descriptors, indexed by @ref usb_strings_index */
-static const char * const string_desc[] = 
+static const char * const usb_strings[] = 
 {
   "CoolEase",
   "CoolEase Hub",
@@ -199,9 +189,8 @@ static const uint8_t hid_report_descriptor[] =
   0xc0                           // END_COLLECTION
 };
 
-/** @brief HID Function Descriptor
- */
-static const struct 
+/** @brief HID Function Descriptor*/
+static const struct hid_function_descriptor
 {
   struct usb_hid_descriptor hid_descriptor;
   struct 
@@ -210,6 +199,7 @@ static const struct
     uint16_t wDescriptorLength;
   } __attribute__((packed)) hid_report;
 } __attribute__((packed)) hid_function = 
+/** @brief HID Function Definition */
 {
   .hid_descriptor = 
   {
@@ -238,7 +228,7 @@ static const struct
 };
 
 /** @brief HID Interface Descriptor */
-const struct usb_interface_descriptor hid_interface = 
+static const struct usb_interface_descriptor hid_interface = 
 {
     // The size of an interface descriptor: 9
     .bLength = USB_DT_INTERFACE_SIZE,
@@ -272,7 +262,7 @@ const struct usb_interface_descriptor hid_interface =
 };
 
 /** @brief Struct containing all used interfaces */
-const struct usb_interface interfaces[] = 
+static const struct usb_interface interfaces[] = 
 {
   {
     .num_altsetting = 1,
@@ -305,7 +295,7 @@ static const struct usb_config_descriptor cfg_desc =
  */
 
 /** @brief Buffer to be used for control requests. */
-uint8_t usbd_control_buffer[128];
+static uint8_t usbd_control_buffer[128];
 
 /** @brief HID Control Callback 
  * 
@@ -333,7 +323,7 @@ static enum usbd_request_return_codes hid_control_request(usbd_device *dev, stru
  * 
  * Buffer used for all HID in & out transactions
 */
-uint8_t hid_report_buf[64] = "Default Report Buffer";
+static uint8_t hid_report_buf[64] = "Default Report Buffer";
 
 /** @brief HID Resport Callback */
 void hid_report_callback(usbd_device *usbd_dev, uint8_t ea);
@@ -365,7 +355,7 @@ static void hid_set_config(usbd_device *dev, uint16_t wValue)
  * Static Vairbale Declarations
  *******************************************************************/
 
-usbd_device *usbd_dev;
+static usbd_device *usbd_dev;
 
 /******************************************************************** 
  * Static Function Declarations
@@ -394,7 +384,7 @@ void cusb_init(void)
   SET_REG(USB_ISTR_REG, 0);
 
   /** Initialize USB */
-  usbd_dev = usbd_init(&st_usbfs_v2_usb_driver, &dev_desc, &cfg_desc, string_desc, sizeof(string_desc) / sizeof(const char*), usbd_control_buffer, sizeof(usbd_control_buffer));
+  usbd_dev = usbd_init(&st_usbfs_v2_usb_driver, &dev_desc, &cfg_desc, usb_strings, sizeof(usb_strings) / sizeof(const char*), usbd_control_buffer, sizeof(usbd_control_buffer));
     
   /** Register Configuration Callback for HID */
   usbd_register_set_config_callback(usbd_dev, hid_set_config);

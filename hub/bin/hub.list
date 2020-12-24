@@ -69,7 +69,7 @@ Disassembly of section .text:
 
 080000f8 <hid_report_callback>:
 */
-uint8_t hid_report_buf[64] = "Default Report Buffer";
+static uint8_t hid_report_buf[64] = "Default Report Buffer";
 
 /** @brief HID Resport Callback */
 void hid_report_callback(usbd_device *usbd_dev, uint8_t ea);
@@ -266,7 +266,7 @@ static void cusb_clock_init(void)
   SET_REG(USB_ISTR_REG, 0);
  800020e:	4a0b      	ldr	r2, [pc, #44]	; (800023c <cusb_init+0x40>)
  8000210:	6013      	str	r3, [r2, #0]
-  usbd_dev = usbd_init(&st_usbfs_v2_usb_driver, &dev_desc, &cfg_desc, string_desc, sizeof(string_desc) / sizeof(const char*), usbd_control_buffer, sizeof(usbd_control_buffer));
+  usbd_dev = usbd_init(&st_usbfs_v2_usb_driver, &dev_desc, &cfg_desc, usb_strings, sizeof(usb_strings) / sizeof(const char*), usbd_control_buffer, sizeof(usbd_control_buffer));
  8000212:	3380      	adds	r3, #128	; 0x80
  8000214:	9302      	str	r3, [sp, #8]
  8000216:	4b0a      	ldr	r3, [pc, #40]	; (8000240 <cusb_init+0x44>)
@@ -4315,7 +4315,7 @@ void st_usbfs_poll(usbd_device *dev)
 08001834 <interfaces>:
  8001834:	00000000 00000001 00000000 080017e0     ................
 
-08001844 <string_desc>:
+08001844 <usb_strings>:
  8001844:	08001764 08001770 08001780 08001788     d...p...........
 
 08001854 <st_usbfs_v2_usb_driver>:

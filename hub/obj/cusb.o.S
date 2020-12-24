@@ -3637,7 +3637,7 @@ struct usb_hid_descriptor {
 } __attribute__((packed));
 # 22 "hub/src/cusb.c" 2
 # 44 "hub/src/cusb.c"
-enum
+enum dev_interfaces
 {
   INTERFACE_HID = 0,
 
@@ -3650,7 +3650,7 @@ enum
 };
 
 
-enum
+enum dev_endpoints
 {
   ENDPOINT_HID_IN = 0x81,
   ENDPOINT_HID_OUT = 0x01,
@@ -3658,16 +3658,6 @@ enum
   ENDPOINT_CDC_DATA_IN = 0x82,
   ENDPOINT_CDC_DATA_OUT = 0x02,
   ENDPOINT_KEYBOARD_HID_IN = 0x84,
-};
-
-enum
-{
-  HID_GET_REPORT = 1,
-  HID_GET_IDLE = 2,
-  HID_GET_PROTOCOL = 3,
-  HID_SET_REPORT = 9,
-  HID_SET_IDLE = 10,
-  HID_SET_PROTOCOL = 11,
 };
 
 
@@ -3686,7 +3676,7 @@ enum usb_strings_index
 };
 
 
-static const char * const string_desc[] =
+static const char * const usb_strings[] =
 {
   "CoolEase",
   "CoolEase Hub",
@@ -3729,7 +3719,7 @@ static const struct usb_endpoint_descriptor hid_interface_endpoints[] =
 
 
     .bEndpointAddress = ENDPOINT_HID_IN,
-# 144 "hub/src/cusb.c"
+# 134 "hub/src/cusb.c"
     .bmAttributes = 0x03,
 
     .wMaxPacketSize = 64,
@@ -3747,7 +3737,7 @@ static const struct usb_endpoint_descriptor hid_interface_endpoints[] =
 
 
     .bEndpointAddress = ENDPOINT_HID_OUT,
-# 169 "hub/src/cusb.c"
+# 159 "hub/src/cusb.c"
     .bmAttributes = 0x03,
 
     .wMaxPacketSize = 64,
@@ -3756,7 +3746,7 @@ static const struct usb_endpoint_descriptor hid_interface_endpoints[] =
     .bInterval = 1,
   }
 };
-# 186 "hub/src/cusb.c"
+# 176 "hub/src/cusb.c"
 static const uint8_t hid_report_descriptor[] =
 {
   0x06, 0x00, 0xff,
@@ -3774,8 +3764,7 @@ static const uint8_t hid_report_descriptor[] =
 };
 
 
-
-static const struct
+static const struct hid_function_descriptor
 {
   struct usb_hid_descriptor hid_descriptor;
   struct
@@ -3784,6 +3773,7 @@ static const struct
     uint16_t wDescriptorLength;
   } __attribute__((packed)) hid_report;
 } __attribute__((packed)) hid_function =
+
 {
   .hid_descriptor =
   {
@@ -3812,7 +3802,7 @@ static const struct
 };
 
 
-const struct usb_interface_descriptor hid_interface =
+static const struct usb_interface_descriptor hid_interface =
 {
 
     .bLength = 9,
@@ -3846,7 +3836,7 @@ const struct usb_interface_descriptor hid_interface =
 };
 
 
-const struct usb_interface interfaces[] =
+static const struct usb_interface interfaces[] =
 {
   {
     .num_altsetting = 1,
@@ -3868,8 +3858,8 @@ static const struct usb_config_descriptor cfg_desc =
   .bMaxPower = 200,
   .interface = interfaces,
 };
-# 308 "hub/src/cusb.c"
-uint8_t usbd_control_buffer[128];
+# 298 "hub/src/cusb.c"
+static uint8_t usbd_control_buffer[128];
 
 
 
@@ -3897,7 +3887,7 @@ static enum usbd_request_return_codes hid_control_request(usbd_device *dev, stru
 
 
 
-uint8_t hid_report_buf[64] = "Default Report Buffer";
+static uint8_t hid_report_buf[64] = "Default Report Buffer";
 
 
 void hid_report_callback(usbd_device *usbd_dev, uint8_t ea);
@@ -3929,14 +3919,14 @@ static void hid_set_config(usbd_device *dev, uint16_t wValue)
 
 
 
-usbd_device *usbd_dev;
+static usbd_device *usbd_dev;
 
 
 
 
 
 static void cusb_clock_init(void);
-# 385 "hub/src/cusb.c"
+# 375 "hub/src/cusb.c"
 void cusb_init(void)
 {
 
@@ -3949,7 +3939,7 @@ void cusb_init(void)
   (*((&(*(volatile uint32_t *)((((0x40000000U) + 0x00000) + 0x5c00) + 0x44)))) = (uint16_t)(0));
 
 
-  usbd_dev = usbd_init(&st_usbfs_v2_usb_driver, &dev_desc, &cfg_desc, string_desc, sizeof(string_desc) / sizeof(const char*), usbd_control_buffer, sizeof(usbd_control_buffer));
+  usbd_dev = usbd_init(&st_usbfs_v2_usb_driver, &dev_desc, &cfg_desc, usb_strings, sizeof(usb_strings) / sizeof(const char*), usbd_control_buffer, sizeof(usbd_control_buffer));
 
 
   usbd_register_set_config_callback(usbd_dev, hid_set_config);
@@ -3962,7 +3952,7 @@ void cusb_test_poll(void)
     usbd_poll(usbd_dev);
   }
 }
-# 422 "hub/src/cusb.c"
+# 412 "hub/src/cusb.c"
 static void cusb_clock_init(void)
 {
 
