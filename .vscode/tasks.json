@@ -199,6 +199,16 @@
                 "focus": true
             },
             "problemMatcher": []
+        },
+        {
+            "label": "Open Doxygen",
+            "type": "shell",
+            "command": "open docs/doxygen/html/index.html",
+            "presentation": {
+                "focus": true
+            },
+            "problemMatcher": [],
+            "dependsOn": "Generate Doxygen"
         }
     ]
 }
