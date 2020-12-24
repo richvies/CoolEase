@@ -1,8 +1,6 @@
 {
     "version": "2.0.0",
     "tasks": [
-        
-        // Build Project
         {
             "label": "Build project",
             "group": {
@@ -11,8 +9,7 @@
             },
             "type": "shell",
             "command": "make -fHub/Makefile all",
-            "args": [
-            ],
+            "args": [],
             "problemMatcher": {
                 "pattern": {
                     "regexp": "^(.*):(\\d+):(\\d+):\\s+(warning|error):\\s+(.*)$",
@@ -27,8 +24,6 @@
                 "focus": true
             }
         },
-        
-        // Compile Current File
         {
             "label": "Compile current file",
             "type": "shell",
@@ -88,21 +83,16 @@
                 "focus": true
             }
         },
-        
-        // Delete Build Folder
         {
             "label": "Delete build folder",
             "type": "shell",
             "command": "/usr/bin/make -fHub/Makefile clean",
-            "args": [
-            ],
+            "args": [],
             "problemMatcher": [],
             "presentation": {
                 "focus": false
             }
         },
-        
-        // Build / Download/ Run
         {
             "label": "CPU: Build, Download and run",
             "type": "shell",
@@ -118,8 +108,6 @@
             "problemMatcher": [],
             "dependsOn": "Build project"
         },
-        
-        // Download/ Run
         {
             "label": "CPU: Download and run",
             "type": "shell",
@@ -134,8 +122,6 @@
             ],
             "problemMatcher": []
         },
-        
-        // Reset and Run
         {
             "label": "CPU: Reset and run",
             "type": "shell",
@@ -151,8 +137,6 @@
             ],
             "problemMatcher": []
         },
-        
-        // Halt
         {
             "label": "CPU: Halt",
             "type": "shell",
@@ -168,8 +152,6 @@
             ],
             "problemMatcher": []
         },
-        
-        // Run 
         {
             "label": "CPU: Run",
             "type": "shell",
@@ -185,8 +167,6 @@
             ],
             "problemMatcher": []
         },
-        
-        // Run Ptyhon File
         {
             "label": "Run Python file",
             "type": "shell",
@@ -199,8 +179,6 @@
             },
             "problemMatcher": []
         },
-        
-        // Open Cube MX Project
         {
             "label": "Open CubeMX project",
             "type": "shell",
@@ -213,15 +191,14 @@
             },
             "problemMatcher": []
         },
-        
-        // Generate Doxygen Documentation
         {
             "label": "Generate Doxygen",
             "type": "shell",
             "command": "doxygen Docs/doxygen/Doxyfile",
             "presentation": {
                 "focus": true
-            }
+            },
+            "problemMatcher": []
         }
     ]
 }

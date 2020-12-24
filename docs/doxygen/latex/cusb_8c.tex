@@ -1,0 +1,133 @@
+\hypertarget{cusb_8c}{}\doxysection{hub/src/cusb.c File Reference}
+\label{cusb_8c}\index{hub/src/cusb.c@{hub/src/cusb.c}}
+
+
+Cool\+Ease Hub U\+SB driver source file.  
+
+
+{\ttfamily \#include $<$hub/cusb.\+h$>$}\newline
+{\ttfamily \#include $<$stddef.\+h$>$}\newline
+{\ttfamily \#include $<$libopencm3/stm32/syscfg.\+h$>$}\newline
+{\ttfamily \#include $<$libopencm3/stm32/rcc.\+h$>$}\newline
+{\ttfamily \#include $<$libopencm3/stm32/flash.\+h$>$}\newline
+{\ttfamily \#include $<$libopencm3/stm32/crs.\+h$>$}\newline
+{\ttfamily \#include $<$libopencm3/cm3/nvic.\+h$>$}\newline
+{\ttfamily \#include $<$libopencm3/usb/usbd.\+h$>$}\newline
+{\ttfamily \#include \char`\"{}../../libopencm3/lib/usb/usb\+\_\+private.\+h\char`\"{}}\newline
+{\ttfamily \#include $<$libopencm3/stm32/st\+\_\+usbfs.\+h$>$}\newline
+{\ttfamily \#include $<$libopencm3/usb/hid.\+h$>$}\newline
+\doxysubsection*{Data Structures}
+\begin{DoxyCompactItemize}
+\item 
+struct \mbox{\hyperlink{structhid__function__descriptor}{hid\+\_\+function\+\_\+descriptor}}
+\begin{DoxyCompactList}\small\item\em H\+ID Function Descriptor. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define \mbox{\hyperlink{group___c_u_s_b___c_f_g_ga3398c7225386f04c72fd9025fcb44734}{U\+S\+B\+\_\+\+V\+ID}}~0x0483
+\begin{DoxyCompactList}\small\item\em String Descriptors. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{group___c_u_s_b___c_f_g_ga989c980e0b99f803f7ce0ca224cdb733}{U\+S\+B\+\_\+\+P\+ID}}~0x5750
+\end{DoxyCompactItemize}
+\doxysubsection*{Enumerations}
+\begin{DoxyCompactItemize}
+\item 
+enum \mbox{\hyperlink{group___c_u_s_b___c_f_g_gade943db11170b477241c1a88478ad911}{dev\+\_\+interfaces}} \{ \newline
+\mbox{\hyperlink{group___c_u_s_b___c_f_g_ggade943db11170b477241c1a88478ad911a204042907dfd3f14df88d44ca34c9bf5}{I\+N\+T\+E\+R\+F\+A\+C\+E\+\_\+\+H\+ID}} = 0, 
+\mbox{\hyperlink{group___c_u_s_b___c_f_g_ggade943db11170b477241c1a88478ad911ae06ae546abc0d38b7996d28d7b81afc0}{I\+N\+T\+E\+R\+F\+A\+C\+E\+\_\+\+C\+D\+C\+\_\+\+C\+O\+MM}} = 1, 
+\mbox{\hyperlink{group___c_u_s_b___c_f_g_ggade943db11170b477241c1a88478ad911a6cd1255b80eacfa5017757c3cba61be0}{I\+N\+T\+E\+R\+F\+A\+C\+E\+\_\+\+C\+D\+C\+\_\+\+D\+A\+TA}} = 2, 
+\mbox{\hyperlink{group___c_u_s_b___c_f_g_ggade943db11170b477241c1a88478ad911ae38d5030fdcdb4a30b5a7c225f738de2}{I\+N\+T\+E\+R\+F\+A\+C\+E\+\_\+\+K\+E\+Y\+B\+O\+A\+R\+D\+\_\+\+H\+ID}} = 3, 
+\newline
+\mbox{\hyperlink{group___c_u_s_b___c_f_g_ggade943db11170b477241c1a88478ad911a6c498f5b0c6a28de865172df9f4028b6}{I\+N\+T\+E\+R\+F\+A\+C\+E\+\_\+\+C\+O\+U\+NT}} = 1
+ \}
+\begin{DoxyCompactList}\small\item\em Interfaces used. \end{DoxyCompactList}\item 
+enum \mbox{\hyperlink{group___c_u_s_b___c_f_g_ga8d04a14f4c991504e1ee2df8b5e6f05c}{dev\+\_\+endpoints}} \{ \newline
+\mbox{\hyperlink{group___c_u_s_b___c_f_g_gga8d04a14f4c991504e1ee2df8b5e6f05cac4a444971bf8e52ed478f89a9aea2f6d}{E\+N\+D\+P\+O\+I\+N\+T\+\_\+\+H\+I\+D\+\_\+\+IN}} = 0x81, 
+\mbox{\hyperlink{group___c_u_s_b___c_f_g_gga8d04a14f4c991504e1ee2df8b5e6f05cab6fa532c71274a0aa3a49297153fad04}{E\+N\+D\+P\+O\+I\+N\+T\+\_\+\+H\+I\+D\+\_\+\+O\+UT}} = 0x01, 
+\mbox{\hyperlink{group___c_u_s_b___c_f_g_gga8d04a14f4c991504e1ee2df8b5e6f05ca322fcbffd8676c20ed0b2ed1e76ee6da}{E\+N\+D\+P\+O\+I\+N\+T\+\_\+\+C\+D\+C\+\_\+\+C\+O\+M\+M\+\_\+\+IN}} = 0x83, 
+\mbox{\hyperlink{group___c_u_s_b___c_f_g_gga8d04a14f4c991504e1ee2df8b5e6f05cadfde3aef860817b6e38f2928484b3226}{E\+N\+D\+P\+O\+I\+N\+T\+\_\+\+C\+D\+C\+\_\+\+D\+A\+T\+A\+\_\+\+IN}} = 0x82, 
+\newline
+\mbox{\hyperlink{group___c_u_s_b___c_f_g_gga8d04a14f4c991504e1ee2df8b5e6f05cae7dadfb0336e7b90c79fcb7d6158a52f}{E\+N\+D\+P\+O\+I\+N\+T\+\_\+\+C\+D\+C\+\_\+\+D\+A\+T\+A\+\_\+\+O\+UT}} = 0x02, 
+\mbox{\hyperlink{group___c_u_s_b___c_f_g_gga8d04a14f4c991504e1ee2df8b5e6f05cab0db9905c5948515d9bb6c56a836aa67}{E\+N\+D\+P\+O\+I\+N\+T\+\_\+\+K\+E\+Y\+B\+O\+A\+R\+D\+\_\+\+H\+I\+D\+\_\+\+IN}} = 0x84
+ \}
+\begin{DoxyCompactList}\small\item\em Required endpoint addresses for interfaces. \end{DoxyCompactList}\item 
+enum \mbox{\hyperlink{group___c_u_s_b___c_f_g_ga8e8903d0c7276e7295ce8a9aaea727b4}{usb\+\_\+strings\+\_\+index}} \{ \newline
+\mbox{\hyperlink{group___c_u_s_b___c_f_g_gga8e8903d0c7276e7295ce8a9aaea727b4adc3ba5b9e0450cfc1586c5e96138e8fc}{U\+S\+B\+\_\+\+L\+A\+N\+G\+I\+D\+\_\+\+I\+DX}} = 0, 
+\mbox{\hyperlink{group___c_u_s_b___c_f_g_gga8e8903d0c7276e7295ce8a9aaea727b4a896869157e00662b55740010582e3bae}{U\+S\+B\+\_\+\+M\+A\+N\+U\+F\+A\+C\+T\+U\+R\+E\+R\+\_\+\+I\+DX}}, 
+\mbox{\hyperlink{group___c_u_s_b___c_f_g_gga8e8903d0c7276e7295ce8a9aaea727b4a28c69675cc67c534eb4ee5fcad847220}{U\+S\+B\+\_\+\+P\+R\+O\+D\+U\+C\+T\+\_\+\+I\+DX}}, 
+\mbox{\hyperlink{group___c_u_s_b___c_f_g_gga8e8903d0c7276e7295ce8a9aaea727b4ac8955a3859ce8b787eed5575ad8417c4}{U\+S\+B\+\_\+\+S\+E\+R\+I\+A\+L\+\_\+\+I\+DX}}, 
+\newline
+\mbox{\hyperlink{group___c_u_s_b___c_f_g_gga8e8903d0c7276e7295ce8a9aaea727b4a4424c4941324bf6b1d66433316169a9e}{U\+S\+B\+\_\+\+C\+O\+N\+F\+I\+G\+U\+R\+A\+T\+I\+O\+N\+\_\+\+I\+DX}}, 
+\mbox{\hyperlink{group___c_u_s_b___c_f_g_gga8e8903d0c7276e7295ce8a9aaea727b4a3b345bc3edfee8aa2613f949a2db88f5}{U\+S\+B\+\_\+\+I\+N\+T\+E\+R\+F\+A\+C\+E\+\_\+\+I\+DX}}
+ \}
+\begin{DoxyCompactList}\small\item\em Location of specific strings within string descriptors stuct. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+static const struct \mbox{\hyperlink{structhid__function__descriptor}{hid\+\_\+function\+\_\+descriptor}} \mbox{\hyperlink{group___c_u_s_b___c_f_g_ga257274706fbffd56ad7d5128a11b0096}{\+\_\+\+\_\+attribute\+\_\+\+\_\+}} ((packed))
+\begin{DoxyCompactList}\small\item\em H\+ID Function Definition. \end{DoxyCompactList}\item 
+static enum usbd\+\_\+request\+\_\+return\+\_\+codes \mbox{\hyperlink{group___c_u_s_b___i_n_t_ga29b474a495e8084ca9f797e1fcf75eb8}{hid\+\_\+control\+\_\+request}} (usbd\+\_\+device $\ast$dev, struct usb\+\_\+setup\+\_\+data $\ast$req, uint8\+\_\+t $\ast$$\ast$buf, uint16\+\_\+t $\ast$len, void($\ast$$\ast$complete)(usbd\+\_\+device $\ast$, struct usb\+\_\+setup\+\_\+data $\ast$))
+\begin{DoxyCompactList}\small\item\em H\+ID Control Callback. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{group___c_u_s_b___i_n_t_ga1bde282ff924bedfe37a99146df8b251}{hid\+\_\+report\+\_\+callback}} (usbd\+\_\+device $\ast$\mbox{\hyperlink{group___c_u_s_b___i_n_t_ga371fec116e56a5c485a09d5dd8cd6c95}{usbd\+\_\+dev}}, uint8\+\_\+t ea)
+\begin{DoxyCompactList}\small\item\em H\+ID Resport Callback. \end{DoxyCompactList}\item 
+static void \mbox{\hyperlink{group___c_u_s_b___i_n_t_gaa8a5a4bf8f2341314373f98f386d19ee}{hid\+\_\+set\+\_\+config}} (usbd\+\_\+device $\ast$dev, uint16\+\_\+t w\+Value)
+\begin{DoxyCompactList}\small\item\em Configuration callback to setup device as H\+ID. \end{DoxyCompactList}\item 
+static void \mbox{\hyperlink{group___c_u_s_b___i_n_t_gac63b9392f307996959131c5a4e047fa4}{cusb\+\_\+clock\+\_\+init}} (void)
+\begin{DoxyCompactList}\small\item\em Setup C\+PU and peripheral clocks for usb. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{group___c_u_s_b___a_p_i_gab4184b48312c430e82701746df0a97ca}{cusb\+\_\+init}} (void)
+\item 
+void \mbox{\hyperlink{group___c_u_s_b___a_p_i_gac3db1642b64b360258b24bdd9496a390}{cusb\+\_\+test\+\_\+poll}} (void)
+\end{DoxyCompactItemize}
+\doxysubsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+static const char $\ast$const \mbox{\hyperlink{group___c_u_s_b___c_f_g_ga2c37a11433a81e9f3e364d952a65ce5a}{usb\+\_\+strings}} \mbox{[}$\,$\mbox{]}
+\begin{DoxyCompactList}\small\item\em Structure containing all string descriptors, indexed by \mbox{\hyperlink{group___c_u_s_b___c_f_g_ga8e8903d0c7276e7295ce8a9aaea727b4}{usb\+\_\+strings\+\_\+index}}. \end{DoxyCompactList}\item 
+static const struct usb\+\_\+device\+\_\+descriptor \mbox{\hyperlink{group___c_u_s_b___c_f_g_gaa168c0763ac7b2a074fba1297b1733b3}{dev\+\_\+desc}}
+\begin{DoxyCompactList}\small\item\em U\+SB Device Descriptor. \end{DoxyCompactList}\item 
+static const struct usb\+\_\+endpoint\+\_\+descriptor \mbox{\hyperlink{group___c_u_s_b___c_f_g_ga924c026f7b247b10ffd34e57fc9453d4}{hid\+\_\+interface\+\_\+endpoints}} \mbox{[}$\,$\mbox{]}
+\begin{DoxyCompactList}\small\item\em U\+SB Device H\+ID Endpoint Descriptors. \end{DoxyCompactList}\item 
+static const uint8\+\_\+t \mbox{\hyperlink{group___c_u_s_b___c_f_g_ga3150d0aa42aafc82cadbd40100171fae}{hid\+\_\+report\+\_\+descriptor}} \mbox{[}$\,$\mbox{]}
+\begin{DoxyCompactList}\small\item\em H\+ID Report Descriptor. \end{DoxyCompactList}\item 
+struct usb\+\_\+hid\+\_\+descriptor \mbox{\hyperlink{cusb_8c_aaac39c31cd472c2b7e766f70f43e97b4}{hid\+\_\+descriptor}}
+\item 
+static const struct usb\+\_\+interface\+\_\+descriptor \mbox{\hyperlink{group___c_u_s_b___c_f_g_ga31643a6df5e6d5393f60d14c2528a8a4}{hid\+\_\+interface}}
+\begin{DoxyCompactList}\small\item\em H\+ID Interface Descriptor. \end{DoxyCompactList}\item 
+static const struct usb\+\_\+interface \mbox{\hyperlink{group___c_u_s_b___c_f_g_ga76de0fd52b1f8961911ef2c5f5a51d1b}{interfaces}} \mbox{[}$\,$\mbox{]}
+\begin{DoxyCompactList}\small\item\em Struct containing all used interfaces. \end{DoxyCompactList}\item 
+static const struct usb\+\_\+config\+\_\+descriptor \mbox{\hyperlink{group___c_u_s_b___c_f_g_ga82f3c163f54e2a1e4c606f965227af7c}{cfg\+\_\+desc}}
+\begin{DoxyCompactList}\small\item\em U\+SB Device Config Descriptor. \end{DoxyCompactList}\item 
+static uint8\+\_\+t \mbox{\hyperlink{group___c_u_s_b___i_n_t_ga3f5c5e68ae07d989114524003357a6f7}{usbd\+\_\+control\+\_\+buffer}} \mbox{[}128\mbox{]}
+\begin{DoxyCompactList}\small\item\em Buffer to be used for control requests. \end{DoxyCompactList}\item 
+static uint8\+\_\+t \mbox{\hyperlink{group___c_u_s_b___i_n_t_ga4cfa67ae725c5211ad5ab6e6b5e2c47a}{hid\+\_\+report\+\_\+buf}} \mbox{[}64\mbox{]} = \char`\"{}Default Report Buffer\char`\"{}
+\begin{DoxyCompactList}\small\item\em H\+ID Report buffer. \end{DoxyCompactList}\item 
+static usbd\+\_\+device $\ast$ \mbox{\hyperlink{group___c_u_s_b___i_n_t_ga371fec116e56a5c485a09d5dd8cd6c95}{usbd\+\_\+dev}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Cool\+Ease Hub U\+SB driver source file. 
+
+\begin{DoxyAuthor}{Author}
+Richard Davies 
+\end{DoxyAuthor}
+
+
+\doxysubsection{Variable Documentation}
+\mbox{\Hypertarget{cusb_8c_a96e3f5ba4a7a1c8bb1b8fca4d4ded8e8}\label{cusb_8c_a96e3f5ba4a7a1c8bb1b8fca4d4ded8e8}} 
+\index{cusb.c@{cusb.c}!bReportDescriptorType@{bReportDescriptorType}}
+\index{bReportDescriptorType@{bReportDescriptorType}!cusb.c@{cusb.c}}
+\doxysubsubsection{\texorpdfstring{bReportDescriptorType}{bReportDescriptorType}}
+{\footnotesize\ttfamily uint8\+\_\+t b\+Report\+Descriptor\+Type}
+
+\mbox{\Hypertarget{cusb_8c_aaac39c31cd472c2b7e766f70f43e97b4}\label{cusb_8c_aaac39c31cd472c2b7e766f70f43e97b4}} 
+\index{cusb.c@{cusb.c}!hid\_descriptor@{hid\_descriptor}}
+\index{hid\_descriptor@{hid\_descriptor}!cusb.c@{cusb.c}}
+\doxysubsubsection{\texorpdfstring{hid\_descriptor}{hid\_descriptor}}
+{\footnotesize\ttfamily struct usb\+\_\+hid\+\_\+descriptor hid\+\_\+descriptor}
+
+\mbox{\Hypertarget{cusb_8c_a55bf7164e75ed7bce74dfae2c2680992}\label{cusb_8c_a55bf7164e75ed7bce74dfae2c2680992}} 
+\index{cusb.c@{cusb.c}!wDescriptorLength@{wDescriptorLength}}
+\index{wDescriptorLength@{wDescriptorLength}!cusb.c@{cusb.c}}
+\doxysubsubsection{\texorpdfstring{wDescriptorLength}{wDescriptorLength}}
+{\footnotesize\ttfamily uint16\+\_\+t w\+Descriptor\+Length}
+

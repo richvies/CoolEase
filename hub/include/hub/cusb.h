@@ -1,6 +1,6 @@
 /**
 ******************************************************************************
-* @file    cusb.c
+* @file    cusb.h
 * @author  Richard Davies
 * @brief   CoolEase Hub USB driver header file
 *  
