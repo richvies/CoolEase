@@ -1,4 +1,4 @@
-# 1 "Hub/cusb.c"
+# 1 "hub/src/cusb.c"
 # 1 "/Users/richarddavies/Desktop/Projects/CoolEase//"
 # 1 "<built-in>"
 #define __STDC__ 1
@@ -481,8 +481,8 @@
 #define __USES_INITFINI__ 1
 #define STM32L0 1
 #define STM32L052C8T6 1
-# 1 "Hub/cusb.c"
-# 9 "Hub/cusb.c"
+# 1 "hub/src/cusb.c"
+# 9 "hub/src/cusb.c"
 # 1 "/usr/local/Cellar/arm-gcc-bin/9-2020-q2-update/lib/gcc/arm-none-eabi/9.3.1/include/stddef.h" 1 3 4
 # 39 "/usr/local/Cellar/arm-gcc-bin/9-2020-q2-update/lib/gcc/arm-none-eabi/9.3.1/include/stddef.h" 3 4
 #define _STDDEF_H 
@@ -579,7 +579,7 @@ typedef unsigned int wchar_t;
 
 
 #define offsetof(TYPE,MEMBER) __builtin_offsetof (TYPE, MEMBER)
-# 10 "Hub/cusb.c" 2
+# 10 "hub/src/cusb.c" 2
 
 # 1 "libopencm3/include/libopencm3/stm32/syscfg.h" 1
 # 20 "libopencm3/include/libopencm3/stm32/syscfg.h"
@@ -1450,7 +1450,7 @@ typedef __uint_least64_t uint_least64_t;
 
 
 # 35 "libopencm3/include/libopencm3/stm32/syscfg.h" 2
-# 12 "Hub/cusb.c" 2
+# 12 "hub/src/cusb.c" 2
 # 1 "libopencm3/include/libopencm3/stm32/rcc.h" 1
 # 36 "libopencm3/include/libopencm3/stm32/rcc.h"
 # 1 "libopencm3/include/libopencm3/stm32/l0/rcc.h" 1
@@ -2352,7 +2352,7 @@ void rcc_set_usart2_sel(uint32_t usart2_sel);
 
 
 # 37 "libopencm3/include/libopencm3/stm32/rcc.h" 2
-# 13 "Hub/cusb.c" 2
+# 13 "hub/src/cusb.c" 2
 # 1 "libopencm3/include/libopencm3/stm32/flash.h" 1
 # 36 "libopencm3/include/libopencm3/stm32/flash.h"
 # 1 "libopencm3/include/libopencm3/stm32/l0/flash.h" 1
@@ -2525,7 +2525,7 @@ void eeprom_program_words(uint32_t address, uint32_t *data, int length_in_words)
 
 
 # 37 "libopencm3/include/libopencm3/stm32/flash.h" 2
-# 14 "Hub/cusb.c" 2
+# 14 "hub/src/cusb.c" 2
 # 1 "libopencm3/include/libopencm3/stm32/crs.h" 1
 # 26 "libopencm3/include/libopencm3/stm32/crs.h"
 # 1 "libopencm3/include/libopencm3/stm32/common/crs_common_all.h" 1
@@ -2621,7 +2621,7 @@ void crs_autotrim_usb_enable(void);
 
 
 # 27 "libopencm3/include/libopencm3/stm32/crs.h" 2
-# 15 "Hub/cusb.c" 2
+# 15 "hub/src/cusb.c" 2
 # 1 "libopencm3/include/libopencm3/cm3/nvic.h" 1
 # 38 "libopencm3/include/libopencm3/cm3/nvic.h"
 #define LIBOPENCM3_NVIC_H 
@@ -2774,7 +2774,7 @@ void pend_sv_handler(void);
 void sys_tick_handler(void);
 # 182 "libopencm3/include/libopencm3/cm3/nvic.h"
 
-# 16 "Hub/cusb.c" 2
+# 16 "hub/src/cusb.c" 2
 
 # 1 "libopencm3/include/libopencm3/usb/usbd.h" 1
 # 39 "libopencm3/include/libopencm3/usb/usbd.h"
@@ -3116,9 +3116,9 @@ extern uint8_t usbd_ep_stall_get(usbd_device *usbd_dev, uint8_t addr);
 extern void usbd_ep_nak_set(usbd_device *usbd_dev, uint8_t addr, uint8_t nak);
 
 
-# 18 "Hub/cusb.c" 2
-# 1 "Hub/../libopencm3/lib/usb/usb_private.h" 1
-# 39 "Hub/../libopencm3/lib/usb/usb_private.h"
+# 18 "hub/src/cusb.c" 2
+# 1 "hub/src/../../libopencm3/lib/usb/usb_private.h" 1
+# 39 "hub/src/../../libopencm3/lib/usb/usb_private.h"
 #define __USB_PRIVATE_H 
 
 #define MAX_USER_CONTROL_CALLBACK 4
@@ -3158,9 +3158,9 @@ struct _usbd_device {
   uint16_t ctrl_len;
   usbd_control_complete_callback complete;
   
-# 77 "Hub/../libopencm3/lib/usb/usb_private.h" 3 4
+# 77 "hub/src/../../libopencm3/lib/usb/usb_private.h" 3 4
  _Bool 
-# 77 "Hub/../libopencm3/lib/usb/usb_private.h"
+# 77 "hub/src/../../libopencm3/lib/usb/usb_private.h"
       needs_zlp;
  } control_state;
 
@@ -3241,19 +3241,19 @@ struct _usbd_driver {
        void *buf, uint16_t len);
  void (*poll)(usbd_device *usbd_dev);
  void (*disconnect)(usbd_device *usbd_dev, 
-# 156 "Hub/../libopencm3/lib/usb/usb_private.h" 3 4
+# 156 "hub/src/../../libopencm3/lib/usb/usb_private.h" 3 4
                                           _Bool 
-# 156 "Hub/../libopencm3/lib/usb/usb_private.h"
+# 156 "hub/src/../../libopencm3/lib/usb/usb_private.h"
                                                disconnected);
  uint32_t base_address;
  
-# 158 "Hub/../libopencm3/lib/usb/usb_private.h" 3 4
+# 158 "hub/src/../../libopencm3/lib/usb/usb_private.h" 3 4
 _Bool 
-# 158 "Hub/../libopencm3/lib/usb/usb_private.h"
+# 158 "hub/src/../../libopencm3/lib/usb/usb_private.h"
      set_address_before_status;
  uint16_t rx_fifo_size;
 };
-# 19 "Hub/cusb.c" 2
+# 19 "hub/src/cusb.c" 2
 # 1 "libopencm3/include/libopencm3/stm32/st_usbfs.h" 1
 # 21 "libopencm3/include/libopencm3/stm32/st_usbfs.h"
 #define LIBOPENCM3_ST_USBFS_H 
@@ -3572,7 +3572,7 @@ _Bool
 #define USB_GET_EP_RX_BUFF(ep) (USB_PMA_BASE + (uint8_t *)(USB_GET_EP_RX_ADDR(ep) * 1))
 # 26 "libopencm3/include/libopencm3/stm32/l0/st_usbfs.h" 2
 # 34 "libopencm3/include/libopencm3/stm32/st_usbfs.h" 2
-# 20 "Hub/cusb.c" 2
+# 20 "hub/src/cusb.c" 2
 # 1 "libopencm3/include/libopencm3/usb/hid.h" 1
 # 39 "libopencm3/include/libopencm3/usb/hid.h"
 #define __HID_H 
@@ -3623,41 +3623,39 @@ struct usb_hid_descriptor {
  uint8_t bCountryCode;
  uint8_t bNumDescriptors;
 } __attribute__((packed));
-# 21 "Hub/cusb.c" 2
+# 21 "hub/src/cusb.c" 2
+# 43 "hub/src/cusb.c"
+enum
+{
+  INTERFACE_HID = 0,
 
 
 
-
-
-
-enum {
-    INTERFACE_HID = 0,
-
-
-
-    INTERFACE_CDC_COMM = 1,
-    INTERFACE_CDC_DATA = 2,
-    INTERFACE_KEYBOARD_HID = 3,
-    INTERFACE_COUNT = 1,
+  INTERFACE_CDC_COMM = 1,
+  INTERFACE_CDC_DATA = 2,
+  INTERFACE_KEYBOARD_HID = 3,
+  INTERFACE_COUNT = 1,
 };
 
 
-enum {
-    ENDPOINT_HID_IN = 0x81,
-    ENDPOINT_HID_OUT = 0x01,
-    ENDPOINT_CDC_COMM_IN = 0x83,
-    ENDPOINT_CDC_DATA_IN = 0x82,
-    ENDPOINT_CDC_DATA_OUT = 0x02,
-    ENDPOINT_KEYBOARD_HID_IN = 0x84,
+enum
+{
+  ENDPOINT_HID_IN = 0x81,
+  ENDPOINT_HID_OUT = 0x01,
+  ENDPOINT_CDC_COMM_IN = 0x83,
+  ENDPOINT_CDC_DATA_IN = 0x82,
+  ENDPOINT_CDC_DATA_OUT = 0x02,
+  ENDPOINT_KEYBOARD_HID_IN = 0x84,
 };
 
-enum {
-    HID_GET_REPORT = 1,
-    HID_GET_IDLE = 2,
-    HID_GET_PROTOCOL = 3,
-    HID_SET_REPORT = 9,
-    HID_SET_IDLE = 10,
-    HID_SET_PROTOCOL = 11,
+enum
+{
+  HID_GET_REPORT = 1,
+  HID_GET_IDLE = 2,
+  HID_GET_PROTOCOL = 3,
+  HID_SET_REPORT = 9,
+  HID_SET_IDLE = 10,
+  HID_SET_PROTOCOL = 11,
 };
 
 
@@ -3665,29 +3663,31 @@ enum {
 #define USB_PID 0x5750
 
 
-enum usb_strings_index{
-    USB_LANGID_IDX = 0,
-    USB_MANUFACTURER_IDX,
-    USB_PRODUCT_IDX,
-    USB_SERIAL_IDX,
-    USB_CONFIGURATION_IDX,
-    USB_INTERFACE_IDX,
-
+enum usb_strings_index
+{
+  USB_LANGID_IDX = 0,
+  USB_MANUFACTURER_IDX,
+  USB_PRODUCT_IDX,
+  USB_SERIAL_IDX,
+  USB_CONFIGURATION_IDX,
+  USB_INTERFACE_IDX,
 };
 
 
-static const char * const string_desc[] = {
-    "CoolEase",
-    "CoolEase Hub",
-    "12345",
-    "Custom HID Config"
-    "Custom HID Interface",
-    };
+static const char * const string_desc[] =
+{
+  "CoolEase",
+  "CoolEase Hub",
+  "12345",
+  "Custom HID Config"
+  "Custom HID Interface",
+};
 
 
 
-static const struct usb_device_descriptor dev_desc = {
-    .bLength = sizeof(struct usb_device_descriptor),
+static const struct usb_device_descriptor dev_desc =
+{
+  .bLength = sizeof(struct usb_device_descriptor),
  .bDescriptorType = 1,
  .bcdUSB = 0x0200,
  .bDeviceClass = 0x00,
@@ -3705,95 +3705,103 @@ static const struct usb_device_descriptor dev_desc = {
 
 
 
-static const struct usb_endpoint_descriptor hid_interface_endpoints[] = {
-    {
+static const struct usb_endpoint_descriptor hid_interface_endpoints[] =
+{
+  {
 
-        .bLength = 7,
+    .bLength = 7,
 
-        .bDescriptorType = 5,
-
-
-
-
-        .bEndpointAddress = ENDPOINT_HID_IN,
-# 121 "Hub/cusb.c"
-        .bmAttributes = 0x03,
-
-        .wMaxPacketSize = 64,
-
-
-        .bInterval = 1,
-    },
-    {
-
-        .bLength = 7,
-
-        .bDescriptorType = 5,
+    .bDescriptorType = 5,
 
 
 
 
-        .bEndpointAddress = ENDPOINT_HID_OUT,
-# 146 "Hub/cusb.c"
-        .bmAttributes = 0x03,
+    .bEndpointAddress = ENDPOINT_HID_IN,
+# 143 "hub/src/cusb.c"
+    .bmAttributes = 0x03,
 
-        .wMaxPacketSize = 64,
+    .wMaxPacketSize = 64,
 
 
-        .bInterval = 1,
-    }
+    .bInterval = 1,
+  },
+  {
+
+    .bLength = 7,
+
+    .bDescriptorType = 5,
+
+
+
+
+    .bEndpointAddress = ENDPOINT_HID_OUT,
+# 168 "hub/src/cusb.c"
+    .bmAttributes = 0x03,
+
+    .wMaxPacketSize = 64,
+
+
+    .bInterval = 1,
+  }
 };
-# 163 "Hub/cusb.c"
-static const uint8_t hid_report_descriptor[] = {
-    0x06, 0x00, 0xff,
-    0x09, 0x01,
-    0xa1, 0x01,
-    0x09, 0x01,
-    0x15, 0x00,
-    0x26, 0xff, 0x00,
-    0x75, 0x08,
-    0x95, 0x40,
-    0x81, 0x02,
-    0x09, 0x01,
-    0x91, 0x02,
-    0xc0
-};
-
-
-
-static const struct {
-    struct usb_hid_descriptor hid_descriptor;
-    struct {
-        uint8_t bReportDescriptorType;
-        uint16_t wDescriptorLength;
-    } __attribute__((packed)) hid_report;
-} __attribute__((packed)) hid_function = {
-    .hid_descriptor = {
-
-        .bLength = sizeof(hid_function),
-
-        .bDescriptorType = 0x21,
-
-
-        .bcdHID = 0x0111,
-
-
-        .bCountryCode = 0,
-
-
-        .bNumDescriptors = 1,
-    },
-
-    .hid_report = {
-
-        .bReportDescriptorType = 0x22,
-
-        .wDescriptorLength = sizeof(hid_report_descriptor),
-    },
+# 185 "hub/src/cusb.c"
+static const uint8_t hid_report_descriptor[] =
+{
+  0x06, 0x00, 0xff,
+  0x09, 0x01,
+  0xa1, 0x01,
+  0x09, 0x01,
+  0x15, 0x00,
+  0x26, 0xff, 0x00,
+  0x75, 0x08,
+  0x95, 0x40,
+  0x81, 0x02,
+  0x09, 0x01,
+  0x91, 0x02,
+  0xc0
 };
 
 
-const struct usb_interface_descriptor hid_interface = {
+
+static const struct
+{
+  struct usb_hid_descriptor hid_descriptor;
+  struct
+  {
+    uint8_t bReportDescriptorType;
+    uint16_t wDescriptorLength;
+  } __attribute__((packed)) hid_report;
+} __attribute__((packed)) hid_function =
+{
+  .hid_descriptor =
+  {
+
+    .bLength = sizeof(hid_function),
+
+    .bDescriptorType = 0x21,
+
+
+    .bcdHID = 0x0111,
+
+
+    .bCountryCode = 0,
+
+
+    .bNumDescriptors = 1,
+  },
+
+  .hid_report =
+  {
+
+    .bReportDescriptorType = 0x22,
+
+    .wDescriptorLength = sizeof(hid_report_descriptor),
+  },
+};
+
+
+const struct usb_interface_descriptor hid_interface =
+{
 
     .bLength = 9,
 
@@ -3826,29 +3834,29 @@ const struct usb_interface_descriptor hid_interface = {
 };
 
 
-const struct usb_interface interfaces[] = {
-    {
-        .num_altsetting = 1,
-        .altsetting = &hid_interface,
-    }
+const struct usb_interface interfaces[] =
+{
+  {
+    .num_altsetting = 1,
+    .altsetting = &hid_interface,
+  }
 };
 
 
 
-static const struct usb_config_descriptor cfg_desc = {
-    .bLength = 9,
-    .bDescriptorType = 2,
-    .wTotalLength = 0,
-    .bNumInterfaces = INTERFACE_COUNT,
-    .bConfigurationValue = 1,
-    .iConfiguration = USB_CONFIGURATION_IDX,
-    .bmAttributes = 0b10000000,
-    .bMaxPower = 200,
-    .interface = interfaces,
+static const struct usb_config_descriptor cfg_desc =
+{
+  .bLength = 9,
+  .bDescriptorType = 2,
+  .wTotalLength = 0,
+  .bNumInterfaces = INTERFACE_COUNT,
+  .bConfigurationValue = 1,
+  .iConfiguration = USB_CONFIGURATION_IDX,
+  .bmAttributes = 0b10000000,
+  .bMaxPower = 200,
+  .interface = interfaces,
 };
-
-
-
+# 307 "hub/src/cusb.c"
 uint8_t usbd_control_buffer[128];
 
 
@@ -3896,63 +3904,66 @@ static void hid_set_config(usbd_device *dev, uint16_t wValue)
  (void)dev;
 
  usbd_ep_setup(dev, ENDPOINT_HID_IN, 0x03, 64, hid_report_callback);
-    usbd_ep_setup(dev, ENDPOINT_HID_OUT, 0x03, 64, hid_report_callback);
+  usbd_ep_setup(dev, ENDPOINT_HID_OUT, 0x03, 64, hid_report_callback);
 
  usbd_register_control_callback(
-    dev,
-    0x00 | 0x01,
-    0x60 | 0x1F,
-    hid_control_request);
+        dev,
+      0x00 | 0x01,
+      0x60 | 0x1F,
+      hid_control_request);
 }
+
+
+
 
 
 static void cusb_clock_init(void);
-
-
-int main(void)
+# 378 "hub/src/cusb.c"
+void cusb_init(void)
 {
 
-    cusb_clock_init();
+
+  cusb_clock_init();
 
 
-    (*((&(*(volatile uint32_t *)((((0x40000000U) + 0x00000) + 0x5c00) + 0x40)))) = (uint16_t)(0x0001));
-    (*((&(*(volatile uint32_t *)((((0x40000000U) + 0x00000) + 0x5c00) + 0x40)))) = (uint16_t)(0));
-    (*((&(*(volatile uint32_t *)((((0x40000000U) + 0x00000) + 0x5c00) + 0x44)))) = (uint16_t)(0));
+  (*((&(*(volatile uint32_t *)((((0x40000000U) + 0x00000) + 0x5c00) + 0x40)))) = (uint16_t)(0x0001));
+  (*((&(*(volatile uint32_t *)((((0x40000000U) + 0x00000) + 0x5c00) + 0x40)))) = (uint16_t)(0));
+  (*((&(*(volatile uint32_t *)((((0x40000000U) + 0x00000) + 0x5c00) + 0x44)))) = (uint16_t)(0));
 
 
-    usbd_device *usbd_dev = usbd_init(&st_usbfs_v2_usb_driver, &dev_desc, &cfg_desc, string_desc, sizeof(string_desc) / sizeof(const char*), usbd_control_buffer, sizeof(usbd_control_buffer));
+  usbd_device *usbd_dev = usbd_init(&st_usbfs_v2_usb_driver, &dev_desc, &cfg_desc, string_desc, sizeof(string_desc) / sizeof(const char*), usbd_control_buffer, sizeof(usbd_control_buffer));
 
 
-    usbd_register_set_config_callback(usbd_dev, hid_set_config);
-
-    while (1)
-    {
-      usbd_poll(usbd_dev);
-    }
-
-
-    return 0;
+  usbd_register_set_config_callback(usbd_dev, hid_set_config);
 }
 
-
+void cusb_test_poll(void)
+{
+  while (1)
+  {
+    usbd_poll(usbd_dev);
+  }
+}
+# 415 "hub/src/cusb.c"
 static void cusb_clock_init(void)
 {
 
  flash_set_ws(0x00);
 
 
-    rcc_osc_on(RCC_HSI16);
-    rcc_wait_for_osc_ready(RCC_HSI16);
+  rcc_osc_on(RCC_HSI16);
+  rcc_wait_for_osc_ready(RCC_HSI16);
 
 
-    rcc_set_sysclk_source(RCC_HSI16);
-
-    (*(volatile uint32_t *)((((0x40000000U) + 0x20000) + 0x01000) + 0x0c)) |= (1<<15);
+  rcc_set_sysclk_source(RCC_HSI16);
 
 
-    rcc_set_hpre(0x0);
-    rcc_set_ppre1(0x0);
-    rcc_set_ppre2(0x0);
+  (*(volatile uint32_t *)((((0x40000000U) + 0x20000) + 0x01000) + 0x0c)) |= (1<<15);
+
+
+  rcc_set_hpre(0x0);
+  rcc_set_ppre1(0x0);
+  rcc_set_ppre2(0x0);
 
 
  rcc_ahb_frequency = 16000000;
@@ -3961,21 +3972,22 @@ static void cusb_clock_init(void)
 
 
 
-    rcc_periph_clock_enable(RCC_SYSCFG);
-    (*(volatile uint32_t *)((((0x40000000U) + 0x10000) + 0x0000) + 0x20)) |= 0x01;
-    while (!((*(volatile uint32_t *)((((0x40000000U) + 0x10000) + 0x0000) + 0x20)) & (1 << 30))) { }
-    (*(volatile uint32_t *)((((0x40000000U) + 0x10000) + 0x0000) + 0x20)) |= (1 << 13);
-    while (!((*(volatile uint32_t *)((((0x40000000U) + 0x10000) + 0x0000) + 0x20)) & (1 << 26))) { }
+  rcc_periph_clock_enable(RCC_SYSCFG);
+  (*(volatile uint32_t *)((((0x40000000U) + 0x10000) + 0x0000) + 0x20)) |= 0x01;
+  while (!((*(volatile uint32_t *)((((0x40000000U) + 0x10000) + 0x0000) + 0x20)) & (1 << 30))) { }
+  (*(volatile uint32_t *)((((0x40000000U) + 0x10000) + 0x0000) + 0x20)) |= (1 << 13);
+  while (!((*(volatile uint32_t *)((((0x40000000U) + 0x10000) + 0x0000) + 0x20)) & (1 << 26))) { }
 
 
  rcc_osc_on(RCC_HSI48);
  rcc_wait_for_osc_ready(RCC_HSI48);
 
-    rcc_periph_clock_enable(RCC_USB);
-    rcc_periph_clock_enable(RCC_CRS);
-
-    rcc_set_hsi48_source_rc48();
+  rcc_periph_clock_enable(RCC_USB);
+  rcc_periph_clock_enable(RCC_CRS);
 
 
-    rcc_osc_off(RCC_MSI);
+  rcc_set_hsi48_source_rc48();
+
+
+  rcc_osc_off(RCC_MSI);
 }

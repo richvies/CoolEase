@@ -15,7 +15,7 @@
 #include <libopencm3/cm3/nvic.h>
 
 #include <libopencm3/usb/usbd.h>
-#include "../libopencm3/lib/usb/usb_private.h"
+#include "../../libopencm3/lib/usb/usb_private.h"
 #include <libopencm3/stm32/st_usbfs.h>
 #include <libopencm3/usb/hid.h>
 

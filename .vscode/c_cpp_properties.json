@@ -4,10 +4,12 @@
         "user_cSources": [],
         "user_asmSources": [],
         "user_ldSources": [],
-        "user_cIncludes": [],
+
+        "user_cIncludes": [
+            "hub/include"
+        ],
         "user_asmIncludes": [],
         "user_ldIncludes": [
-            "hub"
         ],
         "user_cDefines": [],
         "user_asmDefines": [],

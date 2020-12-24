@@ -15,10 +15,14 @@ SIZE	:= $(PREFIX)size
 OOCD	?= openocd
 
 # Files and build location
-BUILD_DIR = $(PROJECT)/build
-CFILES = $(wildcard $(PROJECT)/*.c)
-OBJS = $(CFILES:$(PROJECT)/%.c=$(BUILD_DIR)/%.o)
-OBJS += $(AFILES:%.S=$(BUILD_DIR)/%.o)
+SRCDIR = $(PROJECT)/src
+COMDIR = common/src
+CFILES = $(wildcard $(SRCDIR)/*.c) $(wildcard $(COMDIR)/*.c)
+
+OBJDIR = $(PROJECT)/obj
+OBJS   = $(addprefix $(OBJDIR)/,$(notdir $(CFILES:.c=.o)))
+
+BINDIR = $(PROJECT)/bin
 
 # Libopencm3 Includes
 OPENCM3_DIR  =	libopencm3
@@ -28,7 +32,7 @@ INCLUDES += $(patsubst %,-I%, . $(OPENCM3_INC) )
 include $(OPENCM3_DIR)/mk/genlink-config.mk
 
 # List of files for make_clean
-GENERATED_BINS = $(BUILD_DIR)/*.elf $(BUILD_DIR)/*.bin $(BUILD_DIR)/*.map $(BUILD_DIR)/*.list $(BUILD_DIR)/*.lss
+GENERATED_BINS = $(BINDIR)/*.elf $(BINDIR)/*.bin $(BINDIR)/*.map $(BINDIR)/*.list $(BINDIR)/*.lss
 
 # Options & Flags
 OPT ?= -Og
@@ -59,7 +63,7 @@ TGT_LDFLAGS += -specs=nano.specs
 TGT_LDFLAGS += -Wl,--gc-sections
 
 # OPTIONAL
-TGT_LDFLAGS += -Wl,-Map=$(BUILD_DIR)/$(PROJECT).map
+TGT_LDFLAGS += -Wl,-Map=$(OBJDIR)/$(PROJECT).map
 ifeq ($(V),99)
 TGT_LDFLAGS += -Wl,--print-gc-sections
 endif
@@ -73,10 +77,10 @@ endif
 LDLIBS += -Wl,--start-group -lc -lgcc -lnosys -Wl,--end-group
 
 print:
-	@echo $(%)
+	@echo $(CFILES) $(OBJS)
 
-all: $(BUILD_DIR)/$(PROJECT).elf $(BUILD_DIR)/$(PROJECT).bin $(BUILD_DIR)/$(PROJECT).lss $(BUILD_DIR)/$(PROJECT).list
-	$(SIZE) $(BUILD_DIR)/$(PROJECT).elf
+all: $(BINDIR)/$(PROJECT).elf $(BINDIR)/$(PROJECT).bin $(BINDIR)/$(PROJECT).lss $(BINDIR)/$(PROJECT).list
+	$(SIZE) $(BINDIR)/$(PROJECT).elf
 
 
 # error if not using linker script generator
@@ -91,14 +95,20 @@ GENERATED_BINS += $(LDSCRIPT)
 endif
 
 # Need a special rule to have a bin dir
-$(BUILD_DIR)/%.o: $(PROJECT)/%.c
+$(OBJDIR)/%.o: $(SRCDIR)/%.c
+	@printf "  CC\t$<\n"
+	@mkdir -p $(dir $@)
+	$(Q)$(CC) $(TGT_CFLAGS) $(CFLAGS) $(TGT_CPPFLAGS) $(CPPFLAGS) -o $@.S -E $<
+	$(Q)$(CC) $(TGT_CFLAGS) $(CFLAGS) $(TGT_CPPFLAGS) $(CPPFLAGS) -o $@ -c $<
+
+$(OBJDIR)/%.o: $(COMDIR)/%.c
 	@printf "  CC\t$<\n"
 	@mkdir -p $(dir $@)
 	$(Q)$(CC) $(TGT_CFLAGS) $(CFLAGS) $(TGT_CPPFLAGS) $(CPPFLAGS) -o $@.S -E $<
 	$(Q)$(CC) $(TGT_CFLAGS) $(CFLAGS) $(TGT_CPPFLAGS) $(CPPFLAGS) -o $@ -c $<
 
 
-$(BUILD_DIR)/$(PROJECT).elf: $(OBJS) $(LDSCRIPT) $(LIBDEPS)
+$(BINDIR)/$(PROJECT).elf: $(OBJS) $(LDSCRIPT) $(LIBDEPS)
 	@printf "  LD\t$@\n"
 	$(Q)$(LD) $(TGT_LDFLAGS) $(LDFLAGS) $(OBJS) $(LDLIBS) -o $@
 
@@ -113,7 +123,7 @@ $(BUILD_DIR)/$(PROJECT).elf: $(OBJS) $(LDSCRIPT) $(LIBDEPS)
 	$(OBJDUMP) -S $< > $@
 
 clean:
-	rm -rf $(BUILD_DIR) $(GENERATED_BINS)
+	rm -rf $(OBJDIR) $(GENERATED_BINS)
 
 .PHONY: all clean flash
 -include $(OBJS:.o=.d)
