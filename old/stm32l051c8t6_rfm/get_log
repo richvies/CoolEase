@@ -1,5 +1,0 @@
-#!/bin/bash
-cd -- "$(dirname "$0")"
-./util/upload/stm32flash/stm32flash
-./util/upload/stm32flash/stm32flash -b 230400 -S 0x08080400 -r log.txt \
--R -i -dtr,-rts:dtr,rts /dev/cu.usbserial-A50285BI
