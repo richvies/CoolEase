@@ -6,7 +6,9 @@
         "user_ldSources": [],
 
         "user_cIncludes": [
-            "hub/include"
+            "hub/include",
+            "sensor/include",
+            "common/include"
         ],
         "user_asmIncludes": [],
         "user_ldIncludes": [

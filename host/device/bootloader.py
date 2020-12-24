@@ -244,7 +244,3 @@ class Bootloader(wristwatch.Device):
         else:
             return False
 
-
-def find_device(cls=Bootloader):
-    return wristwatch.find_device(cls)
-

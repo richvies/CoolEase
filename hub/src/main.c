@@ -10,6 +10,9 @@
 
 #include <hub/cusb.h>
 
+#include <hub/testing.h>
+#include <common/testing.h>
+
 int main(void)
 {
   cusb_init();
