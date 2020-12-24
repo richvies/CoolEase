@@ -1,0 +1,30 @@
+This is an HID example that demonstrates Human Interface Device (HID)
+on USB Device.
+
+Detailed description is available on:
+www.keil.com/pack/doc/MW/USB/html/dev_hid_tutorial.html
+
+Board:                  STMicroelectronics 'STM32L073Z-EVAL'
+Microcontroller:        STMicroelectronics 'STM32L073VZT6'
+Clock Settings:         XTAL                           =  8 MHz
+                        CPU CLK = HCLK = XTAL * 12 / 3 = 32 MHz
+                        USB CLK =        XTAL * 12 / 2 = 48 MHz
+USB Full-speed:         USB (connector CN9)
+User Interface:         input:  User button Key
+                        output: User LEDs (LED1..4)
+
+The example demonstrates a Human Interface Device. The board LEDs and
+push button can be accessed from the PC through a custom
+HID Client Program (.\ARM\Utilities\HID_Client\Release\HIDClient.exe).
+
+The program is available in different targets:
+ - Debug:
+   - Compiler:                  ARM Compiler optimization Level 1
+   - Compiler:Event Recorder:   Enabled
+   - CMSIS:RTOS2:Keil RTX5:     Source
+   - USB:CORE:                  Debug
+ - Release:
+   - Compiler:                  ARM Compiler optimization Level 3
+   - Compiler:Event Recorder:   Disabled
+   - CMSIS:RTOS2:Keil RTX5:     Library
+   - USB:CORE:                  Release

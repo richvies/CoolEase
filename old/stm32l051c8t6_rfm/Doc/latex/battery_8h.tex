@@ -1,0 +1,142 @@
+\hypertarget{battery_8h}{}\doxysection{/\+Users/richarddavies/\+Desktop/\+Projects/\+Cool\+Ease/\+Code/stm32l051c8t6\+\_\+rfm/coolease/include/coolease/battery.h File Reference}
+\label{battery_8h}\index{/Users/richarddavies/Desktop/Projects/CoolEase/Code/stm32l051c8t6\_rfm/coolease/include/coolease/battery.h@{/Users/richarddavies/Desktop/Projects/CoolEase/Code/stm32l051c8t6\_rfm/coolease/include/coolease/battery.h}}
+{\ttfamily \#include $<$stdint.\+h$>$}\newline
+{\ttfamily \#include $<$stdbool.\+h$>$}\newline
+\doxysubsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define \mbox{\hyperlink{battery_8h_af1bc8b24896c36914f52907197a0e87a}{N\+U\+M\+\_\+\+V\+O\+L\+T\+A\+G\+ES}}~1
+\item 
+\#define \mbox{\hyperlink{battery_8h_afd1d97582ddd87bf66f3a428f1b003db}{B\+A\+T\+T\+\_\+\+V\+O\+L\+T\+A\+GE}}~0
+\end{DoxyCompactItemize}
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{battery_8h_a74ef535cae048523c75ec8824e23d901}{batt\+\_\+init}} (void)
+\item 
+void \mbox{\hyperlink{battery_8h_ab70aa864f9333d92f632f4dd59446a5b}{batt\+\_\+set\+\_\+voltage\+\_\+scale}} (uint8\+\_\+t scale)
+\item 
+void \mbox{\hyperlink{battery_8h_af4ac3c31321cf201d797ab82ce0587a3}{batt\+\_\+set\+\_\+low\+\_\+power\+\_\+run}} (void)
+\item 
+void \mbox{\hyperlink{battery_8h_a9b243d544affdb2fc07050868206af24}{batt\+\_\+update\+\_\+voltages}} (void)
+\item 
+void \mbox{\hyperlink{battery_8h_a49184eb31da78a82b862ac5c6bbd8099}{batt\+\_\+enable\+\_\+interrupt}} (void)
+\item 
+void \mbox{\hyperlink{battery_8h_a12c8d49d3ff764c9a6dc06f91fefb1b5}{batt\+\_\+enable\+\_\+comp}} (void)
+\end{DoxyCompactItemize}
+\doxysubsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+uint16\+\_\+t \mbox{\hyperlink{battery_8h_a6ce6d95d1e9ba4ae85466b512f92cfac}{batt\+\_\+voltages}} \mbox{[}\mbox{\hyperlink{battery_8h_af1bc8b24896c36914f52907197a0e87a}{N\+U\+M\+\_\+\+V\+O\+L\+T\+A\+G\+ES}}\mbox{]}
+\item 
+bool \mbox{\hyperlink{battery_8h_a2903b7b8135e93a50cfd287433535655}{batt\+\_\+rst\+\_\+seq}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Macro Definition Documentation}
+\mbox{\Hypertarget{battery_8h_afd1d97582ddd87bf66f3a428f1b003db}\label{battery_8h_afd1d97582ddd87bf66f3a428f1b003db}} 
+\index{battery.h@{battery.h}!BATT\_VOLTAGE@{BATT\_VOLTAGE}}
+\index{BATT\_VOLTAGE@{BATT\_VOLTAGE}!battery.h@{battery.h}}
+\doxysubsubsection{\texorpdfstring{BATT\_VOLTAGE}{BATT\_VOLTAGE}}
+{\footnotesize\ttfamily \#define B\+A\+T\+T\+\_\+\+V\+O\+L\+T\+A\+GE~0}
+
+
+
+Definition at line 14 of file battery.\+h.
+
+\mbox{\Hypertarget{battery_8h_af1bc8b24896c36914f52907197a0e87a}\label{battery_8h_af1bc8b24896c36914f52907197a0e87a}} 
+\index{battery.h@{battery.h}!NUM\_VOLTAGES@{NUM\_VOLTAGES}}
+\index{NUM\_VOLTAGES@{NUM\_VOLTAGES}!battery.h@{battery.h}}
+\doxysubsubsection{\texorpdfstring{NUM\_VOLTAGES}{NUM\_VOLTAGES}}
+{\footnotesize\ttfamily \#define N\+U\+M\+\_\+\+V\+O\+L\+T\+A\+G\+ES~1}
+
+
+
+Definition at line 13 of file battery.\+h.
+
+
+
+\doxysubsection{Function Documentation}
+\mbox{\Hypertarget{battery_8h_a12c8d49d3ff764c9a6dc06f91fefb1b5}\label{battery_8h_a12c8d49d3ff764c9a6dc06f91fefb1b5}} 
+\index{battery.h@{battery.h}!batt\_enable\_comp@{batt\_enable\_comp}}
+\index{batt\_enable\_comp@{batt\_enable\_comp}!battery.h@{battery.h}}
+\doxysubsubsection{\texorpdfstring{batt\_enable\_comp()}{batt\_enable\_comp()}}
+{\footnotesize\ttfamily void batt\+\_\+enable\+\_\+comp (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})}
+
+
+
+Definition at line 234 of file battery.\+c.
+
+\mbox{\Hypertarget{battery_8h_a49184eb31da78a82b862ac5c6bbd8099}\label{battery_8h_a49184eb31da78a82b862ac5c6bbd8099}} 
+\index{battery.h@{battery.h}!batt\_enable\_interrupt@{batt\_enable\_interrupt}}
+\index{batt\_enable\_interrupt@{batt\_enable\_interrupt}!battery.h@{battery.h}}
+\doxysubsubsection{\texorpdfstring{batt\_enable\_interrupt()}{batt\_enable\_interrupt()}}
+{\footnotesize\ttfamily void batt\+\_\+enable\+\_\+interrupt (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})}
+
+
+
+Definition at line 153 of file battery.\+c.
+
+\mbox{\Hypertarget{battery_8h_a74ef535cae048523c75ec8824e23d901}\label{battery_8h_a74ef535cae048523c75ec8824e23d901}} 
+\index{battery.h@{battery.h}!batt\_init@{batt\_init}}
+\index{batt\_init@{batt\_init}!battery.h@{battery.h}}
+\doxysubsubsection{\texorpdfstring{batt\_init()}{batt\_init()}}
+{\footnotesize\ttfamily void batt\+\_\+init (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})}
+
+
+
+Definition at line 24 of file battery.\+c.
+
+\mbox{\Hypertarget{battery_8h_af4ac3c31321cf201d797ab82ce0587a3}\label{battery_8h_af4ac3c31321cf201d797ab82ce0587a3}} 
+\index{battery.h@{battery.h}!batt\_set\_low\_power\_run@{batt\_set\_low\_power\_run}}
+\index{batt\_set\_low\_power\_run@{batt\_set\_low\_power\_run}!battery.h@{battery.h}}
+\doxysubsubsection{\texorpdfstring{batt\_set\_low\_power\_run()}{batt\_set\_low\_power\_run()}}
+{\footnotesize\ttfamily void batt\+\_\+set\+\_\+low\+\_\+power\+\_\+run (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})}
+
+
+
+Definition at line 50 of file battery.\+c.
+
+\mbox{\Hypertarget{battery_8h_ab70aa864f9333d92f632f4dd59446a5b}\label{battery_8h_ab70aa864f9333d92f632f4dd59446a5b}} 
+\index{battery.h@{battery.h}!batt\_set\_voltage\_scale@{batt\_set\_voltage\_scale}}
+\index{batt\_set\_voltage\_scale@{batt\_set\_voltage\_scale}!battery.h@{battery.h}}
+\doxysubsubsection{\texorpdfstring{batt\_set\_voltage\_scale()}{batt\_set\_voltage\_scale()}}
+{\footnotesize\ttfamily void batt\+\_\+set\+\_\+voltage\+\_\+scale (\begin{DoxyParamCaption}\item[{uint8\+\_\+t}]{scale }\end{DoxyParamCaption})}
+
+
+
+Definition at line 36 of file battery.\+c.
+
+\mbox{\Hypertarget{battery_8h_a9b243d544affdb2fc07050868206af24}\label{battery_8h_a9b243d544affdb2fc07050868206af24}} 
+\index{battery.h@{battery.h}!batt\_update\_voltages@{batt\_update\_voltages}}
+\index{batt\_update\_voltages@{batt\_update\_voltages}!battery.h@{battery.h}}
+\doxysubsubsection{\texorpdfstring{batt\_update\_voltages()}{batt\_update\_voltages()}}
+{\footnotesize\ttfamily void batt\+\_\+update\+\_\+voltages (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})}
+
+
+
+Definition at line 81 of file battery.\+c.
+
+
+
+\doxysubsection{Variable Documentation}
+\mbox{\Hypertarget{battery_8h_a2903b7b8135e93a50cfd287433535655}\label{battery_8h_a2903b7b8135e93a50cfd287433535655}} 
+\index{battery.h@{battery.h}!batt\_rst\_seq@{batt\_rst\_seq}}
+\index{batt\_rst\_seq@{batt\_rst\_seq}!battery.h@{battery.h}}
+\doxysubsubsection{\texorpdfstring{batt\_rst\_seq}{batt\_rst\_seq}}
+{\footnotesize\ttfamily bool batt\+\_\+rst\+\_\+seq}
+
+
+
+Definition at line 18 of file battery.\+c.
+
+\mbox{\Hypertarget{battery_8h_a6ce6d95d1e9ba4ae85466b512f92cfac}\label{battery_8h_a6ce6d95d1e9ba4ae85466b512f92cfac}} 
+\index{battery.h@{battery.h}!batt\_voltages@{batt\_voltages}}
+\index{batt\_voltages@{batt\_voltages}!battery.h@{battery.h}}
+\doxysubsubsection{\texorpdfstring{batt\_voltages}{batt\_voltages}}
+{\footnotesize\ttfamily uint16\+\_\+t batt\+\_\+voltages\mbox{[}\mbox{\hyperlink{battery_8h_af1bc8b24896c36914f52907197a0e87a}{N\+U\+M\+\_\+\+V\+O\+L\+T\+A\+G\+ES}}\mbox{]}}
+
+
+
+Definition at line 17 of file battery.\+c.
+

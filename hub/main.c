@@ -8,7 +8,7 @@
 
 #include <stddef.h>
 
-#include <
+#include <git check-ignore
 
 int main(void)
 {

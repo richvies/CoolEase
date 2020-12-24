@@ -1,0 +1,1574 @@
+Archive member included to satisfy reference by file (symbol)
+
+/Users/richarddavies/Desktop/Side_Projects/CoolEase/Code/stm32f103c8t6/util/gcc-arm/bin/../lib/gcc/arm-none-eabi/9.2.1/thumb/v7-m/nofp/libgcc.a(_arm_muldf3.o)
+                              build/si7051.o (__aeabi_dmul)
+/Users/richarddavies/Desktop/Side_Projects/CoolEase/Code/stm32f103c8t6/util/gcc-arm/bin/../lib/gcc/arm-none-eabi/9.2.1/thumb/v7-m/nofp/libgcc.a(_arm_addsubdf3.o)
+                              build/si7051.o (__aeabi_dsub)
+/Users/richarddavies/Desktop/Side_Projects/CoolEase/Code/stm32f103c8t6/util/gcc-arm/bin/../lib/gcc/arm-none-eabi/9.2.1/thumb/v7-m/nofp/libgcc.a(_arm_muldivdf3.o)
+                              build/printf.o (__aeabi_ddiv)
+/Users/richarddavies/Desktop/Side_Projects/CoolEase/Code/stm32f103c8t6/util/gcc-arm/bin/../lib/gcc/arm-none-eabi/9.2.1/thumb/v7-m/nofp/libgcc.a(_arm_cmpdf2.o)
+                              build/printf.o (__aeabi_dcmpeq)
+/Users/richarddavies/Desktop/Side_Projects/CoolEase/Code/stm32f103c8t6/util/gcc-arm/bin/../lib/gcc/arm-none-eabi/9.2.1/thumb/v7-m/nofp/libgcc.a(_arm_fixdfsi.o)
+                              build/printf.o (__aeabi_d2iz)
+/Users/richarddavies/Desktop/Side_Projects/CoolEase/Code/stm32f103c8t6/util/gcc-arm/bin/../lib/gcc/arm-none-eabi/9.2.1/thumb/v7-m/nofp/libgcc.a(_arm_fixunsdfsi.o)
+                              build/printf.o (__aeabi_d2uiz)
+/Users/richarddavies/Desktop/Side_Projects/CoolEase/Code/stm32f103c8t6/util/gcc-arm/bin/../lib/gcc/arm-none-eabi/9.2.1/thumb/v7-m/nofp/libgcc.a(_arm_truncdfsf2.o)
+                              build/si7051.o (__aeabi_d2f)
+/Users/richarddavies/Desktop/Side_Projects/CoolEase/Code/stm32f103c8t6/util/gcc-arm/bin/../lib/gcc/arm-none-eabi/9.2.1/thumb/v7-m/nofp/libgcc.a(_arm_addsubsf3.o)
+                              build/si7051.o (__aeabi_i2f)
+/Users/richarddavies/Desktop/Side_Projects/CoolEase/Code/stm32f103c8t6/util/gcc-arm/bin/../lib/gcc/arm-none-eabi/9.2.1/thumb/v7-m/nofp/libgcc.a(_aeabi_uldivmod.o)
+                              build/printf.o (__aeabi_uldivmod)
+/Users/richarddavies/Desktop/Side_Projects/CoolEase/Code/stm32f103c8t6/util/gcc-arm/bin/../lib/gcc/arm-none-eabi/9.2.1/thumb/v7-m/nofp/libgcc.a(_udivmoddi4.o)
+                              /Users/richarddavies/Desktop/Side_Projects/CoolEase/Code/stm32f103c8t6/util/gcc-arm/bin/../lib/gcc/arm-none-eabi/9.2.1/thumb/v7-m/nofp/libgcc.a(_aeabi_uldivmod.o) (__udivmoddi4)
+/Users/richarddavies/Desktop/Side_Projects/CoolEase/Code/stm32f103c8t6/util/gcc-arm/bin/../lib/gcc/arm-none-eabi/9.2.1/thumb/v7-m/nofp/libgcc.a(_dvmd_tls.o)
+                              /Users/richarddavies/Desktop/Side_Projects/CoolEase/Code/stm32f103c8t6/util/gcc-arm/bin/../lib/gcc/arm-none-eabi/9.2.1/thumb/v7-m/nofp/libgcc.a(_aeabi_uldivmod.o) (__aeabi_ldiv0)
+/Users/richarddavies/Desktop/Side_Projects/CoolEase/Code/stm32f103c8t6/libopencm3/lib/libopencm3_stm32f1.a(flash_common_all.o)
+                              build/cc1101.o (flash_set_ws)
+/Users/richarddavies/Desktop/Side_Projects/CoolEase/Code/stm32f103c8t6/libopencm3/lib/libopencm3_stm32f1.a(gpio.o)
+                              build/cc1101.o (gpio_set_mode)
+/Users/richarddavies/Desktop/Side_Projects/CoolEase/Code/stm32f103c8t6/libopencm3/lib/libopencm3_stm32f1.a(gpio_common_all.o)
+                              build/led.o (gpio_set)
+/Users/richarddavies/Desktop/Side_Projects/CoolEase/Code/stm32f103c8t6/libopencm3/lib/libopencm3_stm32f1.a(i2c_common_v1.o)
+                              build/si7051.o (i2c_peripheral_enable)
+/Users/richarddavies/Desktop/Side_Projects/CoolEase/Code/stm32f103c8t6/libopencm3/lib/libopencm3_stm32f1.a(iwdg_common_all.o)
+                              build/timers.o (iwdg_start)
+/Users/richarddavies/Desktop/Side_Projects/CoolEase/Code/stm32f103c8t6/libopencm3/lib/libopencm3_stm32f1.a(pwr_common_v1.o)
+                              build/timers.o (pwr_disable_backup_domain_write_protect)
+/Users/richarddavies/Desktop/Side_Projects/CoolEase/Code/stm32f103c8t6/libopencm3/lib/libopencm3_stm32f1.a(rcc.o)
+                              build/cc1101.o (rcc_wait_for_osc_ready)
+/Users/richarddavies/Desktop/Side_Projects/CoolEase/Code/stm32f103c8t6/libopencm3/lib/libopencm3_stm32f1.a(rcc_common_all.o)
+                              build/cc1101.o (rcc_periph_clock_enable)
+/Users/richarddavies/Desktop/Side_Projects/CoolEase/Code/stm32f103c8t6/libopencm3/lib/libopencm3_stm32f1.a(rtc.o)
+                              build/timers.o (rtc_enter_config_mode)
+/Users/richarddavies/Desktop/Side_Projects/CoolEase/Code/stm32f103c8t6/libopencm3/lib/libopencm3_stm32f1.a(usart_common_all.o)
+                              build/serial_printf.o (usart_set_baudrate)
+/Users/richarddavies/Desktop/Side_Projects/CoolEase/Code/stm32f103c8t6/libopencm3/lib/libopencm3_stm32f1.a(usart_common_f124.o)
+                              /Users/richarddavies/Desktop/Side_Projects/CoolEase/Code/stm32f103c8t6/libopencm3/lib/libopencm3_stm32f1.a(usart_common_all.o) (usart_send)
+/Users/richarddavies/Desktop/Side_Projects/CoolEase/Code/stm32f103c8t6/libopencm3/lib/libopencm3_stm32f1.a(vector.o)
+                              (reset_handler)
+/Users/richarddavies/Desktop/Side_Projects/CoolEase/Code/stm32f103c8t6/libopencm3/lib/libopencm3_stm32f1.a(assert.o)
+                              /Users/richarddavies/Desktop/Side_Projects/CoolEase/Code/stm32f103c8t6/libopencm3/lib/libopencm3_stm32f1.a(rcc.o) (cm3_assert_failed)
+
+Discarded input sections
+
+ .text          0x0000000000000000        0x0 build/sensor.o
+ .data          0x0000000000000000        0x0 build/sensor.o
+ .bss           0x0000000000000000        0x0 build/sensor.o
+ .text          0x0000000000000000        0x0 build/cc1101.o
+ .data          0x0000000000000000        0x0 build/cc1101.o
+ .bss           0x0000000000000000        0x0 build/cc1101.o
+ .text.cc1101_clock_setup
+                0x0000000000000000       0xa8 build/cc1101.o
+ .debug_info    0x0000000000000000      0x4d8 build/cc1101.o
+ .debug_abbrev  0x0000000000000000       0xd9 build/cc1101.o
+ .debug_aranges
+                0x0000000000000000       0x20 build/cc1101.o
+ .debug_ranges  0x0000000000000000       0x10 build/cc1101.o
+ .debug_line    0x0000000000000000      0x28b build/cc1101.o
+ .debug_str     0x0000000000000000      0x575 build/cc1101.o
+ .comment       0x0000000000000000       0x7a build/cc1101.o
+ .debug_frame   0x0000000000000000       0x28 build/cc1101.o
+ .ARM.attributes
+                0x0000000000000000       0x2d build/cc1101.o
+ .text          0x0000000000000000        0x0 build/si7051.o
+ .data          0x0000000000000000        0x0 build/si7051.o
+ .bss           0x0000000000000000        0x0 build/si7051.o
+ .text.si7051_clock_setup
+                0x0000000000000000       0x64 build/si7051.o
+ .text.si7051_i2c_setup
+                0x0000000000000000       0x50 build/si7051.o
+ .text.si7051_setup_and_read_temperature
+                0x0000000000000000      0x16c build/si7051.o
+ .text.si7051_setup_and_read_temperature2
+                0x0000000000000000       0xc0 build/si7051.o
+ .text.si7051_reset
+                0x0000000000000000       0x60 build/si7051.o
+ .debug_info    0x0000000000000000      0x88b build/si7051.o
+ .debug_abbrev  0x0000000000000000      0x1ae build/si7051.o
+ .debug_loc     0x0000000000000000      0x12c build/si7051.o
+ .debug_aranges
+                0x0000000000000000       0x40 build/si7051.o
+ .debug_ranges  0x0000000000000000       0x48 build/si7051.o
+ .debug_line    0x0000000000000000      0x6d6 build/si7051.o
+ .debug_str     0x0000000000000000      0x6ed build/si7051.o
+ .comment       0x0000000000000000       0x7a build/si7051.o
+ .debug_frame   0x0000000000000000       0x9c build/si7051.o
+ .ARM.attributes
+                0x0000000000000000       0x2d build/si7051.o
+ .text          0x0000000000000000        0x0 build/timers.o
+ .data          0x0000000000000000        0x0 build/timers.o
+ .bss           0x0000000000000000        0x0 build/timers.o
+ .text          0x0000000000000000        0x0 build/serial_printf.o
+ .data          0x0000000000000000        0x0 build/serial_printf.o
+ .bss           0x0000000000000000        0x0 build/serial_printf.o
+ .text          0x0000000000000000        0x0 build/led.o
+ .data          0x0000000000000000        0x0 build/led.o
+ .bss           0x0000000000000000        0x0 build/led.o
+ .text          0x0000000000000000        0x0 build/printf.o
+ .data          0x0000000000000000        0x0 build/printf.o
+ .bss           0x0000000000000000        0x0 build/printf.o
+ .text._out_buffer
+                0x0000000000000000        0x8 build/printf.o
+ .text._out_fct
+                0x0000000000000000        0xe build/printf.o
+ .text.printf_  0x0000000000000000       0x2c build/printf.o
+ .text.sprintf_
+                0x0000000000000000       0x2c build/printf.o
+ .text.snprintf_
+                0x0000000000000000       0x28 build/printf.o
+ .text.vsnprintf_
+                0x0000000000000000       0x1c build/printf.o
+ .text.fctprintf
+                0x0000000000000000       0x30 build/printf.o
+ .text          0x0000000000000000        0x0 build/reset.o
+ .data          0x0000000000000000        0x0 build/reset.o
+ .bss           0x0000000000000000        0x0 build/reset.o
+ .text          0x0000000000000000        0x0 build/battery.o
+ .data          0x0000000000000000        0x0 build/battery.o
+ .bss           0x0000000000000000        0x0 build/battery.o
+ .text          0x0000000000000000      0x254 /Users/richarddavies/Desktop/Side_Projects/CoolEase/Code/stm32f103c8t6/util/gcc-arm/bin/../lib/gcc/arm-none-eabi/9.2.1/thumb/v7-m/nofp/libgcc.a(_arm_muldf3.o)
+ .data          0x0000000000000000        0x0 /Users/richarddavies/Desktop/Side_Projects/CoolEase/Code/stm32f103c8t6/util/gcc-arm/bin/../lib/gcc/arm-none-eabi/9.2.1/thumb/v7-m/nofp/libgcc.a(_arm_muldf3.o)
+ .bss           0x0000000000000000        0x0 /Users/richarddavies/Desktop/Side_Projects/CoolEase/Code/stm32f103c8t6/util/gcc-arm/bin/../lib/gcc/arm-none-eabi/9.2.1/thumb/v7-m/nofp/libgcc.a(_arm_muldf3.o)
+ .debug_frame   0x0000000000000000       0x30 /Users/richarddavies/Desktop/Side_Projects/CoolEase/Code/stm32f103c8t6/util/gcc-arm/bin/../lib/gcc/arm-none-eabi/9.2.1/thumb/v7-m/nofp/libgcc.a(_arm_muldf3.o)
+ .ARM.attributes
+                0x0000000000000000       0x1d /Users/richarddavies/Desktop/Side_Projects/CoolEase/Code/stm32f103c8t6/util/gcc-arm/bin/../lib/gcc/arm-none-eabi/9.2.1/thumb/v7-m/nofp/libgcc.a(_arm_muldf3.o)
+ .data          0x0000000000000000        0x0 /Users/richarddavies/Desktop/Side_Projects/CoolEase/Code/stm32f103c8t6/util/gcc-arm/bin/../lib/gcc/arm-none-eabi/9.2.1/thumb/v7-m/nofp/libgcc.a(_arm_addsubdf3.o)
+ .bss           0x0000000000000000        0x0 /Users/richarddavies/Desktop/Side_Projects/CoolEase/Code/stm32f103c8t6/util/gcc-arm/bin/../lib/gcc/arm-none-eabi/9.2.1/thumb/v7-m/nofp/libgcc.a(_arm_addsubdf3.o)
+ .data          0x0000000000000000        0x0 /Users/richarddavies/Desktop/Side_Projects/CoolEase/Code/stm32f103c8t6/util/gcc-arm/bin/../lib/gcc/arm-none-eabi/9.2.1/thumb/v7-m/nofp/libgcc.a(_arm_muldivdf3.o)
+ .bss           0x0000000000000000        0x0 /Users/richarddavies/Desktop/Side_Projects/CoolEase/Code/stm32f103c8t6/util/gcc-arm/bin/../lib/gcc/arm-none-eabi/9.2.1/thumb/v7-m/nofp/libgcc.a(_arm_muldivdf3.o)
+ .data          0x0000000000000000        0x0 /Users/richarddavies/Desktop/Side_Projects/CoolEase/Code/stm32f103c8t6/util/gcc-arm/bin/../lib/gcc/arm-none-eabi/9.2.1/thumb/v7-m/nofp/libgcc.a(_arm_cmpdf2.o)
+ .bss           0x0000000000000000        0x0 /Users/richarddavies/Desktop/Side_Projects/CoolEase/Code/stm32f103c8t6/util/gcc-arm/bin/../lib/gcc/arm-none-eabi/9.2.1/thumb/v7-m/nofp/libgcc.a(_arm_cmpdf2.o)
+ .data          0x0000000000000000        0x0 /Users/richarddavies/Desktop/Side_Projects/CoolEase/Code/stm32f103c8t6/util/gcc-arm/bin/../lib/gcc/arm-none-eabi/9.2.1/thumb/v7-m/nofp/libgcc.a(_arm_fixdfsi.o)
+ .bss           0x0000000000000000        0x0 /Users/richarddavies/Desktop/Side_Projects/CoolEase/Code/stm32f103c8t6/util/gcc-arm/bin/../lib/gcc/arm-none-eabi/9.2.1/thumb/v7-m/nofp/libgcc.a(_arm_fixdfsi.o)
+ .data          0x0000000000000000        0x0 /Users/richarddavies/Desktop/Side_Projects/CoolEase/Code/stm32f103c8t6/util/gcc-arm/bin/../lib/gcc/arm-none-eabi/9.2.1/thumb/v7-m/nofp/libgcc.a(_arm_fixunsdfsi.o)
+ .bss           0x0000000000000000        0x0 /Users/richarddavies/Desktop/Side_Projects/CoolEase/Code/stm32f103c8t6/util/gcc-arm/bin/../lib/gcc/arm-none-eabi/9.2.1/thumb/v7-m/nofp/libgcc.a(_arm_fixunsdfsi.o)
+ .text          0x0000000000000000       0xa0 /Users/richarddavies/Desktop/Side_Projects/CoolEase/Code/stm32f103c8t6/util/gcc-arm/bin/../lib/gcc/arm-none-eabi/9.2.1/thumb/v7-m/nofp/libgcc.a(_arm_truncdfsf2.o)
+ .data          0x0000000000000000        0x0 /Users/richarddavies/Desktop/Side_Projects/CoolEase/Code/stm32f103c8t6/util/gcc-arm/bin/../lib/gcc/arm-none-eabi/9.2.1/thumb/v7-m/nofp/libgcc.a(_arm_truncdfsf2.o)
+ .bss           0x0000000000000000        0x0 /Users/richarddavies/Desktop/Side_Projects/CoolEase/Code/stm32f103c8t6/util/gcc-arm/bin/../lib/gcc/arm-none-eabi/9.2.1/thumb/v7-m/nofp/libgcc.a(_arm_truncdfsf2.o)
+ .debug_frame   0x0000000000000000       0x24 /Users/richarddavies/Desktop/Side_Projects/CoolEase/Code/stm32f103c8t6/util/gcc-arm/bin/../lib/gcc/arm-none-eabi/9.2.1/thumb/v7-m/nofp/libgcc.a(_arm_truncdfsf2.o)
+ .ARM.attributes
+                0x0000000000000000       0x1d /Users/richarddavies/Desktop/Side_Projects/CoolEase/Code/stm32f103c8t6/util/gcc-arm/bin/../lib/gcc/arm-none-eabi/9.2.1/thumb/v7-m/nofp/libgcc.a(_arm_truncdfsf2.o)
+ .text          0x0000000000000000      0x21c /Users/richarddavies/Desktop/Side_Projects/CoolEase/Code/stm32f103c8t6/util/gcc-arm/bin/../lib/gcc/arm-none-eabi/9.2.1/thumb/v7-m/nofp/libgcc.a(_arm_addsubsf3.o)
+ .data          0x0000000000000000        0x0 /Users/richarddavies/Desktop/Side_Projects/CoolEase/Code/stm32f103c8t6/util/gcc-arm/bin/../lib/gcc/arm-none-eabi/9.2.1/thumb/v7-m/nofp/libgcc.a(_arm_addsubsf3.o)
+ .bss           0x0000000000000000        0x0 /Users/richarddavies/Desktop/Side_Projects/CoolEase/Code/stm32f103c8t6/util/gcc-arm/bin/../lib/gcc/arm-none-eabi/9.2.1/thumb/v7-m/nofp/libgcc.a(_arm_addsubsf3.o)
+ .debug_frame   0x0000000000000000       0x4c /Users/richarddavies/Desktop/Side_Projects/CoolEase/Code/stm32f103c8t6/util/gcc-arm/bin/../lib/gcc/arm-none-eabi/9.2.1/thumb/v7-m/nofp/libgcc.a(_arm_addsubsf3.o)
+ .ARM.attributes
+                0x0000000000000000       0x1d /Users/richarddavies/Desktop/Side_Projects/CoolEase/Code/stm32f103c8t6/util/gcc-arm/bin/../lib/gcc/arm-none-eabi/9.2.1/thumb/v7-m/nofp/libgcc.a(_arm_addsubsf3.o)
+ .data          0x0000000000000000        0x0 /Users/richarddavies/Desktop/Side_Projects/CoolEase/Code/stm32f103c8t6/util/gcc-arm/bin/../lib/gcc/arm-none-eabi/9.2.1/thumb/v7-m/nofp/libgcc.a(_aeabi_uldivmod.o)
+ .bss           0x0000000000000000        0x0 /Users/richarddavies/Desktop/Side_Projects/CoolEase/Code/stm32f103c8t6/util/gcc-arm/bin/../lib/gcc/arm-none-eabi/9.2.1/thumb/v7-m/nofp/libgcc.a(_aeabi_uldivmod.o)
+ .data          0x0000000000000000        0x0 /Users/richarddavies/Desktop/Side_Projects/CoolEase/Code/stm32f103c8t6/util/gcc-arm/bin/../lib/gcc/arm-none-eabi/9.2.1/thumb/v7-m/nofp/libgcc.a(_udivmoddi4.o)
+ .bss           0x0000000000000000        0x0 /Users/richarddavies/Desktop/Side_Projects/CoolEase/Code/stm32f103c8t6/util/gcc-arm/bin/../lib/gcc/arm-none-eabi/9.2.1/thumb/v7-m/nofp/libgcc.a(_udivmoddi4.o)
+ .ARM.extab     0x0000000000000000        0x0 /Users/richarddavies/Desktop/Side_Projects/CoolEase/Code/stm32f103c8t6/util/gcc-arm/bin/../lib/gcc/arm-none-eabi/9.2.1/thumb/v7-m/nofp/libgcc.a(_udivmoddi4.o)
+ .data          0x0000000000000000        0x0 /Users/richarddavies/Desktop/Side_Projects/CoolEase/Code/stm32f103c8t6/util/gcc-arm/bin/../lib/gcc/arm-none-eabi/9.2.1/thumb/v7-m/nofp/libgcc.a(_dvmd_tls.o)
+ .bss           0x0000000000000000        0x0 /Users/richarddavies/Desktop/Side_Projects/CoolEase/Code/stm32f103c8t6/util/gcc-arm/bin/../lib/gcc/arm-none-eabi/9.2.1/thumb/v7-m/nofp/libgcc.a(_dvmd_tls.o)
+ .group         0x0000000000000000        0xc /Users/richarddavies/Desktop/Side_Projects/CoolEase/Code/stm32f103c8t6/libopencm3/lib/libopencm3_stm32f1.a(flash_common_all.o)
+ .group         0x0000000000000000        0xc /Users/richarddavies/Desktop/Side_Projects/CoolEase/Code/stm32f103c8t6/libopencm3/lib/libopencm3_stm32f1.a(flash_common_all.o)
+ .group         0x0000000000000000        0xc /Users/richarddavies/Desktop/Side_Projects/CoolEase/Code/stm32f103c8t6/libopencm3/lib/libopencm3_stm32f1.a(flash_common_all.o)
+ .group         0x0000000000000000        0xc /Users/richarddavies/Desktop/Side_Projects/CoolEase/Code/stm32f103c8t6/libopencm3/lib/libopencm3_stm32f1.a(flash_common_all.o)
+ .group         0x0000000000000000        0xc /Users/richarddavies/Desktop/Side_Projects/CoolEase/Code/stm32f103c8t6/libopencm3/lib/libopencm3_stm32f1.a(flash_common_all.o)
+ .group         0x0000000000000000        0xc /Users/richarddavies/Desktop/Side_Projects/CoolEase/Code/stm32f103c8t6/libopencm3/lib/libopencm3_stm32f1.a(flash_common_all.o)
+ .group         0x0000000000000000        0xc /Users/richarddavies/Desktop/Side_Projects/CoolEase/Code/stm32f103c8t6/libopencm3/lib/libopencm3_stm32f1.a(flash_common_all.o)
+ .group         0x0000000000000000        0xc /Users/richarddavies/Desktop/Side_Projects/CoolEase/Code/stm32f103c8t6/libopencm3/lib/libopencm3_stm32f1.a(flash_common_all.o)
+ .group         0x0000000000000000        0xc /Users/richarddavies/Desktop/Side_Projects/CoolEase/Code/stm32f103c8t6/libopencm3/lib/libopencm3_stm32f1.a(flash_common_all.o)
+ .group         0x0000000000000000        0xc /Users/richarddavies/Desktop/Side_Projects/CoolEase/Code/stm32f103c8t6/libopencm3/lib/libopencm3_stm32f1.a(flash_common_all.o)
+ .group         0x0000000000000000        0xc /Users/richarddavies/Desktop/Side_Projects/CoolEase/Code/stm32f103c8t6/libopencm3/lib/libopencm3_stm32f1.a(flash_common_all.o)
+ .group         0x0000000000000000        0xc /Users/richarddavies/Desktop/Side_Projects/CoolEase/Code/stm32f103c8t6/libopencm3/lib/libopencm3_stm32f1.a(flash_common_all.o)
+ .group         0x0000000000000000        0xc /Users/richarddavies/Desktop/Side_Projects/CoolEase/Code/stm32f103c8t6/libopencm3/lib/libopencm3_stm32f1.a(flash_common_all.o)
+ .group         0x0000000000000000        0xc /Users/richarddavies/Desktop/Side_Projects/CoolEase/Code/stm32f103c8t6/libopencm3/lib/libopencm3_stm32f1.a(flash_common_all.o)
+ .text          0x0000000000000000        0x0 /Users/richarddavies/Desktop/Side_Projects/CoolEase/Code/stm32f103c8t6/libopencm3/lib/libopencm3_stm32f1.a(flash_common_all.o)
+ .data          0x0000000000000000        0x0 /Users/richarddavies/Desktop/Side_Projects/CoolEase/Code/stm32f103c8t6/libopencm3/lib/libopencm3_stm32f1.a(flash_common_all.o)
+ .bss           0x0000000000000000        0x0 /Users/richarddavies/Desktop/Side_Projects/CoolEase/Code/stm32f103c8t6/libopencm3/lib/libopencm3_stm32f1.a(flash_common_all.o)
+ .text.flash_prefetch_enable
+                0x0000000000000000       0x10 /Users/richarddavies/Desktop/Side_Projects/CoolEase/Code/stm32f103c8t6/libopencm3/lib/libopencm3_stm32f1.a(flash_common_all.o)
+ .text.flash_prefetch_disable
+                0x0000000000000000       0x10 /Users/richarddavies/Desktop/Side_Projects/CoolEase/Code/stm32f103c8t6/libopencm3/lib/libopencm3_stm32f1.a(flash_common_all.o)
+ .text.flash_set_ws
+                0x0000000000000000       0x14 /Users/richarddavies/Desktop/Side_Projects/CoolEase/Code/stm32f103c8t6/libopencm3/lib/libopencm3_stm32f1.a(flash_common_all.o)
+ .text.flash_unlock_option_bytes
+                0x0000000000000000       0x18 /Users/richarddavies/Desktop/Side_Projects/CoolEase/Code/stm32f103c8t6/libopencm3/lib/libopencm3_stm32f1.a(flash_common_all.o)
+ .debug_info    0x0000000000000000       0xf6 /Users/richarddavies/Desktop/Side_Projects/CoolEase/Code/stm32f103c8t6/libopencm3/lib/libopencm3_stm32f1.a(flash_common_all.o)
+ .debug_abbrev  0x0000000000000000       0x97 /Users/richarddavies/Desktop/Side_Projects/CoolEase/Code/stm32f103c8t6/libopencm3/lib/libopencm3_stm32f1.a(flash_common_all.o)
+ .debug_loc     0x0000000000000000       0x15 /Users/richarddavies/Desktop/Side_Projects/CoolEase/Code/stm32f103c8t6/libopencm3/lib/libopencm3_stm32f1.a(flash_common_all.o)
+ .debug_aranges
+                0x0000000000000000       0x38 /Users/richarddavies/Desktop/Side_Projects/CoolEase/Code/stm32f103c8t6/libopencm3/lib/libopencm3_stm32f1.a(flash_common_all.o)
+ .debug_ranges  0x0000000000000000       0x28 /Users/richarddavies/Desktop/Side_Projects/CoolEase/Code/stm32f103c8t6/libopencm3/lib/libopencm3_stm32f1.a(flash_common_all.o)
+ .debug_macro   0x0000000000000000       0xc0 /Users/richarddavies/Desktop/Side_Projects/CoolEase/Code/stm32f103c8t6/libopencm3/lib/libopencm3_stm32f1.a(flash_common_all.o)
+ .debug_macro   0x0000000000000000      0xa90 /Users/richarddavies/Desktop/Side_Projects/CoolEase/Code/stm32f103c8t6/libopencm3/lib/libopencm3_stm32f1.a(flash_common_all.o)
+ .debug_macro   0x0000000000000000       0x1c /Users/richarddavies/Desktop/Side_Projects/CoolEase/Code/stm32f103c8t6/libopencm3/lib/libopencm3_stm32f1.a(flash_common_all.o)
+ .debug_macro   0x0000000000000000       0x22 /Users/richarddavies/Desktop/Side_Projects/CoolEase/Code/stm32f103c8t6/libopencm3/lib/libopencm3_stm32f1.a(flash_common_all.o)
+ .debug_macro   0x0000000000000000       0x56 /Users/richarddavies/Desktop/Side_Projects/CoolEase/Code/stm32f103c8t6/libopencm3/lib/libopencm3_stm32f1.a(flash_common_all.o)
+ .debug_macro   0x0000000000000000       0x51 /Users/richarddavies/Desktop/Side_Projects/CoolEase/Code/stm32f103c8t6/libopencm3/lib/libopencm3_stm32f1.a(flash_common_all.o)
+ .debug_macro   0x0000000000000000       0xef /Users/richarddavies/Desktop/Side_Projects/CoolEase/Code/stm32f103c8t6/libopencm3/lib/libopencm3_stm32f1.a(flash_common_all.o)
+ .debug_macro   0x0000000000000000       0x6a /Users/richarddavies/Desktop/Side_Projects/CoolEase/Code/stm32f103c8t6/libopencm3/lib/libopencm3_stm32f1.a(flash_common_all.o)
+ .debug_macro   0x0000000000000000      0x1df /Users/richarddavies/Desktop/Side_Projects/CoolEase/Code/stm32f103c8t6/libopencm3/lib/libopencm3_stm32f1.a(flash_common_all.o)
+ .debug_macro   0x0000000000000000       0x22 /Users/richarddavies/Desktop/Side_Projects/CoolEase/Code/stm32f103c8t6/libopencm3/lib/libopencm3_stm32f1.a(flash_common_all.o)
+ .debug_macro   0x0000000000000000       0xe8 /Users/richarddavies/Desktop/Side_Projects/CoolEase/Code/stm32f103c8t6/libopencm3/lib/libopencm3_stm32f1.a(flash_common_all.o)
+ .debug_macro   0x0000000000000000       0x76 /Users/richarddavies/Desktop/Side_Projects/CoolEase/Code/stm32f103c8t6/libopencm3/lib/libopencm3_stm32f1.a(flash_common_all.o)
+ .debug_macro   0x0000000000000000      0x1b4 /Users/richarddavies/Desktop/Side_Projects/CoolEase/Code/stm32f103c8t6/libopencm3/lib/libopencm3_stm32f1.a(flash_common_all.o)
+ .debug_macro   0x0000000000000000       0xee /Users/richarddavies/Desktop/Side_Projects/CoolEase/Code/stm32f103c8t6/libopencm3/lib/libopencm3_stm32f1.a(flash_common_all.o)
+ .debug_macro   0x0000000000000000       0x82 /Users/richarddavies/Desktop/Side_Projects/CoolEase/Code/stm32f103c8t6/libopencm3/lib/libopencm3_stm32f1.a(flash_common_all.o)
+ .debug_line    0x0000000000000000      0x389 /Users/richarddavies/Desktop/Side_Projects/CoolEase/Code/stm32f103c8t6/libopencm3/lib/libopencm3_stm32f1.a(flash_common_all.o)
+ .debug_str     0x0000000000000000     0x5585 /Users/richarddavies/Desktop/Side_Projects/CoolEase/Code/stm32f103c8t6/libopencm3/lib/libopencm3_stm32f1.a(flash_common_all.o)
+ .comment       0x0000000000000000       0x7a /Users/richarddavies/Desktop/Side_Projects/CoolEase/Code/stm32f103c8t6/libopencm3/lib/libopencm3_stm32f1.a(flash_common_all.o)
+ .debug_frame   0x0000000000000000       0x50 /Users/richarddavies/Desktop/Side_Projects/CoolEase/Code/stm32f103c8t6/libopencm3/lib/libopencm3_stm32f1.a(flash_common_all.o)
+ .ARM.attributes
+                0x0000000000000000       0x2d /Users/richarddavies/Desktop/Side_Projects/CoolEase/Code/stm32f103c8t6/libopencm3/lib/libopencm3_stm32f1.a(flash_common_all.o)
+ .group         0x0000000000000000        0xc /Users/richarddavies/Desktop/Side_Projects/CoolEase/Code/stm32f103c8t6/libopencm3/lib/libopencm3_stm32f1.a(gpio.o)
+ .group         0x0000000000000000        0xc /Users/richarddavies/Desktop/Side_Projects/CoolEase/Code/stm32f103c8t6/libopencm3/lib/libopencm3_stm32f1.a(gpio.o)
+ .group         0x0000000000000000        0xc /Users/richarddavies/Desktop/Side_Projects/CoolEase/Code/stm32f103c8t6/libopencm3/lib/libopencm3_stm32f1.a(gpio.o)
+ .group         0x0000000000000000        0xc /Users/richarddavies/Desktop/Side_Projects/CoolEase/Code/stm32f103c8t6/libopencm3/lib/libopencm3_stm32f1.a(gpio.o)
+ .group         0x0000000000000000        0xc /Users/richarddavies/Desktop/Side_Projects/CoolEase/Code/stm32f103c8t6/libopencm3/lib/libopencm3_stm32f1.a(gpio.o)
+ .group         0x0000000000000000        0xc /Users/richarddavies/Desktop/Side_Projects/CoolEase/Code/stm32f103c8t6/libopencm3/lib/libopencm3_stm32f1.a(gpio.o)
+ .group         0x0000000000000000        0xc /Users/richarddavies/Desktop/Side_Projects/CoolEase/Code/stm32f103c8t6/libopencm3/lib/libopencm3_stm32f1.a(gpio.o)
+ .group         0x0000000000000000        0xc /Users/richarddavies/Desktop/Side_Projects/CoolEase/Code/stm32f103c8t6/libopencm3/lib/libopencm3_stm32f1.a(gpio.o)
+ .group         0x0000000000000000        0xc /Users/richarddavies/Desktop/Side_Projects/CoolEase/Code/stm32f103c8t6/libopencm3/lib/libopencm3_stm32f1.a(gpio.o)
+ .group         0x0000000000000000        0xc /Users/richarddavies/Desktop/Side_Projects/CoolEase/Code/stm32f103c8t6/libopencm3/lib/libopencm3_stm32f1.a(gpio.o)
+ .group         0x0000000000000000        0xc /Users/richarddavies/Desktop/Side_Projects/CoolEase/Code/stm32f103c8t6/libopencm3/lib/libopencm3_stm32f1.a(gpio.o)
+ .group         0x0000000000000000        0xc /Users/richarddavies/Desktop/Side_Projects/CoolEase/Code/stm32f103c8t6/libopencm3/lib/libopencm3_stm32f1.a(gpio.o)
+ .group         0x0000000000000000        0xc /Users/richarddavies/Desktop/Side_Projects/CoolEase/Code/stm32f103c8t6/libopencm3/lib/libopencm3_stm32f1.a(gpio.o)
+ .group         0x0000000000000000        0xc /Users/richarddavies/Desktop/Side_Projects/CoolEase/Code/stm32f103c8t6/libopencm3/lib/libopencm3_stm32f1.a(gpio.o)
+ .text          0x0000000000000000        0x0 /Users/richarddavies/Desktop/Side_Projects/CoolEase/Code/stm32f103c8t6/libopencm3/lib/libopencm3_stm32f1.a(gpio.o)
+ .data          0x0000000000000000        0x0 /Users/richarddavies/Desktop/Side_Projects/CoolEase/Code/stm32f103c8t6/libopencm3/lib/libopencm3_stm32f1.a(gpio.o)
+ .bss           0x0000000000000000        0x0 /Users/richarddavies/Desktop/Side_Projects/CoolEase/Code/stm32f103c8t6/libopencm3/lib/libopencm3_stm32f1.a(gpio.o)
+ .text.gpio_set_eventout
+                0x0000000000000000       0x10 /Users/richarddavies/Desktop/Side_Projects/CoolEase/Code/stm32f103c8t6/libopencm3/lib/libopencm3_stm32f1.a(gpio.o)
+ .text.gpio_primary_remap
+                0x0000000000000000       0x14 /Users/richarddavies/Desktop/Side_Projects/CoolEase/Code/stm32f103c8t6/libopencm3/lib/libopencm3_stm32f1.a(gpio.o)
+ .text.gpio_secondary_remap
+                0x0000000000000000       0x10 /Users/richarddavies/Desktop/Side_Projects/CoolEase/Code/stm32f103c8t6/libopencm3/lib/libopencm3_stm32f1.a(gpio.o)
+ .debug_macro   0x0000000000000000      0xa90 /Users/richarddavies/Desktop/Side_Projects/CoolEase/Code/stm32f103c8t6/libopencm3/lib/libopencm3_stm32f1.a(gpio.o)
+ .debug_macro   0x0000000000000000       0x1c /Users/richarddavies/Desktop/Side_Projects/CoolEase/Code/stm32f103c8t6/libopencm3/lib/libopencm3_stm32f1.a(gpio.o)
+ .debug_macro   0x0000000000000000       0x22 /Users/richarddavies/Desktop/Side_Projects/CoolEase/Code/stm32f103c8t6/libopencm3/lib/libopencm3_stm32f1.a(gpio.o)
+ .debug_macro   0x0000000000000000       0x56 /Users/richarddavies/Desktop/Side_Projects/CoolEase/Code/stm32f103c8t6/libopencm3/lib/libopencm3_stm32f1.a(gpio.o)
+ .debug_macro   0x0000000000000000       0x51 /Users/richarddavies/Desktop/Side_Projects/CoolEase/Code/stm32f103c8t6/libopencm3/lib/libopencm3_stm32f1.a(gpio.o)
+ .debug_macro   0x0000000000000000       0xef /Users/richarddavies/Desktop/Side_Projects/CoolEase/Code/stm32f103c8t6/libopencm3/lib/libopencm3_stm32f1.a(gpio.o)
+ .debug_macro   0x0000000000000000       0x6a /Users/richarddavies/Desktop/Side_Projects/CoolEase/Code/stm32f103c8t6/libopencm3/lib/libopencm3_stm32f1.a(gpio.o)
+ .debug_macro   0x0000000000000000      0x1df /Users/richarddavies/Desktop/Side_Projects/CoolEase/Code/stm32f103c8t6/libopencm3/lib/libopencm3_stm32f1.a(gpio.o)
+ .debug_macro   0x0000000000000000       0x22 /Users/richarddavies/Desktop/Side_Projects/CoolEase/Code/stm32f103c8t6/libopencm3/lib/libopencm3_stm32f1.a(gpio.o)
+ .debug_macro   0x0000000000000000       0xe8 /Users/richarddavies/Desktop/Side_Projects/CoolEase/Code/stm32f103c8t6/libopencm3/lib/libopencm3_stm32f1.a(gpio.o)
+ .debug_macro   0x0000000000000000       0x76 /Users/richarddavies/Desktop/Side_Projects/CoolEase/Code/stm32f103c8t6/libopencm3/lib/libopencm3_stm32f1.a(gpio.o)
+ .debug_macro   0x0000000000000000      0x1b4 /Users/richarddavies/Desktop/Side_Projects/CoolEase/Code/stm32f103c8t6/libopencm3/lib/libopencm3_stm32f1.a(gpio.o)
+ .group         0x0000000000000000        0xc /Users/richarddavies/Desktop/Side_Projects/CoolEase/Code/stm32f103c8t6/libopencm3/lib/libopencm3_stm32f1.a(gpio_common_all.o)
+ .group         0x0000000000000000        0xc /Users/richarddavies/Desktop/Side_Projects/CoolEase/Code/stm32f103c8t6/libopencm3/lib/libopencm3_stm32f1.a(gpio_common_all.o)
+ .group         0x0000000000000000        0xc /Users/richarddavies/Desktop/Side_Projects/CoolEase/Code/stm32f103c8t6/libopencm3/lib/libopencm3_stm32f1.a(gpio_common_all.o)
+ .group         0x0000000000000000        0xc /Users/richarddavies/Desktop/Side_Projects/CoolEase/Code/stm32f103c8t6/libopencm3/lib/libopencm3_stm32f1.a(gpio_common_all.o)
+ .group         0x0000000000000000        0xc /Users/richarddavies/Desktop/Side_Projects/CoolEase/Code/stm32f103c8t6/libopencm3/lib/libopencm3_stm32f1.a(gpio_common_all.o)
+ .group         0x0000000000000000        0xc /Users/richarddavies/Desktop/Side_Projects/CoolEase/Code/stm32f103c8t6/libopencm3/lib/libopencm3_stm32f1.a(gpio_common_all.o)
+ .group         0x0000000000000000        0xc /Users/richarddavies/Desktop/Side_Projects/CoolEase/Code/stm32f103c8t6/libopencm3/lib/libopencm3_stm32f1.a(gpio_common_all.o)
+ .group         0x0000000000000000        0xc /Users/richarddavies/Desktop/Side_Projects/CoolEase/Code/stm32f103c8t6/libopencm3/lib/libopencm3_stm32f1.a(gpio_common_all.o)
+ .group         0x0000000000000000        0xc /Users/richarddavies/Desktop/Side_Projects/CoolEase/Code/stm32f103c8t6/libopencm3/lib/libopencm3_stm32f1.a(gpio_common_all.o)
+ .group         0x0000000000000000        0xc /Users/richarddavies/Desktop/Side_Projects/CoolEase/Code/stm32f103c8t6/libopencm3/lib/libopencm3_stm32f1.a(gpio_common_all.o)
+ .group         0x0000000000000000        0xc /Users/richarddavies/Desktop/Side_Projects/CoolEase/Code/stm32f103c8t6/libopencm3/lib/libopencm3_stm32f1.a(gpio_common_all.o)
+ .group         0x0000000000000000        0xc /Users/richarddavies/Desktop/Side_Projects/CoolEase/Code/stm32f103c8t6/libopencm3/lib/libopencm3_stm32f1.a(gpio_common_all.o)
+ .group         0x0000000000000000        0xc /Users/richarddavies/Desktop/Side_Projects/CoolEase/Code/stm32f103c8t6/libopencm3/lib/libopencm3_stm32f1.a(gpio_common_all.o)
+ .group         0x0000000000000000        0xc /Users/richarddavies/Desktop/Side_Projects/CoolEase/Code/stm32f103c8t6/libopencm3/lib/libopencm3_stm32f1.a(gpio_common_all.o)
+ .text          0x0000000000000000        0x0 /Users/richarddavies/Desktop/Side_Projects/CoolEase/Code/stm32f103c8t6/libopencm3/lib/libopencm3_stm32f1.a(gpio_common_all.o)
+ .data          0x0000000000000000        0x0 /Users/richarddavies/Desktop/Side_Projects/CoolEase/Code/stm32f103c8t6/libopencm3/lib/libopencm3_stm32f1.a(gpio_common_all.o)
+ .bss           0x0000000000000000        0x0 /Users/richarddavies/Desktop/Side_Projects/CoolEase/Code/stm32f103c8t6/libopencm3/lib/libopencm3_stm32f1.a(gpio_common_all.o)
+ .text.gpio_get
+                0x0000000000000000        0x6 /Users/richarddavies/Desktop/Side_Projects/CoolEase/Code/stm32f103c8t6/libopencm3/lib/libopencm3_stm32f1.a(gpio_common_all.o)
+ .text.gpio_toggle
+                0x0000000000000000       0x12 /Users/richarddavies/Desktop/Side_Projects/CoolEase/Code/stm32f103c8t6/libopencm3/lib/libopencm3_stm32f1.a(gpio_common_all.o)
+ .text.gpio_port_read
+                0x0000000000000000        0x6 /Users/richarddavies/Desktop/Side_Projects/CoolEase/Code/stm32f103c8t6/libopencm3/lib/libopencm3_stm32f1.a(gpio_common_all.o)
+ .text.gpio_port_write
+                0x0000000000000000        0x4 /Users/richarddavies/Desktop/Side_Projects/CoolEase/Code/stm32f103c8t6/libopencm3/lib/libopencm3_stm32f1.a(gpio_common_all.o)
+ .text.gpio_port_config_lock
+                0x0000000000000000       0x10 /Users/richarddavies/Desktop/Side_Projects/CoolEase/Code/stm32f103c8t6/libopencm3/lib/libopencm3_stm32f1.a(gpio_common_all.o)
+ .debug_macro   0x0000000000000000      0xa90 /Users/richarddavies/Desktop/Side_Projects/CoolEase/Code/stm32f103c8t6/libopencm3/lib/libopencm3_stm32f1.a(gpio_common_all.o)
+ .debug_macro   0x0000000000000000       0x1c /Users/richarddavies/Desktop/Side_Projects/CoolEase/Code/stm32f103c8t6/libopencm3/lib/libopencm3_stm32f1.a(gpio_common_all.o)
+ .debug_macro   0x0000000000000000       0x22 /Users/richarddavies/Desktop/Side_Projects/CoolEase/Code/stm32f103c8t6/libopencm3/lib/libopencm3_stm32f1.a(gpio_common_all.o)
+ .debug_macro   0x0000000000000000       0x56 /Users/richarddavies/Desktop/Side_Projects/CoolEase/Code/stm32f103c8t6/libopencm3/lib/libopencm3_stm32f1.a(gpio_common_all.o)
+ .debug_macro   0x0000000000000000       0x51 /Users/richarddavies/Desktop/Side_Projects/CoolEase/Code/stm32f103c8t6/libopencm3/lib/libopencm3_stm32f1.a(gpio_common_all.o)
+ .debug_macro   0x0000000000000000       0xef /Users/richarddavies/Desktop/Side_Projects/CoolEase/Code/stm32f103c8t6/libopencm3/lib/libopencm3_stm32f1.a(gpio_common_all.o)
+ .debug_macro   0x0000000000000000       0x6a /Users/richarddavies/Desktop/Side_Projects/CoolEase/Code/stm32f103c8t6/libopencm3/lib/libopencm3_stm32f1.a(gpio_common_all.o)
+ .debug_macro   0x0000000000000000      0x1df /Users/richarddavies/Desktop/Side_Projects/CoolEase/Code/stm32f103c8t6/libopencm3/lib/libopencm3_stm32f1.a(gpio_common_all.o)
+ .debug_macro   0x0000000000000000       0x22 /Users/richarddavies/Desktop/Side_Projects/CoolEase/Code/stm32f103c8t6/libopencm3/lib/libopencm3_stm32f1.a(gpio_common_all.o)
+ .debug_macro   0x0000000000000000       0xe8 /Users/richarddavies/Desktop/Side_Projects/CoolEase/Code/stm32f103c8t6/libopencm3/lib/libopencm3_stm32f1.a(gpio_common_all.o)
+ .debug_macro   0x0000000000000000       0x76 /Users/richarddavies/Desktop/Side_Projects/CoolEase/Code/stm32f103c8t6/libopencm3/lib/libopencm3_stm32f1.a(gpio_common_all.o)
+ .debug_macro   0x0000000000000000      0x1b4 /Users/richarddavies/Desktop/Side_Projects/CoolEase/Code/stm32f103c8t6/libopencm3/lib/libopencm3_stm32f1.a(gpio_common_all.o)
+ .debug_macro   0x0000000000000000       0x76 /Users/richarddavies/Desktop/Side_Projects/CoolEase/Code/stm32f103c8t6/libopencm3/lib/libopencm3_stm32f1.a(gpio_common_all.o)
+ .debug_macro   0x0000000000000000      0xe04 /Users/richarddavies/Desktop/Side_Projects/CoolEase/Code/stm32f103c8t6/libopencm3/lib/libopencm3_stm32f1.a(gpio_common_all.o)
+ .group         0x0000000000000000        0xc /Users/richarddavies/Desktop/Side_Projects/CoolEase/Code/stm32f103c8t6/libopencm3/lib/libopencm3_stm32f1.a(i2c_common_v1.o)
+ .group         0x0000000000000000        0xc /Users/richarddavies/Desktop/Side_Projects/CoolEase/Code/stm32f103c8t6/libopencm3/lib/libopencm3_stm32f1.a(i2c_common_v1.o)
+ .group         0x0000000000000000        0xc /Users/richarddavies/Desktop/Side_Projects/CoolEase/Code/stm32f103c8t6/libopencm3/lib/libopencm3_stm32f1.a(i2c_common_v1.o)
+ .group         0x0000000000000000        0xc /Users/richarddavies/Desktop/Side_Projects/CoolEase/Code/stm32f103c8t6/libopencm3/lib/libopencm3_stm32f1.a(i2c_common_v1.o)
+ .group         0x0000000000000000        0xc /Users/richarddavies/Desktop/Side_Projects/CoolEase/Code/stm32f103c8t6/libopencm3/lib/libopencm3_stm32f1.a(i2c_common_v1.o)
+ .group         0x0000000000000000        0xc /Users/richarddavies/Desktop/Side_Projects/CoolEase/Code/stm32f103c8t6/libopencm3/lib/libopencm3_stm32f1.a(i2c_common_v1.o)
+ .group         0x0000000000000000        0xc /Users/richarddavies/Desktop/Side_Projects/CoolEase/Code/stm32f103c8t6/libopencm3/lib/libopencm3_stm32f1.a(i2c_common_v1.o)
+ .group         0x0000000000000000        0xc /Users/richarddavies/Desktop/Side_Projects/CoolEase/Code/stm32f103c8t6/libopencm3/lib/libopencm3_stm32f1.a(i2c_common_v1.o)
+ .group         0x0000000000000000        0xc /Users/richarddavies/Desktop/Side_Projects/CoolEase/Code/stm32f103c8t6/libopencm3/lib/libopencm3_stm32f1.a(i2c_common_v1.o)
+ .group         0x0000000000000000        0xc /Users/richarddavies/Desktop/Side_Projects/CoolEase/Code/stm32f103c8t6/libopencm3/lib/libopencm3_stm32f1.a(i2c_common_v1.o)
+ .group         0x0000000000000000        0xc /Users/richarddavies/Desktop/Side_Projects/CoolEase/Code/stm32f103c8t6/libopencm3/lib/libopencm3_stm32f1.a(i2c_common_v1.o)
+ .group         0x0000000000000000        0xc /Users/richarddavies/Desktop/Side_Projects/CoolEase/Code/stm32f103c8t6/libopencm3/lib/libopencm3_stm32f1.a(i2c_common_v1.o)
+ .group         0x0000000000000000        0xc /Users/richarddavies/Desktop/Side_Projects/CoolEase/Code/stm32f103c8t6/libopencm3/lib/libopencm3_stm32f1.a(i2c_common_v1.o)
+ .group         0x0000000000000000        0xc /Users/richarddavies/Desktop/Side_Projects/CoolEase/Code/stm32f103c8t6/libopencm3/lib/libopencm3_stm32f1.a(i2c_common_v1.o)
+ .group         0x0000000000000000        0xc /Users/richarddavies/Desktop/Side_Projects/CoolEase/Code/stm32f103c8t6/libopencm3/lib/libopencm3_stm32f1.a(i2c_common_v1.o)
+ .text          0x0000000000000000        0x0 /Users/richarddavies/Desktop/Side_Projects/CoolEase/Code/stm32f103c8t6/libopencm3/lib/libopencm3_stm32f1.a(i2c_common_v1.o)
+ .data          0x0000000000000000        0x0 /Users/richarddavies/Desktop/Side_Projects/CoolEase/Code/stm32f103c8t6/libopencm3/lib/libopencm3_stm32f1.a(i2c_common_v1.o)
+ .bss           0x0000000000000000        0x0 /Users/richarddavies/Desktop/Side_Projects/CoolEase/Code/stm32f103c8t6/libopencm3/lib/libopencm3_stm32f1.a(i2c_common_v1.o)
+ .text.i2c_reset
+                0x0000000000000000       0x24 /Users/richarddavies/Desktop/Side_Projects/CoolEase/Code/stm32f103c8t6/libopencm3/lib/libopencm3_stm32f1.a(i2c_common_v1.o)
+ .text.i2c_peripheral_enable
+                0x0000000000000000        0xa /Users/richarddavies/Desktop/Side_Projects/CoolEase/Code/stm32f103c8t6/libopencm3/lib/libopencm3_stm32f1.a(i2c_common_v1.o)
+ .text.i2c_peripheral_disable
+                0x0000000000000000        0xa /Users/richarddavies/Desktop/Side_Projects/CoolEase/Code/stm32f103c8t6/libopencm3/lib/libopencm3_stm32f1.a(i2c_common_v1.o)
+ .text.i2c_send_start
+                0x0000000000000000        0xa /Users/richarddavies/Desktop/Side_Projects/CoolEase/Code/stm32f103c8t6/libopencm3/lib/libopencm3_stm32f1.a(i2c_common_v1.o)
+ .text.i2c_send_stop
+                0x0000000000000000        0xa /Users/richarddavies/Desktop/Side_Projects/CoolEase/Code/stm32f103c8t6/libopencm3/lib/libopencm3_stm32f1.a(i2c_common_v1.o)
+ .text.i2c_clear_stop
+                0x0000000000000000        0xa /Users/richarddavies/Desktop/Side_Projects/CoolEase/Code/stm32f103c8t6/libopencm3/lib/libopencm3_stm32f1.a(i2c_common_v1.o)
+ .text.i2c_set_own_7bit_slave_address
+                0x0000000000000000        0xa /Users/richarddavies/Desktop/Side_Projects/CoolEase/Code/stm32f103c8t6/libopencm3/lib/libopencm3_stm32f1.a(i2c_common_v1.o)
+ .text.i2c_set_own_10bit_slave_address
+                0x0000000000000000        0x8 /Users/richarddavies/Desktop/Side_Projects/CoolEase/Code/stm32f103c8t6/libopencm3/lib/libopencm3_stm32f1.a(i2c_common_v1.o)
+ .text.i2c_set_own_7bit_slave_address_two
+                0x0000000000000000        0x6 /Users/richarddavies/Desktop/Side_Projects/CoolEase/Code/stm32f103c8t6/libopencm3/lib/libopencm3_stm32f1.a(i2c_common_v1.o)
+ .text.i2c_enable_dual_addressing_mode
+                0x0000000000000000        0xa /Users/richarddavies/Desktop/Side_Projects/CoolEase/Code/stm32f103c8t6/libopencm3/lib/libopencm3_stm32f1.a(i2c_common_v1.o)
+ .text.i2c_disable_dual_addressing_mode
+                0x0000000000000000        0xa /Users/richarddavies/Desktop/Side_Projects/CoolEase/Code/stm32f103c8t6/libopencm3/lib/libopencm3_stm32f1.a(i2c_common_v1.o)
+ .text.i2c_set_clock_frequency
+                0x0000000000000000        0xe /Users/richarddavies/Desktop/Side_Projects/CoolEase/Code/stm32f103c8t6/libopencm3/lib/libopencm3_stm32f1.a(i2c_common_v1.o)
+ .text.i2c_send_data
+                0x0000000000000000        0x4 /Users/richarddavies/Desktop/Side_Projects/CoolEase/Code/stm32f103c8t6/libopencm3/lib/libopencm3_stm32f1.a(i2c_common_v1.o)
+ .text.i2c_set_fast_mode
+                0x0000000000000000        0xa /Users/richarddavies/Desktop/Side_Projects/CoolEase/Code/stm32f103c8t6/libopencm3/lib/libopencm3_stm32f1.a(i2c_common_v1.o)
+ .text.i2c_set_standard_mode
+                0x0000000000000000        0xa /Users/richarddavies/Desktop/Side_Projects/CoolEase/Code/stm32f103c8t6/libopencm3/lib/libopencm3_stm32f1.a(i2c_common_v1.o)
+ .text.i2c_set_ccr
+                0x0000000000000000        0xc /Users/richarddavies/Desktop/Side_Projects/CoolEase/Code/stm32f103c8t6/libopencm3/lib/libopencm3_stm32f1.a(i2c_common_v1.o)
+ .text.i2c_set_trise
+                0x0000000000000000        0x4 /Users/richarddavies/Desktop/Side_Projects/CoolEase/Code/stm32f103c8t6/libopencm3/lib/libopencm3_stm32f1.a(i2c_common_v1.o)
+ .text.i2c_send_7bit_address
+                0x0000000000000000        0xa /Users/richarddavies/Desktop/Side_Projects/CoolEase/Code/stm32f103c8t6/libopencm3/lib/libopencm3_stm32f1.a(i2c_common_v1.o)
+ .text.i2c_get_data
+                0x0000000000000000        0x6 /Users/richarddavies/Desktop/Side_Projects/CoolEase/Code/stm32f103c8t6/libopencm3/lib/libopencm3_stm32f1.a(i2c_common_v1.o)
+ .text.i2c_enable_interrupt
+                0x0000000000000000        0x8 /Users/richarddavies/Desktop/Side_Projects/CoolEase/Code/stm32f103c8t6/libopencm3/lib/libopencm3_stm32f1.a(i2c_common_v1.o)
+ .text.i2c_disable_interrupt
+                0x0000000000000000        0xa /Users/richarddavies/Desktop/Side_Projects/CoolEase/Code/stm32f103c8t6/libopencm3/lib/libopencm3_stm32f1.a(i2c_common_v1.o)
+ .text.i2c_enable_ack
+                0x0000000000000000        0xa /Users/richarddavies/Desktop/Side_Projects/CoolEase/Code/stm32f103c8t6/libopencm3/lib/libopencm3_stm32f1.a(i2c_common_v1.o)
+ .text.i2c_disable_ack
+                0x0000000000000000        0xa /Users/richarddavies/Desktop/Side_Projects/CoolEase/Code/stm32f103c8t6/libopencm3/lib/libopencm3_stm32f1.a(i2c_common_v1.o)
+ .text.i2c_nack_next
+                0x0000000000000000        0xa /Users/richarddavies/Desktop/Side_Projects/CoolEase/Code/stm32f103c8t6/libopencm3/lib/libopencm3_stm32f1.a(i2c_common_v1.o)
+ .text.i2c_nack_current
+                0x0000000000000000        0xa /Users/richarddavies/Desktop/Side_Projects/CoolEase/Code/stm32f103c8t6/libopencm3/lib/libopencm3_stm32f1.a(i2c_common_v1.o)
+ .text.i2c_set_dutycycle
+                0x0000000000000000       0x12 /Users/richarddavies/Desktop/Side_Projects/CoolEase/Code/stm32f103c8t6/libopencm3/lib/libopencm3_stm32f1.a(i2c_common_v1.o)
+ .text.i2c_enable_dma
+                0x0000000000000000        0xa /Users/richarddavies/Desktop/Side_Projects/CoolEase/Code/stm32f103c8t6/libopencm3/lib/libopencm3_stm32f1.a(i2c_common_v1.o)
+ .text.i2c_disable_dma
+                0x0000000000000000        0xa /Users/richarddavies/Desktop/Side_Projects/CoolEase/Code/stm32f103c8t6/libopencm3/lib/libopencm3_stm32f1.a(i2c_common_v1.o)
+ .text.i2c_set_dma_last_transfer
+                0x0000000000000000        0xa /Users/richarddavies/Desktop/Side_Projects/CoolEase/Code/stm32f103c8t6/libopencm3/lib/libopencm3_stm32f1.a(i2c_common_v1.o)
+ .text.i2c_clear_dma_last_transfer
+                0x0000000000000000        0xa /Users/richarddavies/Desktop/Side_Projects/CoolEase/Code/stm32f103c8t6/libopencm3/lib/libopencm3_stm32f1.a(i2c_common_v1.o)
+ .text.i2c_transfer7
+                0x0000000000000000       0xae /Users/richarddavies/Desktop/Side_Projects/CoolEase/Code/stm32f103c8t6/libopencm3/lib/libopencm3_stm32f1.a(i2c_common_v1.o)
+ .text.i2c_set_speed
+                0x0000000000000000       0x3c /Users/richarddavies/Desktop/Side_Projects/CoolEase/Code/stm32f103c8t6/libopencm3/lib/libopencm3_stm32f1.a(i2c_common_v1.o)
+ .debug_info    0x0000000000000000      0xc36 /Users/richarddavies/Desktop/Side_Projects/CoolEase/Code/stm32f103c8t6/libopencm3/lib/libopencm3_stm32f1.a(i2c_common_v1.o)
+ .debug_abbrev  0x0000000000000000      0x317 /Users/richarddavies/Desktop/Side_Projects/CoolEase/Code/stm32f103c8t6/libopencm3/lib/libopencm3_stm32f1.a(i2c_common_v1.o)
+ .debug_loc     0x0000000000000000      0x4c3 /Users/richarddavies/Desktop/Side_Projects/CoolEase/Code/stm32f103c8t6/libopencm3/lib/libopencm3_stm32f1.a(i2c_common_v1.o)
+ .debug_aranges
+                0x0000000000000000      0x118 /Users/richarddavies/Desktop/Side_Projects/CoolEase/Code/stm32f103c8t6/libopencm3/lib/libopencm3_stm32f1.a(i2c_common_v1.o)
+ .debug_ranges  0x0000000000000000      0x128 /Users/richarddavies/Desktop/Side_Projects/CoolEase/Code/stm32f103c8t6/libopencm3/lib/libopencm3_stm32f1.a(i2c_common_v1.o)
+ .debug_macro   0x0000000000000000       0xda /Users/richarddavies/Desktop/Side_Projects/CoolEase/Code/stm32f103c8t6/libopencm3/lib/libopencm3_stm32f1.a(i2c_common_v1.o)
+ .debug_macro   0x0000000000000000      0xa90 /Users/richarddavies/Desktop/Side_Projects/CoolEase/Code/stm32f103c8t6/libopencm3/lib/libopencm3_stm32f1.a(i2c_common_v1.o)
+ .debug_macro   0x0000000000000000       0x1c /Users/richarddavies/Desktop/Side_Projects/CoolEase/Code/stm32f103c8t6/libopencm3/lib/libopencm3_stm32f1.a(i2c_common_v1.o)
+ .debug_macro   0x0000000000000000       0x22 /Users/richarddavies/Desktop/Side_Projects/CoolEase/Code/stm32f103c8t6/libopencm3/lib/libopencm3_stm32f1.a(i2c_common_v1.o)
+ .debug_macro   0x0000000000000000       0x56 /Users/richarddavies/Desktop/Side_Projects/CoolEase/Code/stm32f103c8t6/libopencm3/lib/libopencm3_stm32f1.a(i2c_common_v1.o)
+ .debug_macro   0x0000000000000000       0x51 /Users/richarddavies/Desktop/Side_Projects/CoolEase/Code/stm32f103c8t6/libopencm3/lib/libopencm3_stm32f1.a(i2c_common_v1.o)
+ .debug_macro   0x0000000000000000       0xef /Users/richarddavies/Desktop/Side_Projects/CoolEase/Code/stm32f103c8t6/libopencm3/lib/libopencm3_stm32f1.a(i2c_common_v1.o)
+ .debug_macro   0x0000000000000000       0x6a /Users/richarddavies/Desktop/Side_Projects/CoolEase/Code/stm32f103c8t6/libopencm3/lib/libopencm3_stm32f1.a(i2c_common_v1.o)
+ .debug_macro   0x0000000000000000      0x1df /Users/richarddavies/Desktop/Side_Projects/CoolEase/Code/stm32f103c8t6/libopencm3/lib/libopencm3_stm32f1.a(i2c_common_v1.o)
+ .debug_macro   0x0000000000000000       0x22 /Users/richarddavies/Desktop/Side_Projects/CoolEase/Code/stm32f103c8t6/libopencm3/lib/libopencm3_stm32f1.a(i2c_common_v1.o)
+ .debug_macro   0x0000000000000000       0xe8 /Users/richarddavies/Desktop/Side_Projects/CoolEase/Code/stm32f103c8t6/libopencm3/lib/libopencm3_stm32f1.a(i2c_common_v1.o)
+ .debug_macro   0x0000000000000000       0x76 /Users/richarddavies/Desktop/Side_Projects/CoolEase/Code/stm32f103c8t6/libopencm3/lib/libopencm3_stm32f1.a(i2c_common_v1.o)
+ .debug_macro   0x0000000000000000      0x1b4 /Users/richarddavies/Desktop/Side_Projects/CoolEase/Code/stm32f103c8t6/libopencm3/lib/libopencm3_stm32f1.a(i2c_common_v1.o)
+ .debug_macro   0x0000000000000000      0x16d /Users/richarddavies/Desktop/Side_Projects/CoolEase/Code/stm32f103c8t6/libopencm3/lib/libopencm3_stm32f1.a(i2c_common_v1.o)
+ .debug_macro   0x0000000000000000      0x32c /Users/richarddavies/Desktop/Side_Projects/CoolEase/Code/stm32f103c8t6/libopencm3/lib/libopencm3_stm32f1.a(i2c_common_v1.o)
+ .debug_macro   0x0000000000000000      0x82c /Users/richarddavies/Desktop/Side_Projects/CoolEase/Code/stm32f103c8t6/libopencm3/lib/libopencm3_stm32f1.a(i2c_common_v1.o)
+ .debug_line    0x0000000000000000      0x846 /Users/richarddavies/Desktop/Side_Projects/CoolEase/Code/stm32f103c8t6/libopencm3/lib/libopencm3_stm32f1.a(i2c_common_v1.o)
+ .debug_str     0x0000000000000000     0x85f7 /Users/richarddavies/Desktop/Side_Projects/CoolEase/Code/stm32f103c8t6/libopencm3/lib/libopencm3_stm32f1.a(i2c_common_v1.o)
+ .comment       0x0000000000000000       0x7a /Users/richarddavies/Desktop/Side_Projects/CoolEase/Code/stm32f103c8t6/libopencm3/lib/libopencm3_stm32f1.a(i2c_common_v1.o)
+ .debug_frame   0x0000000000000000      0x23c /Users/richarddavies/Desktop/Side_Projects/CoolEase/Code/stm32f103c8t6/libopencm3/lib/libopencm3_stm32f1.a(i2c_common_v1.o)
+ .ARM.attributes
+                0x0000000000000000       0x2d /Users/richarddavies/Desktop/Side_Projects/CoolEase/Code/stm32f103c8t6/libopencm3/lib/libopencm3_stm32f1.a(i2c_common_v1.o)
+ .group         0x0000000000000000        0xc /Users/richarddavies/Desktop/Side_Projects/CoolEase/Code/stm32f103c8t6/libopencm3/lib/libopencm3_stm32f1.a(iwdg_common_all.o)
+ .group         0x0000000000000000        0xc /Users/richarddavies/Desktop/Side_Projects/CoolEase/Code/stm32f103c8t6/libopencm3/lib/libopencm3_stm32f1.a(iwdg_common_all.o)
+ .group         0x0000000000000000        0xc /Users/richarddavies/Desktop/Side_Projects/CoolEase/Code/stm32f103c8t6/libopencm3/lib/libopencm3_stm32f1.a(iwdg_common_all.o)
+ .group         0x0000000000000000        0xc /Users/richarddavies/Desktop/Side_Projects/CoolEase/Code/stm32f103c8t6/libopencm3/lib/libopencm3_stm32f1.a(iwdg_common_all.o)
+ .group         0x0000000000000000        0xc /Users/richarddavies/Desktop/Side_Projects/CoolEase/Code/stm32f103c8t6/libopencm3/lib/libopencm3_stm32f1.a(iwdg_common_all.o)
+ .group         0x0000000000000000        0xc /Users/richarddavies/Desktop/Side_Projects/CoolEase/Code/stm32f103c8t6/libopencm3/lib/libopencm3_stm32f1.a(iwdg_common_all.o)
+ .group         0x0000000000000000        0xc /Users/richarddavies/Desktop/Side_Projects/CoolEase/Code/stm32f103c8t6/libopencm3/lib/libopencm3_stm32f1.a(iwdg_common_all.o)
+ .group         0x0000000000000000        0xc /Users/richarddavies/Desktop/Side_Projects/CoolEase/Code/stm32f103c8t6/libopencm3/lib/libopencm3_stm32f1.a(iwdg_common_all.o)
+ .group         0x0000000000000000        0xc /Users/richarddavies/Desktop/Side_Projects/CoolEase/Code/stm32f103c8t6/libopencm3/lib/libopencm3_stm32f1.a(iwdg_common_all.o)
+ .group         0x0000000000000000        0xc /Users/richarddavies/Desktop/Side_Projects/CoolEase/Code/stm32f103c8t6/libopencm3/lib/libopencm3_stm32f1.a(iwdg_common_all.o)
+ .group         0x0000000000000000        0xc /Users/richarddavies/Desktop/Side_Projects/CoolEase/Code/stm32f103c8t6/libopencm3/lib/libopencm3_stm32f1.a(iwdg_common_all.o)
+ .group         0x0000000000000000        0xc /Users/richarddavies/Desktop/Side_Projects/CoolEase/Code/stm32f103c8t6/libopencm3/lib/libopencm3_stm32f1.a(iwdg_common_all.o)
+ .group         0x0000000000000000        0xc /Users/richarddavies/Desktop/Side_Projects/CoolEase/Code/stm32f103c8t6/libopencm3/lib/libopencm3_stm32f1.a(iwdg_common_all.o)
+ .text          0x0000000000000000        0x0 /Users/richarddavies/Desktop/Side_Projects/CoolEase/Code/stm32f103c8t6/libopencm3/lib/libopencm3_stm32f1.a(iwdg_common_all.o)
+ .data          0x0000000000000000        0x0 /Users/richarddavies/Desktop/Side_Projects/CoolEase/Code/stm32f103c8t6/libopencm3/lib/libopencm3_stm32f1.a(iwdg_common_all.o)
+ .bss           0x0000000000000000        0x0 /Users/richarddavies/Desktop/Side_Projects/CoolEase/Code/stm32f103c8t6/libopencm3/lib/libopencm3_stm32f1.a(iwdg_common_all.o)
+ .text.iwdg_prescaler_busy
+                0x0000000000000000       0x10 /Users/richarddavies/Desktop/Side_Projects/CoolEase/Code/stm32f103c8t6/libopencm3/lib/libopencm3_stm32f1.a(iwdg_common_all.o)
+ .text.iwdg_reset
+                0x0000000000000000       0x10 /Users/richarddavies/Desktop/Side_Projects/CoolEase/Code/stm32f103c8t6/libopencm3/lib/libopencm3_stm32f1.a(iwdg_common_all.o)
+ .debug_macro   0x0000000000000000      0xa90 /Users/richarddavies/Desktop/Side_Projects/CoolEase/Code/stm32f103c8t6/libopencm3/lib/libopencm3_stm32f1.a(iwdg_common_all.o)
+ .debug_macro   0x0000000000000000       0x1c /Users/richarddavies/Desktop/Side_Projects/CoolEase/Code/stm32f103c8t6/libopencm3/lib/libopencm3_stm32f1.a(iwdg_common_all.o)
+ .debug_macro   0x0000000000000000       0x22 /Users/richarddavies/Desktop/Side_Projects/CoolEase/Code/stm32f103c8t6/libopencm3/lib/libopencm3_stm32f1.a(iwdg_common_all.o)
+ .debug_macro   0x0000000000000000       0x56 /Users/richarddavies/Desktop/Side_Projects/CoolEase/Code/stm32f103c8t6/libopencm3/lib/libopencm3_stm32f1.a(iwdg_common_all.o)
+ .debug_macro   0x0000000000000000       0x51 /Users/richarddavies/Desktop/Side_Projects/CoolEase/Code/stm32f103c8t6/libopencm3/lib/libopencm3_stm32f1.a(iwdg_common_all.o)
+ .debug_macro   0x0000000000000000       0xef /Users/richarddavies/Desktop/Side_Projects/CoolEase/Code/stm32f103c8t6/libopencm3/lib/libopencm3_stm32f1.a(iwdg_common_all.o)
+ .debug_macro   0x0000000000000000       0x6a /Users/richarddavies/Desktop/Side_Projects/CoolEase/Code/stm32f103c8t6/libopencm3/lib/libopencm3_stm32f1.a(iwdg_common_all.o)
+ .debug_macro   0x0000000000000000      0x1df /Users/richarddavies/Desktop/Side_Projects/CoolEase/Code/stm32f103c8t6/libopencm3/lib/libopencm3_stm32f1.a(iwdg_common_all.o)
+ .debug_macro   0x0000000000000000       0x22 /Users/richarddavies/Desktop/Side_Projects/CoolEase/Code/stm32f103c8t6/libopencm3/lib/libopencm3_stm32f1.a(iwdg_common_all.o)
+ .debug_macro   0x0000000000000000       0xe8 /Users/richarddavies/Desktop/Side_Projects/CoolEase/Code/stm32f103c8t6/libopencm3/lib/libopencm3_stm32f1.a(iwdg_common_all.o)
+ .debug_macro   0x0000000000000000       0x76 /Users/richarddavies/Desktop/Side_Projects/CoolEase/Code/stm32f103c8t6/libopencm3/lib/libopencm3_stm32f1.a(iwdg_common_all.o)
+ .debug_macro   0x0000000000000000      0x1b4 /Users/richarddavies/Desktop/Side_Projects/CoolEase/Code/stm32f103c8t6/libopencm3/lib/libopencm3_stm32f1.a(iwdg_common_all.o)
+ .group         0x0000000000000000        0xc /Users/richarddavies/Desktop/Side_Projects/CoolEase/Code/stm32f103c8t6/libopencm3/lib/libopencm3_stm32f1.a(pwr_common_v1.o)
+ .group         0x0000000000000000        0xc /Users/richarddavies/Desktop/Side_Projects/CoolEase/Code/stm32f103c8t6/libopencm3/lib/libopencm3_stm32f1.a(pwr_common_v1.o)
+ .group         0x0000000000000000        0xc /Users/richarddavies/Desktop/Side_Projects/CoolEase/Code/stm32f103c8t6/libopencm3/lib/libopencm3_stm32f1.a(pwr_common_v1.o)
+ .group         0x0000000000000000        0xc /Users/richarddavies/Desktop/Side_Projects/CoolEase/Code/stm32f103c8t6/libopencm3/lib/libopencm3_stm32f1.a(pwr_common_v1.o)
+ .group         0x0000000000000000        0xc /Users/richarddavies/Desktop/Side_Projects/CoolEase/Code/stm32f103c8t6/libopencm3/lib/libopencm3_stm32f1.a(pwr_common_v1.o)
+ .group         0x0000000000000000        0xc /Users/richarddavies/Desktop/Side_Projects/CoolEase/Code/stm32f103c8t6/libopencm3/lib/libopencm3_stm32f1.a(pwr_common_v1.o)
+ .group         0x0000000000000000        0xc /Users/richarddavies/Desktop/Side_Projects/CoolEase/Code/stm32f103c8t6/libopencm3/lib/libopencm3_stm32f1.a(pwr_common_v1.o)
+ .group         0x0000000000000000        0xc /Users/richarddavies/Desktop/Side_Projects/CoolEase/Code/stm32f103c8t6/libopencm3/lib/libopencm3_stm32f1.a(pwr_common_v1.o)
+ .group         0x0000000000000000        0xc /Users/richarddavies/Desktop/Side_Projects/CoolEase/Code/stm32f103c8t6/libopencm3/lib/libopencm3_stm32f1.a(pwr_common_v1.o)
+ .group         0x0000000000000000        0xc /Users/richarddavies/Desktop/Side_Projects/CoolEase/Code/stm32f103c8t6/libopencm3/lib/libopencm3_stm32f1.a(pwr_common_v1.o)
+ .group         0x0000000000000000        0xc /Users/richarddavies/Desktop/Side_Projects/CoolEase/Code/stm32f103c8t6/libopencm3/lib/libopencm3_stm32f1.a(pwr_common_v1.o)
+ .group         0x0000000000000000        0xc /Users/richarddavies/Desktop/Side_Projects/CoolEase/Code/stm32f103c8t6/libopencm3/lib/libopencm3_stm32f1.a(pwr_common_v1.o)
+ .group         0x0000000000000000        0xc /Users/richarddavies/Desktop/Side_Projects/CoolEase/Code/stm32f103c8t6/libopencm3/lib/libopencm3_stm32f1.a(pwr_common_v1.o)
+ .text          0x0000000000000000        0x0 /Users/richarddavies/Desktop/Side_Projects/CoolEase/Code/stm32f103c8t6/libopencm3/lib/libopencm3_stm32f1.a(pwr_common_v1.o)
+ .data          0x0000000000000000        0x0 /Users/richarddavies/Desktop/Side_Projects/CoolEase/Code/stm32f103c8t6/libopencm3/lib/libopencm3_stm32f1.a(pwr_common_v1.o)
+ .bss           0x0000000000000000        0x0 /Users/richarddavies/Desktop/Side_Projects/CoolEase/Code/stm32f103c8t6/libopencm3/lib/libopencm3_stm32f1.a(pwr_common_v1.o)
+ .text.pwr_disable_power_voltage_detect
+                0x0000000000000000       0x10 /Users/richarddavies/Desktop/Side_Projects/CoolEase/Code/stm32f103c8t6/libopencm3/lib/libopencm3_stm32f1.a(pwr_common_v1.o)
+ .text.pwr_set_stop_mode
+                0x0000000000000000       0x10 /Users/richarddavies/Desktop/Side_Projects/CoolEase/Code/stm32f103c8t6/libopencm3/lib/libopencm3_stm32f1.a(pwr_common_v1.o)
+ .text.pwr_voltage_regulator_on_in_stop
+                0x0000000000000000       0x10 /Users/richarddavies/Desktop/Side_Projects/CoolEase/Code/stm32f103c8t6/libopencm3/lib/libopencm3_stm32f1.a(pwr_common_v1.o)
+ .text.pwr_voltage_regulator_low_power_in_stop
+                0x0000000000000000       0x10 /Users/richarddavies/Desktop/Side_Projects/CoolEase/Code/stm32f103c8t6/libopencm3/lib/libopencm3_stm32f1.a(pwr_common_v1.o)
+ .text.pwr_enable_wakeup_pin
+                0x0000000000000000       0x10 /Users/richarddavies/Desktop/Side_Projects/CoolEase/Code/stm32f103c8t6/libopencm3/lib/libopencm3_stm32f1.a(pwr_common_v1.o)
+ .text.pwr_disable_wakeup_pin
+                0x0000000000000000       0x10 /Users/richarddavies/Desktop/Side_Projects/CoolEase/Code/stm32f103c8t6/libopencm3/lib/libopencm3_stm32f1.a(pwr_common_v1.o)
+ .debug_macro   0x0000000000000000      0xa90 /Users/richarddavies/Desktop/Side_Projects/CoolEase/Code/stm32f103c8t6/libopencm3/lib/libopencm3_stm32f1.a(pwr_common_v1.o)
+ .debug_macro   0x0000000000000000       0x1c /Users/richarddavies/Desktop/Side_Projects/CoolEase/Code/stm32f103c8t6/libopencm3/lib/libopencm3_stm32f1.a(pwr_common_v1.o)
+ .debug_macro   0x0000000000000000       0x22 /Users/richarddavies/Desktop/Side_Projects/CoolEase/Code/stm32f103c8t6/libopencm3/lib/libopencm3_stm32f1.a(pwr_common_v1.o)
+ .debug_macro   0x0000000000000000       0x56 /Users/richarddavies/Desktop/Side_Projects/CoolEase/Code/stm32f103c8t6/libopencm3/lib/libopencm3_stm32f1.a(pwr_common_v1.o)
+ .debug_macro   0x0000000000000000       0x51 /Users/richarddavies/Desktop/Side_Projects/CoolEase/Code/stm32f103c8t6/libopencm3/lib/libopencm3_stm32f1.a(pwr_common_v1.o)
+ .debug_macro   0x0000000000000000       0xef /Users/richarddavies/Desktop/Side_Projects/CoolEase/Code/stm32f103c8t6/libopencm3/lib/libopencm3_stm32f1.a(pwr_common_v1.o)
+ .debug_macro   0x0000000000000000       0x6a /Users/richarddavies/Desktop/Side_Projects/CoolEase/Code/stm32f103c8t6/libopencm3/lib/libopencm3_stm32f1.a(pwr_common_v1.o)
+ .debug_macro   0x0000000000000000      0x1df /Users/richarddavies/Desktop/Side_Projects/CoolEase/Code/stm32f103c8t6/libopencm3/lib/libopencm3_stm32f1.a(pwr_common_v1.o)
+ .debug_macro   0x0000000000000000       0x22 /Users/richarddavies/Desktop/Side_Projects/CoolEase/Code/stm32f103c8t6/libopencm3/lib/libopencm3_stm32f1.a(pwr_common_v1.o)
+ .debug_macro   0x0000000000000000       0xe8 /Users/richarddavies/Desktop/Side_Projects/CoolEase/Code/stm32f103c8t6/libopencm3/lib/libopencm3_stm32f1.a(pwr_common_v1.o)
+ .debug_macro   0x0000000000000000       0x76 /Users/richarddavies/Desktop/Side_Projects/CoolEase/Code/stm32f103c8t6/libopencm3/lib/libopencm3_stm32f1.a(pwr_common_v1.o)
+ .debug_macro   0x0000000000000000      0x1b4 /Users/richarddavies/Desktop/Side_Projects/CoolEase/Code/stm32f103c8t6/libopencm3/lib/libopencm3_stm32f1.a(pwr_common_v1.o)
+ .group         0x0000000000000000        0xc /Users/richarddavies/Desktop/Side_Projects/CoolEase/Code/stm32f103c8t6/libopencm3/lib/libopencm3_stm32f1.a(rcc.o)
+ .group         0x0000000000000000        0xc /Users/richarddavies/Desktop/Side_Projects/CoolEase/Code/stm32f103c8t6/libopencm3/lib/libopencm3_stm32f1.a(rcc.o)
+ .group         0x0000000000000000        0xc /Users/richarddavies/Desktop/Side_Projects/CoolEase/Code/stm32f103c8t6/libopencm3/lib/libopencm3_stm32f1.a(rcc.o)
+ .group         0x0000000000000000        0xc /Users/richarddavies/Desktop/Side_Projects/CoolEase/Code/stm32f103c8t6/libopencm3/lib/libopencm3_stm32f1.a(rcc.o)
+ .group         0x0000000000000000        0xc /Users/richarddavies/Desktop/Side_Projects/CoolEase/Code/stm32f103c8t6/libopencm3/lib/libopencm3_stm32f1.a(rcc.o)
+ .group         0x0000000000000000        0xc /Users/richarddavies/Desktop/Side_Projects/CoolEase/Code/stm32f103c8t6/libopencm3/lib/libopencm3_stm32f1.a(rcc.o)
+ .group         0x0000000000000000        0xc /Users/richarddavies/Desktop/Side_Projects/CoolEase/Code/stm32f103c8t6/libopencm3/lib/libopencm3_stm32f1.a(rcc.o)
+ .group         0x0000000000000000        0xc /Users/richarddavies/Desktop/Side_Projects/CoolEase/Code/stm32f103c8t6/libopencm3/lib/libopencm3_stm32f1.a(rcc.o)
+ .group         0x0000000000000000        0xc /Users/richarddavies/Desktop/Side_Projects/CoolEase/Code/stm32f103c8t6/libopencm3/lib/libopencm3_stm32f1.a(rcc.o)
+ .group         0x0000000000000000        0xc /Users/richarddavies/Desktop/Side_Projects/CoolEase/Code/stm32f103c8t6/libopencm3/lib/libopencm3_stm32f1.a(rcc.o)
+ .group         0x0000000000000000        0xc /Users/richarddavies/Desktop/Side_Projects/CoolEase/Code/stm32f103c8t6/libopencm3/lib/libopencm3_stm32f1.a(rcc.o)
+ .group         0x0000000000000000        0xc /Users/richarddavies/Desktop/Side_Projects/CoolEase/Code/stm32f103c8t6/libopencm3/lib/libopencm3_stm32f1.a(rcc.o)
+ .group         0x0000000000000000        0xc /Users/richarddavies/Desktop/Side_Projects/CoolEase/Code/stm32f103c8t6/libopencm3/lib/libopencm3_stm32f1.a(rcc.o)
+ .group         0x0000000000000000        0xc /Users/richarddavies/Desktop/Side_Projects/CoolEase/Code/stm32f103c8t6/libopencm3/lib/libopencm3_stm32f1.a(rcc.o)
+ .group         0x0000000000000000        0xc /Users/richarddavies/Desktop/Side_Projects/CoolEase/Code/stm32f103c8t6/libopencm3/lib/libopencm3_stm32f1.a(rcc.o)
+ .group         0x0000000000000000        0xc /Users/richarddavies/Desktop/Side_Projects/CoolEase/Code/stm32f103c8t6/libopencm3/lib/libopencm3_stm32f1.a(rcc.o)
+ .text          0x0000000000000000        0x0 /Users/richarddavies/Desktop/Side_Projects/CoolEase/Code/stm32f103c8t6/libopencm3/lib/libopencm3_stm32f1.a(rcc.o)
+ .data          0x0000000000000000        0x0 /Users/richarddavies/Desktop/Side_Projects/CoolEase/Code/stm32f103c8t6/libopencm3/lib/libopencm3_stm32f1.a(rcc.o)
+ .bss           0x0000000000000000        0x0 /Users/richarddavies/Desktop/Side_Projects/CoolEase/Code/stm32f103c8t6/libopencm3/lib/libopencm3_stm32f1.a(rcc.o)
+ .text.rcc_osc_ready_int_clear
+                0x0000000000000000       0x5c /Users/richarddavies/Desktop/Side_Projects/CoolEase/Code/stm32f103c8t6/libopencm3/lib/libopencm3_stm32f1.a(rcc.o)
+ .text.rcc_osc_ready_int_enable
+                0x0000000000000000       0x5c /Users/richarddavies/Desktop/Side_Projects/CoolEase/Code/stm32f103c8t6/libopencm3/lib/libopencm3_stm32f1.a(rcc.o)
+ .text.rcc_osc_ready_int_disable
+                0x0000000000000000       0x5c /Users/richarddavies/Desktop/Side_Projects/CoolEase/Code/stm32f103c8t6/libopencm3/lib/libopencm3_stm32f1.a(rcc.o)
+ .text.rcc_osc_ready_int_flag
+                0x0000000000000000       0x54 /Users/richarddavies/Desktop/Side_Projects/CoolEase/Code/stm32f103c8t6/libopencm3/lib/libopencm3_stm32f1.a(rcc.o)
+ .text.rcc_css_int_clear
+                0x0000000000000000       0x10 /Users/richarddavies/Desktop/Side_Projects/CoolEase/Code/stm32f103c8t6/libopencm3/lib/libopencm3_stm32f1.a(rcc.o)
+ .text.rcc_css_int_flag
+                0x0000000000000000       0x10 /Users/richarddavies/Desktop/Side_Projects/CoolEase/Code/stm32f103c8t6/libopencm3/lib/libopencm3_stm32f1.a(rcc.o)
+ .text.rcc_osc_off
+                0x0000000000000000       0x58 /Users/richarddavies/Desktop/Side_Projects/CoolEase/Code/stm32f103c8t6/libopencm3/lib/libopencm3_stm32f1.a(rcc.o)
+ .text.rcc_css_enable
+                0x0000000000000000       0x10 /Users/richarddavies/Desktop/Side_Projects/CoolEase/Code/stm32f103c8t6/libopencm3/lib/libopencm3_stm32f1.a(rcc.o)
+ .text.rcc_css_disable
+                0x0000000000000000       0x10 /Users/richarddavies/Desktop/Side_Projects/CoolEase/Code/stm32f103c8t6/libopencm3/lib/libopencm3_stm32f1.a(rcc.o)
+ .text.rcc_set_sysclk_source
+                0x0000000000000000       0x14 /Users/richarddavies/Desktop/Side_Projects/CoolEase/Code/stm32f103c8t6/libopencm3/lib/libopencm3_stm32f1.a(rcc.o)
+ .text.rcc_set_pll_multiplication_factor
+                0x0000000000000000       0x14 /Users/richarddavies/Desktop/Side_Projects/CoolEase/Code/stm32f103c8t6/libopencm3/lib/libopencm3_stm32f1.a(rcc.o)
+ .text.rcc_set_pll2_multiplication_factor
+                0x0000000000000000       0x14 /Users/richarddavies/Desktop/Side_Projects/CoolEase/Code/stm32f103c8t6/libopencm3/lib/libopencm3_stm32f1.a(rcc.o)
+ .text.rcc_set_pll3_multiplication_factor
+                0x0000000000000000       0x14 /Users/richarddavies/Desktop/Side_Projects/CoolEase/Code/stm32f103c8t6/libopencm3/lib/libopencm3_stm32f1.a(rcc.o)
+ .text.rcc_set_pll_source
+                0x0000000000000000       0x14 /Users/richarddavies/Desktop/Side_Projects/CoolEase/Code/stm32f103c8t6/libopencm3/lib/libopencm3_stm32f1.a(rcc.o)
+ .text.rcc_set_pllxtpre
+                0x0000000000000000       0x14 /Users/richarddavies/Desktop/Side_Projects/CoolEase/Code/stm32f103c8t6/libopencm3/lib/libopencm3_stm32f1.a(rcc.o)
+ .text.rcc_rtc_clock_enabled_flag
+                0x0000000000000000       0x10 /Users/richarddavies/Desktop/Side_Projects/CoolEase/Code/stm32f103c8t6/libopencm3/lib/libopencm3_stm32f1.a(rcc.o)
+ .text.rcc_set_adcpre
+                0x0000000000000000       0x14 /Users/richarddavies/Desktop/Side_Projects/CoolEase/Code/stm32f103c8t6/libopencm3/lib/libopencm3_stm32f1.a(rcc.o)
+ .text.rcc_set_ppre2
+                0x0000000000000000       0x14 /Users/richarddavies/Desktop/Side_Projects/CoolEase/Code/stm32f103c8t6/libopencm3/lib/libopencm3_stm32f1.a(rcc.o)
+ .text.rcc_set_ppre1
+                0x0000000000000000       0x14 /Users/richarddavies/Desktop/Side_Projects/CoolEase/Code/stm32f103c8t6/libopencm3/lib/libopencm3_stm32f1.a(rcc.o)
+ .text.rcc_set_hpre
+                0x0000000000000000       0x14 /Users/richarddavies/Desktop/Side_Projects/CoolEase/Code/stm32f103c8t6/libopencm3/lib/libopencm3_stm32f1.a(rcc.o)
+ .text.rcc_set_usbpre
+                0x0000000000000000       0x18 /Users/richarddavies/Desktop/Side_Projects/CoolEase/Code/stm32f103c8t6/libopencm3/lib/libopencm3_stm32f1.a(rcc.o)
+ .text.rcc_set_prediv1
+                0x0000000000000000       0x14 /Users/richarddavies/Desktop/Side_Projects/CoolEase/Code/stm32f103c8t6/libopencm3/lib/libopencm3_stm32f1.a(rcc.o)
+ .text.rcc_set_prediv2
+                0x0000000000000000       0x14 /Users/richarddavies/Desktop/Side_Projects/CoolEase/Code/stm32f103c8t6/libopencm3/lib/libopencm3_stm32f1.a(rcc.o)
+ .text.rcc_set_prediv1_source
+                0x0000000000000000       0x18 /Users/richarddavies/Desktop/Side_Projects/CoolEase/Code/stm32f103c8t6/libopencm3/lib/libopencm3_stm32f1.a(rcc.o)
+ .text.rcc_system_clock_source
+                0x0000000000000000       0x10 /Users/richarddavies/Desktop/Side_Projects/CoolEase/Code/stm32f103c8t6/libopencm3/lib/libopencm3_stm32f1.a(rcc.o)
+ .text.rcc_clock_setup_in_hsi_out_64mhz
+                0x0000000000000000       0x74 /Users/richarddavies/Desktop/Side_Projects/CoolEase/Code/stm32f103c8t6/libopencm3/lib/libopencm3_stm32f1.a(rcc.o)
+ .text.rcc_clock_setup_in_hsi_out_48mhz
+                0x0000000000000000       0x84 /Users/richarddavies/Desktop/Side_Projects/CoolEase/Code/stm32f103c8t6/libopencm3/lib/libopencm3_stm32f1.a(rcc.o)
+ .text.rcc_clock_setup_in_hsi_out_24mhz
+                0x0000000000000000       0x70 /Users/richarddavies/Desktop/Side_Projects/CoolEase/Code/stm32f103c8t6/libopencm3/lib/libopencm3_stm32f1.a(rcc.o)
+ .text.rcc_clock_setup_in_hse_8mhz_out_24mhz
+                0x0000000000000000       0x88 /Users/richarddavies/Desktop/Side_Projects/CoolEase/Code/stm32f103c8t6/libopencm3/lib/libopencm3_stm32f1.a(rcc.o)
+ .text.rcc_clock_setup_in_hse_8mhz_out_72mhz
+                0x0000000000000000       0x8c /Users/richarddavies/Desktop/Side_Projects/CoolEase/Code/stm32f103c8t6/libopencm3/lib/libopencm3_stm32f1.a(rcc.o)
+ .text.rcc_clock_setup_in_hse_12mhz_out_72mhz
+                0x0000000000000000       0x8c /Users/richarddavies/Desktop/Side_Projects/CoolEase/Code/stm32f103c8t6/libopencm3/lib/libopencm3_stm32f1.a(rcc.o)
+ .text.rcc_clock_setup_in_hse_16mhz_out_72mhz
+                0x0000000000000000       0x8c /Users/richarddavies/Desktop/Side_Projects/CoolEase/Code/stm32f103c8t6/libopencm3/lib/libopencm3_stm32f1.a(rcc.o)
+ .text.rcc_clock_setup_in_hse_25mhz_out_72mhz
+                0x0000000000000000       0xac /Users/richarddavies/Desktop/Side_Projects/CoolEase/Code/stm32f103c8t6/libopencm3/lib/libopencm3_stm32f1.a(rcc.o)
+ .text.rcc_backupdomain_reset
+                0x0000000000000000       0x18 /Users/richarddavies/Desktop/Side_Projects/CoolEase/Code/stm32f103c8t6/libopencm3/lib/libopencm3_stm32f1.a(rcc.o)
+ .data.rcc_ahb_frequency
+                0x0000000000000000        0x4 /Users/richarddavies/Desktop/Side_Projects/CoolEase/Code/stm32f103c8t6/libopencm3/lib/libopencm3_stm32f1.a(rcc.o)
+ .debug_macro   0x0000000000000000      0xa90 /Users/richarddavies/Desktop/Side_Projects/CoolEase/Code/stm32f103c8t6/libopencm3/lib/libopencm3_stm32f1.a(rcc.o)
+ .debug_macro   0x0000000000000000       0x1c /Users/richarddavies/Desktop/Side_Projects/CoolEase/Code/stm32f103c8t6/libopencm3/lib/libopencm3_stm32f1.a(rcc.o)
+ .debug_macro   0x0000000000000000       0x22 /Users/richarddavies/Desktop/Side_Projects/CoolEase/Code/stm32f103c8t6/libopencm3/lib/libopencm3_stm32f1.a(rcc.o)
+ .debug_macro   0x0000000000000000       0x56 /Users/richarddavies/Desktop/Side_Projects/CoolEase/Code/stm32f103c8t6/libopencm3/lib/libopencm3_stm32f1.a(rcc.o)
+ .debug_macro   0x0000000000000000       0x51 /Users/richarddavies/Desktop/Side_Projects/CoolEase/Code/stm32f103c8t6/libopencm3/lib/libopencm3_stm32f1.a(rcc.o)
+ .debug_macro   0x0000000000000000       0xef /Users/richarddavies/Desktop/Side_Projects/CoolEase/Code/stm32f103c8t6/libopencm3/lib/libopencm3_stm32f1.a(rcc.o)
+ .debug_macro   0x0000000000000000       0x6a /Users/richarddavies/Desktop/Side_Projects/CoolEase/Code/stm32f103c8t6/libopencm3/lib/libopencm3_stm32f1.a(rcc.o)
+ .debug_macro   0x0000000000000000      0x1df /Users/richarddavies/Desktop/Side_Projects/CoolEase/Code/stm32f103c8t6/libopencm3/lib/libopencm3_stm32f1.a(rcc.o)
+ .debug_macro   0x0000000000000000       0x22 /Users/richarddavies/Desktop/Side_Projects/CoolEase/Code/stm32f103c8t6/libopencm3/lib/libopencm3_stm32f1.a(rcc.o)
+ .debug_macro   0x0000000000000000       0xe8 /Users/richarddavies/Desktop/Side_Projects/CoolEase/Code/stm32f103c8t6/libopencm3/lib/libopencm3_stm32f1.a(rcc.o)
+ .debug_macro   0x0000000000000000       0x76 /Users/richarddavies/Desktop/Side_Projects/CoolEase/Code/stm32f103c8t6/libopencm3/lib/libopencm3_stm32f1.a(rcc.o)
+ .debug_macro   0x0000000000000000      0x1b4 /Users/richarddavies/Desktop/Side_Projects/CoolEase/Code/stm32f103c8t6/libopencm3/lib/libopencm3_stm32f1.a(rcc.o)
+ .debug_macro   0x0000000000000000      0x82c /Users/richarddavies/Desktop/Side_Projects/CoolEase/Code/stm32f103c8t6/libopencm3/lib/libopencm3_stm32f1.a(rcc.o)
+ .debug_macro   0x0000000000000000       0xee /Users/richarddavies/Desktop/Side_Projects/CoolEase/Code/stm32f103c8t6/libopencm3/lib/libopencm3_stm32f1.a(rcc.o)
+ .debug_macro   0x0000000000000000       0x82 /Users/richarddavies/Desktop/Side_Projects/CoolEase/Code/stm32f103c8t6/libopencm3/lib/libopencm3_stm32f1.a(rcc.o)
+ .group         0x0000000000000000        0xc /Users/richarddavies/Desktop/Side_Projects/CoolEase/Code/stm32f103c8t6/libopencm3/lib/libopencm3_stm32f1.a(rcc_common_all.o)
+ .group         0x0000000000000000        0xc /Users/richarddavies/Desktop/Side_Projects/CoolEase/Code/stm32f103c8t6/libopencm3/lib/libopencm3_stm32f1.a(rcc_common_all.o)
+ .group         0x0000000000000000        0xc /Users/richarddavies/Desktop/Side_Projects/CoolEase/Code/stm32f103c8t6/libopencm3/lib/libopencm3_stm32f1.a(rcc_common_all.o)
+ .group         0x0000000000000000        0xc /Users/richarddavies/Desktop/Side_Projects/CoolEase/Code/stm32f103c8t6/libopencm3/lib/libopencm3_stm32f1.a(rcc_common_all.o)
+ .group         0x0000000000000000        0xc /Users/richarddavies/Desktop/Side_Projects/CoolEase/Code/stm32f103c8t6/libopencm3/lib/libopencm3_stm32f1.a(rcc_common_all.o)
+ .group         0x0000000000000000        0xc /Users/richarddavies/Desktop/Side_Projects/CoolEase/Code/stm32f103c8t6/libopencm3/lib/libopencm3_stm32f1.a(rcc_common_all.o)
+ .group         0x0000000000000000        0xc /Users/richarddavies/Desktop/Side_Projects/CoolEase/Code/stm32f103c8t6/libopencm3/lib/libopencm3_stm32f1.a(rcc_common_all.o)
+ .group         0x0000000000000000        0xc /Users/richarddavies/Desktop/Side_Projects/CoolEase/Code/stm32f103c8t6/libopencm3/lib/libopencm3_stm32f1.a(rcc_common_all.o)
+ .group         0x0000000000000000        0xc /Users/richarddavies/Desktop/Side_Projects/CoolEase/Code/stm32f103c8t6/libopencm3/lib/libopencm3_stm32f1.a(rcc_common_all.o)
+ .group         0x0000000000000000        0xc /Users/richarddavies/Desktop/Side_Projects/CoolEase/Code/stm32f103c8t6/libopencm3/lib/libopencm3_stm32f1.a(rcc_common_all.o)
+ .group         0x0000000000000000        0xc /Users/richarddavies/Desktop/Side_Projects/CoolEase/Code/stm32f103c8t6/libopencm3/lib/libopencm3_stm32f1.a(rcc_common_all.o)
+ .group         0x0000000000000000        0xc /Users/richarddavies/Desktop/Side_Projects/CoolEase/Code/stm32f103c8t6/libopencm3/lib/libopencm3_stm32f1.a(rcc_common_all.o)
+ .group         0x0000000000000000        0xc /Users/richarddavies/Desktop/Side_Projects/CoolEase/Code/stm32f103c8t6/libopencm3/lib/libopencm3_stm32f1.a(rcc_common_all.o)
+ .text          0x0000000000000000        0x0 /Users/richarddavies/Desktop/Side_Projects/CoolEase/Code/stm32f103c8t6/libopencm3/lib/libopencm3_stm32f1.a(rcc_common_all.o)
+ .data          0x0000000000000000        0x0 /Users/richarddavies/Desktop/Side_Projects/CoolEase/Code/stm32f103c8t6/libopencm3/lib/libopencm3_stm32f1.a(rcc_common_all.o)
+ .bss           0x0000000000000000        0x0 /Users/richarddavies/Desktop/Side_Projects/CoolEase/Code/stm32f103c8t6/libopencm3/lib/libopencm3_stm32f1.a(rcc_common_all.o)
+ .text.rcc_peripheral_enable_clock
+                0x0000000000000000        0x8 /Users/richarddavies/Desktop/Side_Projects/CoolEase/Code/stm32f103c8t6/libopencm3/lib/libopencm3_stm32f1.a(rcc_common_all.o)
+ .text.rcc_peripheral_disable_clock
+                0x0000000000000000        0xa /Users/richarddavies/Desktop/Side_Projects/CoolEase/Code/stm32f103c8t6/libopencm3/lib/libopencm3_stm32f1.a(rcc_common_all.o)
+ .text.rcc_peripheral_reset
+                0x0000000000000000        0x8 /Users/richarddavies/Desktop/Side_Projects/CoolEase/Code/stm32f103c8t6/libopencm3/lib/libopencm3_stm32f1.a(rcc_common_all.o)
+ .text.rcc_peripheral_clear_reset
+                0x0000000000000000        0xa /Users/richarddavies/Desktop/Side_Projects/CoolEase/Code/stm32f103c8t6/libopencm3/lib/libopencm3_stm32f1.a(rcc_common_all.o)
+ .text.rcc_periph_clock_disable
+                0x0000000000000000       0x1e /Users/richarddavies/Desktop/Side_Projects/CoolEase/Code/stm32f103c8t6/libopencm3/lib/libopencm3_stm32f1.a(rcc_common_all.o)
+ .text.rcc_periph_reset_pulse
+                0x0000000000000000       0x24 /Users/richarddavies/Desktop/Side_Projects/CoolEase/Code/stm32f103c8t6/libopencm3/lib/libopencm3_stm32f1.a(rcc_common_all.o)
+ .text.rcc_periph_reset_hold
+                0x0000000000000000        0x4 /Users/richarddavies/Desktop/Side_Projects/CoolEase/Code/stm32f103c8t6/libopencm3/lib/libopencm3_stm32f1.a(rcc_common_all.o)
+ .text.rcc_periph_reset_release
+                0x0000000000000000        0x4 /Users/richarddavies/Desktop/Side_Projects/CoolEase/Code/stm32f103c8t6/libopencm3/lib/libopencm3_stm32f1.a(rcc_common_all.o)
+ .text.rcc_set_mco
+                0x0000000000000000       0x14 /Users/richarddavies/Desktop/Side_Projects/CoolEase/Code/stm32f103c8t6/libopencm3/lib/libopencm3_stm32f1.a(rcc_common_all.o)
+ .text.rcc_osc_bypass_enable
+                0x0000000000000000       0x28 /Users/richarddavies/Desktop/Side_Projects/CoolEase/Code/stm32f103c8t6/libopencm3/lib/libopencm3_stm32f1.a(rcc_common_all.o)
+ .text.rcc_osc_bypass_disable
+                0x0000000000000000       0x28 /Users/richarddavies/Desktop/Side_Projects/CoolEase/Code/stm32f103c8t6/libopencm3/lib/libopencm3_stm32f1.a(rcc_common_all.o)
+ .debug_macro   0x0000000000000000      0xa90 /Users/richarddavies/Desktop/Side_Projects/CoolEase/Code/stm32f103c8t6/libopencm3/lib/libopencm3_stm32f1.a(rcc_common_all.o)
+ .debug_macro   0x0000000000000000       0x1c /Users/richarddavies/Desktop/Side_Projects/CoolEase/Code/stm32f103c8t6/libopencm3/lib/libopencm3_stm32f1.a(rcc_common_all.o)
+ .debug_macro   0x0000000000000000       0x22 /Users/richarddavies/Desktop/Side_Projects/CoolEase/Code/stm32f103c8t6/libopencm3/lib/libopencm3_stm32f1.a(rcc_common_all.o)
+ .debug_macro   0x0000000000000000       0x56 /Users/richarddavies/Desktop/Side_Projects/CoolEase/Code/stm32f103c8t6/libopencm3/lib/libopencm3_stm32f1.a(rcc_common_all.o)
+ .debug_macro   0x0000000000000000       0x51 /Users/richarddavies/Desktop/Side_Projects/CoolEase/Code/stm32f103c8t6/libopencm3/lib/libopencm3_stm32f1.a(rcc_common_all.o)
+ .debug_macro   0x0000000000000000       0xef /Users/richarddavies/Desktop/Side_Projects/CoolEase/Code/stm32f103c8t6/libopencm3/lib/libopencm3_stm32f1.a(rcc_common_all.o)
+ .debug_macro   0x0000000000000000       0x6a /Users/richarddavies/Desktop/Side_Projects/CoolEase/Code/stm32f103c8t6/libopencm3/lib/libopencm3_stm32f1.a(rcc_common_all.o)
+ .debug_macro   0x0000000000000000      0x1df /Users/richarddavies/Desktop/Side_Projects/CoolEase/Code/stm32f103c8t6/libopencm3/lib/libopencm3_stm32f1.a(rcc_common_all.o)
+ .debug_macro   0x0000000000000000       0x22 /Users/richarddavies/Desktop/Side_Projects/CoolEase/Code/stm32f103c8t6/libopencm3/lib/libopencm3_stm32f1.a(rcc_common_all.o)
+ .debug_macro   0x0000000000000000       0xe8 /Users/richarddavies/Desktop/Side_Projects/CoolEase/Code/stm32f103c8t6/libopencm3/lib/libopencm3_stm32f1.a(rcc_common_all.o)
+ .debug_macro   0x0000000000000000       0x76 /Users/richarddavies/Desktop/Side_Projects/CoolEase/Code/stm32f103c8t6/libopencm3/lib/libopencm3_stm32f1.a(rcc_common_all.o)
+ .debug_macro   0x0000000000000000      0x1b4 /Users/richarddavies/Desktop/Side_Projects/CoolEase/Code/stm32f103c8t6/libopencm3/lib/libopencm3_stm32f1.a(rcc_common_all.o)
+ .debug_macro   0x0000000000000000      0x82c /Users/richarddavies/Desktop/Side_Projects/CoolEase/Code/stm32f103c8t6/libopencm3/lib/libopencm3_stm32f1.a(rcc_common_all.o)
+ .group         0x0000000000000000        0xc /Users/richarddavies/Desktop/Side_Projects/CoolEase/Code/stm32f103c8t6/libopencm3/lib/libopencm3_stm32f1.a(rtc.o)
+ .group         0x0000000000000000        0xc /Users/richarddavies/Desktop/Side_Projects/CoolEase/Code/stm32f103c8t6/libopencm3/lib/libopencm3_stm32f1.a(rtc.o)
+ .group         0x0000000000000000        0xc /Users/richarddavies/Desktop/Side_Projects/CoolEase/Code/stm32f103c8t6/libopencm3/lib/libopencm3_stm32f1.a(rtc.o)
+ .group         0x0000000000000000        0xc /Users/richarddavies/Desktop/Side_Projects/CoolEase/Code/stm32f103c8t6/libopencm3/lib/libopencm3_stm32f1.a(rtc.o)
+ .group         0x0000000000000000        0xc /Users/richarddavies/Desktop/Side_Projects/CoolEase/Code/stm32f103c8t6/libopencm3/lib/libopencm3_stm32f1.a(rtc.o)
+ .group         0x0000000000000000        0xc /Users/richarddavies/Desktop/Side_Projects/CoolEase/Code/stm32f103c8t6/libopencm3/lib/libopencm3_stm32f1.a(rtc.o)
+ .group         0x0000000000000000        0xc /Users/richarddavies/Desktop/Side_Projects/CoolEase/Code/stm32f103c8t6/libopencm3/lib/libopencm3_stm32f1.a(rtc.o)
+ .group         0x0000000000000000        0xc /Users/richarddavies/Desktop/Side_Projects/CoolEase/Code/stm32f103c8t6/libopencm3/lib/libopencm3_stm32f1.a(rtc.o)
+ .group         0x0000000000000000        0xc /Users/richarddavies/Desktop/Side_Projects/CoolEase/Code/stm32f103c8t6/libopencm3/lib/libopencm3_stm32f1.a(rtc.o)
+ .group         0x0000000000000000        0xc /Users/richarddavies/Desktop/Side_Projects/CoolEase/Code/stm32f103c8t6/libopencm3/lib/libopencm3_stm32f1.a(rtc.o)
+ .group         0x0000000000000000        0xc /Users/richarddavies/Desktop/Side_Projects/CoolEase/Code/stm32f103c8t6/libopencm3/lib/libopencm3_stm32f1.a(rtc.o)
+ .group         0x0000000000000000        0xc /Users/richarddavies/Desktop/Side_Projects/CoolEase/Code/stm32f103c8t6/libopencm3/lib/libopencm3_stm32f1.a(rtc.o)
+ .group         0x0000000000000000        0xc /Users/richarddavies/Desktop/Side_Projects/CoolEase/Code/stm32f103c8t6/libopencm3/lib/libopencm3_stm32f1.a(rtc.o)
+ .group         0x0000000000000000        0xc /Users/richarddavies/Desktop/Side_Projects/CoolEase/Code/stm32f103c8t6/libopencm3/lib/libopencm3_stm32f1.a(rtc.o)
+ .group         0x0000000000000000        0xc /Users/richarddavies/Desktop/Side_Projects/CoolEase/Code/stm32f103c8t6/libopencm3/lib/libopencm3_stm32f1.a(rtc.o)
+ .text          0x0000000000000000        0x0 /Users/richarddavies/Desktop/Side_Projects/CoolEase/Code/stm32f103c8t6/libopencm3/lib/libopencm3_stm32f1.a(rtc.o)
+ .data          0x0000000000000000        0x0 /Users/richarddavies/Desktop/Side_Projects/CoolEase/Code/stm32f103c8t6/libopencm3/lib/libopencm3_stm32f1.a(rtc.o)
+ .bss           0x0000000000000000        0x0 /Users/richarddavies/Desktop/Side_Projects/CoolEase/Code/stm32f103c8t6/libopencm3/lib/libopencm3_stm32f1.a(rtc.o)
+ .text.rtc_set_alarm_time
+                0x0000000000000000       0x20 /Users/richarddavies/Desktop/Side_Projects/CoolEase/Code/stm32f103c8t6/libopencm3/lib/libopencm3_stm32f1.a(rtc.o)
+ .text.rtc_disable_alarm
+                0x0000000000000000       0x1c /Users/richarddavies/Desktop/Side_Projects/CoolEase/Code/stm32f103c8t6/libopencm3/lib/libopencm3_stm32f1.a(rtc.o)
+ .text.rtc_set_prescale_val
+                0x0000000000000000       0x20 /Users/richarddavies/Desktop/Side_Projects/CoolEase/Code/stm32f103c8t6/libopencm3/lib/libopencm3_stm32f1.a(rtc.o)
+ .text.rtc_get_prescale_div_val
+                0x0000000000000000       0x14 /Users/richarddavies/Desktop/Side_Projects/CoolEase/Code/stm32f103c8t6/libopencm3/lib/libopencm3_stm32f1.a(rtc.o)
+ .text.rtc_get_alarm_val
+                0x0000000000000000       0x14 /Users/richarddavies/Desktop/Side_Projects/CoolEase/Code/stm32f103c8t6/libopencm3/lib/libopencm3_stm32f1.a(rtc.o)
+ .text.rtc_set_counter_val
+                0x0000000000000000       0x1c /Users/richarddavies/Desktop/Side_Projects/CoolEase/Code/stm32f103c8t6/libopencm3/lib/libopencm3_stm32f1.a(rtc.o)
+ .text.rtc_interrupt_enable
+                0x0000000000000000       0x3c /Users/richarddavies/Desktop/Side_Projects/CoolEase/Code/stm32f103c8t6/libopencm3/lib/libopencm3_stm32f1.a(rtc.o)
+ .text.rtc_interrupt_disable
+                0x0000000000000000       0x3c /Users/richarddavies/Desktop/Side_Projects/CoolEase/Code/stm32f103c8t6/libopencm3/lib/libopencm3_stm32f1.a(rtc.o)
+ .text.rtc_awake_from_standby
+                0x0000000000000000       0x34 /Users/richarddavies/Desktop/Side_Projects/CoolEase/Code/stm32f103c8t6/libopencm3/lib/libopencm3_stm32f1.a(rtc.o)
+ .text.rtc_auto_awake
+                0x0000000000000000       0x34 /Users/richarddavies/Desktop/Side_Projects/CoolEase/Code/stm32f103c8t6/libopencm3/lib/libopencm3_stm32f1.a(rtc.o)
+ .debug_macro   0x0000000000000000      0xa90 /Users/richarddavies/Desktop/Side_Projects/CoolEase/Code/stm32f103c8t6/libopencm3/lib/libopencm3_stm32f1.a(rtc.o)
+ .debug_macro   0x0000000000000000       0x1c /Users/richarddavies/Desktop/Side_Projects/CoolEase/Code/stm32f103c8t6/libopencm3/lib/libopencm3_stm32f1.a(rtc.o)
+ .debug_macro   0x0000000000000000       0x22 /Users/richarddavies/Desktop/Side_Projects/CoolEase/Code/stm32f103c8t6/libopencm3/lib/libopencm3_stm32f1.a(rtc.o)
+ .debug_macro   0x0000000000000000       0x56 /Users/richarddavies/Desktop/Side_Projects/CoolEase/Code/stm32f103c8t6/libopencm3/lib/libopencm3_stm32f1.a(rtc.o)
+ .debug_macro   0x0000000000000000       0x51 /Users/richarddavies/Desktop/Side_Projects/CoolEase/Code/stm32f103c8t6/libopencm3/lib/libopencm3_stm32f1.a(rtc.o)
+ .debug_macro   0x0000000000000000       0xef /Users/richarddavies/Desktop/Side_Projects/CoolEase/Code/stm32f103c8t6/libopencm3/lib/libopencm3_stm32f1.a(rtc.o)
+ .debug_macro   0x0000000000000000       0x6a /Users/richarddavies/Desktop/Side_Projects/CoolEase/Code/stm32f103c8t6/libopencm3/lib/libopencm3_stm32f1.a(rtc.o)
+ .debug_macro   0x0000000000000000      0x1df /Users/richarddavies/Desktop/Side_Projects/CoolEase/Code/stm32f103c8t6/libopencm3/lib/libopencm3_stm32f1.a(rtc.o)
+ .debug_macro   0x0000000000000000       0x22 /Users/richarddavies/Desktop/Side_Projects/CoolEase/Code/stm32f103c8t6/libopencm3/lib/libopencm3_stm32f1.a(rtc.o)
+ .debug_macro   0x0000000000000000       0xe8 /Users/richarddavies/Desktop/Side_Projects/CoolEase/Code/stm32f103c8t6/libopencm3/lib/libopencm3_stm32f1.a(rtc.o)
+ .debug_macro   0x0000000000000000       0x76 /Users/richarddavies/Desktop/Side_Projects/CoolEase/Code/stm32f103c8t6/libopencm3/lib/libopencm3_stm32f1.a(rtc.o)
+ .debug_macro   0x0000000000000000      0x1b4 /Users/richarddavies/Desktop/Side_Projects/CoolEase/Code/stm32f103c8t6/libopencm3/lib/libopencm3_stm32f1.a(rtc.o)
+ .debug_macro   0x0000000000000000      0x82c /Users/richarddavies/Desktop/Side_Projects/CoolEase/Code/stm32f103c8t6/libopencm3/lib/libopencm3_stm32f1.a(rtc.o)
+ .debug_macro   0x0000000000000000       0x8e /Users/richarddavies/Desktop/Side_Projects/CoolEase/Code/stm32f103c8t6/libopencm3/lib/libopencm3_stm32f1.a(rtc.o)
+ .group         0x0000000000000000        0xc /Users/richarddavies/Desktop/Side_Projects/CoolEase/Code/stm32f103c8t6/libopencm3/lib/libopencm3_stm32f1.a(usart_common_all.o)
+ .group         0x0000000000000000        0xc /Users/richarddavies/Desktop/Side_Projects/CoolEase/Code/stm32f103c8t6/libopencm3/lib/libopencm3_stm32f1.a(usart_common_all.o)
+ .group         0x0000000000000000        0xc /Users/richarddavies/Desktop/Side_Projects/CoolEase/Code/stm32f103c8t6/libopencm3/lib/libopencm3_stm32f1.a(usart_common_all.o)
+ .group         0x0000000000000000        0xc /Users/richarddavies/Desktop/Side_Projects/CoolEase/Code/stm32f103c8t6/libopencm3/lib/libopencm3_stm32f1.a(usart_common_all.o)
+ .group         0x0000000000000000        0xc /Users/richarddavies/Desktop/Side_Projects/CoolEase/Code/stm32f103c8t6/libopencm3/lib/libopencm3_stm32f1.a(usart_common_all.o)
+ .group         0x0000000000000000        0xc /Users/richarddavies/Desktop/Side_Projects/CoolEase/Code/stm32f103c8t6/libopencm3/lib/libopencm3_stm32f1.a(usart_common_all.o)
+ .group         0x0000000000000000        0xc /Users/richarddavies/Desktop/Side_Projects/CoolEase/Code/stm32f103c8t6/libopencm3/lib/libopencm3_stm32f1.a(usart_common_all.o)
+ .group         0x0000000000000000        0xc /Users/richarddavies/Desktop/Side_Projects/CoolEase/Code/stm32f103c8t6/libopencm3/lib/libopencm3_stm32f1.a(usart_common_all.o)
+ .group         0x0000000000000000        0xc /Users/richarddavies/Desktop/Side_Projects/CoolEase/Code/stm32f103c8t6/libopencm3/lib/libopencm3_stm32f1.a(usart_common_all.o)
+ .group         0x0000000000000000        0xc /Users/richarddavies/Desktop/Side_Projects/CoolEase/Code/stm32f103c8t6/libopencm3/lib/libopencm3_stm32f1.a(usart_common_all.o)
+ .group         0x0000000000000000        0xc /Users/richarddavies/Desktop/Side_Projects/CoolEase/Code/stm32f103c8t6/libopencm3/lib/libopencm3_stm32f1.a(usart_common_all.o)
+ .group         0x0000000000000000        0xc /Users/richarddavies/Desktop/Side_Projects/CoolEase/Code/stm32f103c8t6/libopencm3/lib/libopencm3_stm32f1.a(usart_common_all.o)
+ .group         0x0000000000000000        0xc /Users/richarddavies/Desktop/Side_Projects/CoolEase/Code/stm32f103c8t6/libopencm3/lib/libopencm3_stm32f1.a(usart_common_all.o)
+ .group         0x0000000000000000        0xc /Users/richarddavies/Desktop/Side_Projects/CoolEase/Code/stm32f103c8t6/libopencm3/lib/libopencm3_stm32f1.a(usart_common_all.o)
+ .group         0x0000000000000000        0xc /Users/richarddavies/Desktop/Side_Projects/CoolEase/Code/stm32f103c8t6/libopencm3/lib/libopencm3_stm32f1.a(usart_common_all.o)
+ .text          0x0000000000000000        0x0 /Users/richarddavies/Desktop/Side_Projects/CoolEase/Code/stm32f103c8t6/libopencm3/lib/libopencm3_stm32f1.a(usart_common_all.o)
+ .data          0x0000000000000000        0x0 /Users/richarddavies/Desktop/Side_Projects/CoolEase/Code/stm32f103c8t6/libopencm3/lib/libopencm3_stm32f1.a(usart_common_all.o)
+ .bss           0x0000000000000000        0x0 /Users/richarddavies/Desktop/Side_Projects/CoolEase/Code/stm32f103c8t6/libopencm3/lib/libopencm3_stm32f1.a(usart_common_all.o)
+ .text.usart_recv_blocking
+                0x0000000000000000       0x12 /Users/richarddavies/Desktop/Side_Projects/CoolEase/Code/stm32f103c8t6/libopencm3/lib/libopencm3_stm32f1.a(usart_common_all.o)
+ .text.usart_enable_rx_dma
+                0x0000000000000000        0xa /Users/richarddavies/Desktop/Side_Projects/CoolEase/Code/stm32f103c8t6/libopencm3/lib/libopencm3_stm32f1.a(usart_common_all.o)
+ .text.usart_disable_rx_dma
+                0x0000000000000000        0xa /Users/richarddavies/Desktop/Side_Projects/CoolEase/Code/stm32f103c8t6/libopencm3/lib/libopencm3_stm32f1.a(usart_common_all.o)
+ .text.usart_enable_tx_dma
+                0x0000000000000000        0xa /Users/richarddavies/Desktop/Side_Projects/CoolEase/Code/stm32f103c8t6/libopencm3/lib/libopencm3_stm32f1.a(usart_common_all.o)
+ .text.usart_disable_tx_dma
+                0x0000000000000000        0xa /Users/richarddavies/Desktop/Side_Projects/CoolEase/Code/stm32f103c8t6/libopencm3/lib/libopencm3_stm32f1.a(usart_common_all.o)
+ .text.usart_enable_rx_interrupt
+                0x0000000000000000        0xa /Users/richarddavies/Desktop/Side_Projects/CoolEase/Code/stm32f103c8t6/libopencm3/lib/libopencm3_stm32f1.a(usart_common_all.o)
+ .text.usart_disable_rx_interrupt
+                0x0000000000000000        0xa /Users/richarddavies/Desktop/Side_Projects/CoolEase/Code/stm32f103c8t6/libopencm3/lib/libopencm3_stm32f1.a(usart_common_all.o)
+ .text.usart_enable_tx_interrupt
+                0x0000000000000000        0xa /Users/richarddavies/Desktop/Side_Projects/CoolEase/Code/stm32f103c8t6/libopencm3/lib/libopencm3_stm32f1.a(usart_common_all.o)
+ .text.usart_disable_tx_interrupt
+                0x0000000000000000        0xa /Users/richarddavies/Desktop/Side_Projects/CoolEase/Code/stm32f103c8t6/libopencm3/lib/libopencm3_stm32f1.a(usart_common_all.o)
+ .text.usart_enable_error_interrupt
+                0x0000000000000000        0xa /Users/richarddavies/Desktop/Side_Projects/CoolEase/Code/stm32f103c8t6/libopencm3/lib/libopencm3_stm32f1.a(usart_common_all.o)
+ .text.usart_disable_error_interrupt
+                0x0000000000000000        0xa /Users/richarddavies/Desktop/Side_Projects/CoolEase/Code/stm32f103c8t6/libopencm3/lib/libopencm3_stm32f1.a(usart_common_all.o)
+ .debug_macro   0x0000000000000000      0xa90 /Users/richarddavies/Desktop/Side_Projects/CoolEase/Code/stm32f103c8t6/libopencm3/lib/libopencm3_stm32f1.a(usart_common_all.o)
+ .debug_macro   0x0000000000000000       0x1c /Users/richarddavies/Desktop/Side_Projects/CoolEase/Code/stm32f103c8t6/libopencm3/lib/libopencm3_stm32f1.a(usart_common_all.o)
+ .debug_macro   0x0000000000000000       0x22 /Users/richarddavies/Desktop/Side_Projects/CoolEase/Code/stm32f103c8t6/libopencm3/lib/libopencm3_stm32f1.a(usart_common_all.o)
+ .debug_macro   0x0000000000000000       0x56 /Users/richarddavies/Desktop/Side_Projects/CoolEase/Code/stm32f103c8t6/libopencm3/lib/libopencm3_stm32f1.a(usart_common_all.o)
+ .debug_macro   0x0000000000000000       0x51 /Users/richarddavies/Desktop/Side_Projects/CoolEase/Code/stm32f103c8t6/libopencm3/lib/libopencm3_stm32f1.a(usart_common_all.o)
+ .debug_macro   0x0000000000000000       0xef /Users/richarddavies/Desktop/Side_Projects/CoolEase/Code/stm32f103c8t6/libopencm3/lib/libopencm3_stm32f1.a(usart_common_all.o)
+ .debug_macro   0x0000000000000000       0x6a /Users/richarddavies/Desktop/Side_Projects/CoolEase/Code/stm32f103c8t6/libopencm3/lib/libopencm3_stm32f1.a(usart_common_all.o)
+ .debug_macro   0x0000000000000000      0x1df /Users/richarddavies/Desktop/Side_Projects/CoolEase/Code/stm32f103c8t6/libopencm3/lib/libopencm3_stm32f1.a(usart_common_all.o)
+ .debug_macro   0x0000000000000000       0x22 /Users/richarddavies/Desktop/Side_Projects/CoolEase/Code/stm32f103c8t6/libopencm3/lib/libopencm3_stm32f1.a(usart_common_all.o)
+ .debug_macro   0x0000000000000000       0xe8 /Users/richarddavies/Desktop/Side_Projects/CoolEase/Code/stm32f103c8t6/libopencm3/lib/libopencm3_stm32f1.a(usart_common_all.o)
+ .debug_macro   0x0000000000000000       0x76 /Users/richarddavies/Desktop/Side_Projects/CoolEase/Code/stm32f103c8t6/libopencm3/lib/libopencm3_stm32f1.a(usart_common_all.o)
+ .debug_macro   0x0000000000000000      0x1b4 /Users/richarddavies/Desktop/Side_Projects/CoolEase/Code/stm32f103c8t6/libopencm3/lib/libopencm3_stm32f1.a(usart_common_all.o)
+ .debug_macro   0x0000000000000000      0x82c /Users/richarddavies/Desktop/Side_Projects/CoolEase/Code/stm32f103c8t6/libopencm3/lib/libopencm3_stm32f1.a(usart_common_all.o)
+ .group         0x0000000000000000        0xc /Users/richarddavies/Desktop/Side_Projects/CoolEase/Code/stm32f103c8t6/libopencm3/lib/libopencm3_stm32f1.a(usart_common_f124.o)
+ .group         0x0000000000000000        0xc /Users/richarddavies/Desktop/Side_Projects/CoolEase/Code/stm32f103c8t6/libopencm3/lib/libopencm3_stm32f1.a(usart_common_f124.o)
+ .group         0x0000000000000000        0xc /Users/richarddavies/Desktop/Side_Projects/CoolEase/Code/stm32f103c8t6/libopencm3/lib/libopencm3_stm32f1.a(usart_common_f124.o)
+ .group         0x0000000000000000        0xc /Users/richarddavies/Desktop/Side_Projects/CoolEase/Code/stm32f103c8t6/libopencm3/lib/libopencm3_stm32f1.a(usart_common_f124.o)
+ .group         0x0000000000000000        0xc /Users/richarddavies/Desktop/Side_Projects/CoolEase/Code/stm32f103c8t6/libopencm3/lib/libopencm3_stm32f1.a(usart_common_f124.o)
+ .group         0x0000000000000000        0xc /Users/richarddavies/Desktop/Side_Projects/CoolEase/Code/stm32f103c8t6/libopencm3/lib/libopencm3_stm32f1.a(usart_common_f124.o)
+ .group         0x0000000000000000        0xc /Users/richarddavies/Desktop/Side_Projects/CoolEase/Code/stm32f103c8t6/libopencm3/lib/libopencm3_stm32f1.a(usart_common_f124.o)
+ .group         0x0000000000000000        0xc /Users/richarddavies/Desktop/Side_Projects/CoolEase/Code/stm32f103c8t6/libopencm3/lib/libopencm3_stm32f1.a(usart_common_f124.o)
+ .group         0x0000000000000000        0xc /Users/richarddavies/Desktop/Side_Projects/CoolEase/Code/stm32f103c8t6/libopencm3/lib/libopencm3_stm32f1.a(usart_common_f124.o)
+ .group         0x0000000000000000        0xc /Users/richarddavies/Desktop/Side_Projects/CoolEase/Code/stm32f103c8t6/libopencm3/lib/libopencm3_stm32f1.a(usart_common_f124.o)
+ .group         0x0000000000000000        0xc /Users/richarddavies/Desktop/Side_Projects/CoolEase/Code/stm32f103c8t6/libopencm3/lib/libopencm3_stm32f1.a(usart_common_f124.o)
+ .group         0x0000000000000000        0xc /Users/richarddavies/Desktop/Side_Projects/CoolEase/Code/stm32f103c8t6/libopencm3/lib/libopencm3_stm32f1.a(usart_common_f124.o)
+ .group         0x0000000000000000        0xc /Users/richarddavies/Desktop/Side_Projects/CoolEase/Code/stm32f103c8t6/libopencm3/lib/libopencm3_stm32f1.a(usart_common_f124.o)
+ .group         0x0000000000000000        0xc /Users/richarddavies/Desktop/Side_Projects/CoolEase/Code/stm32f103c8t6/libopencm3/lib/libopencm3_stm32f1.a(usart_common_f124.o)
+ .group         0x0000000000000000        0xc /Users/richarddavies/Desktop/Side_Projects/CoolEase/Code/stm32f103c8t6/libopencm3/lib/libopencm3_stm32f1.a(usart_common_f124.o)
+ .text          0x0000000000000000        0x0 /Users/richarddavies/Desktop/Side_Projects/CoolEase/Code/stm32f103c8t6/libopencm3/lib/libopencm3_stm32f1.a(usart_common_f124.o)
+ .data          0x0000000000000000        0x0 /Users/richarddavies/Desktop/Side_Projects/CoolEase/Code/stm32f103c8t6/libopencm3/lib/libopencm3_stm32f1.a(usart_common_f124.o)
+ .bss           0x0000000000000000        0x0 /Users/richarddavies/Desktop/Side_Projects/CoolEase/Code/stm32f103c8t6/libopencm3/lib/libopencm3_stm32f1.a(usart_common_f124.o)
+ .text.usart_recv
+                0x0000000000000000        0x8 /Users/richarddavies/Desktop/Side_Projects/CoolEase/Code/stm32f103c8t6/libopencm3/lib/libopencm3_stm32f1.a(usart_common_f124.o)
+ .text.usart_wait_recv_ready
+                0x0000000000000000        0x8 /Users/richarddavies/Desktop/Side_Projects/CoolEase/Code/stm32f103c8t6/libopencm3/lib/libopencm3_stm32f1.a(usart_common_f124.o)
+ .text.usart_get_flag
+                0x0000000000000000        0xc /Users/richarddavies/Desktop/Side_Projects/CoolEase/Code/stm32f103c8t6/libopencm3/lib/libopencm3_stm32f1.a(usart_common_f124.o)
+ .debug_macro   0x0000000000000000      0xa90 /Users/richarddavies/Desktop/Side_Projects/CoolEase/Code/stm32f103c8t6/libopencm3/lib/libopencm3_stm32f1.a(usart_common_f124.o)
+ .debug_macro   0x0000000000000000       0x1c /Users/richarddavies/Desktop/Side_Projects/CoolEase/Code/stm32f103c8t6/libopencm3/lib/libopencm3_stm32f1.a(usart_common_f124.o)
+ .debug_macro   0x0000000000000000       0x22 /Users/richarddavies/Desktop/Side_Projects/CoolEase/Code/stm32f103c8t6/libopencm3/lib/libopencm3_stm32f1.a(usart_common_f124.o)
+ .debug_macro   0x0000000000000000       0x56 /Users/richarddavies/Desktop/Side_Projects/CoolEase/Code/stm32f103c8t6/libopencm3/lib/libopencm3_stm32f1.a(usart_common_f124.o)
+ .debug_macro   0x0000000000000000       0x51 /Users/richarddavies/Desktop/Side_Projects/CoolEase/Code/stm32f103c8t6/libopencm3/lib/libopencm3_stm32f1.a(usart_common_f124.o)
+ .debug_macro   0x0000000000000000       0xef /Users/richarddavies/Desktop/Side_Projects/CoolEase/Code/stm32f103c8t6/libopencm3/lib/libopencm3_stm32f1.a(usart_common_f124.o)
+ .debug_macro   0x0000000000000000       0x6a /Users/richarddavies/Desktop/Side_Projects/CoolEase/Code/stm32f103c8t6/libopencm3/lib/libopencm3_stm32f1.a(usart_common_f124.o)
+ .debug_macro   0x0000000000000000      0x1df /Users/richarddavies/Desktop/Side_Projects/CoolEase/Code/stm32f103c8t6/libopencm3/lib/libopencm3_stm32f1.a(usart_common_f124.o)
+ .debug_macro   0x0000000000000000       0x22 /Users/richarddavies/Desktop/Side_Projects/CoolEase/Code/stm32f103c8t6/libopencm3/lib/libopencm3_stm32f1.a(usart_common_f124.o)
+ .debug_macro   0x0000000000000000       0xe8 /Users/richarddavies/Desktop/Side_Projects/CoolEase/Code/stm32f103c8t6/libopencm3/lib/libopencm3_stm32f1.a(usart_common_f124.o)
+ .debug_macro   0x0000000000000000       0x76 /Users/richarddavies/Desktop/Side_Projects/CoolEase/Code/stm32f103c8t6/libopencm3/lib/libopencm3_stm32f1.a(usart_common_f124.o)
+ .debug_macro   0x0000000000000000      0x1b4 /Users/richarddavies/Desktop/Side_Projects/CoolEase/Code/stm32f103c8t6/libopencm3/lib/libopencm3_stm32f1.a(usart_common_f124.o)
+ .debug_macro   0x0000000000000000       0x94 /Users/richarddavies/Desktop/Side_Projects/CoolEase/Code/stm32f103c8t6/libopencm3/lib/libopencm3_stm32f1.a(usart_common_f124.o)
+ .debug_macro   0x0000000000000000      0x29e /Users/richarddavies/Desktop/Side_Projects/CoolEase/Code/stm32f103c8t6/libopencm3/lib/libopencm3_stm32f1.a(usart_common_f124.o)
+ .debug_macro   0x0000000000000000      0x82c /Users/richarddavies/Desktop/Side_Projects/CoolEase/Code/stm32f103c8t6/libopencm3/lib/libopencm3_stm32f1.a(usart_common_f124.o)
+ .group         0x0000000000000000        0xc /Users/richarddavies/Desktop/Side_Projects/CoolEase/Code/stm32f103c8t6/libopencm3/lib/libopencm3_stm32f1.a(vector.o)
+ .group         0x0000000000000000        0xc /Users/richarddavies/Desktop/Side_Projects/CoolEase/Code/stm32f103c8t6/libopencm3/lib/libopencm3_stm32f1.a(vector.o)
+ .group         0x0000000000000000        0xc /Users/richarddavies/Desktop/Side_Projects/CoolEase/Code/stm32f103c8t6/libopencm3/lib/libopencm3_stm32f1.a(vector.o)
+ .group         0x0000000000000000        0xc /Users/richarddavies/Desktop/Side_Projects/CoolEase/Code/stm32f103c8t6/libopencm3/lib/libopencm3_stm32f1.a(vector.o)
+ .group         0x0000000000000000        0xc /Users/richarddavies/Desktop/Side_Projects/CoolEase/Code/stm32f103c8t6/libopencm3/lib/libopencm3_stm32f1.a(vector.o)
+ .group         0x0000000000000000        0xc /Users/richarddavies/Desktop/Side_Projects/CoolEase/Code/stm32f103c8t6/libopencm3/lib/libopencm3_stm32f1.a(vector.o)
+ .group         0x0000000000000000        0xc /Users/richarddavies/Desktop/Side_Projects/CoolEase/Code/stm32f103c8t6/libopencm3/lib/libopencm3_stm32f1.a(vector.o)
+ .group         0x0000000000000000        0xc /Users/richarddavies/Desktop/Side_Projects/CoolEase/Code/stm32f103c8t6/libopencm3/lib/libopencm3_stm32f1.a(vector.o)
+ .group         0x0000000000000000        0xc /Users/richarddavies/Desktop/Side_Projects/CoolEase/Code/stm32f103c8t6/libopencm3/lib/libopencm3_stm32f1.a(vector.o)
+ .group         0x0000000000000000        0xc /Users/richarddavies/Desktop/Side_Projects/CoolEase/Code/stm32f103c8t6/libopencm3/lib/libopencm3_stm32f1.a(vector.o)
+ .group         0x0000000000000000        0xc /Users/richarddavies/Desktop/Side_Projects/CoolEase/Code/stm32f103c8t6/libopencm3/lib/libopencm3_stm32f1.a(vector.o)
+ .group         0x0000000000000000        0xc /Users/richarddavies/Desktop/Side_Projects/CoolEase/Code/stm32f103c8t6/libopencm3/lib/libopencm3_stm32f1.a(vector.o)
+ .group         0x0000000000000000        0xc /Users/richarddavies/Desktop/Side_Projects/CoolEase/Code/stm32f103c8t6/libopencm3/lib/libopencm3_stm32f1.a(vector.o)
+ .group         0x0000000000000000        0xc /Users/richarddavies/Desktop/Side_Projects/CoolEase/Code/stm32f103c8t6/libopencm3/lib/libopencm3_stm32f1.a(vector.o)
+ .text          0x0000000000000000        0x0 /Users/richarddavies/Desktop/Side_Projects/CoolEase/Code/stm32f103c8t6/libopencm3/lib/libopencm3_stm32f1.a(vector.o)
+ .data          0x0000000000000000        0x0 /Users/richarddavies/Desktop/Side_Projects/CoolEase/Code/stm32f103c8t6/libopencm3/lib/libopencm3_stm32f1.a(vector.o)
+ .bss           0x0000000000000000        0x0 /Users/richarddavies/Desktop/Side_Projects/CoolEase/Code/stm32f103c8t6/libopencm3/lib/libopencm3_stm32f1.a(vector.o)
+ .debug_macro   0x0000000000000000      0xa90 /Users/richarddavies/Desktop/Side_Projects/CoolEase/Code/stm32f103c8t6/libopencm3/lib/libopencm3_stm32f1.a(vector.o)
+ .debug_macro   0x0000000000000000       0x76 /Users/richarddavies/Desktop/Side_Projects/CoolEase/Code/stm32f103c8t6/libopencm3/lib/libopencm3_stm32f1.a(vector.o)
+ .debug_macro   0x0000000000000000       0x1c /Users/richarddavies/Desktop/Side_Projects/CoolEase/Code/stm32f103c8t6/libopencm3/lib/libopencm3_stm32f1.a(vector.o)
+ .debug_macro   0x0000000000000000       0x22 /Users/richarddavies/Desktop/Side_Projects/CoolEase/Code/stm32f103c8t6/libopencm3/lib/libopencm3_stm32f1.a(vector.o)
+ .debug_macro   0x0000000000000000       0x56 /Users/richarddavies/Desktop/Side_Projects/CoolEase/Code/stm32f103c8t6/libopencm3/lib/libopencm3_stm32f1.a(vector.o)
+ .debug_macro   0x0000000000000000       0x51 /Users/richarddavies/Desktop/Side_Projects/CoolEase/Code/stm32f103c8t6/libopencm3/lib/libopencm3_stm32f1.a(vector.o)
+ .debug_macro   0x0000000000000000       0xef /Users/richarddavies/Desktop/Side_Projects/CoolEase/Code/stm32f103c8t6/libopencm3/lib/libopencm3_stm32f1.a(vector.o)
+ .debug_macro   0x0000000000000000       0x6a /Users/richarddavies/Desktop/Side_Projects/CoolEase/Code/stm32f103c8t6/libopencm3/lib/libopencm3_stm32f1.a(vector.o)
+ .debug_macro   0x0000000000000000      0x1df /Users/richarddavies/Desktop/Side_Projects/CoolEase/Code/stm32f103c8t6/libopencm3/lib/libopencm3_stm32f1.a(vector.o)
+ .debug_macro   0x0000000000000000       0x22 /Users/richarddavies/Desktop/Side_Projects/CoolEase/Code/stm32f103c8t6/libopencm3/lib/libopencm3_stm32f1.a(vector.o)
+ .debug_macro   0x0000000000000000       0xe8 /Users/richarddavies/Desktop/Side_Projects/CoolEase/Code/stm32f103c8t6/libopencm3/lib/libopencm3_stm32f1.a(vector.o)
+ .group         0x0000000000000000        0xc /Users/richarddavies/Desktop/Side_Projects/CoolEase/Code/stm32f103c8t6/libopencm3/lib/libopencm3_stm32f1.a(assert.o)
+ .group         0x0000000000000000        0xc /Users/richarddavies/Desktop/Side_Projects/CoolEase/Code/stm32f103c8t6/libopencm3/lib/libopencm3_stm32f1.a(assert.o)
+ .group         0x0000000000000000        0xc /Users/richarddavies/Desktop/Side_Projects/CoolEase/Code/stm32f103c8t6/libopencm3/lib/libopencm3_stm32f1.a(assert.o)
+ .group         0x0000000000000000        0xc /Users/richarddavies/Desktop/Side_Projects/CoolEase/Code/stm32f103c8t6/libopencm3/lib/libopencm3_stm32f1.a(assert.o)
+ .group         0x0000000000000000        0xc /Users/richarddavies/Desktop/Side_Projects/CoolEase/Code/stm32f103c8t6/libopencm3/lib/libopencm3_stm32f1.a(assert.o)
+ .group         0x0000000000000000        0xc /Users/richarddavies/Desktop/Side_Projects/CoolEase/Code/stm32f103c8t6/libopencm3/lib/libopencm3_stm32f1.a(assert.o)
+ .group         0x0000000000000000        0xc /Users/richarddavies/Desktop/Side_Projects/CoolEase/Code/stm32f103c8t6/libopencm3/lib/libopencm3_stm32f1.a(assert.o)
+ .group         0x0000000000000000        0xc /Users/richarddavies/Desktop/Side_Projects/CoolEase/Code/stm32f103c8t6/libopencm3/lib/libopencm3_stm32f1.a(assert.o)
+ .group         0x0000000000000000        0xc /Users/richarddavies/Desktop/Side_Projects/CoolEase/Code/stm32f103c8t6/libopencm3/lib/libopencm3_stm32f1.a(assert.o)
+ .group         0x0000000000000000        0xc /Users/richarddavies/Desktop/Side_Projects/CoolEase/Code/stm32f103c8t6/libopencm3/lib/libopencm3_stm32f1.a(assert.o)
+ .group         0x0000000000000000        0xc /Users/richarddavies/Desktop/Side_Projects/CoolEase/Code/stm32f103c8t6/libopencm3/lib/libopencm3_stm32f1.a(assert.o)
+ .text          0x0000000000000000        0x0 /Users/richarddavies/Desktop/Side_Projects/CoolEase/Code/stm32f103c8t6/libopencm3/lib/libopencm3_stm32f1.a(assert.o)
+ .data          0x0000000000000000        0x0 /Users/richarddavies/Desktop/Side_Projects/CoolEase/Code/stm32f103c8t6/libopencm3/lib/libopencm3_stm32f1.a(assert.o)
+ .bss           0x0000000000000000        0x0 /Users/richarddavies/Desktop/Side_Projects/CoolEase/Code/stm32f103c8t6/libopencm3/lib/libopencm3_stm32f1.a(assert.o)
+ .text.cm3_assert_failed
+                0x0000000000000000        0x2 /Users/richarddavies/Desktop/Side_Projects/CoolEase/Code/stm32f103c8t6/libopencm3/lib/libopencm3_stm32f1.a(assert.o)
+ .text.cm3_assert_failed_verbose
+                0x0000000000000000        0x6 /Users/richarddavies/Desktop/Side_Projects/CoolEase/Code/stm32f103c8t6/libopencm3/lib/libopencm3_stm32f1.a(assert.o)
+ .debug_info    0x0000000000000000      0x104 /Users/richarddavies/Desktop/Side_Projects/CoolEase/Code/stm32f103c8t6/libopencm3/lib/libopencm3_stm32f1.a(assert.o)
+ .debug_abbrev  0x0000000000000000       0x98 /Users/richarddavies/Desktop/Side_Projects/CoolEase/Code/stm32f103c8t6/libopencm3/lib/libopencm3_stm32f1.a(assert.o)
+ .debug_loc     0x0000000000000000       0x94 /Users/richarddavies/Desktop/Side_Projects/CoolEase/Code/stm32f103c8t6/libopencm3/lib/libopencm3_stm32f1.a(assert.o)
+ .debug_aranges
+                0x0000000000000000       0x28 /Users/richarddavies/Desktop/Side_Projects/CoolEase/Code/stm32f103c8t6/libopencm3/lib/libopencm3_stm32f1.a(assert.o)
+ .debug_ranges  0x0000000000000000       0x18 /Users/richarddavies/Desktop/Side_Projects/CoolEase/Code/stm32f103c8t6/libopencm3/lib/libopencm3_stm32f1.a(assert.o)
+ .debug_macro   0x0000000000000000       0x89 /Users/richarddavies/Desktop/Side_Projects/CoolEase/Code/stm32f103c8t6/libopencm3/lib/libopencm3_stm32f1.a(assert.o)
+ .debug_macro   0x0000000000000000      0xa90 /Users/richarddavies/Desktop/Side_Projects/CoolEase/Code/stm32f103c8t6/libopencm3/lib/libopencm3_stm32f1.a(assert.o)
+ .debug_macro   0x0000000000000000       0x1c /Users/richarddavies/Desktop/Side_Projects/CoolEase/Code/stm32f103c8t6/libopencm3/lib/libopencm3_stm32f1.a(assert.o)
+ .debug_macro   0x0000000000000000       0x22 /Users/richarddavies/Desktop/Side_Projects/CoolEase/Code/stm32f103c8t6/libopencm3/lib/libopencm3_stm32f1.a(assert.o)
+ .debug_macro   0x0000000000000000       0x56 /Users/richarddavies/Desktop/Side_Projects/CoolEase/Code/stm32f103c8t6/libopencm3/lib/libopencm3_stm32f1.a(assert.o)
+ .debug_macro   0x0000000000000000       0x51 /Users/richarddavies/Desktop/Side_Projects/CoolEase/Code/stm32f103c8t6/libopencm3/lib/libopencm3_stm32f1.a(assert.o)
+ .debug_macro   0x0000000000000000       0xef /Users/richarddavies/Desktop/Side_Projects/CoolEase/Code/stm32f103c8t6/libopencm3/lib/libopencm3_stm32f1.a(assert.o)
+ .debug_macro   0x0000000000000000       0x6a /Users/richarddavies/Desktop/Side_Projects/CoolEase/Code/stm32f103c8t6/libopencm3/lib/libopencm3_stm32f1.a(assert.o)
+ .debug_macro   0x0000000000000000      0x1df /Users/richarddavies/Desktop/Side_Projects/CoolEase/Code/stm32f103c8t6/libopencm3/lib/libopencm3_stm32f1.a(assert.o)
+ .debug_macro   0x0000000000000000       0x22 /Users/richarddavies/Desktop/Side_Projects/CoolEase/Code/stm32f103c8t6/libopencm3/lib/libopencm3_stm32f1.a(assert.o)
+ .debug_macro   0x0000000000000000       0xe8 /Users/richarddavies/Desktop/Side_Projects/CoolEase/Code/stm32f103c8t6/libopencm3/lib/libopencm3_stm32f1.a(assert.o)
+ .debug_macro   0x0000000000000000       0x16 /Users/richarddavies/Desktop/Side_Projects/CoolEase/Code/stm32f103c8t6/libopencm3/lib/libopencm3_stm32f1.a(assert.o)
+ .debug_line    0x0000000000000000      0x24b /Users/richarddavies/Desktop/Side_Projects/CoolEase/Code/stm32f103c8t6/libopencm3/lib/libopencm3_stm32f1.a(assert.o)
+ .debug_str     0x0000000000000000     0x40ea /Users/richarddavies/Desktop/Side_Projects/CoolEase/Code/stm32f103c8t6/libopencm3/lib/libopencm3_stm32f1.a(assert.o)
+ .comment       0x0000000000000000       0x7a /Users/richarddavies/Desktop/Side_Projects/CoolEase/Code/stm32f103c8t6/libopencm3/lib/libopencm3_stm32f1.a(assert.o)
+ .debug_frame   0x0000000000000000       0x38 /Users/richarddavies/Desktop/Side_Projects/CoolEase/Code/stm32f103c8t6/libopencm3/lib/libopencm3_stm32f1.a(assert.o)
+ .ARM.attributes
+                0x0000000000000000       0x2d /Users/richarddavies/Desktop/Side_Projects/CoolEase/Code/stm32f103c8t6/libopencm3/lib/libopencm3_stm32f1.a(assert.o)
+
+Memory Configuration
+
+Name             Origin             Length             Attributes
+rom              0x0000000008000000 0x0000000000010000 xr
+ram              0x0000000020000000 0x0000000000005000 xrw
+*default*        0x0000000000000000 0xffffffffffffffff
+
+Linker script and memory map
+
+LOAD build/sensor.o
+LOAD build/cc1101.o
+LOAD build/si7051.o
+LOAD build/timers.o
+LOAD build/serial_printf.o
+LOAD build/led.o
+LOAD build/printf.o
+LOAD build/reset.o
+LOAD build/battery.o
+START GROUP
+LOAD /Users/richarddavies/Desktop/Side_Projects/CoolEase/Code/stm32f103c8t6/util/gcc-arm/bin/../lib/gcc/arm-none-eabi/9.2.1/../../../../arm-none-eabi/lib/thumb/v7-m/nofp/libc.a
+LOAD /Users/richarddavies/Desktop/Side_Projects/CoolEase/Code/stm32f103c8t6/util/gcc-arm/bin/../lib/gcc/arm-none-eabi/9.2.1/thumb/v7-m/nofp/libgcc.a
+LOAD /Users/richarddavies/Desktop/Side_Projects/CoolEase/Code/stm32f103c8t6/util/gcc-arm/bin/../lib/gcc/arm-none-eabi/9.2.1/../../../../arm-none-eabi/lib/thumb/v7-m/nofp/libnosys.a
+END GROUP
+LOAD /Users/richarddavies/Desktop/Side_Projects/CoolEase/Code/stm32f103c8t6/libopencm3/lib/libopencm3_stm32f1.a
+START GROUP
+LOAD /Users/richarddavies/Desktop/Side_Projects/CoolEase/Code/stm32f103c8t6/util/gcc-arm/bin/../lib/gcc/arm-none-eabi/9.2.1/thumb/v7-m/nofp/libgcc.a
+LOAD /Users/richarddavies/Desktop/Side_Projects/CoolEase/Code/stm32f103c8t6/util/gcc-arm/bin/../lib/gcc/arm-none-eabi/9.2.1/../../../../arm-none-eabi/lib/thumb/v7-m/nofp/libc.a
+END GROUP
+START GROUP
+LOAD /Users/richarddavies/Desktop/Side_Projects/CoolEase/Code/stm32f103c8t6/util/gcc-arm/bin/../lib/gcc/arm-none-eabi/9.2.1/thumb/v7-m/nofp/libgcc.a
+LOAD /Users/richarddavies/Desktop/Side_Projects/CoolEase/Code/stm32f103c8t6/util/gcc-arm/bin/../lib/gcc/arm-none-eabi/9.2.1/../../../../arm-none-eabi/lib/thumb/v7-m/nofp/libc.a
+LOAD /Users/richarddavies/Desktop/Side_Projects/CoolEase/Code/stm32f103c8t6/util/gcc-arm/bin/../lib/gcc/arm-none-eabi/9.2.1/../../../../arm-none-eabi/lib/thumb/v7-m/nofp/libnosys.a
+END GROUP
+
+.text           0x0000000008000000     0x2970
+ *(.vectors)
+ .vectors       0x0000000008000000      0x150 /Users/richarddavies/Desktop/Side_Projects/CoolEase/Code/stm32f103c8t6/libopencm3/lib/libopencm3_stm32f1.a(vector.o)
+                0x0000000008000000                vector_table
+ *(.text*)
+ .text.main     0x0000000008000150       0x60 build/sensor.o
+                0x0000000008000150                main
+ .text.timers_rtc_init
+                0x00000000080001b0       0x38 build/timers.o
+                0x00000000080001b0                timers_rtc_init
+ .text.timers_enter_standby
+                0x00000000080001e8       0x6c build/timers.o
+                0x00000000080001e8                timers_enter_standby
+ .text.timers_prepare_and_enter_standby
+                0x0000000008000254       0x24 build/timers.o
+                0x0000000008000254                timers_prepare_and_enter_standby
+ .text.timers_standby_check
+                0x0000000008000278       0x24 build/timers.o
+                0x0000000008000278                timers_standby_check
+ .text.timers_delay
+                0x000000000800029c       0x1a build/timers.o
+                0x000000000800029c                timers_delay
+ .text.rtc_isr  0x00000000080002b6       0x14 build/timers.o
+                0x00000000080002b6                rtc_isr
+ .text.init_clock
+                0x00000000080002ca       0x14 build/serial_printf.o
+ *fill*         0x00000000080002de        0x2 
+ .text.init_usart
+                0x00000000080002e0       0x5c build/serial_printf.o
+ .text.serial_print
+                0x000000000800033c       0x28 build/serial_printf.o
+                0x000000000800033c                serial_print
+ .text._putchar
+                0x0000000008000364       0x10 build/serial_printf.o
+                0x0000000008000364                _putchar
+ .text.led_init
+                0x0000000008000374       0x50 build/led.o
+                0x0000000008000374                led_init
+ .text._out_null
+                0x00000000080003c4        0x2 build/printf.o
+ .text._atoi    0x00000000080003c6       0x24 build/printf.o
+ .text._out_rev
+                0x00000000080003ea       0x7e build/printf.o
+ .text._ntoa_format
+                0x0000000008000468      0x114 build/printf.o
+ .text._ntoa_long
+                0x000000000800057c       0x94 build/printf.o
+ .text._ntoa_long_long
+                0x0000000008000610       0xba build/printf.o
+ *fill*         0x00000000080006ca        0x6 
+ .text._etoa    0x00000000080006d0      0x3e0 build/printf.o
+ .text._ftoa    0x0000000008000ab0      0x378 build/printf.o
+ .text._vsnprintf
+                0x0000000008000e28      0x6d0 build/printf.o
+ .text._out_char
+                0x00000000080014f8        0xc build/printf.o
+ .text.vprintf_
+                0x0000000008001504       0x20 build/printf.o
+                0x0000000008001504                vprintf_
+ .text.reset_print_cause
+                0x0000000008001524       0xc8 build/reset.o
+                0x0000000008001524                reset_print_cause
+ .text.batt_get_voltage
+                0x00000000080015ec       0x8c build/battery.o
+                0x00000000080015ec                batt_get_voltage
+ .text          0x0000000008001678      0x378 /Users/richarddavies/Desktop/Side_Projects/CoolEase/Code/stm32f103c8t6/util/gcc-arm/bin/../lib/gcc/arm-none-eabi/9.2.1/thumb/v7-m/nofp/libgcc.a(_arm_addsubdf3.o)
+                0x0000000008001678                __aeabi_drsub
+                0x0000000008001680                __subdf3
+                0x0000000008001680                __aeabi_dsub
+                0x0000000008001684                __aeabi_dadd
+                0x0000000008001684                __adddf3
+                0x00000000080018fc                __aeabi_ui2d
+                0x00000000080018fc                __floatunsidf
+                0x000000000800191c                __floatsidf
+                0x000000000800191c                __aeabi_i2d
+                0x0000000008001940                __extendsfdf2
+                0x0000000008001940                __aeabi_f2d
+                0x0000000008001984                __aeabi_ul2d
+                0x0000000008001984                __floatundidf
+                0x0000000008001994                __aeabi_l2d
+                0x0000000008001994                __floatdidf
+ .text          0x00000000080019f0      0x424 /Users/richarddavies/Desktop/Side_Projects/CoolEase/Code/stm32f103c8t6/util/gcc-arm/bin/../lib/gcc/arm-none-eabi/9.2.1/thumb/v7-m/nofp/libgcc.a(_arm_muldivdf3.o)
+                0x00000000080019f0                __aeabi_dmul
+                0x00000000080019f0                __muldf3
+                0x0000000008001c44                __aeabi_ddiv
+                0x0000000008001c44                __divdf3
+ .text          0x0000000008001e14      0x110 /Users/richarddavies/Desktop/Side_Projects/CoolEase/Code/stm32f103c8t6/util/gcc-arm/bin/../lib/gcc/arm-none-eabi/9.2.1/thumb/v7-m/nofp/libgcc.a(_arm_cmpdf2.o)
+                0x0000000008001e14                __gedf2
+                0x0000000008001e14                __gtdf2
+                0x0000000008001e1c                __ledf2
+                0x0000000008001e1c                __ltdf2
+                0x0000000008001e24                __cmpdf2
+                0x0000000008001e24                __eqdf2
+                0x0000000008001e24                __nedf2
+                0x0000000008001ea0                __aeabi_cdrcmple
+                0x0000000008001eb0                __aeabi_cdcmple
+                0x0000000008001eb0                __aeabi_cdcmpeq
+                0x0000000008001ec0                __aeabi_dcmpeq
+                0x0000000008001ed4                __aeabi_dcmplt
+                0x0000000008001ee8                __aeabi_dcmple
+                0x0000000008001efc                __aeabi_dcmpge
+                0x0000000008001f10                __aeabi_dcmpgt
+ .text          0x0000000008001f24       0x50 /Users/richarddavies/Desktop/Side_Projects/CoolEase/Code/stm32f103c8t6/util/gcc-arm/bin/../lib/gcc/arm-none-eabi/9.2.1/thumb/v7-m/nofp/libgcc.a(_arm_fixdfsi.o)
+                0x0000000008001f24                __fixdfsi
+                0x0000000008001f24                __aeabi_d2iz
+ .text          0x0000000008001f74       0x40 /Users/richarddavies/Desktop/Side_Projects/CoolEase/Code/stm32f103c8t6/util/gcc-arm/bin/../lib/gcc/arm-none-eabi/9.2.1/thumb/v7-m/nofp/libgcc.a(_arm_fixunsdfsi.o)
+                0x0000000008001f74                __fixunsdfsi
+                0x0000000008001f74                __aeabi_d2uiz
+ .text          0x0000000008001fb4       0x30 /Users/richarddavies/Desktop/Side_Projects/CoolEase/Code/stm32f103c8t6/util/gcc-arm/bin/../lib/gcc/arm-none-eabi/9.2.1/thumb/v7-m/nofp/libgcc.a(_aeabi_uldivmod.o)
+                0x0000000008001fb4                __aeabi_uldivmod
+ .text          0x0000000008001fe4      0x2c4 /Users/richarddavies/Desktop/Side_Projects/CoolEase/Code/stm32f103c8t6/util/gcc-arm/bin/../lib/gcc/arm-none-eabi/9.2.1/thumb/v7-m/nofp/libgcc.a(_udivmoddi4.o)
+                0x0000000008001fe4                __udivmoddi4
+ .text          0x00000000080022a8        0x4 /Users/richarddavies/Desktop/Side_Projects/CoolEase/Code/stm32f103c8t6/util/gcc-arm/bin/../lib/gcc/arm-none-eabi/9.2.1/thumb/v7-m/nofp/libgcc.a(_dvmd_tls.o)
+                0x00000000080022a8                __aeabi_ldiv0
+                0x00000000080022a8                __aeabi_idiv0
+ .text.gpio_set_mode
+                0x00000000080022ac       0x5e /Users/richarddavies/Desktop/Side_Projects/CoolEase/Code/stm32f103c8t6/libopencm3/lib/libopencm3_stm32f1.a(gpio.o)
+                0x00000000080022ac                gpio_set_mode
+ .text.gpio_set
+                0x000000000800230a        0x4 /Users/richarddavies/Desktop/Side_Projects/CoolEase/Code/stm32f103c8t6/libopencm3/lib/libopencm3_stm32f1.a(gpio_common_all.o)
+                0x000000000800230a                gpio_set
+ .text.gpio_clear
+                0x000000000800230e        0x6 /Users/richarddavies/Desktop/Side_Projects/CoolEase/Code/stm32f103c8t6/libopencm3/lib/libopencm3_stm32f1.a(gpio_common_all.o)
+                0x000000000800230e                gpio_clear
+ .text.iwdg_start
+                0x0000000008002314       0x10 /Users/richarddavies/Desktop/Side_Projects/CoolEase/Code/stm32f103c8t6/libopencm3/lib/libopencm3_stm32f1.a(iwdg_common_all.o)
+                0x0000000008002314                iwdg_start
+ .text.iwdg_reload_busy
+                0x0000000008002324       0x10 /Users/richarddavies/Desktop/Side_Projects/CoolEase/Code/stm32f103c8t6/libopencm3/lib/libopencm3_stm32f1.a(iwdg_common_all.o)
+                0x0000000008002324                iwdg_reload_busy
+ .text.iwdg_set_period_ms
+                0x0000000008002334       0x64 /Users/richarddavies/Desktop/Side_Projects/CoolEase/Code/stm32f103c8t6/libopencm3/lib/libopencm3_stm32f1.a(iwdg_common_all.o)
+                0x0000000008002334                iwdg_set_period_ms
+ .text.pwr_disable_backup_domain_write_protect
+                0x0000000008002398       0x10 /Users/richarddavies/Desktop/Side_Projects/CoolEase/Code/stm32f103c8t6/libopencm3/lib/libopencm3_stm32f1.a(pwr_common_v1.o)
+                0x0000000008002398                pwr_disable_backup_domain_write_protect
+ .text.pwr_enable_backup_domain_write_protect
+                0x00000000080023a8       0x10 /Users/richarddavies/Desktop/Side_Projects/CoolEase/Code/stm32f103c8t6/libopencm3/lib/libopencm3_stm32f1.a(pwr_common_v1.o)
+                0x00000000080023a8                pwr_enable_backup_domain_write_protect
+ .text.pwr_enable_power_voltage_detect
+                0x00000000080023b8       0x1c /Users/richarddavies/Desktop/Side_Projects/CoolEase/Code/stm32f103c8t6/libopencm3/lib/libopencm3_stm32f1.a(pwr_common_v1.o)
+                0x00000000080023b8                pwr_enable_power_voltage_detect
+ .text.pwr_clear_standby_flag
+                0x00000000080023d4       0x10 /Users/richarddavies/Desktop/Side_Projects/CoolEase/Code/stm32f103c8t6/libopencm3/lib/libopencm3_stm32f1.a(pwr_common_v1.o)
+                0x00000000080023d4                pwr_clear_standby_flag
+ .text.pwr_clear_wakeup_flag
+                0x00000000080023e4       0x10 /Users/richarddavies/Desktop/Side_Projects/CoolEase/Code/stm32f103c8t6/libopencm3/lib/libopencm3_stm32f1.a(pwr_common_v1.o)
+                0x00000000080023e4                pwr_clear_wakeup_flag
+ .text.pwr_set_standby_mode
+                0x00000000080023f4       0x10 /Users/richarddavies/Desktop/Side_Projects/CoolEase/Code/stm32f103c8t6/libopencm3/lib/libopencm3_stm32f1.a(pwr_common_v1.o)
+                0x00000000080023f4                pwr_set_standby_mode
+ .text.pwr_voltage_high
+                0x0000000008002404       0x14 /Users/richarddavies/Desktop/Side_Projects/CoolEase/Code/stm32f103c8t6/libopencm3/lib/libopencm3_stm32f1.a(pwr_common_v1.o)
+                0x0000000008002404                pwr_voltage_high
+ .text.pwr_get_standby_flag
+                0x0000000008002418       0x10 /Users/richarddavies/Desktop/Side_Projects/CoolEase/Code/stm32f103c8t6/libopencm3/lib/libopencm3_stm32f1.a(pwr_common_v1.o)
+                0x0000000008002418                pwr_get_standby_flag
+ .text.pwr_get_wakeup_flag
+                0x0000000008002428       0x10 /Users/richarddavies/Desktop/Side_Projects/CoolEase/Code/stm32f103c8t6/libopencm3/lib/libopencm3_stm32f1.a(pwr_common_v1.o)
+                0x0000000008002428                pwr_get_wakeup_flag
+ .text.rcc_osc_on.part.0
+                0x0000000008002438       0x10 /Users/richarddavies/Desktop/Side_Projects/CoolEase/Code/stm32f103c8t6/libopencm3/lib/libopencm3_stm32f1.a(rcc.o)
+ .text.rcc_is_osc_ready
+                0x0000000008002448       0x5c /Users/richarddavies/Desktop/Side_Projects/CoolEase/Code/stm32f103c8t6/libopencm3/lib/libopencm3_stm32f1.a(rcc.o)
+                0x0000000008002448                rcc_is_osc_ready
+ .text.rcc_wait_for_osc_ready
+                0x00000000080024a4       0x10 /Users/richarddavies/Desktop/Side_Projects/CoolEase/Code/stm32f103c8t6/libopencm3/lib/libopencm3_stm32f1.a(rcc.o)
+                0x00000000080024a4                rcc_wait_for_osc_ready
+ .text.rcc_osc_on
+                0x00000000080024b4       0x54 /Users/richarddavies/Desktop/Side_Projects/CoolEase/Code/stm32f103c8t6/libopencm3/lib/libopencm3_stm32f1.a(rcc.o)
+                0x00000000080024b4                rcc_osc_on
+ .text.rcc_enable_rtc_clock
+                0x0000000008002508       0x10 /Users/richarddavies/Desktop/Side_Projects/CoolEase/Code/stm32f103c8t6/libopencm3/lib/libopencm3_stm32f1.a(rcc.o)
+                0x0000000008002508                rcc_enable_rtc_clock
+ .text.rcc_set_rtc_clock_source
+                0x0000000008002518       0x90 /Users/richarddavies/Desktop/Side_Projects/CoolEase/Code/stm32f103c8t6/libopencm3/lib/libopencm3_stm32f1.a(rcc.o)
+                0x0000000008002518                rcc_set_rtc_clock_source
+ .text.rcc_periph_clock_enable
+                0x00000000080025a8       0x1c /Users/richarddavies/Desktop/Side_Projects/CoolEase/Code/stm32f103c8t6/libopencm3/lib/libopencm3_stm32f1.a(rcc_common_all.o)
+                0x00000000080025a8                rcc_periph_clock_enable
+ .text.rtc_enter_config_mode
+                0x00000000080025c4       0x18 /Users/richarddavies/Desktop/Side_Projects/CoolEase/Code/stm32f103c8t6/libopencm3/lib/libopencm3_stm32f1.a(rtc.o)
+                0x00000000080025c4                rtc_enter_config_mode
+ .text.rtc_exit_config_mode
+                0x00000000080025dc       0x18 /Users/richarddavies/Desktop/Side_Projects/CoolEase/Code/stm32f103c8t6/libopencm3/lib/libopencm3_stm32f1.a(rtc.o)
+                0x00000000080025dc                rtc_exit_config_mode
+ .text.rtc_awake_from_off
+                0x00000000080025f4       0x68 /Users/richarddavies/Desktop/Side_Projects/CoolEase/Code/stm32f103c8t6/libopencm3/lib/libopencm3_stm32f1.a(rtc.o)
+                0x00000000080025f4                rtc_awake_from_off
+ .text.rtc_enable_alarm
+                0x000000000800265c       0x1c /Users/richarddavies/Desktop/Side_Projects/CoolEase/Code/stm32f103c8t6/libopencm3/lib/libopencm3_stm32f1.a(rtc.o)
+                0x000000000800265c                rtc_enable_alarm
+ .text.rtc_get_counter_val
+                0x0000000008002678       0x14 /Users/richarddavies/Desktop/Side_Projects/CoolEase/Code/stm32f103c8t6/libopencm3/lib/libopencm3_stm32f1.a(rtc.o)
+                0x0000000008002678                rtc_get_counter_val
+ .text.rtc_clear_flag
+                0x000000000800268c       0x30 /Users/richarddavies/Desktop/Side_Projects/CoolEase/Code/stm32f103c8t6/libopencm3/lib/libopencm3_stm32f1.a(rtc.o)
+                0x000000000800268c                rtc_clear_flag
+ .text.rtc_check_flag
+                0x00000000080026bc       0x30 /Users/richarddavies/Desktop/Side_Projects/CoolEase/Code/stm32f103c8t6/libopencm3/lib/libopencm3_stm32f1.a(rtc.o)
+                0x00000000080026bc                rtc_check_flag
+ .text.usart_set_baudrate
+                0x00000000080026ec       0x28 /Users/richarddavies/Desktop/Side_Projects/CoolEase/Code/stm32f103c8t6/libopencm3/lib/libopencm3_stm32f1.a(usart_common_all.o)
+                0x00000000080026ec                usart_set_baudrate
+ .text.usart_set_databits
+                0x0000000008002714       0x12 /Users/richarddavies/Desktop/Side_Projects/CoolEase/Code/stm32f103c8t6/libopencm3/lib/libopencm3_stm32f1.a(usart_common_all.o)
+                0x0000000008002714                usart_set_databits
+ .text.usart_set_stopbits
+                0x0000000008002726        0xc /Users/richarddavies/Desktop/Side_Projects/CoolEase/Code/stm32f103c8t6/libopencm3/lib/libopencm3_stm32f1.a(usart_common_all.o)
+                0x0000000008002726                usart_set_stopbits
+ .text.usart_set_parity
+                0x0000000008002732        0xc /Users/richarddavies/Desktop/Side_Projects/CoolEase/Code/stm32f103c8t6/libopencm3/lib/libopencm3_stm32f1.a(usart_common_all.o)
+                0x0000000008002732                usart_set_parity
+ .text.usart_set_mode
+                0x000000000800273e        0xc /Users/richarddavies/Desktop/Side_Projects/CoolEase/Code/stm32f103c8t6/libopencm3/lib/libopencm3_stm32f1.a(usart_common_all.o)
+                0x000000000800273e                usart_set_mode
+ .text.usart_set_flow_control
+                0x000000000800274a        0xc /Users/richarddavies/Desktop/Side_Projects/CoolEase/Code/stm32f103c8t6/libopencm3/lib/libopencm3_stm32f1.a(usart_common_all.o)
+                0x000000000800274a                usart_set_flow_control
+ .text.usart_enable
+                0x0000000008002756        0xa /Users/richarddavies/Desktop/Side_Projects/CoolEase/Code/stm32f103c8t6/libopencm3/lib/libopencm3_stm32f1.a(usart_common_all.o)
+                0x0000000008002756                usart_enable
+ .text.usart_disable
+                0x0000000008002760        0xa /Users/richarddavies/Desktop/Side_Projects/CoolEase/Code/stm32f103c8t6/libopencm3/lib/libopencm3_stm32f1.a(usart_common_all.o)
+                0x0000000008002760                usart_disable
+ .text.usart_send_blocking
+                0x000000000800276a       0x16 /Users/richarddavies/Desktop/Side_Projects/CoolEase/Code/stm32f103c8t6/libopencm3/lib/libopencm3_stm32f1.a(usart_common_all.o)
+                0x000000000800276a                usart_send_blocking
+ .text.usart_send
+                0x0000000008002780        0x8 /Users/richarddavies/Desktop/Side_Projects/CoolEase/Code/stm32f103c8t6/libopencm3/lib/libopencm3_stm32f1.a(usart_common_f124.o)
+                0x0000000008002780                usart_send
+ .text.usart_wait_send_ready
+                0x0000000008002788        0x8 /Users/richarddavies/Desktop/Side_Projects/CoolEase/Code/stm32f103c8t6/libopencm3/lib/libopencm3_stm32f1.a(usart_common_f124.o)
+                0x0000000008002788                usart_wait_send_ready
+ .text.blocking_handler
+                0x0000000008002790        0x2 /Users/richarddavies/Desktop/Side_Projects/CoolEase/Code/stm32f103c8t6/libopencm3/lib/libopencm3_stm32f1.a(vector.o)
+                0x0000000008002790                exti0_isr
+                0x0000000008002790                tim7_isr
+                0x0000000008002790                adc1_2_isr
+                0x0000000008002790                tim1_trg_com_isr
+                0x0000000008002790                usb_hp_can_tx_isr
+                0x0000000008002790                tim6_isr
+                0x0000000008002790                usb_wakeup_isr
+                0x0000000008002790                blocking_handler
+                0x0000000008002790                tim5_isr
+                0x0000000008002790                otg_fs_isr
+                0x0000000008002790                spi1_isr
+                0x0000000008002790                exti2_isr
+                0x0000000008002790                dma1_channel6_isr
+                0x0000000008002790                can_rx1_isr
+                0x0000000008002790                dma1_channel5_isr
+                0x0000000008002790                dma2_channel5_isr
+                0x0000000008002790                usart1_isr
+                0x0000000008002790                usage_fault_handler
+                0x0000000008002790                tim8_trg_com_isr
+                0x0000000008002790                can2_rx0_isr
+                0x0000000008002790                tim1_brk_isr
+                0x0000000008002790                can2_rx1_isr
+                0x0000000008002790                tim1_cc_isr
+                0x0000000008002790                sdio_isr
+                0x0000000008002790                eth_isr
+                0x0000000008002790                dma1_channel4_isr
+                0x0000000008002790                tim8_brk_isr
+                0x0000000008002790                dma2_channel4_5_isr
+                0x0000000008002790                pvd_isr
+                0x0000000008002790                rcc_isr
+                0x0000000008002790                flash_isr
+                0x0000000008002790                uart4_isr
+                0x0000000008002790                rtc_alarm_isr
+                0x0000000008002790                exti15_10_isr
+                0x0000000008002790                hard_fault_handler
+                0x0000000008002790                exti1_isr
+                0x0000000008002790                i2c1_ev_isr
+                0x0000000008002790                dma2_channel1_isr
+                0x0000000008002790                spi2_isr
+                0x0000000008002790                tim8_up_isr
+                0x0000000008002790                dma2_channel2_isr
+                0x0000000008002790                exti3_isr
+                0x0000000008002790                adc3_isr
+                0x0000000008002790                tim3_isr
+                0x0000000008002790                usart2_isr
+                0x0000000008002790                usb_lp_can_rx0_isr
+                0x0000000008002790                i2c2_er_isr
+                0x0000000008002790                i2c2_ev_isr
+                0x0000000008002790                uart5_isr
+                0x0000000008002790                fsmc_isr
+                0x0000000008002790                dma1_channel1_isr
+                0x0000000008002790                exti4_isr
+                0x0000000008002790                mem_manage_handler
+                0x0000000008002790                can2_tx_isr
+                0x0000000008002790                exti9_5_isr
+                0x0000000008002790                dma2_channel3_isr
+                0x0000000008002790                dma1_channel7_isr
+                0x0000000008002790                tim1_up_isr
+                0x0000000008002790                can2_sce_isr
+                0x0000000008002790                tim4_isr
+                0x0000000008002790                dma1_channel2_isr
+                0x0000000008002790                i2c1_er_isr
+                0x0000000008002790                can_sce_isr
+                0x0000000008002790                tim8_cc_isr
+                0x0000000008002790                tamper_isr
+                0x0000000008002790                eth_wkup_isr
+                0x0000000008002790                bus_fault_handler
+                0x0000000008002790                wwdg_isr
+                0x0000000008002790                dma1_channel3_isr
+                0x0000000008002790                spi3_isr
+                0x0000000008002790                tim2_isr
+                0x0000000008002790                usart3_isr
+ .text.null_handler
+                0x0000000008002792        0x2 /Users/richarddavies/Desktop/Side_Projects/CoolEase/Code/stm32f103c8t6/libopencm3/lib/libopencm3_stm32f1.a(vector.o)
+                0x0000000008002792                null_handler
+                0x0000000008002792                sv_call_handler
+                0x0000000008002792                pend_sv_handler
+                0x0000000008002792                debug_monitor_handler
+                0x0000000008002792                sys_tick_handler
+                0x0000000008002792                nmi_handler
+ .text.reset_handler
+                0x0000000008002794       0x90 /Users/richarddavies/Desktop/Side_Projects/CoolEase/Code/stm32f103c8t6/libopencm3/lib/libopencm3_stm32f1.a(vector.o)
+                0x0000000008002794                reset_handler
+                0x0000000008002824                . = ALIGN (0x4)
+ *(.rodata*)
+ .rodata.main.str1.4
+                0x0000000008002824       0x46 build/sensor.o
+                                         0x4e (size before relaxing)
+ *fill*         0x000000000800286a        0x2 
+ .rodata._ftoa.str1.4
+                0x000000000800286c       0x15 build/printf.o
+ *fill*         0x0000000008002881        0x7 
+ .rodata.pow10.4195
+                0x0000000008002888       0x50 build/printf.o
+ .rodata.reset_print_cause.str1.4
+                0x00000000080028d8       0x97 build/reset.o
+                0x0000000008002970                . = ALIGN (0x4)
+ *fill*         0x000000000800296f        0x1 
+
+.glue_7         0x0000000008002970        0x0
+ .glue_7        0x0000000008002970        0x0 linker stubs
+
+.glue_7t        0x0000000008002970        0x0
+ .glue_7t       0x0000000008002970        0x0 linker stubs
+
+.vfp11_veneer   0x0000000008002970        0x0
+ .vfp11_veneer  0x0000000008002970        0x0 linker stubs
+
+.v4_bx          0x0000000008002970        0x0
+ .v4_bx         0x0000000008002970        0x0 linker stubs
+
+.iplt           0x0000000008002970        0x0
+ .iplt          0x0000000008002970        0x0 build/sensor.o
+
+.preinit_array  0x0000000008002970        0x0
+                0x0000000008002970                . = ALIGN (0x4)
+                0x0000000008002970                __preinit_array_start = .
+ *(.preinit_array)
+                0x0000000008002970                __preinit_array_end = .
+
+.init_array     0x0000000008002970        0x0
+                0x0000000008002970                . = ALIGN (0x4)
+                0x0000000008002970                __init_array_start = .
+ *(SORT_BY_NAME(.init_array.*))
+ *(.init_array)
+                0x0000000008002970                __init_array_end = .
+
+.fini_array     0x0000000008002970        0x0
+                0x0000000008002970                . = ALIGN (0x4)
+                0x0000000008002970                __fini_array_start = .
+ *(.fini_array)
+ *(SORT_BY_NAME(.fini_array.*))
+                0x0000000008002970                __fini_array_end = .
+
+.ARM.extab
+ *(.ARM.extab*)
+
+.ARM.exidx      0x0000000008002970        0x8
+                0x0000000008002970                __exidx_start = .
+ *(.ARM.exidx*)
+ .ARM.exidx     0x0000000008002970        0x8 /Users/richarddavies/Desktop/Side_Projects/CoolEase/Code/stm32f103c8t6/util/gcc-arm/bin/../lib/gcc/arm-none-eabi/9.2.1/thumb/v7-m/nofp/libgcc.a(_udivmoddi4.o)
+                0x0000000008002978                __exidx_end = .
+
+.rel.dyn        0x0000000008002978        0x0
+ .rel.iplt      0x0000000008002978        0x0 build/sensor.o
+                0x0000000008002978                . = ALIGN (0x4)
+                0x0000000008002978                _etext = .
+
+.data           0x0000000020000000        0x8 load address 0x0000000008002978
+                0x0000000020000000                _data = .
+ *(.data*)
+ .data.rcc_apb1_frequency
+                0x0000000020000000        0x4 /Users/richarddavies/Desktop/Side_Projects/CoolEase/Code/stm32f103c8t6/libopencm3/lib/libopencm3_stm32f1.a(rcc.o)
+                0x0000000020000000                rcc_apb1_frequency
+ .data.rcc_apb2_frequency
+                0x0000000020000004        0x4 /Users/richarddavies/Desktop/Side_Projects/CoolEase/Code/stm32f103c8t6/libopencm3/lib/libopencm3_stm32f1.a(rcc.o)
+                0x0000000020000004                rcc_apb2_frequency
+                0x0000000020000008                . = ALIGN (0x4)
+                0x0000000020000008                _edata = .
+                0x0000000008002978                _data_loadaddr = LOADADDR (.data)
+
+.igot.plt       0x0000000020000008        0x0 load address 0x0000000008002980
+ .igot.plt      0x0000000020000008        0x0 build/sensor.o
+
+.bss            0x0000000020000008        0x0 load address 0x0000000008002980
+ *(.bss*)
+ *(COMMON)
+                0x0000000020000008                . = ALIGN (0x4)
+                0x0000000020000008                _ebss = .
+
+/DISCARD/
+ *(.eh_frame)
+                0x0000000020000008                . = ALIGN (0x4)
+                0x0000000020000008                end = .
+                0x0000000020005000                PROVIDE (_stack = (ORIGIN (ram) + LENGTH (ram)))
+OUTPUT(build/sensor.elf elf32-littlearm)
+
+.debug_info     0x0000000000000000     0x612d
+ .debug_info    0x0000000000000000      0x1f1 build/sensor.o
+ .debug_info    0x00000000000001f1      0x5fd build/timers.o
+ .debug_info    0x00000000000007ee      0x519 build/serial_printf.o
+ .debug_info    0x0000000000000d07      0x343 build/led.o
+ .debug_info    0x000000000000104a     0x1871 build/printf.o
+ .debug_info    0x00000000000028bb      0x3a1 build/reset.o
+ .debug_info    0x0000000000002c5c      0x39e build/battery.o
+ .debug_info    0x0000000000002ffa      0x20a /Users/richarddavies/Desktop/Side_Projects/CoolEase/Code/stm32f103c8t6/libopencm3/lib/libopencm3_stm32f1.a(gpio.o)
+ .debug_info    0x0000000000003204      0x266 /Users/richarddavies/Desktop/Side_Projects/CoolEase/Code/stm32f103c8t6/libopencm3/lib/libopencm3_stm32f1.a(gpio_common_all.o)
+ .debug_info    0x000000000000346a      0x17c /Users/richarddavies/Desktop/Side_Projects/CoolEase/Code/stm32f103c8t6/libopencm3/lib/libopencm3_stm32f1.a(iwdg_common_all.o)
+ .debug_info    0x00000000000035e6      0x1bc /Users/richarddavies/Desktop/Side_Projects/CoolEase/Code/stm32f103c8t6/libopencm3/lib/libopencm3_stm32f1.a(pwr_common_v1.o)
+ .debug_info    0x00000000000037a2     0x128f /Users/richarddavies/Desktop/Side_Projects/CoolEase/Code/stm32f103c8t6/libopencm3/lib/libopencm3_stm32f1.a(rcc.o)
+ .debug_info    0x0000000000004a31      0x603 /Users/richarddavies/Desktop/Side_Projects/CoolEase/Code/stm32f103c8t6/libopencm3/lib/libopencm3_stm32f1.a(rcc_common_all.o)
+ .debug_info    0x0000000000005034      0x73c /Users/richarddavies/Desktop/Side_Projects/CoolEase/Code/stm32f103c8t6/libopencm3/lib/libopencm3_stm32f1.a(rtc.o)
+ .debug_info    0x0000000000005770      0x51b /Users/richarddavies/Desktop/Side_Projects/CoolEase/Code/stm32f103c8t6/libopencm3/lib/libopencm3_stm32f1.a(usart_common_all.o)
+ .debug_info    0x0000000000005c8b      0x1c5 /Users/richarddavies/Desktop/Side_Projects/CoolEase/Code/stm32f103c8t6/libopencm3/lib/libopencm3_stm32f1.a(usart_common_f124.o)
+ .debug_info    0x0000000000005e50      0x2dd /Users/richarddavies/Desktop/Side_Projects/CoolEase/Code/stm32f103c8t6/libopencm3/lib/libopencm3_stm32f1.a(vector.o)
+
+.debug_abbrev   0x0000000000000000     0x1670
+ .debug_abbrev  0x0000000000000000       0xcb build/sensor.o
+ .debug_abbrev  0x00000000000000cb      0x146 build/timers.o
+ .debug_abbrev  0x0000000000000211      0x195 build/serial_printf.o
+ .debug_abbrev  0x00000000000003a6       0xd0 build/led.o
+ .debug_abbrev  0x0000000000000476      0x3a6 build/printf.o
+ .debug_abbrev  0x000000000000081c       0xc8 build/reset.o
+ .debug_abbrev  0x00000000000008e4       0xbf build/battery.o
+ .debug_abbrev  0x00000000000009a3       0xd0 /Users/richarddavies/Desktop/Side_Projects/CoolEase/Code/stm32f103c8t6/libopencm3/lib/libopencm3_stm32f1.a(gpio.o)
+ .debug_abbrev  0x0000000000000a73      0x116 /Users/richarddavies/Desktop/Side_Projects/CoolEase/Code/stm32f103c8t6/libopencm3/lib/libopencm3_stm32f1.a(gpio_common_all.o)
+ .debug_abbrev  0x0000000000000b89      0x112 /Users/richarddavies/Desktop/Side_Projects/CoolEase/Code/stm32f103c8t6/libopencm3/lib/libopencm3_stm32f1.a(iwdg_common_all.o)
+ .debug_abbrev  0x0000000000000c9b       0x9f /Users/richarddavies/Desktop/Side_Projects/CoolEase/Code/stm32f103c8t6/libopencm3/lib/libopencm3_stm32f1.a(pwr_common_v1.o)
+ .debug_abbrev  0x0000000000000d3a      0x2e1 /Users/richarddavies/Desktop/Side_Projects/CoolEase/Code/stm32f103c8t6/libopencm3/lib/libopencm3_stm32f1.a(rcc.o)
+ .debug_abbrev  0x000000000000101b      0x15d /Users/richarddavies/Desktop/Side_Projects/CoolEase/Code/stm32f103c8t6/libopencm3/lib/libopencm3_stm32f1.a(rcc_common_all.o)
+ .debug_abbrev  0x0000000000001178      0x1c2 /Users/richarddavies/Desktop/Side_Projects/CoolEase/Code/stm32f103c8t6/libopencm3/lib/libopencm3_stm32f1.a(rtc.o)
+ .debug_abbrev  0x000000000000133a      0x129 /Users/richarddavies/Desktop/Side_Projects/CoolEase/Code/stm32f103c8t6/libopencm3/lib/libopencm3_stm32f1.a(usart_common_all.o)
+ .debug_abbrev  0x0000000000001463       0xc8 /Users/richarddavies/Desktop/Side_Projects/CoolEase/Code/stm32f103c8t6/libopencm3/lib/libopencm3_stm32f1.a(usart_common_f124.o)
+ .debug_abbrev  0x000000000000152b      0x145 /Users/richarddavies/Desktop/Side_Projects/CoolEase/Code/stm32f103c8t6/libopencm3/lib/libopencm3_stm32f1.a(vector.o)
+
+.debug_loc      0x0000000000000000     0x2bf0
+ .debug_loc     0x0000000000000000       0x23 build/sensor.o
+ .debug_loc     0x0000000000000023       0x98 build/timers.o
+ .debug_loc     0x00000000000000bb       0x3a build/serial_printf.o
+ .debug_loc     0x00000000000000f5     0x1ea4 build/printf.o
+ .debug_loc     0x0000000000001f99      0x134 /Users/richarddavies/Desktop/Side_Projects/CoolEase/Code/stm32f103c8t6/libopencm3/lib/libopencm3_stm32f1.a(gpio.o)
+ .debug_loc     0x00000000000020cd       0xbe /Users/richarddavies/Desktop/Side_Projects/CoolEase/Code/stm32f103c8t6/libopencm3/lib/libopencm3_stm32f1.a(gpio_common_all.o)
+ .debug_loc     0x000000000000218b       0xbf /Users/richarddavies/Desktop/Side_Projects/CoolEase/Code/stm32f103c8t6/libopencm3/lib/libopencm3_stm32f1.a(iwdg_common_all.o)
+ .debug_loc     0x000000000000224a      0x39c /Users/richarddavies/Desktop/Side_Projects/CoolEase/Code/stm32f103c8t6/libopencm3/lib/libopencm3_stm32f1.a(rcc.o)
+ .debug_loc     0x00000000000025e6       0x6f /Users/richarddavies/Desktop/Side_Projects/CoolEase/Code/stm32f103c8t6/libopencm3/lib/libopencm3_stm32f1.a(rcc_common_all.o)
+ .debug_loc     0x0000000000002655      0x268 /Users/richarddavies/Desktop/Side_Projects/CoolEase/Code/stm32f103c8t6/libopencm3/lib/libopencm3_stm32f1.a(rtc.o)
+ .debug_loc     0x00000000000028bd      0x172 /Users/richarddavies/Desktop/Side_Projects/CoolEase/Code/stm32f103c8t6/libopencm3/lib/libopencm3_stm32f1.a(usart_common_all.o)
+ .debug_loc     0x0000000000002a2f       0x99 /Users/richarddavies/Desktop/Side_Projects/CoolEase/Code/stm32f103c8t6/libopencm3/lib/libopencm3_stm32f1.a(usart_common_f124.o)
+ .debug_loc     0x0000000000002ac8      0x128 /Users/richarddavies/Desktop/Side_Projects/CoolEase/Code/stm32f103c8t6/libopencm3/lib/libopencm3_stm32f1.a(vector.o)
+
+.debug_aranges  0x0000000000000000      0x678
+ .debug_aranges
+                0x0000000000000000       0x20 build/sensor.o
+ .debug_aranges
+                0x0000000000000020       0x48 build/timers.o
+ .debug_aranges
+                0x0000000000000068       0x38 build/serial_printf.o
+ .debug_aranges
+                0x00000000000000a0       0x20 build/led.o
+ .debug_aranges
+                0x00000000000000c0       0xa8 build/printf.o
+ .debug_aranges
+                0x0000000000000168       0x20 build/reset.o
+ .debug_aranges
+                0x0000000000000188       0x20 build/battery.o
+ .debug_aranges
+                0x00000000000001a8       0x38 /Users/richarddavies/Desktop/Side_Projects/CoolEase/Code/stm32f103c8t6/libopencm3/lib/libopencm3_stm32f1.a(gpio.o)
+ .debug_aranges
+                0x00000000000001e0       0x50 /Users/richarddavies/Desktop/Side_Projects/CoolEase/Code/stm32f103c8t6/libopencm3/lib/libopencm3_stm32f1.a(gpio_common_all.o)
+ .debug_aranges
+                0x0000000000000230       0x40 /Users/richarddavies/Desktop/Side_Projects/CoolEase/Code/stm32f103c8t6/libopencm3/lib/libopencm3_stm32f1.a(iwdg_common_all.o)
+ .debug_aranges
+                0x0000000000000270       0x90 /Users/richarddavies/Desktop/Side_Projects/CoolEase/Code/stm32f103c8t6/libopencm3/lib/libopencm3_stm32f1.a(pwr_common_v1.o)
+ .debug_aranges
+                0x0000000000000300      0x158 /Users/richarddavies/Desktop/Side_Projects/CoolEase/Code/stm32f103c8t6/libopencm3/lib/libopencm3_stm32f1.a(rcc.o)
+ .debug_aranges
+                0x0000000000000458       0x58 /Users/richarddavies/Desktop/Side_Projects/CoolEase/Code/stm32f103c8t6/libopencm3/lib/libopencm3_stm32f1.a(rcc_common_all.o)
+ .debug_aranges
+                0x00000000000004b0       0xa0 /Users/richarddavies/Desktop/Side_Projects/CoolEase/Code/stm32f103c8t6/libopencm3/lib/libopencm3_stm32f1.a(rtc.o)
+ .debug_aranges
+                0x0000000000000550       0xb8 /Users/richarddavies/Desktop/Side_Projects/CoolEase/Code/stm32f103c8t6/libopencm3/lib/libopencm3_stm32f1.a(usart_common_all.o)
+ .debug_aranges
+                0x0000000000000608       0x40 /Users/richarddavies/Desktop/Side_Projects/CoolEase/Code/stm32f103c8t6/libopencm3/lib/libopencm3_stm32f1.a(usart_common_f124.o)
+ .debug_aranges
+                0x0000000000000648       0x30 /Users/richarddavies/Desktop/Side_Projects/CoolEase/Code/stm32f103c8t6/libopencm3/lib/libopencm3_stm32f1.a(vector.o)
+
+.debug_ranges   0x0000000000000000      0x6c0
+ .debug_ranges  0x0000000000000000       0x10 build/sensor.o
+ .debug_ranges  0x0000000000000010       0x38 build/timers.o
+ .debug_ranges  0x0000000000000048       0x28 build/serial_printf.o
+ .debug_ranges  0x0000000000000070       0x10 build/led.o
+ .debug_ranges  0x0000000000000080      0x168 build/printf.o
+ .debug_ranges  0x00000000000001e8       0x10 build/reset.o
+ .debug_ranges  0x00000000000001f8       0x10 build/battery.o
+ .debug_ranges  0x0000000000000208       0x28 /Users/richarddavies/Desktop/Side_Projects/CoolEase/Code/stm32f103c8t6/libopencm3/lib/libopencm3_stm32f1.a(gpio.o)
+ .debug_ranges  0x0000000000000230       0x40 /Users/richarddavies/Desktop/Side_Projects/CoolEase/Code/stm32f103c8t6/libopencm3/lib/libopencm3_stm32f1.a(gpio_common_all.o)
+ .debug_ranges  0x0000000000000270       0x48 /Users/richarddavies/Desktop/Side_Projects/CoolEase/Code/stm32f103c8t6/libopencm3/lib/libopencm3_stm32f1.a(iwdg_common_all.o)
+ .debug_ranges  0x00000000000002b8       0x80 /Users/richarddavies/Desktop/Side_Projects/CoolEase/Code/stm32f103c8t6/libopencm3/lib/libopencm3_stm32f1.a(pwr_common_v1.o)
+ .debug_ranges  0x0000000000000338      0x1b8 /Users/richarddavies/Desktop/Side_Projects/CoolEase/Code/stm32f103c8t6/libopencm3/lib/libopencm3_stm32f1.a(rcc.o)
+ .debug_ranges  0x00000000000004f0       0x48 /Users/richarddavies/Desktop/Side_Projects/CoolEase/Code/stm32f103c8t6/libopencm3/lib/libopencm3_stm32f1.a(rcc_common_all.o)
+ .debug_ranges  0x0000000000000538       0x90 /Users/richarddavies/Desktop/Side_Projects/CoolEase/Code/stm32f103c8t6/libopencm3/lib/libopencm3_stm32f1.a(rtc.o)
+ .debug_ranges  0x00000000000005c8       0xa8 /Users/richarddavies/Desktop/Side_Projects/CoolEase/Code/stm32f103c8t6/libopencm3/lib/libopencm3_stm32f1.a(usart_common_all.o)
+ .debug_ranges  0x0000000000000670       0x30 /Users/richarddavies/Desktop/Side_Projects/CoolEase/Code/stm32f103c8t6/libopencm3/lib/libopencm3_stm32f1.a(usart_common_f124.o)
+ .debug_ranges  0x00000000000006a0       0x20 /Users/richarddavies/Desktop/Side_Projects/CoolEase/Code/stm32f103c8t6/libopencm3/lib/libopencm3_stm32f1.a(vector.o)
+
+.debug_line     0x0000000000000000     0x5ad9
+ .debug_line    0x0000000000000000      0x25d build/sensor.o
+ .debug_line    0x000000000000025d      0x455 build/timers.o
+ .debug_line    0x00000000000006b2      0x371 build/serial_printf.o
+ .debug_line    0x0000000000000a23      0x262 build/led.o
+ .debug_line    0x0000000000000c85     0x1237 build/printf.o
+ .debug_line    0x0000000000001ebc      0x2d3 build/reset.o
+ .debug_line    0x000000000000218f      0x2d0 build/battery.o
+ .debug_line    0x000000000000245f      0x3c2 /Users/richarddavies/Desktop/Side_Projects/CoolEase/Code/stm32f103c8t6/libopencm3/lib/libopencm3_stm32f1.a(gpio.o)
+ .debug_line    0x0000000000002821      0x3d8 /Users/richarddavies/Desktop/Side_Projects/CoolEase/Code/stm32f103c8t6/libopencm3/lib/libopencm3_stm32f1.a(gpio_common_all.o)
+ .debug_line    0x0000000000002bf9      0x408 /Users/richarddavies/Desktop/Side_Projects/CoolEase/Code/stm32f103c8t6/libopencm3/lib/libopencm3_stm32f1.a(iwdg_common_all.o)
+ .debug_line    0x0000000000003001      0x475 /Users/richarddavies/Desktop/Side_Projects/CoolEase/Code/stm32f103c8t6/libopencm3/lib/libopencm3_stm32f1.a(pwr_common_v1.o)
+ .debug_line    0x0000000000003476      0xd0d /Users/richarddavies/Desktop/Side_Projects/CoolEase/Code/stm32f103c8t6/libopencm3/lib/libopencm3_stm32f1.a(rcc.o)
+ .debug_line    0x0000000000004183      0x402 /Users/richarddavies/Desktop/Side_Projects/CoolEase/Code/stm32f103c8t6/libopencm3/lib/libopencm3_stm32f1.a(rcc_common_all.o)
+ .debug_line    0x0000000000004585      0x749 /Users/richarddavies/Desktop/Side_Projects/CoolEase/Code/stm32f103c8t6/libopencm3/lib/libopencm3_stm32f1.a(rtc.o)
+ .debug_line    0x0000000000004cce      0x5db /Users/richarddavies/Desktop/Side_Projects/CoolEase/Code/stm32f103c8t6/libopencm3/lib/libopencm3_stm32f1.a(usart_common_all.o)
+ .debug_line    0x00000000000052a9      0x3cd /Users/richarddavies/Desktop/Side_Projects/CoolEase/Code/stm32f103c8t6/libopencm3/lib/libopencm3_stm32f1.a(usart_common_f124.o)
+ .debug_line    0x0000000000005676      0x463 /Users/richarddavies/Desktop/Side_Projects/CoolEase/Code/stm32f103c8t6/libopencm3/lib/libopencm3_stm32f1.a(vector.o)
+
+.debug_str      0x0000000000000000    0x10080
+ .debug_str     0x0000000000000000      0x1f3 build/sensor.o
+                                        0x285 (size before relaxing)
+ .debug_str     0x00000000000001f3      0x46f build/timers.o
+                                        0x6af (size before relaxing)
+ .debug_str     0x0000000000000662      0x111 build/serial_printf.o
+                                        0x568 (size before relaxing)
+ .debug_str     0x0000000000000773       0x1e build/led.o
+                                        0x46b (size before relaxing)
+ .debug_str     0x0000000000000791      0x187 build/printf.o
+                                        0x3b5 (size before relaxing)
+ .debug_str     0x0000000000000918       0x4c build/reset.o
+                                        0x4b7 (size before relaxing)
+ .debug_str     0x0000000000000964       0x49 build/battery.o
+                                        0x49b (size before relaxing)
+ .debug_str     0x00000000000009ad     0x840c /Users/richarddavies/Desktop/Side_Projects/CoolEase/Code/stm32f103c8t6/libopencm3/lib/libopencm3_stm32f1.a(gpio.o)
+                                       0x85b9 (size before relaxing)
+ .debug_str     0x0000000000008db9       0x6c /Users/richarddavies/Desktop/Side_Projects/CoolEase/Code/stm32f103c8t6/libopencm3/lib/libopencm3_stm32f1.a(gpio_common_all.o)
+                                       0x85ad (size before relaxing)
+ .debug_str     0x0000000000008e25      0x25d /Users/richarddavies/Desktop/Side_Projects/CoolEase/Code/stm32f103c8t6/libopencm3/lib/libopencm3_stm32f1.a(iwdg_common_all.o)
+                                       0x4ff0 (size before relaxing)
+ .debug_str     0x0000000000009082      0x392 /Users/richarddavies/Desktop/Side_Projects/CoolEase/Code/stm32f103c8t6/libopencm3/lib/libopencm3_stm32f1.a(pwr_common_v1.o)
+                                       0x51da (size before relaxing)
+ .debug_str     0x0000000000009414     0x3078 /Users/richarddavies/Desktop/Side_Projects/CoolEase/Code/stm32f103c8t6/libopencm3/lib/libopencm3_stm32f1.a(rcc.o)
+                                       0x7eac (size before relaxing)
+ .debug_str     0x000000000000c48c      0x35b /Users/richarddavies/Desktop/Side_Projects/CoolEase/Code/stm32f103c8t6/libopencm3/lib/libopencm3_stm32f1.a(rcc_common_all.o)
+                                       0x77c2 (size before relaxing)
+ .debug_str     0x000000000000c7e7      0x303 /Users/richarddavies/Desktop/Side_Projects/CoolEase/Code/stm32f103c8t6/libopencm3/lib/libopencm3_stm32f1.a(rtc.o)
+                                       0x7b57 (size before relaxing)
+ .debug_str     0x000000000000caea     0x10de /Users/richarddavies/Desktop/Side_Projects/CoolEase/Code/stm32f103c8t6/libopencm3/lib/libopencm3_stm32f1.a(usart_common_all.o)
+                                       0x8381 (size before relaxing)
+ .debug_str     0x000000000000dbc8       0x2d /Users/richarddavies/Desktop/Side_Projects/CoolEase/Code/stm32f103c8t6/libopencm3/lib/libopencm3_stm32f1.a(usart_common_f124.o)
+                                       0x81bb (size before relaxing)
+ .debug_str     0x000000000000dbf5     0x248b /Users/richarddavies/Desktop/Side_Projects/CoolEase/Code/stm32f103c8t6/libopencm3/lib/libopencm3_stm32f1.a(vector.o)
+                                       0x6682 (size before relaxing)
+
+.comment        0x0000000000000000       0x79
+ .comment       0x0000000000000000       0x79 build/sensor.o
+                                         0x7a (size before relaxing)
+ .comment       0x0000000000000079       0x7a build/timers.o
+ .comment       0x0000000000000079       0x7a build/serial_printf.o
+ .comment       0x0000000000000079       0x7a build/led.o
+ .comment       0x0000000000000079       0x7a build/printf.o
+ .comment       0x0000000000000079       0x7a build/reset.o
+ .comment       0x0000000000000079       0x7a build/battery.o
+ .comment       0x0000000000000079       0x7a /Users/richarddavies/Desktop/Side_Projects/CoolEase/Code/stm32f103c8t6/libopencm3/lib/libopencm3_stm32f1.a(gpio.o)
+ .comment       0x0000000000000079       0x7a /Users/richarddavies/Desktop/Side_Projects/CoolEase/Code/stm32f103c8t6/libopencm3/lib/libopencm3_stm32f1.a(gpio_common_all.o)
+ .comment       0x0000000000000079       0x7a /Users/richarddavies/Desktop/Side_Projects/CoolEase/Code/stm32f103c8t6/libopencm3/lib/libopencm3_stm32f1.a(iwdg_common_all.o)
+ .comment       0x0000000000000079       0x7a /Users/richarddavies/Desktop/Side_Projects/CoolEase/Code/stm32f103c8t6/libopencm3/lib/libopencm3_stm32f1.a(pwr_common_v1.o)
+ .comment       0x0000000000000079       0x7a /Users/richarddavies/Desktop/Side_Projects/CoolEase/Code/stm32f103c8t6/libopencm3/lib/libopencm3_stm32f1.a(rcc.o)
+ .comment       0x0000000000000079       0x7a /Users/richarddavies/Desktop/Side_Projects/CoolEase/Code/stm32f103c8t6/libopencm3/lib/libopencm3_stm32f1.a(rcc_common_all.o)
+ .comment       0x0000000000000079       0x7a /Users/richarddavies/Desktop/Side_Projects/CoolEase/Code/stm32f103c8t6/libopencm3/lib/libopencm3_stm32f1.a(rtc.o)
+ .comment       0x0000000000000079       0x7a /Users/richarddavies/Desktop/Side_Projects/CoolEase/Code/stm32f103c8t6/libopencm3/lib/libopencm3_stm32f1.a(usart_common_all.o)
+ .comment       0x0000000000000079       0x7a /Users/richarddavies/Desktop/Side_Projects/CoolEase/Code/stm32f103c8t6/libopencm3/lib/libopencm3_stm32f1.a(usart_common_f124.o)
+ .comment       0x0000000000000079       0x7a /Users/richarddavies/Desktop/Side_Projects/CoolEase/Code/stm32f103c8t6/libopencm3/lib/libopencm3_stm32f1.a(vector.o)
+
+.ARM.attributes
+                0x0000000000000000       0x2d
+ .ARM.attributes
+                0x0000000000000000       0x2d build/sensor.o
+ .ARM.attributes
+                0x000000000000002d       0x2d build/timers.o
+ .ARM.attributes
+                0x000000000000005a       0x2d build/serial_printf.o
+ .ARM.attributes
+                0x0000000000000087       0x2d build/led.o
+ .ARM.attributes
+                0x00000000000000b4       0x2d build/printf.o
+ .ARM.attributes
+                0x00000000000000e1       0x2d build/reset.o
+ .ARM.attributes
+                0x000000000000010e       0x2d build/battery.o
+ .ARM.attributes
+                0x000000000000013b       0x1d /Users/richarddavies/Desktop/Side_Projects/CoolEase/Code/stm32f103c8t6/util/gcc-arm/bin/../lib/gcc/arm-none-eabi/9.2.1/thumb/v7-m/nofp/libgcc.a(_arm_addsubdf3.o)
+ .ARM.attributes
+                0x0000000000000158       0x1d /Users/richarddavies/Desktop/Side_Projects/CoolEase/Code/stm32f103c8t6/util/gcc-arm/bin/../lib/gcc/arm-none-eabi/9.2.1/thumb/v7-m/nofp/libgcc.a(_arm_muldivdf3.o)
+ .ARM.attributes
+                0x0000000000000175       0x1d /Users/richarddavies/Desktop/Side_Projects/CoolEase/Code/stm32f103c8t6/util/gcc-arm/bin/../lib/gcc/arm-none-eabi/9.2.1/thumb/v7-m/nofp/libgcc.a(_arm_cmpdf2.o)
+ .ARM.attributes
+                0x0000000000000192       0x1d /Users/richarddavies/Desktop/Side_Projects/CoolEase/Code/stm32f103c8t6/util/gcc-arm/bin/../lib/gcc/arm-none-eabi/9.2.1/thumb/v7-m/nofp/libgcc.a(_arm_fixdfsi.o)
+ .ARM.attributes
+                0x00000000000001af       0x1d /Users/richarddavies/Desktop/Side_Projects/CoolEase/Code/stm32f103c8t6/util/gcc-arm/bin/../lib/gcc/arm-none-eabi/9.2.1/thumb/v7-m/nofp/libgcc.a(_arm_fixunsdfsi.o)
+ .ARM.attributes
+                0x00000000000001cc       0x1d /Users/richarddavies/Desktop/Side_Projects/CoolEase/Code/stm32f103c8t6/util/gcc-arm/bin/../lib/gcc/arm-none-eabi/9.2.1/thumb/v7-m/nofp/libgcc.a(_aeabi_uldivmod.o)
+ .ARM.attributes
+                0x00000000000001e9       0x2d /Users/richarddavies/Desktop/Side_Projects/CoolEase/Code/stm32f103c8t6/util/gcc-arm/bin/../lib/gcc/arm-none-eabi/9.2.1/thumb/v7-m/nofp/libgcc.a(_udivmoddi4.o)
+ .ARM.attributes
+                0x0000000000000216       0x1d /Users/richarddavies/Desktop/Side_Projects/CoolEase/Code/stm32f103c8t6/util/gcc-arm/bin/../lib/gcc/arm-none-eabi/9.2.1/thumb/v7-m/nofp/libgcc.a(_dvmd_tls.o)
+ .ARM.attributes
+                0x0000000000000233       0x2d /Users/richarddavies/Desktop/Side_Projects/CoolEase/Code/stm32f103c8t6/libopencm3/lib/libopencm3_stm32f1.a(gpio.o)
+ .ARM.attributes
+                0x0000000000000260       0x2d /Users/richarddavies/Desktop/Side_Projects/CoolEase/Code/stm32f103c8t6/libopencm3/lib/libopencm3_stm32f1.a(gpio_common_all.o)
+ .ARM.attributes
+                0x000000000000028d       0x2d /Users/richarddavies/Desktop/Side_Projects/CoolEase/Code/stm32f103c8t6/libopencm3/lib/libopencm3_stm32f1.a(iwdg_common_all.o)
+ .ARM.attributes
+                0x00000000000002ba       0x2d /Users/richarddavies/Desktop/Side_Projects/CoolEase/Code/stm32f103c8t6/libopencm3/lib/libopencm3_stm32f1.a(pwr_common_v1.o)
+ .ARM.attributes
+                0x00000000000002e7       0x2d /Users/richarddavies/Desktop/Side_Projects/CoolEase/Code/stm32f103c8t6/libopencm3/lib/libopencm3_stm32f1.a(rcc.o)
+ .ARM.attributes
+                0x0000000000000314       0x2d /Users/richarddavies/Desktop/Side_Projects/CoolEase/Code/stm32f103c8t6/libopencm3/lib/libopencm3_stm32f1.a(rcc_common_all.o)
+ .ARM.attributes
+                0x0000000000000341       0x2d /Users/richarddavies/Desktop/Side_Projects/CoolEase/Code/stm32f103c8t6/libopencm3/lib/libopencm3_stm32f1.a(rtc.o)
+ .ARM.attributes
+                0x000000000000036e       0x2d /Users/richarddavies/Desktop/Side_Projects/CoolEase/Code/stm32f103c8t6/libopencm3/lib/libopencm3_stm32f1.a(usart_common_all.o)
+ .ARM.attributes
+                0x000000000000039b       0x2d /Users/richarddavies/Desktop/Side_Projects/CoolEase/Code/stm32f103c8t6/libopencm3/lib/libopencm3_stm32f1.a(usart_common_f124.o)
+ .ARM.attributes
+                0x00000000000003c8       0x2d /Users/richarddavies/Desktop/Side_Projects/CoolEase/Code/stm32f103c8t6/libopencm3/lib/libopencm3_stm32f1.a(vector.o)
+
+.debug_frame    0x0000000000000000     0x10ac
+ .debug_frame   0x0000000000000000       0x28 build/sensor.o
+ .debug_frame   0x0000000000000028       0xa4 build/timers.o
+ .debug_frame   0x00000000000000cc       0x90 build/serial_printf.o
+ .debug_frame   0x000000000000015c       0x28 build/led.o
+ .debug_frame   0x0000000000000184      0x2b0 build/printf.o
+ .debug_frame   0x0000000000000434       0x28 build/reset.o
+ .debug_frame   0x000000000000045c       0x28 build/battery.o
+ .debug_frame   0x0000000000000484       0xac /Users/richarddavies/Desktop/Side_Projects/CoolEase/Code/stm32f103c8t6/util/gcc-arm/bin/../lib/gcc/arm-none-eabi/9.2.1/thumb/v7-m/nofp/libgcc.a(_arm_addsubdf3.o)
+ .debug_frame   0x0000000000000530       0x50 /Users/richarddavies/Desktop/Side_Projects/CoolEase/Code/stm32f103c8t6/util/gcc-arm/bin/../lib/gcc/arm-none-eabi/9.2.1/thumb/v7-m/nofp/libgcc.a(_arm_muldivdf3.o)
+ .debug_frame   0x0000000000000580       0xc4 /Users/richarddavies/Desktop/Side_Projects/CoolEase/Code/stm32f103c8t6/util/gcc-arm/bin/../lib/gcc/arm-none-eabi/9.2.1/thumb/v7-m/nofp/libgcc.a(_arm_cmpdf2.o)
+ .debug_frame   0x0000000000000644       0x24 /Users/richarddavies/Desktop/Side_Projects/CoolEase/Code/stm32f103c8t6/util/gcc-arm/bin/../lib/gcc/arm-none-eabi/9.2.1/thumb/v7-m/nofp/libgcc.a(_arm_fixdfsi.o)
+ .debug_frame   0x0000000000000668       0x24 /Users/richarddavies/Desktop/Side_Projects/CoolEase/Code/stm32f103c8t6/util/gcc-arm/bin/../lib/gcc/arm-none-eabi/9.2.1/thumb/v7-m/nofp/libgcc.a(_arm_fixunsdfsi.o)
+ .debug_frame   0x000000000000068c       0x2c /Users/richarddavies/Desktop/Side_Projects/CoolEase/Code/stm32f103c8t6/util/gcc-arm/bin/../lib/gcc/arm-none-eabi/9.2.1/thumb/v7-m/nofp/libgcc.a(_aeabi_uldivmod.o)
+ .debug_frame   0x00000000000006b8       0x34 /Users/richarddavies/Desktop/Side_Projects/CoolEase/Code/stm32f103c8t6/util/gcc-arm/bin/../lib/gcc/arm-none-eabi/9.2.1/thumb/v7-m/nofp/libgcc.a(_udivmoddi4.o)
+ .debug_frame   0x00000000000006ec       0x60 /Users/richarddavies/Desktop/Side_Projects/CoolEase/Code/stm32f103c8t6/libopencm3/lib/libopencm3_stm32f1.a(gpio.o)
+ .debug_frame   0x000000000000074c       0x80 /Users/richarddavies/Desktop/Side_Projects/CoolEase/Code/stm32f103c8t6/libopencm3/lib/libopencm3_stm32f1.a(gpio_common_all.o)
+ .debug_frame   0x00000000000007cc       0x68 /Users/richarddavies/Desktop/Side_Projects/CoolEase/Code/stm32f103c8t6/libopencm3/lib/libopencm3_stm32f1.a(iwdg_common_all.o)
+ .debug_frame   0x0000000000000834      0x100 /Users/richarddavies/Desktop/Side_Projects/CoolEase/Code/stm32f103c8t6/libopencm3/lib/libopencm3_stm32f1.a(pwr_common_v1.o)
+ .debug_frame   0x0000000000000934      0x2e0 /Users/richarddavies/Desktop/Side_Projects/CoolEase/Code/stm32f103c8t6/libopencm3/lib/libopencm3_stm32f1.a(rcc.o)
+ .debug_frame   0x0000000000000c14       0xd0 /Users/richarddavies/Desktop/Side_Projects/CoolEase/Code/stm32f103c8t6/libopencm3/lib/libopencm3_stm32f1.a(rcc_common_all.o)
+ .debug_frame   0x0000000000000ce4      0x1ac /Users/richarddavies/Desktop/Side_Projects/CoolEase/Code/stm32f103c8t6/libopencm3/lib/libopencm3_stm32f1.a(rtc.o)
+ .debug_frame   0x0000000000000e90      0x170 /Users/richarddavies/Desktop/Side_Projects/CoolEase/Code/stm32f103c8t6/libopencm3/lib/libopencm3_stm32f1.a(usart_common_all.o)
+ .debug_frame   0x0000000000001000       0x60 /Users/richarddavies/Desktop/Side_Projects/CoolEase/Code/stm32f103c8t6/libopencm3/lib/libopencm3_stm32f1.a(usart_common_f124.o)
+ .debug_frame   0x0000000000001060       0x4c /Users/richarddavies/Desktop/Side_Projects/CoolEase/Code/stm32f103c8t6/libopencm3/lib/libopencm3_stm32f1.a(vector.o)
+
+.debug_macro    0x0000000000000000     0x20e1
+ .debug_macro   0x0000000000000000       0xb8 /Users/richarddavies/Desktop/Side_Projects/CoolEase/Code/stm32f103c8t6/libopencm3/lib/libopencm3_stm32f1.a(gpio.o)
+ .debug_macro   0x00000000000000b8       0x76 /Users/richarddavies/Desktop/Side_Projects/CoolEase/Code/stm32f103c8t6/libopencm3/lib/libopencm3_stm32f1.a(gpio.o)
+ .debug_macro   0x000000000000012e      0xe04 /Users/richarddavies/Desktop/Side_Projects/CoolEase/Code/stm32f103c8t6/libopencm3/lib/libopencm3_stm32f1.a(gpio.o)
+ .debug_macro   0x0000000000000f32       0xb8 /Users/richarddavies/Desktop/Side_Projects/CoolEase/Code/stm32f103c8t6/libopencm3/lib/libopencm3_stm32f1.a(gpio_common_all.o)
+ .debug_macro   0x0000000000000fea       0xc5 /Users/richarddavies/Desktop/Side_Projects/CoolEase/Code/stm32f103c8t6/libopencm3/lib/libopencm3_stm32f1.a(iwdg_common_all.o)
+ .debug_macro   0x00000000000010af       0x70 /Users/richarddavies/Desktop/Side_Projects/CoolEase/Code/stm32f103c8t6/libopencm3/lib/libopencm3_stm32f1.a(iwdg_common_all.o)
+ .debug_macro   0x000000000000111f       0xb3 /Users/richarddavies/Desktop/Side_Projects/CoolEase/Code/stm32f103c8t6/libopencm3/lib/libopencm3_stm32f1.a(pwr_common_v1.o)
+ .debug_macro   0x00000000000011d2       0x8e /Users/richarddavies/Desktop/Side_Projects/CoolEase/Code/stm32f103c8t6/libopencm3/lib/libopencm3_stm32f1.a(pwr_common_v1.o)
+ .debug_macro   0x0000000000001260       0xe7 /Users/richarddavies/Desktop/Side_Projects/CoolEase/Code/stm32f103c8t6/libopencm3/lib/libopencm3_stm32f1.a(rcc.o)
+ .debug_macro   0x0000000000001347       0x16 /Users/richarddavies/Desktop/Side_Projects/CoolEase/Code/stm32f103c8t6/libopencm3/lib/libopencm3_stm32f1.a(rcc.o)
+ .debug_macro   0x000000000000135d       0xce /Users/richarddavies/Desktop/Side_Projects/CoolEase/Code/stm32f103c8t6/libopencm3/lib/libopencm3_stm32f1.a(rcc_common_all.o)
+ .debug_macro   0x000000000000142b       0xe6 /Users/richarddavies/Desktop/Side_Projects/CoolEase/Code/stm32f103c8t6/libopencm3/lib/libopencm3_stm32f1.a(rtc.o)
+ .debug_macro   0x0000000000001511       0x76 /Users/richarddavies/Desktop/Side_Projects/CoolEase/Code/stm32f103c8t6/libopencm3/lib/libopencm3_stm32f1.a(rtc.o)
+ .debug_macro   0x0000000000001587       0xda /Users/richarddavies/Desktop/Side_Projects/CoolEase/Code/stm32f103c8t6/libopencm3/lib/libopencm3_stm32f1.a(usart_common_all.o)
+ .debug_macro   0x0000000000001661       0x94 /Users/richarddavies/Desktop/Side_Projects/CoolEase/Code/stm32f103c8t6/libopencm3/lib/libopencm3_stm32f1.a(usart_common_all.o)
+ .debug_macro   0x00000000000016f5      0x29e /Users/richarddavies/Desktop/Side_Projects/CoolEase/Code/stm32f103c8t6/libopencm3/lib/libopencm3_stm32f1.a(usart_common_all.o)
+ .debug_macro   0x0000000000001993       0xda /Users/richarddavies/Desktop/Side_Projects/CoolEase/Code/stm32f103c8t6/libopencm3/lib/libopencm3_stm32f1.a(usart_common_f124.o)
+ .debug_macro   0x0000000000001a6d       0xcf /Users/richarddavies/Desktop/Side_Projects/CoolEase/Code/stm32f103c8t6/libopencm3/lib/libopencm3_stm32f1.a(vector.o)
+ .debug_macro   0x0000000000001b3c      0x395 /Users/richarddavies/Desktop/Side_Projects/CoolEase/Code/stm32f103c8t6/libopencm3/lib/libopencm3_stm32f1.a(vector.o)
+ .debug_macro   0x0000000000001ed1       0x6e /Users/richarddavies/Desktop/Side_Projects/CoolEase/Code/stm32f103c8t6/libopencm3/lib/libopencm3_stm32f1.a(vector.o)
+ .debug_macro   0x0000000000001f3f      0x1a2 /Users/richarddavies/Desktop/Side_Projects/CoolEase/Code/stm32f103c8t6/libopencm3/lib/libopencm3_stm32f1.a(vector.o)

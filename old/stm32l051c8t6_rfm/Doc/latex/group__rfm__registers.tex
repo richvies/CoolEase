@@ -1,0 +1,1464 @@
+\hypertarget{group__rfm__registers}{}\doxysection{R\+FM Register Definitions}
+\label{group__rfm__registers}\index{RFM Register Definitions@{RFM Register Definitions}}
+
+
+Register names \& bit positions (Lo\+Ra Mode, from table 85)  
+
+
+\doxysubsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define \mbox{\hyperlink{group__rfm__registers_ga77caf23af20ce85f5ae37f12d0d806ab}{R\+F\+M\+\_\+\+P\+A\+\_\+\+S\+E\+L\+E\+CT}}~0x80
+\item 
+\#define \mbox{\hyperlink{group__rfm__registers_ga501f04fcb8b91bfeab0a904b035d0e20}{R\+F\+M\+\_\+\+M\+A\+X\+\_\+\+P\+O\+W\+ER}}~0x70
+\item 
+\#define \mbox{\hyperlink{group__rfm__registers_ga8627ba0d89061e4162112b44a12b85bf}{R\+F\+M\+\_\+\+O\+U\+T\+P\+U\+T\+\_\+\+P\+O\+W\+ER}}~0x0f
+\item 
+\#define \mbox{\hyperlink{group__rfm__registers_ga59198253c729f13bfe2dac7190a2c7a8}{R\+F\+M\+\_\+\+L\+O\+W\+\_\+\+P\+N\+\_\+\+T\+X\+\_\+\+P\+L\+L\+\_\+\+O\+FF}}~0x10
+\item 
+\#define \mbox{\hyperlink{group__rfm__registers_ga3ae15ddc8efec7c5c00a62b6f1c14d76}{R\+F\+M\+\_\+\+P\+A\+\_\+\+R\+A\+M\+P\+\_\+\+M\+A\+SK}}~0x0f
+\item 
+\#define \mbox{\hyperlink{group__rfm__registers_gaa2d1fa9904e8844dde4d6dc5933a5e39}{R\+F\+M\+\_\+\+P\+A\+\_\+\+R\+A\+M\+P\+\_\+3\+\_\+4\+MS}}~0x00
+\item 
+\#define \mbox{\hyperlink{group__rfm__registers_ga98333f4c37610682241f8c5c653cdf82}{R\+F\+M\+\_\+\+P\+A\+\_\+\+R\+A\+M\+P\+\_\+2\+MS}}~0x01
+\item 
+\#define \mbox{\hyperlink{group__rfm__registers_ga1f5701d073233d97e83777fd502740d8}{R\+F\+M\+\_\+\+P\+A\+\_\+\+R\+A\+M\+P\+\_\+1\+MS}}~0x02
+\item 
+\#define \mbox{\hyperlink{group__rfm__registers_gac6646adcdd2b637347d15bcd09904cbf}{R\+F\+M\+\_\+\+P\+A\+\_\+\+R\+A\+M\+P\+\_\+500\+US}}~0x03
+\item 
+\#define \mbox{\hyperlink{group__rfm__registers_gad84cd5fba79c9191d0d7b131d98a8a01}{R\+F\+M\+\_\+\+P\+A\+\_\+\+R\+A\+M\+P\+\_\+250\+US}}~0x04
+\item 
+\#define \mbox{\hyperlink{group__rfm__registers_ga9690a22faffb0310e1830a77491032ff}{R\+F\+M\+\_\+\+P\+A\+\_\+\+R\+A\+M\+P\+\_\+125\+US}}~0x05
+\item 
+\#define \mbox{\hyperlink{group__rfm__registers_gab6940b062ad3eab06b21be0410c4928a}{R\+F\+M\+\_\+\+P\+A\+\_\+\+R\+A\+M\+P\+\_\+100\+US}}~0x06
+\item 
+\#define \mbox{\hyperlink{group__rfm__registers_ga7f17258baf8a39b8a8f1f06ff0c3fda5}{R\+F\+M\+\_\+\+P\+A\+\_\+\+R\+A\+M\+P\+\_\+62\+US}}~0x07
+\item 
+\#define \mbox{\hyperlink{group__rfm__registers_gac37664710c9dd48c07b54b42202c9c1e}{R\+F\+M\+\_\+\+P\+A\+\_\+\+R\+A\+M\+P\+\_\+50\+US}}~0x08
+\item 
+\#define \mbox{\hyperlink{group__rfm__registers_gac711d620c58f13196614f3988de81596}{R\+F\+M\+\_\+\+P\+A\+\_\+\+R\+A\+M\+P\+\_\+40\+US}}~0x09
+\item 
+\#define \mbox{\hyperlink{group__rfm__registers_ga997814144a6f371c375a9e5ce5e3fdfd}{R\+F\+M\+\_\+\+P\+A\+\_\+\+R\+A\+M\+P\+\_\+31\+US}}~0x0a
+\item 
+\#define \mbox{\hyperlink{group__rfm__registers_ga60cab33376fa3512e515c282f2c61d07}{R\+F\+M\+\_\+\+P\+A\+\_\+\+R\+A\+M\+P\+\_\+25\+US}}~0x0b
+\item 
+\#define \mbox{\hyperlink{group__rfm__registers_ga0f2ec984819fa2f84abc5a4375312c6c}{R\+F\+M\+\_\+\+P\+A\+\_\+\+R\+A\+M\+P\+\_\+20\+US}}~0x0c
+\item 
+\#define \mbox{\hyperlink{group__rfm__registers_ga7fc9b5a5be832689958dc0b9be88beef}{R\+F\+M\+\_\+\+P\+A\+\_\+\+R\+A\+M\+P\+\_\+15\+US}}~0x0d
+\item 
+\#define \mbox{\hyperlink{group__rfm__registers_gab1d1f56fedc61482f4d9677eb77dcc94}{R\+F\+M\+\_\+\+P\+A\+\_\+\+R\+A\+M\+P\+\_\+12\+US}}~0x0e
+\item 
+\#define \mbox{\hyperlink{group__rfm__registers_gaacbd16da23855d35071e54fab3d8cbf8}{R\+F\+M\+\_\+\+P\+A\+\_\+\+R\+A\+M\+P\+\_\+10\+US}}~0x0f
+\item 
+\#define \mbox{\hyperlink{group__rfm__registers_ga4090553ba4959e33afe1200f39c5ce15}{R\+F\+M\+\_\+\+O\+C\+P\+\_\+\+ON}}~0x20
+\item 
+\#define \mbox{\hyperlink{group__rfm__registers_gab44b6dd5983e7ffbcbd88e1c407ad356}{R\+F\+M\+\_\+\+O\+C\+P\+\_\+\+T\+R\+IM}}~0x1f
+\item 
+\#define \mbox{\hyperlink{group__rfm__registers_ga24fa88c835e1475ae0bca8c27454ce5b}{R\+F\+M\+\_\+\+L\+N\+A\+\_\+\+G\+A\+IN}}~0xe0
+\item 
+\#define \mbox{\hyperlink{group__rfm__registers_gadf5f76aeccc745546d8dc3ef7885ea4b}{R\+F\+M\+\_\+\+L\+N\+A\+\_\+\+G\+A\+I\+N\+\_\+\+G1}}~0x20
+\item 
+\#define \mbox{\hyperlink{group__rfm__registers_ga72587a5952d01f8c8466e1e4c2c06dc0}{R\+F\+M\+\_\+\+L\+N\+A\+\_\+\+G\+A\+I\+N\+\_\+\+G2}}~0x40
+\item 
+\#define \mbox{\hyperlink{group__rfm__registers_gaeff69fdc30366934b78c078542a07981}{R\+F\+M\+\_\+\+L\+N\+A\+\_\+\+G\+A\+I\+N\+\_\+\+G3}}~0x60
+\item 
+\#define \mbox{\hyperlink{group__rfm__registers_ga9bde20197b1f04c608f7f38a1eff6bc6}{R\+F\+M\+\_\+\+L\+N\+A\+\_\+\+G\+A\+I\+N\+\_\+\+G4}}~0x80
+\item 
+\#define \mbox{\hyperlink{group__rfm__registers_ga3ddd75f37172d8fbd8eb7d7de42cc685}{R\+F\+M\+\_\+\+L\+N\+A\+\_\+\+G\+A\+I\+N\+\_\+\+G5}}~0xa0
+\item 
+\#define \mbox{\hyperlink{group__rfm__registers_ga15c716918dd52948ace26ea6d231bb6d}{R\+F\+M\+\_\+\+L\+N\+A\+\_\+\+G\+A\+I\+N\+\_\+\+G6}}~0xc0
+\item 
+\#define \mbox{\hyperlink{group__rfm__registers_ga6040d513a5c1a75294a1c7227ed3b4fc}{R\+F\+M\+\_\+\+L\+N\+A\+\_\+\+B\+O\+O\+S\+T\+\_\+\+LF}}~0x18
+\item 
+\#define \mbox{\hyperlink{group__rfm__registers_ga6094f0481dd7968d6aba532a62f430bb}{R\+F\+M\+\_\+\+L\+N\+A\+\_\+\+B\+O\+O\+S\+T\+\_\+\+L\+F\+\_\+\+D\+E\+F\+A\+U\+LT}}~0x00
+\item 
+\#define \mbox{\hyperlink{group__rfm__registers_ga4e545b5a92087bb72cc56fe18af84ab1}{R\+F\+M\+\_\+\+L\+N\+A\+\_\+\+B\+O\+O\+S\+T\+\_\+\+HF}}~0x03
+\item 
+\#define \mbox{\hyperlink{group__rfm__registers_gae8907553681176d030d17fa7da701d89}{R\+F\+M\+\_\+\+L\+N\+A\+\_\+\+B\+O\+O\+S\+T\+\_\+\+H\+F\+\_\+\+D\+E\+F\+A\+U\+LT}}~0x00
+\item 
+\#define \mbox{\hyperlink{group__rfm__registers_gac827c0769313671e247958742ac893b9}{R\+F\+M\+\_\+\+L\+N\+A\+\_\+\+B\+O\+O\+S\+T\+\_\+\+H\+F\+\_\+150\+PC}}~0x03
+\item 
+\#define \mbox{\hyperlink{group__rfm__registers_ga46c8d638fd5d677ff00574202749a60d}{R\+F\+M\+\_\+\+R\+X\+\_\+\+T\+I\+M\+E\+O\+U\+T\+\_\+\+M\+A\+SK}}~0x80
+\item 
+\#define \mbox{\hyperlink{group__rfm__registers_ga886c9f196a27dceab3c71a2b08d4db2d}{R\+F\+M\+\_\+\+R\+X\+\_\+\+D\+O\+N\+E\+\_\+\+M\+A\+SK}}~0x40
+\item 
+\#define \mbox{\hyperlink{group__rfm__registers_ga65a837ca136ec77aad8b73c4ab851e4f}{R\+F\+M\+\_\+\+P\+A\+Y\+L\+O\+A\+D\+\_\+\+C\+R\+C\+\_\+\+E\+R\+R\+O\+R\+\_\+\+M\+A\+SK}}~0x20
+\item 
+\#define \mbox{\hyperlink{group__rfm__registers_ga580bb89afbf9b7055f73a2ae358c6a7a}{R\+F\+M\+\_\+\+V\+A\+L\+I\+D\+\_\+\+H\+E\+A\+D\+E\+R\+\_\+\+M\+A\+SK}}~0x10
+\item 
+\#define \mbox{\hyperlink{group__rfm__registers_ga4d67743361ea6df5dcb97570afd6f661}{R\+F\+M\+\_\+\+T\+X\+\_\+\+D\+O\+N\+E\+\_\+\+M\+A\+SK}}~0x08
+\item 
+\#define \mbox{\hyperlink{group__rfm__registers_gac15beb51b598be10605c31402f942604}{R\+F\+M\+\_\+\+C\+A\+D\+\_\+\+D\+O\+N\+E\+\_\+\+M\+A\+SK}}~0x04
+\item 
+\#define \mbox{\hyperlink{group__rfm__registers_ga7160498da85504b4fb1e66eefee148c2}{R\+F\+M\+\_\+\+F\+H\+S\+S\+\_\+\+C\+H\+A\+N\+G\+E\+\_\+\+C\+H\+A\+N\+N\+E\+L\+\_\+\+M\+A\+SK}}~0x02
+\item 
+\#define \mbox{\hyperlink{group__rfm__registers_ga11ff04d8a0261ab90e95f7b53a5be732}{R\+F\+M\+\_\+\+C\+A\+D\+\_\+\+D\+E\+T\+E\+C\+T\+E\+D\+\_\+\+M\+A\+SK}}~0x01
+\item 
+\#define \mbox{\hyperlink{group__rfm__registers_gac4466525e6cf4716e7be485ec496763d}{R\+F\+M\+\_\+\+I\+R\+Q\+\_\+\+A\+LL}}~0x\+FF
+\item 
+\#define \mbox{\hyperlink{group__rfm__registers_gaf6cdf56add76e5f2ece02710cfc6b2ab}{R\+F\+M\+\_\+\+I\+R\+Q\+\_\+\+N\+O\+NE}}~0x00
+\item 
+\#define \mbox{\hyperlink{group__rfm__registers_ga9687d1220a0ded952e7119d5219779f4}{R\+F\+M\+\_\+\+I\+R\+Q\+\_\+\+R\+X\+\_\+\+T\+I\+M\+E\+O\+UT}}~0x80
+\item 
+\#define \mbox{\hyperlink{group__rfm__registers_ga50b07045d10fe450256900fb0392dcd9}{R\+F\+M\+\_\+\+I\+R\+Q\+\_\+\+R\+X\+\_\+\+D\+O\+NE}}~0x40
+\item 
+\#define \mbox{\hyperlink{group__rfm__registers_gafff2997606702b74acf477ce9a1141e0}{R\+F\+M\+\_\+\+I\+R\+Q\+\_\+\+P\+A\+Y\+L\+O\+A\+D\+\_\+\+C\+R\+C\+\_\+\+E\+R\+R\+OR}}~0x20
+\item 
+\#define \mbox{\hyperlink{group__rfm__registers_ga20b6294b23c246066a0dd46aaefc2e68}{R\+F\+M\+\_\+\+I\+R\+Q\+\_\+\+V\+A\+L\+I\+D\+\_\+\+H\+E\+A\+D\+ER}}~0x10
+\item 
+\#define \mbox{\hyperlink{group__rfm__registers_ga22cfeb678799b2affeb3f2f4084792f8}{R\+F\+M\+\_\+\+I\+R\+Q\+\_\+\+T\+X\+\_\+\+D\+O\+NE}}~0x08
+\item 
+\#define \mbox{\hyperlink{group__rfm__registers_gac8d939f752fbb70a12af72db29238ce8}{R\+F\+M\+\_\+\+I\+R\+Q\+\_\+\+C\+A\+D\+\_\+\+D\+O\+NE}}~0x04
+\item 
+\#define \mbox{\hyperlink{group__rfm__registers_ga376784fe05633d7b9dc0bda4e84b50a3}{R\+F\+M\+\_\+\+I\+R\+Q\+\_\+\+F\+H\+S\+S\+\_\+\+C\+H\+A\+N\+G\+E\+\_\+\+C\+H\+A\+N\+N\+EL}}~0x02
+\item 
+\#define \mbox{\hyperlink{group__rfm__registers_gac1d02291848211f49df1455134b00f7d}{R\+F\+M\+\_\+\+I\+R\+Q\+\_\+\+C\+A\+D\+\_\+\+D\+E\+T\+E\+C\+T\+ED}}~0x01
+\item 
+\#define \mbox{\hyperlink{group__rfm__registers_gadb849b331c82e5844141c66fce8b12b8}{R\+F\+M\+\_\+\+R\+X\+\_\+\+C\+O\+D\+I\+N\+G\+\_\+\+R\+A\+TE}}~0xe0
+\item 
+\#define \mbox{\hyperlink{group__rfm__registers_gadbd2ff3317eae3c8e95dc584d3ee0ee4}{R\+F\+M\+\_\+\+M\+O\+D\+E\+M\+\_\+\+S\+T\+A\+T\+U\+S\+\_\+\+C\+L\+E\+AR}}~0x10
+\item 
+\#define \mbox{\hyperlink{group__rfm__registers_gab00b6e3bab4bad7723c05675a57d777b}{R\+F\+M\+\_\+\+M\+O\+D\+E\+M\+\_\+\+S\+T\+A\+T\+U\+S\+\_\+\+H\+E\+A\+D\+E\+R\+\_\+\+I\+N\+F\+O\+\_\+\+V\+A\+L\+ID}}~0x08
+\item 
+\#define \mbox{\hyperlink{group__rfm__registers_ga519236312c124f2a1af51cb2f1c34607}{R\+F\+M\+\_\+\+M\+O\+D\+E\+M\+\_\+\+S\+T\+A\+T\+U\+S\+\_\+\+R\+X\+\_\+\+O\+N\+G\+O\+I\+NG}}~0x04
+\item 
+\#define \mbox{\hyperlink{group__rfm__registers_ga68d52effda4f0f9ee941d13b478909c9}{R\+F\+M\+\_\+\+M\+O\+D\+E\+M\+\_\+\+S\+T\+A\+T\+U\+S\+\_\+\+S\+I\+G\+N\+A\+L\+\_\+\+S\+Y\+N\+C\+H\+R\+O\+N\+I\+Z\+ED}}~0x02
+\item 
+\#define \mbox{\hyperlink{group__rfm__registers_ga21714004a3b6fc2fd2d7ac2f02d4bdbd}{R\+F\+M\+\_\+\+M\+O\+D\+E\+M\+\_\+\+S\+T\+A\+T\+U\+S\+\_\+\+S\+I\+G\+N\+A\+L\+\_\+\+D\+E\+T\+E\+C\+T\+ED}}~0x01
+\item 
+\#define \mbox{\hyperlink{group__rfm__registers_ga6468e74cdb785242a848d53fd35d50b2}{R\+F\+M\+\_\+\+P\+L\+L\+\_\+\+T\+I\+M\+E\+O\+UT}}~0x80
+\item 
+\#define \mbox{\hyperlink{group__rfm__registers_ga6f03946c297feb41070e2fe6811e041d}{R\+F\+M\+\_\+\+R\+X\+\_\+\+P\+A\+Y\+L\+O\+A\+D\+\_\+\+C\+R\+C\+\_\+\+I\+S\+\_\+\+ON}}~0x40
+\item 
+\#define \mbox{\hyperlink{group__rfm__registers_ga7e3ef623be57b9a5870634bfc21391b2}{R\+F\+M\+\_\+\+F\+H\+S\+S\+\_\+\+P\+R\+E\+S\+E\+N\+T\+\_\+\+C\+H\+A\+N\+N\+EL}}~0x3f
+\item 
+\#define \mbox{\hyperlink{group__rfm__registers_ga4366bcf084242030c50978964075dfe6}{R\+F\+M\+\_\+\+BW}}~0xf0
+\item 
+\#define \mbox{\hyperlink{group__rfm__registers_gafacb21b9e5da88cb37415af124260250}{R\+F\+M\+\_\+\+B\+W\+\_\+7\+\_\+8\+K\+HZ}}~0x00
+\item 
+\#define \mbox{\hyperlink{group__rfm__registers_ga132c4bb79c705333e11240951ec9d245}{R\+F\+M\+\_\+\+B\+W\+\_\+10\+\_\+4\+K\+HZ}}~0x10
+\item 
+\#define \mbox{\hyperlink{group__rfm__registers_ga246911e1dfc46b3003d3ab5c0d8cc9f7}{R\+F\+M\+\_\+\+B\+W\+\_\+15\+\_\+6\+K\+HZ}}~0x20
+\item 
+\#define \mbox{\hyperlink{group__rfm__registers_ga03e633adab87201b7e15504b1ae17119}{R\+F\+M\+\_\+\+B\+W\+\_\+20\+\_\+8\+K\+HZ}}~0x30
+\item 
+\#define \mbox{\hyperlink{group__rfm__registers_ga9f4bd4f132b47c53051635265540cf4b}{R\+F\+M\+\_\+\+B\+W\+\_\+31\+\_\+25\+K\+HZ}}~0x40
+\item 
+\#define \mbox{\hyperlink{group__rfm__registers_gac3a326b0b8b85f87724168a20f6a9b5c}{R\+F\+M\+\_\+\+B\+W\+\_\+41\+\_\+7\+K\+HZ}}~0x50
+\item 
+\#define \mbox{\hyperlink{group__rfm__registers_gaf296d76f8cd35dfca9b5ac5c33d9ca37}{R\+F\+M\+\_\+\+B\+W\+\_\+62\+\_\+5\+K\+HZ}}~0x60
+\item 
+\#define \mbox{\hyperlink{group__rfm__registers_gac10a8b57e3caab32ace83340431ca741}{R\+F\+M\+\_\+\+B\+W\+\_\+125\+K\+HZ}}~0x70
+\item 
+\#define \mbox{\hyperlink{group__rfm__registers_gae6aaa8f181faae6f0afe1d4cee7ba3e6}{R\+F\+M\+\_\+\+B\+W\+\_\+250\+K\+HZ}}~0x80
+\item 
+\#define \mbox{\hyperlink{group__rfm__registers_ga72cadc5bdfcb5a4871485107f8939cb9}{R\+F\+M\+\_\+\+B\+W\+\_\+500\+K\+HZ}}~0x90
+\item 
+\#define \mbox{\hyperlink{group__rfm__registers_gaf01ea0efd19cc76918f34f12bda11043}{R\+F\+M\+\_\+\+C\+O\+D\+I\+N\+G\+\_\+\+R\+A\+TE}}~0x0e
+\item 
+\#define \mbox{\hyperlink{group__rfm__registers_ga791e64216981f68b5a7f7dc986f703ed}{R\+F\+M\+\_\+\+C\+O\+D\+I\+N\+G\+\_\+\+R\+A\+T\+E\+\_\+4\+\_\+5}}~0x02
+\item 
+\#define \mbox{\hyperlink{group__rfm__registers_ga0edc07f9df69ae638f8f8dea971325dd}{R\+F\+M\+\_\+\+C\+O\+D\+I\+N\+G\+\_\+\+R\+A\+T\+E\+\_\+4\+\_\+6}}~0x04
+\item 
+\#define \mbox{\hyperlink{group__rfm__registers_gad05390d421fd3888871ff9b7adce0842}{R\+F\+M\+\_\+\+C\+O\+D\+I\+N\+G\+\_\+\+R\+A\+T\+E\+\_\+4\+\_\+7}}~0x06
+\item 
+\#define \mbox{\hyperlink{group__rfm__registers_gafa0465073bb64c9a204d3a2f8bc7667f}{R\+F\+M\+\_\+\+C\+O\+D\+I\+N\+G\+\_\+\+R\+A\+T\+E\+\_\+4\+\_\+8}}~0x08
+\item 
+\#define \mbox{\hyperlink{group__rfm__registers_ga2705328bc48a2dabe66953781715a749}{R\+F\+M\+\_\+\+I\+M\+P\+L\+I\+C\+I\+T\+\_\+\+H\+E\+A\+D\+E\+R\+\_\+\+M\+O\+D\+E\+\_\+\+ON}}~0x01
+\item 
+\#define \mbox{\hyperlink{group__rfm__registers_gae2231ea56372274b91e7d07dbf2252d0}{R\+F\+M\+\_\+\+S\+P\+R\+E\+A\+D\+I\+N\+G\+\_\+\+F\+A\+C\+T\+OR}}~0xf0
+\item 
+\#define \mbox{\hyperlink{group__rfm__registers_ga4badda06bea16f2ab302998e0c2eeb06}{R\+F\+M\+\_\+\+S\+P\+R\+E\+A\+D\+I\+N\+G\+\_\+\+F\+A\+C\+T\+O\+R\+\_\+64\+C\+PS}}~0x60
+\item 
+\#define \mbox{\hyperlink{group__rfm__registers_ga91493e17a62f89f8b1950938ac178ae4}{R\+F\+M\+\_\+\+S\+P\+R\+E\+A\+D\+I\+N\+G\+\_\+\+F\+A\+C\+T\+O\+R\+\_\+128\+C\+PS}}~0x70
+\item 
+\#define \mbox{\hyperlink{group__rfm__registers_ga303e4100146cca067c82d5ba835f2ae1}{R\+F\+M\+\_\+\+S\+P\+R\+E\+A\+D\+I\+N\+G\+\_\+\+F\+A\+C\+T\+O\+R\+\_\+256\+C\+PS}}~0x80
+\item 
+\#define \mbox{\hyperlink{group__rfm__registers_ga75a6a399d21143395ba3b356b068f661}{R\+F\+M\+\_\+\+S\+P\+R\+E\+A\+D\+I\+N\+G\+\_\+\+F\+A\+C\+T\+O\+R\+\_\+512\+C\+PS}}~0x90
+\item 
+\#define \mbox{\hyperlink{group__rfm__registers_gaf627d2f43a068f7d914d571442f925f2}{R\+F\+M\+\_\+\+S\+P\+R\+E\+A\+D\+I\+N\+G\+\_\+\+F\+A\+C\+T\+O\+R\+\_\+1024\+C\+PS}}~0xa0
+\item 
+\#define \mbox{\hyperlink{group__rfm__registers_ga46a9a7dcffcb60f499f40ae4b0d2349e}{R\+F\+M\+\_\+\+S\+P\+R\+E\+A\+D\+I\+N\+G\+\_\+\+F\+A\+C\+T\+O\+R\+\_\+2048\+C\+PS}}~0xb0
+\item 
+\#define \mbox{\hyperlink{group__rfm__registers_gac399f154772e269d43f3c55b12a89711}{R\+F\+M\+\_\+\+S\+P\+R\+E\+A\+D\+I\+N\+G\+\_\+\+F\+A\+C\+T\+O\+R\+\_\+4096\+C\+PS}}~0xc0
+\item 
+\#define \mbox{\hyperlink{group__rfm__registers_ga554b5c39acd3776e6af1d38a48b143d0}{R\+F\+M\+\_\+\+T\+X\+\_\+\+C\+O\+N\+T\+I\+N\+U\+O\+U\+S\+\_\+\+M\+O\+DE}}~0x08
+\item 
+\#define \mbox{\hyperlink{group__rfm__registers_ga8b45fbec47f488bd4fc4fc6cb4d35135}{R\+F\+M\+\_\+\+P\+A\+Y\+L\+O\+A\+D\+\_\+\+C\+R\+C\+\_\+\+ON}}~0x04
+\item 
+\#define \mbox{\hyperlink{group__rfm__registers_ga038b2d99d6fc892ddd65379fa5a35fd2}{R\+F\+M\+\_\+\+S\+Y\+M\+\_\+\+T\+I\+M\+E\+O\+U\+T\+\_\+\+M\+SB}}~0x03
+\item 
+\#define \mbox{\hyperlink{group__rfm__registers_ga90c030f1fe44b889d051b36a4ea98b9b}{R\+F\+M\+\_\+\+M\+O\+B\+I\+L\+E\+\_\+\+N\+O\+DE}}~0x08
+\item 
+\#define \mbox{\hyperlink{group__rfm__registers_gab21f907ab4aa6b64c09c70e218b773fd}{R\+F\+M\+\_\+\+L\+O\+W\+\_\+\+D\+A\+T\+A\+\_\+\+R\+A\+T\+E\+\_\+\+O\+P\+T\+I\+M\+I\+ZE}}~0x08
+\item 
+\#define \mbox{\hyperlink{group__rfm__registers_ga153911044958d9f36626716c73568160}{R\+F\+M\+\_\+\+A\+G\+C\+\_\+\+A\+U\+T\+O\+\_\+\+ON}}~0x04
+\item 
+\#define \mbox{\hyperlink{group__rfm__registers_ga657b03a41342dd05dd39f4b54630ffdf}{R\+F\+M\+\_\+\+I\+O\+\_\+0\+\_\+\+I\+R\+Q\+\_\+\+R\+X\+\_\+\+D\+O\+NE}}~(0 $<$$<$ 6)
+\item 
+\#define \mbox{\hyperlink{group__rfm__registers_gad71183932b987a24c7d4456690f8e295}{R\+F\+M\+\_\+\+I\+O\+\_\+0\+\_\+\+I\+R\+Q\+\_\+\+T\+X\+\_\+\+D\+O\+NE}}~(1 $<$$<$ 6)
+\item 
+\#define \mbox{\hyperlink{group__rfm__registers_gaaf2cf3e03065da977122367604834f08}{R\+F\+M\+\_\+\+I\+O\+\_\+0\+\_\+\+I\+R\+Q\+\_\+\+C\+A\+D\+\_\+\+D\+O\+NE}}~(2 $<$$<$ 6)
+\item 
+\#define \mbox{\hyperlink{group__rfm__registers_ga84a2a7d8e3080937f2445362ff5a4b86}{R\+F\+M\+\_\+\+I\+O\+\_\+1\+\_\+\+I\+R\+Q\+\_\+\+R\+X\+\_\+\+T\+I\+M\+E\+O\+UT}}~(0 $<$$<$ 4)
+\item 
+\#define \mbox{\hyperlink{group__rfm__registers_gaed4b67063ddca2211606153d2e1daaa2}{R\+F\+M\+\_\+\+I\+O\+\_\+1\+\_\+\+I\+R\+Q\+\_\+\+F\+H\+S\+S\+\_\+\+C\+H\+A\+N\+GE}}~(1 $<$$<$ 4)
+\item 
+\#define \mbox{\hyperlink{group__rfm__registers_ga8239da1de069cd6994738f1915c30139}{R\+F\+M\+\_\+\+I\+O\+\_\+1\+\_\+\+I\+R\+Q\+\_\+\+C\+A\+D\+\_\+\+D\+E\+T\+E\+C\+T\+ED}}~(2 $<$$<$ 4)
+\item 
+\#define \mbox{\hyperlink{group__rfm__registers_gad61bc2f2221aa7f95086f8311a4c0171}{R\+F\+M\+\_\+\+I\+O\+\_\+2\+\_\+\+I\+R\+Q\+\_\+\+F\+H\+S\+S\+\_\+\+C\+H\+A\+N\+GE}}~(0 $<$$<$ 2)
+\item 
+\#define \mbox{\hyperlink{group__rfm__registers_ga809f98918d3c7aa841c737cc1e032abf}{R\+F\+M\+\_\+\+I\+O\+\_\+3\+\_\+\+I\+R\+Q\+\_\+\+C\+A\+D\+\_\+\+D\+O\+NE}}~(0 $<$$<$ 0)
+\item 
+\#define \mbox{\hyperlink{group__rfm__registers_ga3431ce3ca9e1003a90317dadcc66bf88}{R\+F\+M\+\_\+\+I\+O\+\_\+3\+\_\+\+I\+R\+Q\+\_\+\+V\+A\+L\+I\+D\+\_\+\+H\+E\+A\+D\+ER}}~(1 $<$$<$ 0)
+\item 
+\#define \mbox{\hyperlink{group__rfm__registers_gaf33831a9ac6e59402d50bd72b5065bf3}{R\+F\+M\+\_\+\+I\+O\+\_\+3\+\_\+\+I\+R\+Q\+\_\+\+C\+R\+C\+\_\+\+E\+R\+R\+OR}}~(2 $<$$<$ 0)
+\item 
+\#define \mbox{\hyperlink{group__rfm__registers_gab2b235c49c2617216a459c0ecfc65dc6}{R\+F\+M\+\_\+\+I\+O\+\_\+4\+\_\+\+I\+R\+Q\+\_\+\+C\+A\+D\+\_\+\+D\+E\+T\+E\+C\+T\+ED}}~(0 $<$$<$ 6)
+\item 
+\#define \mbox{\hyperlink{group__rfm__registers_gadaba45bd5a8d81b95f46716ee717aee0}{R\+F\+M\+\_\+\+I\+O\+\_\+4\+\_\+\+I\+R\+Q\+\_\+\+P\+L\+L\+\_\+\+L\+O\+CK}}~(1 $<$$<$ 6)
+\item 
+\#define \mbox{\hyperlink{group__rfm__registers_gaf4aa90f3d7f65979df67af1071dac9cb}{R\+F\+M\+\_\+\+I\+O\+\_\+5\+\_\+\+I\+R\+Q\+\_\+\+M\+O\+D\+E\+\_\+\+R\+E\+A\+DY}}~(0 $<$$<$ 4)
+\item 
+\#define \mbox{\hyperlink{group__rfm__registers_ga3f663448938914a099c47fdfe164fb82}{R\+F\+M\+\_\+\+I\+O\+\_\+5\+\_\+\+I\+R\+Q\+\_\+\+C\+L\+K\+O\+UT}}~(1 $<$$<$ 4)
+\item 
+\#define \mbox{\hyperlink{group__rfm__registers_gacb8982cb829c8be96dbe6521760111c9}{R\+F\+M\+\_\+\+P\+A\+\_\+\+D\+A\+C\+\_\+\+D\+I\+S\+A\+B\+LE}}~0x04
+\item 
+\#define \mbox{\hyperlink{group__rfm__registers_gaca826dad14f024d074ec50bd1b68794d}{R\+F\+M\+\_\+\+P\+A\+\_\+\+D\+A\+C\+\_\+\+E\+N\+A\+B\+LE}}~0x07
+\item 
+\#define \mbox{\hyperlink{group__rfm__registers_gafe6c49cce3fff604c567cde3ac5446bd}{R\+F\+M\+\_\+\+P\+A\+\_\+\+D\+A\+C\+\_\+\+M\+A\+SK}}~0x07
+\end{DoxyCompactItemize}
+\doxysubsection*{Registers}
+\begin{DoxyCompactItemize}
+\item 
+\#define \mbox{\hyperlink{group__rfm__registers_ga0e7acb562b24ab76d6c4c5b61341245e}{R\+F\+M\+\_\+\+R\+E\+G\+\_\+00\+\_\+\+F\+I\+FO}}~0x00
+\item 
+\#define \mbox{\hyperlink{group__rfm__registers_ga9baa0076f0eeabfd5502a2af14ae4a53}{R\+F\+M\+\_\+\+R\+E\+G\+\_\+01\+\_\+\+O\+P\+\_\+\+M\+O\+DE}}~0x01
+\item 
+\#define \mbox{\hyperlink{group__rfm__registers_ga8b85802bc69d552b61867c498b986237}{R\+F\+M\+\_\+\+R\+E\+G\+\_\+02\+\_\+\+R\+E\+S\+E\+R\+V\+ED}}~0x02
+\item 
+\#define \mbox{\hyperlink{group__rfm__registers_ga878c5d807f8d78506c4d063cfc97ede3}{R\+F\+M\+\_\+\+R\+E\+G\+\_\+03\+\_\+\+R\+E\+S\+E\+R\+V\+ED}}~0x03
+\item 
+\#define \mbox{\hyperlink{group__rfm__registers_gafb246120c6965da0fc38ebf774e37513}{R\+F\+M\+\_\+\+R\+E\+G\+\_\+04\+\_\+\+R\+E\+S\+E\+R\+V\+ED}}~0x04
+\item 
+\#define \mbox{\hyperlink{group__rfm__registers_ga16e5d318e7ff8c38b1c687569dccb992}{R\+F\+M\+\_\+\+R\+E\+G\+\_\+05\+\_\+\+R\+E\+S\+E\+R\+V\+ED}}~0x05
+\item 
+\#define \mbox{\hyperlink{group__rfm__registers_ga725effcc1ebcc89fd56028d7ca291aa6}{R\+F\+M\+\_\+\+R\+E\+G\+\_\+06\+\_\+\+F\+R\+F\+\_\+\+M\+SB}}~0x06
+\item 
+\#define \mbox{\hyperlink{group__rfm__registers_gaa7c01d8a673baab3c8f558a7a96afa3e}{R\+F\+M\+\_\+\+R\+E\+G\+\_\+07\+\_\+\+F\+R\+F\+\_\+\+M\+ID}}~0x07
+\item 
+\#define \mbox{\hyperlink{group__rfm__registers_gae8d067c9a9847b048c722f089a5d3795}{R\+F\+M\+\_\+\+R\+E\+G\+\_\+08\+\_\+\+F\+R\+F\+\_\+\+L\+SB}}~0x08
+\item 
+\#define \mbox{\hyperlink{group__rfm__registers_ga7a214a2032cf7006c341c764aae65d4c}{R\+F\+M\+\_\+\+R\+E\+G\+\_\+09\+\_\+\+P\+A\+\_\+\+C\+O\+N\+F\+IG}}~0x09
+\item 
+\#define \mbox{\hyperlink{group__rfm__registers_ga2d056e9c4e7e36704c5b838b302fa353}{R\+F\+M\+\_\+\+R\+E\+G\+\_\+0\+A\+\_\+\+P\+A\+\_\+\+R\+A\+MP}}~0x0a
+\item 
+\#define \mbox{\hyperlink{group__rfm__registers_ga8f53da922d9f1c8e3dd4b4388dec7825}{R\+F\+M\+\_\+\+R\+E\+G\+\_\+0\+B\+\_\+\+O\+CP}}~0x0b
+\item 
+\#define \mbox{\hyperlink{group__rfm__registers_ga46501454a761b6839a3d86d75c5f3176}{R\+F\+M\+\_\+\+R\+E\+G\+\_\+0\+C\+\_\+\+L\+NA}}~0x0c
+\item 
+\#define \mbox{\hyperlink{group__rfm__registers_ga397b0f175bcc9dcf9b4cbb9326bb39d7}{R\+F\+M\+\_\+\+R\+E\+G\+\_\+0\+D\+\_\+\+F\+I\+F\+O\+\_\+\+A\+D\+D\+R\+\_\+\+P\+TR}}~0x0d
+\item 
+\#define \mbox{\hyperlink{group__rfm__registers_gaf52209910380bdc7ed4bf2b5f9fae8fe}{R\+F\+M\+\_\+\+R\+E\+G\+\_\+0\+E\+\_\+\+F\+I\+F\+O\+\_\+\+T\+X\+\_\+\+B\+A\+S\+E\+\_\+\+A\+D\+DR}}~0x0e
+\item 
+\#define \mbox{\hyperlink{group__rfm__registers_gaef013ab9a7aa95cc2746f9a1fedd67fb}{R\+F\+M\+\_\+\+R\+E\+G\+\_\+0\+F\+\_\+\+F\+I\+F\+O\+\_\+\+R\+X\+\_\+\+B\+A\+S\+E\+\_\+\+A\+D\+DR}}~0x0f
+\item 
+\#define \mbox{\hyperlink{group__rfm__registers_ga2b2359aedfd00ce0008003eb423792e3}{R\+F\+M\+\_\+\+R\+E\+G\+\_\+10\+\_\+\+F\+I\+F\+O\+\_\+\+R\+X\+\_\+\+C\+U\+R\+R\+E\+N\+T\+\_\+\+A\+D\+DR}}~0x10
+\item 
+\#define \mbox{\hyperlink{group__rfm__registers_ga42630a4d594a66f489ef59319d7ad9d5}{R\+F\+M\+\_\+\+R\+E\+G\+\_\+11\+\_\+\+I\+R\+Q\+\_\+\+F\+L\+A\+G\+S\+\_\+\+M\+A\+SK}}~0x11
+\item 
+\#define \mbox{\hyperlink{group__rfm__registers_gaa34bab7260f7ecb7dd09233f04876c0a}{R\+F\+M\+\_\+\+R\+E\+G\+\_\+12\+\_\+\+I\+R\+Q\+\_\+\+F\+L\+A\+GS}}~0x12
+\item 
+\#define \mbox{\hyperlink{group__rfm__registers_gaf1e5d312d036e83095851f9215d87f67}{R\+F\+M\+\_\+\+R\+E\+G\+\_\+13\+\_\+\+R\+X\+\_\+\+N\+B\+\_\+\+B\+Y\+T\+ES}}~0x13
+\item 
+\#define \mbox{\hyperlink{group__rfm__registers_ga366f10853f72fb682f879caee1c7d24c}{R\+F\+M\+\_\+\+R\+E\+G\+\_\+14\+\_\+\+R\+X\+\_\+\+H\+E\+A\+D\+E\+R\+\_\+\+C\+N\+T\+\_\+\+V\+A\+L\+U\+E\+\_\+\+M\+SB}}~0x14
+\item 
+\#define \mbox{\hyperlink{group__rfm__registers_gaadfaf098c05c3fe9cba0e896ab7f22cd}{R\+F\+M\+\_\+\+R\+E\+G\+\_\+15\+\_\+\+R\+X\+\_\+\+H\+E\+A\+D\+E\+R\+\_\+\+C\+N\+T\+\_\+\+V\+A\+L\+U\+E\+\_\+\+L\+SB}}~0x15
+\item 
+\#define \mbox{\hyperlink{group__rfm__registers_ga163274e602525602166db0cf8f853430}{R\+F\+M\+\_\+\+R\+E\+G\+\_\+16\+\_\+\+R\+X\+\_\+\+P\+A\+C\+K\+E\+T\+\_\+\+C\+N\+T\+\_\+\+V\+A\+L\+U\+E\+\_\+\+M\+SB}}~0x16
+\item 
+\#define \mbox{\hyperlink{group__rfm__registers_gab9b9433a65b526a0cec1eea448485d42}{R\+F\+M\+\_\+\+R\+E\+G\+\_\+17\+\_\+\+R\+X\+\_\+\+P\+A\+C\+K\+E\+T\+\_\+\+C\+N\+T\+\_\+\+V\+A\+L\+U\+E\+\_\+\+L\+SB}}~0x17
+\item 
+\#define \mbox{\hyperlink{group__rfm__registers_gaa4cc855ab2379e352ddb993c48a8dead}{R\+F\+M\+\_\+\+R\+E\+G\+\_\+18\+\_\+\+M\+O\+D\+E\+M\+\_\+\+S\+T\+AT}}~0x18
+\item 
+\#define \mbox{\hyperlink{group__rfm__registers_ga3a0fb65349f600092278bb5bd83dfea5}{R\+F\+M\+\_\+\+R\+E\+G\+\_\+19\+\_\+\+P\+K\+T\+\_\+\+S\+N\+R\+\_\+\+V\+A\+L\+UE}}~0x19
+\item 
+\#define \mbox{\hyperlink{group__rfm__registers_gafa5d36547a50b460aa261a70296899d0}{R\+F\+M\+\_\+\+R\+E\+G\+\_\+1\+A\+\_\+\+P\+K\+T\+\_\+\+R\+S\+S\+I\+\_\+\+V\+A\+L\+UE}}~0x1a
+\item 
+\#define \mbox{\hyperlink{group__rfm__registers_ga7b1696ee84f56bfb97e30ea25b825ffd}{R\+F\+M\+\_\+\+R\+E\+G\+\_\+1\+B\+\_\+\+R\+S\+S\+I\+\_\+\+V\+A\+L\+UE}}~0x1b
+\item 
+\#define \mbox{\hyperlink{group__rfm__registers_ga1550402280c5b437e922adb1e6a5e87a}{R\+F\+M\+\_\+\+R\+E\+G\+\_\+1\+C\+\_\+\+H\+O\+P\+\_\+\+C\+H\+A\+N\+N\+EL}}~0x1c
+\item 
+\#define \mbox{\hyperlink{group__rfm__registers_gaa932a9af646d9529da8c45a50dfec766}{R\+F\+M\+\_\+\+R\+E\+G\+\_\+1\+D\+\_\+\+M\+O\+D\+E\+M\+\_\+\+C\+O\+N\+F\+I\+G1}}~0x1d
+\item 
+\#define \mbox{\hyperlink{group__rfm__registers_ga6593800a43804946ec83b888f5ab83fe}{R\+F\+M\+\_\+\+R\+E\+G\+\_\+1\+E\+\_\+\+M\+O\+D\+E\+M\+\_\+\+C\+O\+N\+F\+I\+G2}}~0x1e
+\item 
+\#define \mbox{\hyperlink{group__rfm__registers_gaf8e677c87d42543f7d2af1a3299bd4b1}{R\+F\+M\+\_\+\+R\+E\+G\+\_\+1\+F\+\_\+\+S\+Y\+M\+B\+\_\+\+T\+I\+M\+E\+O\+U\+T\+\_\+\+L\+SB}}~0x1f
+\item 
+\#define \mbox{\hyperlink{group__rfm__registers_ga631528a64c394bc82ee252e30b9a963d}{R\+F\+M\+\_\+\+R\+E\+G\+\_\+20\+\_\+\+P\+R\+E\+A\+M\+B\+L\+E\+\_\+\+M\+SB}}~0x20
+\item 
+\#define \mbox{\hyperlink{group__rfm__registers_ga0525c23c9d16cd81ebb26facf62c1574}{R\+F\+M\+\_\+\+R\+E\+G\+\_\+21\+\_\+\+P\+R\+E\+A\+M\+B\+L\+E\+\_\+\+L\+SB}}~0x21
+\item 
+\#define \mbox{\hyperlink{group__rfm__registers_ga590c0a497ba4af11ade3e87245c6b94d}{R\+F\+M\+\_\+\+R\+E\+G\+\_\+22\+\_\+\+P\+A\+Y\+L\+O\+A\+D\+\_\+\+L\+E\+N\+G\+TH}}~0x22
+\item 
+\#define \mbox{\hyperlink{group__rfm__registers_gaa953b71f48a9e3e0be740ec1a44579eb}{R\+F\+M\+\_\+\+R\+E\+G\+\_\+23\+\_\+\+M\+A\+X\+\_\+\+P\+A\+Y\+L\+O\+A\+D\+\_\+\+L\+E\+N\+G\+TH}}~0x23
+\item 
+\#define \mbox{\hyperlink{group__rfm__registers_ga5a9e5926f67415fa18a848107c6a7840}{R\+F\+M\+\_\+\+R\+E\+G\+\_\+24\+\_\+\+H\+O\+P\+\_\+\+P\+E\+R\+I\+OD}}~0x24
+\item 
+\#define \mbox{\hyperlink{group__rfm__registers_ga1de6c594f2161cf3a0277a1251dd2a89}{R\+F\+M\+\_\+\+R\+E\+G\+\_\+25\+\_\+\+F\+I\+F\+O\+\_\+\+R\+X\+\_\+\+B\+Y\+T\+E\+\_\+\+A\+D\+DR}}~0x25
+\item 
+\#define \mbox{\hyperlink{group__rfm__registers_ga2a12d0ed6ab0f475969f6328c7d4ac6d}{R\+F\+M\+\_\+\+R\+E\+G\+\_\+26\+\_\+\+M\+O\+D\+E\+M\+\_\+\+C\+O\+N\+F\+I\+G3}}~0x26
+\item 
+\#define \mbox{\hyperlink{group__rfm__registers_gad74006ba6a135916de0e183cb9fc56c5}{R\+F\+M\+\_\+\+R\+E\+G\+\_\+27\+\_\+\+P\+P\+M\+\_\+\+C\+O\+R\+R\+E\+C\+T\+I\+ON}}~0x27
+\item 
+\#define \mbox{\hyperlink{group__rfm__registers_gaa0299b1b1b190eb3d472c16521c00c36}{R\+F\+M\+\_\+\+R\+E\+G\+\_\+28\+\_\+\+F\+E\+I\+\_\+\+M\+SB}}~0x28
+\item 
+\#define \mbox{\hyperlink{group__rfm__registers_ga898eb352dc4ce0a9ce1f8e9d2ce90358}{R\+F\+M\+\_\+\+R\+E\+G\+\_\+29\+\_\+\+F\+E\+I\+\_\+\+M\+ID}}~0x29
+\item 
+\#define \mbox{\hyperlink{group__rfm__registers_ga83095be89530beccb987394f36cc2adf}{R\+F\+M\+\_\+\+R\+E\+G\+\_\+2\+A\+\_\+\+F\+E\+I\+\_\+\+L\+SB}}~0x2a
+\item 
+\#define \mbox{\hyperlink{group__rfm__registers_ga2a59b3abd4150e7090b824939e7d65ed}{R\+F\+M\+\_\+\+R\+E\+G\+\_\+2\+C\+\_\+\+R\+S\+S\+I\+\_\+\+W\+I\+D\+E\+B\+A\+ND}}~0x2c
+\item 
+\#define \mbox{\hyperlink{group__rfm__registers_ga664249e022db28bb3614e42ee0aafaae}{R\+F\+M\+\_\+\+R\+E\+G\+\_\+31\+\_\+\+D\+E\+T\+E\+C\+T\+\_\+\+O\+P\+T\+I\+M\+I\+ZE}}~0x31
+\item 
+\#define \mbox{\hyperlink{group__rfm__registers_ga3ff2ebf26fdc0cebc32c2b064ee218f0}{R\+F\+M\+\_\+\+R\+E\+G\+\_\+33\+\_\+\+I\+N\+V\+E\+R\+T\+\_\+\+IQ}}~0x33
+\item 
+\#define \mbox{\hyperlink{group__rfm__registers_ga0f4ddf7034bb3b5392beae28cf3adde6}{R\+F\+M\+\_\+\+R\+E\+G\+\_\+37\+\_\+\+D\+E\+T\+E\+C\+T\+I\+O\+N\+\_\+\+T\+H\+R\+E\+S\+H\+O\+LD}}~0x37
+\item 
+\#define \mbox{\hyperlink{group__rfm__registers_gad4c325c0c16c1ab5e8f78e02d07098da}{R\+F\+M\+\_\+\+R\+E\+G\+\_\+39\+\_\+\+S\+Y\+N\+C\+\_\+\+W\+O\+RD}}~0x39
+\item 
+\#define \mbox{\hyperlink{group__rfm__registers_ga6b9638f2b2f191008f8353de8760bfb3}{R\+F\+M\+\_\+\+R\+E\+G\+\_\+40\+\_\+\+D\+I\+O\+\_\+\+M\+A\+P\+P\+I\+N\+G1}}~0x40
+\item 
+\#define \mbox{\hyperlink{group__rfm__registers_ga3e1bfc3439158e705617b4574f98a991}{R\+F\+M\+\_\+\+R\+E\+G\+\_\+41\+\_\+\+D\+I\+O\+\_\+\+M\+A\+P\+P\+I\+N\+G2}}~0x41
+\item 
+\#define \mbox{\hyperlink{group__rfm__registers_gaffa0e65cbbe21cdbacbbaa90430bbd6c}{R\+F\+M\+\_\+\+R\+E\+G\+\_\+42\+\_\+\+V\+E\+R\+S\+I\+ON}}~0x42
+\item 
+\#define \mbox{\hyperlink{group__rfm__registers_ga4fbd56ba97dcb9ff8f7f1851049d768f}{R\+F\+M\+\_\+\+R\+E\+G\+\_\+4\+B\+\_\+\+T\+C\+XO}}~0x4b
+\item 
+\#define \mbox{\hyperlink{group__rfm__registers_ga5cc42fb14f55e3e06929614826f3e807}{R\+F\+M\+\_\+\+R\+E\+G\+\_\+4\+D\+\_\+\+P\+A\+\_\+\+D\+AC}}~0x4d
+\item 
+\#define \mbox{\hyperlink{group__rfm__registers_gaa0c183302d9f7ad79fef7d1893c72c66}{R\+F\+M\+\_\+\+R\+E\+G\+\_\+5\+B\+\_\+\+F\+O\+R\+M\+E\+R\+\_\+\+T\+E\+MP}}~0x5b
+\item 
+\#define \mbox{\hyperlink{group__rfm__registers_gac15b1388d12f594d1fda26fac5bf89c5}{R\+F\+M\+\_\+\+R\+E\+G\+\_\+61\+\_\+\+A\+G\+C\+\_\+\+R\+EF}}~0x61
+\item 
+\#define \mbox{\hyperlink{group__rfm__registers_ga35804f846e34bc15e0c13ca058a4039f}{R\+F\+M\+\_\+\+R\+E\+G\+\_\+62\+\_\+\+A\+G\+C\+\_\+\+T\+H\+R\+E\+S\+H1}}~0x62
+\item 
+\#define \mbox{\hyperlink{group__rfm__registers_ga8cddd993e8cc063e484d1ec7624e7768}{R\+F\+M\+\_\+\+R\+E\+G\+\_\+63\+\_\+\+A\+G\+C\+\_\+\+T\+H\+R\+E\+S\+H2}}~0x63
+\item 
+\#define \mbox{\hyperlink{group__rfm__registers_gaf15a77834e0d293219fd9cd82cb5cb1a}{R\+F\+M\+\_\+\+R\+E\+G\+\_\+64\+\_\+\+A\+G\+C\+\_\+\+T\+H\+R\+E\+S\+H3}}~0x64
+\end{DoxyCompactItemize}
+\doxysubsection*{Reg 01 Bit Positions}
+\begin{DoxyCompactItemize}
+\item 
+\#define \mbox{\hyperlink{group__rfm__registers_ga3eb853cc819d5585c6ae00d653e3cb2b}{R\+F\+M\+\_\+\+L\+O\+N\+G\+\_\+\+R\+A\+N\+G\+E\+\_\+\+M\+O\+DE}}~0x80
+\item 
+\#define \mbox{\hyperlink{group__rfm__registers_gaea7ee1acf4e5bb89bd057619be163d00}{R\+F\+M\+\_\+\+A\+C\+C\+E\+S\+S\+\_\+\+S\+H\+A\+R\+E\+D\+\_\+\+R\+EG}}~0x40
+\item 
+\#define \mbox{\hyperlink{group__rfm__registers_ga0c9fa032ff669aa59bdbb8298ca7b84d}{R\+F\+M\+\_\+\+L\+O\+W\+\_\+\+F\+R\+E\+Q\+U\+E\+N\+C\+Y\+\_\+\+M\+O\+DE}}~0x08
+\item 
+\#define \mbox{\hyperlink{group__rfm__registers_gad36327544af17d57a33a135b7454f34c}{R\+F\+M\+\_\+\+M\+O\+DE}}~0x07
+\item 
+\#define \mbox{\hyperlink{group__rfm__registers_ga8753b4175be3f74136c3f7a7f8620774}{R\+F\+M\+\_\+\+M\+O\+D\+E\+\_\+\+S\+L\+E\+EP}}~0x00
+\item 
+\#define \mbox{\hyperlink{group__rfm__registers_gaff6b46713347c4c3f2fbc4a2033bb958}{R\+F\+M\+\_\+\+M\+O\+D\+E\+\_\+\+S\+T\+D\+BY}}~0x01
+\item 
+\#define \mbox{\hyperlink{group__rfm__registers_ga42c6a0498709e6abdcafc3079dd02e7b}{R\+F\+M\+\_\+\+M\+O\+D\+E\+\_\+\+F\+S\+TX}}~0x02
+\item 
+\#define \mbox{\hyperlink{group__rfm__registers_gab28486a8c0393dc12ff0dd04325fd84b}{R\+F\+M\+\_\+\+M\+O\+D\+E\+\_\+\+TX}}~0x03
+\item 
+\#define \mbox{\hyperlink{group__rfm__registers_ga7465645bef3dd4d7c7b1ba31803d4850}{R\+F\+M\+\_\+\+M\+O\+D\+E\+\_\+\+F\+S\+RX}}~0x04
+\item 
+\#define \mbox{\hyperlink{group__rfm__registers_ga8f7860205c9d44d922201a1c6124553c}{R\+F\+M\+\_\+\+M\+O\+D\+E\+\_\+\+R\+X\+C\+O\+N\+T\+I\+N\+U\+O\+US}}~0x05
+\item 
+\#define \mbox{\hyperlink{group__rfm__registers_ga68a460c52bae16ef4a404d518256d908}{R\+F\+M\+\_\+\+M\+O\+D\+E\+\_\+\+R\+X\+S\+I\+N\+G\+LE}}~0x06
+\item 
+\#define \mbox{\hyperlink{group__rfm__registers_ga879286a499ac6485feca3422d48a8882}{R\+F\+M\+\_\+\+M\+O\+D\+E\+\_\+\+C\+AD}}~0x07
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Register names \& bit positions (Lo\+Ra Mode, from table 85) 
+
+
+
+\doxysubsection{Macro Definition Documentation}
+\mbox{\Hypertarget{group__rfm__registers_gaea7ee1acf4e5bb89bd057619be163d00}\label{group__rfm__registers_gaea7ee1acf4e5bb89bd057619be163d00}} 
+\index{RFM Register Definitions@{RFM Register Definitions}!RFM\_ACCESS\_SHARED\_REG@{RFM\_ACCESS\_SHARED\_REG}}
+\index{RFM\_ACCESS\_SHARED\_REG@{RFM\_ACCESS\_SHARED\_REG}!RFM Register Definitions@{RFM Register Definitions}}
+\doxysubsubsection{\texorpdfstring{RFM\_ACCESS\_SHARED\_REG}{RFM\_ACCESS\_SHARED\_REG}}
+{\footnotesize\ttfamily \#define R\+F\+M\+\_\+\+A\+C\+C\+E\+S\+S\+\_\+\+S\+H\+A\+R\+E\+D\+\_\+\+R\+EG~0x40}
+
+\mbox{\Hypertarget{group__rfm__registers_ga153911044958d9f36626716c73568160}\label{group__rfm__registers_ga153911044958d9f36626716c73568160}} 
+\index{RFM Register Definitions@{RFM Register Definitions}!RFM\_AGC\_AUTO\_ON@{RFM\_AGC\_AUTO\_ON}}
+\index{RFM\_AGC\_AUTO\_ON@{RFM\_AGC\_AUTO\_ON}!RFM Register Definitions@{RFM Register Definitions}}
+\doxysubsubsection{\texorpdfstring{RFM\_AGC\_AUTO\_ON}{RFM\_AGC\_AUTO\_ON}}
+{\footnotesize\ttfamily \#define R\+F\+M\+\_\+\+A\+G\+C\+\_\+\+A\+U\+T\+O\+\_\+\+ON~0x04}
+
+\mbox{\Hypertarget{group__rfm__registers_ga4366bcf084242030c50978964075dfe6}\label{group__rfm__registers_ga4366bcf084242030c50978964075dfe6}} 
+\index{RFM Register Definitions@{RFM Register Definitions}!RFM\_BW@{RFM\_BW}}
+\index{RFM\_BW@{RFM\_BW}!RFM Register Definitions@{RFM Register Definitions}}
+\doxysubsubsection{\texorpdfstring{RFM\_BW}{RFM\_BW}}
+{\footnotesize\ttfamily \#define R\+F\+M\+\_\+\+BW~0xf0}
+
+\mbox{\Hypertarget{group__rfm__registers_ga132c4bb79c705333e11240951ec9d245}\label{group__rfm__registers_ga132c4bb79c705333e11240951ec9d245}} 
+\index{RFM Register Definitions@{RFM Register Definitions}!RFM\_BW\_10\_4KHZ@{RFM\_BW\_10\_4KHZ}}
+\index{RFM\_BW\_10\_4KHZ@{RFM\_BW\_10\_4KHZ}!RFM Register Definitions@{RFM Register Definitions}}
+\doxysubsubsection{\texorpdfstring{RFM\_BW\_10\_4KHZ}{RFM\_BW\_10\_4KHZ}}
+{\footnotesize\ttfamily \#define R\+F\+M\+\_\+\+B\+W\+\_\+10\+\_\+4\+K\+HZ~0x10}
+
+\mbox{\Hypertarget{group__rfm__registers_gac10a8b57e3caab32ace83340431ca741}\label{group__rfm__registers_gac10a8b57e3caab32ace83340431ca741}} 
+\index{RFM Register Definitions@{RFM Register Definitions}!RFM\_BW\_125KHZ@{RFM\_BW\_125KHZ}}
+\index{RFM\_BW\_125KHZ@{RFM\_BW\_125KHZ}!RFM Register Definitions@{RFM Register Definitions}}
+\doxysubsubsection{\texorpdfstring{RFM\_BW\_125KHZ}{RFM\_BW\_125KHZ}}
+{\footnotesize\ttfamily \#define R\+F\+M\+\_\+\+B\+W\+\_\+125\+K\+HZ~0x70}
+
+\mbox{\Hypertarget{group__rfm__registers_ga246911e1dfc46b3003d3ab5c0d8cc9f7}\label{group__rfm__registers_ga246911e1dfc46b3003d3ab5c0d8cc9f7}} 
+\index{RFM Register Definitions@{RFM Register Definitions}!RFM\_BW\_15\_6KHZ@{RFM\_BW\_15\_6KHZ}}
+\index{RFM\_BW\_15\_6KHZ@{RFM\_BW\_15\_6KHZ}!RFM Register Definitions@{RFM Register Definitions}}
+\doxysubsubsection{\texorpdfstring{RFM\_BW\_15\_6KHZ}{RFM\_BW\_15\_6KHZ}}
+{\footnotesize\ttfamily \#define R\+F\+M\+\_\+\+B\+W\+\_\+15\+\_\+6\+K\+HZ~0x20}
+
+\mbox{\Hypertarget{group__rfm__registers_ga03e633adab87201b7e15504b1ae17119}\label{group__rfm__registers_ga03e633adab87201b7e15504b1ae17119}} 
+\index{RFM Register Definitions@{RFM Register Definitions}!RFM\_BW\_20\_8KHZ@{RFM\_BW\_20\_8KHZ}}
+\index{RFM\_BW\_20\_8KHZ@{RFM\_BW\_20\_8KHZ}!RFM Register Definitions@{RFM Register Definitions}}
+\doxysubsubsection{\texorpdfstring{RFM\_BW\_20\_8KHZ}{RFM\_BW\_20\_8KHZ}}
+{\footnotesize\ttfamily \#define R\+F\+M\+\_\+\+B\+W\+\_\+20\+\_\+8\+K\+HZ~0x30}
+
+\mbox{\Hypertarget{group__rfm__registers_gae6aaa8f181faae6f0afe1d4cee7ba3e6}\label{group__rfm__registers_gae6aaa8f181faae6f0afe1d4cee7ba3e6}} 
+\index{RFM Register Definitions@{RFM Register Definitions}!RFM\_BW\_250KHZ@{RFM\_BW\_250KHZ}}
+\index{RFM\_BW\_250KHZ@{RFM\_BW\_250KHZ}!RFM Register Definitions@{RFM Register Definitions}}
+\doxysubsubsection{\texorpdfstring{RFM\_BW\_250KHZ}{RFM\_BW\_250KHZ}}
+{\footnotesize\ttfamily \#define R\+F\+M\+\_\+\+B\+W\+\_\+250\+K\+HZ~0x80}
+
+\mbox{\Hypertarget{group__rfm__registers_ga9f4bd4f132b47c53051635265540cf4b}\label{group__rfm__registers_ga9f4bd4f132b47c53051635265540cf4b}} 
+\index{RFM Register Definitions@{RFM Register Definitions}!RFM\_BW\_31\_25KHZ@{RFM\_BW\_31\_25KHZ}}
+\index{RFM\_BW\_31\_25KHZ@{RFM\_BW\_31\_25KHZ}!RFM Register Definitions@{RFM Register Definitions}}
+\doxysubsubsection{\texorpdfstring{RFM\_BW\_31\_25KHZ}{RFM\_BW\_31\_25KHZ}}
+{\footnotesize\ttfamily \#define R\+F\+M\+\_\+\+B\+W\+\_\+31\+\_\+25\+K\+HZ~0x40}
+
+\mbox{\Hypertarget{group__rfm__registers_gac3a326b0b8b85f87724168a20f6a9b5c}\label{group__rfm__registers_gac3a326b0b8b85f87724168a20f6a9b5c}} 
+\index{RFM Register Definitions@{RFM Register Definitions}!RFM\_BW\_41\_7KHZ@{RFM\_BW\_41\_7KHZ}}
+\index{RFM\_BW\_41\_7KHZ@{RFM\_BW\_41\_7KHZ}!RFM Register Definitions@{RFM Register Definitions}}
+\doxysubsubsection{\texorpdfstring{RFM\_BW\_41\_7KHZ}{RFM\_BW\_41\_7KHZ}}
+{\footnotesize\ttfamily \#define R\+F\+M\+\_\+\+B\+W\+\_\+41\+\_\+7\+K\+HZ~0x50}
+
+\mbox{\Hypertarget{group__rfm__registers_ga72cadc5bdfcb5a4871485107f8939cb9}\label{group__rfm__registers_ga72cadc5bdfcb5a4871485107f8939cb9}} 
+\index{RFM Register Definitions@{RFM Register Definitions}!RFM\_BW\_500KHZ@{RFM\_BW\_500KHZ}}
+\index{RFM\_BW\_500KHZ@{RFM\_BW\_500KHZ}!RFM Register Definitions@{RFM Register Definitions}}
+\doxysubsubsection{\texorpdfstring{RFM\_BW\_500KHZ}{RFM\_BW\_500KHZ}}
+{\footnotesize\ttfamily \#define R\+F\+M\+\_\+\+B\+W\+\_\+500\+K\+HZ~0x90}
+
+\mbox{\Hypertarget{group__rfm__registers_gaf296d76f8cd35dfca9b5ac5c33d9ca37}\label{group__rfm__registers_gaf296d76f8cd35dfca9b5ac5c33d9ca37}} 
+\index{RFM Register Definitions@{RFM Register Definitions}!RFM\_BW\_62\_5KHZ@{RFM\_BW\_62\_5KHZ}}
+\index{RFM\_BW\_62\_5KHZ@{RFM\_BW\_62\_5KHZ}!RFM Register Definitions@{RFM Register Definitions}}
+\doxysubsubsection{\texorpdfstring{RFM\_BW\_62\_5KHZ}{RFM\_BW\_62\_5KHZ}}
+{\footnotesize\ttfamily \#define R\+F\+M\+\_\+\+B\+W\+\_\+62\+\_\+5\+K\+HZ~0x60}
+
+\mbox{\Hypertarget{group__rfm__registers_gafacb21b9e5da88cb37415af124260250}\label{group__rfm__registers_gafacb21b9e5da88cb37415af124260250}} 
+\index{RFM Register Definitions@{RFM Register Definitions}!RFM\_BW\_7\_8KHZ@{RFM\_BW\_7\_8KHZ}}
+\index{RFM\_BW\_7\_8KHZ@{RFM\_BW\_7\_8KHZ}!RFM Register Definitions@{RFM Register Definitions}}
+\doxysubsubsection{\texorpdfstring{RFM\_BW\_7\_8KHZ}{RFM\_BW\_7\_8KHZ}}
+{\footnotesize\ttfamily \#define R\+F\+M\+\_\+\+B\+W\+\_\+7\+\_\+8\+K\+HZ~0x00}
+
+\mbox{\Hypertarget{group__rfm__registers_ga11ff04d8a0261ab90e95f7b53a5be732}\label{group__rfm__registers_ga11ff04d8a0261ab90e95f7b53a5be732}} 
+\index{RFM Register Definitions@{RFM Register Definitions}!RFM\_CAD\_DETECTED\_MASK@{RFM\_CAD\_DETECTED\_MASK}}
+\index{RFM\_CAD\_DETECTED\_MASK@{RFM\_CAD\_DETECTED\_MASK}!RFM Register Definitions@{RFM Register Definitions}}
+\doxysubsubsection{\texorpdfstring{RFM\_CAD\_DETECTED\_MASK}{RFM\_CAD\_DETECTED\_MASK}}
+{\footnotesize\ttfamily \#define R\+F\+M\+\_\+\+C\+A\+D\+\_\+\+D\+E\+T\+E\+C\+T\+E\+D\+\_\+\+M\+A\+SK~0x01}
+
+\mbox{\Hypertarget{group__rfm__registers_gac15beb51b598be10605c31402f942604}\label{group__rfm__registers_gac15beb51b598be10605c31402f942604}} 
+\index{RFM Register Definitions@{RFM Register Definitions}!RFM\_CAD\_DONE\_MASK@{RFM\_CAD\_DONE\_MASK}}
+\index{RFM\_CAD\_DONE\_MASK@{RFM\_CAD\_DONE\_MASK}!RFM Register Definitions@{RFM Register Definitions}}
+\doxysubsubsection{\texorpdfstring{RFM\_CAD\_DONE\_MASK}{RFM\_CAD\_DONE\_MASK}}
+{\footnotesize\ttfamily \#define R\+F\+M\+\_\+\+C\+A\+D\+\_\+\+D\+O\+N\+E\+\_\+\+M\+A\+SK~0x04}
+
+\mbox{\Hypertarget{group__rfm__registers_gaf01ea0efd19cc76918f34f12bda11043}\label{group__rfm__registers_gaf01ea0efd19cc76918f34f12bda11043}} 
+\index{RFM Register Definitions@{RFM Register Definitions}!RFM\_CODING\_RATE@{RFM\_CODING\_RATE}}
+\index{RFM\_CODING\_RATE@{RFM\_CODING\_RATE}!RFM Register Definitions@{RFM Register Definitions}}
+\doxysubsubsection{\texorpdfstring{RFM\_CODING\_RATE}{RFM\_CODING\_RATE}}
+{\footnotesize\ttfamily \#define R\+F\+M\+\_\+\+C\+O\+D\+I\+N\+G\+\_\+\+R\+A\+TE~0x0e}
+
+\mbox{\Hypertarget{group__rfm__registers_ga791e64216981f68b5a7f7dc986f703ed}\label{group__rfm__registers_ga791e64216981f68b5a7f7dc986f703ed}} 
+\index{RFM Register Definitions@{RFM Register Definitions}!RFM\_CODING\_RATE\_4\_5@{RFM\_CODING\_RATE\_4\_5}}
+\index{RFM\_CODING\_RATE\_4\_5@{RFM\_CODING\_RATE\_4\_5}!RFM Register Definitions@{RFM Register Definitions}}
+\doxysubsubsection{\texorpdfstring{RFM\_CODING\_RATE\_4\_5}{RFM\_CODING\_RATE\_4\_5}}
+{\footnotesize\ttfamily \#define R\+F\+M\+\_\+\+C\+O\+D\+I\+N\+G\+\_\+\+R\+A\+T\+E\+\_\+4\+\_\+5~0x02}
+
+\mbox{\Hypertarget{group__rfm__registers_ga0edc07f9df69ae638f8f8dea971325dd}\label{group__rfm__registers_ga0edc07f9df69ae638f8f8dea971325dd}} 
+\index{RFM Register Definitions@{RFM Register Definitions}!RFM\_CODING\_RATE\_4\_6@{RFM\_CODING\_RATE\_4\_6}}
+\index{RFM\_CODING\_RATE\_4\_6@{RFM\_CODING\_RATE\_4\_6}!RFM Register Definitions@{RFM Register Definitions}}
+\doxysubsubsection{\texorpdfstring{RFM\_CODING\_RATE\_4\_6}{RFM\_CODING\_RATE\_4\_6}}
+{\footnotesize\ttfamily \#define R\+F\+M\+\_\+\+C\+O\+D\+I\+N\+G\+\_\+\+R\+A\+T\+E\+\_\+4\+\_\+6~0x04}
+
+\mbox{\Hypertarget{group__rfm__registers_gad05390d421fd3888871ff9b7adce0842}\label{group__rfm__registers_gad05390d421fd3888871ff9b7adce0842}} 
+\index{RFM Register Definitions@{RFM Register Definitions}!RFM\_CODING\_RATE\_4\_7@{RFM\_CODING\_RATE\_4\_7}}
+\index{RFM\_CODING\_RATE\_4\_7@{RFM\_CODING\_RATE\_4\_7}!RFM Register Definitions@{RFM Register Definitions}}
+\doxysubsubsection{\texorpdfstring{RFM\_CODING\_RATE\_4\_7}{RFM\_CODING\_RATE\_4\_7}}
+{\footnotesize\ttfamily \#define R\+F\+M\+\_\+\+C\+O\+D\+I\+N\+G\+\_\+\+R\+A\+T\+E\+\_\+4\+\_\+7~0x06}
+
+\mbox{\Hypertarget{group__rfm__registers_gafa0465073bb64c9a204d3a2f8bc7667f}\label{group__rfm__registers_gafa0465073bb64c9a204d3a2f8bc7667f}} 
+\index{RFM Register Definitions@{RFM Register Definitions}!RFM\_CODING\_RATE\_4\_8@{RFM\_CODING\_RATE\_4\_8}}
+\index{RFM\_CODING\_RATE\_4\_8@{RFM\_CODING\_RATE\_4\_8}!RFM Register Definitions@{RFM Register Definitions}}
+\doxysubsubsection{\texorpdfstring{RFM\_CODING\_RATE\_4\_8}{RFM\_CODING\_RATE\_4\_8}}
+{\footnotesize\ttfamily \#define R\+F\+M\+\_\+\+C\+O\+D\+I\+N\+G\+\_\+\+R\+A\+T\+E\+\_\+4\+\_\+8~0x08}
+
+\mbox{\Hypertarget{group__rfm__registers_ga7160498da85504b4fb1e66eefee148c2}\label{group__rfm__registers_ga7160498da85504b4fb1e66eefee148c2}} 
+\index{RFM Register Definitions@{RFM Register Definitions}!RFM\_FHSS\_CHANGE\_CHANNEL\_MASK@{RFM\_FHSS\_CHANGE\_CHANNEL\_MASK}}
+\index{RFM\_FHSS\_CHANGE\_CHANNEL\_MASK@{RFM\_FHSS\_CHANGE\_CHANNEL\_MASK}!RFM Register Definitions@{RFM Register Definitions}}
+\doxysubsubsection{\texorpdfstring{RFM\_FHSS\_CHANGE\_CHANNEL\_MASK}{RFM\_FHSS\_CHANGE\_CHANNEL\_MASK}}
+{\footnotesize\ttfamily \#define R\+F\+M\+\_\+\+F\+H\+S\+S\+\_\+\+C\+H\+A\+N\+G\+E\+\_\+\+C\+H\+A\+N\+N\+E\+L\+\_\+\+M\+A\+SK~0x02}
+
+\mbox{\Hypertarget{group__rfm__registers_ga7e3ef623be57b9a5870634bfc21391b2}\label{group__rfm__registers_ga7e3ef623be57b9a5870634bfc21391b2}} 
+\index{RFM Register Definitions@{RFM Register Definitions}!RFM\_FHSS\_PRESENT\_CHANNEL@{RFM\_FHSS\_PRESENT\_CHANNEL}}
+\index{RFM\_FHSS\_PRESENT\_CHANNEL@{RFM\_FHSS\_PRESENT\_CHANNEL}!RFM Register Definitions@{RFM Register Definitions}}
+\doxysubsubsection{\texorpdfstring{RFM\_FHSS\_PRESENT\_CHANNEL}{RFM\_FHSS\_PRESENT\_CHANNEL}}
+{\footnotesize\ttfamily \#define R\+F\+M\+\_\+\+F\+H\+S\+S\+\_\+\+P\+R\+E\+S\+E\+N\+T\+\_\+\+C\+H\+A\+N\+N\+EL~0x3f}
+
+\mbox{\Hypertarget{group__rfm__registers_ga2705328bc48a2dabe66953781715a749}\label{group__rfm__registers_ga2705328bc48a2dabe66953781715a749}} 
+\index{RFM Register Definitions@{RFM Register Definitions}!RFM\_IMPLICIT\_HEADER\_MODE\_ON@{RFM\_IMPLICIT\_HEADER\_MODE\_ON}}
+\index{RFM\_IMPLICIT\_HEADER\_MODE\_ON@{RFM\_IMPLICIT\_HEADER\_MODE\_ON}!RFM Register Definitions@{RFM Register Definitions}}
+\doxysubsubsection{\texorpdfstring{RFM\_IMPLICIT\_HEADER\_MODE\_ON}{RFM\_IMPLICIT\_HEADER\_MODE\_ON}}
+{\footnotesize\ttfamily \#define R\+F\+M\+\_\+\+I\+M\+P\+L\+I\+C\+I\+T\+\_\+\+H\+E\+A\+D\+E\+R\+\_\+\+M\+O\+D\+E\+\_\+\+ON~0x01}
+
+\mbox{\Hypertarget{group__rfm__registers_gaaf2cf3e03065da977122367604834f08}\label{group__rfm__registers_gaaf2cf3e03065da977122367604834f08}} 
+\index{RFM Register Definitions@{RFM Register Definitions}!RFM\_IO\_0\_IRQ\_CAD\_DONE@{RFM\_IO\_0\_IRQ\_CAD\_DONE}}
+\index{RFM\_IO\_0\_IRQ\_CAD\_DONE@{RFM\_IO\_0\_IRQ\_CAD\_DONE}!RFM Register Definitions@{RFM Register Definitions}}
+\doxysubsubsection{\texorpdfstring{RFM\_IO\_0\_IRQ\_CAD\_DONE}{RFM\_IO\_0\_IRQ\_CAD\_DONE}}
+{\footnotesize\ttfamily \#define R\+F\+M\+\_\+\+I\+O\+\_\+0\+\_\+\+I\+R\+Q\+\_\+\+C\+A\+D\+\_\+\+D\+O\+NE~(2 $<$$<$ 6)}
+
+\mbox{\Hypertarget{group__rfm__registers_ga657b03a41342dd05dd39f4b54630ffdf}\label{group__rfm__registers_ga657b03a41342dd05dd39f4b54630ffdf}} 
+\index{RFM Register Definitions@{RFM Register Definitions}!RFM\_IO\_0\_IRQ\_RX\_DONE@{RFM\_IO\_0\_IRQ\_RX\_DONE}}
+\index{RFM\_IO\_0\_IRQ\_RX\_DONE@{RFM\_IO\_0\_IRQ\_RX\_DONE}!RFM Register Definitions@{RFM Register Definitions}}
+\doxysubsubsection{\texorpdfstring{RFM\_IO\_0\_IRQ\_RX\_DONE}{RFM\_IO\_0\_IRQ\_RX\_DONE}}
+{\footnotesize\ttfamily \#define R\+F\+M\+\_\+\+I\+O\+\_\+0\+\_\+\+I\+R\+Q\+\_\+\+R\+X\+\_\+\+D\+O\+NE~(0 $<$$<$ 6)}
+
+\mbox{\Hypertarget{group__rfm__registers_gad71183932b987a24c7d4456690f8e295}\label{group__rfm__registers_gad71183932b987a24c7d4456690f8e295}} 
+\index{RFM Register Definitions@{RFM Register Definitions}!RFM\_IO\_0\_IRQ\_TX\_DONE@{RFM\_IO\_0\_IRQ\_TX\_DONE}}
+\index{RFM\_IO\_0\_IRQ\_TX\_DONE@{RFM\_IO\_0\_IRQ\_TX\_DONE}!RFM Register Definitions@{RFM Register Definitions}}
+\doxysubsubsection{\texorpdfstring{RFM\_IO\_0\_IRQ\_TX\_DONE}{RFM\_IO\_0\_IRQ\_TX\_DONE}}
+{\footnotesize\ttfamily \#define R\+F\+M\+\_\+\+I\+O\+\_\+0\+\_\+\+I\+R\+Q\+\_\+\+T\+X\+\_\+\+D\+O\+NE~(1 $<$$<$ 6)}
+
+\mbox{\Hypertarget{group__rfm__registers_ga8239da1de069cd6994738f1915c30139}\label{group__rfm__registers_ga8239da1de069cd6994738f1915c30139}} 
+\index{RFM Register Definitions@{RFM Register Definitions}!RFM\_IO\_1\_IRQ\_CAD\_DETECTED@{RFM\_IO\_1\_IRQ\_CAD\_DETECTED}}
+\index{RFM\_IO\_1\_IRQ\_CAD\_DETECTED@{RFM\_IO\_1\_IRQ\_CAD\_DETECTED}!RFM Register Definitions@{RFM Register Definitions}}
+\doxysubsubsection{\texorpdfstring{RFM\_IO\_1\_IRQ\_CAD\_DETECTED}{RFM\_IO\_1\_IRQ\_CAD\_DETECTED}}
+{\footnotesize\ttfamily \#define R\+F\+M\+\_\+\+I\+O\+\_\+1\+\_\+\+I\+R\+Q\+\_\+\+C\+A\+D\+\_\+\+D\+E\+T\+E\+C\+T\+ED~(2 $<$$<$ 4)}
+
+\mbox{\Hypertarget{group__rfm__registers_gaed4b67063ddca2211606153d2e1daaa2}\label{group__rfm__registers_gaed4b67063ddca2211606153d2e1daaa2}} 
+\index{RFM Register Definitions@{RFM Register Definitions}!RFM\_IO\_1\_IRQ\_FHSS\_CHANGE@{RFM\_IO\_1\_IRQ\_FHSS\_CHANGE}}
+\index{RFM\_IO\_1\_IRQ\_FHSS\_CHANGE@{RFM\_IO\_1\_IRQ\_FHSS\_CHANGE}!RFM Register Definitions@{RFM Register Definitions}}
+\doxysubsubsection{\texorpdfstring{RFM\_IO\_1\_IRQ\_FHSS\_CHANGE}{RFM\_IO\_1\_IRQ\_FHSS\_CHANGE}}
+{\footnotesize\ttfamily \#define R\+F\+M\+\_\+\+I\+O\+\_\+1\+\_\+\+I\+R\+Q\+\_\+\+F\+H\+S\+S\+\_\+\+C\+H\+A\+N\+GE~(1 $<$$<$ 4)}
+
+\mbox{\Hypertarget{group__rfm__registers_ga84a2a7d8e3080937f2445362ff5a4b86}\label{group__rfm__registers_ga84a2a7d8e3080937f2445362ff5a4b86}} 
+\index{RFM Register Definitions@{RFM Register Definitions}!RFM\_IO\_1\_IRQ\_RX\_TIMEOUT@{RFM\_IO\_1\_IRQ\_RX\_TIMEOUT}}
+\index{RFM\_IO\_1\_IRQ\_RX\_TIMEOUT@{RFM\_IO\_1\_IRQ\_RX\_TIMEOUT}!RFM Register Definitions@{RFM Register Definitions}}
+\doxysubsubsection{\texorpdfstring{RFM\_IO\_1\_IRQ\_RX\_TIMEOUT}{RFM\_IO\_1\_IRQ\_RX\_TIMEOUT}}
+{\footnotesize\ttfamily \#define R\+F\+M\+\_\+\+I\+O\+\_\+1\+\_\+\+I\+R\+Q\+\_\+\+R\+X\+\_\+\+T\+I\+M\+E\+O\+UT~(0 $<$$<$ 4)}
+
+\mbox{\Hypertarget{group__rfm__registers_gad61bc2f2221aa7f95086f8311a4c0171}\label{group__rfm__registers_gad61bc2f2221aa7f95086f8311a4c0171}} 
+\index{RFM Register Definitions@{RFM Register Definitions}!RFM\_IO\_2\_IRQ\_FHSS\_CHANGE@{RFM\_IO\_2\_IRQ\_FHSS\_CHANGE}}
+\index{RFM\_IO\_2\_IRQ\_FHSS\_CHANGE@{RFM\_IO\_2\_IRQ\_FHSS\_CHANGE}!RFM Register Definitions@{RFM Register Definitions}}
+\doxysubsubsection{\texorpdfstring{RFM\_IO\_2\_IRQ\_FHSS\_CHANGE}{RFM\_IO\_2\_IRQ\_FHSS\_CHANGE}}
+{\footnotesize\ttfamily \#define R\+F\+M\+\_\+\+I\+O\+\_\+2\+\_\+\+I\+R\+Q\+\_\+\+F\+H\+S\+S\+\_\+\+C\+H\+A\+N\+GE~(0 $<$$<$ 2)}
+
+\mbox{\Hypertarget{group__rfm__registers_ga809f98918d3c7aa841c737cc1e032abf}\label{group__rfm__registers_ga809f98918d3c7aa841c737cc1e032abf}} 
+\index{RFM Register Definitions@{RFM Register Definitions}!RFM\_IO\_3\_IRQ\_CAD\_DONE@{RFM\_IO\_3\_IRQ\_CAD\_DONE}}
+\index{RFM\_IO\_3\_IRQ\_CAD\_DONE@{RFM\_IO\_3\_IRQ\_CAD\_DONE}!RFM Register Definitions@{RFM Register Definitions}}
+\doxysubsubsection{\texorpdfstring{RFM\_IO\_3\_IRQ\_CAD\_DONE}{RFM\_IO\_3\_IRQ\_CAD\_DONE}}
+{\footnotesize\ttfamily \#define R\+F\+M\+\_\+\+I\+O\+\_\+3\+\_\+\+I\+R\+Q\+\_\+\+C\+A\+D\+\_\+\+D\+O\+NE~(0 $<$$<$ 0)}
+
+\mbox{\Hypertarget{group__rfm__registers_gaf33831a9ac6e59402d50bd72b5065bf3}\label{group__rfm__registers_gaf33831a9ac6e59402d50bd72b5065bf3}} 
+\index{RFM Register Definitions@{RFM Register Definitions}!RFM\_IO\_3\_IRQ\_CRC\_ERROR@{RFM\_IO\_3\_IRQ\_CRC\_ERROR}}
+\index{RFM\_IO\_3\_IRQ\_CRC\_ERROR@{RFM\_IO\_3\_IRQ\_CRC\_ERROR}!RFM Register Definitions@{RFM Register Definitions}}
+\doxysubsubsection{\texorpdfstring{RFM\_IO\_3\_IRQ\_CRC\_ERROR}{RFM\_IO\_3\_IRQ\_CRC\_ERROR}}
+{\footnotesize\ttfamily \#define R\+F\+M\+\_\+\+I\+O\+\_\+3\+\_\+\+I\+R\+Q\+\_\+\+C\+R\+C\+\_\+\+E\+R\+R\+OR~(2 $<$$<$ 0)}
+
+\mbox{\Hypertarget{group__rfm__registers_ga3431ce3ca9e1003a90317dadcc66bf88}\label{group__rfm__registers_ga3431ce3ca9e1003a90317dadcc66bf88}} 
+\index{RFM Register Definitions@{RFM Register Definitions}!RFM\_IO\_3\_IRQ\_VALID\_HEADER@{RFM\_IO\_3\_IRQ\_VALID\_HEADER}}
+\index{RFM\_IO\_3\_IRQ\_VALID\_HEADER@{RFM\_IO\_3\_IRQ\_VALID\_HEADER}!RFM Register Definitions@{RFM Register Definitions}}
+\doxysubsubsection{\texorpdfstring{RFM\_IO\_3\_IRQ\_VALID\_HEADER}{RFM\_IO\_3\_IRQ\_VALID\_HEADER}}
+{\footnotesize\ttfamily \#define R\+F\+M\+\_\+\+I\+O\+\_\+3\+\_\+\+I\+R\+Q\+\_\+\+V\+A\+L\+I\+D\+\_\+\+H\+E\+A\+D\+ER~(1 $<$$<$ 0)}
+
+\mbox{\Hypertarget{group__rfm__registers_gab2b235c49c2617216a459c0ecfc65dc6}\label{group__rfm__registers_gab2b235c49c2617216a459c0ecfc65dc6}} 
+\index{RFM Register Definitions@{RFM Register Definitions}!RFM\_IO\_4\_IRQ\_CAD\_DETECTED@{RFM\_IO\_4\_IRQ\_CAD\_DETECTED}}
+\index{RFM\_IO\_4\_IRQ\_CAD\_DETECTED@{RFM\_IO\_4\_IRQ\_CAD\_DETECTED}!RFM Register Definitions@{RFM Register Definitions}}
+\doxysubsubsection{\texorpdfstring{RFM\_IO\_4\_IRQ\_CAD\_DETECTED}{RFM\_IO\_4\_IRQ\_CAD\_DETECTED}}
+{\footnotesize\ttfamily \#define R\+F\+M\+\_\+\+I\+O\+\_\+4\+\_\+\+I\+R\+Q\+\_\+\+C\+A\+D\+\_\+\+D\+E\+T\+E\+C\+T\+ED~(0 $<$$<$ 6)}
+
+\mbox{\Hypertarget{group__rfm__registers_gadaba45bd5a8d81b95f46716ee717aee0}\label{group__rfm__registers_gadaba45bd5a8d81b95f46716ee717aee0}} 
+\index{RFM Register Definitions@{RFM Register Definitions}!RFM\_IO\_4\_IRQ\_PLL\_LOCK@{RFM\_IO\_4\_IRQ\_PLL\_LOCK}}
+\index{RFM\_IO\_4\_IRQ\_PLL\_LOCK@{RFM\_IO\_4\_IRQ\_PLL\_LOCK}!RFM Register Definitions@{RFM Register Definitions}}
+\doxysubsubsection{\texorpdfstring{RFM\_IO\_4\_IRQ\_PLL\_LOCK}{RFM\_IO\_4\_IRQ\_PLL\_LOCK}}
+{\footnotesize\ttfamily \#define R\+F\+M\+\_\+\+I\+O\+\_\+4\+\_\+\+I\+R\+Q\+\_\+\+P\+L\+L\+\_\+\+L\+O\+CK~(1 $<$$<$ 6)}
+
+\mbox{\Hypertarget{group__rfm__registers_ga3f663448938914a099c47fdfe164fb82}\label{group__rfm__registers_ga3f663448938914a099c47fdfe164fb82}} 
+\index{RFM Register Definitions@{RFM Register Definitions}!RFM\_IO\_5\_IRQ\_CLKOUT@{RFM\_IO\_5\_IRQ\_CLKOUT}}
+\index{RFM\_IO\_5\_IRQ\_CLKOUT@{RFM\_IO\_5\_IRQ\_CLKOUT}!RFM Register Definitions@{RFM Register Definitions}}
+\doxysubsubsection{\texorpdfstring{RFM\_IO\_5\_IRQ\_CLKOUT}{RFM\_IO\_5\_IRQ\_CLKOUT}}
+{\footnotesize\ttfamily \#define R\+F\+M\+\_\+\+I\+O\+\_\+5\+\_\+\+I\+R\+Q\+\_\+\+C\+L\+K\+O\+UT~(1 $<$$<$ 4)}
+
+\mbox{\Hypertarget{group__rfm__registers_gaf4aa90f3d7f65979df67af1071dac9cb}\label{group__rfm__registers_gaf4aa90f3d7f65979df67af1071dac9cb}} 
+\index{RFM Register Definitions@{RFM Register Definitions}!RFM\_IO\_5\_IRQ\_MODE\_READY@{RFM\_IO\_5\_IRQ\_MODE\_READY}}
+\index{RFM\_IO\_5\_IRQ\_MODE\_READY@{RFM\_IO\_5\_IRQ\_MODE\_READY}!RFM Register Definitions@{RFM Register Definitions}}
+\doxysubsubsection{\texorpdfstring{RFM\_IO\_5\_IRQ\_MODE\_READY}{RFM\_IO\_5\_IRQ\_MODE\_READY}}
+{\footnotesize\ttfamily \#define R\+F\+M\+\_\+\+I\+O\+\_\+5\+\_\+\+I\+R\+Q\+\_\+\+M\+O\+D\+E\+\_\+\+R\+E\+A\+DY~(0 $<$$<$ 4)}
+
+\mbox{\Hypertarget{group__rfm__registers_gac4466525e6cf4716e7be485ec496763d}\label{group__rfm__registers_gac4466525e6cf4716e7be485ec496763d}} 
+\index{RFM Register Definitions@{RFM Register Definitions}!RFM\_IRQ\_ALL@{RFM\_IRQ\_ALL}}
+\index{RFM\_IRQ\_ALL@{RFM\_IRQ\_ALL}!RFM Register Definitions@{RFM Register Definitions}}
+\doxysubsubsection{\texorpdfstring{RFM\_IRQ\_ALL}{RFM\_IRQ\_ALL}}
+{\footnotesize\ttfamily \#define R\+F\+M\+\_\+\+I\+R\+Q\+\_\+\+A\+LL~0x\+FF}
+
+\mbox{\Hypertarget{group__rfm__registers_gac1d02291848211f49df1455134b00f7d}\label{group__rfm__registers_gac1d02291848211f49df1455134b00f7d}} 
+\index{RFM Register Definitions@{RFM Register Definitions}!RFM\_IRQ\_CAD\_DETECTED@{RFM\_IRQ\_CAD\_DETECTED}}
+\index{RFM\_IRQ\_CAD\_DETECTED@{RFM\_IRQ\_CAD\_DETECTED}!RFM Register Definitions@{RFM Register Definitions}}
+\doxysubsubsection{\texorpdfstring{RFM\_IRQ\_CAD\_DETECTED}{RFM\_IRQ\_CAD\_DETECTED}}
+{\footnotesize\ttfamily \#define R\+F\+M\+\_\+\+I\+R\+Q\+\_\+\+C\+A\+D\+\_\+\+D\+E\+T\+E\+C\+T\+ED~0x01}
+
+\mbox{\Hypertarget{group__rfm__registers_gac8d939f752fbb70a12af72db29238ce8}\label{group__rfm__registers_gac8d939f752fbb70a12af72db29238ce8}} 
+\index{RFM Register Definitions@{RFM Register Definitions}!RFM\_IRQ\_CAD\_DONE@{RFM\_IRQ\_CAD\_DONE}}
+\index{RFM\_IRQ\_CAD\_DONE@{RFM\_IRQ\_CAD\_DONE}!RFM Register Definitions@{RFM Register Definitions}}
+\doxysubsubsection{\texorpdfstring{RFM\_IRQ\_CAD\_DONE}{RFM\_IRQ\_CAD\_DONE}}
+{\footnotesize\ttfamily \#define R\+F\+M\+\_\+\+I\+R\+Q\+\_\+\+C\+A\+D\+\_\+\+D\+O\+NE~0x04}
+
+\mbox{\Hypertarget{group__rfm__registers_ga376784fe05633d7b9dc0bda4e84b50a3}\label{group__rfm__registers_ga376784fe05633d7b9dc0bda4e84b50a3}} 
+\index{RFM Register Definitions@{RFM Register Definitions}!RFM\_IRQ\_FHSS\_CHANGE\_CHANNEL@{RFM\_IRQ\_FHSS\_CHANGE\_CHANNEL}}
+\index{RFM\_IRQ\_FHSS\_CHANGE\_CHANNEL@{RFM\_IRQ\_FHSS\_CHANGE\_CHANNEL}!RFM Register Definitions@{RFM Register Definitions}}
+\doxysubsubsection{\texorpdfstring{RFM\_IRQ\_FHSS\_CHANGE\_CHANNEL}{RFM\_IRQ\_FHSS\_CHANGE\_CHANNEL}}
+{\footnotesize\ttfamily \#define R\+F\+M\+\_\+\+I\+R\+Q\+\_\+\+F\+H\+S\+S\+\_\+\+C\+H\+A\+N\+G\+E\+\_\+\+C\+H\+A\+N\+N\+EL~0x02}
+
+\mbox{\Hypertarget{group__rfm__registers_gaf6cdf56add76e5f2ece02710cfc6b2ab}\label{group__rfm__registers_gaf6cdf56add76e5f2ece02710cfc6b2ab}} 
+\index{RFM Register Definitions@{RFM Register Definitions}!RFM\_IRQ\_NONE@{RFM\_IRQ\_NONE}}
+\index{RFM\_IRQ\_NONE@{RFM\_IRQ\_NONE}!RFM Register Definitions@{RFM Register Definitions}}
+\doxysubsubsection{\texorpdfstring{RFM\_IRQ\_NONE}{RFM\_IRQ\_NONE}}
+{\footnotesize\ttfamily \#define R\+F\+M\+\_\+\+I\+R\+Q\+\_\+\+N\+O\+NE~0x00}
+
+\mbox{\Hypertarget{group__rfm__registers_gafff2997606702b74acf477ce9a1141e0}\label{group__rfm__registers_gafff2997606702b74acf477ce9a1141e0}} 
+\index{RFM Register Definitions@{RFM Register Definitions}!RFM\_IRQ\_PAYLOAD\_CRC\_ERROR@{RFM\_IRQ\_PAYLOAD\_CRC\_ERROR}}
+\index{RFM\_IRQ\_PAYLOAD\_CRC\_ERROR@{RFM\_IRQ\_PAYLOAD\_CRC\_ERROR}!RFM Register Definitions@{RFM Register Definitions}}
+\doxysubsubsection{\texorpdfstring{RFM\_IRQ\_PAYLOAD\_CRC\_ERROR}{RFM\_IRQ\_PAYLOAD\_CRC\_ERROR}}
+{\footnotesize\ttfamily \#define R\+F\+M\+\_\+\+I\+R\+Q\+\_\+\+P\+A\+Y\+L\+O\+A\+D\+\_\+\+C\+R\+C\+\_\+\+E\+R\+R\+OR~0x20}
+
+\mbox{\Hypertarget{group__rfm__registers_ga50b07045d10fe450256900fb0392dcd9}\label{group__rfm__registers_ga50b07045d10fe450256900fb0392dcd9}} 
+\index{RFM Register Definitions@{RFM Register Definitions}!RFM\_IRQ\_RX\_DONE@{RFM\_IRQ\_RX\_DONE}}
+\index{RFM\_IRQ\_RX\_DONE@{RFM\_IRQ\_RX\_DONE}!RFM Register Definitions@{RFM Register Definitions}}
+\doxysubsubsection{\texorpdfstring{RFM\_IRQ\_RX\_DONE}{RFM\_IRQ\_RX\_DONE}}
+{\footnotesize\ttfamily \#define R\+F\+M\+\_\+\+I\+R\+Q\+\_\+\+R\+X\+\_\+\+D\+O\+NE~0x40}
+
+\mbox{\Hypertarget{group__rfm__registers_ga9687d1220a0ded952e7119d5219779f4}\label{group__rfm__registers_ga9687d1220a0ded952e7119d5219779f4}} 
+\index{RFM Register Definitions@{RFM Register Definitions}!RFM\_IRQ\_RX\_TIMEOUT@{RFM\_IRQ\_RX\_TIMEOUT}}
+\index{RFM\_IRQ\_RX\_TIMEOUT@{RFM\_IRQ\_RX\_TIMEOUT}!RFM Register Definitions@{RFM Register Definitions}}
+\doxysubsubsection{\texorpdfstring{RFM\_IRQ\_RX\_TIMEOUT}{RFM\_IRQ\_RX\_TIMEOUT}}
+{\footnotesize\ttfamily \#define R\+F\+M\+\_\+\+I\+R\+Q\+\_\+\+R\+X\+\_\+\+T\+I\+M\+E\+O\+UT~0x80}
+
+\mbox{\Hypertarget{group__rfm__registers_ga22cfeb678799b2affeb3f2f4084792f8}\label{group__rfm__registers_ga22cfeb678799b2affeb3f2f4084792f8}} 
+\index{RFM Register Definitions@{RFM Register Definitions}!RFM\_IRQ\_TX\_DONE@{RFM\_IRQ\_TX\_DONE}}
+\index{RFM\_IRQ\_TX\_DONE@{RFM\_IRQ\_TX\_DONE}!RFM Register Definitions@{RFM Register Definitions}}
+\doxysubsubsection{\texorpdfstring{RFM\_IRQ\_TX\_DONE}{RFM\_IRQ\_TX\_DONE}}
+{\footnotesize\ttfamily \#define R\+F\+M\+\_\+\+I\+R\+Q\+\_\+\+T\+X\+\_\+\+D\+O\+NE~0x08}
+
+\mbox{\Hypertarget{group__rfm__registers_ga20b6294b23c246066a0dd46aaefc2e68}\label{group__rfm__registers_ga20b6294b23c246066a0dd46aaefc2e68}} 
+\index{RFM Register Definitions@{RFM Register Definitions}!RFM\_IRQ\_VALID\_HEADER@{RFM\_IRQ\_VALID\_HEADER}}
+\index{RFM\_IRQ\_VALID\_HEADER@{RFM\_IRQ\_VALID\_HEADER}!RFM Register Definitions@{RFM Register Definitions}}
+\doxysubsubsection{\texorpdfstring{RFM\_IRQ\_VALID\_HEADER}{RFM\_IRQ\_VALID\_HEADER}}
+{\footnotesize\ttfamily \#define R\+F\+M\+\_\+\+I\+R\+Q\+\_\+\+V\+A\+L\+I\+D\+\_\+\+H\+E\+A\+D\+ER~0x10}
+
+\mbox{\Hypertarget{group__rfm__registers_ga4e545b5a92087bb72cc56fe18af84ab1}\label{group__rfm__registers_ga4e545b5a92087bb72cc56fe18af84ab1}} 
+\index{RFM Register Definitions@{RFM Register Definitions}!RFM\_LNA\_BOOST\_HF@{RFM\_LNA\_BOOST\_HF}}
+\index{RFM\_LNA\_BOOST\_HF@{RFM\_LNA\_BOOST\_HF}!RFM Register Definitions@{RFM Register Definitions}}
+\doxysubsubsection{\texorpdfstring{RFM\_LNA\_BOOST\_HF}{RFM\_LNA\_BOOST\_HF}}
+{\footnotesize\ttfamily \#define R\+F\+M\+\_\+\+L\+N\+A\+\_\+\+B\+O\+O\+S\+T\+\_\+\+HF~0x03}
+
+\mbox{\Hypertarget{group__rfm__registers_gac827c0769313671e247958742ac893b9}\label{group__rfm__registers_gac827c0769313671e247958742ac893b9}} 
+\index{RFM Register Definitions@{RFM Register Definitions}!RFM\_LNA\_BOOST\_HF\_150PC@{RFM\_LNA\_BOOST\_HF\_150PC}}
+\index{RFM\_LNA\_BOOST\_HF\_150PC@{RFM\_LNA\_BOOST\_HF\_150PC}!RFM Register Definitions@{RFM Register Definitions}}
+\doxysubsubsection{\texorpdfstring{RFM\_LNA\_BOOST\_HF\_150PC}{RFM\_LNA\_BOOST\_HF\_150PC}}
+{\footnotesize\ttfamily \#define R\+F\+M\+\_\+\+L\+N\+A\+\_\+\+B\+O\+O\+S\+T\+\_\+\+H\+F\+\_\+150\+PC~0x03}
+
+\mbox{\Hypertarget{group__rfm__registers_gae8907553681176d030d17fa7da701d89}\label{group__rfm__registers_gae8907553681176d030d17fa7da701d89}} 
+\index{RFM Register Definitions@{RFM Register Definitions}!RFM\_LNA\_BOOST\_HF\_DEFAULT@{RFM\_LNA\_BOOST\_HF\_DEFAULT}}
+\index{RFM\_LNA\_BOOST\_HF\_DEFAULT@{RFM\_LNA\_BOOST\_HF\_DEFAULT}!RFM Register Definitions@{RFM Register Definitions}}
+\doxysubsubsection{\texorpdfstring{RFM\_LNA\_BOOST\_HF\_DEFAULT}{RFM\_LNA\_BOOST\_HF\_DEFAULT}}
+{\footnotesize\ttfamily \#define R\+F\+M\+\_\+\+L\+N\+A\+\_\+\+B\+O\+O\+S\+T\+\_\+\+H\+F\+\_\+\+D\+E\+F\+A\+U\+LT~0x00}
+
+\mbox{\Hypertarget{group__rfm__registers_ga6040d513a5c1a75294a1c7227ed3b4fc}\label{group__rfm__registers_ga6040d513a5c1a75294a1c7227ed3b4fc}} 
+\index{RFM Register Definitions@{RFM Register Definitions}!RFM\_LNA\_BOOST\_LF@{RFM\_LNA\_BOOST\_LF}}
+\index{RFM\_LNA\_BOOST\_LF@{RFM\_LNA\_BOOST\_LF}!RFM Register Definitions@{RFM Register Definitions}}
+\doxysubsubsection{\texorpdfstring{RFM\_LNA\_BOOST\_LF}{RFM\_LNA\_BOOST\_LF}}
+{\footnotesize\ttfamily \#define R\+F\+M\+\_\+\+L\+N\+A\+\_\+\+B\+O\+O\+S\+T\+\_\+\+LF~0x18}
+
+\mbox{\Hypertarget{group__rfm__registers_ga6094f0481dd7968d6aba532a62f430bb}\label{group__rfm__registers_ga6094f0481dd7968d6aba532a62f430bb}} 
+\index{RFM Register Definitions@{RFM Register Definitions}!RFM\_LNA\_BOOST\_LF\_DEFAULT@{RFM\_LNA\_BOOST\_LF\_DEFAULT}}
+\index{RFM\_LNA\_BOOST\_LF\_DEFAULT@{RFM\_LNA\_BOOST\_LF\_DEFAULT}!RFM Register Definitions@{RFM Register Definitions}}
+\doxysubsubsection{\texorpdfstring{RFM\_LNA\_BOOST\_LF\_DEFAULT}{RFM\_LNA\_BOOST\_LF\_DEFAULT}}
+{\footnotesize\ttfamily \#define R\+F\+M\+\_\+\+L\+N\+A\+\_\+\+B\+O\+O\+S\+T\+\_\+\+L\+F\+\_\+\+D\+E\+F\+A\+U\+LT~0x00}
+
+\mbox{\Hypertarget{group__rfm__registers_ga24fa88c835e1475ae0bca8c27454ce5b}\label{group__rfm__registers_ga24fa88c835e1475ae0bca8c27454ce5b}} 
+\index{RFM Register Definitions@{RFM Register Definitions}!RFM\_LNA\_GAIN@{RFM\_LNA\_GAIN}}
+\index{RFM\_LNA\_GAIN@{RFM\_LNA\_GAIN}!RFM Register Definitions@{RFM Register Definitions}}
+\doxysubsubsection{\texorpdfstring{RFM\_LNA\_GAIN}{RFM\_LNA\_GAIN}}
+{\footnotesize\ttfamily \#define R\+F\+M\+\_\+\+L\+N\+A\+\_\+\+G\+A\+IN~0xe0}
+
+\mbox{\Hypertarget{group__rfm__registers_gadf5f76aeccc745546d8dc3ef7885ea4b}\label{group__rfm__registers_gadf5f76aeccc745546d8dc3ef7885ea4b}} 
+\index{RFM Register Definitions@{RFM Register Definitions}!RFM\_LNA\_GAIN\_G1@{RFM\_LNA\_GAIN\_G1}}
+\index{RFM\_LNA\_GAIN\_G1@{RFM\_LNA\_GAIN\_G1}!RFM Register Definitions@{RFM Register Definitions}}
+\doxysubsubsection{\texorpdfstring{RFM\_LNA\_GAIN\_G1}{RFM\_LNA\_GAIN\_G1}}
+{\footnotesize\ttfamily \#define R\+F\+M\+\_\+\+L\+N\+A\+\_\+\+G\+A\+I\+N\+\_\+\+G1~0x20}
+
+\mbox{\Hypertarget{group__rfm__registers_ga72587a5952d01f8c8466e1e4c2c06dc0}\label{group__rfm__registers_ga72587a5952d01f8c8466e1e4c2c06dc0}} 
+\index{RFM Register Definitions@{RFM Register Definitions}!RFM\_LNA\_GAIN\_G2@{RFM\_LNA\_GAIN\_G2}}
+\index{RFM\_LNA\_GAIN\_G2@{RFM\_LNA\_GAIN\_G2}!RFM Register Definitions@{RFM Register Definitions}}
+\doxysubsubsection{\texorpdfstring{RFM\_LNA\_GAIN\_G2}{RFM\_LNA\_GAIN\_G2}}
+{\footnotesize\ttfamily \#define R\+F\+M\+\_\+\+L\+N\+A\+\_\+\+G\+A\+I\+N\+\_\+\+G2~0x40}
+
+\mbox{\Hypertarget{group__rfm__registers_gaeff69fdc30366934b78c078542a07981}\label{group__rfm__registers_gaeff69fdc30366934b78c078542a07981}} 
+\index{RFM Register Definitions@{RFM Register Definitions}!RFM\_LNA\_GAIN\_G3@{RFM\_LNA\_GAIN\_G3}}
+\index{RFM\_LNA\_GAIN\_G3@{RFM\_LNA\_GAIN\_G3}!RFM Register Definitions@{RFM Register Definitions}}
+\doxysubsubsection{\texorpdfstring{RFM\_LNA\_GAIN\_G3}{RFM\_LNA\_GAIN\_G3}}
+{\footnotesize\ttfamily \#define R\+F\+M\+\_\+\+L\+N\+A\+\_\+\+G\+A\+I\+N\+\_\+\+G3~0x60}
+
+\mbox{\Hypertarget{group__rfm__registers_ga9bde20197b1f04c608f7f38a1eff6bc6}\label{group__rfm__registers_ga9bde20197b1f04c608f7f38a1eff6bc6}} 
+\index{RFM Register Definitions@{RFM Register Definitions}!RFM\_LNA\_GAIN\_G4@{RFM\_LNA\_GAIN\_G4}}
+\index{RFM\_LNA\_GAIN\_G4@{RFM\_LNA\_GAIN\_G4}!RFM Register Definitions@{RFM Register Definitions}}
+\doxysubsubsection{\texorpdfstring{RFM\_LNA\_GAIN\_G4}{RFM\_LNA\_GAIN\_G4}}
+{\footnotesize\ttfamily \#define R\+F\+M\+\_\+\+L\+N\+A\+\_\+\+G\+A\+I\+N\+\_\+\+G4~0x80}
+
+\mbox{\Hypertarget{group__rfm__registers_ga3ddd75f37172d8fbd8eb7d7de42cc685}\label{group__rfm__registers_ga3ddd75f37172d8fbd8eb7d7de42cc685}} 
+\index{RFM Register Definitions@{RFM Register Definitions}!RFM\_LNA\_GAIN\_G5@{RFM\_LNA\_GAIN\_G5}}
+\index{RFM\_LNA\_GAIN\_G5@{RFM\_LNA\_GAIN\_G5}!RFM Register Definitions@{RFM Register Definitions}}
+\doxysubsubsection{\texorpdfstring{RFM\_LNA\_GAIN\_G5}{RFM\_LNA\_GAIN\_G5}}
+{\footnotesize\ttfamily \#define R\+F\+M\+\_\+\+L\+N\+A\+\_\+\+G\+A\+I\+N\+\_\+\+G5~0xa0}
+
+\mbox{\Hypertarget{group__rfm__registers_ga15c716918dd52948ace26ea6d231bb6d}\label{group__rfm__registers_ga15c716918dd52948ace26ea6d231bb6d}} 
+\index{RFM Register Definitions@{RFM Register Definitions}!RFM\_LNA\_GAIN\_G6@{RFM\_LNA\_GAIN\_G6}}
+\index{RFM\_LNA\_GAIN\_G6@{RFM\_LNA\_GAIN\_G6}!RFM Register Definitions@{RFM Register Definitions}}
+\doxysubsubsection{\texorpdfstring{RFM\_LNA\_GAIN\_G6}{RFM\_LNA\_GAIN\_G6}}
+{\footnotesize\ttfamily \#define R\+F\+M\+\_\+\+L\+N\+A\+\_\+\+G\+A\+I\+N\+\_\+\+G6~0xc0}
+
+\mbox{\Hypertarget{group__rfm__registers_ga3eb853cc819d5585c6ae00d653e3cb2b}\label{group__rfm__registers_ga3eb853cc819d5585c6ae00d653e3cb2b}} 
+\index{RFM Register Definitions@{RFM Register Definitions}!RFM\_LONG\_RANGE\_MODE@{RFM\_LONG\_RANGE\_MODE}}
+\index{RFM\_LONG\_RANGE\_MODE@{RFM\_LONG\_RANGE\_MODE}!RFM Register Definitions@{RFM Register Definitions}}
+\doxysubsubsection{\texorpdfstring{RFM\_LONG\_RANGE\_MODE}{RFM\_LONG\_RANGE\_MODE}}
+{\footnotesize\ttfamily \#define R\+F\+M\+\_\+\+L\+O\+N\+G\+\_\+\+R\+A\+N\+G\+E\+\_\+\+M\+O\+DE~0x80}
+
+\mbox{\Hypertarget{group__rfm__registers_gab21f907ab4aa6b64c09c70e218b773fd}\label{group__rfm__registers_gab21f907ab4aa6b64c09c70e218b773fd}} 
+\index{RFM Register Definitions@{RFM Register Definitions}!RFM\_LOW\_DATA\_RATE\_OPTIMIZE@{RFM\_LOW\_DATA\_RATE\_OPTIMIZE}}
+\index{RFM\_LOW\_DATA\_RATE\_OPTIMIZE@{RFM\_LOW\_DATA\_RATE\_OPTIMIZE}!RFM Register Definitions@{RFM Register Definitions}}
+\doxysubsubsection{\texorpdfstring{RFM\_LOW\_DATA\_RATE\_OPTIMIZE}{RFM\_LOW\_DATA\_RATE\_OPTIMIZE}}
+{\footnotesize\ttfamily \#define R\+F\+M\+\_\+\+L\+O\+W\+\_\+\+D\+A\+T\+A\+\_\+\+R\+A\+T\+E\+\_\+\+O\+P\+T\+I\+M\+I\+ZE~0x08}
+
+\mbox{\Hypertarget{group__rfm__registers_ga0c9fa032ff669aa59bdbb8298ca7b84d}\label{group__rfm__registers_ga0c9fa032ff669aa59bdbb8298ca7b84d}} 
+\index{RFM Register Definitions@{RFM Register Definitions}!RFM\_LOW\_FREQUENCY\_MODE@{RFM\_LOW\_FREQUENCY\_MODE}}
+\index{RFM\_LOW\_FREQUENCY\_MODE@{RFM\_LOW\_FREQUENCY\_MODE}!RFM Register Definitions@{RFM Register Definitions}}
+\doxysubsubsection{\texorpdfstring{RFM\_LOW\_FREQUENCY\_MODE}{RFM\_LOW\_FREQUENCY\_MODE}}
+{\footnotesize\ttfamily \#define R\+F\+M\+\_\+\+L\+O\+W\+\_\+\+F\+R\+E\+Q\+U\+E\+N\+C\+Y\+\_\+\+M\+O\+DE~0x08}
+
+\mbox{\Hypertarget{group__rfm__registers_ga59198253c729f13bfe2dac7190a2c7a8}\label{group__rfm__registers_ga59198253c729f13bfe2dac7190a2c7a8}} 
+\index{RFM Register Definitions@{RFM Register Definitions}!RFM\_LOW\_PN\_TX\_PLL\_OFF@{RFM\_LOW\_PN\_TX\_PLL\_OFF}}
+\index{RFM\_LOW\_PN\_TX\_PLL\_OFF@{RFM\_LOW\_PN\_TX\_PLL\_OFF}!RFM Register Definitions@{RFM Register Definitions}}
+\doxysubsubsection{\texorpdfstring{RFM\_LOW\_PN\_TX\_PLL\_OFF}{RFM\_LOW\_PN\_TX\_PLL\_OFF}}
+{\footnotesize\ttfamily \#define R\+F\+M\+\_\+\+L\+O\+W\+\_\+\+P\+N\+\_\+\+T\+X\+\_\+\+P\+L\+L\+\_\+\+O\+FF~0x10}
+
+\mbox{\Hypertarget{group__rfm__registers_ga501f04fcb8b91bfeab0a904b035d0e20}\label{group__rfm__registers_ga501f04fcb8b91bfeab0a904b035d0e20}} 
+\index{RFM Register Definitions@{RFM Register Definitions}!RFM\_MAX\_POWER@{RFM\_MAX\_POWER}}
+\index{RFM\_MAX\_POWER@{RFM\_MAX\_POWER}!RFM Register Definitions@{RFM Register Definitions}}
+\doxysubsubsection{\texorpdfstring{RFM\_MAX\_POWER}{RFM\_MAX\_POWER}}
+{\footnotesize\ttfamily \#define R\+F\+M\+\_\+\+M\+A\+X\+\_\+\+P\+O\+W\+ER~0x70}
+
+\mbox{\Hypertarget{group__rfm__registers_ga90c030f1fe44b889d051b36a4ea98b9b}\label{group__rfm__registers_ga90c030f1fe44b889d051b36a4ea98b9b}} 
+\index{RFM Register Definitions@{RFM Register Definitions}!RFM\_MOBILE\_NODE@{RFM\_MOBILE\_NODE}}
+\index{RFM\_MOBILE\_NODE@{RFM\_MOBILE\_NODE}!RFM Register Definitions@{RFM Register Definitions}}
+\doxysubsubsection{\texorpdfstring{RFM\_MOBILE\_NODE}{RFM\_MOBILE\_NODE}}
+{\footnotesize\ttfamily \#define R\+F\+M\+\_\+\+M\+O\+B\+I\+L\+E\+\_\+\+N\+O\+DE~0x08}
+
+\mbox{\Hypertarget{group__rfm__registers_gad36327544af17d57a33a135b7454f34c}\label{group__rfm__registers_gad36327544af17d57a33a135b7454f34c}} 
+\index{RFM Register Definitions@{RFM Register Definitions}!RFM\_MODE@{RFM\_MODE}}
+\index{RFM\_MODE@{RFM\_MODE}!RFM Register Definitions@{RFM Register Definitions}}
+\doxysubsubsection{\texorpdfstring{RFM\_MODE}{RFM\_MODE}}
+{\footnotesize\ttfamily \#define R\+F\+M\+\_\+\+M\+O\+DE~0x07}
+
+\mbox{\Hypertarget{group__rfm__registers_ga879286a499ac6485feca3422d48a8882}\label{group__rfm__registers_ga879286a499ac6485feca3422d48a8882}} 
+\index{RFM Register Definitions@{RFM Register Definitions}!RFM\_MODE\_CAD@{RFM\_MODE\_CAD}}
+\index{RFM\_MODE\_CAD@{RFM\_MODE\_CAD}!RFM Register Definitions@{RFM Register Definitions}}
+\doxysubsubsection{\texorpdfstring{RFM\_MODE\_CAD}{RFM\_MODE\_CAD}}
+{\footnotesize\ttfamily \#define R\+F\+M\+\_\+\+M\+O\+D\+E\+\_\+\+C\+AD~0x07}
+
+\mbox{\Hypertarget{group__rfm__registers_ga7465645bef3dd4d7c7b1ba31803d4850}\label{group__rfm__registers_ga7465645bef3dd4d7c7b1ba31803d4850}} 
+\index{RFM Register Definitions@{RFM Register Definitions}!RFM\_MODE\_FSRX@{RFM\_MODE\_FSRX}}
+\index{RFM\_MODE\_FSRX@{RFM\_MODE\_FSRX}!RFM Register Definitions@{RFM Register Definitions}}
+\doxysubsubsection{\texorpdfstring{RFM\_MODE\_FSRX}{RFM\_MODE\_FSRX}}
+{\footnotesize\ttfamily \#define R\+F\+M\+\_\+\+M\+O\+D\+E\+\_\+\+F\+S\+RX~0x04}
+
+\mbox{\Hypertarget{group__rfm__registers_ga42c6a0498709e6abdcafc3079dd02e7b}\label{group__rfm__registers_ga42c6a0498709e6abdcafc3079dd02e7b}} 
+\index{RFM Register Definitions@{RFM Register Definitions}!RFM\_MODE\_FSTX@{RFM\_MODE\_FSTX}}
+\index{RFM\_MODE\_FSTX@{RFM\_MODE\_FSTX}!RFM Register Definitions@{RFM Register Definitions}}
+\doxysubsubsection{\texorpdfstring{RFM\_MODE\_FSTX}{RFM\_MODE\_FSTX}}
+{\footnotesize\ttfamily \#define R\+F\+M\+\_\+\+M\+O\+D\+E\+\_\+\+F\+S\+TX~0x02}
+
+\mbox{\Hypertarget{group__rfm__registers_ga8f7860205c9d44d922201a1c6124553c}\label{group__rfm__registers_ga8f7860205c9d44d922201a1c6124553c}} 
+\index{RFM Register Definitions@{RFM Register Definitions}!RFM\_MODE\_RXCONTINUOUS@{RFM\_MODE\_RXCONTINUOUS}}
+\index{RFM\_MODE\_RXCONTINUOUS@{RFM\_MODE\_RXCONTINUOUS}!RFM Register Definitions@{RFM Register Definitions}}
+\doxysubsubsection{\texorpdfstring{RFM\_MODE\_RXCONTINUOUS}{RFM\_MODE\_RXCONTINUOUS}}
+{\footnotesize\ttfamily \#define R\+F\+M\+\_\+\+M\+O\+D\+E\+\_\+\+R\+X\+C\+O\+N\+T\+I\+N\+U\+O\+US~0x05}
+
+\mbox{\Hypertarget{group__rfm__registers_ga68a460c52bae16ef4a404d518256d908}\label{group__rfm__registers_ga68a460c52bae16ef4a404d518256d908}} 
+\index{RFM Register Definitions@{RFM Register Definitions}!RFM\_MODE\_RXSINGLE@{RFM\_MODE\_RXSINGLE}}
+\index{RFM\_MODE\_RXSINGLE@{RFM\_MODE\_RXSINGLE}!RFM Register Definitions@{RFM Register Definitions}}
+\doxysubsubsection{\texorpdfstring{RFM\_MODE\_RXSINGLE}{RFM\_MODE\_RXSINGLE}}
+{\footnotesize\ttfamily \#define R\+F\+M\+\_\+\+M\+O\+D\+E\+\_\+\+R\+X\+S\+I\+N\+G\+LE~0x06}
+
+\mbox{\Hypertarget{group__rfm__registers_ga8753b4175be3f74136c3f7a7f8620774}\label{group__rfm__registers_ga8753b4175be3f74136c3f7a7f8620774}} 
+\index{RFM Register Definitions@{RFM Register Definitions}!RFM\_MODE\_SLEEP@{RFM\_MODE\_SLEEP}}
+\index{RFM\_MODE\_SLEEP@{RFM\_MODE\_SLEEP}!RFM Register Definitions@{RFM Register Definitions}}
+\doxysubsubsection{\texorpdfstring{RFM\_MODE\_SLEEP}{RFM\_MODE\_SLEEP}}
+{\footnotesize\ttfamily \#define R\+F\+M\+\_\+\+M\+O\+D\+E\+\_\+\+S\+L\+E\+EP~0x00}
+
+\mbox{\Hypertarget{group__rfm__registers_gaff6b46713347c4c3f2fbc4a2033bb958}\label{group__rfm__registers_gaff6b46713347c4c3f2fbc4a2033bb958}} 
+\index{RFM Register Definitions@{RFM Register Definitions}!RFM\_MODE\_STDBY@{RFM\_MODE\_STDBY}}
+\index{RFM\_MODE\_STDBY@{RFM\_MODE\_STDBY}!RFM Register Definitions@{RFM Register Definitions}}
+\doxysubsubsection{\texorpdfstring{RFM\_MODE\_STDBY}{RFM\_MODE\_STDBY}}
+{\footnotesize\ttfamily \#define R\+F\+M\+\_\+\+M\+O\+D\+E\+\_\+\+S\+T\+D\+BY~0x01}
+
+\mbox{\Hypertarget{group__rfm__registers_gab28486a8c0393dc12ff0dd04325fd84b}\label{group__rfm__registers_gab28486a8c0393dc12ff0dd04325fd84b}} 
+\index{RFM Register Definitions@{RFM Register Definitions}!RFM\_MODE\_TX@{RFM\_MODE\_TX}}
+\index{RFM\_MODE\_TX@{RFM\_MODE\_TX}!RFM Register Definitions@{RFM Register Definitions}}
+\doxysubsubsection{\texorpdfstring{RFM\_MODE\_TX}{RFM\_MODE\_TX}}
+{\footnotesize\ttfamily \#define R\+F\+M\+\_\+\+M\+O\+D\+E\+\_\+\+TX~0x03}
+
+\mbox{\Hypertarget{group__rfm__registers_gadbd2ff3317eae3c8e95dc584d3ee0ee4}\label{group__rfm__registers_gadbd2ff3317eae3c8e95dc584d3ee0ee4}} 
+\index{RFM Register Definitions@{RFM Register Definitions}!RFM\_MODEM\_STATUS\_CLEAR@{RFM\_MODEM\_STATUS\_CLEAR}}
+\index{RFM\_MODEM\_STATUS\_CLEAR@{RFM\_MODEM\_STATUS\_CLEAR}!RFM Register Definitions@{RFM Register Definitions}}
+\doxysubsubsection{\texorpdfstring{RFM\_MODEM\_STATUS\_CLEAR}{RFM\_MODEM\_STATUS\_CLEAR}}
+{\footnotesize\ttfamily \#define R\+F\+M\+\_\+\+M\+O\+D\+E\+M\+\_\+\+S\+T\+A\+T\+U\+S\+\_\+\+C\+L\+E\+AR~0x10}
+
+\mbox{\Hypertarget{group__rfm__registers_gab00b6e3bab4bad7723c05675a57d777b}\label{group__rfm__registers_gab00b6e3bab4bad7723c05675a57d777b}} 
+\index{RFM Register Definitions@{RFM Register Definitions}!RFM\_MODEM\_STATUS\_HEADER\_INFO\_VALID@{RFM\_MODEM\_STATUS\_HEADER\_INFO\_VALID}}
+\index{RFM\_MODEM\_STATUS\_HEADER\_INFO\_VALID@{RFM\_MODEM\_STATUS\_HEADER\_INFO\_VALID}!RFM Register Definitions@{RFM Register Definitions}}
+\doxysubsubsection{\texorpdfstring{RFM\_MODEM\_STATUS\_HEADER\_INFO\_VALID}{RFM\_MODEM\_STATUS\_HEADER\_INFO\_VALID}}
+{\footnotesize\ttfamily \#define R\+F\+M\+\_\+\+M\+O\+D\+E\+M\+\_\+\+S\+T\+A\+T\+U\+S\+\_\+\+H\+E\+A\+D\+E\+R\+\_\+\+I\+N\+F\+O\+\_\+\+V\+A\+L\+ID~0x08}
+
+\mbox{\Hypertarget{group__rfm__registers_ga519236312c124f2a1af51cb2f1c34607}\label{group__rfm__registers_ga519236312c124f2a1af51cb2f1c34607}} 
+\index{RFM Register Definitions@{RFM Register Definitions}!RFM\_MODEM\_STATUS\_RX\_ONGOING@{RFM\_MODEM\_STATUS\_RX\_ONGOING}}
+\index{RFM\_MODEM\_STATUS\_RX\_ONGOING@{RFM\_MODEM\_STATUS\_RX\_ONGOING}!RFM Register Definitions@{RFM Register Definitions}}
+\doxysubsubsection{\texorpdfstring{RFM\_MODEM\_STATUS\_RX\_ONGOING}{RFM\_MODEM\_STATUS\_RX\_ONGOING}}
+{\footnotesize\ttfamily \#define R\+F\+M\+\_\+\+M\+O\+D\+E\+M\+\_\+\+S\+T\+A\+T\+U\+S\+\_\+\+R\+X\+\_\+\+O\+N\+G\+O\+I\+NG~0x04}
+
+\mbox{\Hypertarget{group__rfm__registers_ga21714004a3b6fc2fd2d7ac2f02d4bdbd}\label{group__rfm__registers_ga21714004a3b6fc2fd2d7ac2f02d4bdbd}} 
+\index{RFM Register Definitions@{RFM Register Definitions}!RFM\_MODEM\_STATUS\_SIGNAL\_DETECTED@{RFM\_MODEM\_STATUS\_SIGNAL\_DETECTED}}
+\index{RFM\_MODEM\_STATUS\_SIGNAL\_DETECTED@{RFM\_MODEM\_STATUS\_SIGNAL\_DETECTED}!RFM Register Definitions@{RFM Register Definitions}}
+\doxysubsubsection{\texorpdfstring{RFM\_MODEM\_STATUS\_SIGNAL\_DETECTED}{RFM\_MODEM\_STATUS\_SIGNAL\_DETECTED}}
+{\footnotesize\ttfamily \#define R\+F\+M\+\_\+\+M\+O\+D\+E\+M\+\_\+\+S\+T\+A\+T\+U\+S\+\_\+\+S\+I\+G\+N\+A\+L\+\_\+\+D\+E\+T\+E\+C\+T\+ED~0x01}
+
+\mbox{\Hypertarget{group__rfm__registers_ga68d52effda4f0f9ee941d13b478909c9}\label{group__rfm__registers_ga68d52effda4f0f9ee941d13b478909c9}} 
+\index{RFM Register Definitions@{RFM Register Definitions}!RFM\_MODEM\_STATUS\_SIGNAL\_SYNCHRONIZED@{RFM\_MODEM\_STATUS\_SIGNAL\_SYNCHRONIZED}}
+\index{RFM\_MODEM\_STATUS\_SIGNAL\_SYNCHRONIZED@{RFM\_MODEM\_STATUS\_SIGNAL\_SYNCHRONIZED}!RFM Register Definitions@{RFM Register Definitions}}
+\doxysubsubsection{\texorpdfstring{RFM\_MODEM\_STATUS\_SIGNAL\_SYNCHRONIZED}{RFM\_MODEM\_STATUS\_SIGNAL\_SYNCHRONIZED}}
+{\footnotesize\ttfamily \#define R\+F\+M\+\_\+\+M\+O\+D\+E\+M\+\_\+\+S\+T\+A\+T\+U\+S\+\_\+\+S\+I\+G\+N\+A\+L\+\_\+\+S\+Y\+N\+C\+H\+R\+O\+N\+I\+Z\+ED~0x02}
+
+\mbox{\Hypertarget{group__rfm__registers_ga4090553ba4959e33afe1200f39c5ce15}\label{group__rfm__registers_ga4090553ba4959e33afe1200f39c5ce15}} 
+\index{RFM Register Definitions@{RFM Register Definitions}!RFM\_OCP\_ON@{RFM\_OCP\_ON}}
+\index{RFM\_OCP\_ON@{RFM\_OCP\_ON}!RFM Register Definitions@{RFM Register Definitions}}
+\doxysubsubsection{\texorpdfstring{RFM\_OCP\_ON}{RFM\_OCP\_ON}}
+{\footnotesize\ttfamily \#define R\+F\+M\+\_\+\+O\+C\+P\+\_\+\+ON~0x20}
+
+\mbox{\Hypertarget{group__rfm__registers_gab44b6dd5983e7ffbcbd88e1c407ad356}\label{group__rfm__registers_gab44b6dd5983e7ffbcbd88e1c407ad356}} 
+\index{RFM Register Definitions@{RFM Register Definitions}!RFM\_OCP\_TRIM@{RFM\_OCP\_TRIM}}
+\index{RFM\_OCP\_TRIM@{RFM\_OCP\_TRIM}!RFM Register Definitions@{RFM Register Definitions}}
+\doxysubsubsection{\texorpdfstring{RFM\_OCP\_TRIM}{RFM\_OCP\_TRIM}}
+{\footnotesize\ttfamily \#define R\+F\+M\+\_\+\+O\+C\+P\+\_\+\+T\+R\+IM~0x1f}
+
+\mbox{\Hypertarget{group__rfm__registers_ga8627ba0d89061e4162112b44a12b85bf}\label{group__rfm__registers_ga8627ba0d89061e4162112b44a12b85bf}} 
+\index{RFM Register Definitions@{RFM Register Definitions}!RFM\_OUTPUT\_POWER@{RFM\_OUTPUT\_POWER}}
+\index{RFM\_OUTPUT\_POWER@{RFM\_OUTPUT\_POWER}!RFM Register Definitions@{RFM Register Definitions}}
+\doxysubsubsection{\texorpdfstring{RFM\_OUTPUT\_POWER}{RFM\_OUTPUT\_POWER}}
+{\footnotesize\ttfamily \#define R\+F\+M\+\_\+\+O\+U\+T\+P\+U\+T\+\_\+\+P\+O\+W\+ER~0x0f}
+
+\mbox{\Hypertarget{group__rfm__registers_gacb8982cb829c8be96dbe6521760111c9}\label{group__rfm__registers_gacb8982cb829c8be96dbe6521760111c9}} 
+\index{RFM Register Definitions@{RFM Register Definitions}!RFM\_PA\_DAC\_DISABLE@{RFM\_PA\_DAC\_DISABLE}}
+\index{RFM\_PA\_DAC\_DISABLE@{RFM\_PA\_DAC\_DISABLE}!RFM Register Definitions@{RFM Register Definitions}}
+\doxysubsubsection{\texorpdfstring{RFM\_PA\_DAC\_DISABLE}{RFM\_PA\_DAC\_DISABLE}}
+{\footnotesize\ttfamily \#define R\+F\+M\+\_\+\+P\+A\+\_\+\+D\+A\+C\+\_\+\+D\+I\+S\+A\+B\+LE~0x04}
+
+\mbox{\Hypertarget{group__rfm__registers_gaca826dad14f024d074ec50bd1b68794d}\label{group__rfm__registers_gaca826dad14f024d074ec50bd1b68794d}} 
+\index{RFM Register Definitions@{RFM Register Definitions}!RFM\_PA\_DAC\_ENABLE@{RFM\_PA\_DAC\_ENABLE}}
+\index{RFM\_PA\_DAC\_ENABLE@{RFM\_PA\_DAC\_ENABLE}!RFM Register Definitions@{RFM Register Definitions}}
+\doxysubsubsection{\texorpdfstring{RFM\_PA\_DAC\_ENABLE}{RFM\_PA\_DAC\_ENABLE}}
+{\footnotesize\ttfamily \#define R\+F\+M\+\_\+\+P\+A\+\_\+\+D\+A\+C\+\_\+\+E\+N\+A\+B\+LE~0x07}
+
+\mbox{\Hypertarget{group__rfm__registers_gafe6c49cce3fff604c567cde3ac5446bd}\label{group__rfm__registers_gafe6c49cce3fff604c567cde3ac5446bd}} 
+\index{RFM Register Definitions@{RFM Register Definitions}!RFM\_PA\_DAC\_MASK@{RFM\_PA\_DAC\_MASK}}
+\index{RFM\_PA\_DAC\_MASK@{RFM\_PA\_DAC\_MASK}!RFM Register Definitions@{RFM Register Definitions}}
+\doxysubsubsection{\texorpdfstring{RFM\_PA\_DAC\_MASK}{RFM\_PA\_DAC\_MASK}}
+{\footnotesize\ttfamily \#define R\+F\+M\+\_\+\+P\+A\+\_\+\+D\+A\+C\+\_\+\+M\+A\+SK~0x07}
+
+\mbox{\Hypertarget{group__rfm__registers_gab6940b062ad3eab06b21be0410c4928a}\label{group__rfm__registers_gab6940b062ad3eab06b21be0410c4928a}} 
+\index{RFM Register Definitions@{RFM Register Definitions}!RFM\_PA\_RAMP\_100US@{RFM\_PA\_RAMP\_100US}}
+\index{RFM\_PA\_RAMP\_100US@{RFM\_PA\_RAMP\_100US}!RFM Register Definitions@{RFM Register Definitions}}
+\doxysubsubsection{\texorpdfstring{RFM\_PA\_RAMP\_100US}{RFM\_PA\_RAMP\_100US}}
+{\footnotesize\ttfamily \#define R\+F\+M\+\_\+\+P\+A\+\_\+\+R\+A\+M\+P\+\_\+100\+US~0x06}
+
+\mbox{\Hypertarget{group__rfm__registers_gaacbd16da23855d35071e54fab3d8cbf8}\label{group__rfm__registers_gaacbd16da23855d35071e54fab3d8cbf8}} 
+\index{RFM Register Definitions@{RFM Register Definitions}!RFM\_PA\_RAMP\_10US@{RFM\_PA\_RAMP\_10US}}
+\index{RFM\_PA\_RAMP\_10US@{RFM\_PA\_RAMP\_10US}!RFM Register Definitions@{RFM Register Definitions}}
+\doxysubsubsection{\texorpdfstring{RFM\_PA\_RAMP\_10US}{RFM\_PA\_RAMP\_10US}}
+{\footnotesize\ttfamily \#define R\+F\+M\+\_\+\+P\+A\+\_\+\+R\+A\+M\+P\+\_\+10\+US~0x0f}
+
+\mbox{\Hypertarget{group__rfm__registers_ga9690a22faffb0310e1830a77491032ff}\label{group__rfm__registers_ga9690a22faffb0310e1830a77491032ff}} 
+\index{RFM Register Definitions@{RFM Register Definitions}!RFM\_PA\_RAMP\_125US@{RFM\_PA\_RAMP\_125US}}
+\index{RFM\_PA\_RAMP\_125US@{RFM\_PA\_RAMP\_125US}!RFM Register Definitions@{RFM Register Definitions}}
+\doxysubsubsection{\texorpdfstring{RFM\_PA\_RAMP\_125US}{RFM\_PA\_RAMP\_125US}}
+{\footnotesize\ttfamily \#define R\+F\+M\+\_\+\+P\+A\+\_\+\+R\+A\+M\+P\+\_\+125\+US~0x05}
+
+\mbox{\Hypertarget{group__rfm__registers_gab1d1f56fedc61482f4d9677eb77dcc94}\label{group__rfm__registers_gab1d1f56fedc61482f4d9677eb77dcc94}} 
+\index{RFM Register Definitions@{RFM Register Definitions}!RFM\_PA\_RAMP\_12US@{RFM\_PA\_RAMP\_12US}}
+\index{RFM\_PA\_RAMP\_12US@{RFM\_PA\_RAMP\_12US}!RFM Register Definitions@{RFM Register Definitions}}
+\doxysubsubsection{\texorpdfstring{RFM\_PA\_RAMP\_12US}{RFM\_PA\_RAMP\_12US}}
+{\footnotesize\ttfamily \#define R\+F\+M\+\_\+\+P\+A\+\_\+\+R\+A\+M\+P\+\_\+12\+US~0x0e}
+
+\mbox{\Hypertarget{group__rfm__registers_ga7fc9b5a5be832689958dc0b9be88beef}\label{group__rfm__registers_ga7fc9b5a5be832689958dc0b9be88beef}} 
+\index{RFM Register Definitions@{RFM Register Definitions}!RFM\_PA\_RAMP\_15US@{RFM\_PA\_RAMP\_15US}}
+\index{RFM\_PA\_RAMP\_15US@{RFM\_PA\_RAMP\_15US}!RFM Register Definitions@{RFM Register Definitions}}
+\doxysubsubsection{\texorpdfstring{RFM\_PA\_RAMP\_15US}{RFM\_PA\_RAMP\_15US}}
+{\footnotesize\ttfamily \#define R\+F\+M\+\_\+\+P\+A\+\_\+\+R\+A\+M\+P\+\_\+15\+US~0x0d}
+
+\mbox{\Hypertarget{group__rfm__registers_ga1f5701d073233d97e83777fd502740d8}\label{group__rfm__registers_ga1f5701d073233d97e83777fd502740d8}} 
+\index{RFM Register Definitions@{RFM Register Definitions}!RFM\_PA\_RAMP\_1MS@{RFM\_PA\_RAMP\_1MS}}
+\index{RFM\_PA\_RAMP\_1MS@{RFM\_PA\_RAMP\_1MS}!RFM Register Definitions@{RFM Register Definitions}}
+\doxysubsubsection{\texorpdfstring{RFM\_PA\_RAMP\_1MS}{RFM\_PA\_RAMP\_1MS}}
+{\footnotesize\ttfamily \#define R\+F\+M\+\_\+\+P\+A\+\_\+\+R\+A\+M\+P\+\_\+1\+MS~0x02}
+
+\mbox{\Hypertarget{group__rfm__registers_ga0f2ec984819fa2f84abc5a4375312c6c}\label{group__rfm__registers_ga0f2ec984819fa2f84abc5a4375312c6c}} 
+\index{RFM Register Definitions@{RFM Register Definitions}!RFM\_PA\_RAMP\_20US@{RFM\_PA\_RAMP\_20US}}
+\index{RFM\_PA\_RAMP\_20US@{RFM\_PA\_RAMP\_20US}!RFM Register Definitions@{RFM Register Definitions}}
+\doxysubsubsection{\texorpdfstring{RFM\_PA\_RAMP\_20US}{RFM\_PA\_RAMP\_20US}}
+{\footnotesize\ttfamily \#define R\+F\+M\+\_\+\+P\+A\+\_\+\+R\+A\+M\+P\+\_\+20\+US~0x0c}
+
+\mbox{\Hypertarget{group__rfm__registers_gad84cd5fba79c9191d0d7b131d98a8a01}\label{group__rfm__registers_gad84cd5fba79c9191d0d7b131d98a8a01}} 
+\index{RFM Register Definitions@{RFM Register Definitions}!RFM\_PA\_RAMP\_250US@{RFM\_PA\_RAMP\_250US}}
+\index{RFM\_PA\_RAMP\_250US@{RFM\_PA\_RAMP\_250US}!RFM Register Definitions@{RFM Register Definitions}}
+\doxysubsubsection{\texorpdfstring{RFM\_PA\_RAMP\_250US}{RFM\_PA\_RAMP\_250US}}
+{\footnotesize\ttfamily \#define R\+F\+M\+\_\+\+P\+A\+\_\+\+R\+A\+M\+P\+\_\+250\+US~0x04}
+
+\mbox{\Hypertarget{group__rfm__registers_ga60cab33376fa3512e515c282f2c61d07}\label{group__rfm__registers_ga60cab33376fa3512e515c282f2c61d07}} 
+\index{RFM Register Definitions@{RFM Register Definitions}!RFM\_PA\_RAMP\_25US@{RFM\_PA\_RAMP\_25US}}
+\index{RFM\_PA\_RAMP\_25US@{RFM\_PA\_RAMP\_25US}!RFM Register Definitions@{RFM Register Definitions}}
+\doxysubsubsection{\texorpdfstring{RFM\_PA\_RAMP\_25US}{RFM\_PA\_RAMP\_25US}}
+{\footnotesize\ttfamily \#define R\+F\+M\+\_\+\+P\+A\+\_\+\+R\+A\+M\+P\+\_\+25\+US~0x0b}
+
+\mbox{\Hypertarget{group__rfm__registers_ga98333f4c37610682241f8c5c653cdf82}\label{group__rfm__registers_ga98333f4c37610682241f8c5c653cdf82}} 
+\index{RFM Register Definitions@{RFM Register Definitions}!RFM\_PA\_RAMP\_2MS@{RFM\_PA\_RAMP\_2MS}}
+\index{RFM\_PA\_RAMP\_2MS@{RFM\_PA\_RAMP\_2MS}!RFM Register Definitions@{RFM Register Definitions}}
+\doxysubsubsection{\texorpdfstring{RFM\_PA\_RAMP\_2MS}{RFM\_PA\_RAMP\_2MS}}
+{\footnotesize\ttfamily \#define R\+F\+M\+\_\+\+P\+A\+\_\+\+R\+A\+M\+P\+\_\+2\+MS~0x01}
+
+\mbox{\Hypertarget{group__rfm__registers_ga997814144a6f371c375a9e5ce5e3fdfd}\label{group__rfm__registers_ga997814144a6f371c375a9e5ce5e3fdfd}} 
+\index{RFM Register Definitions@{RFM Register Definitions}!RFM\_PA\_RAMP\_31US@{RFM\_PA\_RAMP\_31US}}
+\index{RFM\_PA\_RAMP\_31US@{RFM\_PA\_RAMP\_31US}!RFM Register Definitions@{RFM Register Definitions}}
+\doxysubsubsection{\texorpdfstring{RFM\_PA\_RAMP\_31US}{RFM\_PA\_RAMP\_31US}}
+{\footnotesize\ttfamily \#define R\+F\+M\+\_\+\+P\+A\+\_\+\+R\+A\+M\+P\+\_\+31\+US~0x0a}
+
+\mbox{\Hypertarget{group__rfm__registers_gaa2d1fa9904e8844dde4d6dc5933a5e39}\label{group__rfm__registers_gaa2d1fa9904e8844dde4d6dc5933a5e39}} 
+\index{RFM Register Definitions@{RFM Register Definitions}!RFM\_PA\_RAMP\_3\_4MS@{RFM\_PA\_RAMP\_3\_4MS}}
+\index{RFM\_PA\_RAMP\_3\_4MS@{RFM\_PA\_RAMP\_3\_4MS}!RFM Register Definitions@{RFM Register Definitions}}
+\doxysubsubsection{\texorpdfstring{RFM\_PA\_RAMP\_3\_4MS}{RFM\_PA\_RAMP\_3\_4MS}}
+{\footnotesize\ttfamily \#define R\+F\+M\+\_\+\+P\+A\+\_\+\+R\+A\+M\+P\+\_\+3\+\_\+4\+MS~0x00}
+
+\mbox{\Hypertarget{group__rfm__registers_gac711d620c58f13196614f3988de81596}\label{group__rfm__registers_gac711d620c58f13196614f3988de81596}} 
+\index{RFM Register Definitions@{RFM Register Definitions}!RFM\_PA\_RAMP\_40US@{RFM\_PA\_RAMP\_40US}}
+\index{RFM\_PA\_RAMP\_40US@{RFM\_PA\_RAMP\_40US}!RFM Register Definitions@{RFM Register Definitions}}
+\doxysubsubsection{\texorpdfstring{RFM\_PA\_RAMP\_40US}{RFM\_PA\_RAMP\_40US}}
+{\footnotesize\ttfamily \#define R\+F\+M\+\_\+\+P\+A\+\_\+\+R\+A\+M\+P\+\_\+40\+US~0x09}
+
+\mbox{\Hypertarget{group__rfm__registers_gac6646adcdd2b637347d15bcd09904cbf}\label{group__rfm__registers_gac6646adcdd2b637347d15bcd09904cbf}} 
+\index{RFM Register Definitions@{RFM Register Definitions}!RFM\_PA\_RAMP\_500US@{RFM\_PA\_RAMP\_500US}}
+\index{RFM\_PA\_RAMP\_500US@{RFM\_PA\_RAMP\_500US}!RFM Register Definitions@{RFM Register Definitions}}
+\doxysubsubsection{\texorpdfstring{RFM\_PA\_RAMP\_500US}{RFM\_PA\_RAMP\_500US}}
+{\footnotesize\ttfamily \#define R\+F\+M\+\_\+\+P\+A\+\_\+\+R\+A\+M\+P\+\_\+500\+US~0x03}
+
+\mbox{\Hypertarget{group__rfm__registers_gac37664710c9dd48c07b54b42202c9c1e}\label{group__rfm__registers_gac37664710c9dd48c07b54b42202c9c1e}} 
+\index{RFM Register Definitions@{RFM Register Definitions}!RFM\_PA\_RAMP\_50US@{RFM\_PA\_RAMP\_50US}}
+\index{RFM\_PA\_RAMP\_50US@{RFM\_PA\_RAMP\_50US}!RFM Register Definitions@{RFM Register Definitions}}
+\doxysubsubsection{\texorpdfstring{RFM\_PA\_RAMP\_50US}{RFM\_PA\_RAMP\_50US}}
+{\footnotesize\ttfamily \#define R\+F\+M\+\_\+\+P\+A\+\_\+\+R\+A\+M\+P\+\_\+50\+US~0x08}
+
+\mbox{\Hypertarget{group__rfm__registers_ga7f17258baf8a39b8a8f1f06ff0c3fda5}\label{group__rfm__registers_ga7f17258baf8a39b8a8f1f06ff0c3fda5}} 
+\index{RFM Register Definitions@{RFM Register Definitions}!RFM\_PA\_RAMP\_62US@{RFM\_PA\_RAMP\_62US}}
+\index{RFM\_PA\_RAMP\_62US@{RFM\_PA\_RAMP\_62US}!RFM Register Definitions@{RFM Register Definitions}}
+\doxysubsubsection{\texorpdfstring{RFM\_PA\_RAMP\_62US}{RFM\_PA\_RAMP\_62US}}
+{\footnotesize\ttfamily \#define R\+F\+M\+\_\+\+P\+A\+\_\+\+R\+A\+M\+P\+\_\+62\+US~0x07}
+
+\mbox{\Hypertarget{group__rfm__registers_ga3ae15ddc8efec7c5c00a62b6f1c14d76}\label{group__rfm__registers_ga3ae15ddc8efec7c5c00a62b6f1c14d76}} 
+\index{RFM Register Definitions@{RFM Register Definitions}!RFM\_PA\_RAMP\_MASK@{RFM\_PA\_RAMP\_MASK}}
+\index{RFM\_PA\_RAMP\_MASK@{RFM\_PA\_RAMP\_MASK}!RFM Register Definitions@{RFM Register Definitions}}
+\doxysubsubsection{\texorpdfstring{RFM\_PA\_RAMP\_MASK}{RFM\_PA\_RAMP\_MASK}}
+{\footnotesize\ttfamily \#define R\+F\+M\+\_\+\+P\+A\+\_\+\+R\+A\+M\+P\+\_\+\+M\+A\+SK~0x0f}
+
+\mbox{\Hypertarget{group__rfm__registers_ga77caf23af20ce85f5ae37f12d0d806ab}\label{group__rfm__registers_ga77caf23af20ce85f5ae37f12d0d806ab}} 
+\index{RFM Register Definitions@{RFM Register Definitions}!RFM\_PA\_SELECT@{RFM\_PA\_SELECT}}
+\index{RFM\_PA\_SELECT@{RFM\_PA\_SELECT}!RFM Register Definitions@{RFM Register Definitions}}
+\doxysubsubsection{\texorpdfstring{RFM\_PA\_SELECT}{RFM\_PA\_SELECT}}
+{\footnotesize\ttfamily \#define R\+F\+M\+\_\+\+P\+A\+\_\+\+S\+E\+L\+E\+CT~0x80}
+
+\mbox{\Hypertarget{group__rfm__registers_ga65a837ca136ec77aad8b73c4ab851e4f}\label{group__rfm__registers_ga65a837ca136ec77aad8b73c4ab851e4f}} 
+\index{RFM Register Definitions@{RFM Register Definitions}!RFM\_PAYLOAD\_CRC\_ERROR\_MASK@{RFM\_PAYLOAD\_CRC\_ERROR\_MASK}}
+\index{RFM\_PAYLOAD\_CRC\_ERROR\_MASK@{RFM\_PAYLOAD\_CRC\_ERROR\_MASK}!RFM Register Definitions@{RFM Register Definitions}}
+\doxysubsubsection{\texorpdfstring{RFM\_PAYLOAD\_CRC\_ERROR\_MASK}{RFM\_PAYLOAD\_CRC\_ERROR\_MASK}}
+{\footnotesize\ttfamily \#define R\+F\+M\+\_\+\+P\+A\+Y\+L\+O\+A\+D\+\_\+\+C\+R\+C\+\_\+\+E\+R\+R\+O\+R\+\_\+\+M\+A\+SK~0x20}
+
+\mbox{\Hypertarget{group__rfm__registers_ga8b45fbec47f488bd4fc4fc6cb4d35135}\label{group__rfm__registers_ga8b45fbec47f488bd4fc4fc6cb4d35135}} 
+\index{RFM Register Definitions@{RFM Register Definitions}!RFM\_PAYLOAD\_CRC\_ON@{RFM\_PAYLOAD\_CRC\_ON}}
+\index{RFM\_PAYLOAD\_CRC\_ON@{RFM\_PAYLOAD\_CRC\_ON}!RFM Register Definitions@{RFM Register Definitions}}
+\doxysubsubsection{\texorpdfstring{RFM\_PAYLOAD\_CRC\_ON}{RFM\_PAYLOAD\_CRC\_ON}}
+{\footnotesize\ttfamily \#define R\+F\+M\+\_\+\+P\+A\+Y\+L\+O\+A\+D\+\_\+\+C\+R\+C\+\_\+\+ON~0x04}
+
+\mbox{\Hypertarget{group__rfm__registers_ga6468e74cdb785242a848d53fd35d50b2}\label{group__rfm__registers_ga6468e74cdb785242a848d53fd35d50b2}} 
+\index{RFM Register Definitions@{RFM Register Definitions}!RFM\_PLL\_TIMEOUT@{RFM\_PLL\_TIMEOUT}}
+\index{RFM\_PLL\_TIMEOUT@{RFM\_PLL\_TIMEOUT}!RFM Register Definitions@{RFM Register Definitions}}
+\doxysubsubsection{\texorpdfstring{RFM\_PLL\_TIMEOUT}{RFM\_PLL\_TIMEOUT}}
+{\footnotesize\ttfamily \#define R\+F\+M\+\_\+\+P\+L\+L\+\_\+\+T\+I\+M\+E\+O\+UT~0x80}
+
+\mbox{\Hypertarget{group__rfm__registers_ga0e7acb562b24ab76d6c4c5b61341245e}\label{group__rfm__registers_ga0e7acb562b24ab76d6c4c5b61341245e}} 
+\index{RFM Register Definitions@{RFM Register Definitions}!RFM\_REG\_00\_FIFO@{RFM\_REG\_00\_FIFO}}
+\index{RFM\_REG\_00\_FIFO@{RFM\_REG\_00\_FIFO}!RFM Register Definitions@{RFM Register Definitions}}
+\doxysubsubsection{\texorpdfstring{RFM\_REG\_00\_FIFO}{RFM\_REG\_00\_FIFO}}
+{\footnotesize\ttfamily \#define R\+F\+M\+\_\+\+R\+E\+G\+\_\+00\+\_\+\+F\+I\+FO~0x00}
+
+Shared T\+X/\+RX F\+I\+FO Address \mbox{\Hypertarget{group__rfm__registers_ga9baa0076f0eeabfd5502a2af14ae4a53}\label{group__rfm__registers_ga9baa0076f0eeabfd5502a2af14ae4a53}} 
+\index{RFM Register Definitions@{RFM Register Definitions}!RFM\_REG\_01\_OP\_MODE@{RFM\_REG\_01\_OP\_MODE}}
+\index{RFM\_REG\_01\_OP\_MODE@{RFM\_REG\_01\_OP\_MODE}!RFM Register Definitions@{RFM Register Definitions}}
+\doxysubsubsection{\texorpdfstring{RFM\_REG\_01\_OP\_MODE}{RFM\_REG\_01\_OP\_MODE}}
+{\footnotesize\ttfamily \#define R\+F\+M\+\_\+\+R\+E\+G\+\_\+01\+\_\+\+O\+P\+\_\+\+M\+O\+DE~0x01}
+
+Operating Mode \mbox{\Hypertarget{group__rfm__registers_ga8b85802bc69d552b61867c498b986237}\label{group__rfm__registers_ga8b85802bc69d552b61867c498b986237}} 
+\index{RFM Register Definitions@{RFM Register Definitions}!RFM\_REG\_02\_RESERVED@{RFM\_REG\_02\_RESERVED}}
+\index{RFM\_REG\_02\_RESERVED@{RFM\_REG\_02\_RESERVED}!RFM Register Definitions@{RFM Register Definitions}}
+\doxysubsubsection{\texorpdfstring{RFM\_REG\_02\_RESERVED}{RFM\_REG\_02\_RESERVED}}
+{\footnotesize\ttfamily \#define R\+F\+M\+\_\+\+R\+E\+G\+\_\+02\+\_\+\+R\+E\+S\+E\+R\+V\+ED~0x02}
+
+\mbox{\Hypertarget{group__rfm__registers_ga878c5d807f8d78506c4d063cfc97ede3}\label{group__rfm__registers_ga878c5d807f8d78506c4d063cfc97ede3}} 
+\index{RFM Register Definitions@{RFM Register Definitions}!RFM\_REG\_03\_RESERVED@{RFM\_REG\_03\_RESERVED}}
+\index{RFM\_REG\_03\_RESERVED@{RFM\_REG\_03\_RESERVED}!RFM Register Definitions@{RFM Register Definitions}}
+\doxysubsubsection{\texorpdfstring{RFM\_REG\_03\_RESERVED}{RFM\_REG\_03\_RESERVED}}
+{\footnotesize\ttfamily \#define R\+F\+M\+\_\+\+R\+E\+G\+\_\+03\+\_\+\+R\+E\+S\+E\+R\+V\+ED~0x03}
+
+\mbox{\Hypertarget{group__rfm__registers_gafb246120c6965da0fc38ebf774e37513}\label{group__rfm__registers_gafb246120c6965da0fc38ebf774e37513}} 
+\index{RFM Register Definitions@{RFM Register Definitions}!RFM\_REG\_04\_RESERVED@{RFM\_REG\_04\_RESERVED}}
+\index{RFM\_REG\_04\_RESERVED@{RFM\_REG\_04\_RESERVED}!RFM Register Definitions@{RFM Register Definitions}}
+\doxysubsubsection{\texorpdfstring{RFM\_REG\_04\_RESERVED}{RFM\_REG\_04\_RESERVED}}
+{\footnotesize\ttfamily \#define R\+F\+M\+\_\+\+R\+E\+G\+\_\+04\+\_\+\+R\+E\+S\+E\+R\+V\+ED~0x04}
+
+\mbox{\Hypertarget{group__rfm__registers_ga16e5d318e7ff8c38b1c687569dccb992}\label{group__rfm__registers_ga16e5d318e7ff8c38b1c687569dccb992}} 
+\index{RFM Register Definitions@{RFM Register Definitions}!RFM\_REG\_05\_RESERVED@{RFM\_REG\_05\_RESERVED}}
+\index{RFM\_REG\_05\_RESERVED@{RFM\_REG\_05\_RESERVED}!RFM Register Definitions@{RFM Register Definitions}}
+\doxysubsubsection{\texorpdfstring{RFM\_REG\_05\_RESERVED}{RFM\_REG\_05\_RESERVED}}
+{\footnotesize\ttfamily \#define R\+F\+M\+\_\+\+R\+E\+G\+\_\+05\+\_\+\+R\+E\+S\+E\+R\+V\+ED~0x05}
+
+\mbox{\Hypertarget{group__rfm__registers_ga725effcc1ebcc89fd56028d7ca291aa6}\label{group__rfm__registers_ga725effcc1ebcc89fd56028d7ca291aa6}} 
+\index{RFM Register Definitions@{RFM Register Definitions}!RFM\_REG\_06\_FRF\_MSB@{RFM\_REG\_06\_FRF\_MSB}}
+\index{RFM\_REG\_06\_FRF\_MSB@{RFM\_REG\_06\_FRF\_MSB}!RFM Register Definitions@{RFM Register Definitions}}
+\doxysubsubsection{\texorpdfstring{RFM\_REG\_06\_FRF\_MSB}{RFM\_REG\_06\_FRF\_MSB}}
+{\footnotesize\ttfamily \#define R\+F\+M\+\_\+\+R\+E\+G\+\_\+06\+\_\+\+F\+R\+F\+\_\+\+M\+SB~0x06}
+
+\mbox{\Hypertarget{group__rfm__registers_gaa7c01d8a673baab3c8f558a7a96afa3e}\label{group__rfm__registers_gaa7c01d8a673baab3c8f558a7a96afa3e}} 
+\index{RFM Register Definitions@{RFM Register Definitions}!RFM\_REG\_07\_FRF\_MID@{RFM\_REG\_07\_FRF\_MID}}
+\index{RFM\_REG\_07\_FRF\_MID@{RFM\_REG\_07\_FRF\_MID}!RFM Register Definitions@{RFM Register Definitions}}
+\doxysubsubsection{\texorpdfstring{RFM\_REG\_07\_FRF\_MID}{RFM\_REG\_07\_FRF\_MID}}
+{\footnotesize\ttfamily \#define R\+F\+M\+\_\+\+R\+E\+G\+\_\+07\+\_\+\+F\+R\+F\+\_\+\+M\+ID~0x07}
+
+\mbox{\Hypertarget{group__rfm__registers_gae8d067c9a9847b048c722f089a5d3795}\label{group__rfm__registers_gae8d067c9a9847b048c722f089a5d3795}} 
+\index{RFM Register Definitions@{RFM Register Definitions}!RFM\_REG\_08\_FRF\_LSB@{RFM\_REG\_08\_FRF\_LSB}}
+\index{RFM\_REG\_08\_FRF\_LSB@{RFM\_REG\_08\_FRF\_LSB}!RFM Register Definitions@{RFM Register Definitions}}
+\doxysubsubsection{\texorpdfstring{RFM\_REG\_08\_FRF\_LSB}{RFM\_REG\_08\_FRF\_LSB}}
+{\footnotesize\ttfamily \#define R\+F\+M\+\_\+\+R\+E\+G\+\_\+08\+\_\+\+F\+R\+F\+\_\+\+L\+SB~0x08}
+
+\mbox{\Hypertarget{group__rfm__registers_ga7a214a2032cf7006c341c764aae65d4c}\label{group__rfm__registers_ga7a214a2032cf7006c341c764aae65d4c}} 
+\index{RFM Register Definitions@{RFM Register Definitions}!RFM\_REG\_09\_PA\_CONFIG@{RFM\_REG\_09\_PA\_CONFIG}}
+\index{RFM\_REG\_09\_PA\_CONFIG@{RFM\_REG\_09\_PA\_CONFIG}!RFM Register Definitions@{RFM Register Definitions}}
+\doxysubsubsection{\texorpdfstring{RFM\_REG\_09\_PA\_CONFIG}{RFM\_REG\_09\_PA\_CONFIG}}
+{\footnotesize\ttfamily \#define R\+F\+M\+\_\+\+R\+E\+G\+\_\+09\+\_\+\+P\+A\+\_\+\+C\+O\+N\+F\+IG~0x09}
+
+\mbox{\Hypertarget{group__rfm__registers_ga2d056e9c4e7e36704c5b838b302fa353}\label{group__rfm__registers_ga2d056e9c4e7e36704c5b838b302fa353}} 
+\index{RFM Register Definitions@{RFM Register Definitions}!RFM\_REG\_0A\_PA\_RAMP@{RFM\_REG\_0A\_PA\_RAMP}}
+\index{RFM\_REG\_0A\_PA\_RAMP@{RFM\_REG\_0A\_PA\_RAMP}!RFM Register Definitions@{RFM Register Definitions}}
+\doxysubsubsection{\texorpdfstring{RFM\_REG\_0A\_PA\_RAMP}{RFM\_REG\_0A\_PA\_RAMP}}
+{\footnotesize\ttfamily \#define R\+F\+M\+\_\+\+R\+E\+G\+\_\+0\+A\+\_\+\+P\+A\+\_\+\+R\+A\+MP~0x0a}
+
+\mbox{\Hypertarget{group__rfm__registers_ga8f53da922d9f1c8e3dd4b4388dec7825}\label{group__rfm__registers_ga8f53da922d9f1c8e3dd4b4388dec7825}} 
+\index{RFM Register Definitions@{RFM Register Definitions}!RFM\_REG\_0B\_OCP@{RFM\_REG\_0B\_OCP}}
+\index{RFM\_REG\_0B\_OCP@{RFM\_REG\_0B\_OCP}!RFM Register Definitions@{RFM Register Definitions}}
+\doxysubsubsection{\texorpdfstring{RFM\_REG\_0B\_OCP}{RFM\_REG\_0B\_OCP}}
+{\footnotesize\ttfamily \#define R\+F\+M\+\_\+\+R\+E\+G\+\_\+0\+B\+\_\+\+O\+CP~0x0b}
+
+\mbox{\Hypertarget{group__rfm__registers_ga46501454a761b6839a3d86d75c5f3176}\label{group__rfm__registers_ga46501454a761b6839a3d86d75c5f3176}} 
+\index{RFM Register Definitions@{RFM Register Definitions}!RFM\_REG\_0C\_LNA@{RFM\_REG\_0C\_LNA}}
+\index{RFM\_REG\_0C\_LNA@{RFM\_REG\_0C\_LNA}!RFM Register Definitions@{RFM Register Definitions}}
+\doxysubsubsection{\texorpdfstring{RFM\_REG\_0C\_LNA}{RFM\_REG\_0C\_LNA}}
+{\footnotesize\ttfamily \#define R\+F\+M\+\_\+\+R\+E\+G\+\_\+0\+C\+\_\+\+L\+NA~0x0c}
+
+\mbox{\Hypertarget{group__rfm__registers_ga397b0f175bcc9dcf9b4cbb9326bb39d7}\label{group__rfm__registers_ga397b0f175bcc9dcf9b4cbb9326bb39d7}} 
+\index{RFM Register Definitions@{RFM Register Definitions}!RFM\_REG\_0D\_FIFO\_ADDR\_PTR@{RFM\_REG\_0D\_FIFO\_ADDR\_PTR}}
+\index{RFM\_REG\_0D\_FIFO\_ADDR\_PTR@{RFM\_REG\_0D\_FIFO\_ADDR\_PTR}!RFM Register Definitions@{RFM Register Definitions}}
+\doxysubsubsection{\texorpdfstring{RFM\_REG\_0D\_FIFO\_ADDR\_PTR}{RFM\_REG\_0D\_FIFO\_ADDR\_PTR}}
+{\footnotesize\ttfamily \#define R\+F\+M\+\_\+\+R\+E\+G\+\_\+0\+D\+\_\+\+F\+I\+F\+O\+\_\+\+A\+D\+D\+R\+\_\+\+P\+TR~0x0d}
+
+\mbox{\Hypertarget{group__rfm__registers_gaf52209910380bdc7ed4bf2b5f9fae8fe}\label{group__rfm__registers_gaf52209910380bdc7ed4bf2b5f9fae8fe}} 
+\index{RFM Register Definitions@{RFM Register Definitions}!RFM\_REG\_0E\_FIFO\_TX\_BASE\_ADDR@{RFM\_REG\_0E\_FIFO\_TX\_BASE\_ADDR}}
+\index{RFM\_REG\_0E\_FIFO\_TX\_BASE\_ADDR@{RFM\_REG\_0E\_FIFO\_TX\_BASE\_ADDR}!RFM Register Definitions@{RFM Register Definitions}}
+\doxysubsubsection{\texorpdfstring{RFM\_REG\_0E\_FIFO\_TX\_BASE\_ADDR}{RFM\_REG\_0E\_FIFO\_TX\_BASE\_ADDR}}
+{\footnotesize\ttfamily \#define R\+F\+M\+\_\+\+R\+E\+G\+\_\+0\+E\+\_\+\+F\+I\+F\+O\+\_\+\+T\+X\+\_\+\+B\+A\+S\+E\+\_\+\+A\+D\+DR~0x0e}
+
+\mbox{\Hypertarget{group__rfm__registers_gaef013ab9a7aa95cc2746f9a1fedd67fb}\label{group__rfm__registers_gaef013ab9a7aa95cc2746f9a1fedd67fb}} 
+\index{RFM Register Definitions@{RFM Register Definitions}!RFM\_REG\_0F\_FIFO\_RX\_BASE\_ADDR@{RFM\_REG\_0F\_FIFO\_RX\_BASE\_ADDR}}
+\index{RFM\_REG\_0F\_FIFO\_RX\_BASE\_ADDR@{RFM\_REG\_0F\_FIFO\_RX\_BASE\_ADDR}!RFM Register Definitions@{RFM Register Definitions}}
+\doxysubsubsection{\texorpdfstring{RFM\_REG\_0F\_FIFO\_RX\_BASE\_ADDR}{RFM\_REG\_0F\_FIFO\_RX\_BASE\_ADDR}}
+{\footnotesize\ttfamily \#define R\+F\+M\+\_\+\+R\+E\+G\+\_\+0\+F\+\_\+\+F\+I\+F\+O\+\_\+\+R\+X\+\_\+\+B\+A\+S\+E\+\_\+\+A\+D\+DR~0x0f}
+
+\mbox{\Hypertarget{group__rfm__registers_ga2b2359aedfd00ce0008003eb423792e3}\label{group__rfm__registers_ga2b2359aedfd00ce0008003eb423792e3}} 
+\index{RFM Register Definitions@{RFM Register Definitions}!RFM\_REG\_10\_FIFO\_RX\_CURRENT\_ADDR@{RFM\_REG\_10\_FIFO\_RX\_CURRENT\_ADDR}}
+\index{RFM\_REG\_10\_FIFO\_RX\_CURRENT\_ADDR@{RFM\_REG\_10\_FIFO\_RX\_CURRENT\_ADDR}!RFM Register Definitions@{RFM Register Definitions}}
+\doxysubsubsection{\texorpdfstring{RFM\_REG\_10\_FIFO\_RX\_CURRENT\_ADDR}{RFM\_REG\_10\_FIFO\_RX\_CURRENT\_ADDR}}
+{\footnotesize\ttfamily \#define R\+F\+M\+\_\+\+R\+E\+G\+\_\+10\+\_\+\+F\+I\+F\+O\+\_\+\+R\+X\+\_\+\+C\+U\+R\+R\+E\+N\+T\+\_\+\+A\+D\+DR~0x10}
+
+\mbox{\Hypertarget{group__rfm__registers_ga42630a4d594a66f489ef59319d7ad9d5}\label{group__rfm__registers_ga42630a4d594a66f489ef59319d7ad9d5}} 
+\index{RFM Register Definitions@{RFM Register Definitions}!RFM\_REG\_11\_IRQ\_FLAGS\_MASK@{RFM\_REG\_11\_IRQ\_FLAGS\_MASK}}
+\index{RFM\_REG\_11\_IRQ\_FLAGS\_MASK@{RFM\_REG\_11\_IRQ\_FLAGS\_MASK}!RFM Register Definitions@{RFM Register Definitions}}
+\doxysubsubsection{\texorpdfstring{RFM\_REG\_11\_IRQ\_FLAGS\_MASK}{RFM\_REG\_11\_IRQ\_FLAGS\_MASK}}
+{\footnotesize\ttfamily \#define R\+F\+M\+\_\+\+R\+E\+G\+\_\+11\+\_\+\+I\+R\+Q\+\_\+\+F\+L\+A\+G\+S\+\_\+\+M\+A\+SK~0x11}
+
+\mbox{\Hypertarget{group__rfm__registers_gaa34bab7260f7ecb7dd09233f04876c0a}\label{group__rfm__registers_gaa34bab7260f7ecb7dd09233f04876c0a}} 
+\index{RFM Register Definitions@{RFM Register Definitions}!RFM\_REG\_12\_IRQ\_FLAGS@{RFM\_REG\_12\_IRQ\_FLAGS}}
+\index{RFM\_REG\_12\_IRQ\_FLAGS@{RFM\_REG\_12\_IRQ\_FLAGS}!RFM Register Definitions@{RFM Register Definitions}}
+\doxysubsubsection{\texorpdfstring{RFM\_REG\_12\_IRQ\_FLAGS}{RFM\_REG\_12\_IRQ\_FLAGS}}
+{\footnotesize\ttfamily \#define R\+F\+M\+\_\+\+R\+E\+G\+\_\+12\+\_\+\+I\+R\+Q\+\_\+\+F\+L\+A\+GS~0x12}
+
+\mbox{\Hypertarget{group__rfm__registers_gaf1e5d312d036e83095851f9215d87f67}\label{group__rfm__registers_gaf1e5d312d036e83095851f9215d87f67}} 
+\index{RFM Register Definitions@{RFM Register Definitions}!RFM\_REG\_13\_RX\_NB\_BYTES@{RFM\_REG\_13\_RX\_NB\_BYTES}}
+\index{RFM\_REG\_13\_RX\_NB\_BYTES@{RFM\_REG\_13\_RX\_NB\_BYTES}!RFM Register Definitions@{RFM Register Definitions}}
+\doxysubsubsection{\texorpdfstring{RFM\_REG\_13\_RX\_NB\_BYTES}{RFM\_REG\_13\_RX\_NB\_BYTES}}
+{\footnotesize\ttfamily \#define R\+F\+M\+\_\+\+R\+E\+G\+\_\+13\+\_\+\+R\+X\+\_\+\+N\+B\+\_\+\+B\+Y\+T\+ES~0x13}
+
+\mbox{\Hypertarget{group__rfm__registers_ga366f10853f72fb682f879caee1c7d24c}\label{group__rfm__registers_ga366f10853f72fb682f879caee1c7d24c}} 
+\index{RFM Register Definitions@{RFM Register Definitions}!RFM\_REG\_14\_RX\_HEADER\_CNT\_VALUE\_MSB@{RFM\_REG\_14\_RX\_HEADER\_CNT\_VALUE\_MSB}}
+\index{RFM\_REG\_14\_RX\_HEADER\_CNT\_VALUE\_MSB@{RFM\_REG\_14\_RX\_HEADER\_CNT\_VALUE\_MSB}!RFM Register Definitions@{RFM Register Definitions}}
+\doxysubsubsection{\texorpdfstring{RFM\_REG\_14\_RX\_HEADER\_CNT\_VALUE\_MSB}{RFM\_REG\_14\_RX\_HEADER\_CNT\_VALUE\_MSB}}
+{\footnotesize\ttfamily \#define R\+F\+M\+\_\+\+R\+E\+G\+\_\+14\+\_\+\+R\+X\+\_\+\+H\+E\+A\+D\+E\+R\+\_\+\+C\+N\+T\+\_\+\+V\+A\+L\+U\+E\+\_\+\+M\+SB~0x14}
+
+\mbox{\Hypertarget{group__rfm__registers_gaadfaf098c05c3fe9cba0e896ab7f22cd}\label{group__rfm__registers_gaadfaf098c05c3fe9cba0e896ab7f22cd}} 
+\index{RFM Register Definitions@{RFM Register Definitions}!RFM\_REG\_15\_RX\_HEADER\_CNT\_VALUE\_LSB@{RFM\_REG\_15\_RX\_HEADER\_CNT\_VALUE\_LSB}}
+\index{RFM\_REG\_15\_RX\_HEADER\_CNT\_VALUE\_LSB@{RFM\_REG\_15\_RX\_HEADER\_CNT\_VALUE\_LSB}!RFM Register Definitions@{RFM Register Definitions}}
+\doxysubsubsection{\texorpdfstring{RFM\_REG\_15\_RX\_HEADER\_CNT\_VALUE\_LSB}{RFM\_REG\_15\_RX\_HEADER\_CNT\_VALUE\_LSB}}
+{\footnotesize\ttfamily \#define R\+F\+M\+\_\+\+R\+E\+G\+\_\+15\+\_\+\+R\+X\+\_\+\+H\+E\+A\+D\+E\+R\+\_\+\+C\+N\+T\+\_\+\+V\+A\+L\+U\+E\+\_\+\+L\+SB~0x15}
+
+\mbox{\Hypertarget{group__rfm__registers_ga163274e602525602166db0cf8f853430}\label{group__rfm__registers_ga163274e602525602166db0cf8f853430}} 
+\index{RFM Register Definitions@{RFM Register Definitions}!RFM\_REG\_16\_RX\_PACKET\_CNT\_VALUE\_MSB@{RFM\_REG\_16\_RX\_PACKET\_CNT\_VALUE\_MSB}}
+\index{RFM\_REG\_16\_RX\_PACKET\_CNT\_VALUE\_MSB@{RFM\_REG\_16\_RX\_PACKET\_CNT\_VALUE\_MSB}!RFM Register Definitions@{RFM Register Definitions}}
+\doxysubsubsection{\texorpdfstring{RFM\_REG\_16\_RX\_PACKET\_CNT\_VALUE\_MSB}{RFM\_REG\_16\_RX\_PACKET\_CNT\_VALUE\_MSB}}
+{\footnotesize\ttfamily \#define R\+F\+M\+\_\+\+R\+E\+G\+\_\+16\+\_\+\+R\+X\+\_\+\+P\+A\+C\+K\+E\+T\+\_\+\+C\+N\+T\+\_\+\+V\+A\+L\+U\+E\+\_\+\+M\+SB~0x16}
+
+\mbox{\Hypertarget{group__rfm__registers_gab9b9433a65b526a0cec1eea448485d42}\label{group__rfm__registers_gab9b9433a65b526a0cec1eea448485d42}} 
+\index{RFM Register Definitions@{RFM Register Definitions}!RFM\_REG\_17\_RX\_PACKET\_CNT\_VALUE\_LSB@{RFM\_REG\_17\_RX\_PACKET\_CNT\_VALUE\_LSB}}
+\index{RFM\_REG\_17\_RX\_PACKET\_CNT\_VALUE\_LSB@{RFM\_REG\_17\_RX\_PACKET\_CNT\_VALUE\_LSB}!RFM Register Definitions@{RFM Register Definitions}}
+\doxysubsubsection{\texorpdfstring{RFM\_REG\_17\_RX\_PACKET\_CNT\_VALUE\_LSB}{RFM\_REG\_17\_RX\_PACKET\_CNT\_VALUE\_LSB}}
+{\footnotesize\ttfamily \#define R\+F\+M\+\_\+\+R\+E\+G\+\_\+17\+\_\+\+R\+X\+\_\+\+P\+A\+C\+K\+E\+T\+\_\+\+C\+N\+T\+\_\+\+V\+A\+L\+U\+E\+\_\+\+L\+SB~0x17}
+
+\mbox{\Hypertarget{group__rfm__registers_gaa4cc855ab2379e352ddb993c48a8dead}\label{group__rfm__registers_gaa4cc855ab2379e352ddb993c48a8dead}} 
+\index{RFM Register Definitions@{RFM Register Definitions}!RFM\_REG\_18\_MODEM\_STAT@{RFM\_REG\_18\_MODEM\_STAT}}
+\index{RFM\_REG\_18\_MODEM\_STAT@{RFM\_REG\_18\_MODEM\_STAT}!RFM Register Definitions@{RFM Register Definitions}}
+\doxysubsubsection{\texorpdfstring{RFM\_REG\_18\_MODEM\_STAT}{RFM\_REG\_18\_MODEM\_STAT}}
+{\footnotesize\ttfamily \#define R\+F\+M\+\_\+\+R\+E\+G\+\_\+18\+\_\+\+M\+O\+D\+E\+M\+\_\+\+S\+T\+AT~0x18}
+
+\mbox{\Hypertarget{group__rfm__registers_ga3a0fb65349f600092278bb5bd83dfea5}\label{group__rfm__registers_ga3a0fb65349f600092278bb5bd83dfea5}} 
+\index{RFM Register Definitions@{RFM Register Definitions}!RFM\_REG\_19\_PKT\_SNR\_VALUE@{RFM\_REG\_19\_PKT\_SNR\_VALUE}}
+\index{RFM\_REG\_19\_PKT\_SNR\_VALUE@{RFM\_REG\_19\_PKT\_SNR\_VALUE}!RFM Register Definitions@{RFM Register Definitions}}
+\doxysubsubsection{\texorpdfstring{RFM\_REG\_19\_PKT\_SNR\_VALUE}{RFM\_REG\_19\_PKT\_SNR\_VALUE}}
+{\footnotesize\ttfamily \#define R\+F\+M\+\_\+\+R\+E\+G\+\_\+19\+\_\+\+P\+K\+T\+\_\+\+S\+N\+R\+\_\+\+V\+A\+L\+UE~0x19}
+
+\mbox{\Hypertarget{group__rfm__registers_gafa5d36547a50b460aa261a70296899d0}\label{group__rfm__registers_gafa5d36547a50b460aa261a70296899d0}} 
+\index{RFM Register Definitions@{RFM Register Definitions}!RFM\_REG\_1A\_PKT\_RSSI\_VALUE@{RFM\_REG\_1A\_PKT\_RSSI\_VALUE}}
+\index{RFM\_REG\_1A\_PKT\_RSSI\_VALUE@{RFM\_REG\_1A\_PKT\_RSSI\_VALUE}!RFM Register Definitions@{RFM Register Definitions}}
+\doxysubsubsection{\texorpdfstring{RFM\_REG\_1A\_PKT\_RSSI\_VALUE}{RFM\_REG\_1A\_PKT\_RSSI\_VALUE}}
+{\footnotesize\ttfamily \#define R\+F\+M\+\_\+\+R\+E\+G\+\_\+1\+A\+\_\+\+P\+K\+T\+\_\+\+R\+S\+S\+I\+\_\+\+V\+A\+L\+UE~0x1a}
+
+\mbox{\Hypertarget{group__rfm__registers_ga7b1696ee84f56bfb97e30ea25b825ffd}\label{group__rfm__registers_ga7b1696ee84f56bfb97e30ea25b825ffd}} 
+\index{RFM Register Definitions@{RFM Register Definitions}!RFM\_REG\_1B\_RSSI\_VALUE@{RFM\_REG\_1B\_RSSI\_VALUE}}
+\index{RFM\_REG\_1B\_RSSI\_VALUE@{RFM\_REG\_1B\_RSSI\_VALUE}!RFM Register Definitions@{RFM Register Definitions}}
+\doxysubsubsection{\texorpdfstring{RFM\_REG\_1B\_RSSI\_VALUE}{RFM\_REG\_1B\_RSSI\_VALUE}}
+{\footnotesize\ttfamily \#define R\+F\+M\+\_\+\+R\+E\+G\+\_\+1\+B\+\_\+\+R\+S\+S\+I\+\_\+\+V\+A\+L\+UE~0x1b}
+
+\mbox{\Hypertarget{group__rfm__registers_ga1550402280c5b437e922adb1e6a5e87a}\label{group__rfm__registers_ga1550402280c5b437e922adb1e6a5e87a}} 
+\index{RFM Register Definitions@{RFM Register Definitions}!RFM\_REG\_1C\_HOP\_CHANNEL@{RFM\_REG\_1C\_HOP\_CHANNEL}}
+\index{RFM\_REG\_1C\_HOP\_CHANNEL@{RFM\_REG\_1C\_HOP\_CHANNEL}!RFM Register Definitions@{RFM Register Definitions}}
+\doxysubsubsection{\texorpdfstring{RFM\_REG\_1C\_HOP\_CHANNEL}{RFM\_REG\_1C\_HOP\_CHANNEL}}
+{\footnotesize\ttfamily \#define R\+F\+M\+\_\+\+R\+E\+G\+\_\+1\+C\+\_\+\+H\+O\+P\+\_\+\+C\+H\+A\+N\+N\+EL~0x1c}
+
+\mbox{\Hypertarget{group__rfm__registers_gaa932a9af646d9529da8c45a50dfec766}\label{group__rfm__registers_gaa932a9af646d9529da8c45a50dfec766}} 
+\index{RFM Register Definitions@{RFM Register Definitions}!RFM\_REG\_1D\_MODEM\_CONFIG1@{RFM\_REG\_1D\_MODEM\_CONFIG1}}
+\index{RFM\_REG\_1D\_MODEM\_CONFIG1@{RFM\_REG\_1D\_MODEM\_CONFIG1}!RFM Register Definitions@{RFM Register Definitions}}
+\doxysubsubsection{\texorpdfstring{RFM\_REG\_1D\_MODEM\_CONFIG1}{RFM\_REG\_1D\_MODEM\_CONFIG1}}
+{\footnotesize\ttfamily \#define R\+F\+M\+\_\+\+R\+E\+G\+\_\+1\+D\+\_\+\+M\+O\+D\+E\+M\+\_\+\+C\+O\+N\+F\+I\+G1~0x1d}
+
+\mbox{\Hypertarget{group__rfm__registers_ga6593800a43804946ec83b888f5ab83fe}\label{group__rfm__registers_ga6593800a43804946ec83b888f5ab83fe}} 
+\index{RFM Register Definitions@{RFM Register Definitions}!RFM\_REG\_1E\_MODEM\_CONFIG2@{RFM\_REG\_1E\_MODEM\_CONFIG2}}
+\index{RFM\_REG\_1E\_MODEM\_CONFIG2@{RFM\_REG\_1E\_MODEM\_CONFIG2}!RFM Register Definitions@{RFM Register Definitions}}
+\doxysubsubsection{\texorpdfstring{RFM\_REG\_1E\_MODEM\_CONFIG2}{RFM\_REG\_1E\_MODEM\_CONFIG2}}
+{\footnotesize\ttfamily \#define R\+F\+M\+\_\+\+R\+E\+G\+\_\+1\+E\+\_\+\+M\+O\+D\+E\+M\+\_\+\+C\+O\+N\+F\+I\+G2~0x1e}
+
+\mbox{\Hypertarget{group__rfm__registers_gaf8e677c87d42543f7d2af1a3299bd4b1}\label{group__rfm__registers_gaf8e677c87d42543f7d2af1a3299bd4b1}} 
+\index{RFM Register Definitions@{RFM Register Definitions}!RFM\_REG\_1F\_SYMB\_TIMEOUT\_LSB@{RFM\_REG\_1F\_SYMB\_TIMEOUT\_LSB}}
+\index{RFM\_REG\_1F\_SYMB\_TIMEOUT\_LSB@{RFM\_REG\_1F\_SYMB\_TIMEOUT\_LSB}!RFM Register Definitions@{RFM Register Definitions}}
+\doxysubsubsection{\texorpdfstring{RFM\_REG\_1F\_SYMB\_TIMEOUT\_LSB}{RFM\_REG\_1F\_SYMB\_TIMEOUT\_LSB}}
+{\footnotesize\ttfamily \#define R\+F\+M\+\_\+\+R\+E\+G\+\_\+1\+F\+\_\+\+S\+Y\+M\+B\+\_\+\+T\+I\+M\+E\+O\+U\+T\+\_\+\+L\+SB~0x1f}
+
+\mbox{\Hypertarget{group__rfm__registers_ga631528a64c394bc82ee252e30b9a963d}\label{group__rfm__registers_ga631528a64c394bc82ee252e30b9a963d}} 
+\index{RFM Register Definitions@{RFM Register Definitions}!RFM\_REG\_20\_PREAMBLE\_MSB@{RFM\_REG\_20\_PREAMBLE\_MSB}}
+\index{RFM\_REG\_20\_PREAMBLE\_MSB@{RFM\_REG\_20\_PREAMBLE\_MSB}!RFM Register Definitions@{RFM Register Definitions}}
+\doxysubsubsection{\texorpdfstring{RFM\_REG\_20\_PREAMBLE\_MSB}{RFM\_REG\_20\_PREAMBLE\_MSB}}
+{\footnotesize\ttfamily \#define R\+F\+M\+\_\+\+R\+E\+G\+\_\+20\+\_\+\+P\+R\+E\+A\+M\+B\+L\+E\+\_\+\+M\+SB~0x20}
+
+\mbox{\Hypertarget{group__rfm__registers_ga0525c23c9d16cd81ebb26facf62c1574}\label{group__rfm__registers_ga0525c23c9d16cd81ebb26facf62c1574}} 
+\index{RFM Register Definitions@{RFM Register Definitions}!RFM\_REG\_21\_PREAMBLE\_LSB@{RFM\_REG\_21\_PREAMBLE\_LSB}}
+\index{RFM\_REG\_21\_PREAMBLE\_LSB@{RFM\_REG\_21\_PREAMBLE\_LSB}!RFM Register Definitions@{RFM Register Definitions}}
+\doxysubsubsection{\texorpdfstring{RFM\_REG\_21\_PREAMBLE\_LSB}{RFM\_REG\_21\_PREAMBLE\_LSB}}
+{\footnotesize\ttfamily \#define R\+F\+M\+\_\+\+R\+E\+G\+\_\+21\+\_\+\+P\+R\+E\+A\+M\+B\+L\+E\+\_\+\+L\+SB~0x21}
+
+\mbox{\Hypertarget{group__rfm__registers_ga590c0a497ba4af11ade3e87245c6b94d}\label{group__rfm__registers_ga590c0a497ba4af11ade3e87245c6b94d}} 
+\index{RFM Register Definitions@{RFM Register Definitions}!RFM\_REG\_22\_PAYLOAD\_LENGTH@{RFM\_REG\_22\_PAYLOAD\_LENGTH}}
+\index{RFM\_REG\_22\_PAYLOAD\_LENGTH@{RFM\_REG\_22\_PAYLOAD\_LENGTH}!RFM Register Definitions@{RFM Register Definitions}}
+\doxysubsubsection{\texorpdfstring{RFM\_REG\_22\_PAYLOAD\_LENGTH}{RFM\_REG\_22\_PAYLOAD\_LENGTH}}
+{\footnotesize\ttfamily \#define R\+F\+M\+\_\+\+R\+E\+G\+\_\+22\+\_\+\+P\+A\+Y\+L\+O\+A\+D\+\_\+\+L\+E\+N\+G\+TH~0x22}
+
+\mbox{\Hypertarget{group__rfm__registers_gaa953b71f48a9e3e0be740ec1a44579eb}\label{group__rfm__registers_gaa953b71f48a9e3e0be740ec1a44579eb}} 
+\index{RFM Register Definitions@{RFM Register Definitions}!RFM\_REG\_23\_MAX\_PAYLOAD\_LENGTH@{RFM\_REG\_23\_MAX\_PAYLOAD\_LENGTH}}
+\index{RFM\_REG\_23\_MAX\_PAYLOAD\_LENGTH@{RFM\_REG\_23\_MAX\_PAYLOAD\_LENGTH}!RFM Register Definitions@{RFM Register Definitions}}
+\doxysubsubsection{\texorpdfstring{RFM\_REG\_23\_MAX\_PAYLOAD\_LENGTH}{RFM\_REG\_23\_MAX\_PAYLOAD\_LENGTH}}
+{\footnotesize\ttfamily \#define R\+F\+M\+\_\+\+R\+E\+G\+\_\+23\+\_\+\+M\+A\+X\+\_\+\+P\+A\+Y\+L\+O\+A\+D\+\_\+\+L\+E\+N\+G\+TH~0x23}
+
+\mbox{\Hypertarget{group__rfm__registers_ga5a9e5926f67415fa18a848107c6a7840}\label{group__rfm__registers_ga5a9e5926f67415fa18a848107c6a7840}} 
+\index{RFM Register Definitions@{RFM Register Definitions}!RFM\_REG\_24\_HOP\_PERIOD@{RFM\_REG\_24\_HOP\_PERIOD}}
+\index{RFM\_REG\_24\_HOP\_PERIOD@{RFM\_REG\_24\_HOP\_PERIOD}!RFM Register Definitions@{RFM Register Definitions}}
+\doxysubsubsection{\texorpdfstring{RFM\_REG\_24\_HOP\_PERIOD}{RFM\_REG\_24\_HOP\_PERIOD}}
+{\footnotesize\ttfamily \#define R\+F\+M\+\_\+\+R\+E\+G\+\_\+24\+\_\+\+H\+O\+P\+\_\+\+P\+E\+R\+I\+OD~0x24}
+
+\mbox{\Hypertarget{group__rfm__registers_ga1de6c594f2161cf3a0277a1251dd2a89}\label{group__rfm__registers_ga1de6c594f2161cf3a0277a1251dd2a89}} 
+\index{RFM Register Definitions@{RFM Register Definitions}!RFM\_REG\_25\_FIFO\_RX\_BYTE\_ADDR@{RFM\_REG\_25\_FIFO\_RX\_BYTE\_ADDR}}
+\index{RFM\_REG\_25\_FIFO\_RX\_BYTE\_ADDR@{RFM\_REG\_25\_FIFO\_RX\_BYTE\_ADDR}!RFM Register Definitions@{RFM Register Definitions}}
+\doxysubsubsection{\texorpdfstring{RFM\_REG\_25\_FIFO\_RX\_BYTE\_ADDR}{RFM\_REG\_25\_FIFO\_RX\_BYTE\_ADDR}}
+{\footnotesize\ttfamily \#define R\+F\+M\+\_\+\+R\+E\+G\+\_\+25\+\_\+\+F\+I\+F\+O\+\_\+\+R\+X\+\_\+\+B\+Y\+T\+E\+\_\+\+A\+D\+DR~0x25}
+
+\mbox{\Hypertarget{group__rfm__registers_ga2a12d0ed6ab0f475969f6328c7d4ac6d}\label{group__rfm__registers_ga2a12d0ed6ab0f475969f6328c7d4ac6d}} 
+\index{RFM Register Definitions@{RFM Register Definitions}!RFM\_REG\_26\_MODEM\_CONFIG3@{RFM\_REG\_26\_MODEM\_CONFIG3}}
+\index{RFM\_REG\_26\_MODEM\_CONFIG3@{RFM\_REG\_26\_MODEM\_CONFIG3}!RFM Register Definitions@{RFM Register Definitions}}
+\doxysubsubsection{\texorpdfstring{RFM\_REG\_26\_MODEM\_CONFIG3}{RFM\_REG\_26\_MODEM\_CONFIG3}}
+{\footnotesize\ttfamily \#define R\+F\+M\+\_\+\+R\+E\+G\+\_\+26\+\_\+\+M\+O\+D\+E\+M\+\_\+\+C\+O\+N\+F\+I\+G3~0x26}
+
+\mbox{\Hypertarget{group__rfm__registers_gad74006ba6a135916de0e183cb9fc56c5}\label{group__rfm__registers_gad74006ba6a135916de0e183cb9fc56c5}} 
+\index{RFM Register Definitions@{RFM Register Definitions}!RFM\_REG\_27\_PPM\_CORRECTION@{RFM\_REG\_27\_PPM\_CORRECTION}}
+\index{RFM\_REG\_27\_PPM\_CORRECTION@{RFM\_REG\_27\_PPM\_CORRECTION}!RFM Register Definitions@{RFM Register Definitions}}
+\doxysubsubsection{\texorpdfstring{RFM\_REG\_27\_PPM\_CORRECTION}{RFM\_REG\_27\_PPM\_CORRECTION}}
+{\footnotesize\ttfamily \#define R\+F\+M\+\_\+\+R\+E\+G\+\_\+27\+\_\+\+P\+P\+M\+\_\+\+C\+O\+R\+R\+E\+C\+T\+I\+ON~0x27}
+
+\mbox{\Hypertarget{group__rfm__registers_gaa0299b1b1b190eb3d472c16521c00c36}\label{group__rfm__registers_gaa0299b1b1b190eb3d472c16521c00c36}} 
+\index{RFM Register Definitions@{RFM Register Definitions}!RFM\_REG\_28\_FEI\_MSB@{RFM\_REG\_28\_FEI\_MSB}}
+\index{RFM\_REG\_28\_FEI\_MSB@{RFM\_REG\_28\_FEI\_MSB}!RFM Register Definitions@{RFM Register Definitions}}
+\doxysubsubsection{\texorpdfstring{RFM\_REG\_28\_FEI\_MSB}{RFM\_REG\_28\_FEI\_MSB}}
+{\footnotesize\ttfamily \#define R\+F\+M\+\_\+\+R\+E\+G\+\_\+28\+\_\+\+F\+E\+I\+\_\+\+M\+SB~0x28}
+
+\mbox{\Hypertarget{group__rfm__registers_ga898eb352dc4ce0a9ce1f8e9d2ce90358}\label{group__rfm__registers_ga898eb352dc4ce0a9ce1f8e9d2ce90358}} 
+\index{RFM Register Definitions@{RFM Register Definitions}!RFM\_REG\_29\_FEI\_MID@{RFM\_REG\_29\_FEI\_MID}}
+\index{RFM\_REG\_29\_FEI\_MID@{RFM\_REG\_29\_FEI\_MID}!RFM Register Definitions@{RFM Register Definitions}}
+\doxysubsubsection{\texorpdfstring{RFM\_REG\_29\_FEI\_MID}{RFM\_REG\_29\_FEI\_MID}}
+{\footnotesize\ttfamily \#define R\+F\+M\+\_\+\+R\+E\+G\+\_\+29\+\_\+\+F\+E\+I\+\_\+\+M\+ID~0x29}
+
+\mbox{\Hypertarget{group__rfm__registers_ga83095be89530beccb987394f36cc2adf}\label{group__rfm__registers_ga83095be89530beccb987394f36cc2adf}} 
+\index{RFM Register Definitions@{RFM Register Definitions}!RFM\_REG\_2A\_FEI\_LSB@{RFM\_REG\_2A\_FEI\_LSB}}
+\index{RFM\_REG\_2A\_FEI\_LSB@{RFM\_REG\_2A\_FEI\_LSB}!RFM Register Definitions@{RFM Register Definitions}}
+\doxysubsubsection{\texorpdfstring{RFM\_REG\_2A\_FEI\_LSB}{RFM\_REG\_2A\_FEI\_LSB}}
+{\footnotesize\ttfamily \#define R\+F\+M\+\_\+\+R\+E\+G\+\_\+2\+A\+\_\+\+F\+E\+I\+\_\+\+L\+SB~0x2a}
+
+\mbox{\Hypertarget{group__rfm__registers_ga2a59b3abd4150e7090b824939e7d65ed}\label{group__rfm__registers_ga2a59b3abd4150e7090b824939e7d65ed}} 
+\index{RFM Register Definitions@{RFM Register Definitions}!RFM\_REG\_2C\_RSSI\_WIDEBAND@{RFM\_REG\_2C\_RSSI\_WIDEBAND}}
+\index{RFM\_REG\_2C\_RSSI\_WIDEBAND@{RFM\_REG\_2C\_RSSI\_WIDEBAND}!RFM Register Definitions@{RFM Register Definitions}}
+\doxysubsubsection{\texorpdfstring{RFM\_REG\_2C\_RSSI\_WIDEBAND}{RFM\_REG\_2C\_RSSI\_WIDEBAND}}
+{\footnotesize\ttfamily \#define R\+F\+M\+\_\+\+R\+E\+G\+\_\+2\+C\+\_\+\+R\+S\+S\+I\+\_\+\+W\+I\+D\+E\+B\+A\+ND~0x2c}
+
+\mbox{\Hypertarget{group__rfm__registers_ga664249e022db28bb3614e42ee0aafaae}\label{group__rfm__registers_ga664249e022db28bb3614e42ee0aafaae}} 
+\index{RFM Register Definitions@{RFM Register Definitions}!RFM\_REG\_31\_DETECT\_OPTIMIZE@{RFM\_REG\_31\_DETECT\_OPTIMIZE}}
+\index{RFM\_REG\_31\_DETECT\_OPTIMIZE@{RFM\_REG\_31\_DETECT\_OPTIMIZE}!RFM Register Definitions@{RFM Register Definitions}}
+\doxysubsubsection{\texorpdfstring{RFM\_REG\_31\_DETECT\_OPTIMIZE}{RFM\_REG\_31\_DETECT\_OPTIMIZE}}
+{\footnotesize\ttfamily \#define R\+F\+M\+\_\+\+R\+E\+G\+\_\+31\+\_\+\+D\+E\+T\+E\+C\+T\+\_\+\+O\+P\+T\+I\+M\+I\+ZE~0x31}
+
+\mbox{\Hypertarget{group__rfm__registers_ga3ff2ebf26fdc0cebc32c2b064ee218f0}\label{group__rfm__registers_ga3ff2ebf26fdc0cebc32c2b064ee218f0}} 
+\index{RFM Register Definitions@{RFM Register Definitions}!RFM\_REG\_33\_INVERT\_IQ@{RFM\_REG\_33\_INVERT\_IQ}}
+\index{RFM\_REG\_33\_INVERT\_IQ@{RFM\_REG\_33\_INVERT\_IQ}!RFM Register Definitions@{RFM Register Definitions}}
+\doxysubsubsection{\texorpdfstring{RFM\_REG\_33\_INVERT\_IQ}{RFM\_REG\_33\_INVERT\_IQ}}
+{\footnotesize\ttfamily \#define R\+F\+M\+\_\+\+R\+E\+G\+\_\+33\+\_\+\+I\+N\+V\+E\+R\+T\+\_\+\+IQ~0x33}
+
+\mbox{\Hypertarget{group__rfm__registers_ga0f4ddf7034bb3b5392beae28cf3adde6}\label{group__rfm__registers_ga0f4ddf7034bb3b5392beae28cf3adde6}} 
+\index{RFM Register Definitions@{RFM Register Definitions}!RFM\_REG\_37\_DETECTION\_THRESHOLD@{RFM\_REG\_37\_DETECTION\_THRESHOLD}}
+\index{RFM\_REG\_37\_DETECTION\_THRESHOLD@{RFM\_REG\_37\_DETECTION\_THRESHOLD}!RFM Register Definitions@{RFM Register Definitions}}
+\doxysubsubsection{\texorpdfstring{RFM\_REG\_37\_DETECTION\_THRESHOLD}{RFM\_REG\_37\_DETECTION\_THRESHOLD}}
+{\footnotesize\ttfamily \#define R\+F\+M\+\_\+\+R\+E\+G\+\_\+37\+\_\+\+D\+E\+T\+E\+C\+T\+I\+O\+N\+\_\+\+T\+H\+R\+E\+S\+H\+O\+LD~0x37}
+
+\mbox{\Hypertarget{group__rfm__registers_gad4c325c0c16c1ab5e8f78e02d07098da}\label{group__rfm__registers_gad4c325c0c16c1ab5e8f78e02d07098da}} 
+\index{RFM Register Definitions@{RFM Register Definitions}!RFM\_REG\_39\_SYNC\_WORD@{RFM\_REG\_39\_SYNC\_WORD}}
+\index{RFM\_REG\_39\_SYNC\_WORD@{RFM\_REG\_39\_SYNC\_WORD}!RFM Register Definitions@{RFM Register Definitions}}
+\doxysubsubsection{\texorpdfstring{RFM\_REG\_39\_SYNC\_WORD}{RFM\_REG\_39\_SYNC\_WORD}}
+{\footnotesize\ttfamily \#define R\+F\+M\+\_\+\+R\+E\+G\+\_\+39\+\_\+\+S\+Y\+N\+C\+\_\+\+W\+O\+RD~0x39}
+
+\mbox{\Hypertarget{group__rfm__registers_ga6b9638f2b2f191008f8353de8760bfb3}\label{group__rfm__registers_ga6b9638f2b2f191008f8353de8760bfb3}} 
+\index{RFM Register Definitions@{RFM Register Definitions}!RFM\_REG\_40\_DIO\_MAPPING1@{RFM\_REG\_40\_DIO\_MAPPING1}}
+\index{RFM\_REG\_40\_DIO\_MAPPING1@{RFM\_REG\_40\_DIO\_MAPPING1}!RFM Register Definitions@{RFM Register Definitions}}
+\doxysubsubsection{\texorpdfstring{RFM\_REG\_40\_DIO\_MAPPING1}{RFM\_REG\_40\_DIO\_MAPPING1}}
+{\footnotesize\ttfamily \#define R\+F\+M\+\_\+\+R\+E\+G\+\_\+40\+\_\+\+D\+I\+O\+\_\+\+M\+A\+P\+P\+I\+N\+G1~0x40}
+
+\mbox{\Hypertarget{group__rfm__registers_ga3e1bfc3439158e705617b4574f98a991}\label{group__rfm__registers_ga3e1bfc3439158e705617b4574f98a991}} 
+\index{RFM Register Definitions@{RFM Register Definitions}!RFM\_REG\_41\_DIO\_MAPPING2@{RFM\_REG\_41\_DIO\_MAPPING2}}
+\index{RFM\_REG\_41\_DIO\_MAPPING2@{RFM\_REG\_41\_DIO\_MAPPING2}!RFM Register Definitions@{RFM Register Definitions}}
+\doxysubsubsection{\texorpdfstring{RFM\_REG\_41\_DIO\_MAPPING2}{RFM\_REG\_41\_DIO\_MAPPING2}}
+{\footnotesize\ttfamily \#define R\+F\+M\+\_\+\+R\+E\+G\+\_\+41\+\_\+\+D\+I\+O\+\_\+\+M\+A\+P\+P\+I\+N\+G2~0x41}
+
+\mbox{\Hypertarget{group__rfm__registers_gaffa0e65cbbe21cdbacbbaa90430bbd6c}\label{group__rfm__registers_gaffa0e65cbbe21cdbacbbaa90430bbd6c}} 
+\index{RFM Register Definitions@{RFM Register Definitions}!RFM\_REG\_42\_VERSION@{RFM\_REG\_42\_VERSION}}
+\index{RFM\_REG\_42\_VERSION@{RFM\_REG\_42\_VERSION}!RFM Register Definitions@{RFM Register Definitions}}
+\doxysubsubsection{\texorpdfstring{RFM\_REG\_42\_VERSION}{RFM\_REG\_42\_VERSION}}
+{\footnotesize\ttfamily \#define R\+F\+M\+\_\+\+R\+E\+G\+\_\+42\+\_\+\+V\+E\+R\+S\+I\+ON~0x42}
+
+\mbox{\Hypertarget{group__rfm__registers_ga4fbd56ba97dcb9ff8f7f1851049d768f}\label{group__rfm__registers_ga4fbd56ba97dcb9ff8f7f1851049d768f}} 
+\index{RFM Register Definitions@{RFM Register Definitions}!RFM\_REG\_4B\_TCXO@{RFM\_REG\_4B\_TCXO}}
+\index{RFM\_REG\_4B\_TCXO@{RFM\_REG\_4B\_TCXO}!RFM Register Definitions@{RFM Register Definitions}}
+\doxysubsubsection{\texorpdfstring{RFM\_REG\_4B\_TCXO}{RFM\_REG\_4B\_TCXO}}
+{\footnotesize\ttfamily \#define R\+F\+M\+\_\+\+R\+E\+G\+\_\+4\+B\+\_\+\+T\+C\+XO~0x4b}
+
+\mbox{\Hypertarget{group__rfm__registers_ga5cc42fb14f55e3e06929614826f3e807}\label{group__rfm__registers_ga5cc42fb14f55e3e06929614826f3e807}} 
+\index{RFM Register Definitions@{RFM Register Definitions}!RFM\_REG\_4D\_PA\_DAC@{RFM\_REG\_4D\_PA\_DAC}}
+\index{RFM\_REG\_4D\_PA\_DAC@{RFM\_REG\_4D\_PA\_DAC}!RFM Register Definitions@{RFM Register Definitions}}
+\doxysubsubsection{\texorpdfstring{RFM\_REG\_4D\_PA\_DAC}{RFM\_REG\_4D\_PA\_DAC}}
+{\footnotesize\ttfamily \#define R\+F\+M\+\_\+\+R\+E\+G\+\_\+4\+D\+\_\+\+P\+A\+\_\+\+D\+AC~0x4d}
+
+\mbox{\Hypertarget{group__rfm__registers_gaa0c183302d9f7ad79fef7d1893c72c66}\label{group__rfm__registers_gaa0c183302d9f7ad79fef7d1893c72c66}} 
+\index{RFM Register Definitions@{RFM Register Definitions}!RFM\_REG\_5B\_FORMER\_TEMP@{RFM\_REG\_5B\_FORMER\_TEMP}}
+\index{RFM\_REG\_5B\_FORMER\_TEMP@{RFM\_REG\_5B\_FORMER\_TEMP}!RFM Register Definitions@{RFM Register Definitions}}
+\doxysubsubsection{\texorpdfstring{RFM\_REG\_5B\_FORMER\_TEMP}{RFM\_REG\_5B\_FORMER\_TEMP}}
+{\footnotesize\ttfamily \#define R\+F\+M\+\_\+\+R\+E\+G\+\_\+5\+B\+\_\+\+F\+O\+R\+M\+E\+R\+\_\+\+T\+E\+MP~0x5b}
+
+\mbox{\Hypertarget{group__rfm__registers_gac15b1388d12f594d1fda26fac5bf89c5}\label{group__rfm__registers_gac15b1388d12f594d1fda26fac5bf89c5}} 
+\index{RFM Register Definitions@{RFM Register Definitions}!RFM\_REG\_61\_AGC\_REF@{RFM\_REG\_61\_AGC\_REF}}
+\index{RFM\_REG\_61\_AGC\_REF@{RFM\_REG\_61\_AGC\_REF}!RFM Register Definitions@{RFM Register Definitions}}
+\doxysubsubsection{\texorpdfstring{RFM\_REG\_61\_AGC\_REF}{RFM\_REG\_61\_AGC\_REF}}
+{\footnotesize\ttfamily \#define R\+F\+M\+\_\+\+R\+E\+G\+\_\+61\+\_\+\+A\+G\+C\+\_\+\+R\+EF~0x61}
+
+\mbox{\Hypertarget{group__rfm__registers_ga35804f846e34bc15e0c13ca058a4039f}\label{group__rfm__registers_ga35804f846e34bc15e0c13ca058a4039f}} 
+\index{RFM Register Definitions@{RFM Register Definitions}!RFM\_REG\_62\_AGC\_THRESH1@{RFM\_REG\_62\_AGC\_THRESH1}}
+\index{RFM\_REG\_62\_AGC\_THRESH1@{RFM\_REG\_62\_AGC\_THRESH1}!RFM Register Definitions@{RFM Register Definitions}}
+\doxysubsubsection{\texorpdfstring{RFM\_REG\_62\_AGC\_THRESH1}{RFM\_REG\_62\_AGC\_THRESH1}}
+{\footnotesize\ttfamily \#define R\+F\+M\+\_\+\+R\+E\+G\+\_\+62\+\_\+\+A\+G\+C\+\_\+\+T\+H\+R\+E\+S\+H1~0x62}
+
+\mbox{\Hypertarget{group__rfm__registers_ga8cddd993e8cc063e484d1ec7624e7768}\label{group__rfm__registers_ga8cddd993e8cc063e484d1ec7624e7768}} 
+\index{RFM Register Definitions@{RFM Register Definitions}!RFM\_REG\_63\_AGC\_THRESH2@{RFM\_REG\_63\_AGC\_THRESH2}}
+\index{RFM\_REG\_63\_AGC\_THRESH2@{RFM\_REG\_63\_AGC\_THRESH2}!RFM Register Definitions@{RFM Register Definitions}}
+\doxysubsubsection{\texorpdfstring{RFM\_REG\_63\_AGC\_THRESH2}{RFM\_REG\_63\_AGC\_THRESH2}}
+{\footnotesize\ttfamily \#define R\+F\+M\+\_\+\+R\+E\+G\+\_\+63\+\_\+\+A\+G\+C\+\_\+\+T\+H\+R\+E\+S\+H2~0x63}
+
+\mbox{\Hypertarget{group__rfm__registers_gaf15a77834e0d293219fd9cd82cb5cb1a}\label{group__rfm__registers_gaf15a77834e0d293219fd9cd82cb5cb1a}} 
+\index{RFM Register Definitions@{RFM Register Definitions}!RFM\_REG\_64\_AGC\_THRESH3@{RFM\_REG\_64\_AGC\_THRESH3}}
+\index{RFM\_REG\_64\_AGC\_THRESH3@{RFM\_REG\_64\_AGC\_THRESH3}!RFM Register Definitions@{RFM Register Definitions}}
+\doxysubsubsection{\texorpdfstring{RFM\_REG\_64\_AGC\_THRESH3}{RFM\_REG\_64\_AGC\_THRESH3}}
+{\footnotesize\ttfamily \#define R\+F\+M\+\_\+\+R\+E\+G\+\_\+64\+\_\+\+A\+G\+C\+\_\+\+T\+H\+R\+E\+S\+H3~0x64}
+
+\mbox{\Hypertarget{group__rfm__registers_gadb849b331c82e5844141c66fce8b12b8}\label{group__rfm__registers_gadb849b331c82e5844141c66fce8b12b8}} 
+\index{RFM Register Definitions@{RFM Register Definitions}!RFM\_RX\_CODING\_RATE@{RFM\_RX\_CODING\_RATE}}
+\index{RFM\_RX\_CODING\_RATE@{RFM\_RX\_CODING\_RATE}!RFM Register Definitions@{RFM Register Definitions}}
+\doxysubsubsection{\texorpdfstring{RFM\_RX\_CODING\_RATE}{RFM\_RX\_CODING\_RATE}}
+{\footnotesize\ttfamily \#define R\+F\+M\+\_\+\+R\+X\+\_\+\+C\+O\+D\+I\+N\+G\+\_\+\+R\+A\+TE~0xe0}
+
+\mbox{\Hypertarget{group__rfm__registers_ga886c9f196a27dceab3c71a2b08d4db2d}\label{group__rfm__registers_ga886c9f196a27dceab3c71a2b08d4db2d}} 
+\index{RFM Register Definitions@{RFM Register Definitions}!RFM\_RX\_DONE\_MASK@{RFM\_RX\_DONE\_MASK}}
+\index{RFM\_RX\_DONE\_MASK@{RFM\_RX\_DONE\_MASK}!RFM Register Definitions@{RFM Register Definitions}}
+\doxysubsubsection{\texorpdfstring{RFM\_RX\_DONE\_MASK}{RFM\_RX\_DONE\_MASK}}
+{\footnotesize\ttfamily \#define R\+F\+M\+\_\+\+R\+X\+\_\+\+D\+O\+N\+E\+\_\+\+M\+A\+SK~0x40}
+
+\mbox{\Hypertarget{group__rfm__registers_ga6f03946c297feb41070e2fe6811e041d}\label{group__rfm__registers_ga6f03946c297feb41070e2fe6811e041d}} 
+\index{RFM Register Definitions@{RFM Register Definitions}!RFM\_RX\_PAYLOAD\_CRC\_IS\_ON@{RFM\_RX\_PAYLOAD\_CRC\_IS\_ON}}
+\index{RFM\_RX\_PAYLOAD\_CRC\_IS\_ON@{RFM\_RX\_PAYLOAD\_CRC\_IS\_ON}!RFM Register Definitions@{RFM Register Definitions}}
+\doxysubsubsection{\texorpdfstring{RFM\_RX\_PAYLOAD\_CRC\_IS\_ON}{RFM\_RX\_PAYLOAD\_CRC\_IS\_ON}}
+{\footnotesize\ttfamily \#define R\+F\+M\+\_\+\+R\+X\+\_\+\+P\+A\+Y\+L\+O\+A\+D\+\_\+\+C\+R\+C\+\_\+\+I\+S\+\_\+\+ON~0x40}
+
+\mbox{\Hypertarget{group__rfm__registers_ga46c8d638fd5d677ff00574202749a60d}\label{group__rfm__registers_ga46c8d638fd5d677ff00574202749a60d}} 
+\index{RFM Register Definitions@{RFM Register Definitions}!RFM\_RX\_TIMEOUT\_MASK@{RFM\_RX\_TIMEOUT\_MASK}}
+\index{RFM\_RX\_TIMEOUT\_MASK@{RFM\_RX\_TIMEOUT\_MASK}!RFM Register Definitions@{RFM Register Definitions}}
+\doxysubsubsection{\texorpdfstring{RFM\_RX\_TIMEOUT\_MASK}{RFM\_RX\_TIMEOUT\_MASK}}
+{\footnotesize\ttfamily \#define R\+F\+M\+\_\+\+R\+X\+\_\+\+T\+I\+M\+E\+O\+U\+T\+\_\+\+M\+A\+SK~0x80}
+
+\mbox{\Hypertarget{group__rfm__registers_gae2231ea56372274b91e7d07dbf2252d0}\label{group__rfm__registers_gae2231ea56372274b91e7d07dbf2252d0}} 
+\index{RFM Register Definitions@{RFM Register Definitions}!RFM\_SPREADING\_FACTOR@{RFM\_SPREADING\_FACTOR}}
+\index{RFM\_SPREADING\_FACTOR@{RFM\_SPREADING\_FACTOR}!RFM Register Definitions@{RFM Register Definitions}}
+\doxysubsubsection{\texorpdfstring{RFM\_SPREADING\_FACTOR}{RFM\_SPREADING\_FACTOR}}
+{\footnotesize\ttfamily \#define R\+F\+M\+\_\+\+S\+P\+R\+E\+A\+D\+I\+N\+G\+\_\+\+F\+A\+C\+T\+OR~0xf0}
+
+\mbox{\Hypertarget{group__rfm__registers_gaf627d2f43a068f7d914d571442f925f2}\label{group__rfm__registers_gaf627d2f43a068f7d914d571442f925f2}} 
+\index{RFM Register Definitions@{RFM Register Definitions}!RFM\_SPREADING\_FACTOR\_1024CPS@{RFM\_SPREADING\_FACTOR\_1024CPS}}
+\index{RFM\_SPREADING\_FACTOR\_1024CPS@{RFM\_SPREADING\_FACTOR\_1024CPS}!RFM Register Definitions@{RFM Register Definitions}}
+\doxysubsubsection{\texorpdfstring{RFM\_SPREADING\_FACTOR\_1024CPS}{RFM\_SPREADING\_FACTOR\_1024CPS}}
+{\footnotesize\ttfamily \#define R\+F\+M\+\_\+\+S\+P\+R\+E\+A\+D\+I\+N\+G\+\_\+\+F\+A\+C\+T\+O\+R\+\_\+1024\+C\+PS~0xa0}
+
+\mbox{\Hypertarget{group__rfm__registers_ga91493e17a62f89f8b1950938ac178ae4}\label{group__rfm__registers_ga91493e17a62f89f8b1950938ac178ae4}} 
+\index{RFM Register Definitions@{RFM Register Definitions}!RFM\_SPREADING\_FACTOR\_128CPS@{RFM\_SPREADING\_FACTOR\_128CPS}}
+\index{RFM\_SPREADING\_FACTOR\_128CPS@{RFM\_SPREADING\_FACTOR\_128CPS}!RFM Register Definitions@{RFM Register Definitions}}
+\doxysubsubsection{\texorpdfstring{RFM\_SPREADING\_FACTOR\_128CPS}{RFM\_SPREADING\_FACTOR\_128CPS}}
+{\footnotesize\ttfamily \#define R\+F\+M\+\_\+\+S\+P\+R\+E\+A\+D\+I\+N\+G\+\_\+\+F\+A\+C\+T\+O\+R\+\_\+128\+C\+PS~0x70}
+
+\mbox{\Hypertarget{group__rfm__registers_ga46a9a7dcffcb60f499f40ae4b0d2349e}\label{group__rfm__registers_ga46a9a7dcffcb60f499f40ae4b0d2349e}} 
+\index{RFM Register Definitions@{RFM Register Definitions}!RFM\_SPREADING\_FACTOR\_2048CPS@{RFM\_SPREADING\_FACTOR\_2048CPS}}
+\index{RFM\_SPREADING\_FACTOR\_2048CPS@{RFM\_SPREADING\_FACTOR\_2048CPS}!RFM Register Definitions@{RFM Register Definitions}}
+\doxysubsubsection{\texorpdfstring{RFM\_SPREADING\_FACTOR\_2048CPS}{RFM\_SPREADING\_FACTOR\_2048CPS}}
+{\footnotesize\ttfamily \#define R\+F\+M\+\_\+\+S\+P\+R\+E\+A\+D\+I\+N\+G\+\_\+\+F\+A\+C\+T\+O\+R\+\_\+2048\+C\+PS~0xb0}
+
+\mbox{\Hypertarget{group__rfm__registers_ga303e4100146cca067c82d5ba835f2ae1}\label{group__rfm__registers_ga303e4100146cca067c82d5ba835f2ae1}} 
+\index{RFM Register Definitions@{RFM Register Definitions}!RFM\_SPREADING\_FACTOR\_256CPS@{RFM\_SPREADING\_FACTOR\_256CPS}}
+\index{RFM\_SPREADING\_FACTOR\_256CPS@{RFM\_SPREADING\_FACTOR\_256CPS}!RFM Register Definitions@{RFM Register Definitions}}
+\doxysubsubsection{\texorpdfstring{RFM\_SPREADING\_FACTOR\_256CPS}{RFM\_SPREADING\_FACTOR\_256CPS}}
+{\footnotesize\ttfamily \#define R\+F\+M\+\_\+\+S\+P\+R\+E\+A\+D\+I\+N\+G\+\_\+\+F\+A\+C\+T\+O\+R\+\_\+256\+C\+PS~0x80}
+
+\mbox{\Hypertarget{group__rfm__registers_gac399f154772e269d43f3c55b12a89711}\label{group__rfm__registers_gac399f154772e269d43f3c55b12a89711}} 
+\index{RFM Register Definitions@{RFM Register Definitions}!RFM\_SPREADING\_FACTOR\_4096CPS@{RFM\_SPREADING\_FACTOR\_4096CPS}}
+\index{RFM\_SPREADING\_FACTOR\_4096CPS@{RFM\_SPREADING\_FACTOR\_4096CPS}!RFM Register Definitions@{RFM Register Definitions}}
+\doxysubsubsection{\texorpdfstring{RFM\_SPREADING\_FACTOR\_4096CPS}{RFM\_SPREADING\_FACTOR\_4096CPS}}
+{\footnotesize\ttfamily \#define R\+F\+M\+\_\+\+S\+P\+R\+E\+A\+D\+I\+N\+G\+\_\+\+F\+A\+C\+T\+O\+R\+\_\+4096\+C\+PS~0xc0}
+
+\mbox{\Hypertarget{group__rfm__registers_ga75a6a399d21143395ba3b356b068f661}\label{group__rfm__registers_ga75a6a399d21143395ba3b356b068f661}} 
+\index{RFM Register Definitions@{RFM Register Definitions}!RFM\_SPREADING\_FACTOR\_512CPS@{RFM\_SPREADING\_FACTOR\_512CPS}}
+\index{RFM\_SPREADING\_FACTOR\_512CPS@{RFM\_SPREADING\_FACTOR\_512CPS}!RFM Register Definitions@{RFM Register Definitions}}
+\doxysubsubsection{\texorpdfstring{RFM\_SPREADING\_FACTOR\_512CPS}{RFM\_SPREADING\_FACTOR\_512CPS}}
+{\footnotesize\ttfamily \#define R\+F\+M\+\_\+\+S\+P\+R\+E\+A\+D\+I\+N\+G\+\_\+\+F\+A\+C\+T\+O\+R\+\_\+512\+C\+PS~0x90}
+
+\mbox{\Hypertarget{group__rfm__registers_ga4badda06bea16f2ab302998e0c2eeb06}\label{group__rfm__registers_ga4badda06bea16f2ab302998e0c2eeb06}} 
+\index{RFM Register Definitions@{RFM Register Definitions}!RFM\_SPREADING\_FACTOR\_64CPS@{RFM\_SPREADING\_FACTOR\_64CPS}}
+\index{RFM\_SPREADING\_FACTOR\_64CPS@{RFM\_SPREADING\_FACTOR\_64CPS}!RFM Register Definitions@{RFM Register Definitions}}
+\doxysubsubsection{\texorpdfstring{RFM\_SPREADING\_FACTOR\_64CPS}{RFM\_SPREADING\_FACTOR\_64CPS}}
+{\footnotesize\ttfamily \#define R\+F\+M\+\_\+\+S\+P\+R\+E\+A\+D\+I\+N\+G\+\_\+\+F\+A\+C\+T\+O\+R\+\_\+64\+C\+PS~0x60}
+
+\mbox{\Hypertarget{group__rfm__registers_ga038b2d99d6fc892ddd65379fa5a35fd2}\label{group__rfm__registers_ga038b2d99d6fc892ddd65379fa5a35fd2}} 
+\index{RFM Register Definitions@{RFM Register Definitions}!RFM\_SYM\_TIMEOUT\_MSB@{RFM\_SYM\_TIMEOUT\_MSB}}
+\index{RFM\_SYM\_TIMEOUT\_MSB@{RFM\_SYM\_TIMEOUT\_MSB}!RFM Register Definitions@{RFM Register Definitions}}
+\doxysubsubsection{\texorpdfstring{RFM\_SYM\_TIMEOUT\_MSB}{RFM\_SYM\_TIMEOUT\_MSB}}
+{\footnotesize\ttfamily \#define R\+F\+M\+\_\+\+S\+Y\+M\+\_\+\+T\+I\+M\+E\+O\+U\+T\+\_\+\+M\+SB~0x03}
+
+\mbox{\Hypertarget{group__rfm__registers_ga554b5c39acd3776e6af1d38a48b143d0}\label{group__rfm__registers_ga554b5c39acd3776e6af1d38a48b143d0}} 
+\index{RFM Register Definitions@{RFM Register Definitions}!RFM\_TX\_CONTINUOUS\_MODE@{RFM\_TX\_CONTINUOUS\_MODE}}
+\index{RFM\_TX\_CONTINUOUS\_MODE@{RFM\_TX\_CONTINUOUS\_MODE}!RFM Register Definitions@{RFM Register Definitions}}
+\doxysubsubsection{\texorpdfstring{RFM\_TX\_CONTINUOUS\_MODE}{RFM\_TX\_CONTINUOUS\_MODE}}
+{\footnotesize\ttfamily \#define R\+F\+M\+\_\+\+T\+X\+\_\+\+C\+O\+N\+T\+I\+N\+U\+O\+U\+S\+\_\+\+M\+O\+DE~0x08}
+
+\mbox{\Hypertarget{group__rfm__registers_ga4d67743361ea6df5dcb97570afd6f661}\label{group__rfm__registers_ga4d67743361ea6df5dcb97570afd6f661}} 
+\index{RFM Register Definitions@{RFM Register Definitions}!RFM\_TX\_DONE\_MASK@{RFM\_TX\_DONE\_MASK}}
+\index{RFM\_TX\_DONE\_MASK@{RFM\_TX\_DONE\_MASK}!RFM Register Definitions@{RFM Register Definitions}}
+\doxysubsubsection{\texorpdfstring{RFM\_TX\_DONE\_MASK}{RFM\_TX\_DONE\_MASK}}
+{\footnotesize\ttfamily \#define R\+F\+M\+\_\+\+T\+X\+\_\+\+D\+O\+N\+E\+\_\+\+M\+A\+SK~0x08}
+
+\mbox{\Hypertarget{group__rfm__registers_ga580bb89afbf9b7055f73a2ae358c6a7a}\label{group__rfm__registers_ga580bb89afbf9b7055f73a2ae358c6a7a}} 
+\index{RFM Register Definitions@{RFM Register Definitions}!RFM\_VALID\_HEADER\_MASK@{RFM\_VALID\_HEADER\_MASK}}
+\index{RFM\_VALID\_HEADER\_MASK@{RFM\_VALID\_HEADER\_MASK}!RFM Register Definitions@{RFM Register Definitions}}
+\doxysubsubsection{\texorpdfstring{RFM\_VALID\_HEADER\_MASK}{RFM\_VALID\_HEADER\_MASK}}
+{\footnotesize\ttfamily \#define R\+F\+M\+\_\+\+V\+A\+L\+I\+D\+\_\+\+H\+E\+A\+D\+E\+R\+\_\+\+M\+A\+SK~0x10}
+

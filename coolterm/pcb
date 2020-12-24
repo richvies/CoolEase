@@ -1,0 +1,4420 @@
+From Chip Antenna
+To PCB antenna
+CRC OK
+Packet RSSI: -67 dbm
+Packet SNR: 9 dB
+Message Number: 72
+Missed Message 77
+Power: 10
+Battery: 2.9V
+Temperature: 2345
+Accuracy: 11 / 6 packets
+
+From PCB antenna
+To PCB antenna
+CRC OK
+Packet RSSI: -55 dbm
+Packet SNR: 9 dB
+Message Number: 57
+Missed Message 78
+Power: 10
+Battery: 2.9V
+Temperature: 2345
+Accuracy: 12 / -9 packets
+
+From Chip Antenna
+To PCB antenna
+CRC OK
+Packet RSSI: -47 dbm
+Packet SNR: 9 dB
+Message Number: 73
+Missed Message 79
+Power: 10
+Battery: 2.9V
+Temperature: 2345
+Accuracy: 13 / 7 packets
+
+From PCB antenna
+To PCB antenna
+CRC OK
+Packet RSSI: -55 dbm
+Packet SNR: 9 dB
+Message Number: 58
+Missed Message 80
+Power: 10
+Battery: 2.9V
+Temperature: 2345
+Accuracy: 14 / -8 packets
+
+From Chip Antenna
+To PCB antenna
+CRC OK
+Packet RSSI: -54 dbm
+Packet SNR: 9 dB
+Message Number: 74
+Missed Message 81
+Power: 10
+Battery: 2.9V
+Temperature: 2345
+Accuracy: 15 / 8 packets
+
+From PCB antenna
+To PCB antenna
+CRC OK
+Packet RSSI: -64 dbm
+Packet SNR: 9 dB
+Message Number: 59
+Missed Message 82
+Power: 10
+Battery: 2.9V
+Temperature: 2345
+Accuracy: 16 / -7 packets
+
+From Chip Antenna
+To PCB antenna
+CRC OK
+Packet RSSI: -46 dbm
+Packet SNR: 9 dB
+Message Number: 75
+Missed Message 83
+Power: 10
+Battery: 2.9V
+Temperature: 2345
+Accuracy: 17 / 9 packets
+
+From PCB antenna
+To PCB antenna
+CRC OK
+Packet RSSI: -56 dbm
+Packet SNR: 9 dB
+Message Number: 60
+Missed Message 84
+Power: 10
+Battery: 2.9V
+Temperature: 2345
+Accuracy: 18 / -6 packets
+
+From Chip Antenna
+To PCB antenna
+CRC OK
+Packet RSSI: -47 dbm
+Packet SNR: 9 dB
+Message Number: 76
+Missed Message 85
+Power: 10
+Battery: 2.9V
+Temperature: 2345
+Accuracy: 19 / 10 packets
+
+From PCB antenna
+To PCB antenna
+CRC OK
+Packet RSSI: -56 dbm
+Packet SNR: 9 dB
+Message Number: 61
+Missed Message 86
+Power: 10
+Battery: 2.9V
+Temperature: 2345
+Accuracy: 20 / -5 packets
+
+
+Sensor Start
+Reset
+PINRSTF Reset
+------------
+Battery voltage greater than 2.9 V
+Testing Receiver
+PCB antenna
+First Message Number: 77, 77, 77
+Ready
+From PCB antenna
+To PCB antenna
+CRC OK
+Packet RSSI: -55 dbm
+Packet SNR: 9 dB
+Message Number: 62
+Missed Message 78
+Power: 10
+Battery: 2.9V
+Temperature: 2345
+Accuracy: 1 / -15 packets
+
+
+Sensor Start
+Reset
+PINRSTF Reset
+------------
+Battery voltage greater than 2.9 V
+Testing Receiver
+PCB antenna
+First Message Number: 78, 78, 78
+Ready
+From PCB antenna
+To PCB antenna
+CRC OK
+Packet RSSI: -60 dbm
+Packet SNR: 10 dB
+Message Number: 63
+Missed Message 79
+Power: 10
+Battery: 2.9V
+Temperature: 2345
+Accuracy: 1 / -15 packets
+
+From Chip Antenna
+To PCB antenna
+CRC OK
+Packet RSSI: -39 dbm
+Packet SNR: 9 dB
+Message Number: 79
+Missed Message 80
+Power: 10
+Battery: 2.9V
+Temperature: 2345
+Accuracy: 2 / 1 packets
+
+From PCB antenna
+To PCB antenna
+CRC OK
+Packet RSSI: -59 dbm
+Packet SNR: 9 dB
+Message Number: 64
+Missed Message 81
+Power: 10
+Battery: 2.9V
+Temperature: 2345
+Accuracy: 3 / -14 packets
+
+From Chip Antenna
+To PCB antenna
+CRC OK
+Packet RSSI: -53 dbm
+Packet SNR: 9 dB
+Message Number: 80
+Missed Message 82
+Power: 10
+Battery: 2.9V
+Temperature: 2345
+Accuracy: 4 / 2 packets
+
+From PCB antenna
+To PCB antenna
+CRC OK
+Packet RSSI: -57 dbm
+Packet SNR: 9 dB
+Message Number: 65
+Missed Message 83
+Power: 10
+Battery: 2.9V
+Temperature: 2345
+Accuracy: 5 / -13 packets
+
+From Chip Antenna
+To PCB antenna
+CRC OK
+Packet RSSI: -55 dbm
+Packet SNR: 9 dB
+Message Number: 81
+Missed Message 84
+Power: 10
+Battery: 2.9V
+Temperature: 2345
+Accuracy: 6 / 3 packets
+
+From PCB antenna
+To PCB antenna
+CRC OK
+Packet RSSI: -56 dbm
+Packet SNR: 10 dB
+Message Number: 66
+Missed Message 85
+Power: 10
+Battery: 2.9V
+Temperature: 2345
+Accuracy: 7 / -12 packets
+
+From Chip Antenna
+To PCB antenna
+CRC OK
+Packet RSSI: -56 dbm
+Packet SNR: 9 dB
+Message Number: 82
+Missed Message 86
+Power: 10
+Battery: 2.9V
+Temperature: 2345
+Accuracy: 8 / 4 packets
+
+From PCB antenna
+To PCB antenna
+CRC OK
+Packet RSSI: -58 dbm
+Packet SNR: 9 dB
+Message Number: 67
+Missed Message 87
+Power: 10
+Battery: 2.9V
+Temperature: 2345
+Accuracy: 9 / -11 packets
+
+From Chip Antenna
+To PCB antenna
+CRC OK
+Packet RSSI: -55 dbm
+Packet SNR: 10 dB
+Message Number: 83
+Missed Message 88
+Power: 10
+Battery: 2.9V
+Temperature: 2345
+Accuracy: 10 / 5 packets
+
+From PCB antenna
+To PCB antenna
+CRC OK
+Packet RSSI: -59 dbm
+Packet SNR: 9 dB
+Message Number: 68
+Missed Message 89
+Power: 10
+Battery: 2.9V
+Temperature: 2345
+Accuracy: 11 / -10 packets
+
+From Chip Antenna
+To PCB antenna
+CRC OK
+Packet RSSI: -56 dbm
+Packet SNR: 9 dB
+Message Number: 84
+Missed Message 90
+Power: 10
+Battery: 2.9V
+Temperature: 2345
+Accuracy: 12 / 6 packets
+
+From PCB antenna
+To PCB antenna
+CRC OK
+Packet RSSI: -54 dbm
+Packet SNR: 9 dB
+Message Number: 69
+Missed Message 91
+Power: 10
+Battery: 2.9V
+Temperature: 2345
+Accuracy: 13 / -9 packets
+
+From Chip Antenna
+To PCB antenna
+CRC OK
+Packet RSSI: -52 dbm
+Packet SNR: 9 dB
+Message Number: 85
+Missed Message 92
+Power: 10
+Battery: 2.9V
+Temperature: 2345
+Accuracy: 14 / 7 packets
+
+From PCB antenna
+To PCB antenna
+CRC OK
+Packet RSSI: -62 dbm
+Packet SNR: 9 dB
+Message Number: 70
+Missed Message 93
+Power: 10
+Battery: 2.9V
+Temperature: 2345
+Accuracy: 15 / -8 packets
+
+From Chip Antenna
+To PCB antenna
+CRC OK
+Packet RSSI: -56 dbm
+Packet SNR: 9 dB
+Message Number: 86
+Missed Message 94
+Power: 10
+Battery: 2.9V
+Temperature: 2345
+Accuracy: 16 / 8 packets
+
+From PCB antenna
+To PCB antenna
+CRC OK
+Packet RSSI: -70 dbm
+Packet SNR: 9 dB
+Message Number: 71
+Missed Message 95
+Power: 10
+Battery: 2.9V
+Temperature: 2345
+Accuracy: 17 / -7 packets
+
+From Chip Antenna
+To PCB antenna
+CRC OK
+Packet RSSI: -64 dbm
+Packet SNR: 9 dB
+Message Number: 87
+Missed Message 96
+Power: 10
+Battery: 2.9V
+Temperature: 2345
+Accuracy: 18 / 9 packets
+
+From PCB antenna
+To PCB antenna
+CRC OK
+Packet RSSI: -68 dbm
+Packet SNR: 9 dB
+Message Number: 72
+Missed Message 97
+Power: 10
+Battery: 2.9V
+Temperature: 2345
+Accuracy: 19 / -6 packets
+
+From Chip Antenna
+To PCB antenna
+CRC OK
+Packet RSSI: -64 dbm
+Packet SNR: 8 dB
+Message Number: 88
+Missed Message 98
+Power: 10
+Battery: 2.9V
+Temperature: 2345
+Accuracy: 20 / 10 packets
+
+From PCB antenna
+To PCB antenna
+CRC OK
+Packet RSSI: -71 dbm
+Packet SNR: 9 dB
+Message Number: 73
+Missed Message 99
+Power: 10
+Battery: 2.9V
+Temperature: 2345
+Accuracy: 21 / -5 packets
+
+From Chip Antenna
+To PCB antenna
+CRC OK
+Packet RSSI: -59 dbm
+Packet SNR: 10 dB
+Message Number: 89
+Missed Message 100
+Power: 10
+Battery: 2.9V
+Temperature: 2345
+Accuracy: 22 / 11 packets
+
+From PCB antenna
+To PCB antenna
+CRC OK
+Packet RSSI: -66 dbm
+Packet SNR: 9 dB
+Message Number: 74
+Missed Message 101
+Power: 10
+Battery: 2.9V
+Temperature: 2345
+Accuracy: 23 / -4 packets
+
+From Chip Antenna
+To PCB antenna
+CRC OK
+Packet RSSI: -67 dbm
+Packet SNR: 9 dB
+Message Number: 90
+Missed Message 102
+Power: 10
+Battery: 2.9V
+Temperature: 2345
+Accuracy: 24 / 12 packets
+
+From PCB antenna
+To PCB antenna
+CRC OK
+Packet RSSI: -74 dbm
+Packet SNR: 9 dB
+Message Number: 75
+Missed Message 103
+Power: 10
+Battery: 2.9V
+Temperature: 2345
+Accuracy: 25 / -3 packets
+
+From Chip Antenna
+To PCB antenna
+CRC OK
+Packet RSSI: -55 dbm
+Packet SNR: 9 dB
+Message Number: 91
+Missed Message 104
+Power: 10
+Battery: 2.9V
+Temperature: 2345
+Accuracy: 26 / 13 packets
+
+From PCB antenna
+To PCB antenna
+CRC OK
+Packet RSSI: -58 dbm
+Packet SNR: 10 dB
+Message Number: 76
+Missed Message 105
+Power: 10
+Battery: 2.9V
+Temperature: 2345
+Accuracy: 27 / -2 packets
+
+From Chip Antenna
+To PCB antenna
+CRC OK
+Packet RSSI: -51 dbm
+Packet SNR: 9 dB
+Message Number: 92
+Missed Message 106
+Power: 10
+Battery: 2.9V
+Temperature: 2345
+Accuracy: 28 / 14 packets
+
+From PCB antenna
+To PCB antenna
+CRC OK
+Packet RSSI: -52 dbm
+Packet SNR: 9 dB
+Message Number: 77
+Missed Message 107
+Power: 10
+Battery: 2.9V
+Temperature: 2345
+Accuracy: 29 / -1 packets
+
+From PCB antenna
+To PCB antenna
+CRC OK
+Packet RSSI: -68 dbm
+Packet SNR: 10 dB
+Message Number: 80
+Missed Message 108
+Power: 10
+Battery: 2.9V
+Temperature: 2345
+Accuracy: 30 / 2 packets
+
+From Chip Antenna
+To PCB antenna
+CRC OK
+Packet RSSI: -70 dbm
+Packet SNR: 9 dB
+Message Number: 95
+Missed Message 109
+Power: 10
+Battery: 2.9V
+Temperature: 2345
+Accuracy: 31 / 17 packets
+
+From PCB antenna
+To PCB antenna
+CRC OK
+Packet RSSI: -68 dbm
+Packet SNR: 9 dB
+Message Number: 81
+Missed Message 110
+Power: 10
+Battery: 2.9V
+Temperature: 2345
+Accuracy: 32 / 3 packets
+
+From Chip Antenna
+To PCB antenna
+CRC OK
+Packet RSSI: -85 dbm
+Packet SNR: 7 dB
+Message Number: 96
+Missed Message 111
+Power: 10
+Battery: 2.9V
+Temperature: 2345
+Accuracy: 33 / 18 packets
+
+From PCB antenna
+To PCB antenna
+CRC OK
+Packet RSSI: -79 dbm
+Packet SNR: 8 dB
+Message Number: 82
+Missed Message 112
+Power: 10
+Battery: 2.9V
+Temperature: 2345
+Accuracy: 34 / 4 packets
+
+From Chip Antenna
+To PCB antenna
+CRC OK
+Packet RSSI: -79 dbm
+Packet SNR: 9 dB
+Message Number: 97
+Missed Message 113
+Power: 10
+Battery: 2.9V
+Temperature: 2345
+Accuracy: 35 / 19 packets
+
+From PCB antenna
+To PCB antenna
+CRC OK
+Packet RSSI: -85 dbm
+Packet SNR: 8 dB
+Message Number: 83
+Missed Message 114
+Power: 10
+Battery: 2.9V
+Temperature: 2345
+Accuracy: 36 / 5 packets
+
+From Chip Antenna
+To PCB antenna
+CRC OK
+Packet RSSI: -83 dbm
+Packet SNR: 8 dB
+Message Number: 98
+Missed Message 115
+Power: 10
+Battery: 2.9V
+Temperature: 2345
+Accuracy: 37 / 20 packets
+
+From PCB antenna
+To PCB antenna
+CRC OK
+Packet RSSI: -69 dbm
+Packet SNR: 9 dB
+Message Number: 84
+Missed Message 116
+Power: 10
+Battery: 2.9V
+Temperature: 2345
+Accuracy: 38 / 6 packets
+
+From Chip Antenna
+To PCB antenna
+CRC OK
+Packet RSSI: -73 dbm
+Packet SNR: 9 dB
+Message Number: 99
+Missed Message 117
+Power: 10
+Battery: 2.9V
+Temperature: 2345
+Accuracy: 39 / 21 packets
+
+From PCB antenna
+To PCB antenna
+CRC OK
+Packet RSSI: -69 dbm
+Packet SNR: 10 dB
+Message Number: 85
+Missed Message 118
+Power: 10
+Battery: 2.9V
+Temperature: 2345
+Accuracy: 40 / 7 packets
+
+From Chip Antenna
+To PCB antenna
+CRC OK
+Packet RSSI: -71 dbm
+Packet SNR: 9 dB
+Message Number: 100
+Missed Message 119
+Power: 10
+Battery: 2.9V
+Temperature: 2345
+Accuracy: 41 / 22 packets
+
+From PCB antenna
+To PCB antenna
+CRC OK
+Packet RSSI: -71 dbm
+Packet SNR: 9 dB
+Message Number: 86
+Missed Message 120
+Power: 10
+Battery: 2.9V
+Temperature: 2345
+Accuracy: 42 / 8 packets
+
+From Chip Antenna
+To PCB antenna
+CRC OK
+Packet RSSI: -65 dbm
+Packet SNR: 9 dB
+Message Number: 101
+Missed Message 121
+Power: 10
+Battery: 2.9V
+Temperature: 2345
+Accuracy: 43 / 23 packets
+
+From PCB antenna
+To PCB antenna
+CRC OK
+Packet RSSI: -64 dbm
+Packet SNR: 9 dB
+Message Number: 87
+Missed Message 122
+Power: 10
+Battery: 2.9V
+Temperature: 2345
+Accuracy: 44 / 9 packets
+
+From Chip Antenna
+To PCB antenna
+CRC OK
+Packet RSSI: -63 dbm
+Packet SNR: 9 dB
+Message Number: 102
+Missed Message 123
+Power: 10
+Battery: 2.9V
+Temperature: 2345
+Accuracy: 45 / 24 packets
+
+From PCB antenna
+To PCB antenna
+CRC OK
+Packet RSSI: -66 dbm
+Packet SNR: 9 dB
+Message Number: 88
+Missed Message 124
+Power: 10
+Battery: 2.9V
+Temperature: 2345
+Accuracy: 46 / 10 packets
+
+From Chip Antenna
+To PCB antenna
+CRC OK
+Packet RSSI: -67 dbm
+Packet SNR: 9 dB
+Message Number: 103
+Missed Message 125
+Power: 10
+Battery: 2.9V
+Temperature: 2345
+Accuracy: 47 / 25 packets
+
+From PCB antenna
+To PCB antenna
+CRC OK
+Packet RSSI: -62 dbm
+Packet SNR: 9 dB
+Message Number: 89
+Missed Message 126
+Power: 10
+Battery: 2.9V
+Temperature: 2345
+Accuracy: 48 / 11 packets
+
+From Chip Antenna
+To PCB antenna
+CRC OK
+Packet RSSI: -68 dbm
+Packet SNR: 10 dB
+Message Number: 104
+Missed Message 127
+Power: 10
+Battery: 2.9V
+Temperature: 2345
+Accuracy: 49 / 26 packets
+
+From PCB antenna
+To PCB antenna
+CRC OK
+Packet RSSI: -64 dbm
+Packet SNR: 9 dB
+Message Number: 90
+Missed Message 128
+Power: 10
+Battery: 2.9V
+Temperature: 2345
+Accuracy: 50 / 12 packets
+
+From Chip Antenna
+To PCB antenna
+CRC OK
+Packet RSSI: -79 dbm
+Packet SNR: 9 dB
+Message Number: 105
+Missed Message 129
+Power: 10
+Battery: 2.9V
+Temperature: 2345
+Accuracy: 51 / 27 packets
+
+From PCB antenna
+To PCB antenna
+CRC OK
+Packet RSSI: -62 dbm
+Packet SNR: 9 dB
+Message Number: 91
+Missed Message 130
+Power: 10
+Battery: 2.9V
+Temperature: 2345
+Accuracy: 52 / 13 packets
+
+From Chip Antenna
+To PCB antenna
+CRC OK
+Packet RSSI: -65 dbm
+Packet SNR: 9 dB
+Message Number: 106
+Missed Message 131
+Power: 10
+Battery: 2.9V
+Temperature: 2345
+Accuracy: 53 / 28 packets
+
+From PCB antenna
+To PCB antenna
+CRC OK
+Packet RSSI: -66 dbm
+Packet SNR: 9 dB
+Message Number: 92
+Missed Message 132
+Power: 10
+Battery: 2.9V
+Temperature: 2345
+Accuracy: 54 / 14 packets
+
+From Chip Antenna
+To PCB antenna
+CRC OK
+Packet RSSI: -62 dbm
+Packet SNR: 9 dB
+Message Number: 107
+Missed Message 133
+Power: 10
+Battery: 2.9V
+Temperature: 2345
+Accuracy: 55 / 29 packets
+
+From PCB antenna
+To PCB antenna
+CRC OK
+Packet RSSI: -59 dbm
+Packet SNR: 9 dB
+Message Number: 93
+Missed Message 134
+Power: 10
+Battery: 2.9V
+Temperature: 2345
+Accuracy: 56 / 15 packets
+
+From Chip Antenna
+To PCB antenna
+CRC OK
+Packet RSSI: -72 dbm
+Packet SNR: 9 dB
+Message Number: 108
+Missed Message 135
+Power: 10
+Battery: 2.9V
+Temperature: 2345
+Accuracy: 57 / 30 packets
+
+From PCB antenna
+To PCB antenna
+CRC OK
+Packet RSSI: -67 dbm
+Packet SNR: 8 dB
+Message Number: 94
+Missed Message 136
+Power: 10
+Battery: 2.9V
+Temperature: 2345
+Accuracy: 58 / 16 packets
+
+From Chip Antenna
+To PCB antenna
+CRC OK
+Packet RSSI: -65 dbm
+Packet SNR: 10 dB
+Message Number: 109
+Missed Message 137
+Power: 10
+Battery: 2.9V
+Temperature: 2345
+Accuracy: 59 / 31 packets
+
+From PCB antenna
+To PCB antenna
+CRC OK
+Packet RSSI: -58 dbm
+Packet SNR: 9 dB
+Message Number: 95
+Missed Message 138
+Power: 10
+Battery: 2.9V
+Temperature: 2345
+Accuracy: 60 / 17 packets
+
+From Chip Antenna
+To PCB antenna
+CRC OK
+Packet RSSI: -69 dbm
+Packet SNR: 9 dB
+Message Number: 110
+Missed Message 139
+Power: 10
+Battery: 2.9V
+Temperature: 2345
+Accuracy: 61 / 32 packets
+
+From PCB antenna
+To PCB antenna
+CRC OK
+Packet RSSI: -63 dbm
+Packet SNR: 9 dB
+Message Number: 96
+Missed Message 140
+Power: 10
+Battery: 2.9V
+Temperature: 2345
+Accuracy: 62 / 18 packets
+
+From Chip Antenna
+To PCB antenna
+CRC OK
+Packet RSSI: -55 dbm
+Packet SNR: 9 dB
+Message Number: 111
+Missed Message 141
+Power: 10
+Battery: 2.9V
+Temperature: 2345
+Accuracy: 63 / 33 packets
+
+From Chip Antenna
+To PCB antenna
+CRC OK
+Packet RSSI: -97 dbm
+Packet SNR: 2 dB
+Message Number: 112
+Missed Message 142
+Power: 10
+Battery: 2.9V
+Temperature: 2345
+Accuracy: 64 / 34 packets
+
+From PCB antenna
+To PCB antenna
+CRC OK
+Packet RSSI: -81 dbm
+Packet SNR: 8 dB
+Message Number: 98
+Missed Message 143
+Power: 10
+Battery: 2.9V
+Temperature: 2345
+Accuracy: 65 / 20 packets
+
+From Chip Antenna
+To PCB antenna
+CRC OK
+Packet RSSI: -94 dbm
+Packet SNR: 5 dB
+Message Number: 113
+Missed Message 144
+Power: 10
+Battery: 2.9V
+Temperature: 2345
+Accuracy: 66 / 35 packets
+
+From PCB antenna
+To PCB antenna
+CRC OK
+Packet RSSI: -91 dbm
+Packet SNR: 6 dB
+Message Number: 99
+Missed Message 145
+Power: 10
+Battery: 2.9V
+Temperature: 2345
+Accuracy: 67 / 21 packets
+
+From PCB antenna
+To PCB antenna
+CRC OK
+Packet RSSI: -85 dbm
+Packet SNR: 9 dB
+Message Number: 100
+Missed Message 146
+Power: 10
+Battery: 2.9V
+Temperature: 2345
+Accuracy: 68 / 22 packets
+
+From Chip Antenna
+To PCB antenna
+CRC OK
+Packet RSSI: -82 dbm
+Packet SNR: 11 dB
+Message Number: 115
+Missed Message 147
+Power: 10
+Battery: 2.9V
+Temperature: 2345
+Accuracy: 69 / 37 packets
+
+From PCB antenna
+To PCB antenna
+CRC OK
+Packet RSSI: -81 dbm
+Packet SNR: 7 dB
+Message Number: 101
+Missed Message 148
+Power: 10
+Battery: 2.9V
+Temperature: 2345
+Accuracy: 70 / 23 packets
+
+From Chip Antenna
+To PCB antenna
+CRC OK
+Packet RSSI: -88 dbm
+Packet SNR: 8 dB
+Message Number: 116
+Missed Message 149
+Power: 10
+Battery: 2.9V
+Temperature: 2345
+Accuracy: 71 / 38 packets
+
+From PCB antenna
+To PCB antenna
+CRC OK
+Packet RSSI: -58 dbm
+Packet SNR: 9 dB
+Message Number: 102
+Missed Message 150
+Power: 10
+Battery: 2.9V
+Temperature: 2345
+Accuracy: 72 / 24 packets
+
+From Chip Antenna
+To PCB antenna
+CRC OK
+Packet RSSI: -57 dbm
+Packet SNR: 9 dB
+Message Number: 117
+Missed Message 151
+Power: 10
+Battery: 2.9V
+Temperature: 2345
+Accuracy: 73 / 39 packets
+
+From PCB antenna
+To PCB antenna
+CRC OK
+Packet RSSI: -60 dbm
+Packet SNR: 9 dB
+Message Number: 103
+Missed Message 152
+Power: 10
+Battery: 2.9V
+Temperature: 2345
+Accuracy: 74 / 25 packets
+
+From Chip Antenna
+To PCB antenna
+CRC OK
+Packet RSSI: -68 dbm
+Packet SNR: 10 dB
+Message Number: 118
+Missed Message 153
+Power: 10
+Battery: 2.9V
+Temperature: 2345
+Accuracy: 75 / 40 packets
+
+From PCB antenna
+To PCB antenna
+CRC OK
+Packet RSSI: -65 dbm
+Packet SNR: 9 dB
+Message Number: 104
+Missed Message 154
+Power: 10
+Battery: 2.9V
+Temperature: 2345
+Accuracy: 76 / 26 packets
+
+From Chip Antenna
+To PCB antenna
+CRC OK
+Packet RSSI: -72 dbm
+Packet SNR: 9 dB
+Message Number: 119
+Missed Message 155
+Power: 10
+Battery: 2.9V
+Temperature: 2345
+Accuracy: 77 / 41 packets
+
+From Chip Antenna
+To PCB antenna
+CRC OK
+Packet RSSI: -68 dbm
+Packet SNR: 10 dB
+Message Number: 120
+Missed Message 156
+Power: 10
+Battery: 2.9V
+Temperature: 2345
+Accuracy: 78 / 42 packets
+
+From PCB antenna
+To PCB antenna
+CRC OK
+Packet RSSI: -78 dbm
+Packet SNR: 8 dB
+Message Number: 106
+Missed Message 157
+Power: 10
+Battery: 2.9V
+Temperature: 2345
+Accuracy: 79 / 28 packets
+
+From Chip Antenna
+To PCB antenna
+CRC OK
+Packet RSSI: -71 dbm
+Packet SNR: 9 dB
+Message Number: 121
+Missed Message 158
+Power: 10
+Battery: 2.9V
+Temperature: 2345
+Accuracy: 80 / 43 packets
+
+From PCB antenna
+To PCB antenna
+CRC OK
+Packet RSSI: -75 dbm
+Packet SNR: 9 dB
+Message Number: 107
+Missed Message 159
+Power: 10
+Battery: 2.9V
+Temperature: 2345
+Accuracy: 81 / 29 packets
+
+From Chip Antenna
+To PCB antenna
+CRC OK
+Packet RSSI: -69 dbm
+Packet SNR: 10 dB
+Message Number: 122
+Missed Message 160
+Power: 10
+Battery: 2.9V
+Temperature: 2345
+Accuracy: 82 / 44 packets
+
+From PCB antenna
+To PCB antenna
+CRC OK
+Packet RSSI: -65 dbm
+Packet SNR: 9 dB
+Message Number: 108
+Missed Message 161
+Power: 10
+Battery: 2.9V
+Temperature: 2345
+Accuracy: 83 / 30 packets
+
+From Chip Antenna
+To PCB antenna
+CRC OK
+Packet RSSI: -82 dbm
+Packet SNR: 8 dB
+Message Number: 123
+Missed Message 162
+Power: 10
+Battery: 2.9V
+Temperature: 2345
+Accuracy: 84 / 45 packets
+
+From PCB antenna
+To PCB antenna
+CRC OK
+Packet RSSI: -73 dbm
+Packet SNR: 9 dB
+Message Number: 109
+Missed Message 163
+Power: 10
+Battery: 2.9V
+Temperature: 2345
+Accuracy: 85 / 31 packets
+
+From Chip Antenna
+To PCB antenna
+CRC OK
+Packet RSSI: -83 dbm
+Packet SNR: 8 dB
+Message Number: 124
+Missed Message 164
+Power: 10
+Battery: 2.9V
+Temperature: 2345
+Accuracy: 86 / 46 packets
+
+From PCB antenna
+To PCB antenna
+CRC OK
+Packet RSSI: -74 dbm
+Packet SNR: 9 dB
+Message Number: 110
+Missed Message 165
+Power: 10
+Battery: 2.9V
+Temperature: 2345
+Accuracy: 87 / 32 packets
+
+From Chip Antenna
+To PCB antenna
+CRC OK
+Packet RSSI: -83 dbm
+Packet SNR: 8 dB
+Message Number: 125
+Missed Message 166
+Power: 10
+Battery: 2.9V
+Temperature: 2345
+Accuracy: 88 / 47 packets
+
+From PCB antenna
+To PCB antenna
+CRC OK
+Packet RSSI: -77 dbm
+Packet SNR: 8 dB
+Message Number: 111
+Missed Message 167
+Power: 10
+Battery: 2.9V
+Temperature: 2345
+Accuracy: 89 / 33 packets
+
+From Chip Antenna
+To PCB antenna
+CRC OK
+Packet RSSI: -92 dbm
+Packet SNR: 0 dB
+Message Number: 126
+Missed Message 168
+Power: 10
+Battery: 2.9V
+Temperature: 2345
+Accuracy: 90 / 48 packets
+
+
+Sensor Start
+Reset
+PINRSTF Reset
+------------
+Battery voltage greater than 2.9 V
+Testing Receiver
+PCB antenna
+First Message Number: 128, 128, 128
+Ready
+From PCB antenna
+To PCB antenna
+CRC OK
+Packet RSSI: -77 dbm
+Packet SNR: 9 dB
+Message Number: 114
+Missed Message 129
+Power: 10
+Battery: 2.9V
+Temperature: 2345
+Accuracy: 1 / -14 packets
+
+From Chip Antenna
+To PCB antenna
+CRC OK
+Packet RSSI: -93 dbm
+Packet SNR: 2 dB
+Message Number: 129
+Missed Message 130
+Power: 10
+Battery: 2.9V
+Temperature: 2345
+Accuracy: 2 / 1 packets
+
+From Chip Antenna
+To PCB antenna
+CRC OK
+Packet RSSI: -79 dbm
+Packet SNR: 9 dB
+Message Number: 130
+Missed Message 131
+Power: 10
+Battery: 2.9V
+Temperature: 2345
+Accuracy: 3 / 2 packets
+
+From PCB antenna
+To PCB antenna
+CRC OK
+Packet RSSI: -92 dbm
+Packet SNR: 62 dB
+Message Number: 116
+Missed Message 132
+Power: 10
+Battery: 2.9V
+Temperature: 2345
+Accuracy: 4 / -12 packets
+
+From Chip Antenna
+To PCB antenna
+CRC OK
+Packet RSSI: -93 dbm
+Packet SNR: 0 dB
+Message Number: 131
+Missed Message 133
+Power: 10
+Battery: 2.9V
+Temperature: 2345
+Accuracy: 5 / 3 packets
+
+
+Sensor Start
+Reset
+PINRSTF Reset
+------------
+Battery voltage greater than 2.9 V
+Testing Receiver
+PCB antenna
+First Message Number: 118, 118, 118
+Ready
+From Chip Antenna
+To PCB antenna
+CRC OK
+Packet RSSI: -85 dbm
+Packet SNR: 7 dB
+Message Number: 133
+Missed Message 119
+Power: 10
+Battery: 2.9V
+Temperature: 2345
+Accuracy: 1 / 15 packets
+
+From PCB antenna
+To PCB antenna
+CRC OK
+Packet RSSI: -85 dbm
+Packet SNR: 7 dB
+Message Number: 119
+Missed Message 120
+Power: 10
+Battery: 2.9V
+Temperature: 2345
+Accuracy: 2 / 1 packets
+
+From Chip Antenna
+To PCB antenna
+CRC OK
+Packet RSSI: -90 dbm
+Packet SNR: 3 dB
+Message Number: 134
+Missed Message 121
+Power: 10
+Battery: 2.9V
+Temperature: 2345
+Accuracy: 3 / 16 packets
+
+From PCB antenna
+To PCB antenna
+CRC OK
+Packet RSSI: -80 dbm
+Packet SNR: 8 dB
+Message Number: 120
+Missed Message 122
+Power: 10
+Battery: 2.9V
+Temperature: 2345
+Accuracy: 4 / 2 packets
+
+From Chip Antenna
+To PCB antenna
+CRC OK
+Packet RSSI: -80 dbm
+Packet SNR: 8 dB
+Message Number: 135
+Missed Message 123
+Power: 10
+Battery: 2.9V
+Temperature: 2345
+Accuracy: 5 / 17 packets
+
+From PCB antenna
+To PCB antenna
+CRC OK
+Packet RSSI: -68 dbm
+Packet SNR: 10 dB
+Message Number: 121
+Missed Message 124
+Power: 10
+Battery: 2.9V
+Temperature: 2345
+Accuracy: 6 / 3 packets
+
+From Chip Antenna
+To PCB antenna
+CRC OK
+Packet RSSI: -88 dbm
+Packet SNR: 5 dB
+Message Number: 136
+Missed Message 125
+Power: 10
+Battery: 2.9V
+Temperature: 2345
+Accuracy: 7 / 18 packets
+
+From PCB antenna
+To PCB antenna
+CRC OK
+Packet RSSI: -79 dbm
+Packet SNR: 8 dB
+Message Number: 122
+Missed Message 126
+Power: 10
+Battery: 2.9V
+Temperature: 2345
+Accuracy: 8 / 4 packets
+
+From Chip Antenna
+To PCB antenna
+CRC OK
+Packet RSSI: -91 dbm
+Packet SNR: 2 dB
+Message Number: 137
+Missed Message 127
+Power: 10
+Battery: 2.9V
+Temperature: 2345
+Accuracy: 9 / 19 packets
+
+From PCB antenna
+To PCB antenna
+CRC OK
+Packet RSSI: -79 dbm
+Packet SNR: 8 dB
+Message Number: 123
+Missed Message 128
+Power: 10
+Battery: 2.9V
+Temperature: 2345
+Accuracy: 10 / 5 packets
+
+From Chip Antenna
+To PCB antenna
+CRC OK
+Packet RSSI: -82 dbm
+Packet SNR: 7 dB
+Message Number: 138
+Missed Message 129
+Power: 10
+Battery: 2.9V
+Temperature: 2345
+Accuracy: 11 / 20 packets
+
+From PCB antenna
+To PCB antenna
+CRC OK
+Packet RSSI: -79 dbm
+Packet SNR: 8 dB
+Message Number: 124
+Missed Message 130
+Power: 10
+Battery: 2.9V
+Temperature: 2345
+Accuracy: 12 / 6 packets
+
+From PCB antenna
+To PCB antenna
+CRC OK
+Packet RSSI: -76 dbm
+Packet SNR: 8 dB
+Message Number: 125
+Missed Message 131
+Power: 10
+Battery: 2.9V
+Temperature: 2345
+Accuracy: 13 / 7 packets
+
+From Chip Antenna
+To PCB antenna
+CRC OK
+Packet RSSI: -91 dbm
+Packet SNR: 1 dB
+Message Number: 140
+Missed Message 132
+Power: 10
+Battery: 2.9V
+Temperature: 2345
+Accuracy: 14 / 22 packets
+
+From PCB antenna
+To PCB antenna
+CRC OK
+Packet RSSI: -79 dbm
+Packet SNR: 11 dB
+Message Number: 126
+Missed Message 133
+Power: 10
+Battery: 2.9V
+Temperature: 2345
+Accuracy: 15 / 8 packets
+
+From Chip Antenna
+To PCB antenna
+CRC OK
+Packet RSSI: -89 dbm
+Packet SNR: 4 dB
+Message Number: 141
+Missed Message 134
+Power: 10
+Battery: 2.9V
+Temperature: 2345
+Accuracy: 16 / 23 packets
+
+From PCB antenna
+To PCB antenna
+CRC OK
+Packet RSSI: -77 dbm
+Packet SNR: 9 dB
+Message Number: 127
+Missed Message 135
+Power: 10
+Battery: 2.9V
+Temperature: 2345
+Accuracy: 17 / 9 packets
+
+From Chip Antenna
+To PCB antenna
+CRC OK
+Packet RSSI: -86 dbm
+Packet SNR: 6 dB
+Message Number: 142
+Missed Message 136
+Power: 10
+Battery: 2.9V
+Temperature: 2345
+Accuracy: 18 / 24 packets
+
+From PCB antenna
+To PCB antenna
+CRC OK
+Packet RSSI: -78 dbm
+Packet SNR: 9 dB
+Message Number: 128
+Missed Message 137
+Power: 10
+Battery: 2.9V
+Temperature: 2345
+Accuracy: 19 / 10 packets
+
+From PCB antenna
+To PCB antenna
+CRC OK
+Packet RSSI: -79 dbm
+Packet SNR: 9 dB
+Message Number: 129
+Missed Message 138
+Power: 10
+Battery: 2.9V
+Temperature: 2345
+Accuracy: 20 / 11 packets
+
+From Chip Antenna
+To PCB antenna
+CRC OK
+Packet RSSI: -90 dbm
+Packet SNR: 4 dB
+Message Number: 144
+Missed Message 139
+Power: 10
+Battery: 2.9V
+Temperature: 2345
+Accuracy: 21 / 26 packets
+
+From Chip Antenna
+To PCB antenna
+CRC OK
+Packet RSSI: -97 dbm
+Packet SNR: 54 dB
+Message Number: 145
+Missed Message 140
+Power: 10
+Battery: 2.9V
+Temperature: 2345
+Accuracy: 22 / 27 packets
+
+From PCB antenna
+To PCB antenna
+CRC OK
+Packet RSSI: -85 dbm
+Packet SNR: 8 dB
+Message Number: 131
+Missed Message 141
+Power: 10
+Battery: 2.9V
+Temperature: 2345
+Accuracy: 23 / 13 packets
+
+From Chip Antenna
+To PCB antenna
+CRC OK
+Packet RSSI: -92 dbm
+Packet SNR: 2 dB
+Message Number: 146
+Missed Message 142
+Power: 10
+Battery: 2.9V
+Temperature: 2345
+Accuracy: 24 / 28 packets
+
+From PCB antenna
+To PCB antenna
+CRC OK
+Packet RSSI: -91 dbm
+Packet SNR: 63 dB
+Message Number: 132
+Missed Message 143
+Power: 10
+Battery: 2.9V
+Temperature: 2345
+Accuracy: 25 / 14 packets
+
+From Chip Antenna
+To PCB antenna
+CRC OK
+Packet RSSI: -94 dbm
+Packet SNR: 63 dB
+Message Number: 147
+Missed Message 144
+Power: 10
+Battery: 2.9V
+Temperature: 2345
+Accuracy: 26 / 29 packets
+
+From PCB antenna
+To PCB antenna
+CRC OK
+Packet RSSI: -87 dbm
+Packet SNR: 6 dB
+Message Number: 133
+Missed Message 145
+Power: 10
+Battery: 2.9V
+Temperature: 2345
+Accuracy: 27 / 15 packets
+
+From Chip Antenna
+To PCB antenna
+CRC OK
+Packet RSSI: -94 dbm
+Packet SNR: 63 dB
+Message Number: 148
+Missed Message 146
+Power: 10
+Battery: 2.9V
+Temperature: 2345
+Accuracy: 28 / 30 packets
+
+From PCB antenna
+To PCB antenna
+CRC OK
+Packet RSSI: -84 dbm
+Packet SNR: 7 dB
+Message Number: 134
+Missed Message 147
+Power: 10
+Battery: 2.9V
+Temperature: 2345
+Accuracy: 29 / 16 packets
+
+From PCB antenna
+To PCB antenna
+CRC OK
+Packet RSSI: -83 dbm
+Packet SNR: 8 dB
+Message Number: 135
+Missed Message 148
+Power: 10
+Battery: 2.9V
+Temperature: 2345
+Accuracy: 30 / 17 packets
+
+From Chip Antenna
+To PCB antenna
+CRC OK
+Packet RSSI: -86 dbm
+Packet SNR: 7 dB
+Message Number: 150
+Missed Message 149
+Power: 10
+Battery: 2.9V
+Temperature: 2345
+Accuracy: 31 / 32 packets
+
+From PCB antenna
+To PCB antenna
+CRC OK
+Packet RSSI: -82 dbm
+Packet SNR: 8 dB
+Message Number: 136
+Missed Message 150
+Power: 10
+Battery: 2.9V
+Temperature: 2345
+Accuracy: 32 / 18 packets
+
+From Chip Antenna
+To PCB antenna
+CRC OK
+Packet RSSI: -90 dbm
+Packet SNR: 4 dB
+Message Number: 151
+Power: 10
+Battery: 2.9V
+Temperature: 2345
+Accuracy: 33 / 33 packets
+
+From PCB antenna
+To PCB antenna
+CRC OK
+Packet RSSI: -90 dbm
+Packet SNR: 4 dB
+Message Number: 137
+Missed Message 152
+Power: 10
+Battery: 2.9V
+Temperature: 2345
+Accuracy: 34 / 19 packets
+
+From Chip Antenna
+To PCB antenna
+CRC OK
+Packet RSSI: -90 dbm
+Packet SNR: 4 dB
+Message Number: 152
+Missed Message 153
+Power: 10
+Battery: 2.9V
+Temperature: 2345
+Accuracy: 35 / 34 packets
+
+From PCB antenna
+To PCB antenna
+CRC OK
+Packet RSSI: -81 dbm
+Packet SNR: 9 dB
+Message Number: 138
+Missed Message 154
+Power: 10
+Battery: 2.9V
+Temperature: 2345
+Accuracy: 36 / 20 packets
+
+From Chip Antenna
+To PCB antenna
+CRC OK
+Packet RSSI: -97 dbm
+Packet SNR: 61 dB
+Message Number: 153
+Missed Message 155
+Power: 10
+Battery: 2.9V
+Temperature: 2345
+Accuracy: 37 / 35 packets
+
+From Chip Antenna
+To PCB antenna
+CRC OK
+Packet RSSI: -96 dbm
+Packet SNR: 58 dB
+Message Number: 154
+Missed Message 156
+Power: 10
+Battery: 2.9V
+Temperature: 2345
+Accuracy: 38 / 36 packets
+
+From PCB antenna
+To PCB antenna
+CRC OK
+Packet RSSI: -88 dbm
+Packet SNR: 7 dB
+Message Number: 140
+Missed Message 157
+Power: 10
+Battery: 2.9V
+Temperature: 2345
+Accuracy: 39 / 22 packets
+
+From Chip Antenna
+To PCB antenna
+CRC OK
+Packet RSSI: -97 dbm
+Packet SNR: 62 dB
+Message Number: 155
+Missed Message 158
+Power: 10
+Battery: 2.9V
+Temperature: 2345
+Accuracy: 40 / 37 packets
+
+From PCB antenna
+To PCB antenna
+CRC OK
+Packet RSSI: -86 dbm
+Packet SNR: 8 dB
+Message Number: 141
+Missed Message 159
+Power: 10
+Battery: 2.9V
+Temperature: 2345
+Accuracy: 41 / 23 packets
+
+From Chip Antenna
+To PCB antenna
+CRC OK
+Packet RSSI: -97 dbm
+Packet SNR: 62 dB
+Message Number: 156
+Missed Message 160
+Power: 10
+Battery: 2.9V
+Temperature: 2345
+Accuracy: 42 / 38 packets
+
+From PCB antenna
+To PCB antenna
+CRC OK
+Packet RSSI: -88 dbm
+Packet SNR: 7 dB
+Message Number: 142
+Missed Message 161
+Power: 10
+Battery: 2.9V
+Temperature: 2345
+Accuracy: 43 / 24 packets
+
+From Chip Antenna
+To PCB antenna
+CRC OK
+Packet RSSI: -93 dbm
+Packet SNR: 4 dB
+Message Number: 157
+Missed Message 162
+Power: 10
+Battery: 2.9V
+Temperature: 2345
+Accuracy: 44 / 39 packets
+
+From PCB antenna
+To PCB antenna
+CRC OK
+Packet RSSI: -86 dbm
+Packet SNR: 8 dB
+Message Number: 143
+Missed Message 163
+Power: 10
+Battery: 2.9V
+Temperature: 2345
+Accuracy: 45 / 25 packets
+
+From Chip Antenna
+To PCB antenna
+CRC OK
+Packet RSSI: -93 dbm
+Packet SNR: 3 dB
+Message Number: 158
+Missed Message 164
+Power: 10
+Battery: 2.9V
+Temperature: 2345
+Accuracy: 46 / 40 packets
+
+From PCB antenna
+To PCB antenna
+CRC OK
+Packet RSSI: -84 dbm
+Packet SNR: 8 dB
+Message Number: 144
+Missed Message 165
+Power: 10
+Battery: 2.9V
+Temperature: 2345
+Accuracy: 47 / 26 packets
+
+From Chip Antenna
+To PCB antenna
+CRC OK
+Packet RSSI: -98 dbm
+Packet SNR: 56 dB
+Message Number: 159
+Missed Message 166
+Power: 10
+Battery: 2.9V
+Temperature: 2345
+Accuracy: 48 / 41 packets
+
+From PCB antenna
+To PCB antenna
+CRC OK
+Packet RSSI: -80 dbm
+Packet SNR: 9 dB
+Message Number: 145
+Missed Message 167
+Power: 10
+Battery: 2.9V
+Temperature: 2345
+Accuracy: 49 / 27 packets
+
+From Chip Antenna
+To PCB antenna
+CRC OK
+Packet RSSI: -87 dbm
+Packet SNR: 2 dB
+Message Number: 160
+Missed Message 168
+Power: 10
+Battery: 2.9V
+Temperature: 2345
+Accuracy: 50 / 42 packets
+
+From PCB antenna
+To PCB antenna
+CRC OK
+Packet RSSI: -84 dbm
+Packet SNR: 6 dB
+Message Number: 146
+Missed Message 169
+Power: 10
+Battery: 2.9V
+Temperature: 2345
+Accuracy: 51 / 28 packets
+
+From Chip Antenna
+To PCB antenna
+CRC OK
+Packet RSSI: -90 dbm
+Packet SNR: 6 dB
+Message Number: 161
+Missed Message 170
+Power: 10
+Battery: 2.9V
+Temperature: 2345
+Accuracy: 52 / 43 packets
+
+From PCB antenna
+To PCB antenna
+CRC OK
+Packet RSSI: -86 dbm
+Packet SNR: 7 dB
+Message Number: 147
+Missed Message 171
+Power: 10
+Battery: 2.9V
+Temperature: 2345
+Accuracy: 53 / 29 packets
+
+From Chip Antenna
+To PCB antenna
+CRC OK
+Packet RSSI: -88 dbm
+Packet SNR: 3 dB
+Message Number: 162
+Missed Message 172
+Power: 10
+Battery: 2.9V
+Temperature: 2345
+Accuracy: 54 / 44 packets
+
+From PCB antenna
+To PCB antenna
+CRC OK
+Packet RSSI: -83 dbm
+Packet SNR: 6 dB
+Message Number: 148
+Missed Message 173
+Power: 10
+Battery: 2.9V
+Temperature: 2345
+Accuracy: 55 / 30 packets
+
+From PCB antenna
+To PCB antenna
+CRC OK
+Packet RSSI: -78 dbm
+Packet SNR: 8 dB
+Message Number: 149
+Missed Message 174
+Power: 10
+Battery: 2.9V
+Temperature: 2345
+Accuracy: 56 / 31 packets
+
+From Chip Antenna
+To PCB antenna
+CRC OK
+Packet RSSI: -91 dbm
+Packet SNR: 62 dB
+Message Number: 164
+Missed Message 175
+Power: 10
+Battery: 2.9V
+Temperature: 2345
+Accuracy: 57 / 46 packets
+
+From PCB antenna
+To PCB antenna
+CRC OK
+Packet RSSI: -88 dbm
+Packet SNR: 3 dB
+Message Number: 150
+Missed Message 176
+Power: 10
+Battery: 2.9V
+Temperature: 2345
+Accuracy: 58 / 32 packets
+
+From Chip Antenna
+To PCB antenna
+CRC OK
+Packet RSSI: -93 dbm
+Packet SNR: 59 dB
+Message Number: 165
+Missed Message 177
+Power: 10
+Battery: 2.9V
+Temperature: 2345
+Accuracy: 59 / 47 packets
+
+From PCB antenna
+To PCB antenna
+CRC OK
+Packet RSSI: -90 dbm
+Packet SNR: 1 dB
+Message Number: 151
+Missed Message 178
+Power: 10
+Battery: 2.9V
+Temperature: 2345
+Accuracy: 60 / 33 packets
+
+From PCB antenna
+To PCB antenna
+CRC OK
+Packet RSSI: -90 dbm
+Packet SNR: 1 dB
+Message Number: 152
+Missed Message 179
+Power: 10
+Battery: 2.9V
+Temperature: 2345
+Accuracy: 61 / 34 packets
+
+From Chip Antenna
+To PCB antenna
+CRC OK
+Packet RSSI: -93 dbm
+Packet SNR: 58 dB
+Message Number: 167
+Missed Message 180
+Power: 10
+Battery: 2.9V
+Temperature: 2345
+Accuracy: 62 / 49 packets
+
+From PCB antenna
+To PCB antenna
+CRC OK
+Packet RSSI: -88 dbm
+Packet SNR: 3 dB
+Message Number: 153
+Missed Message 181
+Power: 10
+Battery: 2.9V
+Temperature: 2345
+Accuracy: 63 / 35 packets
+
+From Chip Antenna
+To PCB antenna
+CRC OK
+Packet RSSI: -93 dbm
+Packet SNR: 56 dB
+Message Number: 168
+Missed Message 182
+Power: 10
+Battery: 2.9V
+Temperature: 2345
+Accuracy: 64 / 50 packets
+
+From PCB antenna
+To PCB antenna
+CRC OK
+Packet RSSI: -84 dbm
+Packet SNR: 6 dB
+Message Number: 155
+Missed Message 183
+Power: 10
+Battery: 2.9V
+Temperature: 2345
+Accuracy: 65 / 37 packets
+
+From Chip Antenna
+To PCB antenna
+CRC OK
+Packet RSSI: -92 dbm
+Packet SNR: 59 dB
+Message Number: 170
+Missed Message 184
+Power: 10
+Battery: 2.9V
+Temperature: 2345
+Accuracy: 66 / 52 packets
+
+From PCB antenna
+To PCB antenna
+CRC OK
+Packet RSSI: -87 dbm
+Packet SNR: 3 dB
+Message Number: 156
+Missed Message 185
+Power: 10
+Battery: 2.9V
+Temperature: 2345
+Accuracy: 67 / 38 packets
+
+From PCB antenna
+To PCB antenna
+CRC OK
+Packet RSSI: -91 dbm
+Packet SNR: 63 dB
+Message Number: 157
+Missed Message 186
+Power: 10
+Battery: 2.9V
+Temperature: 2345
+Accuracy: 68 / 39 packets
+
+From Chip Antenna
+To PCB antenna
+CRC OK
+Packet RSSI: -92 dbm
+Packet SNR: 61 dB
+Message Number: 172
+Missed Message 187
+Power: 10
+Battery: 2.9V
+Temperature: 2345
+Accuracy: 69 / 54 packets
+
+From PCB antenna
+To PCB antenna
+CRC OK
+Packet RSSI: -86 dbm
+Packet SNR: 5 dB
+Message Number: 158
+Missed Message 188
+Power: 10
+Battery: 2.9V
+Temperature: 2345
+Accuracy: 70 / 40 packets
+
+From PCB antenna
+To PCB antenna
+CRC OK
+Packet RSSI: -89 dbm
+Packet SNR: 1 dB
+Message Number: 159
+Missed Message 189
+Power: 10
+Battery: 2.9V
+Temperature: 2345
+Accuracy: 71 / 41 packets
+
+From Chip Antenna
+To PCB antenna
+CRC OK
+Packet RSSI: -93 dbm
+Packet SNR: 57 dB
+Message Number: 174
+Missed Message 190
+Power: 10
+Battery: 2.9V
+Temperature: 2345
+Accuracy: 72 / 56 packets
+
+From Chip Antenna
+To PCB antenna
+CRC OK
+Packet RSSI: -93 dbm
+Packet SNR: 58 dB
+Message Number: 175
+Missed Message 191
+Power: 10
+Battery: 2.9V
+Temperature: 2345
+Accuracy: 73 / 57 packets
+
+From Chip Antenna
+To PCB antenna
+CRC OK
+Packet RSSI: -92 dbm
+Packet SNR: 60 dB
+Message Number: 176
+Missed Message 192
+Power: 10
+Battery: 2.9V
+Temperature: 2345
+Accuracy: 74 / 58 packets
+
+From PCB antenna
+To PCB antenna
+CRC OK
+Packet RSSI: -93 dbm
+Packet SNR: 59 dB
+Message Number: 162
+Missed Message 193
+Power: 10
+Battery: 2.9V
+Temperature: 2345
+Accuracy: 75 / 44 packets
+
+From Chip Antenna
+To PCB antenna
+CRC OK
+Packet RSSI: -92 dbm
+Packet SNR: 63 dB
+Message Number: 177
+Missed Message 194
+Power: 10
+Battery: 2.9V
+Temperature: 2345
+Accuracy: 76 / 59 packets
+
+From PCB antenna
+To PCB antenna
+CRC OK
+Packet RSSI: -88 dbm
+Packet SNR: 3 dB
+Message Number: 164
+Missed Message 195
+Power: 10
+Battery: 2.9V
+Temperature: 2345
+Accuracy: 77 / 46 packets
+
+From Chip Antenna
+To PCB antenna
+CRC OK
+Packet RSSI: -93 dbm
+Packet SNR: 58 dB
+Message Number: 180
+Missed Message 196
+Power: 10
+Battery: 2.9V
+Temperature: 2345
+Accuracy: 78 / 62 packets
+
+From PCB antenna
+To PCB antenna
+CRC OK
+Packet RSSI: -93 dbm
+Packet SNR: 57 dB
+Message Number: 166
+Missed Message 197
+Power: 10
+Battery: 2.9V
+Temperature: 2345
+Accuracy: 79 / 48 packets
+
+From Chip Antenna
+To PCB antenna
+CRC OK
+Packet RSSI: -93 dbm
+Packet SNR: 58 dB
+Message Number: 181
+Missed Message 198
+Power: 10
+Battery: 2.9V
+Temperature: 2345
+Accuracy: 80 / 63 packets
+
+From PCB antenna
+To PCB antenna
+CRC OK
+Packet RSSI: -91 dbm
+Packet SNR: 1 dB
+Message Number: 167
+Missed Message 199
+Power: 10
+Battery: 2.9V
+Temperature: 2345
+Accuracy: 81 / 49 packets
+
+From PCB antenna
+To PCB antenna
+CRC OK
+Packet RSSI: -94 dbm
+Packet SNR: 56 dB
+Message Number: 168
+Missed Message 200
+Power: 10
+Battery: 2.9V
+Temperature: 2345
+Accuracy: 82 / 50 packets
+
+From Chip Antenna
+To PCB antenna
+CRC OK
+Packet RSSI: -92 dbm
+Packet SNR: 62 dB
+Message Number: 183
+Missed Message 201
+Power: 10
+Battery: 2.9V
+Temperature: 2345
+Accuracy: 83 / 65 packets
+
+From PCB antenna
+To PCB antenna
+CRC OK
+Packet RSSI: -94 dbm
+Packet SNR: 56 dB
+Message Number: 169
+Missed Message 202
+Power: 10
+Battery: 2.9V
+Temperature: 2345
+Accuracy: 84 / 51 packets
+
+From Chip Antenna
+To PCB antenna
+CRC OK
+Packet RSSI: -94 dbm
+Packet SNR: 55 dB
+Message Number: 184
+Missed Message 203
+Power: 10
+Battery: 2.9V
+Temperature: 2345
+Accuracy: 85 / 66 packets
+
+From PCB antenna
+To PCB antenna
+CRC OK
+Packet RSSI: -92 dbm
+Packet SNR: 62 dB
+Message Number: 170
+Missed Message 204
+Power: 10
+Battery: 2.9V
+Temperature: 2345
+Accuracy: 86 / 52 packets
+
+From Chip Antenna
+To PCB antenna
+CRC OK
+Packet RSSI: -92 dbm
+Packet SNR: 56 dB
+Message Number: 185
+Missed Message 205
+Power: 10
+Battery: 2.9V
+Temperature: 2345
+Accuracy: 87 / 67 packets
+
+From PCB antenna
+To PCB antenna
+CRC OK
+Packet RSSI: -90 dbm
+Packet SNR: 0 dB
+Message Number: 171
+Missed Message 206
+Power: 10
+Battery: 2.9V
+Temperature: 2345
+Accuracy: 88 / 53 packets
+
+From PCB antenna
+To PCB antenna
+CRC OK
+Packet RSSI: -91 dbm
+Packet SNR: 63 dB
+Message Number: 172
+Missed Message 207
+Power: 10
+Battery: 2.9V
+Temperature: 2345
+Accuracy: 89 / 54 packets
+
+From Chip Antenna
+To PCB antenna
+CRC OK
+Packet RSSI: -90 dbm
+Packet SNR: 1 dB
+Message Number: 187
+Missed Message 208
+Power: 10
+Battery: 2.9V
+Temperature: 2345
+Accuracy: 90 / 69 packets
+
+From PCB antenna
+To PCB antenna
+CRC OK
+Packet RSSI: -90 dbm
+Packet SNR: 1 dB
+Message Number: 173
+Missed Message 209
+Power: 10
+Battery: 2.9V
+Temperature: 2345
+Accuracy: 91 / 55 packets
+
+From Chip Antenna
+To PCB antenna
+CRC OK
+Packet RSSI: -92 dbm
+Packet SNR: 60 dB
+Message Number: 188
+Missed Message 210
+Power: 10
+Battery: 2.9V
+Temperature: 2345
+Accuracy: 92 / 70 packets
+
+From PCB antenna
+To PCB antenna
+CRC OK
+Packet RSSI: -82 dbm
+Packet SNR: 7 dB
+Message Number: 174
+Missed Message 211
+Power: 10
+Battery: 2.9V
+Temperature: 2345
+Accuracy: 93 / 56 packets
+
+From Chip Antenna
+To PCB antenna
+CRC OK
+Packet RSSI: -94 dbm
+Packet SNR: 58 dB
+Message Number: 189
+Missed Message 212
+Power: 10
+Battery: 2.9V
+Temperature: 2345
+Accuracy: 94 / 71 packets
+
+From PCB antenna
+To PCB antenna
+CRC OK
+Packet RSSI: -88 dbm
+Packet SNR: 4 dB
+Message Number: 175
+Missed Message 213
+Power: 10
+Battery: 2.9V
+Temperature: 2345
+Accuracy: 95 / 57 packets
+
+From Chip Antenna
+To PCB antenna
+CRC OK
+Packet RSSI: -91 dbm
+Packet SNR: 62 dB
+Message Number: 190
+Missed Message 214
+Power: 10
+Battery: 2.9V
+Temperature: 2345
+Accuracy: 96 / 72 packets
+
+From PCB antenna
+To PCB antenna
+CRC OK
+Packet RSSI: -89 dbm
+Packet SNR: 2 dB
+Message Number: 176
+Missed Message 215
+Power: 10
+Battery: 2.9V
+Temperature: 2345
+Accuracy: 97 / 58 packets
+
+From Chip Antenna
+To PCB antenna
+CRC OK
+Packet RSSI: -90 dbm
+Packet SNR: 0 dB
+Message Number: 191
+Missed Message 216
+Power: 10
+Battery: 2.9V
+Temperature: 2345
+Accuracy: 98 / 73 packets
+
+From PCB antenna
+To PCB antenna
+CRC OK
+Packet RSSI: -88 dbm
+Packet SNR: 3 dB
+Message Number: 177
+Missed Message 217
+Power: 10
+Battery: 2.9V
+Temperature: 2345
+Accuracy: 99 / 59 packets
+
+From Chip Antenna
+To PCB antenna
+CRC OK
+Packet RSSI: -94 dbm
+Packet SNR: 57 dB
+Message Number: 192
+Missed Message 218
+Power: 10
+Battery: 2.9V
+Temperature: 2345
+Accuracy: 100 / 74 packets
+
+From PCB antenna
+To PCB antenna
+CRC OK
+Packet RSSI: -87 dbm
+Packet SNR: 4 dB
+Message Number: 178
+Missed Message 219
+Power: 10
+Battery: 2.9V
+Temperature: 2345
+Accuracy: 101 / 60 packets
+
+From Chip Antenna
+To PCB antenna
+CRC OK
+Packet RSSI: -91 dbm
+Packet SNR: 1 dB
+Message Number: 193
+Missed Message 220
+Power: 10
+Battery: 2.9V
+Temperature: 2345
+Accuracy: 102 / 75 packets
+
+From PCB antenna
+To PCB antenna
+CRC OK
+Packet RSSI: -83 dbm
+Packet SNR: 7 dB
+Message Number: 179
+Missed Message 221
+Power: 10
+Battery: 2.9V
+Temperature: 2345
+Accuracy: 103 / 61 packets
+
+From Chip Antenna
+To PCB antenna
+CRC OK
+Packet RSSI: -94 dbm
+Packet SNR: 59 dB
+Message Number: 194
+Missed Message 222
+Power: 10
+Battery: 2.9V
+Temperature: 2345
+Accuracy: 104 / 76 packets
+
+From PCB antenna
+To PCB antenna
+CRC OK
+Packet RSSI: -88 dbm
+Packet SNR: 3 dB
+Message Number: 180
+Missed Message 223
+Power: 10
+Battery: 2.9V
+Temperature: 2345
+Accuracy: 105 / 62 packets
+
+From Chip Antenna
+To PCB antenna
+CRC OK
+Packet RSSI: -92 dbm
+Packet SNR: 61 dB
+Message Number: 195
+Missed Message 224
+Power: 10
+Battery: 2.9V
+Temperature: 2345
+Accuracy: 106 / 77 packets
+
+From PCB antenna
+To PCB antenna
+CRC OK
+Packet RSSI: -89 dbm
+Packet SNR: 2 dB
+Message Number: 181
+Missed Message 225
+Power: 10
+Battery: 2.9V
+Temperature: 2345
+Accuracy: 107 / 63 packets
+
+From Chip Antenna
+To PCB antenna
+CRC OK
+Packet RSSI: -90 dbm
+Packet SNR: 1 dB
+Message Number: 197
+Missed Message 226
+Power: 10
+Battery: 2.9V
+Temperature: 2345
+Accuracy: 108 / 79 packets
+
+From PCB antenna
+To PCB antenna
+CRC OK
+Packet RSSI: -88 dbm
+Packet SNR: 4 dB
+Message Number: 183
+Missed Message 227
+Power: 10
+Battery: 2.9V
+Temperature: 2345
+Accuracy: 109 / 65 packets
+
+From Chip Antenna
+To PCB antenna
+CRC OK
+Packet RSSI: -91 dbm
+Packet SNR: 63 dB
+Message Number: 198
+Missed Message 228
+Power: 10
+Battery: 2.9V
+Temperature: 2345
+Accuracy: 110 / 80 packets
+
+From PCB antenna
+To PCB antenna
+CRC OK
+Packet RSSI: -87 dbm
+Packet SNR: 5 dB
+Message Number: 184
+Missed Message 229
+Power: 10
+Battery: 2.9V
+Temperature: 2345
+Accuracy: 111 / 66 packets
+
+From PCB antenna
+To PCB antenna
+CRC OK
+Packet RSSI: -91 dbm
+Packet SNR: 1 dB
+Message Number: 185
+Missed Message 230
+Power: 10
+Battery: 2.9V
+Temperature: 2345
+Accuracy: 112 / 67 packets
+
+From Chip Antenna
+To PCB antenna
+CRC OK
+Packet RSSI: -93 dbm
+Packet SNR: 61 dB
+Message Number: 200
+Missed Message 231
+Power: 10
+Battery: 2.9V
+Temperature: 2345
+Accuracy: 113 / 82 packets
+
+From PCB antenna
+To PCB antenna
+CRC OK
+Packet RSSI: -92 dbm
+Packet SNR: 62 dB
+Message Number: 186
+Missed Message 232
+Power: 10
+Battery: 2.9V
+Temperature: 2345
+Accuracy: 114 / 68 packets
+
+From Chip Antenna
+To PCB antenna
+CRC OK
+Packet RSSI: -89 dbm
+Packet SNR: 3 dB
+Message Number: 201
+Missed Message 233
+Power: 10
+Battery: 2.9V
+Temperature: 2345
+Accuracy: 115 / 83 packets
+
+From PCB antenna
+To PCB antenna
+CRC OK
+Packet RSSI: -82 dbm
+Packet SNR: 7 dB
+Message Number: 187
+Missed Message 234
+Power: 10
+Battery: 2.9V
+Temperature: 2345
+Accuracy: 116 / 69 packets
+
+From PCB antenna
+To PCB antenna
+CRC OK
+Packet RSSI: -86 dbm
+Packet SNR: 5 dB
+Message Number: 188
+Missed Message 235
+Power: 10
+Battery: 2.9V
+Temperature: 2345
+Accuracy: 117 / 70 packets
+
+From PCB antenna
+To PCB antenna
+CRC OK
+Packet RSSI: -87 dbm
+Packet SNR: 3 dB
+Message Number: 189
+Missed Message 236
+Power: 10
+Battery: 2.9V
+Temperature: 2345
+Accuracy: 118 / 71 packets
+
+From PCB antenna
+To PCB antenna
+CRC OK
+Packet RSSI: -89 dbm
+Packet SNR: 2 dB
+Message Number: 190
+Missed Message 237
+Power: 10
+Battery: 2.9V
+Temperature: 2345
+Accuracy: 119 / 72 packets
+
+From Chip Antenna
+To PCB antenna
+CRC OK
+Packet RSSI: -93 dbm
+Packet SNR: 60 dB
+Message Number: 205
+Missed Message 238
+Power: 10
+Battery: 2.9V
+Temperature: 2345
+Accuracy: 120 / 87 packets
+
+From PCB antenna
+To PCB antenna
+CRC OK
+Packet RSSI: -87 dbm
+Packet SNR: 2 dB
+Message Number: 191
+Missed Message 239
+Power: 10
+Battery: 2.9V
+Temperature: 2345
+Accuracy: 121 / 73 packets
+
+From PCB antenna
+To PCB antenna
+CRC OK
+Packet RSSI: -84 dbm
+Packet SNR: 4 dB
+Message Number: 193
+Missed Message 240
+Power: 10
+Battery: 2.9V
+Temperature: 2345
+Accuracy: 122 / 75 packets
+
+From PCB antenna
+To PCB antenna
+CRC OK
+Packet RSSI: -84 dbm
+Packet SNR: 6 dB
+Message Number: 195
+Missed Message 241
+Power: 10
+Battery: 2.9V
+Temperature: 2345
+Accuracy: 123 / 77 packets
+
+From Chip Antenna
+To PCB antenna
+CRC OK
+Packet RSSI: -86 dbm
+Packet SNR: 5 dB
+Message Number: 209
+Missed Message 242
+Power: 10
+Battery: 2.9V
+Temperature: 2345
+Accuracy: 124 / 91 packets
+
+From PCB antenna
+To PCB antenna
+CRC OK
+Packet RSSI: -82 dbm
+Packet SNR: 7 dB
+Message Number: 196
+Missed Message 243
+Power: 10
+Battery: 2.9V
+Temperature: 2345
+Accuracy: 125 / 78 packets
+
+From Chip Antenna
+To PCB antenna
+CRC OK
+Packet RSSI: -92 dbm
+Packet SNR: 61 dB
+Message Number: 210
+Missed Message 244
+Power: 10
+Battery: 2.9V
+Temperature: 2345
+Accuracy: 126 / 92 packets
+
+From PCB antenna
+To PCB antenna
+CRC OK
+Packet RSSI: -89 dbm
+Packet SNR: 3 dB
+Message Number: 197
+Missed Message 245
+Power: 10
+Battery: 2.9V
+Temperature: 2345
+Accuracy: 127 / 79 packets
+
+From PCB antenna
+To PCB antenna
+CRC OK
+Packet RSSI: -82 dbm
+Packet SNR: 7 dB
+Message Number: 198
+Missed Message 246
+Power: 10
+Battery: 2.9V
+Temperature: 2345
+Accuracy: 128 / 80 packets
+
+From Chip Antenna
+To PCB antenna
+CRC OK
+Packet RSSI: -88 dbm
+Packet SNR: 4 dB
+Message Number: 212
+Missed Message 247
+Power: 10
+Battery: 2.9V
+Temperature: 2345
+Accuracy: 129 / 94 packets
+
+From PCB antenna
+To PCB antenna
+CRC OK
+Packet RSSI: -84 dbm
+Packet SNR: 6 dB
+Message Number: 199
+Missed Message 248
+Power: 10
+Battery: 2.9V
+Temperature: 2345
+Accuracy: 130 / 81 packets
+
+From Chip Antenna
+To PCB antenna
+CRC OK
+Packet RSSI: -89 dbm
+Packet SNR: 4 dB
+Message Number: 213
+Missed Message 249
+Power: 10
+Battery: 2.9V
+Temperature: 2345
+Accuracy: 131 / 95 packets
+
+From PCB antenna
+To PCB antenna
+CRC OK
+Packet RSSI: -74 dbm
+Packet SNR: 9 dB
+Message Number: 200
+Missed Message 250
+Power: 10
+Battery: 2.9V
+Temperature: 2345
+Accuracy: 132 / 82 packets
+
+From Chip Antenna
+To PCB antenna
+CRC OK
+Packet RSSI: -87 dbm
+Packet SNR: 4 dB
+Message Number: 214
+Missed Message 251
+Power: 10
+Battery: 2.9V
+Temperature: 2345
+Accuracy: 133 / 96 packets
+
+From PCB antenna
+To PCB antenna
+CRC OK
+Packet RSSI: -71 dbm
+Packet SNR: 9 dB
+Message Number: 201
+Missed Message 252
+Power: 10
+Battery: 2.9V
+Temperature: 2345
+Accuracy: 134 / 83 packets
+
+From Chip Antenna
+To PCB antenna
+CRC OK
+Packet RSSI: -88 dbm
+Packet SNR: 2 dB
+Message Number: 215
+Missed Message 253
+Power: 10
+Battery: 2.9V
+Temperature: 2345
+Accuracy: 135 / 97 packets
+
+From PCB antenna
+To PCB antenna
+CRC OK
+Packet RSSI: -79 dbm
+Packet SNR: 8 dB
+Message Number: 202
+Missed Message 254
+Power: 10
+Battery: 2.9V
+Temperature: 2345
+Accuracy: 136 / 84 packets
+
+From Chip Antenna
+To PCB antenna
+CRC OK
+Packet RSSI: -84 dbm
+Packet SNR: 6 dB
+Message Number: 216
+Missed Message 255
+Power: 10
+Battery: 2.9V
+Temperature: 2345
+Accuracy: 137 / 98 packets
+
+From Chip Antenna
+To PCB antenna
+CRC OK
+Packet RSSI: -90 dbm
+Packet SNR: 1 dB
+Message Number: 217
+Missed Message 256
+Power: 10
+Battery: 2.9V
+Temperature: 2345
+Accuracy: 138 / 99 packets
+
+From PCB antenna
+To PCB antenna
+CRC OK
+Packet RSSI: -85 dbm
+Packet SNR: 6 dB
+Message Number: 204
+Missed Message 257
+Power: 10
+Battery: 2.9V
+Temperature: 2345
+Accuracy: 139 / 86 packets
+
+From Chip Antenna
+To PCB antenna
+CRC OK
+Packet RSSI: -85 dbm
+Packet SNR: 5 dB
+Message Number: 218
+Missed Message 258
+Power: 10
+Battery: 2.9V
+Temperature: 2345
+Accuracy: 140 / 100 packets
+
+From PCB antenna
+To PCB antenna
+CRC OK
+Packet RSSI: -80 dbm
+Packet SNR: 62 dB
+Message Number: 205
+Missed Message 259
+Power: 10
+Battery: 2.9V
+Temperature: 2345
+Accuracy: 141 / 87 packets
+
+From Chip Antenna
+To PCB antenna
+CRC OK
+Packet RSSI: -86 dbm
+Packet SNR: 5 dB
+Message Number: 219
+Missed Message 260
+Power: 10
+Battery: 2.9V
+Temperature: 2345
+Accuracy: 142 / 101 packets
+
+From PCB antenna
+To PCB antenna
+CRC OK
+Packet RSSI: -69 dbm
+Packet SNR: 9 dB
+Message Number: 206
+Missed Message 261
+Power: 10
+Battery: 2.9V
+Temperature: 2345
+Accuracy: 143 / 88 packets
+
+From PCB antenna
+To PCB antenna
+CRC OK
+Packet RSSI: -73 dbm
+Packet SNR: 9 dB
+Message Number: 207
+Missed Message 262
+Power: 10
+Battery: 2.9V
+Temperature: 2345
+Accuracy: 144 / 89 packets
+
+From Chip Antenna
+To PCB antenna
+CRC OK
+Packet RSSI: -74 dbm
+Packet SNR: 9 dB
+Message Number: 221
+Missed Message 263
+Power: 10
+Battery: 2.9V
+Temperature: 2345
+Accuracy: 145 / 103 packets
+
+From PCB antenna
+To PCB antenna
+CRC OK
+Packet RSSI: -71 dbm
+Packet SNR: 9 dB
+Message Number: 208
+Missed Message 264
+Power: 10
+Battery: 2.9V
+Temperature: 2345
+Accuracy: 146 / 90 packets
+
+From Chip Antenna
+To PCB antenna
+CRC OK
+Packet RSSI: -77 dbm
+Packet SNR: 8 dB
+Message Number: 222
+Missed Message 265
+Power: 10
+Battery: 2.9V
+Temperature: 2345
+Accuracy: 147 / 104 packets
+
+From PCB antenna
+To PCB antenna
+CRC OK
+Packet RSSI: -70 dbm
+Packet SNR: 9 dB
+Message Number: 209
+Missed Message 266
+Power: 10
+Battery: 2.9V
+Temperature: 2345
+Accuracy: 148 / 91 packets
+
+From Chip Antenna
+To PCB antenna
+CRC OK
+Packet RSSI: -78 dbm
+Packet SNR: 8 dB
+Message Number: 223
+Missed Message 267
+Power: 10
+Battery: 2.9V
+Temperature: 2345
+Accuracy: 149 / 105 packets
+
+From PCB antenna
+To PCB antenna
+CRC OK
+Packet RSSI: -70 dbm
+Packet SNR: 9 dB
+Message Number: 210
+Missed Message 268
+Power: 10
+Battery: 2.9V
+Temperature: 2345
+Accuracy: 150 / 92 packets
+
+From Chip Antenna
+To PCB antenna
+CRC OK
+Packet RSSI: -70 dbm
+Packet SNR: 9 dB
+Message Number: 224
+Missed Message 269
+Power: 10
+Battery: 2.9V
+Temperature: 2345
+Accuracy: 151 / 106 packets
+
+From PCB antenna
+To PCB antenna
+CRC OK
+Packet RSSI: -66 dbm
+Packet SNR: 10 dB
+Message Number: 211
+Missed Message 270
+Power: 10
+Battery: 2.9V
+Temperature: 2345
+Accuracy: 152 / 93 packets
+
+From Chip Antenna
+To PCB antenna
+CRC OK
+Packet RSSI: -65 dbm
+Packet SNR: 9 dB
+Message Number: 225
+Missed Message 271
+Power: 10
+Battery: 2.9V
+Temperature: 2345
+Accuracy: 153 / 107 packets
+
+From PCB antenna
+To PCB antenna
+CRC OK
+Packet RSSI: -76 dbm
+Packet SNR: 9 dB
+Message Number: 212
+Missed Message 272
+Power: 10
+Battery: 2.9V
+Temperature: 2345
+Accuracy: 154 / 94 packets
+
+From Chip Antenna
+To PCB antenna
+CRC OK
+Packet RSSI: -71 dbm
+Packet SNR: 9 dB
+Message Number: 226
+Missed Message 273
+Power: 10
+Battery: 2.9V
+Temperature: 2345
+Accuracy: 155 / 108 packets
+
+From PCB antenna
+To PCB antenna
+CRC OK
+Packet RSSI: -60 dbm
+Packet SNR: 9 dB
+Message Number: 213
+Missed Message 274
+Power: 10
+Battery: 2.9V
+Temperature: 2345
+Accuracy: 156 / 95 packets
+
+From Chip Antenna
+To PCB antenna
+CRC OK
+Packet RSSI: -66 dbm
+Packet SNR: 9 dB
+Message Number: 227
+Missed Message 275
+Power: 10
+Battery: 2.9V
+Temperature: 2345
+Accuracy: 157 / 109 packets
+
+From PCB antenna
+To PCB antenna
+CRC OK
+Packet RSSI: -66 dbm
+Packet SNR: 9 dB
+Message Number: 214
+Missed Message 276
+Power: 10
+Battery: 2.9V
+Temperature: 2345
+Accuracy: 158 / 96 packets
+
+From Chip Antenna
+To PCB antenna
+CRC OK
+Packet RSSI: -78 dbm
+Packet SNR: 8 dB
+Message Number: 228
+Missed Message 277
+Power: 10
+Battery: 2.9V
+Temperature: 2345
+Accuracy: 159 / 110 packets
+
+From PCB antenna
+To PCB antenna
+CRC OK
+Packet RSSI: -62 dbm
+Packet SNR: 9 dB
+Message Number: 215
+Missed Message 278
+Power: 10
+Battery: 2.9V
+Temperature: 2345
+Accuracy: 160 / 97 packets
+
+From Chip Antenna
+To PCB antenna
+CRC OK
+Packet RSSI: -69 dbm
+Packet SNR: 9 dB
+Message Number: 229
+Missed Message 279
+Power: 10
+Battery: 2.9V
+Temperature: 2345
+Accuracy: 161 / 111 packets
+
+From PCB antenna
+To PCB antenna
+CRC OK
+Packet RSSI: -65 dbm
+Packet SNR: 9 dB
+Message Number: 216
+Missed Message 280
+Power: 10
+Battery: 2.9V
+Temperature: 2345
+Accuracy: 162 / 98 packets
+
+From Chip Antenna
+To PCB antenna
+CRC OK
+Packet RSSI: -67 dbm
+Packet SNR: 9 dB
+Message Number: 230
+Missed Message 281
+Power: 10
+Battery: 2.9V
+Temperature: 2345
+Accuracy: 163 / 112 packets
+
+From PCB antenna
+To PCB antenna
+CRC OK
+Packet RSSI: -57 dbm
+Packet SNR: 9 dB
+Message Number: 217
+Missed Message 282
+Power: 10
+Battery: 2.9V
+Temperature: 2345
+Accuracy: 164 / 99 packets
+
+From Chip Antenna
+To PCB antenna
+CRC OK
+Packet RSSI: -67 dbm
+Packet SNR: 9 dB
+Message Number: 231
+Missed Message 283
+Power: 10
+Battery: 2.9V
+Temperature: 2345
+Accuracy: 165 / 113 packets
+
+From PCB antenna
+To PCB antenna
+CRC OK
+Packet RSSI: -71 dbm
+Packet SNR: 9 dB
+Message Number: 218
+Missed Message 284
+Power: 10
+Battery: 2.9V
+Temperature: 2345
+Accuracy: 166 / 100 packets
+
+From Chip Antenna
+To PCB antenna
+CRC OK
+Packet RSSI: -72 dbm
+Packet SNR: 9 dB
+Message Number: 232
+Missed Message 285
+Power: 10
+Battery: 2.9V
+Temperature: 2345
+Accuracy: 167 / 114 packets
+
+From PCB antenna
+To PCB antenna
+CRC OK
+Packet RSSI: -75 dbm
+Packet SNR: 9 dB
+Message Number: 219
+Missed Message 286
+Power: 10
+Battery: 2.9V
+Temperature: 2345
+Accuracy: 168 / 101 packets
+
+From Chip Antenna
+To PCB antenna
+CRC OK
+Packet RSSI: -73 dbm
+Packet SNR: 10 dB
+Message Number: 233
+Missed Message 287
+Power: 10
+Battery: 2.9V
+Temperature: 2345
+Accuracy: 169 / 115 packets
+
+From PCB antenna
+To PCB antenna
+CRC OK
+Packet RSSI: -73 dbm
+Packet SNR: 9 dB
+Message Number: 220
+Missed Message 288
+Power: 10
+Battery: 2.9V
+Temperature: 2345
+Accuracy: 170 / 102 packets
+
+From Chip Antenna
+To PCB antenna
+CRC OK
+Packet RSSI: -83 dbm
+Packet SNR: 7 dB
+Message Number: 234
+Missed Message 289
+Power: 10
+Battery: 2.9V
+Temperature: 2345
+Accuracy: 171 / 116 packets
+
+From PCB antenna
+To PCB antenna
+CRC OK
+Packet RSSI: -76 dbm
+Packet SNR: 9 dB
+Message Number: 221
+Missed Message 290
+Power: 10
+Battery: 2.9V
+Temperature: 2345
+Accuracy: 172 / 103 packets
+
+From Chip Antenna
+To PCB antenna
+CRC OK
+Packet RSSI: -82 dbm
+Packet SNR: 7 dB
+Message Number: 235
+Missed Message 291
+Power: 10
+Battery: 2.9V
+Temperature: 2345
+Accuracy: 173 / 117 packets
+
+From PCB antenna
+To PCB antenna
+CRC OK
+Packet RSSI: -79 dbm
+Packet SNR: 8 dB
+Message Number: 222
+Missed Message 292
+Power: 10
+Battery: 2.9V
+Temperature: 2345
+Accuracy: 174 / 104 packets
+
+From Chip Antenna
+To PCB antenna
+CRC OK
+Packet RSSI: -76 dbm
+Packet SNR: 9 dB
+Message Number: 236
+Missed Message 293
+Power: 10
+Battery: 2.9V
+Temperature: 2345
+Accuracy: 175 / 118 packets
+
+From PCB antenna
+To PCB antenna
+CRC OK
+Packet RSSI: -77 dbm
+Packet SNR: 8 dB
+Message Number: 223
+Missed Message 294
+Power: 10
+Battery: 2.9V
+Temperature: 2345
+Accuracy: 176 / 105 packets
+
+From Chip Antenna
+To PCB antenna
+CRC OK
+Packet RSSI: -67 dbm
+Packet SNR: 9 dB
+Message Number: 237
+Missed Message 295
+Power: 10
+Battery: 2.9V
+Temperature: 2345
+Accuracy: 177 / 119 packets
+
+From PCB antenna
+To PCB antenna
+CRC OK
+Packet RSSI: -67 dbm
+Packet SNR: 10 dB
+Message Number: 224
+Missed Message 296
+Power: 10
+Battery: 2.9V
+Temperature: 2345
+Accuracy: 178 / 106 packets
+
+From Chip Antenna
+To PCB antenna
+CRC OK
+Packet RSSI: -62 dbm
+Packet SNR: 9 dB
+Message Number: 238
+Missed Message 297
+Power: 10
+Battery: 2.9V
+Temperature: 2345
+Accuracy: 179 / 120 packets
+
+From PCB antenna
+To PCB antenna
+CRC OK
+Packet RSSI: -65 dbm
+Packet SNR: 9 dB
+Message Number: 225
+Missed Message 298
+Power: 10
+Battery: 2.9V
+Temperature: 2345
+Accuracy: 180 / 107 packets
+
+From Chip Antenna
+To PCB antenna
+CRC OK
+Packet RSSI: -54 dbm
+Packet SNR: 9 dB
+Message Number: 239
+Missed Message 299
+Power: 10
+Battery: 2.9V
+Temperature: 2345
+Accuracy: 181 / 121 packets
+
+From PCB antenna
+To PCB antenna
+CRC OK
+Packet RSSI: -54 dbm
+Packet SNR: 10 dB
+Message Number: 226
+Missed Message 300
+Power: 10
+Battery: 2.9V
+Temperature: 2345
+Accuracy: 182 / 108 packets
+
+From Chip Antenna
+To PCB antenna
+CRC OK
+Packet RSSI: -56 dbm
+Packet SNR: 9 dB
+Message Number: 240
+Missed Message 301
+Power: 10
+Battery: 2.9V
+Temperature: 2345
+Accuracy: 183 / 122 packets
+
+From PCB antenna
+To PCB antenna
+CRC OK
+Packet RSSI: -60 dbm
+Packet SNR: 8 dB
+Message Number: 227
+Missed Message 302
+Power: 10
+Battery: 2.9V
+Temperature: 2345
+Accuracy: 184 / 109 packets
+
+From Chip Antenna
+To PCB antenna
+CRC OK
+Packet RSSI: -69 dbm
+Packet SNR: 9 dB
+Message Number: 241
+Missed Message 303
+Power: 10
+Battery: 2.9V
+Temperature: 2345
+Accuracy: 185 / 123 packets
+
+From PCB antenna
+To PCB antenna
+CRC OK
+Packet RSSI: -76 dbm
+Packet SNR: 8 dB
+Message Number: 228
+Missed Message 304
+Power: 10
+Battery: 2.9V
+Temperature: 2345
+Accuracy: 186 / 110 packets
+
+From Chip Antenna
+To PCB antenna
+CRC OK
+Packet RSSI: -65 dbm
+Packet SNR: 9 dB
+Message Number: 242
+Missed Message 305
+Power: 10
+Battery: 2.9V
+Temperature: 2345
+Accuracy: 187 / 124 packets
+
+From PCB antenna
+To PCB antenna
+CRC OK
+Packet RSSI: -70 dbm
+Packet SNR: 8 dB
+Message Number: 229
+Missed Message 306
+Power: 10
+Battery: 2.9V
+Temperature: 2345
+Accuracy: 188 / 111 packets
+
+From Chip Antenna
+To PCB antenna
+CRC OK
+Packet RSSI: -63 dbm
+Packet SNR: 9 dB
+Message Number: 243
+Missed Message 307
+Power: 10
+Battery: 2.9V
+Temperature: 2345
+Accuracy: 189 / 125 packets
+
+From PCB antenna
+To PCB antenna
+CRC OK
+Packet RSSI: -66 dbm
+Packet SNR: 9 dB
+Message Number: 230
+Missed Message 308
+Power: 10
+Battery: 2.9V
+Temperature: 2345
+Accuracy: 190 / 112 packets
+
+From Chip Antenna
+To PCB antenna
+CRC OK
+Packet RSSI: -65 dbm
+Packet SNR: 9 dB
+Message Number: 244
+Missed Message 309
+Power: 10
+Battery: 2.9V
+Temperature: 2345
+Accuracy: 191 / 126 packets
+
+From PCB antenna
+To PCB antenna
+CRC OK
+Packet RSSI: -67 dbm
+Packet SNR: 10 dB
+Message Number: 231
+Missed Message 310
+Power: 10
+Battery: 2.9V
+Temperature: 2345
+Accuracy: 192 / 113 packets
+
+From Chip Antenna
+To PCB antenna
+CRC OK
+Packet RSSI: -65 dbm
+Packet SNR: 9 dB
+Message Number: 245
+Missed Message 311
+Power: 10
+Battery: 2.9V
+Temperature: 2345
+Accuracy: 193 / 127 packets
+
+From PCB antenna
+To PCB antenna
+CRC OK
+Packet RSSI: -72 dbm
+Packet SNR: 10 dB
+Message Number: 232
+Missed Message 312
+Power: 10
+Battery: 2.9V
+Temperature: 2345
+Accuracy: 194 / 114 packets
+
+From Chip Antenna
+To PCB antenna
+CRC OK
+Packet RSSI: -83 dbm
+Packet SNR: 7 dB
+Message Number: 246
+Missed Message 313
+Power: 10
+Battery: 2.9V
+Temperature: 2345
+Accuracy: 195 / 128 packets
+
+From PCB antenna
+To PCB antenna
+CRC OK
+Packet RSSI: -62 dbm
+Packet SNR: 10 dB
+Message Number: 233
+Missed Message 314
+Power: 10
+Battery: 2.9V
+Temperature: 2345
+Accuracy: 196 / 115 packets
+
+From Chip Antenna
+To PCB antenna
+CRC OK
+Packet RSSI: -65 dbm
+Packet SNR: 9 dB
+Message Number: 247
+Missed Message 315
+Power: 10
+Battery: 2.9V
+Temperature: 2345
+Accuracy: 197 / 129 packets
+
+From PCB antenna
+To PCB antenna
+CRC OK
+Packet RSSI: -62 dbm
+Packet SNR: 10 dB
+Message Number: 234
+Missed Message 316
+Power: 10
+Battery: 2.9V
+Temperature: 2345
+Accuracy: 198 / 116 packets
+
+From Chip Antenna
+To PCB antenna
+CRC OK
+Packet RSSI: -58 dbm
+Packet SNR: 9 dB
+Message Number: 248
+Missed Message 317
+Power: 10
+Battery: 2.9V
+Temperature: 2345
+Accuracy: 199 / 130 packets
+
+From PCB antenna
+To PCB antenna
+CRC OK
+Packet RSSI: -63 dbm
+Packet SNR: 9 dB
+Message Number: 235
+Missed Message 318
+Power: 10
+Battery: 2.9V
+Temperature: 2345
+Accuracy: 200 / 117 packets
+
+From Chip Antenna
+To PCB antenna
+CRC OK
+Packet RSSI: -72 dbm
+Packet SNR: 9 dB
+Message Number: 249
+Missed Message 319
+Power: 10
+Battery: 2.9V
+Temperature: 2345
+Accuracy: 201 / 131 packets
+
+From PCB antenna
+To PCB antenna
+CRC OK
+Packet RSSI: -62 dbm
+Packet SNR: 9 dB
+Message Number: 236
+Missed Message 320
+Power: 10
+Battery: 2.9V
+Temperature: 2345
+Accuracy: 202 / 118 packets
+
+From Chip Antenna
+To PCB antenna
+CRC OK
+Packet RSSI: -63 dbm
+Packet SNR: 9 dB
+Message Number: 250
+Missed Message 321
+Power: 10
+Battery: 2.9V
+Temperature: 2345
+Accuracy: 203 / 132 packets
+
+From PCB antenna
+To PCB antenna
+CRC OK
+Packet RSSI: -32 dbm
+Packet SNR: 10 dB
+Message Number: 237
+Missed Message 322
+Power: 10
+Battery: 2.9V
+Temperature: 2345
+Accuracy: 204 / 119 packets
+
+From Chip Antenna
+To PCB antenna
+CRC OK
+Packet RSSI: -34 dbm
+Packet SNR: 10 dB
+Message Number: 251
+Missed Message 323
+Power: 10
+Battery: 2.9V
+Temperature: 2345
+Accuracy: 205 / 133 packets
+
+
+Sensor Start
+Reset
+PINRSTF Reset
+------------
+Battery voltage greater than 2.9 V
+Testing Receiver
+PCB antenna
+
+Sensor Start
+Reset
+PINRSTF Reset
+------------
+Battery voltage greater than 2.9 V
+Testing Receiver
+PCB antenna
+First Message Number: 61749, 61749, 61749
+Ready
+From PCB antenna
+To PCB antenna
+CRC OK
+Packet RSSI: -56 dbm
+Packet SNR: 10 dB
+Message Number: 238
+Missed Message 61750
+Power: 10
+Battery: 2.9V
+Temperature: 2345
+Accuracy: 1 / -61511 packets
+
+From PCB antenna
+To PCB antenna
+CRC OK
+Packet RSSI: -35 dbm
+Packet SNR: 10 dB
+Message Number: 239
+Missed Message 61751
+Power: 10
+Battery: 2.9V
+Temperature: 2345
+Accuracy: 2 / -61510 packets
+
+From PCB antenna
+To PCB antenna
+CRC OK
+Packet RSSI: -27 dbm
+Packet SNR: 9 dB
+Message Number: 240
+Missed Message 61752
+Power: 10
+Battery: 2.9V
+Temperature: 2345
+Accuracy: 3 / -61509 packets
+
+From PCB antenna
+To PCB antenna
+CRC OK
+Packet RSSI: -5 dbm
+Packet SNR: 9 dB
+Message Number: 241
+Missed Message 61753
+Power: 10
+Battery: 2.9V
+Temperature: 2345
+Accuracy: 4 / -61508 packets
+
+From PCB antenna
+To PCB antenna
+CRC OK
+Packet RSSI: -24 dbm
+Packet SNR: 9 dB
+Message Number: 242
+Missed Message 61754
+Power: 10
+Battery: 2.9V
+Temperature: 2345
+Accuracy: 5 / -61507 packets
+
+From PCB antenna
+To PCB antenna
+CRC OK
+Packet RSSI: -22 dbm
+Packet SNR: 9 dB
+Message Number: 243
+Missed Message 61755
+Power: 10
+Battery: 2.9V
+Temperature: 2345
+Accuracy: 6 / -61506 packets
+
+From PCB antenna
+To PCB antenna
+CRC OK
+Packet RSSI: -24 dbm
+Packet SNR: 9 dB
+Message Number: 244
+Missed Message 61756
+Power: 10
+Battery: 2.9V
+Temperature: 2345
+Accuracy: 7 / -61505 packets
+
+From PCB antenna
+To PCB antenna
+CRC OK
+Packet RSSI: -21 dbm
+Packet SNR: 10 dB
+Message Number: 245
+Missed Message 61757
+Power: 10
+Battery: 2.9V
+Temperature: 2345
+Accuracy: 8 / -61504 packets
+
+From PCB antenna
+To PCB antenna
+CRC OK
+Packet RSSI: -29 dbm
+Packet SNR: 9 dB
+Message Number: 246
+Missed Message 61758
+Power: 10
+Battery: 2.9V
+Temperature: 2345
+Accuracy: 9 / -61503 packets
+
+
+Sensor Start
+Reset
+PINRSTF Reset
+------------
+Battery voltage greater than 2.9 V
+Testing Receiver
+PCB antenna
+First Message Number: 247, 247, 247
+Ready
+From PCB antenna
+To PCB antenna
+CRC OK
+Packet RSSI: -24 dbm
+Packet SNR: 10 dB
+Message Number: 248
+Power: 10
+Battery: 2.9V
+Temperature: 2345
+Accuracy: 1 / 1 packets
+
+From PCB antenna
+To PCB antenna
+CRC OK
+Packet RSSI: -27 dbm
+Packet SNR: 9 dB
+Message Number: 249
+Power: 10
+Battery: 2.9V
+Temperature: 2345
+Accuracy: 2 / 2 packets
+
+From PCB antenna
+To PCB antenna
+CRC OK
+Packet RSSI: -43 dbm
+Packet SNR: 9 dB
+Message Number: 250
+Power: 10
+Battery: 2.9V
+Temperature: 2345
+Accuracy: 3 / 3 packets
+
+From PCB antenna
+To PCB antenna
+CRC OK
+Packet RSSI: -55 dbm
+Packet SNR: 9 dB
+Message Number: 251
+Power: 10
+Battery: 2.9V
+Temperature: 2345
+Accuracy: 4 / 4 packets
+
+From PCB antenna
+To PCB antenna
+CRC OK
+Packet RSSI: -58 dbm
+Packet SNR: 9 dB
+Message Number: 252
+Power: 10
+Battery: 2.9V
+Temperature: 2345
+Accuracy: 5 / 5 packets
+
+From PCB antenna
+To PCB antenna
+CRC OK
+Packet RSSI: -53 dbm
+Packet SNR: 9 dB
+Message Number: 253
+Power: 10
+Battery: 2.9V
+Temperature: 2345
+Accuracy: 6 / 6 packets
+
+From PCB antenna
+To PCB antenna
+CRC OK
+Packet RSSI: -55 dbm
+Packet SNR: 9 dB
+Message Number: 254
+Power: 10
+Battery: 2.9V
+Temperature: 2345
+Accuracy: 7 / 7 packets
+
+From PCB antenna
+To PCB antenna
+CRC OK
+Packet RSSI: -47 dbm
+Packet SNR: 9 dB
+Message Number: 255
+Power: 10
+Battery: 2.9V
+Temperature: 2345
+Accuracy: 8 / 8 packets
+
+From PCB antenna
+To PCB antenna
+CRC OK
+Packet RSSI: -52 dbm
+Packet SNR: 9 dB
+Message Number: 256
+Power: 10
+Battery: 2.9V
+Temperature: 2345
+Accuracy: 9 / 9 packets
+
+From PCB antenna
+To PCB antenna
+CRC OK
+Packet RSSI: -55 dbm
+Packet SNR: 9 dB
+Message Number: 257
+Power: 10
+Battery: 2.9V
+Temperature: 2345
+Accuracy: 10 / 10 packets
+
+From PCB antenna
+To PCB antenna
+CRC OK
+Packet RSSI: -68 dbm
+Packet SNR: 10 dB
+Message Number: 258
+Power: 10
+Battery: 2.9V
+Temperature: 2345
+Accuracy: 11 / 11 packets
+
+From PCB antenna
+To PCB antenna
+CRC OK
+Packet RSSI: -73 dbm
+Packet SNR: 9 dB
+Message Number: 259
+Power: 10
+Battery: 2.9V
+Temperature: 2345
+Accuracy: 12 / 12 packets
+
+From PCB antenna
+To PCB antenna
+CRC OK
+Packet RSSI: -70 dbm
+Packet SNR: 9 dB
+Message Number: 260
+Power: 10
+Battery: 2.9V
+Temperature: 2345
+Accuracy: 13 / 13 packets
+
+From PCB antenna
+To PCB antenna
+CRC OK
+Packet RSSI: -79 dbm
+Packet SNR: 9 dB
+Message Number: 261
+Power: 10
+Battery: 2.9V
+Temperature: 2345
+Accuracy: 14 / 14 packets
+
+From PCB antenna
+To PCB antenna
+CRC OK
+Packet RSSI: -80 dbm
+Packet SNR: 9 dB
+Message Number: 262
+Power: 10
+Battery: 2.9V
+Temperature: 2345
+Accuracy: 15 / 15 packets
+
+From PCB antenna
+To PCB antenna
+CRC OK
+Packet RSSI: -73 dbm
+Packet SNR: 9 dB
+Message Number: 263
+Power: 10
+Battery: 2.9V
+Temperature: 2345
+Accuracy: 16 / 16 packets
+
+From PCB antenna
+To PCB antenna
+CRC OK
+Packet RSSI: -80 dbm
+Packet SNR: 8 dB
+Message Number: 264
+Power: 10
+Battery: 2.9V
+Temperature: 2345
+Accuracy: 17 / 17 packets
+
+From PCB antenna
+To PCB antenna
+CRC OK
+Packet RSSI: -76 dbm
+Packet SNR: 9 dB
+Message Number: 265
+Power: 10
+Battery: 2.9V
+Temperature: 2345
+Accuracy: 18 / 18 packets
+
+From PCB antenna
+To PCB antenna
+CRC OK
+Packet RSSI: -73 dbm
+Packet SNR: 9 dB
+Message Number: 266
+Power: 10
+Battery: 2.9V
+Temperature: 2345
+Accuracy: 19 / 19 packets
+
+From PCB antenna
+To PCB antenna
+CRC OK
+Packet RSSI: -73 dbm
+Packet SNR: 9 dB
+Message Number: 267
+Power: 10
+Battery: 2.9V
+Temperature: 2345
+Accuracy: 20 / 20 packets
+
+From PCB antenna
+To PCB antenna
+CRC OK
+Packet RSSI: -67 dbm
+Packet SNR: 9 dB
+Message Number: 268
+Power: 10
+Battery: 2.9V
+Temperature: 2345
+Accuracy: 21 / 21 packets
+
+From PCB antenna
+To PCB antenna
+CRC OK
+Packet RSSI: -65 dbm
+Packet SNR: 9 dB
+Message Number: 269
+Power: 10
+Battery: 2.9V
+Temperature: 2345
+Accuracy: 22 / 22 packets
+
+From PCB antenna
+To PCB antenna
+CRC OK
+Packet RSSI: -66 dbm
+Packet SNR: 10 dB
+Message Number: 270
+Power: 10
+Battery: 2.9V
+Temperature: 2345
+Accuracy: 23 / 23 packets
+
+From PCB antenna
+To PCB antenna
+CRC OK
+Packet RSSI: -99 dbm
+Packet SNR: 0 dB
+Message Number: 271
+Power: 10
+Battery: 2.9V
+Temperature: 2345
+Accuracy: 24 / 24 packets
+
+From PCB antenna
+To PCB antenna
+CRC OK
+Packet RSSI: -81 dbm
+Packet SNR: 8 dB
+Message Number: 272
+Power: 10
+Battery: 2.9V
+Temperature: 2345
+Accuracy: 25 / 25 packets
+
+From PCB antenna
+To PCB antenna
+CRC OK
+Packet RSSI: -67 dbm
+Packet SNR: 9 dB
+Message Number: 273
+Power: 10
+Battery: 2.9V
+Temperature: 2345
+Accuracy: 26 / 26 packets
+
+From PCB antenna
+To PCB antenna
+CRC OK
+Packet RSSI: -72 dbm
+Packet SNR: 9 dB
+Message Number: 274
+Power: 10
+Battery: 2.9V
+Temperature: 2345
+Accuracy: 27 / 27 packets
+
+From PCB antenna
+To PCB antenna
+CRC OK
+Packet RSSI: -82 dbm
+Packet SNR: 8 dB
+Message Number: 277
+Missed Message 275
+Power: 10
+Battery: 2.9V
+Temperature: 2345
+Accuracy: 28 / 30 packets
+
+From PCB antenna
+To PCB antenna
+CRC OK
+Packet RSSI: -66 dbm
+Packet SNR: 9 dB
+Message Number: 278
+Missed Message 276
+Power: 10
+Battery: 2.9V
+Temperature: 2345
+Accuracy: 29 / 31 packets
+
+From PCB antenna
+To PCB antenna
+CRC OK
+Packet RSSI: -67 dbm
+Packet SNR: 9 dB
+Message Number: 279
+Missed Message 277
+Power: 10
+Battery: 2.9V
+Temperature: 2345
+Accuracy: 30 / 32 packets
+
+From PCB antenna
+To PCB antenna
+CRC OK
+Packet RSSI: -67 dbm
+Packet SNR: 9 dB
+Message Number: 280
+Missed Message 278
+Power: 10
+Battery: 2.9V
+Temperature: 2345
+Accuracy: 31 / 33 packets
+
+From PCB antenna
+To PCB antenna
+CRC OK
+Packet RSSI: -66 dbm
+Packet SNR: 9 dB
+Message Number: 281
+Missed Message 279
+Power: 10
+Battery: 2.9V
+Temperature: 2345
+Accuracy: 32 / 34 packets
+
+From PCB antenna
+To PCB antenna
+CRC OK
+Packet RSSI: -66 dbm
+Packet SNR: 9 dB
+Message Number: 282
+Missed Message 280
+Power: 10
+Battery: 2.9V
+Temperature: 2345
+Accuracy: 33 / 35 packets
+
+From PCB antenna
+To PCB antenna
+CRC OK
+Packet RSSI: -65 dbm
+Packet SNR: 10 dB
+Message Number: 283
+Missed Message 281
+Power: 10
+Battery: 2.9V
+Temperature: 2345
+Accuracy: 34 / 36 packets
+
+From PCB antenna
+To PCB antenna
+CRC OK
+Packet RSSI: -67 dbm
+Packet SNR: 9 dB
+Message Number: 284
+Missed Message 282
+Power: 10
+Battery: 2.9V
+Temperature: 2345
+Accuracy: 35 / 37 packets
+
+From PCB antenna
+To PCB antenna
+CRC OK
+Packet RSSI: -65 dbm
+Packet SNR: 10 dB
+Message Number: 285
+Missed Message 283
+Power: 10
+Battery: 2.9V
+Temperature: 2345
+Accuracy: 36 / 38 packets
+
+From PCB antenna
+To PCB antenna
+CRC OK
+Packet RSSI: -66 dbm
+Packet SNR: 9 dB
+Message Number: 286
+Missed Message 284
+Power: 10
+Battery: 2.9V
+Temperature: 2345
+Accuracy: 37 / 39 packets
+
+From PCB antenna
+To PCB antenna
+CRC OK
+Packet RSSI: -66 dbm
+Packet SNR: 9 dB
+Message Number: 287
+Missed Message 285
+Power: 10
+Battery: 2.9V
+Temperature: 2345
+Accuracy: 38 / 40 packets
+
+From PCB antenna
+To PCB antenna
+CRC OK
+Packet RSSI: -77 dbm
+Packet SNR: 9 dB
+Message Number: 288
+Missed Message 286
+Power: 10
+Battery: 2.9V
+Temperature: 2345
+Accuracy: 39 / 41 packets
+
+From PCB antenna
+To PCB antenna
+CRC OK
+Packet RSSI: -70 dbm
+Packet SNR: 9 dB
+Message Number: 289
+Missed Message 287
+Power: 10
+Battery: 2.9V
+Temperature: 2345
+Accuracy: 40 / 42 packets
+
+From PCB antenna
+To PCB antenna
+CRC OK
+Packet RSSI: -70 dbm
+Packet SNR: 9 dB
+Message Number: 290
+Missed Message 288
+Power: 10
+Battery: 2.9V
+Temperature: 2345
+Accuracy: 41 / 43 packets
+
+From PCB antenna
+To PCB antenna
+CRC OK
+Packet RSSI: -69 dbm
+Packet SNR: 10 dB
+Message Number: 291
+Missed Message 289
+Power: 10
+Battery: 2.9V
+Temperature: 2345
+Accuracy: 42 / 44 packets
+
+From PCB antenna
+To PCB antenna
+CRC OK
+Packet RSSI: -67 dbm
+Packet SNR: 10 dB
+Message Number: 292
+Missed Message 290
+Power: 10
+Battery: 2.9V
+Temperature: 2345
+Accuracy: 43 / 45 packets
+
+From PCB antenna
+To PCB antenna
+CRC OK
+Packet RSSI: -69 dbm
+Packet SNR: 9 dB
+Message Number: 293
+Missed Message 291
+Power: 10
+Battery: 2.9V
+Temperature: 2345
+Accuracy: 44 / 46 packets
+
+From PCB antenna
+To PCB antenna
+CRC OK
+Packet RSSI: -69 dbm
+Packet SNR: 9 dB
+Message Number: 294
+Missed Message 292
+Power: 10
+Battery: 2.9V
+Temperature: 2345
+Accuracy: 45 / 47 packets
+

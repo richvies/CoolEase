@@ -1,0 +1,111 @@
+\hypertarget{aes_8h}{}\doxysection{/\+Users/richarddavies/\+Desktop/\+Projects/\+Cool\+Ease/\+Code/stm32l051c8t6\+\_\+rfm/coolease/include/coolease/aes.h File Reference}
+\label{aes_8h}\index{/Users/richarddavies/Desktop/Projects/CoolEase/Code/stm32l051c8t6\_rfm/coolease/include/coolease/aes.h@{/Users/richarddavies/Desktop/Projects/CoolEase/Code/stm32l051c8t6\_rfm/coolease/include/coolease/aes.h}}
+{\ttfamily \#include $<$stdint.\+h$>$}\newline
+\doxysubsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define \mbox{\hyperlink{aes_8h_ada62b7b09dab0d7ef92c04364b16b5b5}{A\+E\+S\+\_\+\+B\+L\+O\+C\+K\+L\+EN}}~16
+\item 
+\#define \mbox{\hyperlink{aes_8h_ac62474b957a4a66dd6fd9b3730ca4ccb}{A\+E\+S\+\_\+\+K\+E\+Y\+\_\+\+L\+EN}}~16
+\item 
+\#define \mbox{\hyperlink{aes_8h_a089ff1ad87c1dc8583da9cfdf02d011e}{A\+E\+S\+\_\+\+K\+E\+Y\+\_\+\+E\+X\+P\+\_\+\+S\+I\+ZE}}~176
+\end{DoxyCompactItemize}
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{aes_8h_a34ef7fb0993afb643b6887c4d00b29bd}{aes\+\_\+init}} (void)
+\item 
+void \mbox{\hyperlink{aes_8h_a9d907cb1c8f6f6e31d507376c542d63e}{aes\+\_\+expand\+\_\+key}} (void)
+\item 
+void \mbox{\hyperlink{aes_8h_aebc1b17d8257697569a23da4fc136846}{aes\+\_\+ecb\+\_\+encrypt}} (uint8\+\_\+t $\ast$buf)
+\item 
+void \mbox{\hyperlink{aes_8h_a99d253b8fe6560ebd0a7d753d38a9db6}{aes\+\_\+ecb\+\_\+decrypt}} (uint8\+\_\+t $\ast$buf)
+\item 
+void \mbox{\hyperlink{aes_8h_ade8575bdd4aa6c6156068b76047f9811}{aes\+\_\+generate\+\_\+random}} (uint8\+\_\+t $\ast$buf, uint8\+\_\+t len)
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Macro Definition Documentation}
+\mbox{\Hypertarget{aes_8h_ada62b7b09dab0d7ef92c04364b16b5b5}\label{aes_8h_ada62b7b09dab0d7ef92c04364b16b5b5}} 
+\index{aes.h@{aes.h}!AES\_BLOCKLEN@{AES\_BLOCKLEN}}
+\index{AES\_BLOCKLEN@{AES\_BLOCKLEN}!aes.h@{aes.h}}
+\doxysubsubsection{\texorpdfstring{AES\_BLOCKLEN}{AES\_BLOCKLEN}}
+{\footnotesize\ttfamily \#define A\+E\+S\+\_\+\+B\+L\+O\+C\+K\+L\+EN~16}
+
+
+
+Definition at line 7 of file aes.\+h.
+
+\mbox{\Hypertarget{aes_8h_a089ff1ad87c1dc8583da9cfdf02d011e}\label{aes_8h_a089ff1ad87c1dc8583da9cfdf02d011e}} 
+\index{aes.h@{aes.h}!AES\_KEY\_EXP\_SIZE@{AES\_KEY\_EXP\_SIZE}}
+\index{AES\_KEY\_EXP\_SIZE@{AES\_KEY\_EXP\_SIZE}!aes.h@{aes.h}}
+\doxysubsubsection{\texorpdfstring{AES\_KEY\_EXP\_SIZE}{AES\_KEY\_EXP\_SIZE}}
+{\footnotesize\ttfamily \#define A\+E\+S\+\_\+\+K\+E\+Y\+\_\+\+E\+X\+P\+\_\+\+S\+I\+ZE~176}
+
+
+
+Definition at line 10 of file aes.\+h.
+
+\mbox{\Hypertarget{aes_8h_ac62474b957a4a66dd6fd9b3730ca4ccb}\label{aes_8h_ac62474b957a4a66dd6fd9b3730ca4ccb}} 
+\index{aes.h@{aes.h}!AES\_KEY\_LEN@{AES\_KEY\_LEN}}
+\index{AES\_KEY\_LEN@{AES\_KEY\_LEN}!aes.h@{aes.h}}
+\doxysubsubsection{\texorpdfstring{AES\_KEY\_LEN}{AES\_KEY\_LEN}}
+{\footnotesize\ttfamily \#define A\+E\+S\+\_\+\+K\+E\+Y\+\_\+\+L\+EN~16}
+
+
+
+Definition at line 9 of file aes.\+h.
+
+
+
+\doxysubsection{Function Documentation}
+\mbox{\Hypertarget{aes_8h_a99d253b8fe6560ebd0a7d753d38a9db6}\label{aes_8h_a99d253b8fe6560ebd0a7d753d38a9db6}} 
+\index{aes.h@{aes.h}!aes\_ecb\_decrypt@{aes\_ecb\_decrypt}}
+\index{aes\_ecb\_decrypt@{aes\_ecb\_decrypt}!aes.h@{aes.h}}
+\doxysubsubsection{\texorpdfstring{aes\_ecb\_decrypt()}{aes\_ecb\_decrypt()}}
+{\footnotesize\ttfamily void aes\+\_\+ecb\+\_\+decrypt (\begin{DoxyParamCaption}\item[{uint8\+\_\+t $\ast$}]{buf }\end{DoxyParamCaption})}
+
+
+
+Definition at line 453 of file aes.\+c.
+
+\mbox{\Hypertarget{aes_8h_aebc1b17d8257697569a23da4fc136846}\label{aes_8h_aebc1b17d8257697569a23da4fc136846}} 
+\index{aes.h@{aes.h}!aes\_ecb\_encrypt@{aes\_ecb\_encrypt}}
+\index{aes\_ecb\_encrypt@{aes\_ecb\_encrypt}!aes.h@{aes.h}}
+\doxysubsubsection{\texorpdfstring{aes\_ecb\_encrypt()}{aes\_ecb\_encrypt()}}
+{\footnotesize\ttfamily void aes\+\_\+ecb\+\_\+encrypt (\begin{DoxyParamCaption}\item[{uint8\+\_\+t $\ast$}]{buf }\end{DoxyParamCaption})}
+
+
+
+Definition at line 447 of file aes.\+c.
+
+\mbox{\Hypertarget{aes_8h_a9d907cb1c8f6f6e31d507376c542d63e}\label{aes_8h_a9d907cb1c8f6f6e31d507376c542d63e}} 
+\index{aes.h@{aes.h}!aes\_expand\_key@{aes\_expand\_key}}
+\index{aes\_expand\_key@{aes\_expand\_key}!aes.h@{aes.h}}
+\doxysubsubsection{\texorpdfstring{aes\_expand\_key()}{aes\_expand\_key()}}
+{\footnotesize\ttfamily void aes\+\_\+expand\+\_\+key (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})}
+
+
+
+Definition at line 431 of file aes.\+c.
+
+\mbox{\Hypertarget{aes_8h_ade8575bdd4aa6c6156068b76047f9811}\label{aes_8h_ade8575bdd4aa6c6156068b76047f9811}} 
+\index{aes.h@{aes.h}!aes\_generate\_random@{aes\_generate\_random}}
+\index{aes\_generate\_random@{aes\_generate\_random}!aes.h@{aes.h}}
+\doxysubsubsection{\texorpdfstring{aes\_generate\_random()}{aes\_generate\_random()}}
+{\footnotesize\ttfamily void aes\+\_\+generate\+\_\+random (\begin{DoxyParamCaption}\item[{uint8\+\_\+t $\ast$}]{buf,  }\item[{uint8\+\_\+t}]{len }\end{DoxyParamCaption})}
+
+
+
+Definition at line 459 of file aes.\+c.
+
+\mbox{\Hypertarget{aes_8h_a34ef7fb0993afb643b6887c4d00b29bd}\label{aes_8h_a34ef7fb0993afb643b6887c4d00b29bd}} 
+\index{aes.h@{aes.h}!aes\_init@{aes\_init}}
+\index{aes\_init@{aes\_init}!aes.h@{aes.h}}
+\doxysubsubsection{\texorpdfstring{aes\_init()}{aes\_init()}}
+{\footnotesize\ttfamily void aes\+\_\+init (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})}
+
+
+
+Definition at line 420 of file aes.\+c.
+

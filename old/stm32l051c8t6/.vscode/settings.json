@@ -1,0 +1,16 @@
+{
+    "C_Cpp.errorSquiggles": "Disabled",
+    "files.associations": {
+        "string": "cpp",
+        "cstddef": "c",
+        "random": "c",
+        "*.def": "c",
+        "bitset": "c",
+        "chrono": "c",
+        "algorithm": "c",
+        "string_view": "c",
+        "rope": "c",
+        "regex": "c",
+        "array": "cpp"
+    }
+}

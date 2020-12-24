@@ -1,0 +1,6404 @@
+2020-09-15 23:04:07	
+Ricksynth Start
+PINRSTF Reset
+------------
+Testing Env Update
+0
+Attack Time: 2685.8691
+Decay Time: 0.0000
+Release Time: 0.0000
+Total Time: 0.0000
+
+Time step: 0.0000
+Time Taken: 259
+Env: 0
+
+
+0
+Attack Time: 2685.8691
+Decay Time: 0.0000
+Release Time: 0.0000
+Total Time: 67.0000
+
+Time step: 67.0000
+Time Taken: 265
+Env: 25
+
+
+0
+Attack Time: 2685.8691
+Decay Time: 0.0000
+Release Time: 0.0000
+Total Time: 136.0000
+
+Time step: 69.0000
+Time Taken: 269
+Env: 51
+
+
+0
+Attack Time: 2685.8691
+Decay Time: 0.0000
+Release Time: 0.0000
+Total Time: 205.0000
+
+Time step: 69.0000
+Time Taken: 268
+Env: 78
+
+
+0
+Attack Time: 2685.8691
+Decay Time: 0.0000
+Release Time: 0.0000
+Total Time: 274.0000
+
+Time step: 69.0000
+Time Taken: 268
+Env: 104
+
+
+0
+Attack Time: 2685.8691
+Decay Time: 0.0000
+Release Time: 0.0000
+Total Time: 344.0000
+
+Time step: 70.0000
+Time Taken: 268
+Env: 131
+
+
+0
+Attack Time: 2685.8691
+Decay Time: 0.0000
+Release Time: 0.0000
+Total Time: 414.0000
+
+Time step: 70.0000
+Time Taken: 268
+Env: 157
+
+
+0
+Attack Time: 2685.8691
+Decay Time: 0.0000
+Release Time: 0.0000
+Total Time: 483.0000
+
+Time step: 69.0000
+Time Taken: 268
+Env: 183
+
+
+0
+Attack Time: 2685.8691
+Decay Time: 0.0000
+Release Time: 0.0000
+Total Time: 553.0000
+
+Time step: 70.0000
+Time Taken: 268
+Env: 210
+
+
+0
+Attack Time: 2685.8691
+Decay Time: 0.0000
+Release Time: 0.0000
+Total Time: 623.0000
+
+Time step: 70.0000
+Time Taken: 268
+Env: 237
+
+
+0
+Attack Time: 2685.8691
+Decay Time: 0.0000
+Release Time: 0.0000
+Total Time: 692.0000
+
+Time step: 69.0000
+Time Taken: 268
+Env: 263
+
+
+0
+Attack Time: 2685.8691
+Decay Time: 0.0000
+Release Time: 0.0000
+Total Time: 762.0000
+
+Time step: 70.0000
+Time Taken: 268
+Env: 290
+
+
+0
+Attack Time: 2685.8691
+Decay Time: 0.0000
+Release Time: 0.0000
+Total Time: 832.0000
+
+Time step: 70.0000
+Time Taken: 268
+Env: 316
+
+
+0
+Attack Time: 2685.8691
+Decay Time: 0.0000
+Release Time: 0.0000
+Total Time: 901.0000
+
+Time step: 69.0000
+Time Taken: 268
+Env: 343
+
+
+0
+Attack Time: 2685.8691
+Decay Time: 0.0000
+Release Time: 0.0000
+Total Time: 971.0000
+
+Time step: 70.0000
+Time Taken: 268
+Env: 369
+
+
+0
+Attack Time: 2685.8691
+Decay Time: 0.0000
+Release Time: 0.0000
+Total Time: 0.0000
+
+Time step: 0.0000
+Time Taken: 259
+Env: 0
+
+
+0
+Attack Time: 2685.8691
+Decay Time: 0.0000
+Release Time: 0.0000
+Total Time: 67.0000
+
+Time step: 67.0000
+Time Taken: 265
+Env: 25
+
+
+0
+Attack Time: 2685.8691
+Decay Time: 0.0000
+Release Time: 0.0000
+Total Time: 136.0000
+
+Time step: 69.0000
+Time Taken: 269
+Env: 51
+
+
+0
+Attack Time: 2685.8691
+Decay Time: 0.0000
+Release Time: 0.0000
+Total Time: 205.0000
+
+Time step: 69.0000
+Time Taken: 268
+Env: 78
+
+
+0
+Attack Time: 2685.8691
+Decay Time: 0.0000
+Release Time: 0.0000
+Total Time: 274.0000
+
+Time step: 69.0000
+Time Taken: 268
+Env: 104
+
+
+0
+Attack Time: 2685.8691
+Decay Time: 0.0000
+Release Time: 0.0000
+Total Time: 344.0000
+
+Time step: 70.0000
+Time Taken: 268
+Env: 131
+
+
+0
+Attack Time: 2685.8691
+Decay Time: 0.0000
+Release Time: 0.0000
+Total Time: 413.0000
+
+Time step: 69.0000
+Time Taken: 268
+Env: 157
+
+
+0
+Attack Time: 2685.8691
+Decay Time: 0.0000
+Release Time: 0.0000
+Total Time: 483.0000
+
+Time step: 70.0000
+Time Taken: 268
+Env: 183
+
+
+0
+Attack Time: 2685.8691
+Decay Time: 0.0000
+Release Time: 0.0000
+Total Time: 553.0000
+
+Time step: 70.0000
+Time Taken: 268
+Env: 210
+
+
+0
+Attack Time: 2685.8691
+Decay Time: 0.0000
+Release Time: 0.0000
+Total Time: 622.0000
+
+Time step: 69.0000
+Time Taken: 268
+Env: 236
+
+
+0
+Attack Time: 2685.8691
+Decay Time: 0.0000
+Release Time: 0.0000
+Total Time: 692.0000
+
+Time step: 70.0000
+Time Taken: 268
+Env: 263
+
+
+0
+Attack Time: 2685.8691
+Decay Time: 0.0000
+Release Time: 0.0000
+Total Time: 762.0000
+
+Time step: 70.0000
+Time Taken: 268
+Env: 290
+
+
+0
+Attack Time: 2685.8691
+Decay Time: 0.0000
+Release Time: 0.0000
+Total Time: 831.0000
+
+Time step: 69.0000
+Time Taken: 268
+Env: 316
+
+
+0
+Attack Time: 2685.8691
+Decay Time: 0.0000
+Release Time: 0.0000
+Total Time: 901.0000
+
+Time step: 70.0000
+Time Taken: 268
+Env: 343
+
+
+0
+Attack Time: 2685.8691
+Decay Time: 0.0000
+Release Time: 0.0000
+Total Time: 971.0000
+
+Time step: 70.0000
+Time Taken: 268
+Env: 369
+
+
+2
+Attack Time: 2685.8691
+Decay Time: 0.0000
+Release Time: 9455.5928
+Total Time: 69.0000
+
+Time step: 69.0000
+Time Taken: 378
+Env: 357
+
+
+2
+Attack Time: 2685.8691
+Decay Time: 0.0000
+Release Time: 9455.5928
+Total Time: 140.0000
+
+Time step: 71.0000
+Time Taken: 379
+Env: 345
+
+
+2
+Attack Time: 2685.8691
+Decay Time: 0.0000
+Release Time: 9455.5928
+Total Time: 212.0000
+
+Time step: 72.0000
+Time Taken: 379
+Env: 334
+
+
+2
+Attack Time: 2685.8691
+Decay Time: 0.0000
+Release Time: 9455.5928
+Total Time: 283.0000
+
+Time step: 71.0000
+Time Taken: 380
+Env: 323
+
+
+2
+Attack Time: 2685.8691
+Decay Time: 0.0000
+Release Time: 9455.5928
+Total Time: 354.0000
+
+Time step: 71.0000
+Time Taken: 380
+Env: 312
+
+
+2
+Attack Time: 2685.8691
+Decay Time: 0.0000
+Release Time: 9455.5928
+Total Time: 426.0000
+
+Time step: 72.0000
+Time Taken: 380
+Env: 301
+
+
+2
+Attack Time: 2685.8691
+Decay Time: 0.0000
+Release Time: 9455.5928
+Total Time: 497.0000
+
+Time step: 71.0000
+Time Taken: 380
+Env: 291
+
+
+2
+Attack Time: 2685.8691
+Decay Time: 0.0000
+Release Time: 9455.5928
+Total Time: 568.0000
+
+Time step: 71.0000
+Time Taken: 381
+Env: 282
+
+
+2
+Attack Time: 2685.8691
+Decay Time: 0.0000
+Release Time: 9455.5928
+Total Time: 640.0000
+
+Time step: 72.0000
+Time Taken: 379
+Env: 272
+
+
+2
+Attack Time: 2685.8691
+Decay Time: 0.0000
+Release Time: 9455.5928
+Total Time: 711.0000
+
+Time step: 71.0000
+Time Taken: 380
+Env: 263
+
+
+2
+Attack Time: 2685.8691
+Decay Time: 0.0000
+Release Time: 9455.5928
+Total Time: 782.0000
+
+Time step: 71.0000
+Time Taken: 392
+Env: 254
+
+
+2
+Attack Time: 2685.8691
+Decay Time: 0.0000
+Release Time: 9455.5928
+Total Time: 854.0000
+
+Time step: 72.0000
+Time Taken: 393
+Env: 246
+
+
+2
+Attack Time: 2685.8691
+Decay Time: 0.0000
+Release Time: 9455.5928
+Total Time: 925.0000
+
+Time step: 71.0000
+Time Taken: 393
+Env: 238
+
+
+2
+Attack Time: 2685.8691
+Decay Time: 0.0000
+Release Time: 9455.5928
+Total Time: 997.0000
+
+Time step: 72.0000
+Time Taken: 392
+Env: 230
+
+
+2
+Attack Time: 2685.8691
+Decay Time: 0.0000
+Release Time: 9455.5928
+Total Time: 1068.0000
+
+Time step: 71.0000
+Time Taken: 393
+Env: 222
+
+
+2
+Attack Time: 2685.8691
+Decay Time: 0.0000
+Release Time: 9455.5928
+Total Time: 1140.0000
+
+Time step: 72.0000
+Time Taken: 392
+Env: 215
+
+
+2
+Attack Time: 2685.8691
+Decay Time: 0.0000
+Release Time: 9455.5928
+Total Time: 1212.0000
+
+Time step: 72.0000
+Time Taken: 392
+Env: 208
+
+
+2
+Attack Time: 2685.8691
+Decay Time: 0.0000
+Release Time: 9455.5928
+Total Time: 1284.0000
+
+Time step: 72.0000
+Time Taken: 392
+Env: 201
+
+
+2
+Attack Time: 2685.8691
+Decay Time: 0.0000
+Release Time: 9455.5928
+Total Time: 1355.0000
+
+Time step: 71.0000
+Time Taken: 392
+Env: 194
+
+
+2
+Attack Time: 2685.8691
+Decay Time: 0.0000
+Release Time: 9455.5928
+Total Time: 1427.0000
+
+Time step: 72.0000
+Time Taken: 392
+Env: 188
+
+
+2
+Attack Time: 2685.8691
+Decay Time: 0.0000
+Release Time: 9455.5928
+Total Time: 1499.0000
+
+Time step: 72.0000
+Time Taken: 392
+Env: 181
+
+
+2
+Attack Time: 2685.8691
+Decay Time: 0.0000
+Release Time: 9455.5928
+Total Time: 1571.0000
+
+Time step: 72.0000
+Time Taken: 392
+Env: 175
+
+
+2
+Attack Time: 2685.8691
+Decay Time: 0.0000
+Release Time: 9455.5928
+Total Time: 1643.0000
+
+Time step: 72.0000
+Time Taken: 393
+Env: 170
+
+
+2
+Attack Time: 2685.8691
+Decay Time: 0.0000
+Release Time: 9455.5928
+Total Time: 1715.0000
+
+Time step: 72.0000
+Time Taken: 392
+Env: 164
+
+
+2
+Attack Time: 2685.8691
+Decay Time: 0.0000
+Release Time: 9455.5928
+Total Time: 1787.0000
+
+Time step: 72.0000
+Time Taken: 392
+Env: 159
+
+
+2
+Attack Time: 2685.8691
+Decay Time: 0.0000
+Release Time: 9455.5928
+Total Time: 1859.0000
+
+Time step: 72.0000
+Time Taken: 392
+Env: 153
+
+
+2
+Attack Time: 2685.8691
+Decay Time: 0.0000
+Release Time: 9455.5928
+Total Time: 1930.0000
+
+Time step: 71.0000
+Time Taken: 393
+Env: 148
+
+
+2
+Attack Time: 2685.8691
+Decay Time: 0.0000
+Release Time: 9455.5928
+Total Time: 2002.0000
+
+Time step: 72.0000
+Time Taken: 392
+Env: 143
+
+
+2
+Attack Time: 2685.8691
+Decay Time: 0.0000
+Release Time: 9455.5928
+Total Time: 2074.0000
+
+Time step: 72.0000
+Time Taken: 393
+Env: 139
+
+
+2
+Attack Time: 2685.8691
+Decay Time: 0.0000
+Release Time: 9455.5928
+Total Time: 2146.0000
+
+Time step: 72.0000
+Time Taken: 406
+Env: 134
+
+
+2
+Attack Time: 2685.8691
+Decay Time: 0.0000
+Release Time: 9455.5928
+Total Time: 2218.0000
+
+Time step: 72.0000
+Time Taken: 406
+Env: 130
+
+
+2
+Attack Time: 2685.8691
+Decay Time: 0.0000
+Release Time: 9455.5928
+Total Time: 2290.0000
+
+Time step: 72.0000
+Time Taken: 407
+Env: 126
+
+
+2
+Attack Time: 2685.8691
+Decay Time: 0.0000
+Release Time: 9455.5928
+Total Time: 2362.0000
+
+Time step: 72.0000
+Time Taken: 407
+Env: 121
+
+
+2
+Attack Time: 2685.8691
+Decay Time: 0.0000
+Release Time: 9455.5928
+Total Time: 2434.0000
+
+Time step: 72.0000
+Time Taken: 406
+Env: 118
+
+
+2
+Attack Time: 2685.8691
+Decay Time: 0.0000
+Release Time: 9455.5928
+Total Time: 2506.0000
+
+Time step: 72.0000
+Time Taken: 407
+Env: 114
+
+
+2
+Attack Time: 2685.8691
+Decay Time: 0.0000
+Release Time: 9455.5928
+Total Time: 2578.0000
+
+Time step: 72.0000
+Time Taken: 407
+Env: 110
+
+
+2
+Attack Time: 2685.8691
+Decay Time: 0.0000
+Release Time: 9455.5928
+Total Time: 2650.0000
+
+Time step: 72.0000
+Time Taken: 407
+Env: 106
+
+
+2
+Attack Time: 2685.8691
+Decay Time: 0.0000
+Release Time: 9455.5928
+Total Time: 2721.0000
+
+Time step: 71.0000
+Time Taken: 407
+Env: 103
+
+
+2
+Attack Time: 2685.8691
+Decay Time: 0.0000
+Release Time: 9455.5928
+Total Time: 2793.0000
+
+Time step: 72.0000
+Time Taken: 407
+Env: 100
+
+
+2
+Attack Time: 2685.8691
+Decay Time: 0.0000
+Release Time: 9455.5928
+Total Time: 2865.0000
+
+Time step: 72.0000
+Time Taken: 406
+Env: 97
+
+
+2
+Attack Time: 2685.8691
+Decay Time: 0.0000
+Release Time: 9455.5928
+Total Time: 2937.0000
+
+Time step: 72.0000
+Time Taken: 406
+Env: 93
+
+
+2
+Attack Time: 2685.8691
+Decay Time: 0.0000
+Release Time: 9455.5928
+Total Time: 3008.0000
+
+Time step: 71.0000
+Time Taken: 406
+Env: 91
+
+
+2
+Attack Time: 2685.8691
+Decay Time: 0.0000
+Release Time: 9455.5928
+Total Time: 3080.0000
+
+Time step: 72.0000
+Time Taken: 406
+Env: 88
+
+
+2
+Attack Time: 2685.8691
+Decay Time: 0.0000
+Release Time: 9455.5928
+Total Time: 3151.0000
+
+Time step: 71.0000
+Time Taken: 406
+Env: 85
+
+
+2
+Attack Time: 2685.8691
+Decay Time: 0.0000
+Release Time: 9455.5928
+Total Time: 3222.0000
+
+Time step: 71.0000
+Time Taken: 406
+Env: 82
+
+
+2
+Attack Time: 2685.8691
+Decay Time: 0.0000
+Release Time: 9455.5928
+Total Time: 3294.0000
+
+Time step: 72.0000
+Time Taken: 406
+Env: 80
+
+
+2
+Attack Time: 2685.8691
+Decay Time: 0.0000
+Release Time: 9455.5928
+Total Time: 3365.0000
+
+Time step: 71.0000
+Time Taken: 407
+Env: 77
+
+
+2
+Attack Time: 2685.8691
+Decay Time: 0.0000
+Release Time: 9455.5928
+Total Time: 3437.0000
+
+Time step: 72.0000
+Time Taken: 406
+Env: 75
+
+
+2
+Attack Time: 2685.8691
+Decay Time: 0.0000
+Release Time: 9455.5928
+Total Time: 3508.0000
+
+Time step: 71.0000
+Time Taken: 406
+Env: 72
+
+
+2
+Attack Time: 2685.8691
+Decay Time: 0.0000
+Release Time: 9455.5928
+Total Time: 3579.0000
+
+Time step: 71.0000
+Time Taken: 408
+Env: 70
+
+
+2
+Attack Time: 2685.8691
+Decay Time: 0.0000
+Release Time: 9455.5928
+Total Time: 3651.0000
+
+Time step: 72.0000
+Time Taken: 409
+Env: 68
+
+
+2
+Attack Time: 2685.8691
+Decay Time: 0.0000
+Release Time: 9455.5928
+Total Time: 3722.0000
+
+Time step: 71.0000
+Time Taken: 409
+Env: 66
+
+
+2
+Attack Time: 2685.8691
+Decay Time: 0.0000
+Release Time: 9455.5928
+Total Time: 3794.0000
+
+Time step: 72.0000
+Time Taken: 409
+Env: 64
+
+
+2
+Attack Time: 2685.8691
+Decay Time: 0.0000
+Release Time: 9455.5928
+Total Time: 3865.0000
+
+Time step: 71.0000
+Time Taken: 409
+Env: 62
+
+
+2
+Attack Time: 2685.8691
+Decay Time: 0.0000
+Release Time: 9455.5928
+Total Time: 3936.0000
+
+Time step: 71.0000
+Time Taken: 409
+Env: 60
+
+
+2
+Attack Time: 2685.8691
+Decay Time: 0.0000
+Release Time: 9455.5928
+Total Time: 4008.0000
+
+Time step: 72.0000
+Time Taken: 409
+Env: 58
+
+
+2
+Attack Time: 2685.8691
+Decay Time: 0.0000
+Release Time: 9455.5928
+Total Time: 4079.0000
+
+Time step: 71.0000
+Time Taken: 408
+Env: 56
+
+
+2
+Attack Time: 2685.8691
+Decay Time: 0.0000
+Release Time: 9455.5928
+Total Time: 4151.0000
+
+Time step: 72.0000
+Time Taken: 408
+Env: 55
+
+
+2
+Attack Time: 2685.8691
+Decay Time: 0.0000
+Release Time: 9455.5928
+Total Time: 4222.0000
+
+Time step: 71.0000
+Time Taken: 408
+Env: 53
+
+
+2
+Attack Time: 2685.8691
+Decay Time: 0.0000
+Release Time: 9455.5928
+Total Time: 4293.0000
+
+Time step: 71.0000
+Time Taken: 409
+Env: 52
+
+
+2
+Attack Time: 2685.8691
+Decay Time: 0.0000
+Release Time: 9455.5928
+Total Time: 4365.0000
+
+Time step: 72.0000
+Time Taken: 408
+Env: 50
+
+
+2
+Attack Time: 2685.8691
+Decay Time: 0.0000
+Release Time: 9455.5928
+Total Time: 4436.0000
+
+Time step: 71.0000
+Time Taken: 408
+Env: 49
+
+
+2
+Attack Time: 2685.8691
+Decay Time: 0.0000
+Release Time: 9455.5928
+Total Time: 4508.0000
+
+Time step: 72.0000
+Time Taken: 408
+Env: 47
+
+
+2
+Attack Time: 2685.8691
+Decay Time: 0.0000
+Release Time: 9455.5928
+Total Time: 4579.0000
+
+Time step: 71.0000
+Time Taken: 408
+Env: 46
+
+
+2
+Attack Time: 2685.8691
+Decay Time: 0.0000
+Release Time: 9455.5928
+Total Time: 4650.0000
+
+Time step: 71.0000
+Time Taken: 408
+Env: 44
+
+
+2
+Attack Time: 2685.8691
+Decay Time: 0.0000
+Release Time: 9455.5928
+Total Time: 4722.0000
+
+Time step: 72.0000
+Time Taken: 408
+Env: 43
+
+
+2
+Attack Time: 2685.8691
+Decay Time: 0.0000
+Release Time: 9455.5928
+Total Time: 4793.0000
+
+Time step: 71.0000
+Time Taken: 409
+Env: 42
+
+
+2
+Attack Time: 2685.8691
+Decay Time: 0.0000
+Release Time: 9455.5928
+Total Time: 4865.0000
+
+Time step: 72.0000
+Time Taken: 408
+Env: 41
+
+
+2
+Attack Time: 2685.8691
+Decay Time: 0.0000
+Release Time: 9455.5928
+Total Time: 4936.0000
+
+Time step: 71.0000
+Time Taken: 408
+Env: 39
+
+
+2
+Attack Time: 2685.8691
+Decay Time: 0.0000
+Release Time: 9455.5928
+Total Time: 5007.0000
+
+Time step: 71.0000
+Time Taken: 406
+Env: 38
+
+
+2
+Attack Time: 2685.8691
+Decay Time: 0.0000
+Release Time: 9455.5928
+Total Time: 5079.0000
+
+Time step: 72.0000
+Time Taken: 407
+Env: 37
+
+
+2
+Attack Time: 2685.8691
+Decay Time: 0.0000
+Release Time: 9455.5928
+Total Time: 5150.0000
+
+Time step: 71.0000
+Time Taken: 407
+Env: 36
+
+
+2
+Attack Time: 2685.8691
+Decay Time: 0.0000
+Release Time: 9455.5928
+Total Time: 5222.0000
+
+Time step: 72.0000
+Time Taken: 407
+Env: 35
+
+
+2
+Attack Time: 2685.8691
+Decay Time: 0.0000
+Release Time: 9455.5928
+Total Time: 5293.0000
+
+Time step: 71.0000
+Time Taken: 406
+Env: 34
+
+
+2
+Attack Time: 2685.8691
+Decay Time: 0.0000
+Release Time: 9455.5928
+Total Time: 5365.0000
+
+Time step: 72.0000
+Time Taken: 407
+Env: 33
+
+
+2
+Attack Time: 2685.8691
+Decay Time: 0.0000
+Release Time: 9455.5928
+Total Time: 5436.0000
+
+Time step: 71.0000
+Time Taken: 407
+Env: 32
+
+
+2
+Attack Time: 2685.8691
+Decay Time: 0.0000
+Release Time: 9455.5928
+Total Time: 5507.0000
+
+Time step: 71.0000
+Time Taken: 406
+Env: 32
+
+
+2
+Attack Time: 2685.8691
+Decay Time: 0.0000
+Release Time: 9455.5928
+Total Time: 5579.0000
+
+Time step: 72.0000
+Time Taken: 407
+Env: 31
+
+
+2
+Attack Time: 2685.8691
+Decay Time: 0.0000
+Release Time: 9455.5928
+Total Time: 5650.0000
+
+Time step: 71.0000
+Time Taken: 407
+Env: 30
+
+
+2
+Attack Time: 2685.8691
+Decay Time: 0.0000
+Release Time: 9455.5928
+Total Time: 5722.0000
+
+Time step: 72.0000
+Time Taken: 406
+Env: 29
+
+
+2
+Attack Time: 2685.8691
+Decay Time: 0.0000
+Release Time: 9455.5928
+Total Time: 5793.0000
+
+Time step: 71.0000
+Time Taken: 406
+Env: 28
+
+
+2
+Attack Time: 2685.8691
+Decay Time: 0.0000
+Release Time: 9455.5928
+Total Time: 5864.0000
+
+Time step: 71.0000
+Time Taken: 406
+Env: 28
+
+
+2
+Attack Time: 2685.8691
+Decay Time: 0.0000
+Release Time: 9455.5928
+Total Time: 5936.0000
+
+Time step: 72.0000
+Time Taken: 407
+Env: 27
+
+
+2
+Attack Time: 2685.8691
+Decay Time: 0.0000
+Release Time: 9455.5928
+Total Time: 6007.0000
+
+Time step: 71.0000
+Time Taken: 407
+Env: 26
+
+
+2
+Attack Time: 2685.8691
+Decay Time: 0.0000
+Release Time: 9455.5928
+Total Time: 6079.0000
+
+Time step: 72.0000
+Time Taken: 406
+Env: 26
+
+
+2
+Attack Time: 2685.8691
+Decay Time: 0.0000
+Release Time: 9455.5928
+Total Time: 6150.0000
+
+Time step: 71.0000
+Time Taken: 406
+Env: 25
+
+
+2
+Attack Time: 2685.8691
+Decay Time: 0.0000
+Release Time: 9455.5928
+Total Time: 6221.0000
+
+Time step: 71.0000
+Time Taken: 407
+Env: 24
+
+
+2
+Attack Time: 2685.8691
+Decay Time: 0.0000
+Release Time: 9455.5928
+Total Time: 6293.0000
+
+Time step: 72.0000
+Time Taken: 407
+Env: 24
+
+
+2
+Attack Time: 2685.8691
+Decay Time: 0.0000
+Release Time: 9455.5928
+Total Time: 6364.0000
+
+Time step: 71.0000
+Time Taken: 406
+Env: 23
+
+
+2
+Attack Time: 2685.8691
+Decay Time: 0.0000
+Release Time: 9455.5928
+Total Time: 6436.0000
+
+Time step: 72.0000
+Time Taken: 408
+Env: 23
+
+
+2
+Attack Time: 2685.8691
+Decay Time: 0.0000
+Release Time: 9455.5928
+Total Time: 6507.0000
+
+Time step: 71.0000
+Time Taken: 408
+Env: 22
+
+
+2
+Attack Time: 2685.8691
+Decay Time: 0.0000
+Release Time: 9455.5928
+Total Time: 6578.0000
+
+Time step: 71.0000
+Time Taken: 408
+Env: 21
+
+
+2
+Attack Time: 2685.8691
+Decay Time: 0.0000
+Release Time: 9455.5928
+Total Time: 6650.0000
+
+Time step: 72.0000
+Time Taken: 408
+Env: 21
+
+
+2
+Attack Time: 2685.8691
+Decay Time: 0.0000
+Release Time: 9455.5928
+Total Time: 6721.0000
+
+Time step: 71.0000
+Time Taken: 408
+Env: 20
+
+
+2
+Attack Time: 2685.8691
+Decay Time: 0.0000
+Release Time: 9455.5928
+Total Time: 6793.0000
+
+Time step: 72.0000
+Time Taken: 408
+Env: 20
+
+
+2
+Attack Time: 2685.8691
+Decay Time: 0.0000
+Release Time: 9455.5928
+Total Time: 6864.0000
+
+Time step: 71.0000
+Time Taken: 408
+Env: 20
+
+
+2
+Attack Time: 2685.8691
+Decay Time: 0.0000
+Release Time: 9455.5928
+Total Time: 6935.0000
+
+Time step: 71.0000
+Time Taken: 408
+Env: 19
+
+
+2
+Attack Time: 2685.8691
+Decay Time: 0.0000
+Release Time: 9455.5928
+Total Time: 7007.0000
+
+Time step: 72.0000
+Time Taken: 408
+Env: 19
+
+
+2
+Attack Time: 2685.8691
+Decay Time: 0.0000
+Release Time: 9455.5928
+Total Time: 7078.0000
+
+Time step: 71.0000
+Time Taken: 409
+Env: 18
+
+
+2
+Attack Time: 2685.8691
+Decay Time: 0.0000
+Release Time: 9455.5928
+Total Time: 7150.0000
+
+Time step: 72.0000
+Time Taken: 408
+Env: 18
+
+
+2
+Attack Time: 2685.8691
+Decay Time: 0.0000
+Release Time: 9455.5928
+Total Time: 7221.0000
+
+Time step: 71.0000
+Time Taken: 408
+Env: 17
+
+
+2
+Attack Time: 2685.8691
+Decay Time: 0.0000
+Release Time: 9455.5928
+Total Time: 7292.0000
+
+Time step: 71.0000
+Time Taken: 408
+Env: 17
+
+
+2
+Attack Time: 2685.8691
+Decay Time: 0.0000
+Release Time: 9455.5928
+Total Time: 7364.0000
+
+Time step: 72.0000
+Time Taken: 409
+Env: 17
+
+
+2
+Attack Time: 2685.8691
+Decay Time: 0.0000
+Release Time: 9455.5928
+Total Time: 7435.0000
+
+Time step: 71.0000
+Time Taken: 408
+Env: 16
+
+
+2
+Attack Time: 2685.8691
+Decay Time: 0.0000
+Release Time: 9455.5928
+Total Time: 7507.0000
+
+Time step: 72.0000
+Time Taken: 408
+Env: 16
+
+
+2
+Attack Time: 2685.8691
+Decay Time: 0.0000
+Release Time: 9455.5928
+Total Time: 7578.0000
+
+Time step: 71.0000
+Time Taken: 408
+Env: 16
+
+
+2
+Attack Time: 2685.8691
+Decay Time: 0.0000
+Release Time: 9455.5928
+Total Time: 7650.0000
+
+Time step: 72.0000
+Time Taken: 409
+Env: 15
+
+
+2
+Attack Time: 2685.8691
+Decay Time: 0.0000
+Release Time: 9455.5928
+Total Time: 7721.0000
+
+Time step: 71.0000
+Time Taken: 409
+Env: 15
+
+
+2
+Attack Time: 2685.8691
+Decay Time: 0.0000
+Release Time: 9455.5928
+Total Time: 7792.0000
+
+Time step: 71.0000
+Time Taken: 408
+Env: 15
+
+
+2
+Attack Time: 2685.8691
+Decay Time: 0.0000
+Release Time: 9455.5928
+Total Time: 7864.0000
+
+Time step: 72.0000
+Time Taken: 408
+Env: 15
+
+
+2
+Attack Time: 2685.8691
+Decay Time: 0.0000
+Release Time: 9455.5928
+Total Time: 7935.0000
+
+Time step: 71.0000
+Time Taken: 409
+Env: 14
+
+
+2
+Attack Time: 2685.8691
+Decay Time: 0.0000
+Release Time: 9455.5928
+Total Time: 8007.0000
+
+Time step: 72.0000
+Time Taken: 408
+Env: 14
+
+
+2
+Attack Time: 2685.8691
+Decay Time: 0.0000
+Release Time: 9455.5928
+Total Time: 8078.0000
+
+Time step: 71.0000
+Time Taken: 409
+Env: 14
+
+
+2
+Attack Time: 2685.8691
+Decay Time: 0.0000
+Release Time: 9455.5928
+Total Time: 8149.0000
+
+Time step: 71.0000
+Time Taken: 408
+Env: 14
+
+
+2
+Attack Time: 2685.8691
+Decay Time: 0.0000
+Release Time: 9455.5928
+Total Time: 8221.0000
+
+Time step: 72.0000
+Time Taken: 409
+Env: 13
+
+
+2
+Attack Time: 2685.8691
+Decay Time: 0.0000
+Release Time: 9455.5928
+Total Time: 8292.0000
+
+Time step: 71.0000
+Time Taken: 409
+Env: 13
+
+
+2
+Attack Time: 2685.8691
+Decay Time: 0.0000
+Release Time: 9455.5928
+Total Time: 8364.0000
+
+Time step: 72.0000
+Time Taken: 408
+Env: 13
+
+
+2
+Attack Time: 2685.8691
+Decay Time: 0.0000
+Release Time: 9455.5928
+Total Time: 8435.0000
+
+Time step: 71.0000
+Time Taken: 408
+Env: 13
+
+
+2
+Attack Time: 2685.8691
+Decay Time: 0.0000
+Release Time: 9455.5928
+Total Time: 8506.0000
+
+Time step: 71.0000
+Time Taken: 408
+Env: 12
+
+
+2
+Attack Time: 2685.8691
+Decay Time: 0.0000
+Release Time: 9455.5928
+Total Time: 8578.0000
+
+Time step: 72.0000
+Time Taken: 408
+Env: 12
+
+
+2
+Attack Time: 2685.8691
+Decay Time: 0.0000
+Release Time: 9455.5928
+Total Time: 8649.0000
+
+Time step: 71.0000
+Time Taken: 408
+Env: 12
+
+
+2
+Attack Time: 2685.8691
+Decay Time: 0.0000
+Release Time: 9455.5928
+Total Time: 8721.0000
+
+Time step: 72.0000
+Time Taken: 408
+Env: 12
+
+
+2
+Attack Time: 2685.8691
+Decay Time: 0.0000
+Release Time: 9455.5928
+Total Time: 8792.0000
+
+Time step: 71.0000
+Time Taken: 409
+Env: 12
+
+
+2
+Attack Time: 2685.8691
+Decay Time: 0.0000
+Release Time: 9455.5928
+Total Time: 8863.0000
+
+Time step: 71.0000
+Time Taken: 408
+Env: 12
+
+
+2
+Attack Time: 2685.8691
+Decay Time: 0.0000
+Release Time: 9455.5928
+Total Time: 8935.0000
+
+Time step: 72.0000
+Time Taken: 408
+Env: 11
+
+
+2
+Attack Time: 2685.8691
+Decay Time: 0.0000
+Release Time: 9455.5928
+Total Time: 9006.0000
+
+Time step: 71.0000
+Time Taken: 408
+Env: 11
+
+
+2
+Attack Time: 2685.8691
+Decay Time: 0.0000
+Release Time: 9455.5928
+Total Time: 9078.0000
+
+Time step: 72.0000
+Time Taken: 409
+Env: 11
+
+
+2
+Attack Time: 2685.8691
+Decay Time: 0.0000
+Release Time: 9455.5928
+Total Time: 9149.0000
+
+Time step: 71.0000
+Time Taken: 408
+Env: 11
+
+
+2
+Attack Time: 2685.8691
+Decay Time: 0.0000
+Release Time: 9455.5928
+Total Time: 9220.0000
+
+Time step: 71.0000
+Time Taken: 408
+Env: 11
+
+
+2
+Attack Time: 2685.8691
+Decay Time: 0.0000
+Release Time: 9455.5928
+Total Time: 9292.0000
+
+Time step: 72.0000
+Time Taken: 408
+Env: 11
+
+
+2
+Attack Time: 2685.8691
+Decay Time: 0.0000
+Release Time: 9455.5928
+Total Time: 9363.0000
+
+Time step: 71.0000
+Time Taken: 409
+Env: 11
+
+
+2
+Attack Time: 2685.8691
+Decay Time: 0.0000
+Release Time: 9455.5928
+Total Time: 9435.0000
+
+Time step: 72.0000
+Time Taken: 408
+Env: 10
+
+
+2
+Attack Time: 2685.8691
+Decay Time: 0.0000
+Release Time: 9455.5928
+Total Time: 9506.0000
+
+Time step: 71.0000
+Time Taken: 408
+Env: 10
+
+
+2
+Attack Time: 2685.8691
+Decay Time: 0.0000
+Release Time: 9455.5928
+Total Time: 9577.0000
+
+Time step: 71.0000
+Time Taken: 408
+Env: 10
+
+
+2
+Attack Time: 2685.8691
+Decay Time: 0.0000
+Release Time: 9455.5928
+Total Time: 9649.0000
+
+Time step: 72.0000
+Time Taken: 409
+Env: 10
+
+
+2
+Attack Time: 2685.8691
+Decay Time: 0.0000
+Release Time: 9455.5928
+Total Time: 9720.0000
+
+Time step: 71.0000
+Time Taken: 409
+Env: 10
+
+
+2
+Attack Time: 2685.8691
+Decay Time: 0.0000
+Release Time: 9455.5928
+Total Time: 9792.0000
+
+Time step: 72.0000
+Time Taken: 408
+Env: 10
+
+
+2
+Attack Time: 2685.8691
+Decay Time: 0.0000
+Release Time: 9455.5928
+Total Time: 9863.0000
+
+Time step: 71.0000
+Time Taken: 408
+Env: 10
+
+
+2
+Attack Time: 2685.8691
+Decay Time: 0.0000
+Release Time: 9455.5928
+Total Time: 9935.0000
+
+Time step: 72.0000
+Time Taken: 409
+Env: 10
+
+
+2
+Attack Time: 2685.8691
+Decay Time: 0.0000
+Release Time: 9455.5928
+Total Time: 10006.0000
+
+Time step: 71.0000
+Time Taken: 409
+Env: 9
+
+
+0
+Attack Time: 2685.8691
+Decay Time: 0.0000
+Release Time: 9455.5928
+Total Time: 0.0000
+
+Time step: 0.0000
+Time Taken: 259
+Env: 0
+
+
+0
+Attack Time: 2685.8691
+Decay Time: 0.0000
+Release Time: 9455.5928
+Total Time: 69.0000
+
+Time step: 69.0000
+Time Taken: 265
+Env: 26
+
+
+0
+Attack Time: 2685.8691
+Decay Time: 0.0000
+Release Time: 9455.5928
+Total Time: 139.0000
+
+Time step: 70.0000
+Time Taken: 268
+Env: 52
+
+
+0
+Attack Time: 2685.8691
+Decay Time: 0.0000
+Release Time: 9455.5928
+Total Time: 210.0000
+
+Time step: 71.0000
+Time Taken: 268
+Env: 79
+
+
+0
+Attack Time: 2685.8691
+Decay Time: 0.0000
+Release Time: 9455.5928
+Total Time: 281.0000
+
+Time step: 71.0000
+Time Taken: 268
+Env: 107
+
+
+0
+Attack Time: 2685.8691
+Decay Time: 0.0000
+Release Time: 9455.5928
+Total Time: 352.0000
+
+Time step: 71.0000
+Time Taken: 269
+Env: 134
+
+
+0
+Attack Time: 2685.8691
+Decay Time: 0.0000
+Release Time: 9455.5928
+Total Time: 423.0000
+
+Time step: 71.0000
+Time Taken: 268
+Env: 161
+
+
+0
+Attack Time: 2685.8691
+Decay Time: 0.0000
+Release Time: 9455.5928
+Total Time: 494.0000
+
+Time step: 71.0000
+Time Taken: 268
+Env: 188
+
+
+0
+Attack Time: 2685.8691
+Decay Time: 0.0000
+Release Time: 9455.5928
+Total Time: 566.0000
+
+Time step: 72.0000
+Time Taken: 269
+Env: 215
+
+
+0
+Attack Time: 2685.8691
+Decay Time: 0.0000
+Release Time: 9455.5928
+Total Time: 637.0000
+
+Time step: 71.0000
+Time Taken: 268
+Env: 242
+
+
+0
+Attack Time: 2685.8691
+Decay Time: 0.0000
+Release Time: 9455.5928
+Total Time: 708.0000
+
+Time step: 71.0000
+Time Taken: 268
+Env: 269
+
+
+0
+Attack Time: 2685.8691
+Decay Time: 0.0000
+Release Time: 9455.5928
+Total Time: 779.0000
+
+Time step: 71.0000
+Time Taken: 268
+Env: 296
+
+
+0
+Attack Time: 2685.8691
+Decay Time: 0.0000
+Release Time: 9455.5928
+Total Time: 851.0000
+
+Time step: 72.0000
+Time Taken: 268
+Env: 324
+
+
+0
+Attack Time: 2685.8691
+Decay Time: 0.0000
+Release Time: 9455.5928
+Total Time: 922.0000
+
+Time step: 71.0000
+Time Taken: 268
+Env: 351
+
+
+0
+Attack Time: 2685.8691
+Decay Time: 0.0000
+Release Time: 9455.5928
+Total Time: 993.0000
+
+Time step: 71.0000
+Time Taken: 268
+Env: 378
+
+
+0
+Attack Time: 2685.8691
+Decay Time: 0.0000
+Release Time: 9455.5928
+Total Time: 1064.0000
+
+Time step: 71.0000
+Time Taken: 269
+Env: 405
+
+
+0
+Attack Time: 2685.8691
+Decay Time: 0.0000
+Release Time: 9455.5928
+Total Time: 1136.0000
+
+Time step: 72.0000
+Time Taken: 268
+Env: 432
+
+
+0
+Attack Time: 2685.8691
+Decay Time: 0.0000
+Release Time: 9455.5928
+Total Time: 1208.0000
+
+Time step: 72.0000
+Time Taken: 268
+Env: 460
+
+
+0
+Attack Time: 2685.8691
+Decay Time: 0.0000
+Release Time: 9455.5928
+Total Time: 1280.0000
+
+Time step: 72.0000
+Time Taken: 268
+Env: 487
+
+
+0
+Attack Time: 2685.8691
+Decay Time: 0.0000
+Release Time: 9455.5928
+Total Time: 1351.0000
+
+Time step: 71.0000
+Time Taken: 268
+Env: 514
+
+
+0
+Attack Time: 2685.8691
+Decay Time: 0.0000
+Release Time: 9455.5928
+Total Time: 1423.0000
+
+Time step: 72.0000
+Time Taken: 268
+Env: 541
+
+
+0
+Attack Time: 2685.8691
+Decay Time: 0.0000
+Release Time: 9455.5928
+Total Time: 1495.0000
+
+Time step: 72.0000
+Time Taken: 268
+Env: 569
+
+
+0
+Attack Time: 2685.8691
+Decay Time: 0.0000
+Release Time: 9455.5928
+Total Time: 1567.0000
+
+Time step: 72.0000
+Time Taken: 268
+Env: 596
+
+
+0
+Attack Time: 2685.8691
+Decay Time: 0.0000
+Release Time: 9455.5928
+Total Time: 1639.0000
+
+Time step: 72.0000
+Time Taken: 268
+Env: 624
+
+
+0
+Attack Time: 2685.8691
+Decay Time: 0.0000
+Release Time: 9455.5928
+Total Time: 1710.0000
+
+Time step: 71.0000
+Time Taken: 268
+Env: 651
+
+
+0
+Attack Time: 2685.8691
+Decay Time: 0.0000
+Release Time: 9455.5928
+Total Time: 1782.0000
+
+Time step: 72.0000
+Time Taken: 268
+Env: 678
+
+
+0
+Attack Time: 2685.8691
+Decay Time: 0.0000
+Release Time: 9455.5928
+Total Time: 1854.0000
+
+Time step: 72.0000
+Time Taken: 268
+Env: 706
+
+
+0
+Attack Time: 2685.8691
+Decay Time: 0.0000
+Release Time: 9455.5928
+Total Time: 1926.0000
+
+Time step: 72.0000
+Time Taken: 268
+Env: 733
+
+
+0
+Attack Time: 2685.8691
+Decay Time: 0.0000
+Release Time: 9455.5928
+Total Time: 1997.0000
+
+Time step: 71.0000
+Time Taken: 268
+Env: 760
+
+
+0
+Attack Time: 2685.8691
+Decay Time: 0.0000
+Release Time: 9455.5928
+Total Time: 2069.0000
+
+Time step: 72.0000
+Time Taken: 268
+Env: 788
+
+
+0
+Attack Time: 2685.8691
+Decay Time: 0.0000
+Release Time: 9455.5928
+Total Time: 2141.0000
+
+Time step: 72.0000
+Time Taken: 268
+Env: 815
+
+
+0
+Attack Time: 2685.8691
+Decay Time: 0.0000
+Release Time: 9455.5928
+Total Time: 2213.0000
+
+Time step: 72.0000
+Time Taken: 268
+Env: 842
+
+
+0
+Attack Time: 2685.8691
+Decay Time: 0.0000
+Release Time: 9455.5928
+Total Time: 2284.0000
+
+Time step: 71.0000
+Time Taken: 268
+Env: 869
+
+
+0
+Attack Time: 2685.8691
+Decay Time: 0.0000
+Release Time: 9455.5928
+Total Time: 2355.0000
+
+Time step: 71.0000
+Time Taken: 268
+Env: 896
+
+
+0
+Attack Time: 2685.8691
+Decay Time: 0.0000
+Release Time: 9455.5928
+Total Time: 2427.0000
+
+Time step: 72.0000
+Time Taken: 268
+Env: 924
+
+
+0
+Attack Time: 2685.8691
+Decay Time: 0.0000
+Release Time: 9455.5928
+Total Time: 2499.0000
+
+Time step: 72.0000
+Time Taken: 268
+Env: 951
+
+
+0
+Attack Time: 2685.8691
+Decay Time: 0.0000
+Release Time: 9455.5928
+Total Time: 2571.0000
+
+Time step: 72.0000
+Time Taken: 268
+Env: 979
+
+
+0
+Attack Time: 2685.8691
+Decay Time: 0.0000
+Release Time: 9455.5928
+Total Time: 2642.0000
+
+Time step: 71.0000
+Time Taken: 268
+Env: 1006
+
+
+1
+Attack Time: 2685.8691
+Decay Time: 0.0000
+Release Time: 9455.5928
+Total Time: 0.0000
+
+Time step: 73.0000
+Time Taken: 269
+Env: 1023
+
+
+1
+Attack Time: 2685.8691
+Decay Time: 9455.5928
+Release Time: 9455.5928
+Total Time: 70.0000
+
+Time step: 70.0000
+Time Taken: 377
+Env: 1015
+
+
+1
+Attack Time: 2685.8691
+Decay Time: 9455.5928
+Release Time: 9455.5928
+Total Time: 143.0000
+
+Time step: 73.0000
+Time Taken: 379
+Env: 1008
+
+
+1
+Attack Time: 2685.8691
+Decay Time: 9455.5928
+Release Time: 9455.5928
+Total Time: 217.0000
+
+Time step: 74.0000
+Time Taken: 378
+Env: 1001
+
+
+1
+Attack Time: 2685.8691
+Decay Time: 9455.5928
+Release Time: 9455.5928
+Total Time: 290.0000
+
+Time step: 73.0000
+Time Taken: 379
+Env: 994
+
+
+1
+Attack Time: 2685.8691
+Decay Time: 9455.5928
+Release Time: 9455.5928
+Total Time: 363.0000
+
+Time step: 73.0000
+Time Taken: 378
+Env: 987
+
+
+1
+Attack Time: 2685.8691
+Decay Time: 9455.5928
+Release Time: 9455.5928
+Total Time: 436.0000
+
+Time step: 73.0000
+Time Taken: 378
+Env: 981
+
+
+1
+Attack Time: 2685.8691
+Decay Time: 9455.5928
+Release Time: 9455.5928
+Total Time: 509.0000
+
+Time step: 73.0000
+Time Taken: 379
+Env: 974
+
+
+1
+Attack Time: 2685.8691
+Decay Time: 9455.5928
+Release Time: 9455.5928
+Total Time: 582.0000
+
+Time step: 73.0000
+Time Taken: 379
+Env: 968
+
+
+1
+Attack Time: 2685.8691
+Decay Time: 9455.5928
+Release Time: 9455.5928
+Total Time: 655.0000
+
+Time step: 73.0000
+Time Taken: 378
+Env: 963
+
+
+1
+Attack Time: 2685.8691
+Decay Time: 9455.5928
+Release Time: 9455.5928
+Total Time: 728.0000
+
+Time step: 73.0000
+Time Taken: 391
+Env: 957
+
+
+1
+Attack Time: 2685.8691
+Decay Time: 9455.5928
+Release Time: 9455.5928
+Total Time: 801.0000
+
+Time step: 73.0000
+Time Taken: 391
+Env: 952
+
+
+1
+Attack Time: 2685.8691
+Decay Time: 9455.5928
+Release Time: 9455.5928
+Total Time: 873.0000
+
+Time step: 72.0000
+Time Taken: 391
+Env: 947
+
+
+1
+Attack Time: 2685.8691
+Decay Time: 9455.5928
+Release Time: 9455.5928
+Total Time: 945.0000
+
+Time step: 72.0000
+Time Taken: 392
+Env: 942
+
+
+1
+Attack Time: 2685.8691
+Decay Time: 9455.5928
+Release Time: 9455.5928
+Total Time: 1018.0000
+
+Time step: 73.0000
+Time Taken: 392
+Env: 937
+
+
+1
+Attack Time: 2685.8691
+Decay Time: 9455.5928
+Release Time: 9455.5928
+Total Time: 1092.0000
+
+Time step: 74.0000
+Time Taken: 391
+Env: 932
+
+
+1
+Attack Time: 2685.8691
+Decay Time: 9455.5928
+Release Time: 9455.5928
+Total Time: 1165.0000
+
+Time step: 73.0000
+Time Taken: 392
+Env: 928
+
+
+1
+Attack Time: 2685.8691
+Decay Time: 9455.5928
+Release Time: 9455.5928
+Total Time: 1239.0000
+
+Time step: 74.0000
+Time Taken: 392
+Env: 923
+
+
+1
+Attack Time: 2685.8691
+Decay Time: 9455.5928
+Release Time: 9455.5928
+Total Time: 1312.0000
+
+Time step: 73.0000
+Time Taken: 391
+Env: 919
+
+
+1
+Attack Time: 2685.8691
+Decay Time: 9455.5928
+Release Time: 9455.5928
+Total Time: 1386.0000
+
+Time step: 74.0000
+Time Taken: 391
+Env: 915
+
+
+1
+Attack Time: 2685.8691
+Decay Time: 9455.5928
+Release Time: 9455.5928
+Total Time: 1459.0000
+
+Time step: 73.0000
+Time Taken: 391
+Env: 911
+
+
+1
+Attack Time: 2685.8691
+Decay Time: 9455.5928
+Release Time: 9455.5928
+Total Time: 1532.0000
+
+Time step: 73.0000
+Time Taken: 392
+Env: 907
+
+
+1
+Attack Time: 2685.8691
+Decay Time: 9455.5928
+Release Time: 9455.5928
+Total Time: 1606.0000
+
+Time step: 74.0000
+Time Taken: 391
+Env: 904
+
+
+1
+Attack Time: 2685.8691
+Decay Time: 9455.5928
+Release Time: 9455.5928
+Total Time: 1679.0000
+
+Time step: 73.0000
+Time Taken: 392
+Env: 900
+
+
+1
+Attack Time: 2685.8691
+Decay Time: 9455.5928
+Release Time: 9455.5928
+Total Time: 1753.0000
+
+Time step: 74.0000
+Time Taken: 391
+Env: 897
+
+
+1
+Attack Time: 2685.8691
+Decay Time: 9455.5928
+Release Time: 9455.5928
+Total Time: 1826.0000
+
+Time step: 73.0000
+Time Taken: 392
+Env: 893
+
+
+1
+Attack Time: 2685.8691
+Decay Time: 9455.5928
+Release Time: 9455.5928
+Total Time: 1900.0000
+
+Time step: 74.0000
+Time Taken: 391
+Env: 890
+
+
+1
+Attack Time: 2685.8691
+Decay Time: 9455.5928
+Release Time: 9455.5928
+Total Time: 1973.0000
+
+Time step: 73.0000
+Time Taken: 392
+Env: 887
+
+
+1
+Attack Time: 2685.8691
+Decay Time: 9455.5928
+Release Time: 9455.5928
+Total Time: 2046.0000
+
+Time step: 73.0000
+Time Taken: 391
+Env: 884
+
+
+1
+Attack Time: 2685.8691
+Decay Time: 9455.5928
+Release Time: 9455.5928
+Total Time: 2120.0000
+
+Time step: 74.0000
+Time Taken: 392
+Env: 881
+
+
+1
+Attack Time: 2685.8691
+Decay Time: 9455.5928
+Release Time: 9455.5928
+Total Time: 2193.0000
+
+Time step: 73.0000
+Time Taken: 405
+Env: 879
+
+
+1
+Attack Time: 2685.8691
+Decay Time: 9455.5928
+Release Time: 9455.5928
+Total Time: 2267.0000
+
+Time step: 74.0000
+Time Taken: 406
+Env: 876
+
+
+1
+Attack Time: 2685.8691
+Decay Time: 9455.5928
+Release Time: 9455.5928
+Total Time: 2340.0000
+
+Time step: 73.0000
+Time Taken: 406
+Env: 874
+
+
+1
+Attack Time: 2685.8691
+Decay Time: 9455.5928
+Release Time: 9455.5928
+Total Time: 2414.0000
+
+Time step: 74.0000
+Time Taken: 405
+Env: 871
+
+
+1
+Attack Time: 2685.8691
+Decay Time: 9455.5928
+Release Time: 9455.5928
+Total Time: 2487.0000
+
+Time step: 73.0000
+Time Taken: 406
+Env: 869
+
+
+1
+Attack Time: 2685.8691
+Decay Time: 9455.5928
+Release Time: 9455.5928
+Total Time: 2561.0000
+
+Time step: 74.0000
+Time Taken: 405
+Env: 866
+
+
+1
+Attack Time: 2685.8691
+Decay Time: 9455.5928
+Release Time: 9455.5928
+Total Time: 2634.0000
+
+Time step: 73.0000
+Time Taken: 406
+Env: 864
+
+
+1
+Attack Time: 2685.8691
+Decay Time: 9455.5928
+Release Time: 9455.5928
+Total Time: 2708.0000
+
+Time step: 74.0000
+Time Taken: 405
+Env: 862
+
+
+1
+Attack Time: 2685.8691
+Decay Time: 9455.5928
+Release Time: 9455.5928
+Total Time: 2781.0000
+
+Time step: 73.0000
+Time Taken: 405
+Env: 860
+
+
+1
+Attack Time: 2685.8691
+Decay Time: 9455.5928
+Release Time: 9455.5928
+Total Time: 2855.0000
+
+Time step: 74.0000
+Time Taken: 405
+Env: 858
+
+
+1
+Attack Time: 2685.8691
+Decay Time: 9455.5928
+Release Time: 9455.5928
+Total Time: 2928.0000
+
+Time step: 73.0000
+Time Taken: 405
+Env: 856
+
+
+1
+Attack Time: 2685.8691
+Decay Time: 9455.5928
+Release Time: 9455.5928
+Total Time: 3002.0000
+
+Time step: 74.0000
+Time Taken: 405
+Env: 854
+
+
+1
+Attack Time: 2685.8691
+Decay Time: 9455.5928
+Release Time: 9455.5928
+Total Time: 3075.0000
+
+Time step: 73.0000
+Time Taken: 405
+Env: 852
+
+
+1
+Attack Time: 2685.8691
+Decay Time: 9455.5928
+Release Time: 9455.5928
+Total Time: 3149.0000
+
+Time step: 74.0000
+Time Taken: 405
+Env: 851
+
+
+1
+Attack Time: 2685.8691
+Decay Time: 9455.5928
+Release Time: 9455.5928
+Total Time: 3222.0000
+
+Time step: 73.0000
+Time Taken: 405
+Env: 849
+
+
+1
+Attack Time: 2685.8691
+Decay Time: 9455.5928
+Release Time: 9455.5928
+Total Time: 3296.0000
+
+Time step: 74.0000
+Time Taken: 405
+Env: 847
+
+
+1
+Attack Time: 2685.8691
+Decay Time: 9455.5928
+Release Time: 9455.5928
+Total Time: 3369.0000
+
+Time step: 73.0000
+Time Taken: 406
+Env: 846
+
+
+1
+Attack Time: 2685.8691
+Decay Time: 9455.5928
+Release Time: 9455.5928
+Total Time: 3443.0000
+
+Time step: 74.0000
+Time Taken: 405
+Env: 844
+
+
+1
+Attack Time: 2685.8691
+Decay Time: 9455.5928
+Release Time: 9455.5928
+Total Time: 3516.0000
+
+Time step: 73.0000
+Time Taken: 405
+Env: 843
+
+
+1
+Attack Time: 2685.8691
+Decay Time: 9455.5928
+Release Time: 9455.5928
+Total Time: 3590.0000
+
+Time step: 74.0000
+Time Taken: 407
+Env: 842
+
+
+1
+Attack Time: 2685.8691
+Decay Time: 9455.5928
+Release Time: 9455.5928
+Total Time: 3663.0000
+
+Time step: 73.0000
+Time Taken: 407
+Env: 840
+
+
+1
+Attack Time: 2685.8691
+Decay Time: 9455.5928
+Release Time: 9455.5928
+Total Time: 3737.0000
+
+Time step: 74.0000
+Time Taken: 408
+Env: 839
+
+
+1
+Attack Time: 2685.8691
+Decay Time: 9455.5928
+Release Time: 9455.5928
+Total Time: 3810.0000
+
+Time step: 73.0000
+Time Taken: 407
+Env: 838
+
+
+1
+Attack Time: 2685.8691
+Decay Time: 9455.5928
+Release Time: 9455.5928
+Total Time: 3884.0000
+
+Time step: 74.0000
+Time Taken: 408
+Env: 836
+
+
+1
+Attack Time: 2685.8691
+Decay Time: 9455.5928
+Release Time: 9455.5928
+Total Time: 3957.0000
+
+Time step: 73.0000
+Time Taken: 407
+Env: 835
+
+
+1
+Attack Time: 2685.8691
+Decay Time: 9455.5928
+Release Time: 9455.5928
+Total Time: 4031.0000
+
+Time step: 74.0000
+Time Taken: 408
+Env: 834
+
+
+1
+Attack Time: 2685.8691
+Decay Time: 9455.5928
+Release Time: 9455.5928
+Total Time: 4104.0000
+
+Time step: 73.0000
+Time Taken: 408
+Env: 833
+
+
+1
+Attack Time: 2685.8691
+Decay Time: 9455.5928
+Release Time: 9455.5928
+Total Time: 4178.0000
+
+Time step: 74.0000
+Time Taken: 407
+Env: 832
+
+
+1
+Attack Time: 2685.8691
+Decay Time: 9455.5928
+Release Time: 9455.5928
+Total Time: 4251.0000
+
+Time step: 73.0000
+Time Taken: 407
+Env: 831
+
+
+1
+Attack Time: 2685.8691
+Decay Time: 9455.5928
+Release Time: 9455.5928
+Total Time: 4325.0000
+
+Time step: 74.0000
+Time Taken: 407
+Env: 830
+
+
+1
+Attack Time: 2685.8691
+Decay Time: 9455.5928
+Release Time: 9455.5928
+Total Time: 4398.0000
+
+Time step: 73.0000
+Time Taken: 407
+Env: 829
+
+
+1
+Attack Time: 2685.8691
+Decay Time: 9455.5928
+Release Time: 9455.5928
+Total Time: 4472.0000
+
+Time step: 74.0000
+Time Taken: 407
+Env: 828
+
+
+1
+Attack Time: 2685.8691
+Decay Time: 9455.5928
+Release Time: 9455.5928
+Total Time: 4545.0000
+
+Time step: 73.0000
+Time Taken: 407
+Env: 827
+
+
+1
+Attack Time: 2685.8691
+Decay Time: 9455.5928
+Release Time: 9455.5928
+Total Time: 4618.0000
+
+Time step: 73.0000
+Time Taken: 407
+Env: 827
+
+
+1
+Attack Time: 2685.8691
+Decay Time: 9455.5928
+Release Time: 9455.5928
+Total Time: 4692.0000
+
+Time step: 74.0000
+Time Taken: 407
+Env: 826
+
+
+1
+Attack Time: 2685.8691
+Decay Time: 9455.5928
+Release Time: 9455.5928
+Total Time: 4765.0000
+
+Time step: 73.0000
+Time Taken: 408
+Env: 825
+
+
+1
+Attack Time: 2685.8691
+Decay Time: 9455.5928
+Release Time: 9455.5928
+Total Time: 4839.0000
+
+Time step: 74.0000
+Time Taken: 407
+Env: 824
+
+
+1
+Attack Time: 2685.8691
+Decay Time: 9455.5928
+Release Time: 9455.5928
+Total Time: 4912.0000
+
+Time step: 73.0000
+Time Taken: 408
+Env: 823
+
+
+1
+Attack Time: 2685.8691
+Decay Time: 9455.5928
+Release Time: 9455.5928
+Total Time: 4986.0000
+
+Time step: 74.0000
+Time Taken: 405
+Env: 823
+
+
+1
+Attack Time: 2685.8691
+Decay Time: 9455.5928
+Release Time: 9455.5928
+Total Time: 5059.0000
+
+Time step: 73.0000
+Time Taken: 405
+Env: 822
+
+
+1
+Attack Time: 2685.8691
+Decay Time: 9455.5928
+Release Time: 9455.5928
+Total Time: 5133.0000
+
+Time step: 74.0000
+Time Taken: 406
+Env: 821
+
+
+1
+Attack Time: 2685.8691
+Decay Time: 9455.5928
+Release Time: 9455.5928
+Total Time: 5206.0000
+
+Time step: 73.0000
+Time Taken: 406
+Env: 821
+
+
+1
+Attack Time: 2685.8691
+Decay Time: 9455.5928
+Release Time: 9455.5928
+Total Time: 5280.0000
+
+Time step: 74.0000
+Time Taken: 406
+Env: 820
+
+
+1
+Attack Time: 2685.8691
+Decay Time: 9455.5928
+Release Time: 9455.5928
+Total Time: 5353.0000
+
+Time step: 73.0000
+Time Taken: 405
+Env: 820
+
+
+1
+Attack Time: 2685.8691
+Decay Time: 9455.5928
+Release Time: 9455.5928
+Total Time: 5427.0000
+
+Time step: 74.0000
+Time Taken: 405
+Env: 819
+
+
+1
+Attack Time: 2685.8691
+Decay Time: 9455.5928
+Release Time: 9455.5928
+Total Time: 5500.0000
+
+Time step: 73.0000
+Time Taken: 406
+Env: 818
+
+
+1
+Attack Time: 2685.8691
+Decay Time: 9455.5928
+Release Time: 9455.5928
+Total Time: 5574.0000
+
+Time step: 74.0000
+Time Taken: 405
+Env: 818
+
+
+1
+Attack Time: 2685.8691
+Decay Time: 9455.5928
+Release Time: 9455.5928
+Total Time: 5647.0000
+
+Time step: 73.0000
+Time Taken: 406
+Env: 817
+
+
+1
+Attack Time: 2685.8691
+Decay Time: 9455.5928
+Release Time: 9455.5928
+Total Time: 5721.0000
+
+Time step: 74.0000
+Time Taken: 405
+Env: 817
+
+
+1
+Attack Time: 2685.8691
+Decay Time: 9455.5928
+Release Time: 9455.5928
+Total Time: 5794.0000
+
+Time step: 73.0000
+Time Taken: 405
+Env: 816
+
+
+1
+Attack Time: 2685.8691
+Decay Time: 9455.5928
+Release Time: 9455.5928
+Total Time: 5868.0000
+
+Time step: 74.0000
+Time Taken: 405
+Env: 816
+
+
+1
+Attack Time: 2685.8691
+Decay Time: 9455.5928
+Release Time: 9455.5928
+Total Time: 5941.0000
+
+Time step: 73.0000
+Time Taken: 405
+Env: 816
+
+
+1
+Attack Time: 2685.8691
+Decay Time: 9455.5928
+Release Time: 9455.5928
+Total Time: 6015.0000
+
+Time step: 74.0000
+Time Taken: 405
+Env: 815
+
+
+1
+Attack Time: 2685.8691
+Decay Time: 9455.5928
+Release Time: 9455.5928
+Total Time: 6088.0000
+
+Time step: 73.0000
+Time Taken: 405
+Env: 815
+
+
+1
+Attack Time: 2685.8691
+Decay Time: 9455.5928
+Release Time: 9455.5928
+Total Time: 6162.0000
+
+Time step: 74.0000
+Time Taken: 405
+Env: 814
+
+
+1
+Attack Time: 2685.8691
+Decay Time: 9455.5928
+Release Time: 9455.5928
+Total Time: 6235.0000
+
+Time step: 73.0000
+Time Taken: 405
+Env: 814
+
+
+1
+Attack Time: 2685.8691
+Decay Time: 9455.5928
+Release Time: 9455.5928
+Total Time: 6309.0000
+
+Time step: 74.0000
+Time Taken: 405
+Env: 814
+
+
+1
+Attack Time: 2685.8691
+Decay Time: 9455.5928
+Release Time: 9455.5928
+Total Time: 6382.0000
+
+Time step: 73.0000
+Time Taken: 405
+Env: 813
+
+
+1
+Attack Time: 2685.8691
+Decay Time: 9455.5928
+Release Time: 9455.5928
+Total Time: 6456.0000
+
+Time step: 74.0000
+Time Taken: 407
+Env: 813
+
+
+1
+Attack Time: 2685.8691
+Decay Time: 9455.5928
+Release Time: 9455.5928
+Total Time: 6529.0000
+
+Time step: 73.0000
+Time Taken: 407
+Env: 813
+
+
+1
+Attack Time: 2685.8691
+Decay Time: 9455.5928
+Release Time: 9455.5928
+Total Time: 6603.0000
+
+Time step: 74.0000
+Time Taken: 407
+Env: 812
+
+
+1
+Attack Time: 2685.8691
+Decay Time: 9455.5928
+Release Time: 9455.5928
+Total Time: 6676.0000
+
+Time step: 73.0000
+Time Taken: 407
+Env: 812
+
+
+1
+Attack Time: 2685.8691
+Decay Time: 9455.5928
+Release Time: 9455.5928
+Total Time: 6750.0000
+
+Time step: 74.0000
+Time Taken: 407
+Env: 812
+
+
+1
+Attack Time: 2685.8691
+Decay Time: 9455.5928
+Release Time: 9455.5928
+Total Time: 6823.0000
+
+Time step: 73.0000
+Time Taken: 407
+Env: 811
+
+
+1
+Attack Time: 2685.8691
+Decay Time: 9455.5928
+Release Time: 9455.5928
+Total Time: 6897.0000
+
+Time step: 74.0000
+Time Taken: 407
+Env: 811
+
+
+1
+Attack Time: 2685.8691
+Decay Time: 9455.5928
+Release Time: 9455.5928
+Total Time: 6970.0000
+
+Time step: 73.0000
+Time Taken: 407
+Env: 811
+
+
+1
+Attack Time: 2685.8691
+Decay Time: 9455.5928
+Release Time: 9455.5928
+Total Time: 7044.0000
+
+Time step: 74.0000
+Time Taken: 407
+Env: 811
+
+
+1
+Attack Time: 2685.8691
+Decay Time: 9455.5928
+Release Time: 9455.5928
+Total Time: 7117.0000
+
+Time step: 73.0000
+Time Taken: 407
+Env: 810
+
+
+1
+Attack Time: 2685.8691
+Decay Time: 9455.5928
+Release Time: 9455.5928
+Total Time: 7191.0000
+
+Time step: 74.0000
+Time Taken: 407
+Env: 810
+
+
+1
+Attack Time: 2685.8691
+Decay Time: 9455.5928
+Release Time: 9455.5928
+Total Time: 7264.0000
+
+Time step: 73.0000
+Time Taken: 407
+Env: 810
+
+
+2
+Attack Time: 2685.8691
+Decay Time: 9455.5928
+Release Time: 9455.5928
+Total Time: 74.0000
+
+Time step: 74.0000
+Time Taken: 378
+Env: 782
+
+
+2
+Attack Time: 2685.8691
+Decay Time: 9455.5928
+Release Time: 9455.5928
+Total Time: 146.0000
+
+Time step: 72.0000
+Time Taken: 380
+Env: 755
+
+
+2
+Attack Time: 2685.8691
+Decay Time: 9455.5928
+Release Time: 9455.5928
+Total Time: 219.0000
+
+Time step: 73.0000
+Time Taken: 380
+Env: 729
+
+
+2
+Attack Time: 2685.8691
+Decay Time: 9455.5928
+Release Time: 9455.5928
+Total Time: 292.0000
+
+Time step: 73.0000
+Time Taken: 380
+Env: 704
+
+
+2
+Attack Time: 2685.8691
+Decay Time: 9455.5928
+Release Time: 9455.5928
+Total Time: 365.0000
+
+Time step: 73.0000
+Time Taken: 379
+Env: 680
+
+
+2
+Attack Time: 2685.8691
+Decay Time: 9455.5928
+Release Time: 9455.5928
+Total Time: 438.0000
+
+Time step: 73.0000
+Time Taken: 380
+Env: 657
+
+
+2
+Attack Time: 2685.8691
+Decay Time: 9455.5928
+Release Time: 9455.5928
+Total Time: 511.0000
+
+Time step: 73.0000
+Time Taken: 380
+Env: 635
+
+
+2
+Attack Time: 2685.8691
+Decay Time: 9455.5928
+Release Time: 9455.5928
+Total Time: 583.0000
+
+Time step: 72.0000
+Time Taken: 380
+Env: 613
+
+
+2
+Attack Time: 2685.8691
+Decay Time: 9455.5928
+Release Time: 9455.5928
+Total Time: 655.0000
+
+Time step: 72.0000
+Time Taken: 380
+Env: 592
+
+
+2
+Attack Time: 2685.8691
+Decay Time: 9455.5928
+Release Time: 9455.5928
+Total Time: 728.0000
+
+Time step: 73.0000
+Time Taken: 392
+Env: 572
+
+
+2
+Attack Time: 2685.8691
+Decay Time: 9455.5928
+Release Time: 9455.5928
+Total Time: 801.0000
+
+Time step: 73.0000
+Time Taken: 392
+Env: 553
+
+
+2
+Attack Time: 2685.8691
+Decay Time: 9455.5928
+Release Time: 9455.5928
+Total Time: 874.0000
+
+Time step: 73.0000
+Time Taken: 392
+Env: 534
+
+
+2
+Attack Time: 2685.8691
+Decay Time: 9455.5928
+Release Time: 9455.5928
+Total Time: 947.0000
+
+Time step: 73.0000
+Time Taken: 393
+Env: 516
+
+
+2
+Attack Time: 2685.8691
+Decay Time: 9455.5928
+Release Time: 9455.5928
+Total Time: 1020.0000
+
+Time step: 73.0000
+Time Taken: 394
+Env: 498
+
+
+2
+Attack Time: 2685.8691
+Decay Time: 9455.5928
+Release Time: 9455.5928
+Total Time: 1093.0000
+
+Time step: 73.0000
+Time Taken: 393
+Env: 481
+
+
+2
+Attack Time: 2685.8691
+Decay Time: 9455.5928
+Release Time: 9455.5928
+Total Time: 1167.0000
+
+Time step: 74.0000
+Time Taken: 393
+Env: 465
+
+
+2
+Attack Time: 2685.8691
+Decay Time: 9455.5928
+Release Time: 9455.5928
+Total Time: 1240.0000
+
+Time step: 73.0000
+Time Taken: 392
+Env: 449
+
+
+2
+Attack Time: 2685.8691
+Decay Time: 9455.5928
+Release Time: 9455.5928
+Total Time: 1314.0000
+
+Time step: 74.0000
+Time Taken: 393
+Env: 434
+
+
+2
+Attack Time: 2685.8691
+Decay Time: 9455.5928
+Release Time: 9455.5928
+Total Time: 1387.0000
+
+Time step: 73.0000
+Time Taken: 392
+Env: 419
+
+
+2
+Attack Time: 2685.8691
+Decay Time: 9455.5928
+Release Time: 9455.5928
+Total Time: 1461.0000
+
+Time step: 74.0000
+Time Taken: 393
+Env: 405
+
+
+2
+Attack Time: 2685.8691
+Decay Time: 9455.5928
+Release Time: 9455.5928
+Total Time: 1534.0000
+
+Time step: 73.0000
+Time Taken: 393
+Env: 391
+
+
+2
+Attack Time: 2685.8691
+Decay Time: 9455.5928
+Release Time: 9455.5928
+Total Time: 1607.0000
+
+Time step: 73.0000
+Time Taken: 393
+Env: 378
+
+
+2
+Attack Time: 2685.8691
+Decay Time: 9455.5928
+Release Time: 9455.5928
+Total Time: 1680.0000
+
+Time step: 73.0000
+Time Taken: 393
+Env: 365
+
+
+2
+Attack Time: 2685.8691
+Decay Time: 9455.5928
+Release Time: 9455.5928
+Total Time: 1753.0000
+
+Time step: 73.0000
+Time Taken: 392
+Env: 353
+
+
+2
+Attack Time: 2685.8691
+Decay Time: 9455.5928
+Release Time: 9455.5928
+Total Time: 1827.0000
+
+Time step: 74.0000
+Time Taken: 393
+Env: 341
+
+
+2
+Attack Time: 2685.8691
+Decay Time: 9455.5928
+Release Time: 9455.5928
+Total Time: 1900.0000
+
+Time step: 73.0000
+Time Taken: 393
+Env: 330
+
+
+2
+Attack Time: 2685.8691
+Decay Time: 9455.5928
+Release Time: 9455.5928
+Total Time: 1974.0000
+
+Time step: 74.0000
+Time Taken: 392
+Env: 318
+
+
+2
+Attack Time: 2685.8691
+Decay Time: 9455.5928
+Release Time: 9455.5928
+Total Time: 2047.0000
+
+Time step: 73.0000
+Time Taken: 392
+Env: 308
+
+
+2
+Attack Time: 2685.8691
+Decay Time: 9455.5928
+Release Time: 9455.5928
+Total Time: 2121.0000
+
+Time step: 74.0000
+Time Taken: 393
+Env: 297
+
+
+2
+Attack Time: 2685.8691
+Decay Time: 9455.5928
+Release Time: 9455.5928
+Total Time: 2194.0000
+
+Time step: 73.0000
+Time Taken: 406
+Env: 287
+
+
+2
+Attack Time: 2685.8691
+Decay Time: 9455.5928
+Release Time: 9455.5928
+Total Time: 2267.0000
+
+Time step: 73.0000
+Time Taken: 406
+Env: 278
+
+
+2
+Attack Time: 2685.8691
+Decay Time: 9455.5928
+Release Time: 9455.5928
+Total Time: 2341.0000
+
+Time step: 74.0000
+Time Taken: 407
+Env: 269
+
+
+2
+Attack Time: 2685.8691
+Decay Time: 9455.5928
+Release Time: 9455.5928
+Total Time: 2414.0000
+
+Time step: 73.0000
+Time Taken: 407
+Env: 260
+
+
+2
+Attack Time: 2685.8691
+Decay Time: 9455.5928
+Release Time: 9455.5928
+Total Time: 2488.0000
+
+Time step: 74.0000
+Time Taken: 407
+Env: 251
+
+
+2
+Attack Time: 2685.8691
+Decay Time: 9455.5928
+Release Time: 9455.5928
+Total Time: 2561.0000
+
+Time step: 73.0000
+Time Taken: 407
+Env: 243
+
+
+2
+Attack Time: 2685.8691
+Decay Time: 9455.5928
+Release Time: 9455.5928
+Total Time: 2635.0000
+
+Time step: 74.0000
+Time Taken: 407
+Env: 235
+
+
+2
+Attack Time: 2685.8691
+Decay Time: 9455.5928
+Release Time: 9455.5928
+Total Time: 2708.0000
+
+Time step: 73.0000
+Time Taken: 407
+Env: 227
+
+
+2
+Attack Time: 2685.8691
+Decay Time: 9455.5928
+Release Time: 9455.5928
+Total Time: 2782.0000
+
+Time step: 74.0000
+Time Taken: 407
+Env: 219
+
+
+2
+Attack Time: 2685.8691
+Decay Time: 9455.5928
+Release Time: 9455.5928
+Total Time: 2855.0000
+
+Time step: 73.0000
+Time Taken: 406
+Env: 212
+
+
+2
+Attack Time: 2685.8691
+Decay Time: 9455.5928
+Release Time: 9455.5928
+Total Time: 2929.0000
+
+Time step: 74.0000
+Time Taken: 406
+Env: 205
+
+
+2
+Attack Time: 2685.8691
+Decay Time: 9455.5928
+Release Time: 9455.5928
+Total Time: 3002.0000
+
+Time step: 73.0000
+Time Taken: 406
+Env: 199
+
+
+2
+Attack Time: 2685.8691
+Decay Time: 9455.5928
+Release Time: 9455.5928
+Total Time: 3076.0000
+
+Time step: 74.0000
+Time Taken: 407
+Env: 192
+
+
+2
+Attack Time: 2685.8691
+Decay Time: 9455.5928
+Release Time: 9455.5928
+Total Time: 3149.0000
+
+Time step: 73.0000
+Time Taken: 406
+Env: 186
+
+
+2
+Attack Time: 2685.8691
+Decay Time: 9455.5928
+Release Time: 9455.5928
+Total Time: 3223.0000
+
+Time step: 74.0000
+Time Taken: 406
+Env: 180
+
+
+2
+Attack Time: 2685.8691
+Decay Time: 9455.5928
+Release Time: 9455.5928
+Total Time: 3296.0000
+
+Time step: 73.0000
+Time Taken: 407
+Env: 174
+
+
+2
+Attack Time: 2685.8691
+Decay Time: 9455.5928
+Release Time: 9455.5928
+Total Time: 3370.0000
+
+Time step: 74.0000
+Time Taken: 406
+Env: 168
+
+
+2
+Attack Time: 2685.8691
+Decay Time: 9455.5928
+Release Time: 9455.5928
+Total Time: 3443.0000
+
+Time step: 73.0000
+Time Taken: 407
+Env: 163
+
+
+2
+Attack Time: 2685.8691
+Decay Time: 9455.5928
+Release Time: 9455.5928
+Total Time: 3517.0000
+
+Time step: 74.0000
+Time Taken: 406
+Env: 158
+
+
+2
+Attack Time: 2685.8691
+Decay Time: 9455.5928
+Release Time: 9455.5928
+Total Time: 3590.0000
+
+Time step: 73.0000
+Time Taken: 409
+Env: 153
+
+
+2
+Attack Time: 2685.8691
+Decay Time: 9455.5928
+Release Time: 9455.5928
+Total Time: 3664.0000
+
+Time step: 74.0000
+Time Taken: 409
+Env: 148
+
+
+2
+Attack Time: 2685.8691
+Decay Time: 9455.5928
+Release Time: 9455.5928
+Total Time: 3737.0000
+
+Time step: 73.0000
+Time Taken: 409
+Env: 143
+
+
+2
+Attack Time: 2685.8691
+Decay Time: 9455.5928
+Release Time: 9455.5928
+Total Time: 3811.0000
+
+Time step: 74.0000
+Time Taken: 409
+Env: 139
+
+
+2
+Attack Time: 2685.8691
+Decay Time: 9455.5928
+Release Time: 9455.5928
+Total Time: 3884.0000
+
+Time step: 73.0000
+Time Taken: 408
+Env: 134
+
+
+2
+Attack Time: 2685.8691
+Decay Time: 9455.5928
+Release Time: 9455.5928
+Total Time: 3958.0000
+
+Time step: 74.0000
+Time Taken: 408
+Env: 130
+
+
+2
+Attack Time: 2685.8691
+Decay Time: 9455.5928
+Release Time: 9455.5928
+Total Time: 4031.0000
+
+Time step: 73.0000
+Time Taken: 409
+Env: 126
+
+
+2
+Attack Time: 2685.8691
+Decay Time: 9455.5928
+Release Time: 9455.5928
+Total Time: 4105.0000
+
+Time step: 74.0000
+Time Taken: 408
+Env: 122
+
+
+2
+Attack Time: 2685.8691
+Decay Time: 9455.5928
+Release Time: 9455.5928
+Total Time: 4178.0000
+
+Time step: 73.0000
+Time Taken: 409
+Env: 118
+
+
+2
+Attack Time: 2685.8691
+Decay Time: 9455.5928
+Release Time: 9455.5928
+Total Time: 4252.0000
+
+Time step: 74.0000
+Time Taken: 408
+Env: 114
+
+
+2
+Attack Time: 2685.8691
+Decay Time: 9455.5928
+Release Time: 9455.5928
+Total Time: 4325.0000
+
+Time step: 73.0000
+Time Taken: 409
+Env: 111
+
+
+2
+Attack Time: 2685.8691
+Decay Time: 9455.5928
+Release Time: 9455.5928
+Total Time: 4399.0000
+
+Time step: 74.0000
+Time Taken: 408
+Env: 108
+
+
+2
+Attack Time: 2685.8691
+Decay Time: 9455.5928
+Release Time: 9455.5928
+Total Time: 4472.0000
+
+Time step: 73.0000
+Time Taken: 409
+Env: 104
+
+
+2
+Attack Time: 2685.8691
+Decay Time: 9455.5928
+Release Time: 9455.5928
+Total Time: 4546.0000
+
+Time step: 74.0000
+Time Taken: 408
+Env: 101
+
+
+2
+Attack Time: 2685.8691
+Decay Time: 9455.5928
+Release Time: 9455.5928
+Total Time: 4619.0000
+
+Time step: 73.0000
+Time Taken: 408
+Env: 98
+
+
+2
+Attack Time: 2685.8691
+Decay Time: 9455.5928
+Release Time: 9455.5928
+Total Time: 4692.0000
+
+Time step: 73.0000
+Time Taken: 408
+Env: 95
+
+
+2
+Attack Time: 2685.8691
+Decay Time: 9455.5928
+Release Time: 9455.5928
+Total Time: 4765.0000
+
+Time step: 73.0000
+Time Taken: 409
+Env: 92
+
+
+2
+Attack Time: 2685.8691
+Decay Time: 9455.5928
+Release Time: 9455.5928
+Total Time: 4838.0000
+
+Time step: 73.0000
+Time Taken: 409
+Env: 90
+
+
+2
+Attack Time: 2685.8691
+Decay Time: 9455.5928
+Release Time: 9455.5928
+Total Time: 4911.0000
+
+Time step: 73.0000
+Time Taken: 408
+Env: 87
+
+
+2
+Attack Time: 2685.8691
+Decay Time: 9455.5928
+Release Time: 9455.5928
+Total Time: 4984.0000
+
+Time step: 73.0000
+Time Taken: 406
+Env: 84
+
+
+2
+Attack Time: 2685.8691
+Decay Time: 9455.5928
+Release Time: 9455.5928
+Total Time: 5057.0000
+
+Time step: 73.0000
+Time Taken: 407
+Env: 82
+
+
+2
+Attack Time: 2685.8691
+Decay Time: 9455.5928
+Release Time: 9455.5928
+Total Time: 5130.0000
+
+Time step: 73.0000
+Time Taken: 407
+Env: 80
+
+
+2
+Attack Time: 2685.8691
+Decay Time: 9455.5928
+Release Time: 9455.5928
+Total Time: 5203.0000
+
+Time step: 73.0000
+Time Taken: 407
+Env: 77
+
+
+2
+Attack Time: 2685.8691
+Decay Time: 9455.5928
+Release Time: 9455.5928
+Total Time: 5276.0000
+
+Time step: 73.0000
+Time Taken: 407
+Env: 75
+
+
+2
+Attack Time: 2685.8691
+Decay Time: 9455.5928
+Release Time: 9455.5928
+Total Time: 5349.0000
+
+Time step: 73.0000
+Time Taken: 407
+Env: 73
+
+
+2
+Attack Time: 2685.8691
+Decay Time: 9455.5928
+Release Time: 9455.5928
+Total Time: 5422.0000
+
+Time step: 73.0000
+Time Taken: 406
+Env: 71
+
+
+2
+Attack Time: 2685.8691
+Decay Time: 9455.5928
+Release Time: 9455.5928
+Total Time: 5495.0000
+
+Time step: 73.0000
+Time Taken: 406
+Env: 69
+
+
+2
+Attack Time: 2685.8691
+Decay Time: 9455.5928
+Release Time: 9455.5928
+Total Time: 5568.0000
+
+Time step: 73.0000
+Time Taken: 406
+Env: 67
+
+
+2
+Attack Time: 2685.8691
+Decay Time: 9455.5928
+Release Time: 9455.5928
+Total Time: 5641.0000
+
+Time step: 73.0000
+Time Taken: 407
+Env: 65
+
+
+2
+Attack Time: 2685.8691
+Decay Time: 9455.5928
+Release Time: 9455.5928
+Total Time: 5714.0000
+
+Time step: 73.0000
+Time Taken: 406
+Env: 63
+
+
+2
+Attack Time: 2685.8691
+Decay Time: 9455.5928
+Release Time: 9455.5928
+Total Time: 5787.0000
+
+Time step: 73.0000
+Time Taken: 406
+Env: 62
+
+
+2
+Attack Time: 2685.8691
+Decay Time: 9455.5928
+Release Time: 9455.5928
+Total Time: 5860.0000
+
+Time step: 73.0000
+Time Taken: 407
+Env: 60
+
+
+2
+Attack Time: 2685.8691
+Decay Time: 9455.5928
+Release Time: 9455.5928
+Total Time: 5933.0000
+
+Time step: 73.0000
+Time Taken: 406
+Env: 58
+
+
+2
+Attack Time: 2685.8691
+Decay Time: 9455.5928
+Release Time: 9455.5928
+Total Time: 6006.0000
+
+Time step: 73.0000
+Time Taken: 406
+Env: 57
+
+
+2
+Attack Time: 2685.8691
+Decay Time: 9455.5928
+Release Time: 9455.5928
+Total Time: 6079.0000
+
+Time step: 73.0000
+Time Taken: 406
+Env: 55
+
+
+2
+Attack Time: 2685.8691
+Decay Time: 9455.5928
+Release Time: 9455.5928
+Total Time: 6151.0000
+
+Time step: 72.0000
+Time Taken: 407
+Env: 54
+
+
+2
+Attack Time: 2685.8691
+Decay Time: 9455.5928
+Release Time: 9455.5928
+Total Time: 6223.0000
+
+Time step: 72.0000
+Time Taken: 407
+Env: 53
+
+
+2
+Attack Time: 2685.8691
+Decay Time: 9455.5928
+Release Time: 9455.5928
+Total Time: 6296.0000
+
+Time step: 73.0000
+Time Taken: 406
+Env: 51
+
+
+2
+Attack Time: 2685.8691
+Decay Time: 9455.5928
+Release Time: 9455.5928
+Total Time: 6369.0000
+
+Time step: 73.0000
+Time Taken: 406
+Env: 50
+
+
+2
+Attack Time: 2685.8691
+Decay Time: 9455.5928
+Release Time: 9455.5928
+Total Time: 6442.0000
+
+Time step: 73.0000
+Time Taken: 409
+Env: 49
+
+
+2
+Attack Time: 2685.8691
+Decay Time: 9455.5928
+Release Time: 9455.5928
+Total Time: 6515.0000
+
+Time step: 73.0000
+Time Taken: 408
+Env: 47
+
+
+2
+Attack Time: 2685.8691
+Decay Time: 9455.5928
+Release Time: 9455.5928
+Total Time: 6588.0000
+
+Time step: 73.0000
+Time Taken: 409
+Env: 46
+
+
+2
+Attack Time: 2685.8691
+Decay Time: 9455.5928
+Release Time: 9455.5928
+Total Time: 6661.0000
+
+Time step: 73.0000
+Time Taken: 408
+Env: 45
+
+
+2
+Attack Time: 2685.8691
+Decay Time: 9455.5928
+Release Time: 9455.5928
+Total Time: 6734.0000
+
+Time step: 73.0000
+Time Taken: 408
+Env: 44
+
+
+2
+Attack Time: 2685.8691
+Decay Time: 9455.5928
+Release Time: 9455.5928
+Total Time: 6807.0000
+
+Time step: 73.0000
+Time Taken: 408
+Env: 43
+
+
+2
+Attack Time: 2685.8691
+Decay Time: 9455.5928
+Release Time: 9455.5928
+Total Time: 6880.0000
+
+Time step: 73.0000
+Time Taken: 408
+Env: 42
+
+
+2
+Attack Time: 2685.8691
+Decay Time: 9455.5928
+Release Time: 9455.5928
+Total Time: 6953.0000
+
+Time step: 73.0000
+Time Taken: 408
+Env: 41
+
+
+2
+Attack Time: 2685.8691
+Decay Time: 9455.5928
+Release Time: 9455.5928
+Total Time: 7026.0000
+
+Time step: 73.0000
+Time Taken: 408
+Env: 40
+
+
+2
+Attack Time: 2685.8691
+Decay Time: 9455.5928
+Release Time: 9455.5928
+Total Time: 7099.0000
+
+Time step: 73.0000
+Time Taken: 408
+Env: 39
+
+
+2
+Attack Time: 2685.8691
+Decay Time: 9455.5928
+Release Time: 9455.5928
+Total Time: 7172.0000
+
+Time step: 73.0000
+Time Taken: 408
+Env: 38
+
+
+2
+Attack Time: 2685.8691
+Decay Time: 9455.5928
+Release Time: 9455.5928
+Total Time: 7245.0000
+
+Time step: 73.0000
+Time Taken: 408
+Env: 38
+
+
+2
+Attack Time: 2685.8691
+Decay Time: 9455.5928
+Release Time: 9455.5928
+Total Time: 7318.0000
+
+Time step: 73.0000
+Time Taken: 409
+Env: 37
+
+
+2
+Attack Time: 2685.8691
+Decay Time: 9455.5928
+Release Time: 9455.5928
+Total Time: 7391.0000
+
+Time step: 73.0000
+Time Taken: 408
+Env: 36
+
+
+2
+Attack Time: 2685.8691
+Decay Time: 9455.5928
+Release Time: 9455.5928
+Total Time: 7464.0000
+
+Time step: 73.0000
+Time Taken: 408
+Env: 35
+
+
+2
+Attack Time: 2685.8691
+Decay Time: 9455.5928
+Release Time: 9455.5928
+Total Time: 7537.0000
+
+Time step: 73.0000
+Time Taken: 408
+Env: 34
+
+
+2
+Attack Time: 2685.8691
+Decay Time: 9455.5928
+Release Time: 9455.5928
+Total Time: 7610.0000
+
+Time step: 73.0000
+Time Taken: 408
+Env: 34
+
+
+2
+Attack Time: 2685.8691
+Decay Time: 9455.5928
+Release Time: 9455.5928
+Total Time: 7683.0000
+
+Time step: 73.0000
+Time Taken: 409
+Env: 33
+
+
+2
+Attack Time: 2685.8691
+Decay Time: 9455.5928
+Release Time: 9455.5928
+Total Time: 7756.0000
+
+Time step: 73.0000
+Time Taken: 408
+Env: 32
+
+
+2
+Attack Time: 2685.8691
+Decay Time: 9455.5928
+Release Time: 9455.5928
+Total Time: 7829.0000
+
+Time step: 73.0000
+Time Taken: 408
+Env: 32
+
+
+2
+Attack Time: 2685.8691
+Decay Time: 9455.5928
+Release Time: 9455.5928
+Total Time: 7902.0000
+
+Time step: 73.0000
+Time Taken: 409
+Env: 31
+
+
+2
+Attack Time: 2685.8691
+Decay Time: 9455.5928
+Release Time: 9455.5928
+Total Time: 7975.0000
+
+Time step: 73.0000
+Time Taken: 409
+Env: 31
+
+
+2
+Attack Time: 2685.8691
+Decay Time: 9455.5928
+Release Time: 9455.5928
+Total Time: 8048.0000
+
+Time step: 73.0000
+Time Taken: 409
+Env: 30
+
+
+2
+Attack Time: 2685.8691
+Decay Time: 9455.5928
+Release Time: 9455.5928
+Total Time: 8121.0000
+
+Time step: 73.0000
+Time Taken: 408
+Env: 29
+
+
+2
+Attack Time: 2685.8691
+Decay Time: 9455.5928
+Release Time: 9455.5928
+Total Time: 8194.0000
+
+Time step: 73.0000
+Time Taken: 409
+Env: 29
+
+
+2
+Attack Time: 2685.8691
+Decay Time: 9455.5928
+Release Time: 9455.5928
+Total Time: 8267.0000
+
+Time step: 73.0000
+Time Taken: 408
+Env: 28
+
+
+2
+Attack Time: 2685.8691
+Decay Time: 9455.5928
+Release Time: 9455.5928
+Total Time: 8340.0000
+
+Time step: 73.0000
+Time Taken: 408
+Env: 28
+
+
+2
+Attack Time: 2685.8691
+Decay Time: 9455.5928
+Release Time: 9455.5928
+Total Time: 8413.0000
+
+Time step: 73.0000
+Time Taken: 408
+Env: 27
+
+
+2
+Attack Time: 2685.8691
+Decay Time: 9455.5928
+Release Time: 9455.5928
+Total Time: 8485.0000
+
+Time step: 72.0000
+Time Taken: 409
+Env: 27
+
+
+2
+Attack Time: 2685.8691
+Decay Time: 9455.5928
+Release Time: 9455.5928
+Total Time: 8557.0000
+
+Time step: 72.0000
+Time Taken: 408
+Env: 26
+
+
+2
+Attack Time: 2685.8691
+Decay Time: 9455.5928
+Release Time: 9455.5928
+Total Time: 8630.0000
+
+Time step: 73.0000
+Time Taken: 408
+Env: 26
+
+
+2
+Attack Time: 2685.8691
+Decay Time: 9455.5928
+Release Time: 9455.5928
+Total Time: 8703.0000
+
+Time step: 73.0000
+Time Taken: 408
+Env: 26
+
+
+2
+Attack Time: 2685.8691
+Decay Time: 9455.5928
+Release Time: 9455.5928
+Total Time: 8776.0000
+
+Time step: 73.0000
+Time Taken: 409
+Env: 25
+
+
+2
+Attack Time: 2685.8691
+Decay Time: 9455.5928
+Release Time: 9455.5928
+Total Time: 8849.0000
+
+Time step: 73.0000
+Time Taken: 408
+Env: 25
+
+
+2
+Attack Time: 2685.8691
+Decay Time: 9455.5928
+Release Time: 9455.5928
+Total Time: 8922.0000
+
+Time step: 73.0000
+Time Taken: 408
+Env: 24
+
+
+2
+Attack Time: 2685.8691
+Decay Time: 9455.5928
+Release Time: 9455.5928
+Total Time: 8995.0000
+
+Time step: 73.0000
+Time Taken: 408
+Env: 24
+
+
+2
+Attack Time: 2685.8691
+Decay Time: 9455.5928
+Release Time: 9455.5928
+Total Time: 9068.0000
+
+Time step: 73.0000
+Time Taken: 409
+Env: 24
+
+
+2
+Attack Time: 2685.8691
+Decay Time: 9455.5928
+Release Time: 9455.5928
+Total Time: 9141.0000
+
+Time step: 73.0000
+Time Taken: 408
+Env: 23
+
+
+2
+Attack Time: 2685.8691
+Decay Time: 9455.5928
+Release Time: 9455.5928
+Total Time: 9214.0000
+
+Time step: 73.0000
+Time Taken: 408
+Env: 23
+
+
+2
+Attack Time: 2685.8691
+Decay Time: 9455.5928
+Release Time: 9455.5928
+Total Time: 9287.0000
+
+Time step: 73.0000
+Time Taken: 408
+Env: 23
+
+
+2
+Attack Time: 2685.8691
+Decay Time: 9455.5928
+Release Time: 9455.5928
+Total Time: 9360.0000
+
+Time step: 73.0000
+Time Taken: 408
+Env: 23
+
+
+2
+Attack Time: 2685.8691
+Decay Time: 9455.5928
+Release Time: 9455.5928
+Total Time: 9433.0000
+
+Time step: 73.0000
+Time Taken: 409
+Env: 22
+
+
+2
+Attack Time: 2685.8691
+Decay Time: 9455.5928
+Release Time: 9455.5928
+Total Time: 9506.0000
+
+Time step: 73.0000
+Time Taken: 408
+Env: 22
+
+
+2
+Attack Time: 2685.8691
+Decay Time: 9455.5928
+Release Time: 9455.5928
+Total Time: 9579.0000
+
+Time step: 73.0000
+Time Taken: 408
+Env: 22
+
+
+2
+Attack Time: 2685.8691
+Decay Time: 9455.5928
+Release Time: 9455.5928
+Total Time: 9652.0000
+
+Time step: 73.0000
+Time Taken: 409
+Env: 21
+
+
+2
+Attack Time: 2685.8691
+Decay Time: 9455.5928
+Release Time: 9455.5928
+Total Time: 9725.0000
+
+Time step: 73.0000
+Time Taken: 408
+Env: 21
+
+
+2
+Attack Time: 2685.8691
+Decay Time: 9455.5928
+Release Time: 9455.5928
+Total Time: 9798.0000
+
+Time step: 73.0000
+Time Taken: 408
+Env: 21
+
+
+2
+Attack Time: 2685.8691
+Decay Time: 9455.5928
+Release Time: 9455.5928
+Total Time: 9871.0000
+
+Time step: 73.0000
+Time Taken: 408
+Env: 21
+
+
+2
+Attack Time: 2685.8691
+Decay Time: 9455.5928
+Release Time: 9455.5928
+Total Time: 9944.0000
+
+Time step: 73.0000
+Time Taken: 409
+Env: 20
+
+
+2
+Attack Time: 2685.8691
+Decay Time: 9455.5928
+Release Time: 9455.5928
+Total Time: 10017.0000
+
+Time step: 73.0000
+Time Taken: 408
+Env: 20
+
+
+2
+Attack Time: 2685.8691
+Decay Time: 9455.5928
+Release Time: 9455.5928
+Total Time: 10090.0000
+
+Time step: 73.0000
+Time Taken: 408
+Env: 20
+
+
+2
+Attack Time: 2685.8691
+Decay Time: 9455.5928
+Release Time: 9455.5928
+Total Time: 10164.0000
+
+Time step: 74.0000
+Time Taken: 409
+Env: 20
+
+
+2
+Attack Time: 2685.8691
+Decay Time: 9455.5928
+Release Time: 9455.5928
+Total Time: 10237.0000
+
+Time step: 73.0000
+Time Taken: 408
+Env: 20
+
+
+2
+Attack Time: 2685.8691
+Decay Time: 9455.5928
+Release Time: 9455.5928
+Total Time: 10311.0000
+
+Time step: 74.0000
+Time Taken: 409
+Env: 19
+
+
+2
+Attack Time: 2685.8691
+Decay Time: 9455.5928
+Release Time: 9455.5928
+Total Time: 10384.0000
+
+Time step: 73.0000
+Time Taken: 408
+Env: 19
+
+
+2
+Attack Time: 2685.8691
+Decay Time: 9455.5928
+Release Time: 9455.5928
+Total Time: 10458.0000
+
+Time step: 74.0000
+Time Taken: 408
+Env: 19
+
+
+2
+Attack Time: 2685.8691
+Decay Time: 9455.5928
+Release Time: 9455.5928
+Total Time: 10531.0000
+
+Time step: 73.0000
+Time Taken: 409
+Env: 19
+
+
+2
+Attack Time: 2685.8691
+Decay Time: 9455.5928
+Release Time: 9455.5928
+Total Time: 10605.0000
+
+Time step: 74.0000
+Time Taken: 408
+Env: 19
+
+
+2
+Attack Time: 2685.8691
+Decay Time: 9455.5928
+Release Time: 9455.5928
+Total Time: 10678.0000
+
+Time step: 73.0000
+Time Taken: 407
+Env: 19
+
+
+2
+Attack Time: 2685.8691
+Decay Time: 9455.5928
+Release Time: 9455.5928
+Total Time: 10752.0000
+
+Time step: 74.0000
+Time Taken: 407
+Env: 18
+
+
+2
+Attack Time: 2685.8691
+Decay Time: 9455.5928
+Release Time: 9455.5928
+Total Time: 10825.0000
+
+Time step: 73.0000
+Time Taken: 406
+Env: 18
+
+
+2
+Attack Time: 2685.8691
+Decay Time: 9455.5928
+Release Time: 9455.5928
+Total Time: 10899.0000
+
+Time step: 74.0000
+Time Taken: 407
+Env: 18
+
+
+2
+Attack Time: 2685.8691
+Decay Time: 9455.5928
+Release Time: 9455.5928
+Total Time: 10972.0000
+
+Time step: 73.0000
+Time Taken: 406
+Env: 18
+
+
+2
+Attack Time: 2685.8691
+Decay Time: 9455.5928
+Release Time: 9455.5928
+Total Time: 11046.0000
+
+Time step: 74.0000
+Time Taken: 407
+Env: 18
+
+
+2
+Attack Time: 2685.8691
+Decay Time: 9455.5928
+Release Time: 9455.5928
+Total Time: 11119.0000
+
+Time step: 73.0000
+Time Taken: 406
+Env: 18
+
+
+2
+Attack Time: 2685.8691
+Decay Time: 9455.5928
+Release Time: 9455.5928
+Total Time: 11193.0000
+
+Time step: 74.0000
+Time Taken: 406
+Env: 18
+
+
+2
+Attack Time: 2685.8691
+Decay Time: 9455.5928
+Release Time: 9455.5928
+Total Time: 11266.0000
+
+Time step: 73.0000
+Time Taken: 407
+Env: 17
+
+
+2
+Attack Time: 2685.8691
+Decay Time: 9455.5928
+Release Time: 9455.5928
+Total Time: 11340.0000
+
+Time step: 74.0000
+Time Taken: 406
+Env: 17
+
+
+2
+Attack Time: 2685.8691
+Decay Time: 9455.5928
+Release Time: 9455.5928
+Total Time: 11413.0000
+
+Time step: 73.0000
+Time Taken: 407
+Env: 17
+
+
+2
+Attack Time: 2685.8691
+Decay Time: 9455.5928
+Release Time: 9455.5928
+Total Time: 11487.0000
+
+Time step: 74.0000
+Time Taken: 406
+Env: 17
+
+
+2
+Attack Time: 2685.8691
+Decay Time: 9455.5928
+Release Time: 9455.5928
+Total Time: 11560.0000
+
+Time step: 73.0000
+Time Taken: 406
+Env: 17
+
+
+2
+Attack Time: 2685.8691
+Decay Time: 9455.5928
+Release Time: 9455.5928
+Total Time: 11634.0000
+
+Time step: 74.0000
+Time Taken: 406
+Env: 17
+
+
+2
+Attack Time: 2685.8691
+Decay Time: 9455.5928
+Release Time: 9455.5928
+Total Time: 11707.0000
+
+Time step: 73.0000
+Time Taken: 406
+Env: 17
+
+
+2
+Attack Time: 2685.8691
+Decay Time: 9455.5928
+Release Time: 9455.5928
+Total Time: 11781.0000
+
+Time step: 74.0000
+Time Taken: 406
+Env: 17
+
+
+2
+Attack Time: 2685.8691
+Decay Time: 9455.5928
+Release Time: 9455.5928
+Total Time: 11854.0000
+
+Time step: 73.0000
+Time Taken: 406
+Env: 17
+
+
+2
+Attack Time: 2685.8691
+Decay Time: 9455.5928
+Release Time: 9455.5928
+Total Time: 11928.0000
+
+Time step: 74.0000
+Time Taken: 407
+Env: 17
+
+
+2
+Attack Time: 2685.8691
+Decay Time: 9455.5928
+Release Time: 9455.5928
+Total Time: 12001.0000
+
+Time step: 73.0000
+Time Taken: 406
+Env: 16
+
+
+2
+Attack Time: 2685.8691
+Decay Time: 9455.5928
+Release Time: 9455.5928
+Total Time: 12075.0000
+
+Time step: 74.0000
+Time Taken: 407
+Env: 16
+
+
+2
+Attack Time: 2685.8691
+Decay Time: 9455.5928
+Release Time: 9455.5928
+Total Time: 12148.0000
+
+Time step: 73.0000
+Time Taken: 408
+Env: 16
+
+
+2
+Attack Time: 2685.8691
+Decay Time: 9455.5928
+Release Time: 9455.5928
+Total Time: 12222.0000
+
+Time step: 74.0000
+Time Taken: 408
+Env: 16
+
+
+2
+Attack Time: 2685.8691
+Decay Time: 9455.5928
+Release Time: 9455.5928
+Total Time: 12295.0000
+
+Time step: 73.0000
+Time Taken: 409
+Env: 16
+
+
+2
+Attack Time: 2685.8691
+Decay Time: 9455.5928
+Release Time: 9455.5928
+Total Time: 12369.0000
+
+Time step: 74.0000
+Time Taken: 408
+Env: 16
+
+
+2
+Attack Time: 2685.8691
+Decay Time: 9455.5928
+Release Time: 9455.5928
+Total Time: 12442.0000
+
+Time step: 73.0000
+Time Taken: 409
+Env: 16
+
+
+2
+Attack Time: 2685.8691
+Decay Time: 9455.5928
+Release Time: 9455.5928
+Total Time: 12515.0000
+
+Time step: 73.0000
+Time Taken: 408
+Env: 16
+
+
+2
+Attack Time: 2685.8691
+Decay Time: 9455.5928
+Release Time: 9455.5928
+Total Time: 12589.0000
+
+Time step: 74.0000
+Time Taken: 408
+Env: 16
+
+
+2
+Attack Time: 2685.8691
+Decay Time: 9455.5928
+Release Time: 9455.5928
+Total Time: 12662.0000
+
+Time step: 73.0000
+Time Taken: 408
+Env: 16
+
+
+2
+Attack Time: 2685.8691
+Decay Time: 9455.5928
+Release Time: 9455.5928
+Total Time: 12736.0000
+
+Time step: 74.0000
+Time Taken: 408
+Env: 16
+
+
+2
+Attack Time: 2685.8691
+Decay Time: 9455.5928
+Release Time: 9455.5928
+Total Time: 12809.0000
+
+Time step: 73.0000
+Time Taken: 409
+Env: 16
+
+
+2
+Attack Time: 2685.8691
+Decay Time: 9455.5928
+Release Time: 9455.5928
+Total Time: 12883.0000
+
+Time step: 74.0000
+Time Taken: 408
+Env: 16
+
+
+2
+Attack Time: 2685.8691
+Decay Time: 9455.5928
+Release Time: 9455.5928
+Total Time: 12956.0000
+
+Time step: 73.0000
+Time Taken: 409
+Env: 16
+
+
+2
+Attack Time: 2685.8691
+Decay Time: 9455.5928
+Release Time: 9455.5928
+Total Time: 13030.0000
+
+Time step: 74.0000
+Time Taken: 408
+Env: 16
+
+
+2
+Attack Time: 2685.8691
+Decay Time: 9455.5928
+Release Time: 9455.5928
+Total Time: 13103.0000
+
+Time step: 73.0000
+Time Taken: 408
+Env: 16
+
+
+2
+Attack Time: 2685.8691
+Decay Time: 9455.5928
+Release Time: 9455.5928
+Total Time: 13177.0000
+
+Time step: 74.0000
+Time Taken: 409
+Env: 15
+
+
+2
+Attack Time: 2685.8691
+Decay Time: 9455.5928
+Release Time: 9455.5928
+Total Time: 13250.0000
+
+Time step: 73.0000
+Time Taken: 408
+Env: 15
+
+
+2
+Attack Time: 2685.8691
+Decay Time: 9455.5928
+Release Time: 9455.5928
+Total Time: 13324.0000
+
+Time step: 74.0000
+Time Taken: 409
+Env: 15
+
+
+2
+Attack Time: 2685.8691
+Decay Time: 9455.5928
+Release Time: 9455.5928
+Total Time: 13397.0000
+
+Time step: 73.0000
+Time Taken: 408
+Env: 15
+
+
+2
+Attack Time: 2685.8691
+Decay Time: 9455.5928
+Release Time: 9455.5928
+Total Time: 13471.0000
+
+Time step: 74.0000
+Time Taken: 408
+Env: 15
+
+
+2
+Attack Time: 2685.8691
+Decay Time: 9455.5928
+Release Time: 9455.5928
+Total Time: 13544.0000
+
+Time step: 73.0000
+Time Taken: 409
+Env: 15
+
+
+2
+Attack Time: 2685.8691
+Decay Time: 9455.5928
+Release Time: 9455.5928
+Total Time: 13618.0000
+
+Time step: 74.0000
+Time Taken: 408
+Env: 15
+
+
+2
+Attack Time: 2685.8691
+Decay Time: 9455.5928
+Release Time: 9455.5928
+Total Time: 13691.0000
+
+Time step: 73.0000
+Time Taken: 408
+Env: 15
+
+
+2
+Attack Time: 2685.8691
+Decay Time: 9455.5928
+Release Time: 9455.5928
+Total Time: 13765.0000
+
+Time step: 74.0000
+Time Taken: 408
+Env: 15
+
+
+2
+Attack Time: 2685.8691
+Decay Time: 9455.5928
+Release Time: 9455.5928
+Total Time: 13838.0000
+
+Time step: 73.0000
+Time Taken: 408
+Env: 15
+
+
+2
+Attack Time: 2685.8691
+Decay Time: 9455.5928
+Release Time: 9455.5928
+Total Time: 13912.0000
+
+Time step: 74.0000
+Time Taken: 408
+Env: 15
+
+
+2
+Attack Time: 2685.8691
+Decay Time: 9455.5928
+Release Time: 9455.5928
+Total Time: 13985.0000
+
+Time step: 73.0000
+Time Taken: 408
+Env: 15
+
+
+2
+Attack Time: 2685.8691
+Decay Time: 9455.5928
+Release Time: 9455.5928
+Total Time: 14059.0000
+
+Time step: 74.0000
+Time Taken: 409
+Env: 15
+
+
+2
+Attack Time: 2685.8691
+Decay Time: 9455.5928
+Release Time: 9455.5928
+Total Time: 14132.0000
+
+Time step: 73.0000
+Time Taken: 408
+Env: 15
+
+
+2
+Attack Time: 2685.8691
+Decay Time: 9455.5928
+Release Time: 9455.5928
+Total Time: 14206.0000
+
+Time step: 74.0000
+Time Taken: 409
+Env: 15
+
+
+2
+Attack Time: 2685.8691
+Decay Time: 9455.5928
+Release Time: 9455.5928
+Total Time: 14279.0000
+
+Time step: 73.0000
+Time Taken: 408
+Env: 15
+
+
+2
+Attack Time: 2685.8691
+Decay Time: 9455.5928
+Release Time: 9455.5928
+Total Time: 14353.0000
+
+Time step: 74.0000
+Time Taken: 408
+Env: 15
+
+
+2
+Attack Time: 2685.8691
+Decay Time: 9455.5928
+Release Time: 9455.5928
+Total Time: 14426.0000
+
+Time step: 73.0000
+Time Taken: 408
+Env: 15
+
+
+2
+Attack Time: 2685.8691
+Decay Time: 9455.5928
+Release Time: 9455.5928
+Total Time: 14500.0000
+
+Time step: 74.0000
+Time Taken: 408
+Env: 15
+
+
+2
+Attack Time: 2685.8691
+Decay Time: 9455.5928
+Release Time: 9455.5928
+Total Time: 14573.0000
+
+Time step: 73.0000
+Time Taken: 409
+Env: 15
+
+
+2
+Attack Time: 2685.8691
+Decay Time: 9455.5928
+Release Time: 9455.5928
+Total Time: 14647.0000
+
+Time step: 74.0000
+Time Taken: 408
+Env: 15
+
+
+2
+Attack Time: 2685.8691
+Decay Time: 9455.5928
+Release Time: 9455.5928
+Total Time: 14720.0000
+
+Time step: 73.0000
+Time Taken: 408
+Env: 15
+
+
+2
+Attack Time: 2685.8691
+Decay Time: 9455.5928
+Release Time: 9455.5928
+Total Time: 14794.0000
+
+Time step: 74.0000
+Time Taken: 409
+Env: 15
+
+
+2
+Attack Time: 2685.8691
+Decay Time: 9455.5928
+Release Time: 9455.5928
+Total Time: 14867.0000
+
+Time step: 73.0000
+Time Taken: 408
+Env: 15
+
+
+2
+Attack Time: 2685.8691
+Decay Time: 9455.5928
+Release Time: 9455.5928
+Total Time: 14941.0000
+
+Time step: 74.0000
+Time Taken: 408
+Env: 15
+
+
+2
+Attack Time: 2685.8691
+Decay Time: 9455.5928
+Release Time: 9455.5928
+Total Time: 15014.0000
+
+Time step: 73.0000
+Time Taken: 408
+Env: 15
+
+
+2
+Attack Time: 2685.8691
+Decay Time: 9455.5928
+Release Time: 9455.5928
+Total Time: 15088.0000
+
+Time step: 74.0000
+Time Taken: 408
+Env: 15
+
+
+2
+Attack Time: 2685.8691
+Decay Time: 9455.5928
+Release Time: 9455.5928
+Total Time: 15161.0000
+
+Time step: 73.0000
+Time Taken: 409
+Env: 15
+
+
+2
+Attack Time: 2685.8691
+Decay Time: 9455.5928
+Release Time: 9455.5928
+Total Time: 15235.0000
+
+Time step: 74.0000
+Time Taken: 408
+Env: 15
+
+
+2
+Attack Time: 2685.8691
+Decay Time: 9455.5928
+Release Time: 9455.5928
+Total Time: 15308.0000
+
+Time step: 73.0000
+Time Taken: 408
+Env: 15
+
+
+2
+Attack Time: 2685.8691
+Decay Time: 9455.5928
+Release Time: 9455.5928
+Total Time: 15382.0000
+
+Time step: 74.0000
+Time Taken: 408
+Env: 15
+
+
+2
+Attack Time: 2685.8691
+Decay Time: 9455.5928
+Release Time: 9455.5928
+Total Time: 15455.0000
+
+Time step: 73.0000
+Time Taken: 409
+Env: 15
+
+
+2
+Attack Time: 2685.8691
+Decay Time: 9455.5928
+Release Time: 9455.5928
+Total Time: 15529.0000
+
+Time step: 74.0000
+Time Taken: 409
+Env: 15
+
+
+2
+Attack Time: 2685.8691
+Decay Time: 9455.5928
+Release Time: 9455.5928
+Total Time: 15602.0000
+
+Time step: 73.0000
+Time Taken: 408
+Env: 15
+
+
+2
+Attack Time: 2685.8691
+Decay Time: 9455.5928
+Release Time: 9455.5928
+Total Time: 15676.0000
+
+Time step: 74.0000
+Time Taken: 408
+Env: 15
+
+
+2
+Attack Time: 2685.8691
+Decay Time: 9455.5928
+Release Time: 9455.5928
+Total Time: 15749.0000
+
+Time step: 73.0000
+Time Taken: 408
+Env: 15
+
+
+2
+Attack Time: 2685.8691
+Decay Time: 9455.5928
+Release Time: 9455.5928
+Total Time: 15823.0000
+
+Time step: 74.0000
+Time Taken: 409
+Env: 15
+
+
+2
+Attack Time: 2685.8691
+Decay Time: 9455.5928
+Release Time: 9455.5928
+Total Time: 15896.0000
+
+Time step: 73.0000
+Time Taken: 408
+Env: 15
+
+
+2
+Attack Time: 2685.8691
+Decay Time: 9455.5928
+Release Time: 9455.5928
+Total Time: 15969.0000
+
+Time step: 73.0000
+Time Taken: 409
+Env: 14
+
+
+2
+Attack Time: 2685.8691
+Decay Time: 9455.5928
+Release Time: 9455.5928
+Total Time: 16042.0000
+
+Time step: 73.0000
+Time Taken: 408
+Env: 14
+
+
+2
+Attack Time: 2685.8691
+Decay Time: 9455.5928
+Release Time: 9455.5928
+Total Time: 16115.0000
+
+Time step: 73.0000
+Time Taken: 408
+Env: 14
+
+
+2
+Attack Time: 2685.8691
+Decay Time: 9455.5928
+Release Time: 9455.5928
+Total Time: 16189.0000
+
+Time step: 74.0000
+Time Taken: 409
+Env: 14
+
+
+2
+Attack Time: 2685.8691
+Decay Time: 9455.5928
+Release Time: 9455.5928
+Total Time: 16262.0000
+
+Time step: 73.0000
+Time Taken: 408
+Env: 14
+
+
+2
+Attack Time: 2685.8691
+Decay Time: 9455.5928
+Release Time: 9455.5928
+Total Time: 16336.0000
+
+Time step: 74.0000
+Time Taken: 409
+Env: 14
+
+
+2
+Attack Time: 2685.8691
+Decay Time: 9455.5928
+Release Time: 9455.5928
+Total Time: 16409.0000
+
+Time step: 73.0000
+Time Taken: 409
+Env: 14
+
+
+2
+Attack Time: 2685.8691
+Decay Time: 9455.5928
+Release Time: 9455.5928
+Total Time: 16483.0000
+
+Time step: 74.0000
+Time Taken: 409
+Env: 14
+
+
+2
+Attack Time: 2685.8691
+Decay Time: 9455.5928
+Release Time: 9455.5928
+Total Time: 16556.0000
+
+Time step: 73.0000
+Time Taken: 409
+Env: 14
+
+
+2
+Attack Time: 2685.8691
+Decay Time: 9455.5928
+Release Time: 9455.5928
+Total Time: 16630.0000
+
+Time step: 74.0000
+Time Taken: 408
+Env: 14
+
+
+2
+Attack Time: 2685.8691
+Decay Time: 9455.5928
+Release Time: 9455.5928
+Total Time: 16703.0000
+
+Time step: 73.0000
+Time Taken: 409
+Env: 14
+
+
+2
+Attack Time: 2685.8691
+Decay Time: 9455.5928
+Release Time: 9455.5928
+Total Time: 16777.0000
+
+Time step: 74.0000
+Time Taken: 408
+Env: 14
+
+
+2
+Attack Time: 2685.8691
+Decay Time: 9455.5928
+Release Time: 9455.5928
+Total Time: 16850.0000
+
+Time step: 73.0000
+Time Taken: 409
+Env: 14
+
+
+2
+Attack Time: 2685.8691
+Decay Time: 9455.5928
+Release Time: 9455.5928
+Total Time: 16924.0000
+
+Time step: 74.0000
+Time Taken: 408
+Env: 14
+
+
+2
+Attack Time: 2685.8691
+Decay Time: 9455.5928
+Release Time: 9455.5928
+Total Time: 16997.0000
+
+Time step: 73.0000
+Time Taken: 408
+Env: 14
+
+
+2
+Attack Time: 2685.8691
+Decay Time: 9455.5928
+Release Time: 9455.5928
+Total Time: 17071.0000
+
+Time step: 74.0000
+Time Taken: 408
+Env: 14
+
+
+2
+Attack Time: 2685.8691
+Decay Time: 9455.5928
+Release Time: 9455.5928
+Total Time: 17144.0000
+
+Time step: 73.0000
+Time Taken: 408
+Env: 14
+
+
+2
+Attack Time: 2685.8691
+Decay Time: 9455.5928
+Release Time: 9455.5928
+Total Time: 17218.0000
+
+Time step: 74.0000
+Time Taken: 408
+Env: 14
+
+
+2
+Attack Time: 2685.8691
+Decay Time: 9455.5928
+Release Time: 9455.5928
+Total Time: 17291.0000
+
+Time step: 73.0000
+Time Taken: 408
+Env: 14
+
+
+2
+Attack Time: 2685.8691
+Decay Time: 9455.5928
+Release Time: 9455.5928
+Total Time: 17365.0000
+
+Time step: 74.0000
+Time Taken: 408
+Env: 14
+
+
+2
+Attack Time: 2685.8691
+Decay Time: 9455.5928
+Release Time: 9455.5928
+Total Time: 17438.0000
+
+Time step: 73.0000
+Time Taken: 408
+Env: 14
+
+
+2
+Attack Time: 2685.8691
+Decay Time: 9455.5928
+Release Time: 9455.5928
+Total Time: 17512.0000
+
+Time step: 74.0000
+Time Taken: 408
+Env: 14
+
+
+2
+Attack Time: 2685.8691
+Decay Time: 9455.5928
+Release Time: 9455.5928
+Total Time: 17585.0000
+
+Time step: 73.0000
+Time Taken: 409
+Env: 14
+
+
+2
+Attack Time: 2685.8691
+Decay Time: 9455.5928
+Release Time: 9455.5928
+Total Time: 17659.0000
+
+Time step: 74.0000
+Time Taken: 408
+Env: 14
+
+
+2
+Attack Time: 2685.8691
+Decay Time: 9455.5928
+Release Time: 9455.5928
+Total Time: 17732.0000
+
+Time step: 73.0000
+Time Taken: 409
+Env: 14
+
+
+2
+Attack Time: 2685.8691
+Decay Time: 9455.5928
+Release Time: 9455.5928
+Total Time: 17806.0000
+
+Time step: 74.0000
+Time Taken: 408
+Env: 14
+
+
+2
+Attack Time: 2685.8691
+Decay Time: 9455.5928
+Release Time: 9455.5928
+Total Time: 17879.0000
+
+Time step: 73.0000
+Time Taken: 408
+Env: 14
+
+
+2
+Attack Time: 2685.8691
+Decay Time: 9455.5928
+Release Time: 9455.5928
+Total Time: 17953.0000
+
+Time step: 74.0000
+Time Taken: 408
+Env: 14
+
+
+2
+Attack Time: 2685.8691
+Decay Time: 9455.5928
+Release Time: 9455.5928
+Total Time: 18026.0000
+
+Time step: 73.0000
+Time Taken: 408
+Env: 14
+
+
+2
+Attack Time: 2685.8691
+Decay Time: 9455.5928
+Release Time: 9455.5928
+Total Time: 18100.0000
+
+Time step: 74.0000
+Time Taken: 409
+Env: 14
+
+
+2
+Attack Time: 2685.8691
+Decay Time: 9455.5928
+Release Time: 9455.5928
+Total Time: 18173.0000
+
+Time step: 73.0000
+Time Taken: 408
+Env: 14
+
+
+2
+Attack Time: 2685.8691
+Decay Time: 9455.5928
+Release Time: 9455.5928
+Total Time: 18247.0000
+
+Time step: 74.0000
+Time Taken: 409
+Env: 14
+
+
+2
+Attack Time: 2685.8691
+Decay Time: 9455.5928
+Release Time: 9455.5928
+Total Time: 18320.0000
+
+Time step: 73.0000
+Time Taken: 408
+Env: 14
+
+
+2
+Attack Time: 2685.8691
+Decay Time: 9455.5928
+Release Time: 9455.5928
+Total Time: 18394.0000
+
+Time step: 74.0000
+Time Taken: 408
+Env: 14
+
+
+2
+Attack Time: 2685.8691
+Decay Time: 9455.5928
+Release Time: 9455.5928
+Total Time: 18467.0000
+
+Time step: 73.0000
+Time Taken: 408
+Env: 14
+
+
+2
+Attack Time: 2685.8691
+Decay Time: 9455.5928
+Release Time: 9455.5928
+Total Time: 18541.0000
+
+Time step: 74.0000
+Time Taken: 408
+Env: 14
+
+
+2
+Attack Time: 2685.8691
+Decay Time: 9455.5928
+Release Time: 9455.5928
+Total Time: 18614.0000
+
+Time step: 73.0000
+Time Taken: 408
+Env: 14
+
+
+2
+Attack Time: 2685.8691
+Decay Time: 9455.5928
+Release Time: 9455.5928
+Total Time: 18688.0000
+
+Time step: 74.0000
+Time Taken: 408
+Env: 14
+
+
+2
+Attack Time: 2685.8691
+Decay Time: 9455.5928
+Release Time: 9455.5928
+Total Time: 18761.0000
+
+Time step: 73.0000
+Time Taken: 408
+Env: 14
+
+
+2
+Attack Time: 2685.8691
+Decay Time: 9455.5928
+Release Time: 9455.5928
+Total Time: 18835.0000
+
+Time step: 74.0000
+Time Taken: 409
+Env: 14
+
+
+2
+Attack Time: 2685.8691
+Decay Time: 9455.5928
+Release Time: 9455.5928
+Total Time: 18908.0000
+
+Time step: 73.0000
+Time Taken: 408
+Env: 14
+
+
+2
+Attack Time: 2685.8691
+Decay Time: 9455.5928
+Release Time: 9455.5928
+Total Time: 18982.0000
+
+Time step: 74.0000
+Time Taken: 409
+Env: 14
+
+
+2
+Attack Time: 2685.8691
+Decay Time: 9455.5928
+Release Time: 9455.5928
+Total Time: 19055.0000
+
+Time step: 73.0000
+Time Taken: 409
+Env: 14
+
+
+2
+Attack Time: 2685.8691
+Decay Time: 9455.5928
+Release Time: 9455.5928
+Total Time: 19129.0000
+
+Time step: 74.0000
+Time Taken: 409
+Env: 14
+
+
+2
+Attack Time: 2685.8691
+Decay Time: 9455.5928
+Release Time: 9455.5928
+Total Time: 19202.0000
+
+Time step: 73.0000
+Time Taken: 408
+Env: 14
+
+
+2
+Attack Time: 2685.8691
+Decay Time: 9455.5928
+Release Time: 9455.5928
+Total Time: 19276.0000
+
+Time step: 74.0000
+Time Taken: 408
+Env: 14
+
+
+2
+Attack Time: 2685.8691
+Decay Time: 9455.5928
+Release Time: 9455.5928
+Total Time: 19349.0000
+
+Time step: 73.0000
+Time Taken: 408
+Env: 14
+
+
+2
+Attack Time: 2685.8691
+Decay Time: 9455.5928
+Release Time: 9455.5928
+Total Time: 19423.0000
+
+Time step: 74.0000
+Time Taken: 408
+Env: 14
+
+
+2
+Attack Time: 2685.8691
+Decay Time: 9455.5928
+Release Time: 9455.5928
+Total Time: 19496.0000
+
+Time step: 73.0000
+Time Taken: 408
+Env: 14
+
+
+2
+Attack Time: 2685.8691
+Decay Time: 9455.5928
+Release Time: 9455.5928
+Total Time: 19569.0000
+
+Time step: 73.0000
+Time Taken: 408
+Env: 14
+
+
+2
+Attack Time: 2685.8691
+Decay Time: 9455.5928
+Release Time: 9455.5928
+Total Time: 19643.0000
+
+Time step: 74.0000
+Time Taken: 408
+Env: 14
+
+
+2
+Attack Time: 2685.8691
+Decay Time: 9455.5928
+Release Time: 9455.5928
+Total Time: 19716.0000
+
+Time step: 73.0000
+Time Taken: 408
+Env: 14
+
+
+2
+Attack Time: 2685.8691
+Decay Time: 9455.5928
+Release Time: 9455.5928
+Total Time: 19790.0000
+
+Time step: 74.0000
+Time Taken: 408
+Env: 14
+
+
+2
+Attack Time: 2685.8691
+Decay Time: 9455.5928
+Release Time: 9455.5928
+Total Time: 19863.0000
+
+Time step: 73.0000
+Time Taken: 408
+Env: 14
+
+
+2
+Attack Time: 2685.8691
+Decay Time: 9455.5928
+Release Time: 9455.5928
+Total Time: 19937.0000
+
+Time step: 74.0000
+Time Taken: 408
+Env: 14
+
+
+2
+Attack Time: 2685.8691
+Decay Time: 9455.5928
+Release Time: 9455.5928
+Total Time: 20010.0000
+
+Time step: 73.0000
+Time Taken: 408
+Env: 14
+
+
+Loop
+Loop
+Loop
+Loop
+Loop
+Loop
+Loop
+

@@ -1,0 +1,79 @@
+\hypertarget{serial__printf_8c}{}\doxysection{/\+Users/richarddavies/\+Desktop/\+Projects/\+Cool\+Ease/\+Code/stm32l051c8t6\+\_\+rfm/coolease/lib/serial\+\_\+printf.c File Reference}
+\label{serial__printf_8c}\index{/Users/richarddavies/Desktop/Projects/CoolEase/Code/stm32l051c8t6\_rfm/coolease/lib/serial\_printf.c@{/Users/richarddavies/Desktop/Projects/CoolEase/Code/stm32l051c8t6\_rfm/coolease/lib/serial\_printf.c}}
+{\ttfamily \#include \char`\"{}coolease/serial\+\_\+printf.\+h\char`\"{}}\newline
+{\ttfamily \#include $<$libopencm3/stm32/rcc.\+h$>$}\newline
+{\ttfamily \#include $<$libopencm3/stm32/gpio.\+h$>$}\newline
+{\ttfamily \#include $<$libopencm3/stm32/usart.\+h$>$}\newline
+{\ttfamily \#include $<$libopencm3/stm32/flash.\+h$>$}\newline
+{\ttfamily \#include \char`\"{}coolease/board\+\_\+defs.\+h\char`\"{}}\newline
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+static void \mbox{\hyperlink{serial__printf_8c_a1172bdb0b37a8539e8d87a316d5583ff}{clock\+\_\+setup}} (void)
+\item 
+static void \mbox{\hyperlink{serial__printf_8c_aed614ed9ea0277bd3376f4535a2a0ff8}{usart\+\_\+setup}} (void)
+\item 
+void \mbox{\hyperlink{serial__printf_8c_a517eead0dcd20ec54ee22a06003eedee}{spf\+\_\+init}} (void)
+\item 
+int \mbox{\hyperlink{serial__printf_8c_a5c2622ecb855d2dbcce23776d1872097}{spf\+\_\+serial\+\_\+printf}} (const char $\ast$format,...)
+\item 
+void \mbox{\hyperlink{serial__printf_8c_a7a152bbb901ba8e72039feccfbf98ba5}{\+\_\+putchar\+\_\+spf}} (char character)
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Function Documentation}
+\mbox{\Hypertarget{serial__printf_8c_a7a152bbb901ba8e72039feccfbf98ba5}\label{serial__printf_8c_a7a152bbb901ba8e72039feccfbf98ba5}} 
+\index{serial\_printf.c@{serial\_printf.c}!\_putchar\_spf@{\_putchar\_spf}}
+\index{\_putchar\_spf@{\_putchar\_spf}!serial\_printf.c@{serial\_printf.c}}
+\doxysubsubsection{\texorpdfstring{\_putchar\_spf()}{\_putchar\_spf()}}
+{\footnotesize\ttfamily void \+\_\+putchar\+\_\+spf (\begin{DoxyParamCaption}\item[{char}]{character }\end{DoxyParamCaption})}
+
+Output a character to a custom device like U\+A\+RT, used by the printf() function This function is declared here only. You have to write your custom implementation somewhere 
+\begin{DoxyParams}{Parameters}
+{\em character} & Character to output \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 39 of file serial\+\_\+printf.\+c.
+
+\mbox{\Hypertarget{serial__printf_8c_a1172bdb0b37a8539e8d87a316d5583ff}\label{serial__printf_8c_a1172bdb0b37a8539e8d87a316d5583ff}} 
+\index{serial\_printf.c@{serial\_printf.c}!clock\_setup@{clock\_setup}}
+\index{clock\_setup@{clock\_setup}!serial\_printf.c@{serial\_printf.c}}
+\doxysubsubsection{\texorpdfstring{clock\_setup()}{clock\_setup()}}
+{\footnotesize\ttfamily static void clock\+\_\+setup (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Definition at line 46 of file serial\+\_\+printf.\+c.
+
+\mbox{\Hypertarget{serial__printf_8c_a517eead0dcd20ec54ee22a06003eedee}\label{serial__printf_8c_a517eead0dcd20ec54ee22a06003eedee}} 
+\index{serial\_printf.c@{serial\_printf.c}!spf\_init@{spf\_init}}
+\index{spf\_init@{spf\_init}!serial\_printf.c@{serial\_printf.c}}
+\doxysubsubsection{\texorpdfstring{spf\_init()}{spf\_init()}}
+{\footnotesize\ttfamily void spf\+\_\+init (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})}
+
+
+
+Definition at line 17 of file serial\+\_\+printf.\+c.
+
+\mbox{\Hypertarget{serial__printf_8c_a5c2622ecb855d2dbcce23776d1872097}\label{serial__printf_8c_a5c2622ecb855d2dbcce23776d1872097}} 
+\index{serial\_printf.c@{serial\_printf.c}!spf\_serial\_printf@{spf\_serial\_printf}}
+\index{spf\_serial\_printf@{spf\_serial\_printf}!serial\_printf.c@{serial\_printf.c}}
+\doxysubsubsection{\texorpdfstring{spf\_serial\_printf()}{spf\_serial\_printf()}}
+{\footnotesize\ttfamily int spf\+\_\+serial\+\_\+printf (\begin{DoxyParamCaption}\item[{const char $\ast$}]{format,  }\item[{}]{... }\end{DoxyParamCaption})}
+
+
+
+Definition at line 26 of file serial\+\_\+printf.\+c.
+
+\mbox{\Hypertarget{serial__printf_8c_aed614ed9ea0277bd3376f4535a2a0ff8}\label{serial__printf_8c_aed614ed9ea0277bd3376f4535a2a0ff8}} 
+\index{serial\_printf.c@{serial\_printf.c}!usart\_setup@{usart\_setup}}
+\index{usart\_setup@{usart\_setup}!serial\_printf.c@{serial\_printf.c}}
+\doxysubsubsection{\texorpdfstring{usart\_setup()}{usart\_setup()}}
+{\footnotesize\ttfamily static void usart\+\_\+setup (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Definition at line 69 of file serial\+\_\+printf.\+c.
+
