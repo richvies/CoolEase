@@ -3875,20 +3875,15 @@ static enum usbd_request_return_codes hid_control_request(usbd_device *dev, stru
 }
 
 
-uint8_t const hid_in_report_buf[64] = "In Report";
-uint8_t const hid_out_report_buf[64];
 
 
-void hid_in_callback(usbd_device *usbd_dev, uint8_t ea);
-void hid_in_callback(usbd_device *usbd_dev, uint8_t ea){
-    usbd_ep_write_packet(usbd_dev, ea, hid_out_report_buf, sizeof(hid_out_report_buf) / sizeof(uint8_t));
-}
+
+uint8_t hid_report_buf[64];
 
 
-void hid_out_callback(usbd_device *usbd_dev, uint8_t ea);
-void hid_out_callback(usbd_device *usbd_dev, uint8_t ea){
-    usbd_ep_read_packet(usbd_dev, ea, hid_out_report_buf, sizeof(hid_out_report_buf) / sizeof(uint8_t));
-    usbd_ep_write_packet(usbd_dev, ea, hid_out_report_buf, sizeof(hid_out_report_buf) / sizeof(uint8_t));
+void hid_report_callback(usbd_device *usbd_dev, uint8_t ea);
+void hid_report_callback(usbd_device *usbd_dev, uint8_t ea){
+    usbd_ep_write_packet(usbd_dev, ea, hid_report_buf, sizeof(hid_report_buf) / sizeof(uint8_t));
 }
 
 
@@ -3901,20 +3896,14 @@ static void hid_set_config(usbd_device *dev, uint16_t wValue)
  (void)wValue;
  (void)dev;
 
- usbd_ep_setup(dev, ENDPOINT_HID_IN, 0x03, 64, hid_in_callback);
-    usbd_ep_setup(dev, ENDPOINT_HID_OUT, 0x03, 64, hid_out_callback);
+ usbd_ep_setup(dev, ENDPOINT_HID_IN, 0x03, 64, hid_report_callback);
+    usbd_ep_setup(dev, ENDPOINT_HID_OUT, 0x03, 64, hid_report_callback);
 
  usbd_register_control_callback(
     dev,
     0x00 | 0x01,
     0x60 | 0x1F,
     hid_control_request);
-
-
-
-
-
-
 }
 
 

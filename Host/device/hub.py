@@ -1,5 +1,5 @@
 """
-Basic methods and classes for interfacing with the wristwatch
+Basic methods and classes for interfacing with the hub
 """
 
 import hid
@@ -26,11 +26,6 @@ class TestCommand(Command):
         parts = bytes('Test Command', 'utf-8')
         super().__init__(self.COMMAND, parts)
 
-class EnterBootloaderCommand(Command):
-    COMMAND = 2
-    def __init__(self):
-        super().__init__(EnterBootloaderCommand.COMMAND, b'')
-
 class Device(hid.device):
     MANUFACTURER='CoolEase'
     PRODUCT='CoolEase Hub'
@@ -44,13 +39,6 @@ class Device(hid.device):
     def __exit__(self, *args):
         self.close()
 
-    # def set_time(self):
-    #     """
-    #     Sets the watch time to the current time
-    #     """
-    #     cmd = SetTimeCommand(time.localtime())
-    #     self.write_command(cmd)
-
     def enter_bootloader(self):
         cmd = EnterBootloaderCommand()
         self.write_command(cmd)
@@ -60,7 +48,6 @@ class Device(hid.device):
         res = self.write(data)
         if res < 0:
             raise ValueError(self.error())
-
 
 def find_device(cls=Device):
     info = hid.enumerate(VID, PID)

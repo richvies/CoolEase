@@ -19,7 +19,7 @@
 			"README.md": true,
 			"CoolTerm":true,
 			"Old Code": false,
-			"Docs": true,
+			"Docs": false,
 			".gitignore": true,
 		},
 		"python.pythonPath": "/usr/local/anaconda3/bin/python",
