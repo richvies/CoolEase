@@ -1,9 +1,0 @@
-#!/bin/bash
-cd -- "$(dirname "$0")"
-make -C libopencm3 TARGETS=stm32/l0 V=0
-make -C coolease P=hub V=0
-./util/upload/stm32flash/stm32flash -b 230400 -E -w build/hub.bin -v \
--R -i -dtr,rts,-rts:dtr,rts,-rts /dev/cu.usbserial-A50285BI
-./util/upload/stm32flash/stm32flash -b 230400 -S 0x08080000 -w coolease/lib/eeprom_hub.bin -v \
--R -i -dtr,rts,-rts:dtr,rts,-rts /dev/cu.usbserial-A50285BI
-

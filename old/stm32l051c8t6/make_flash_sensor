@@ -1,6 +1,0 @@
-#!/bin/bash
-cd -- "$(dirname "$0")"
-make -C libopencm3 TARGETS=stm32/l0
-make -C coolease P=sensor
-./util/upload/stm32flash/stm32flash -e 128 -w build/sensor.bin -v \
--R -i -dtr,rts,-rts:dtr,rts,-rts /dev/cu.usbserial-A50285BI
