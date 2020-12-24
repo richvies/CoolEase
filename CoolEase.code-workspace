@@ -20,7 +20,7 @@
 			"CoolTerm":true,
 			"Old Code": false,
 			"Docs": false,
-			".gitignore": true,
+			".gitignore": false,
 		},
 		"python.pythonPath": "/usr/local/anaconda3/bin/python",
 		"terminal.integrated.inheritEnv": false,
