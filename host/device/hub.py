@@ -39,8 +39,8 @@ class Device(hid.device):
     def __exit__(self, *args):
         self.close()
 
-    def enter_bootloader(self):
-        cmd = EnterBootloaderCommand()
+    def test_command(self):
+        cmd = TestCommand()
         self.write_command(cmd)
 
     def write_command(self, command):

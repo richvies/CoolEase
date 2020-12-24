@@ -63,7 +63,7 @@ TGT_LDFLAGS += -specs=nano.specs
 TGT_LDFLAGS += -Wl,--gc-sections
 
 # OPTIONAL
-TGT_LDFLAGS += -Wl,-Map=$(OBJDIR)/$(PROJECT).map
+TGT_LDFLAGS += -Wl,-Map=$(BINDIR)/$(PROJECT).map
 ifeq ($(V),99)
 TGT_LDFLAGS += -Wl,--print-gc-sections
 endif

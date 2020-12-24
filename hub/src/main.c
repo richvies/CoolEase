@@ -12,7 +12,8 @@
 
 int main(void)
 {
-  usbd
+  cusb_init();
+  cusb_test_poll();
 
   return 0;
 }

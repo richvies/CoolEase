@@ -5,6 +5,7 @@
   * @brief   CoolEase Hub USB driver source file
   */
 
+#include <hub/cusb.h>
 
 #include <stddef.h>
 
@@ -332,7 +333,7 @@ static enum usbd_request_return_codes hid_control_request(usbd_device *dev, stru
  * 
  * Buffer used for all HID in & out transactions
 */
-uint8_t hid_report_buf[64];
+uint8_t hid_report_buf[64] = "Default Report Buffer";
 
 /** @brief HID Resport Callback */
 void hid_report_callback(usbd_device *usbd_dev, uint8_t ea);
@@ -361,6 +362,12 @@ static void hid_set_config(usbd_device *dev, uint16_t wValue)
 }
 
 /******************************************************************** 
+ * Static Vairbale Declarations
+ *******************************************************************/
+
+usbd_device *usbd_dev;
+
+/******************************************************************** 
  * Static Function Declarations
  *******************************************************************/
 
@@ -387,7 +394,7 @@ void cusb_init(void)
   SET_REG(USB_ISTR_REG, 0);
 
   /** Initialize USB */
-  usbd_device *usbd_dev = usbd_init(&st_usbfs_v2_usb_driver, &dev_desc, &cfg_desc, string_desc, sizeof(string_desc) / sizeof(const char*), usbd_control_buffer, sizeof(usbd_control_buffer));
+  usbd_dev = usbd_init(&st_usbfs_v2_usb_driver, &dev_desc, &cfg_desc, string_desc, sizeof(string_desc) / sizeof(const char*), usbd_control_buffer, sizeof(usbd_control_buffer));
     
   /** Register Configuration Callback for HID */
   usbd_register_set_config_callback(usbd_dev, hid_set_config);

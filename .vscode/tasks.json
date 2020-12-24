@@ -113,7 +113,7 @@
                 "-f",
                 "Tools/OpenOCD/stm32l0.cfg",
                 "-c",
-                "program Hub/build/Hub.elf verify reset exit"
+                "program hub/bin/hub.elf verify reset exit"
             ],
             "problemMatcher": [],
             "dependsOn": "Build project"
