@@ -1,6 +1,5 @@
 var searchData=
 [
-  ['cusb_5fclock_5finit_83',['cusb_clock_init',['../group___c_u_s_b___i_n_t.html#gac63b9392f307996959131c5a4e047fa4',1,'cusb.c']]],
-  ['cusb_5finit_84',['cusb_init',['../group___c_u_s_b___a_p_i.html#gab4184b48312c430e82701746df0a97ca',1,'cusb.c']]],
-  ['cusb_5ftest_5fpoll_85',['cusb_test_poll',['../group___c_u_s_b___a_p_i.html#gac3db1642b64b360258b24bdd9496a390',1,'cusb.c']]]
+  ['boot_5fdeinit_92',['boot_deinit',['../bootloader__utils_8h.html#a04f64e6854504397885e2319bc2964fa',1,'bootloader_utils.h']]],
+  ['boot_5fjump_93',['boot_jump',['../bootloader__utils_8h.html#a9278f778a8be5f6f435fbd10fcaeb471',1,'bootloader_utils.h']]]
 ];

@@ -1,7 +1,7 @@
 .DS_Store
-000Webhost
-CoolTerm
-Development Invoices
+web/old
+coolterm
+invoices
 old
 *.d
 *.o

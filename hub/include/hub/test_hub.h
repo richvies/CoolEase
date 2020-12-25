@@ -19,4 +19,9 @@
 * @}
 */
 
+#ifndef TEST_HUB_H
+#define TEST_HUB_H
+
 void test_cusb_poll(void)
+
+#endif

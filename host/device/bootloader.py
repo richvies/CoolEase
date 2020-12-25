@@ -184,7 +184,7 @@ class BootloaderStatus(object):
 class Bootloader(wristwatch.Device):
     MANUFACTURER='kevincuzner.com'
     PRODUCT='LED Wristwatch Bootloader'
-    def bootloader_command(self, cmd, wait_for_status=True):
+    def bootloader_vvvcommand(self, cmd, wait_for_status=True):
         self.write_command(cmd)
         while wait_for_status:
             result = self.read(64)
@@ -243,4 +243,4 @@ class Bootloader(wristwatch.Device):
             return True
         else:
             return False
-
+            

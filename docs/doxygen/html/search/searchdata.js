@@ -3,11 +3,11 @@ var indexSectionsWithContent =
   0: "_bcdehimrtuw",
   1: "h",
   2: "bcmrt",
-  3: "_chmt",
+  3: "_bchmt",
   4: "bcdhiruw",
   5: "du",
   6: "eiu",
-  7: "chtu"
+  7: "bcht"
 };
 
 var indexSectionNames =

@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=9"/>
 <meta name="generator" content="Doxygen 1.8.20"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>CoolEase Sensor: USB Configuration</title>
+<title>CoolEase Sensor: Cusb Configuration</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -68,7 +68,7 @@ $(function() {
 <a href="#func-members">Functions</a> &#124;
 <a href="#var-members">Variables</a>  </div>
   <div class="headertitle">
-<div class="title">USB Configuration<div class="ingroups"><a class="el" href="group___c_u_s_b___f_i_l_e.html">USB</a> &raquo; <a class="el" href="group___c_u_s_b___i_n_t.html">CUSB Internal</a></div></div>  </div>
+<div class="title">Cusb Configuration<div class="ingroups"><a class="el" href="group___c_u_s_b___f_i_l_e.html">Cusb</a> &raquo; <a class="el" href="group___c_u_s_b___i_n_t.html">Cusb Internal</a></div></div>  </div>
 </div><!--header-->
 <div class="contents">
 
@@ -84,9 +84,10 @@ Data Structures</h2></td></tr>
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="define-members"></a>
 Macros</h2></td></tr>
 <tr class="memitem:ga3398c7225386f04c72fd9025fcb44734"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___c_u_s_b___c_f_g.html#ga3398c7225386f04c72fd9025fcb44734">USB_VID</a>&#160;&#160;&#160;0x0483</td></tr>
-<tr class="memdesc:ga3398c7225386f04c72fd9025fcb44734"><td class="mdescLeft">&#160;</td><td class="mdescRight">String Descriptors.  <a href="group___c_u_s_b___c_f_g.html#ga3398c7225386f04c72fd9025fcb44734">More...</a><br /></td></tr>
+<tr class="memdesc:ga3398c7225386f04c72fd9025fcb44734"><td class="mdescLeft">&#160;</td><td class="mdescRight">Vendor ID.  <a href="group___c_u_s_b___c_f_g.html#ga3398c7225386f04c72fd9025fcb44734">More...</a><br /></td></tr>
 <tr class="separator:ga3398c7225386f04c72fd9025fcb44734"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ga989c980e0b99f803f7ce0ca224cdb733"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___c_u_s_b___c_f_g.html#ga989c980e0b99f803f7ce0ca224cdb733">USB_PID</a>&#160;&#160;&#160;0x5750</td></tr>
+<tr class="memdesc:ga989c980e0b99f803f7ce0ca224cdb733"><td class="mdescLeft">&#160;</td><td class="mdescRight">Product ID.  <a href="group___c_u_s_b___c_f_g.html#ga989c980e0b99f803f7ce0ca224cdb733">More...</a><br /></td></tr>
 <tr class="separator:ga989c980e0b99f803f7ce0ca224cdb733"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="enum-members"></a>
@@ -159,6 +160,15 @@ Variables</h2></td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <p>USB HID descriptors. </p>
+<ul>
+<li>Device</li>
+<li>Configuration</li>
+<li>Interface</li>
+<li>Endpoints</li>
+<li>Strings</li>
+<li>HID Function</li>
+<li>Report </li>
+</ul>
 <h2 class="groupheader">Macro Definition Documentation</h2>
 <a id="ga989c980e0b99f803f7ce0ca224cdb733"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#ga989c980e0b99f803f7ce0ca224cdb733">&#9670;&nbsp;</a></span>USB_PID</h2>
@@ -171,6 +181,8 @@ Variables</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+
+<p>Product ID. </p>
 
 </div>
 </div>
@@ -186,7 +198,7 @@ Variables</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>String Descriptors. </p>
+<p>Vendor ID. </p>
 
 </div>
 </div>
@@ -311,17 +323,17 @@ Variables</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
-<b>Initial value:</b><div class="fragment"><div class="line">= </div>
+<b>Initial value:</b><div class="fragment"><div class="line">=</div>
 <div class="line">{</div>
-<div class="line">  .bLength                = USB_DT_CONFIGURATION_SIZE,</div>
-<div class="line">  .bDescriptorType        = USB_DT_CONFIGURATION,</div>
-<div class="line">  .wTotalLength           = 0, </div>
-<div class="line">  .bNumInterfaces         = <a class="code" href="group___c_u_s_b___c_f_g.html#ggade943db11170b477241c1a88478ad911a6c498f5b0c6a28de865172df9f4028b6">INTERFACE_COUNT</a>,</div>
-<div class="line">  .bConfigurationValue    = 1,</div>
-<div class="line">  .iConfiguration         = <a class="code" href="group___c_u_s_b___c_f_g.html#gga8e8903d0c7276e7295ce8a9aaea727b4a4424c4941324bf6b1d66433316169a9e">USB_CONFIGURATION_IDX</a>,</div>
-<div class="line">  .bmAttributes           = 0b10000000, </div>
-<div class="line">  .bMaxPower              = 200, </div>
-<div class="line">  .interface              = <a class="code" href="group___c_u_s_b___c_f_g.html#ga76de0fd52b1f8961911ef2c5f5a51d1b">interfaces</a>,</div>
+<div class="line">    .bLength = USB_DT_CONFIGURATION_SIZE,</div>
+<div class="line">    .bDescriptorType = USB_DT_CONFIGURATION,</div>
+<div class="line">    .wTotalLength = 0, </div>
+<div class="line">    .bNumInterfaces = <a class="code" href="group___c_u_s_b___c_f_g.html#ggade943db11170b477241c1a88478ad911a6c498f5b0c6a28de865172df9f4028b6">INTERFACE_COUNT</a>,</div>
+<div class="line">    .bConfigurationValue = 1,</div>
+<div class="line">    .iConfiguration = <a class="code" href="group___c_u_s_b___c_f_g.html#gga8e8903d0c7276e7295ce8a9aaea727b4a4424c4941324bf6b1d66433316169a9e">USB_CONFIGURATION_IDX</a>,</div>
+<div class="line">    .bmAttributes = 0b10000000, </div>
+<div class="line">    .bMaxPower = 200,           </div>
+<div class="line">    .interface = <a class="code" href="group___c_u_s_b___c_f_g.html#ga76de0fd52b1f8961911ef2c5f5a51d1b">interfaces</a>,</div>
 <div class="line">}</div>
 </div><!-- fragment -->
 <p>USB Device Config Descriptor. </p>
@@ -347,21 +359,21 @@ Variables</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
-<b>Initial value:</b><div class="fragment"><div class="line">= </div>
+<b>Initial value:</b><div class="fragment"><div class="line">=</div>
 <div class="line">{</div>
-<div class="line">  .bLength            = USB_DT_DEVICE_SIZE,</div>
-<div class="line">    .bDescriptorType    = USB_DT_DEVICE,</div>
-<div class="line">    .bcdUSB             = 0x0200,</div>
-<div class="line">    .bDeviceClass       = 0x00,</div>
-<div class="line">    .bDeviceSubClass    = 0x00,</div>
-<div class="line">    .bDeviceProtocol    = 0x00,</div>
-<div class="line">    .bMaxPacketSize0    = 64,</div>
-<div class="line">    .idVendor           = <a class="code" href="group___c_u_s_b___c_f_g.html#ga3398c7225386f04c72fd9025fcb44734">USB_VID</a>,</div>
-<div class="line">    .idProduct          = <a class="code" href="group___c_u_s_b___c_f_g.html#ga989c980e0b99f803f7ce0ca224cdb733">USB_PID</a>,</div>
-<div class="line">    .bcdDevice          = 0x0200,</div>
-<div class="line">    .iManufacturer      = <a class="code" href="group___c_u_s_b___c_f_g.html#gga8e8903d0c7276e7295ce8a9aaea727b4a896869157e00662b55740010582e3bae">USB_MANUFACTURER_IDX</a>,</div>
-<div class="line">    .iProduct           = <a class="code" href="group___c_u_s_b___c_f_g.html#gga8e8903d0c7276e7295ce8a9aaea727b4a28c69675cc67c534eb4ee5fcad847220">USB_PRODUCT_IDX</a>,</div>
-<div class="line">    .iSerialNumber      = <a class="code" href="group___c_u_s_b___c_f_g.html#gga8e8903d0c7276e7295ce8a9aaea727b4ac8955a3859ce8b787eed5575ad8417c4">USB_SERIAL_IDX</a>,</div>
+<div class="line">    .bLength = USB_DT_DEVICE_SIZE,</div>
+<div class="line">    .bDescriptorType = USB_DT_DEVICE,</div>
+<div class="line">    .bcdUSB = 0x0200,</div>
+<div class="line">    .bDeviceClass = 0x00,</div>
+<div class="line">    .bDeviceSubClass = 0x00,</div>
+<div class="line">    .bDeviceProtocol = 0x00,</div>
+<div class="line">    .bMaxPacketSize0 = 64,</div>
+<div class="line">    .idVendor = <a class="code" href="group___c_u_s_b___c_f_g.html#ga3398c7225386f04c72fd9025fcb44734">USB_VID</a>,</div>
+<div class="line">    .idProduct = <a class="code" href="group___c_u_s_b___c_f_g.html#ga989c980e0b99f803f7ce0ca224cdb733">USB_PID</a>,</div>
+<div class="line">    .bcdDevice = 0x0200,</div>
+<div class="line">    .iManufacturer = <a class="code" href="group___c_u_s_b___c_f_g.html#gga8e8903d0c7276e7295ce8a9aaea727b4a896869157e00662b55740010582e3bae">USB_MANUFACTURER_IDX</a>,</div>
+<div class="line">    .iProduct = <a class="code" href="group___c_u_s_b___c_f_g.html#gga8e8903d0c7276e7295ce8a9aaea727b4a28c69675cc67c534eb4ee5fcad847220">USB_PRODUCT_IDX</a>,</div>
+<div class="line">    .iSerialNumber = <a class="code" href="group___c_u_s_b___c_f_g.html#gga8e8903d0c7276e7295ce8a9aaea727b4ac8955a3859ce8b787eed5575ad8417c4">USB_SERIAL_IDX</a>,</div>
 <div class="line">    .bNumConfigurations = 1</div>
 <div class="line">}</div>
 </div><!-- fragment -->
@@ -436,20 +448,20 @@ Variables</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
-<b>Initial value:</b><div class="fragment"><div class="line">= </div>
+<b>Initial value:</b><div class="fragment"><div class="line">=</div>
 <div class="line">{</div>
-<div class="line">  0x06, 0x00, 0xff,              </div>
-<div class="line">  0x09, 0x01,                    </div>
-<div class="line">  0xa1, 0x01,                    </div>
-<div class="line">  0x09, 0x01,                    </div>
-<div class="line">  0x15, 0x00,                    </div>
-<div class="line">  0x26, 0xff, 0x00,              </div>
-<div class="line">  0x75, 0x08,                    </div>
-<div class="line">  0x95, 0x40,                    </div>
-<div class="line">  0x81, 0x02,                    </div>
-<div class="line">  0x09, 0x01,                    </div>
-<div class="line">  0x91, 0x02,                    </div>
-<div class="line">  0xc0                           </div>
+<div class="line">    0x06, 0x00, 0xff, </div>
+<div class="line">    0x09, 0x01,       </div>
+<div class="line">    0xa1, 0x01,       </div>
+<div class="line">    0x09, 0x01,       </div>
+<div class="line">    0x15, 0x00,       </div>
+<div class="line">    0x26, 0xff, 0x00, </div>
+<div class="line">    0x75, 0x08,       </div>
+<div class="line">    0x95, 0x40,       </div>
+<div class="line">    0x81, 0x02,       </div>
+<div class="line">    0x09, 0x01,       </div>
+<div class="line">    0x91, 0x02,       </div>
+<div class="line">    0xc0              </div>
 <div class="line">}</div>
 </div><!-- fragment -->
 <p>HID Report Descriptor. </p>
@@ -476,12 +488,12 @@ Variables</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
-<b>Initial value:</b><div class="fragment"><div class="line">= </div>
+<b>Initial value:</b><div class="fragment"><div class="line">=</div>
 <div class="line">{</div>
-<div class="line">  {</div>
-<div class="line">    .num_altsetting = 1,</div>
-<div class="line">    .altsetting = &amp;<a class="code" href="group___c_u_s_b___c_f_g.html#ga31643a6df5e6d5393f60d14c2528a8a4">hid_interface</a>,</div>
-<div class="line">  }</div>
+<div class="line">    {</div>
+<div class="line">        .num_altsetting = 1,</div>
+<div class="line">        .altsetting = &amp;<a class="code" href="group___c_u_s_b___c_f_g.html#ga31643a6df5e6d5393f60d14c2528a8a4">hid_interface</a>,</div>
+<div class="line">    }</div>
 <div class="line">}</div>
 </div><!-- fragment -->
 <p>Struct containing all used interfaces. </p>
@@ -507,13 +519,13 @@ Variables</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
-<b>Initial value:</b><div class="fragment"><div class="line">= </div>
+<b>Initial value:</b><div class="fragment"><div class="line">=</div>
 <div class="line">{</div>
-<div class="line">  <span class="stringliteral">&quot;CoolEase&quot;</span>,</div>
-<div class="line">  <span class="stringliteral">&quot;CoolEase Hub&quot;</span>,</div>
-<div class="line">  <span class="stringliteral">&quot;12345&quot;</span>,</div>
-<div class="line">  <span class="stringliteral">&quot;Custom HID Config&quot;</span></div>
-<div class="line">  <span class="stringliteral">&quot;Custom HID Interface&quot;</span>,</div>
+<div class="line">    <span class="stringliteral">&quot;CoolEase&quot;</span>,</div>
+<div class="line">    <span class="stringliteral">&quot;CoolEase Hub&quot;</span>,</div>
+<div class="line">    <span class="stringliteral">&quot;12345&quot;</span>,</div>
+<div class="line">    <span class="stringliteral">&quot;Custom HID Config&quot;</span></div>
+<div class="line">    <span class="stringliteral">&quot;Custom HID Interface&quot;</span>,</div>
 <div class="line">}</div>
 </div><!-- fragment -->
 <p>Structure containing all string descriptors, indexed by <a class="el" href="group___c_u_s_b___c_f_g.html#ga8e8903d0c7276e7295ce8a9aaea727b4">usb_strings_index</a>. </p>
@@ -521,15 +533,15 @@ Variables</h2></td></tr>
 </div>
 </div>
 </div><!-- contents -->
-<div class="ttc" id="agroup___c_u_s_b___c_f_g_html_gga8e8903d0c7276e7295ce8a9aaea727b4a28c69675cc67c534eb4ee5fcad847220"><div class="ttname"><a href="group___c_u_s_b___c_f_g.html#gga8e8903d0c7276e7295ce8a9aaea727b4a28c69675cc67c534eb4ee5fcad847220">USB_PRODUCT_IDX</a></div><div class="ttdeci">@ USB_PRODUCT_IDX</div><div class="ttdef"><b>Definition:</b> cusb.c:76</div></div>
-<div class="ttc" id="agroup___c_u_s_b___c_f_g_html_ga989c980e0b99f803f7ce0ca224cdb733"><div class="ttname"><a href="group___c_u_s_b___c_f_g.html#ga989c980e0b99f803f7ce0ca224cdb733">USB_PID</a></div><div class="ttdeci">#define USB_PID</div><div class="ttdef"><b>Definition:</b> cusb.c:69</div></div>
-<div class="ttc" id="agroup___c_u_s_b___c_f_g_html_ggade943db11170b477241c1a88478ad911a6c498f5b0c6a28de865172df9f4028b6"><div class="ttname"><a href="group___c_u_s_b___c_f_g.html#ggade943db11170b477241c1a88478ad911a6c498f5b0c6a28de865172df9f4028b6">INTERFACE_COUNT</a></div><div class="ttdeci">@ INTERFACE_COUNT</div><div class="ttdef"><b>Definition:</b> cusb.c:53</div></div>
-<div class="ttc" id="agroup___c_u_s_b___c_f_g_html_gga8e8903d0c7276e7295ce8a9aaea727b4a896869157e00662b55740010582e3bae"><div class="ttname"><a href="group___c_u_s_b___c_f_g.html#gga8e8903d0c7276e7295ce8a9aaea727b4a896869157e00662b55740010582e3bae">USB_MANUFACTURER_IDX</a></div><div class="ttdeci">@ USB_MANUFACTURER_IDX</div><div class="ttdef"><b>Definition:</b> cusb.c:75</div></div>
-<div class="ttc" id="agroup___c_u_s_b___c_f_g_html_ga76de0fd52b1f8961911ef2c5f5a51d1b"><div class="ttname"><a href="group___c_u_s_b___c_f_g.html#ga76de0fd52b1f8961911ef2c5f5a51d1b">interfaces</a></div><div class="ttdeci">static const struct usb_interface interfaces[]</div><div class="ttdoc">Struct containing all used interfaces.</div><div class="ttdef"><b>Definition:</b> cusb.c:265</div></div>
-<div class="ttc" id="agroup___c_u_s_b___c_f_g_html_gga8e8903d0c7276e7295ce8a9aaea727b4ac8955a3859ce8b787eed5575ad8417c4"><div class="ttname"><a href="group___c_u_s_b___c_f_g.html#gga8e8903d0c7276e7295ce8a9aaea727b4ac8955a3859ce8b787eed5575ad8417c4">USB_SERIAL_IDX</a></div><div class="ttdeci">@ USB_SERIAL_IDX</div><div class="ttdef"><b>Definition:</b> cusb.c:77</div></div>
-<div class="ttc" id="agroup___c_u_s_b___c_f_g_html_gga8e8903d0c7276e7295ce8a9aaea727b4a4424c4941324bf6b1d66433316169a9e"><div class="ttname"><a href="group___c_u_s_b___c_f_g.html#gga8e8903d0c7276e7295ce8a9aaea727b4a4424c4941324bf6b1d66433316169a9e">USB_CONFIGURATION_IDX</a></div><div class="ttdeci">@ USB_CONFIGURATION_IDX</div><div class="ttdef"><b>Definition:</b> cusb.c:78</div></div>
-<div class="ttc" id="agroup___c_u_s_b___c_f_g_html_ga3398c7225386f04c72fd9025fcb44734"><div class="ttname"><a href="group___c_u_s_b___c_f_g.html#ga3398c7225386f04c72fd9025fcb44734">USB_VID</a></div><div class="ttdeci">#define USB_VID</div><div class="ttdoc">String Descriptors.</div><div class="ttdef"><b>Definition:</b> cusb.c:68</div></div>
-<div class="ttc" id="agroup___c_u_s_b___c_f_g_html_ga31643a6df5e6d5393f60d14c2528a8a4"><div class="ttname"><a href="group___c_u_s_b___c_f_g.html#ga31643a6df5e6d5393f60d14c2528a8a4">hid_interface</a></div><div class="ttdeci">static const struct usb_interface_descriptor hid_interface</div><div class="ttdoc">HID Interface Descriptor.</div><div class="ttdef"><b>Definition:</b> cusb.c:231</div></div>
+<div class="ttc" id="agroup___c_u_s_b___c_f_g_html_gga8e8903d0c7276e7295ce8a9aaea727b4a28c69675cc67c534eb4ee5fcad847220"><div class="ttname"><a href="group___c_u_s_b___c_f_g.html#gga8e8903d0c7276e7295ce8a9aaea727b4a28c69675cc67c534eb4ee5fcad847220">USB_PRODUCT_IDX</a></div><div class="ttdeci">@ USB_PRODUCT_IDX</div><div class="ttdef"><b>Definition:</b> cusb.c:72</div></div>
+<div class="ttc" id="agroup___c_u_s_b___c_f_g_html_ga989c980e0b99f803f7ce0ca224cdb733"><div class="ttname"><a href="group___c_u_s_b___c_f_g.html#ga989c980e0b99f803f7ce0ca224cdb733">USB_PID</a></div><div class="ttdeci">#define USB_PID</div><div class="ttdoc">Product ID.</div><div class="ttdef"><b>Definition:</b> cusb.c:65</div></div>
+<div class="ttc" id="agroup___c_u_s_b___c_f_g_html_ggade943db11170b477241c1a88478ad911a6c498f5b0c6a28de865172df9f4028b6"><div class="ttname"><a href="group___c_u_s_b___c_f_g.html#ggade943db11170b477241c1a88478ad911a6c498f5b0c6a28de865172df9f4028b6">INTERFACE_COUNT</a></div><div class="ttdeci">@ INTERFACE_COUNT</div><div class="ttdef"><b>Definition:</b> cusb.c:50</div></div>
+<div class="ttc" id="agroup___c_u_s_b___c_f_g_html_gga8e8903d0c7276e7295ce8a9aaea727b4a896869157e00662b55740010582e3bae"><div class="ttname"><a href="group___c_u_s_b___c_f_g.html#gga8e8903d0c7276e7295ce8a9aaea727b4a896869157e00662b55740010582e3bae">USB_MANUFACTURER_IDX</a></div><div class="ttdeci">@ USB_MANUFACTURER_IDX</div><div class="ttdef"><b>Definition:</b> cusb.c:71</div></div>
+<div class="ttc" id="agroup___c_u_s_b___c_f_g_html_ga76de0fd52b1f8961911ef2c5f5a51d1b"><div class="ttname"><a href="group___c_u_s_b___c_f_g.html#ga76de0fd52b1f8961911ef2c5f5a51d1b">interfaces</a></div><div class="ttdeci">static const struct usb_interface interfaces[]</div><div class="ttdoc">Struct containing all used interfaces.</div><div class="ttdef"><b>Definition:</b> cusb.c:258</div></div>
+<div class="ttc" id="agroup___c_u_s_b___c_f_g_html_gga8e8903d0c7276e7295ce8a9aaea727b4ac8955a3859ce8b787eed5575ad8417c4"><div class="ttname"><a href="group___c_u_s_b___c_f_g.html#gga8e8903d0c7276e7295ce8a9aaea727b4ac8955a3859ce8b787eed5575ad8417c4">USB_SERIAL_IDX</a></div><div class="ttdeci">@ USB_SERIAL_IDX</div><div class="ttdef"><b>Definition:</b> cusb.c:73</div></div>
+<div class="ttc" id="agroup___c_u_s_b___c_f_g_html_gga8e8903d0c7276e7295ce8a9aaea727b4a4424c4941324bf6b1d66433316169a9e"><div class="ttname"><a href="group___c_u_s_b___c_f_g.html#gga8e8903d0c7276e7295ce8a9aaea727b4a4424c4941324bf6b1d66433316169a9e">USB_CONFIGURATION_IDX</a></div><div class="ttdeci">@ USB_CONFIGURATION_IDX</div><div class="ttdef"><b>Definition:</b> cusb.c:74</div></div>
+<div class="ttc" id="agroup___c_u_s_b___c_f_g_html_ga3398c7225386f04c72fd9025fcb44734"><div class="ttname"><a href="group___c_u_s_b___c_f_g.html#ga3398c7225386f04c72fd9025fcb44734">USB_VID</a></div><div class="ttdeci">#define USB_VID</div><div class="ttdoc">Vendor ID.</div><div class="ttdef"><b>Definition:</b> cusb.c:64</div></div>
+<div class="ttc" id="agroup___c_u_s_b___c_f_g_html_ga31643a6df5e6d5393f60d14c2528a8a4"><div class="ttname"><a href="group___c_u_s_b___c_f_g.html#ga31643a6df5e6d5393f60d14c2528a8a4">hid_interface</a></div><div class="ttdeci">static const struct usb_interface_descriptor hid_interface</div><div class="ttdoc">HID Interface Descriptor.</div><div class="ttdef"><b>Definition:</b> cusb.c:224</div></div>
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
 Generated by&#160;<a href="http://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.8.20

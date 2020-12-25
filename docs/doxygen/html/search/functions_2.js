@@ -1,6 +1,6 @@
 var searchData=
 [
-  ['hid_5fcontrol_5frequest_86',['hid_control_request',['../group___c_u_s_b___i_n_t.html#ga29b474a495e8084ca9f797e1fcf75eb8',1,'cusb.c']]],
-  ['hid_5freport_5fcallback_87',['hid_report_callback',['../group___c_u_s_b___i_n_t.html#ga1bde282ff924bedfe37a99146df8b251',1,'cusb.c']]],
-  ['hid_5fset_5fconfig_88',['hid_set_config',['../group___c_u_s_b___i_n_t.html#gaa8a5a4bf8f2341314373f98f386d19ee',1,'cusb.c']]]
+  ['cusb_5fclock_5finit_94',['cusb_clock_init',['../group___c_u_s_b___i_n_t.html#gac63b9392f307996959131c5a4e047fa4',1,'cusb.c']]],
+  ['cusb_5finit_95',['cusb_init',['../group___c_u_s_b___a_p_i.html#gab4184b48312c430e82701746df0a97ca',1,'cusb.c']]],
+  ['cusb_5ftest_5fpoll_96',['cusb_test_poll',['../group___c_u_s_b___a_p_i.html#gac3db1642b64b360258b24bdd9496a390',1,'cusb.c']]]
 ];

@@ -1,5 +1,5 @@
-\hypertarget{group___c_u_s_b___i_n_t}{}\doxysection{C\+U\+SB Internal}
-\label{group___c_u_s_b___i_n_t}\index{CUSB Internal@{CUSB Internal}}
+\hypertarget{group___c_u_s_b___i_n_t}{}\doxysection{Cusb Internal}
+\label{group___c_u_s_b___i_n_t}\index{Cusb Internal@{Cusb Internal}}
 
 
 Static Vars, Functions \& Internal Macros.  
@@ -8,7 +8,7 @@ Static Vars, Functions \& Internal Macros.
 \doxysubsection*{Modules}
 \begin{DoxyCompactItemize}
 \item 
-\mbox{\hyperlink{group___c_u_s_b___c_f_g}{U\+S\+B Configuration}}
+\mbox{\hyperlink{group___c_u_s_b___c_f_g}{Cusb Configuration}}
 \begin{DoxyCompactList}\small\item\em U\+SB H\+ID descriptors. \end{DoxyCompactList}\end{DoxyCompactItemize}
 \doxysubsection*{Functions}
 \begin{DoxyCompactItemize}
@@ -39,8 +39,8 @@ Static Vars, Functions \& Internal Macros.
 
 \doxysubsection{Function Documentation}
 \mbox{\Hypertarget{group___c_u_s_b___i_n_t_gac63b9392f307996959131c5a4e047fa4}\label{group___c_u_s_b___i_n_t_gac63b9392f307996959131c5a4e047fa4}} 
-\index{CUSB Internal@{CUSB Internal}!cusb\_clock\_init@{cusb\_clock\_init}}
-\index{cusb\_clock\_init@{cusb\_clock\_init}!CUSB Internal@{CUSB Internal}}
+\index{Cusb Internal@{Cusb Internal}!cusb\_clock\_init@{cusb\_clock\_init}}
+\index{cusb\_clock\_init@{cusb\_clock\_init}!Cusb Internal@{Cusb Internal}}
 \doxysubsubsection{\texorpdfstring{cusb\_clock\_init()}{cusb\_clock\_init()}}
 {\footnotesize\ttfamily static void cusb\+\_\+clock\+\_\+init (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
 
@@ -48,33 +48,9 @@ Static Vars, Functions \& Internal Macros.
 
 Setup C\+PU and peripheral clocks for usb. 
 
-Set flash, 16Mhz -\/$>$ 0 waitstates
-
-Turn on H\+S\+I16 osc
-
-Select C\+PU Clock
-
-H\+SI is now the wakeup clock
-
-Set prescalers for A\+HB, A\+P\+B1, A\+P\+B2
-
-$<$ A\+HB -\/$>$ 16Mhz
-
-$<$ A\+P\+B1 -\/$>$16Mhz
-
-$<$ A\+P\+B2 -\/$>$16Mhz
-
-Set Peripheral Clock Frequencies used
-
-Enable the V\+R\+EF for H\+S\+I48
-
-Enable H\+S\+I48
-
-Select RC H\+S\+I48 as usb clock
-
-turn off M\+SI\mbox{\Hypertarget{group___c_u_s_b___i_n_t_ga29b474a495e8084ca9f797e1fcf75eb8}\label{group___c_u_s_b___i_n_t_ga29b474a495e8084ca9f797e1fcf75eb8}} 
-\index{CUSB Internal@{CUSB Internal}!hid\_control\_request@{hid\_control\_request}}
-\index{hid\_control\_request@{hid\_control\_request}!CUSB Internal@{CUSB Internal}}
+\mbox{\Hypertarget{group___c_u_s_b___i_n_t_ga29b474a495e8084ca9f797e1fcf75eb8}\label{group___c_u_s_b___i_n_t_ga29b474a495e8084ca9f797e1fcf75eb8}} 
+\index{Cusb Internal@{Cusb Internal}!hid\_control\_request@{hid\_control\_request}}
+\index{hid\_control\_request@{hid\_control\_request}!Cusb Internal@{Cusb Internal}}
 \doxysubsubsection{\texorpdfstring{hid\_control\_request()}{hid\_control\_request()}}
 {\footnotesize\ttfamily static enum usbd\+\_\+request\+\_\+return\+\_\+codes hid\+\_\+control\+\_\+request (\begin{DoxyParamCaption}\item[{usbd\+\_\+device $\ast$}]{dev,  }\item[{struct usb\+\_\+setup\+\_\+data $\ast$}]{req,  }\item[{uint8\+\_\+t $\ast$$\ast$}]{buf,  }\item[{uint16\+\_\+t $\ast$}]{len,  }\item[{void($\ast$$\ast$)(usbd\+\_\+device $\ast$, struct usb\+\_\+setup\+\_\+data $\ast$)}]{complete }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
 
@@ -83,8 +59,8 @@ turn off M\+SI\mbox{\Hypertarget{group___c_u_s_b___i_n_t_ga29b474a495e8084ca9f79
 H\+ID Control Callback. 
 
 Sends hid report descriptor to host \mbox{\Hypertarget{group___c_u_s_b___i_n_t_ga1bde282ff924bedfe37a99146df8b251}\label{group___c_u_s_b___i_n_t_ga1bde282ff924bedfe37a99146df8b251}} 
-\index{CUSB Internal@{CUSB Internal}!hid\_report\_callback@{hid\_report\_callback}}
-\index{hid\_report\_callback@{hid\_report\_callback}!CUSB Internal@{CUSB Internal}}
+\index{Cusb Internal@{Cusb Internal}!hid\_report\_callback@{hid\_report\_callback}}
+\index{hid\_report\_callback@{hid\_report\_callback}!Cusb Internal@{Cusb Internal}}
 \doxysubsubsection{\texorpdfstring{hid\_report\_callback()}{hid\_report\_callback()}}
 {\footnotesize\ttfamily void hid\+\_\+report\+\_\+callback (\begin{DoxyParamCaption}\item[{usbd\+\_\+device $\ast$}]{usbd\+\_\+dev,  }\item[{uint8\+\_\+t}]{ea }\end{DoxyParamCaption})}
 
@@ -93,8 +69,8 @@ Sends hid report descriptor to host \mbox{\Hypertarget{group___c_u_s_b___i_n_t_g
 H\+ID Resport Callback. 
 
 \mbox{\Hypertarget{group___c_u_s_b___i_n_t_gaa8a5a4bf8f2341314373f98f386d19ee}\label{group___c_u_s_b___i_n_t_gaa8a5a4bf8f2341314373f98f386d19ee}} 
-\index{CUSB Internal@{CUSB Internal}!hid\_set\_config@{hid\_set\_config}}
-\index{hid\_set\_config@{hid\_set\_config}!CUSB Internal@{CUSB Internal}}
+\index{Cusb Internal@{Cusb Internal}!hid\_set\_config@{hid\_set\_config}}
+\index{hid\_set\_config@{hid\_set\_config}!Cusb Internal@{Cusb Internal}}
 \doxysubsubsection{\texorpdfstring{hid\_set\_config()}{hid\_set\_config()}}
 {\footnotesize\ttfamily static void hid\+\_\+set\+\_\+config (\begin{DoxyParamCaption}\item[{usbd\+\_\+device $\ast$}]{dev,  }\item[{uint16\+\_\+t}]{w\+Value }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
 
@@ -106,8 +82,8 @@ Sets up H\+ID endpoints \& registers the \mbox{\hyperlink{group___c_u_s_b___i_n_
 
 \doxysubsection{Variable Documentation}
 \mbox{\Hypertarget{group___c_u_s_b___i_n_t_ga4cfa67ae725c5211ad5ab6e6b5e2c47a}\label{group___c_u_s_b___i_n_t_ga4cfa67ae725c5211ad5ab6e6b5e2c47a}} 
-\index{CUSB Internal@{CUSB Internal}!hid\_report\_buf@{hid\_report\_buf}}
-\index{hid\_report\_buf@{hid\_report\_buf}!CUSB Internal@{CUSB Internal}}
+\index{Cusb Internal@{Cusb Internal}!hid\_report\_buf@{hid\_report\_buf}}
+\index{hid\_report\_buf@{hid\_report\_buf}!Cusb Internal@{Cusb Internal}}
 \doxysubsubsection{\texorpdfstring{hid\_report\_buf}{hid\_report\_buf}}
 {\footnotesize\ttfamily uint8\+\_\+t hid\+\_\+report\+\_\+buf\mbox{[}64\mbox{]} = \char`\"{}Default Report Buffer\char`\"{}\hspace{0.3cm}{\ttfamily [static]}}
 
@@ -116,8 +92,8 @@ Sets up H\+ID endpoints \& registers the \mbox{\hyperlink{group___c_u_s_b___i_n_
 H\+ID Report buffer. 
 
 Buffer used for all H\+ID in \& out transactions \mbox{\Hypertarget{group___c_u_s_b___i_n_t_ga3f5c5e68ae07d989114524003357a6f7}\label{group___c_u_s_b___i_n_t_ga3f5c5e68ae07d989114524003357a6f7}} 
-\index{CUSB Internal@{CUSB Internal}!usbd\_control\_buffer@{usbd\_control\_buffer}}
-\index{usbd\_control\_buffer@{usbd\_control\_buffer}!CUSB Internal@{CUSB Internal}}
+\index{Cusb Internal@{Cusb Internal}!usbd\_control\_buffer@{usbd\_control\_buffer}}
+\index{usbd\_control\_buffer@{usbd\_control\_buffer}!Cusb Internal@{Cusb Internal}}
 \doxysubsubsection{\texorpdfstring{usbd\_control\_buffer}{usbd\_control\_buffer}}
 {\footnotesize\ttfamily uint8\+\_\+t usbd\+\_\+control\+\_\+buffer\mbox{[}128\mbox{]}\hspace{0.3cm}{\ttfamily [static]}}
 
@@ -126,8 +102,8 @@ Buffer used for all H\+ID in \& out transactions \mbox{\Hypertarget{group___c_u_
 Buffer to be used for control requests. 
 
 \mbox{\Hypertarget{group___c_u_s_b___i_n_t_ga371fec116e56a5c485a09d5dd8cd6c95}\label{group___c_u_s_b___i_n_t_ga371fec116e56a5c485a09d5dd8cd6c95}} 
-\index{CUSB Internal@{CUSB Internal}!usbd\_dev@{usbd\_dev}}
-\index{usbd\_dev@{usbd\_dev}!CUSB Internal@{CUSB Internal}}
+\index{Cusb Internal@{Cusb Internal}!usbd\_dev@{usbd\_dev}}
+\index{usbd\_dev@{usbd\_dev}!Cusb Internal@{Cusb Internal}}
 \doxysubsubsection{\texorpdfstring{usbd\_dev}{usbd\_dev}}
 {\footnotesize\ttfamily usbd\+\_\+device$\ast$ usbd\+\_\+dev\hspace{0.3cm}{\ttfamily [static]}}
 

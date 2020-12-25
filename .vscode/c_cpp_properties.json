@@ -1,5 +1,5 @@
 {
-    "env": {
+"env": {
         "____________________USER_FIELDS_CAN_BE_MODIFIED____________________": "",
         "user_cSources": [],
         "user_asmSources": [],
@@ -43,7 +43,7 @@
             ],
             "browse": {
                 "path": [
-                    // "${workspaceFolder}",
+                    "${workspaceFolder}",
                     "${libopencm3_includes}",
                     "${gccIncludePath}",
                     "${user_cIncludes}",
