@@ -14,12 +14,12 @@
 			
 			"000Webhost":true,
 			"Development Invoices": true, 
-			"Hardware": true,
+			"hardware": true,
 
 			"README.md": true,
-			"CoolTerm":true,
-			"Old Code": false,
-			"Docs": false,
+			"coolterm":true,
+			"old": false,
+			"docs": true,
 			".gitignore": false,
 		},
 		"python.pythonPath": "/usr/local/anaconda3/bin/python",

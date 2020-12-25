@@ -43,7 +43,15 @@
             ],
             "browse": {
                 "path": [
-                    "${workspaceFolder}",
+                    // "${workspaceFolder}",
+                    "common",
+                    "hub",
+                    "libopencm3/lib/cm3",
+                    "libopencm3/lib/dispatch",
+                    "libopencm3/lib/stm32",
+                    "libopencm3/lib/usb",
+                    "sensor",
+
                     "${libopencm3_includes}",
                     "${gccIncludePath}",
                     "${user_cIncludes}",
