@@ -1,11 +1,18 @@
 /**
-  ******************************************************************************
-  * @file    rfm.c
-  * @author  Richard Davies
-  * @brief   Source file of RFM Module.
-  */
+ ******************************************************************************
+ * @file    rfm.c
+ * @author  Richard Davies
+ * @date    25/Dec/2020
+ * @brief   Rfm Source File
+ *  
+ ******************************************************************************
+ */
 
-#include "coolease/rfm.h"
+////////////////////////////////////////////////////////////////////////////////
+// Includes
+////////////////////////////////////////////////////////////////////////////////
+
+#include "common/rfm.h"
 
 #include <stdint.h>
 #include <stdbool.h>
@@ -22,7 +29,7 @@
 #include "common/serial_printf.h"
 #include "common/timers.h"
 
-/** @addtogroup  RFM_FILE RFM Module
+/** @addtogroup  RFM_FILE
  * @{
  */
 
@@ -51,8 +58,11 @@
  * @{
  */
 
-/** @brief Signals if automatic CRC checking is currently enabled on the RFM
- */
+////////////////////////////////////////////////////////////////////////////////
+// Static Variables
+////////////////////////////////////////////////////////////////////////////////
+
+/** @brief Signals if automatic CRC checking is currently enabled on the RFM */
 static bool crc_on              = false;
 static uint8_t random_data[16]  = {0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1};
 
@@ -68,6 +78,11 @@ static rfm_packet_t packets_buf[PACKETS_BUF_SIZE];
 /** @addtogroup  RFM_INT
  * @{
  */
+
+////////////////////////////////////////////////////////////////////////////////
+// Static Function Declarations
+////////////////////////////////////////////////////////////////////////////////
+
 static void clock_setup(void);
 static void spi_setup(void);
 static uint8_t spi_read_single(uint8_t reg);
@@ -94,6 +109,10 @@ static inline void set_sleep_mode(void);
 /** @addtogroup    RFM_API
  * @{
  */
+
+////////////////////////////////////////////////////////////////////////////////
+// Exported Function Definitions
+////////////////////////////////////////////////////////////////////////////////
 
 /** @brief Initialize radio module
  *     
@@ -468,6 +487,10 @@ void rfm_clear_tx_continuous(void)
  * @{
  */
 
+////////////////////////////////////////////////////////////////////////////////
+// Static Function Definitions
+////////////////////////////////////////////////////////////////////////////////
+
 /** @brief Setup Clock
  * 
  * Initializes clock to be 2Mhz and sets baud divider to 8
@@ -734,6 +757,11 @@ static inline void set_sleep_mode(void)
 /** @addtogroup  RFM_API
  *  @{
  */
+
+////////////////////////////////////////////////////////////////////////////////
+// Interrupts
+////////////////////////////////////////////////////////////////////////////////
+
 void exti4_15_isr(void)
 {
   uint16_t timer = timers_micros();
@@ -761,5 +789,4 @@ void exti4_15_isr(void)
 }
 
 /** @} */
-
 /** @} */
