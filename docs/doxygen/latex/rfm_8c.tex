@@ -1,0 +1,134 @@
+\hypertarget{rfm_8c}{}\doxysection{common/src/rfm.c File Reference}
+\label{rfm_8c}\index{common/src/rfm.c@{common/src/rfm.c}}
+
+
+Rfm Source File.  
+
+
+{\ttfamily \#include \char`\"{}common/rfm.\+h\char`\"{}}\newline
+{\ttfamily \#include $<$stdint.\+h$>$}\newline
+{\ttfamily \#include $<$stdbool.\+h$>$}\newline
+{\ttfamily \#include $<$libopencm3/stm32/rcc.\+h$>$}\newline
+{\ttfamily \#include $<$libopencm3/stm32/gpio.\+h$>$}\newline
+{\ttfamily \#include $<$libopencm3/stm32/flash.\+h$>$}\newline
+{\ttfamily \#include $<$libopencm3/stm32/spi.\+h$>$}\newline
+{\ttfamily \#include $<$libopencm3/stm32/exti.\+h$>$}\newline
+{\ttfamily \#include $<$libopencm3/stm32/syscfg.\+h$>$}\newline
+{\ttfamily \#include $<$libopencm3/cm3/nvic.\+h$>$}\newline
+{\ttfamily \#include \char`\"{}hub/board\+\_\+defs.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}common/serial\+\_\+printf.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}common/timers.\+h\char`\"{}}\newline
+\doxysubsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define \mbox{\hyperlink{group___r_f_m___i_n_t_ga19f2e44beda998f03b70130991ba913d}{spi\+\_\+chip\+\_\+select}}()~gpio\+\_\+clear(R\+F\+M\+\_\+\+S\+P\+I\+\_\+\+N\+S\+S\+\_\+\+P\+O\+RT, R\+F\+M\+\_\+\+S\+P\+I\+\_\+\+N\+SS)
+\begin{DoxyCompactList}\small\item\em Set R\+FM N\+SS Pin. Start S\+PI transaction. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{group___r_f_m___i_n_t_ga6abbade827ea980e386bc08a8a3b495e}{spi\+\_\+chip\+\_\+deselect}}()~gpio\+\_\+set(R\+F\+M\+\_\+\+S\+P\+I\+\_\+\+N\+S\+S\+\_\+\+P\+O\+RT, R\+F\+M\+\_\+\+S\+P\+I\+\_\+\+N\+SS)
+\begin{DoxyCompactList}\small\item\em Clear R\+FM N\+SS Pin. End S\+PI transaction. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{group___r_f_m___i_n_t_gaab0414c85b2bcf68acfce7963a3673bb}{wait\+\_\+rf\+\_\+io\+\_\+0\+\_\+high}}()~while(!(gpio\+\_\+get(R\+F\+M\+\_\+\+I\+O\+\_\+0\+\_\+\+P\+O\+RT, R\+F\+M\+\_\+\+I\+O\+\_\+0)))
+\begin{DoxyCompactList}\small\item\em Stalls until R\+FM IO Pin 0 is asserted high. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+static void \mbox{\hyperlink{group___r_f_m___i_n_t_ga1172bdb0b37a8539e8d87a316d5583ff}{clock\+\_\+setup}} (void)
+\begin{DoxyCompactList}\small\item\em Setup Clock. \end{DoxyCompactList}\item 
+static void \mbox{\hyperlink{group___r_f_m___i_n_t_ga66fc9d680f96347b60f9fba28a2094bc}{spi\+\_\+setup}} (void)
+\item 
+static uint8\+\_\+t \mbox{\hyperlink{group___r_f_m___i_n_t_gae5c2339fb329a2f07af2abf6d4b2235f}{spi\+\_\+read\+\_\+single}} (uint8\+\_\+t reg)
+\begin{DoxyCompactList}\small\item\em S\+PI Read Register. \end{DoxyCompactList}\item 
+static void \mbox{\hyperlink{group___r_f_m___i_n_t_ga5e40f3edbf322b09a60afba4d4de2f32}{spi\+\_\+read\+\_\+burst}} (uint8\+\_\+t reg, uint8\+\_\+t $\ast$buf, uint8\+\_\+t len)
+\item 
+static void \mbox{\hyperlink{group___r_f_m___i_n_t_ga87d5d59902158b67eef5f9757c9ae65e}{spi\+\_\+write\+\_\+single}} (uint8\+\_\+t reg, uint8\+\_\+t data)
+\item 
+static void \mbox{\hyperlink{group___r_f_m___i_n_t_ga5b4b2cdff685125d7c3c10fc979cf50f}{spi\+\_\+write\+\_\+burst}} (uint8\+\_\+t reg, uint8\+\_\+t $\ast$buf, uint8\+\_\+t len)
+\item 
+static void \mbox{\hyperlink{group___r_f_m___i_n_t_ga411f6d929be36f796c8a008726ddac2f}{set\+\_\+frequency}} (uint32\+\_\+t frequency\+\_\+hz)
+\item 
+static void \mbox{\hyperlink{group___r_f_m___i_n_t_ga48d32f4f8ffe9059272f4446a066b41f}{set\+\_\+dio\+\_\+irq}} (uint8\+\_\+t io0\+\_\+3, uint8\+\_\+t io4\+\_\+5)
+\item 
+static void \mbox{\hyperlink{group___r_f_m___i_n_t_gaafd5422b87e1ad9fb33fa81f00eb0914}{set\+\_\+preamble\+\_\+length}} (uint16\+\_\+t num\+\_\+sym)
+\item 
+static void \mbox{\hyperlink{group___r_f_m___i_n_t_ga6f3b77870d242f9bebddac48c3934a18}{print\+\_\+registers}} (void)
+\item 
+static void \mbox{\hyperlink{group___r_f_m___i_n_t_ga22917f90853e13ad149a3a012369ecfe}{clear\+\_\+buffer}} (void)
+\item 
+static void \mbox{\hyperlink{group___r_f_m___i_n_t_ga8419634e84673a8bf455612907ab2a5d}{mask\+\_\+irq}} (uint8\+\_\+t irq)
+\item 
+static void \mbox{\hyperlink{group___r_f_m___i_n_t_ga2d759d54cebf71b82e41d4f932a6a944}{unmask\+\_\+irq}} (uint8\+\_\+t irq)
+\item 
+static uint8\+\_\+t \mbox{\hyperlink{group___r_f_m___i_n_t_ga5333a31f1fd0db02c72466188c0d50fc}{get\+\_\+irq}} (void)
+\item 
+static void \mbox{\hyperlink{group___r_f_m___i_n_t_ga3c2296d0e577faca886fd850f8f67388}{clear\+\_\+irq}} (uint8\+\_\+t irq)
+\item 
+static void \mbox{\hyperlink{group___r_f_m___i_n_t_gad048b4c9cc74db87cd6a25ad52281854}{set\+\_\+standby\+\_\+mode}} (void)
+\item 
+static void \mbox{\hyperlink{group___r_f_m___i_n_t_gaca729906400bb1bdda14fb55f1c3f3cf}{set\+\_\+tx\+\_\+mode}} (void)
+\item 
+static void \mbox{\hyperlink{group___r_f_m___i_n_t_ga9edb80a38ebcd1b229d1235222c90b93}{set\+\_\+rx\+\_\+mode}} (void)
+\item 
+static void \mbox{\hyperlink{group___r_f_m___i_n_t_ga52181ea09005168125568e314acc1cc5}{set\+\_\+sleep\+\_\+mode}} (void)
+\item 
+void \mbox{\hyperlink{group___r_f_m___a_p_i_ga87ffd6a21c7cf0faa01991fd044c4276}{rfm\+\_\+init}} (void)
+\begin{DoxyCompactList}\small\item\em Initialize radio module. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{group___r_f_m___a_p_i_ga91b75a04991a4c31cba4957ba4289961}{rfm\+\_\+reset}} (void)
+\item 
+void \mbox{\hyperlink{group___r_f_m___a_p_i_gae0e65347dc7112c646ba18cb1fe04e14}{rfm\+\_\+end}} (void)
+\item 
+void \mbox{\hyperlink{group___r_f_m___a_p_i_gadfb35c9040d9c6f99adcbfe4502cefa7}{rfm\+\_\+calibrate\+\_\+crystal}} (void)
+\item 
+void \mbox{\hyperlink{group___r_f_m___a_p_i_ga37243125120fd0a34edcb3b8856adfec}{rfm\+\_\+config\+\_\+for\+\_\+lora}} (uint8\+\_\+t BW, uint8\+\_\+t CR, uint8\+\_\+t SF, bool crc\+\_\+turn\+\_\+on, int8\+\_\+t power)
+\item 
+void \mbox{\hyperlink{group___r_f_m___a_p_i_ga52c72188a1ffdeb199c5d7991f5c9dc6}{rfm\+\_\+config\+\_\+for\+\_\+gfsk}} (void)
+\item 
+void \mbox{\hyperlink{group___r_f_m___a_p_i_ga5058dfa294d68004eb9a815c7405f826}{rfm\+\_\+set\+\_\+power}} (int8\+\_\+t power, uint8\+\_\+t ramp\+\_\+time)
+\item 
+void \mbox{\hyperlink{group___r_f_m___a_p_i_gab1fb248dbc46f0899ffef38ca68d5ab4}{rfm\+\_\+get\+\_\+stats}} (void)
+\item 
+void \mbox{\hyperlink{group___r_f_m___a_p_i_ga5564693cd8d951c7bcc00873760e1cec}{rfm\+\_\+reset\+\_\+stats}} (void)
+\item 
+uint8\+\_\+t \mbox{\hyperlink{group___r_f_m___a_p_i_ga76decc202958c9640472be156c7b81f3}{rfm\+\_\+get\+\_\+version}} (void)
+\item 
+void \mbox{\hyperlink{group___r_f_m___a_p_i_ga72db678f5aaf52d58a8619c0c02657ff}{rfm\+\_\+start\+\_\+listening}} (void)
+\item 
+void \mbox{\hyperlink{group___r_f_m___a_p_i_ga18a5b5ba0eca9bf5ee9732e0a89f1170}{rfm\+\_\+organize\+\_\+packet}} (\mbox{\hyperlink{group___r_f_m___a_p_i_gafc01238e3835178530cf6f0f8bf57f52}{rfm\+\_\+packet\+\_\+t}} $\ast$packet)
+\item 
+void \mbox{\hyperlink{group___r_f_m___a_p_i_ga06f769ee719ce52ceaa5d0ec6e63b1c6}{rfm\+\_\+get\+\_\+packets}} (void)
+\item 
+\mbox{\hyperlink{group___r_f_m___a_p_i_gafc01238e3835178530cf6f0f8bf57f52}{rfm\+\_\+packet\+\_\+t}} $\ast$ \mbox{\hyperlink{group___r_f_m___a_p_i_gacd273aa88f94ce268e26197140cc7e45}{rfm\+\_\+get\+\_\+next\+\_\+packet}} (void)
+\item 
+uint8\+\_\+t \mbox{\hyperlink{group___r_f_m___a_p_i_gace9a6b928f692d8c264f2387baacdddc}{rfm\+\_\+get\+\_\+num\+\_\+packets}} (void)
+\item 
+bool \mbox{\hyperlink{group___r_f_m___a_p_i_gae92d1597fc479b67c71e1c126cc6b59a}{rfm\+\_\+transmit\+\_\+packet}} (\mbox{\hyperlink{group___r_f_m___a_p_i_gafc01238e3835178530cf6f0f8bf57f52}{rfm\+\_\+packet\+\_\+t}} packet)
+\begin{DoxyCompactList}\small\item\em Transmit packet. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{group___r_f_m___a_p_i_ga2077909a7fda80633cc079a458b31c2f}{rfm\+\_\+set\+\_\+tx\+\_\+continuous}} (void)
+\item 
+void \mbox{\hyperlink{group___r_f_m___a_p_i_gafb671f7a1fc42c09ae058d8edfcd3ddf}{rfm\+\_\+clear\+\_\+tx\+\_\+continuous}} (void)
+\item 
+void \mbox{\hyperlink{group___r_f_m___a_p_i_ga45573671e743214cb98daa429d14294e}{exti4\+\_\+15\+\_\+isr}} (void)
+\end{DoxyCompactItemize}
+\doxysubsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+static bool \mbox{\hyperlink{group___r_f_m___i_n_t_gaded46b97c5b8e304319e9098e9499b58}{crc\+\_\+on}} = false
+\begin{DoxyCompactList}\small\item\em Signals if automatic C\+RC checking is currently enabled on the R\+FM. \end{DoxyCompactList}\item 
+static uint8\+\_\+t \mbox{\hyperlink{group___r_f_m___i_n_t_ga873fdcbf1d7f86b6adf1eddccb752f30}{random\+\_\+data}} \mbox{[}16\mbox{]} = \{0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1\}
+\item 
+static uint8\+\_\+t \mbox{\hyperlink{group___r_f_m___i_n_t_gacf69de31467b3d7db5d05e442de76f9b}{packets\+\_\+head}} = 0
+\item 
+static uint8\+\_\+t \mbox{\hyperlink{group___r_f_m___i_n_t_gaae376aa0bc6a2d4b0f17bd075bd169c9}{packets\+\_\+tail}} = 0
+\item 
+static uint8\+\_\+t \mbox{\hyperlink{group___r_f_m___i_n_t_ga3534b807fa40bd87496b35b5fb2d8b57}{packets\+\_\+read}} = 0
+\item 
+static \mbox{\hyperlink{group___r_f_m___a_p_i_gafc01238e3835178530cf6f0f8bf57f52}{rfm\+\_\+packet\+\_\+t}} \mbox{\hyperlink{group___r_f_m___i_n_t_gae6ab7b888e14ad67ae8498f8982d329b}{packets\+\_\+buf}} \mbox{[}\mbox{\hyperlink{group___r_f_m___a_p_i_ga9db5dca6ffe64e5fed68586931c956a3}{P\+A\+C\+K\+E\+T\+S\+\_\+\+B\+U\+F\+\_\+\+S\+I\+ZE}}\mbox{]}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Rfm Source File. 
+
+\begin{DoxyAuthor}{Author}
+Richard Davies 
+\end{DoxyAuthor}
+\begin{DoxyDate}{Date}
+25/\+Dec/2020 
+\end{DoxyDate}

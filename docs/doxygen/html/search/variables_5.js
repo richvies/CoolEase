@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['reportdescriptor_111',['ReportDescriptor',['../_report___desc_8h.html#a35c2c9687d44377d22d79794e36306de',1,'Report_Desc.h']]]
+  ['interfaces_431',['interfaces',['../group___c_u_s_b___c_f_g.html#ga76de0fd52b1f8961911ef2c5f5a51d1b',1,'cusb.c']]]
 ];
