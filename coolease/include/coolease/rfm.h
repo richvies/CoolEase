@@ -1,19 +1,18 @@
 /**
- ******************************************************************************
- * @file       rfm.h
- * @author     Richard Davies
- * @date       25/Dec/2020
- * @brief      Rfm Header File
- *  
- * @defgroup   RFM_FILE  Rfm
- * @brief      
- * 
- * Manages the Radio Module
- * - Initializes rfm for LORA
- * - Initialization of SPI peripheral
- * 
- * @note     
- * 
+  ******************************************************************************
+  * @file    rfm.h
+  * @author  Richard Davies
+  * @brief   Header file of RFM Module.
+  * 
+  * @defgroup   RFM_FILE RFM
+  * @brief      RFM95W module driver
+  * 
+  * Manages the Radio Module
+  * - Initializes rfm for LORA
+  * - Initialization of SPI peripheral
+  * 
+  * @note      Does Stuff to things
+  * 
   * @{
   * @defgroup   RFM_API  RFM API
   * @brief      Programming interface and key macros
@@ -24,29 +23,41 @@
   * @defgroup   RFM_REG  RFM Registers
   * @brief      Register Descriptions
   * @}
- ******************************************************************************
- */
+  */
 
 #ifndef RFM_H
 #define RFM_H
 
-////////////////////////////////////////////////////////////////////////////////
-// Includes
-////////////////////////////////////////////////////////////////////////////////
-
 #include <stdint.h>
 #include <stdbool.h>
 
-#ifdef __cplusplus
-extern "C" {
-#endif
+/** @addtogroup    RFM_API 
+ *  @{
+*/
 
-/** @addtogroup RFM_REG
- * @{
- */
+/** @brief Max number of octets the LORA Rx/Tx FIFO can hold */
+#define RFM_FIFO_SIZE 255
 
-#define RFM_REG_00_FIFO                                0x00 ///< @brief Shared TX/RX FIFO Address
-#define RFM_REG_01_OP_MODE                             0x01 ///< Operating Mode @ref RFM_IRQ
+/** @brief This is the maximum number of bytes that can be carried by the LORA */
+#define RFM_MAX_PAYLOAD_LEN RFM_FIFO_SIZE
+
+/** @brief The length of the headers we add to to the packet */
+#define RFM_HEADER_LEN 4
+
+/** @brief This is the maximum message length that can be supported by this driver */
+#define RFM_PACKET_DATA_LEN_MAX (RFM_MAX_PAYLOAD_LEN - RFM_HEADER_LEN)
+
+/** @brief The crystal oscillator frequency of the module */
+#define RFM_FXOSC 32000000.0
+
+/** @brief The Frequency Synthesizer step = RFM_FXOSC / 2^^19 */
+#define RFM_FSTEP  (RFM_FXOSC / 524288)
+
+/** @} */
+
+
+#define RFM_REG_00_FIFO                                0x00 /**< @brief Shared TX/RX FIFO Address */
+#define RFM_REG_01_OP_MODE                             0x01 /**< Operating Mode @ref RFM_IRQ */
 #define RFM_REG_02_RESERVED                            0x02
 #define RFM_REG_03_RESERVED                            0x03
 #define RFM_REG_04_RESERVED                            0x04
@@ -185,120 +196,93 @@ extern "C" {
 #define RFM_IRQ_FHSS_CHANGE_CHANNEL               0x02
 #define RFM_IRQ_CAD_DETECTED                      0x01
 
-// RFM_REG_18_MODEM_STAT                          0x18
-#define RFM_RX_CODING_RATE                        0xe0
-#define RFM_MODEM_STATUS_CLEAR                    0x10
-#define RFM_MODEM_STATUS_HEADER_INFO_VALID        0x08
-#define RFM_MODEM_STATUS_RX_ONGOING               0x04
-#define RFM_MODEM_STATUS_SIGNAL_SYNCHRONIZED      0x02
-#define RFM_MODEM_STATUS_SIGNAL_DETECTED          0x01
+// RFM_REG_18_MODEM_STAT                        0x18
+#define RFM_RX_CODING_RATE                      0xe0
+#define RFM_MODEM_STATUS_CLEAR                  0x10
+#define RFM_MODEM_STATUS_HEADER_INFO_VALID      0x08
+#define RFM_MODEM_STATUS_RX_ONGOING             0x04
+#define RFM_MODEM_STATUS_SIGNAL_SYNCHRONIZED    0x02
+#define RFM_MODEM_STATUS_SIGNAL_DETECTED        0x01
 
-// RFM_REG_1C_HOP_CHANNEL                         0x1c
-#define RFM_PLL_TIMEOUT                           0x80
-#define RFM_RX_PAYLOAD_CRC_IS_ON                  0x40
-#define RFM_FHSS_PRESENT_CHANNEL                  0x3f
+// RFM_REG_1C_HOP_CHANNEL                       0x1c
+#define RFM_PLL_TIMEOUT                         0x80
+#define RFM_RX_PAYLOAD_CRC_IS_ON                0x40
+#define RFM_FHSS_PRESENT_CHANNEL                0x3f
 
-// RFM_REG_1D_MODEM_CONFIG1                       0x1d
-#define RFM_BW                                    0xf0
+// RFM_REG_1D_MODEM_CONFIG1                     0x1d
+#define RFM_BW                                  0xf0
 
-#define RFM_BW_7_8KHZ                             0x00
-#define RFM_BW_10_4KHZ                            0x10
-#define RFM_BW_15_6KHZ                            0x20
-#define RFM_BW_20_8KHZ                            0x30
-#define RFM_BW_31_25KHZ                           0x40
-#define RFM_BW_41_7KHZ                            0x50
-#define RFM_BW_62_5KHZ                            0x60
-#define RFM_BW_125KHZ                             0x70
-#define RFM_BW_250KHZ                             0x80
-#define RFM_BW_500KHZ                             0x90
+#define RFM_BW_7_8KHZ                           0x00
+#define RFM_BW_10_4KHZ                          0x10
+#define RFM_BW_15_6KHZ                          0x20
+#define RFM_BW_20_8KHZ                          0x30
+#define RFM_BW_31_25KHZ                         0x40
+#define RFM_BW_41_7KHZ                          0x50
+#define RFM_BW_62_5KHZ                          0x60
+#define RFM_BW_125KHZ                           0x70
+#define RFM_BW_250KHZ                           0x80
+#define RFM_BW_500KHZ                           0x90
 
-#define RFM_CODING_RATE                           0x0e
-#define RFM_CODING_RATE_4_5                       0x02
-#define RFM_CODING_RATE_4_6                       0x04
-#define RFM_CODING_RATE_4_7                       0x06
-#define RFM_CODING_RATE_4_8                       0x08
+#define RFM_CODING_RATE                         0x0e
+#define RFM_CODING_RATE_4_5                     0x02
+#define RFM_CODING_RATE_4_6                     0x04
+#define RFM_CODING_RATE_4_7                     0x06
+#define RFM_CODING_RATE_4_8                     0x08
 
-#define RFM_IMPLICIT_HEADER_MODE_ON               0x01
+#define RFM_IMPLICIT_HEADER_MODE_ON             0x01
 
-// RFM_REG_1E_MODEM_CONFIG2                       0x1e
-#define RFM_SPREADING_FACTOR                      0xf0
-#define RFM_SPREADING_FACTOR_64CPS                0x60
-#define RFM_SPREADING_FACTOR_128CPS               0x70
-#define RFM_SPREADING_FACTOR_256CPS               0x80
-#define RFM_SPREADING_FACTOR_512CPS               0x90
-#define RFM_SPREADING_FACTOR_1024CPS              0xa0
-#define RFM_SPREADING_FACTOR_2048CPS              0xb0
-#define RFM_SPREADING_FACTOR_4096CPS              0xc0
-#define RFM_TX_CONTINUOUS_MODE                    0x08
+// RFM_REG_1E_MODEM_CONFIG2                     0x1e
+#define RFM_SPREADING_FACTOR                    0xf0
+#define RFM_SPREADING_FACTOR_64CPS              0x60
+#define RFM_SPREADING_FACTOR_128CPS             0x70
+#define RFM_SPREADING_FACTOR_256CPS             0x80
+#define RFM_SPREADING_FACTOR_512CPS             0x90
+#define RFM_SPREADING_FACTOR_1024CPS            0xa0
+#define RFM_SPREADING_FACTOR_2048CPS            0xb0
+#define RFM_SPREADING_FACTOR_4096CPS            0xc0
+#define RFM_TX_CONTINUOUS_MODE                  0x08
 
-#define RFM_PAYLOAD_CRC_ON                        0x04
-#define RFM_SYM_TIMEOUT_MSB                       0x03
+#define RFM_PAYLOAD_CRC_ON                      0x04
+#define RFM_SYM_TIMEOUT_MSB                     0x03
 
-// RFM_REG_26_MODEM_CONFIG3  
-#define RFM_MOBILE_NODE                           0x08 // HopeRF term
-#define RFM_LOW_DATA_RATE_OPTIMIZE                0x08 // Semtechs term
-#define RFM_AGC_AUTO_ON                           0x04
+// RFM_REG_26_MODEM_CONFIG3
+#define RFM_MOBILE_NODE                         0x08 // HopeRF term
+#define RFM_LOW_DATA_RATE_OPTIMIZE              0x08 // Semtechs term
+#define RFM_AGC_AUTO_ON                         0x04
 
-// RFM_REG_40_DIO_MAPPING1  
-#define RFM_IO_0_IRQ_RX_DONE                      (0 << 6)
-#define RFM_IO_0_IRQ_TX_DONE                      (1 << 6)
-#define RFM_IO_0_IRQ_CAD_DONE                     (2 << 6)
+// RFM_REG_40_DIO_MAPPING1
+#define RFM_IO_0_IRQ_RX_DONE                    (0 << 6)
+#define RFM_IO_0_IRQ_TX_DONE                    (1 << 6)
+#define RFM_IO_0_IRQ_CAD_DONE                   (2 << 6)
 
-#define RFM_IO_1_IRQ_RX_TIMEOUT                   (0 << 4)
-#define RFM_IO_1_IRQ_FHSS_CHANGE                  (1 << 4)
-#define RFM_IO_1_IRQ_CAD_DETECTED                 (2 << 4)
+#define RFM_IO_1_IRQ_RX_TIMEOUT                 (0 << 4)
+#define RFM_IO_1_IRQ_FHSS_CHANGE                (1 << 4)
+#define RFM_IO_1_IRQ_CAD_DETECTED               (2 << 4)
 
-#define RFM_IO_2_IRQ_FHSS_CHANGE                  (0 << 2)
+#define RFM_IO_2_IRQ_FHSS_CHANGE                (0 << 2)
 
-#define RFM_IO_3_IRQ_CAD_DONE                     (0 << 0)
-#define RFM_IO_3_IRQ_VALID_HEADER                 (1 << 0)
-#define RFM_IO_3_IRQ_CRC_ERROR                    (2 << 0)
+#define RFM_IO_3_IRQ_CAD_DONE                   (0 << 0)
+#define RFM_IO_3_IRQ_VALID_HEADER               (1 << 0)
+#define RFM_IO_3_IRQ_CRC_ERROR                  (2 << 0)
 
-// RFM_REG_40_DIO_MAPPING2  
-#define RFM_IO_4_IRQ_CAD_DETECTED                 (0 << 6)
-#define RFM_IO_4_IRQ_PLL_LOCK                     (1 << 6)
+// RFM_REG_40_DIO_MAPPING2
+#define RFM_IO_4_IRQ_CAD_DETECTED               (0 << 6)
+#define RFM_IO_4_IRQ_PLL_LOCK                   (1 << 6)
 
-#define RFM_IO_5_IRQ_MODE_READY                   (0 << 4)
-#define RFM_IO_5_IRQ_CLKOUT                       (1 << 4)
+#define RFM_IO_5_IRQ_MODE_READY                 (0 << 4)
+#define RFM_IO_5_IRQ_CLKOUT                     (1 << 4)
 
-// RFM_REG_4D_PA_DAC                              0x4d
-#define RFM_PA_DAC_DISABLE                        0x04
-#define RFM_PA_DAC_ENABLE                         0x07
-#define RFM_PA_DAC_MASK                           0x07
+// RFM_REG_4D_PA_DAC                            0x4d
+#define RFM_PA_DAC_DISABLE                      0x04
+#define RFM_PA_DAC_ENABLE                       0x07
+#define RFM_PA_DAC_MASK                         0x07
 
-/** @} */
-
-/** @addtogroup RFM_API
- * @{
- */
-
-/** @brief Max number of octets the LORA Rx/Tx FIFO can hold */
-#define RFM_FIFO_SIZE 255
-
-/** @brief This is the maximum number of bytes that can be carried by the LORA */
-#define RFM_MAX_PAYLOAD_LEN RFM_FIFO_SIZE
-
-/** @brief The length of the headers we add to to the packet */
-#define RFM_HEADER_LEN 4
-
-/** @brief This is the maximum message length that can be supported by this driver */
-#define RFM_PACKET_DATA_LEN_MAX (RFM_MAX_PAYLOAD_LEN - RFM_HEADER_LEN)
-
-/** @brief The crystal oscillator frequency of the module */
-#define RFM_FXOSC 32000000.0
-
-/** @brief The Frequency Synthesizer step = RFM_FXOSC / 2^^19 */
-#define RFM_FSTEP  (RFM_FXOSC / 524288)
-
-////////////////////////////////////////////////////////////////////////////////
-// Exported Variables
-////////////////////////////////////////////////////////////////////////////////
 
 /** @brief RFM data packet structure 
  * 
  * Defines the packet structure for the radio module
 */
-typedef struct rfm_packet_s
+typedef struct
 {
     #define RFM_PACKET_LENGTH 16
 
@@ -343,9 +327,9 @@ typedef struct rfm_packet_s
 // extern rfm_packet_t packets_buf[PACKETS_BUF_SIZE];
 */
 
-////////////////////////////////////////////////////////////////////////////////
-// Exported Function Declarations
-////////////////////////////////////////////////////////////////////////////////
+/** @addtogroup    RFM_API
+ *  @{
+ */
 
 void rfm_init(void);
 void rfm_reset(void);
@@ -370,8 +354,4 @@ void rfm_clear_tx_continuous(void);
 
 /** @} */
 
-#ifdef __cplusplus
-}
 #endif
-
-#endif /* RFM_H */

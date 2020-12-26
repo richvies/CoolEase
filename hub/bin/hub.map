@@ -37,45 +37,82 @@ libopencm3/lib/libopencm3_stm32l0.a(st_usbfs_core.o)
 
 Discarded input sections
 
- .group         0x0000000000000000        0xc hub/obj/cusb.o
- .group         0x0000000000000000        0xc hub/obj/cusb.o
- .group         0x0000000000000000        0xc hub/obj/cusb.o
- .group         0x0000000000000000        0xc hub/obj/cusb.o
- .group         0x0000000000000000        0xc hub/obj/cusb.o
- .group         0x0000000000000000        0xc hub/obj/cusb.o
- .group         0x0000000000000000        0xc hub/obj/cusb.o
- .group         0x0000000000000000        0xc hub/obj/cusb.o
- .group         0x0000000000000000        0xc hub/obj/cusb.o
- .group         0x0000000000000000        0xc hub/obj/cusb.o
- .group         0x0000000000000000        0xc hub/obj/cusb.o
- .group         0x0000000000000000        0xc hub/obj/cusb.o
- .group         0x0000000000000000        0xc hub/obj/cusb.o
- .group         0x0000000000000000        0xc hub/obj/cusb.o
- .group         0x0000000000000000        0xc hub/obj/cusb.o
- .group         0x0000000000000000        0xc hub/obj/cusb.o
- .group         0x0000000000000000        0xc hub/obj/cusb.o
- .group         0x0000000000000000        0xc hub/obj/cusb.o
- .group         0x0000000000000000        0xc hub/obj/cusb.o
- .group         0x0000000000000000        0xc hub/obj/cusb.o
- .group         0x0000000000000000        0xc hub/obj/cusb.o
- .group         0x0000000000000000        0xc hub/obj/cusb.o
- .group         0x0000000000000000        0xc hub/obj/cusb.o
- .group         0x0000000000000000        0xc hub/obj/cusb.o
- .group         0x0000000000000000        0xc hub/obj/cusb.o
- .group         0x0000000000000000        0xc hub/obj/cusb.o
- .group         0x0000000000000000        0xc hub/obj/cusb.o
- .group         0x0000000000000000        0xc hub/obj/cusb.o
- .group         0x0000000000000000        0xc hub/obj/cusb.o
+ .text          0x0000000000000000        0x0 hub/obj/bootloader.o
+ .data          0x0000000000000000        0x0 hub/obj/bootloader.o
+ .bss           0x0000000000000000        0x0 hub/obj/bootloader.o
+ .comment       0x0000000000000000       0x4d hub/obj/bootloader.o
+ .ARM.attributes
+                0x0000000000000000       0x32 hub/obj/bootloader.o
  .text          0x0000000000000000        0x0 hub/obj/cusb.o
  .data          0x0000000000000000        0x0 hub/obj/cusb.o
  .bss           0x0000000000000000        0x0 hub/obj/cusb.o
- .group         0x0000000000000000        0xc hub/obj/main.o
- .group         0x0000000000000000        0xc hub/obj/main.o
- .text          0x0000000000000000        0x0 hub/obj/main.o
- .data          0x0000000000000000        0x0 hub/obj/main.o
- .bss           0x0000000000000000        0x0 hub/obj/main.o
- .debug_macro   0x0000000000000000      0xa72 hub/obj/main.o
- .debug_macro   0x0000000000000000      0x16d hub/obj/main.o
+ .text.hid_control_request
+                0x0000000000000000       0x34 hub/obj/cusb.o
+ .text.hid_report_callback
+                0x0000000000000000       0x10 hub/obj/cusb.o
+ .text.hid_set_config
+                0x0000000000000000       0x3c hub/obj/cusb.o
+ .text.cusb_init
+                0x0000000000000000      0x114 hub/obj/cusb.o
+ .text.cusb_test_poll
+                0x0000000000000000       0x10 hub/obj/cusb.o
+ .rodata.str1.4
+                0x0000000000000000       0x4a hub/obj/cusb.o
+ .bss.usbd_control_buffer
+                0x0000000000000000       0x80 hub/obj/cusb.o
+ .bss.usbd_dev  0x0000000000000000        0x4 hub/obj/cusb.o
+ .data.hid_report_buf
+                0x0000000000000000       0x40 hub/obj/cusb.o
+ .rodata.cfg_desc
+                0x0000000000000000        0xd hub/obj/cusb.o
+ .rodata.dev_desc
+                0x0000000000000000       0x12 hub/obj/cusb.o
+ .rodata.hid_function
+                0x0000000000000000        0x9 hub/obj/cusb.o
+ .rodata.hid_interface
+                0x0000000000000000       0x15 hub/obj/cusb.o
+ .rodata.hid_interface_endpoints
+                0x0000000000000000       0x1e hub/obj/cusb.o
+ .rodata.hid_report_descriptor
+                0x0000000000000000       0x19 hub/obj/cusb.o
+ .rodata.interfaces
+                0x0000000000000000       0x10 hub/obj/cusb.o
+ .rodata.usb_strings
+                0x0000000000000000       0x10 hub/obj/cusb.o
+ .comment       0x0000000000000000       0x4d hub/obj/cusb.o
+ .ARM.attributes
+                0x0000000000000000       0x2c hub/obj/cusb.o
+ .text          0x0000000000000000        0x0 hub/obj/hub.o
+ .data          0x0000000000000000        0x0 hub/obj/hub.o
+ .bss           0x0000000000000000        0x0 hub/obj/hub.o
+ .text          0x0000000000000000        0x0 hub/obj/test_hub.o
+ .data          0x0000000000000000        0x0 hub/obj/test_hub.o
+ .bss           0x0000000000000000        0x0 hub/obj/test_hub.o
+ .text.test_cusb_poll
+                0x0000000000000000        0xc hub/obj/test_hub.o
+ .comment       0x0000000000000000       0x4d hub/obj/test_hub.o
+ .ARM.attributes
+                0x0000000000000000       0x2c hub/obj/test_hub.o
+ .text          0x0000000000000000        0x0 hub/obj/bootlaoder_utils.o
+ .data          0x0000000000000000        0x0 hub/obj/bootlaoder_utils.o
+ .bss           0x0000000000000000        0x0 hub/obj/bootlaoder_utils.o
+ .comment       0x0000000000000000       0x4d hub/obj/bootlaoder_utils.o
+ .ARM.attributes
+                0x0000000000000000       0x32 hub/obj/bootlaoder_utils.o
+ .text          0x0000000000000000        0x0 hub/obj/bootloader_utils.o
+ .data          0x0000000000000000        0x0 hub/obj/bootloader_utils.o
+ .bss           0x0000000000000000        0x0 hub/obj/bootloader_utils.o
+ .text.boot_deinit
+                0x0000000000000000        0x4 hub/obj/bootloader_utils.o
+ .text          0x0000000000000000        0x0 hub/obj/rfm.o
+ .data          0x0000000000000000        0x0 hub/obj/rfm.o
+ .bss           0x0000000000000000        0x0 hub/obj/rfm.o
+ .comment       0x0000000000000000       0x4d hub/obj/rfm.o
+ .ARM.attributes
+                0x0000000000000000       0x32 hub/obj/rfm.o
+ .text          0x0000000000000000        0x0 hub/obj/testing.o
+ .data          0x0000000000000000        0x0 hub/obj/testing.o
+ .bss           0x0000000000000000        0x0 hub/obj/testing.o
  .group         0x0000000000000000        0xc libopencm3/lib/libopencm3_stm32l0.a(flash_common_all.o)
  .group         0x0000000000000000        0xc libopencm3/lib/libopencm3_stm32l0.a(flash_common_all.o)
  .group         0x0000000000000000        0xc libopencm3/lib/libopencm3_stm32l0.a(flash_common_all.o)
@@ -97,8 +134,18 @@ Discarded input sections
                 0x0000000000000000       0x10 libopencm3/lib/libopencm3_stm32l0.a(flash_common_all.o)
  .text.flash_prefetch_disable
                 0x0000000000000000       0x10 libopencm3/lib/libopencm3_stm32l0.a(flash_common_all.o)
+ .text.flash_set_ws
+                0x0000000000000000       0x14 libopencm3/lib/libopencm3_stm32l0.a(flash_common_all.o)
  .text.flash_unlock_option_bytes
                 0x0000000000000000       0x18 libopencm3/lib/libopencm3_stm32l0.a(flash_common_all.o)
+ .debug_info    0x0000000000000000       0xf6 libopencm3/lib/libopencm3_stm32l0.a(flash_common_all.o)
+ .debug_abbrev  0x0000000000000000       0x97 libopencm3/lib/libopencm3_stm32l0.a(flash_common_all.o)
+ .debug_loc     0x0000000000000000       0x15 libopencm3/lib/libopencm3_stm32l0.a(flash_common_all.o)
+ .debug_aranges
+                0x0000000000000000       0x38 libopencm3/lib/libopencm3_stm32l0.a(flash_common_all.o)
+ .debug_ranges  0x0000000000000000       0x28 libopencm3/lib/libopencm3_stm32l0.a(flash_common_all.o)
+ .debug_macro   0x0000000000000000       0xbc libopencm3/lib/libopencm3_stm32l0.a(flash_common_all.o)
+ .debug_macro   0x0000000000000000      0xa72 libopencm3/lib/libopencm3_stm32l0.a(flash_common_all.o)
  .debug_macro   0x0000000000000000       0x1c libopencm3/lib/libopencm3_stm32l0.a(flash_common_all.o)
  .debug_macro   0x0000000000000000       0x22 libopencm3/lib/libopencm3_stm32l0.a(flash_common_all.o)
  .debug_macro   0x0000000000000000       0x56 libopencm3/lib/libopencm3_stm32l0.a(flash_common_all.o)
@@ -112,6 +159,12 @@ Discarded input sections
  .debug_macro   0x0000000000000000      0x14e libopencm3/lib/libopencm3_stm32l0.a(flash_common_all.o)
  .debug_macro   0x0000000000000000      0x166 libopencm3/lib/libopencm3_stm32l0.a(flash_common_all.o)
  .debug_macro   0x0000000000000000       0x40 libopencm3/lib/libopencm3_stm32l0.a(flash_common_all.o)
+ .debug_line    0x0000000000000000      0x392 libopencm3/lib/libopencm3_stm32l0.a(flash_common_all.o)
+ .debug_str     0x0000000000000000     0x5299 libopencm3/lib/libopencm3_stm32l0.a(flash_common_all.o)
+ .comment       0x0000000000000000       0x4d libopencm3/lib/libopencm3_stm32l0.a(flash_common_all.o)
+ .debug_frame   0x0000000000000000       0x50 libopencm3/lib/libopencm3_stm32l0.a(flash_common_all.o)
+ .ARM.attributes
+                0x0000000000000000       0x2c libopencm3/lib/libopencm3_stm32l0.a(flash_common_all.o)
  .group         0x0000000000000000        0xc libopencm3/lib/libopencm3_stm32l0.a(rcc.o)
  .group         0x0000000000000000        0xc libopencm3/lib/libopencm3_stm32l0.a(rcc.o)
  .group         0x0000000000000000        0xc libopencm3/lib/libopencm3_stm32l0.a(rcc.o)
@@ -133,6 +186,10 @@ Discarded input sections
  .text          0x0000000000000000        0x0 libopencm3/lib/libopencm3_stm32l0.a(rcc.o)
  .data          0x0000000000000000        0x0 libopencm3/lib/libopencm3_stm32l0.a(rcc.o)
  .bss           0x0000000000000000        0x0 libopencm3/lib/libopencm3_stm32l0.a(rcc.o)
+ .text.rcc_osc_on
+                0x0000000000000000       0x54 libopencm3/lib/libopencm3_stm32l0.a(rcc.o)
+ .text.rcc_osc_off
+                0x0000000000000000       0x5c libopencm3/lib/libopencm3_stm32l0.a(rcc.o)
  .text.rcc_osc_ready_int_clear
                 0x0000000000000000       0x3c libopencm3/lib/libopencm3_stm32l0.a(rcc.o)
  .text.rcc_osc_ready_int_enable
@@ -141,14 +198,28 @@ Discarded input sections
                 0x0000000000000000       0x3c libopencm3/lib/libopencm3_stm32l0.a(rcc.o)
  .text.rcc_osc_ready_int_flag
                 0x0000000000000000       0x48 libopencm3/lib/libopencm3_stm32l0.a(rcc.o)
+ .text.rcc_is_osc_ready
+                0x0000000000000000       0x58 libopencm3/lib/libopencm3_stm32l0.a(rcc.o)
+ .text.rcc_wait_for_osc_ready
+                0x0000000000000000       0x10 libopencm3/lib/libopencm3_stm32l0.a(rcc.o)
+ .text.rcc_set_hsi48_source_rc48
+                0x0000000000000000       0x14 libopencm3/lib/libopencm3_stm32l0.a(rcc.o)
  .text.rcc_set_hsi48_source_pll
                 0x0000000000000000       0x14 libopencm3/lib/libopencm3_stm32l0.a(rcc.o)
+ .text.rcc_set_sysclk_source
+                0x0000000000000000       0x4c libopencm3/lib/libopencm3_stm32l0.a(rcc.o)
  .text.rcc_set_pll_multiplier
                 0x0000000000000000       0x18 libopencm3/lib/libopencm3_stm32l0.a(rcc.o)
  .text.rcc_set_pll_divider
                 0x0000000000000000       0x18 libopencm3/lib/libopencm3_stm32l0.a(rcc.o)
  .text.rcc_set_pll_source
                 0x0000000000000000       0x18 libopencm3/lib/libopencm3_stm32l0.a(rcc.o)
+ .text.rcc_set_ppre1
+                0x0000000000000000       0x18 libopencm3/lib/libopencm3_stm32l0.a(rcc.o)
+ .text.rcc_set_ppre2
+                0x0000000000000000       0x18 libopencm3/lib/libopencm3_stm32l0.a(rcc.o)
+ .text.rcc_set_hpre
+                0x0000000000000000       0x14 libopencm3/lib/libopencm3_stm32l0.a(rcc.o)
  .text.rcc_set_msi_range
                 0x0000000000000000       0x18 libopencm3/lib/libopencm3_stm32l0.a(rcc.o)
  .text.rcc_set_lptim1_sel
@@ -163,6 +234,19 @@ Discarded input sections
                 0x0000000000000000       0x6c libopencm3/lib/libopencm3_stm32l0.a(rcc.o)
  .text.rcc_clock_setup_pll
                 0x0000000000000000       0xb4 libopencm3/lib/libopencm3_stm32l0.a(rcc.o)
+ .data.rcc_ahb_frequency
+                0x0000000000000000        0x4 libopencm3/lib/libopencm3_stm32l0.a(rcc.o)
+ .data.rcc_apb1_frequency
+                0x0000000000000000        0x4 libopencm3/lib/libopencm3_stm32l0.a(rcc.o)
+ .data.rcc_apb2_frequency
+                0x0000000000000000        0x4 libopencm3/lib/libopencm3_stm32l0.a(rcc.o)
+ .debug_info    0x0000000000000000      0xbbd libopencm3/lib/libopencm3_stm32l0.a(rcc.o)
+ .debug_abbrev  0x0000000000000000      0x302 libopencm3/lib/libopencm3_stm32l0.a(rcc.o)
+ .debug_loc     0x0000000000000000      0x65b libopencm3/lib/libopencm3_stm32l0.a(rcc.o)
+ .debug_aranges
+                0x0000000000000000       0xd0 libopencm3/lib/libopencm3_stm32l0.a(rcc.o)
+ .debug_ranges  0x0000000000000000      0x148 libopencm3/lib/libopencm3_stm32l0.a(rcc.o)
+ .debug_macro   0x0000000000000000      0x113 libopencm3/lib/libopencm3_stm32l0.a(rcc.o)
  .debug_macro   0x0000000000000000      0xa72 libopencm3/lib/libopencm3_stm32l0.a(rcc.o)
  .debug_macro   0x0000000000000000       0x1c libopencm3/lib/libopencm3_stm32l0.a(rcc.o)
  .debug_macro   0x0000000000000000       0x22 libopencm3/lib/libopencm3_stm32l0.a(rcc.o)
@@ -173,6 +257,7 @@ Discarded input sections
  .debug_macro   0x0000000000000000      0x1df libopencm3/lib/libopencm3_stm32l0.a(rcc.o)
  .debug_macro   0x0000000000000000       0x22 libopencm3/lib/libopencm3_stm32l0.a(rcc.o)
  .debug_macro   0x0000000000000000       0xe8 libopencm3/lib/libopencm3_stm32l0.a(rcc.o)
+ .debug_macro   0x0000000000000000       0x16 libopencm3/lib/libopencm3_stm32l0.a(rcc.o)
  .debug_macro   0x0000000000000000       0x52 libopencm3/lib/libopencm3_stm32l0.a(rcc.o)
  .debug_macro   0x0000000000000000      0x14e libopencm3/lib/libopencm3_stm32l0.a(rcc.o)
  .debug_macro   0x0000000000000000      0x166 libopencm3/lib/libopencm3_stm32l0.a(rcc.o)
@@ -180,6 +265,12 @@ Discarded input sections
  .debug_macro   0x0000000000000000       0x8e libopencm3/lib/libopencm3_stm32l0.a(rcc.o)
  .debug_macro   0x0000000000000000       0x58 libopencm3/lib/libopencm3_stm32l0.a(rcc.o)
  .debug_macro   0x0000000000000000      0x91f libopencm3/lib/libopencm3_stm32l0.a(rcc.o)
+ .debug_line    0x0000000000000000      0xa96 libopencm3/lib/libopencm3_stm32l0.a(rcc.o)
+ .debug_str     0x0000000000000000     0x83e6 libopencm3/lib/libopencm3_stm32l0.a(rcc.o)
+ .comment       0x0000000000000000       0x4d libopencm3/lib/libopencm3_stm32l0.a(rcc.o)
+ .debug_frame   0x0000000000000000      0x1f4 libopencm3/lib/libopencm3_stm32l0.a(rcc.o)
+ .ARM.attributes
+                0x0000000000000000       0x2c libopencm3/lib/libopencm3_stm32l0.a(rcc.o)
  .group         0x0000000000000000        0xc libopencm3/lib/libopencm3_stm32l0.a(rcc_common_all.o)
  .group         0x0000000000000000        0xc libopencm3/lib/libopencm3_stm32l0.a(rcc_common_all.o)
  .group         0x0000000000000000        0xc libopencm3/lib/libopencm3_stm32l0.a(rcc_common_all.o)
@@ -206,6 +297,8 @@ Discarded input sections
                 0x0000000000000000        0x8 libopencm3/lib/libopencm3_stm32l0.a(rcc_common_all.o)
  .text.rcc_peripheral_clear_reset
                 0x0000000000000000        0x8 libopencm3/lib/libopencm3_stm32l0.a(rcc_common_all.o)
+ .text.rcc_periph_clock_enable
+                0x0000000000000000       0x1c libopencm3/lib/libopencm3_stm32l0.a(rcc_common_all.o)
  .text.rcc_periph_clock_disable
                 0x0000000000000000       0x1c libopencm3/lib/libopencm3_stm32l0.a(rcc_common_all.o)
  .text.rcc_periph_reset_pulse
@@ -220,6 +313,13 @@ Discarded input sections
                 0x0000000000000000       0x2c libopencm3/lib/libopencm3_stm32l0.a(rcc_common_all.o)
  .text.rcc_osc_bypass_disable
                 0x0000000000000000       0x30 libopencm3/lib/libopencm3_stm32l0.a(rcc_common_all.o)
+ .debug_info    0x0000000000000000      0x648 libopencm3/lib/libopencm3_stm32l0.a(rcc_common_all.o)
+ .debug_abbrev  0x0000000000000000      0x14c libopencm3/lib/libopencm3_stm32l0.a(rcc_common_all.o)
+ .debug_loc     0x0000000000000000       0x94 libopencm3/lib/libopencm3_stm32l0.a(rcc_common_all.o)
+ .debug_aranges
+                0x0000000000000000       0x58 libopencm3/lib/libopencm3_stm32l0.a(rcc_common_all.o)
+ .debug_ranges  0x0000000000000000       0x48 libopencm3/lib/libopencm3_stm32l0.a(rcc_common_all.o)
+ .debug_macro   0x0000000000000000       0xfa libopencm3/lib/libopencm3_stm32l0.a(rcc_common_all.o)
  .debug_macro   0x0000000000000000      0xa72 libopencm3/lib/libopencm3_stm32l0.a(rcc_common_all.o)
  .debug_macro   0x0000000000000000       0x1c libopencm3/lib/libopencm3_stm32l0.a(rcc_common_all.o)
  .debug_macro   0x0000000000000000       0x22 libopencm3/lib/libopencm3_stm32l0.a(rcc_common_all.o)
@@ -235,6 +335,12 @@ Discarded input sections
  .debug_macro   0x0000000000000000       0x8e libopencm3/lib/libopencm3_stm32l0.a(rcc_common_all.o)
  .debug_macro   0x0000000000000000       0x58 libopencm3/lib/libopencm3_stm32l0.a(rcc_common_all.o)
  .debug_macro   0x0000000000000000      0x91f libopencm3/lib/libopencm3_stm32l0.a(rcc_common_all.o)
+ .debug_line    0x0000000000000000      0x474 libopencm3/lib/libopencm3_stm32l0.a(rcc_common_all.o)
+ .debug_str     0x0000000000000000     0x79a4 libopencm3/lib/libopencm3_stm32l0.a(rcc_common_all.o)
+ .comment       0x0000000000000000       0x4d libopencm3/lib/libopencm3_stm32l0.a(rcc_common_all.o)
+ .debug_frame   0x0000000000000000       0xe0 libopencm3/lib/libopencm3_stm32l0.a(rcc_common_all.o)
+ .ARM.attributes
+                0x0000000000000000       0x2c libopencm3/lib/libopencm3_stm32l0.a(rcc_common_all.o)
  .group         0x0000000000000000        0xc libopencm3/lib/libopencm3_stm32l0.a(usb.o)
  .group         0x0000000000000000        0xc libopencm3/lib/libopencm3_stm32l0.a(usb.o)
  .group         0x0000000000000000        0xc libopencm3/lib/libopencm3_stm32l0.a(usb.o)
@@ -265,6 +371,8 @@ Discarded input sections
  .text          0x0000000000000000        0x0 libopencm3/lib/libopencm3_stm32l0.a(usb.o)
  .data          0x0000000000000000        0x0 libopencm3/lib/libopencm3_stm32l0.a(usb.o)
  .bss           0x0000000000000000        0x0 libopencm3/lib/libopencm3_stm32l0.a(usb.o)
+ .text.usbd_init
+                0x0000000000000000       0x54 libopencm3/lib/libopencm3_stm32l0.a(usb.o)
  .text.usbd_register_reset_callback
                 0x0000000000000000        0x4 libopencm3/lib/libopencm3_stm32l0.a(usb.o)
  .text.usbd_register_suspend_callback
@@ -273,19 +381,64 @@ Discarded input sections
                 0x0000000000000000        0x4 libopencm3/lib/libopencm3_stm32l0.a(usb.o)
  .text.usbd_register_sof_callback
                 0x0000000000000000        0x4 libopencm3/lib/libopencm3_stm32l0.a(usb.o)
+ .text.usbd_poll
+                0x0000000000000000        0xe libopencm3/lib/libopencm3_stm32l0.a(usb.o)
  .text.usbd_disconnect
                 0x0000000000000000       0x12 libopencm3/lib/libopencm3_stm32l0.a(usb.o)
+ .text.usbd_ep_setup
+                0x0000000000000000       0x12 libopencm3/lib/libopencm3_stm32l0.a(usb.o)
+ .text._usbd_reset
+                0x0000000000000000       0x2e libopencm3/lib/libopencm3_stm32l0.a(usb.o)
+ .text.usbd_ep_write_packet
+                0x0000000000000000        0xe libopencm3/lib/libopencm3_stm32l0.a(usb.o)
+ .text.usbd_ep_read_packet
+                0x0000000000000000        0xe libopencm3/lib/libopencm3_stm32l0.a(usb.o)
+ .text.usbd_ep_stall_set
+                0x0000000000000000        0xe libopencm3/lib/libopencm3_stm32l0.a(usb.o)
+ .text.usbd_ep_stall_get
+                0x0000000000000000        0xe libopencm3/lib/libopencm3_stm32l0.a(usb.o)
+ .text.usbd_ep_nak_set
+                0x0000000000000000        0xe libopencm3/lib/libopencm3_stm32l0.a(usb.o)
+ .debug_info    0x0000000000000000     0x17fd libopencm3/lib/libopencm3_stm32l0.a(usb.o)
+ .debug_abbrev  0x0000000000000000      0x336 libopencm3/lib/libopencm3_stm32l0.a(usb.o)
+ .debug_loc     0x0000000000000000      0x4db libopencm3/lib/libopencm3_stm32l0.a(usb.o)
+ .debug_aranges
+                0x0000000000000000       0x88 libopencm3/lib/libopencm3_stm32l0.a(usb.o)
+ .debug_ranges  0x0000000000000000       0x78 libopencm3/lib/libopencm3_stm32l0.a(usb.o)
+ .debug_macro   0x0000000000000000      0x146 libopencm3/lib/libopencm3_stm32l0.a(usb.o)
  .debug_macro   0x0000000000000000      0xa72 libopencm3/lib/libopencm3_stm32l0.a(usb.o)
  .debug_macro   0x0000000000000000       0x22 libopencm3/lib/libopencm3_stm32l0.a(usb.o)
+ .debug_macro   0x0000000000000000       0x5e libopencm3/lib/libopencm3_stm32l0.a(usb.o)
+ .debug_macro   0x0000000000000000       0x18 libopencm3/lib/libopencm3_stm32l0.a(usb.o)
+ .debug_macro   0x0000000000000000       0x5c libopencm3/lib/libopencm3_stm32l0.a(usb.o)
+ .debug_macro   0x0000000000000000       0x35 libopencm3/lib/libopencm3_stm32l0.a(usb.o)
+ .debug_macro   0x0000000000000000       0x34 libopencm3/lib/libopencm3_stm32l0.a(usb.o)
  .debug_macro   0x0000000000000000      0x16d libopencm3/lib/libopencm3_stm32l0.a(usb.o)
+ .debug_macro   0x0000000000000000       0x16 libopencm3/lib/libopencm3_stm32l0.a(usb.o)
+ .debug_macro   0x0000000000000000       0x43 libopencm3/lib/libopencm3_stm32l0.a(usb.o)
+ .debug_macro   0x0000000000000000       0x57 libopencm3/lib/libopencm3_stm32l0.a(usb.o)
+ .debug_macro   0x0000000000000000       0x34 libopencm3/lib/libopencm3_stm32l0.a(usb.o)
+ .debug_macro   0x0000000000000000       0x10 libopencm3/lib/libopencm3_stm32l0.a(usb.o)
+ .debug_macro   0x0000000000000000       0x58 libopencm3/lib/libopencm3_stm32l0.a(usb.o)
+ .debug_macro   0x0000000000000000      0x182 libopencm3/lib/libopencm3_stm32l0.a(usb.o)
+ .debug_macro   0x0000000000000000      0x35c libopencm3/lib/libopencm3_stm32l0.a(usb.o)
+ .debug_macro   0x0000000000000000       0x10 libopencm3/lib/libopencm3_stm32l0.a(usb.o)
+ .debug_macro   0x0000000000000000       0x35 libopencm3/lib/libopencm3_stm32l0.a(usb.o)
  .debug_macro   0x0000000000000000      0x103 libopencm3/lib/libopencm3_stm32l0.a(usb.o)
  .debug_macro   0x0000000000000000       0x6a libopencm3/lib/libopencm3_stm32l0.a(usb.o)
  .debug_macro   0x0000000000000000      0x1df libopencm3/lib/libopencm3_stm32l0.a(usb.o)
  .debug_macro   0x0000000000000000       0x1c libopencm3/lib/libopencm3_stm32l0.a(usb.o)
  .debug_macro   0x0000000000000000       0x22 libopencm3/lib/libopencm3_stm32l0.a(usb.o)
  .debug_macro   0x0000000000000000       0xe8 libopencm3/lib/libopencm3_stm32l0.a(usb.o)
+ .debug_macro   0x0000000000000000      0x19c libopencm3/lib/libopencm3_stm32l0.a(usb.o)
  .debug_macro   0x0000000000000000       0x10 libopencm3/lib/libopencm3_stm32l0.a(usb.o)
  .debug_macro   0x0000000000000000       0x1c libopencm3/lib/libopencm3_stm32l0.a(usb.o)
+ .debug_line    0x0000000000000000      0x5a5 libopencm3/lib/libopencm3_stm32l0.a(usb.o)
+ .debug_str     0x0000000000000000     0x7f79 libopencm3/lib/libopencm3_stm32l0.a(usb.o)
+ .comment       0x0000000000000000       0x4d libopencm3/lib/libopencm3_stm32l0.a(usb.o)
+ .debug_frame   0x0000000000000000      0x15c libopencm3/lib/libopencm3_stm32l0.a(usb.o)
+ .ARM.attributes
+                0x0000000000000000       0x2c libopencm3/lib/libopencm3_stm32l0.a(usb.o)
  .group         0x0000000000000000        0xc libopencm3/lib/libopencm3_stm32l0.a(usb_control.o)
  .group         0x0000000000000000        0xc libopencm3/lib/libopencm3_stm32l0.a(usb_control.o)
  .group         0x0000000000000000        0xc libopencm3/lib/libopencm3_stm32l0.a(usb_control.o)
@@ -317,6 +470,31 @@ Discarded input sections
  .text          0x0000000000000000        0x0 libopencm3/lib/libopencm3_stm32l0.a(usb_control.o)
  .data          0x0000000000000000        0x0 libopencm3/lib/libopencm3_stm32l0.a(usb_control.o)
  .bss           0x0000000000000000        0x0 libopencm3/lib/libopencm3_stm32l0.a(usb_control.o)
+ .text.usb_control_send_chunk
+                0x0000000000000000       0x50 libopencm3/lib/libopencm3_stm32l0.a(usb_control.o)
+ .text.usb_control_request_dispatch
+                0x0000000000000000       0x66 libopencm3/lib/libopencm3_stm32l0.a(usb_control.o)
+ .text.stall_transaction
+                0x0000000000000000       0x14 libopencm3/lib/libopencm3_stm32l0.a(usb_control.o)
+ .text.usb_control_recv_chunk
+                0x0000000000000000       0x3e libopencm3/lib/libopencm3_stm32l0.a(usb_control.o)
+ .text.usb_control_setup_read
+                0x0000000000000000       0x68 libopencm3/lib/libopencm3_stm32l0.a(usb_control.o)
+ .text.usbd_register_control_callback
+                0x0000000000000000       0x30 libopencm3/lib/libopencm3_stm32l0.a(usb_control.o)
+ .text._usbd_control_setup
+                0x0000000000000000       0x6a libopencm3/lib/libopencm3_stm32l0.a(usb_control.o)
+ .text._usbd_control_out
+                0x0000000000000000       0x82 libopencm3/lib/libopencm3_stm32l0.a(usb_control.o)
+ .text._usbd_control_in
+                0x0000000000000000       0x60 libopencm3/lib/libopencm3_stm32l0.a(usb_control.o)
+ .debug_info    0x0000000000000000     0x1939 libopencm3/lib/libopencm3_stm32l0.a(usb_control.o)
+ .debug_abbrev  0x0000000000000000      0x43a libopencm3/lib/libopencm3_stm32l0.a(usb_control.o)
+ .debug_loc     0x0000000000000000      0x79b libopencm3/lib/libopencm3_stm32l0.a(usb_control.o)
+ .debug_aranges
+                0x0000000000000000       0x60 libopencm3/lib/libopencm3_stm32l0.a(usb_control.o)
+ .debug_ranges  0x0000000000000000       0x50 libopencm3/lib/libopencm3_stm32l0.a(usb_control.o)
+ .debug_macro   0x0000000000000000      0x154 libopencm3/lib/libopencm3_stm32l0.a(usb_control.o)
  .debug_macro   0x0000000000000000      0xa72 libopencm3/lib/libopencm3_stm32l0.a(usb_control.o)
  .debug_macro   0x0000000000000000       0x18 libopencm3/lib/libopencm3_stm32l0.a(usb_control.o)
  .debug_macro   0x0000000000000000       0x22 libopencm3/lib/libopencm3_stm32l0.a(usb_control.o)
@@ -325,6 +503,9 @@ Discarded input sections
  .debug_macro   0x0000000000000000       0x35 libopencm3/lib/libopencm3_stm32l0.a(usb_control.o)
  .debug_macro   0x0000000000000000       0x34 libopencm3/lib/libopencm3_stm32l0.a(usb_control.o)
  .debug_macro   0x0000000000000000       0x16 libopencm3/lib/libopencm3_stm32l0.a(usb_control.o)
+ .debug_macro   0x0000000000000000      0x10e libopencm3/lib/libopencm3_stm32l0.a(usb_control.o)
+ .debug_macro   0x0000000000000000       0x86 libopencm3/lib/libopencm3_stm32l0.a(usb_control.o)
+ .debug_macro   0x0000000000000000       0x16 libopencm3/lib/libopencm3_stm32l0.a(usb_control.o)
  .debug_macro   0x0000000000000000       0x43 libopencm3/lib/libopencm3_stm32l0.a(usb_control.o)
  .debug_macro   0x0000000000000000       0x57 libopencm3/lib/libopencm3_stm32l0.a(usb_control.o)
  .debug_macro   0x0000000000000000       0x34 libopencm3/lib/libopencm3_stm32l0.a(usb_control.o)
@@ -332,6 +513,7 @@ Discarded input sections
  .debug_macro   0x0000000000000000       0x58 libopencm3/lib/libopencm3_stm32l0.a(usb_control.o)
  .debug_macro   0x0000000000000000      0x182 libopencm3/lib/libopencm3_stm32l0.a(usb_control.o)
  .debug_macro   0x0000000000000000      0x35c libopencm3/lib/libopencm3_stm32l0.a(usb_control.o)
+ .debug_macro   0x0000000000000000       0x22 libopencm3/lib/libopencm3_stm32l0.a(usb_control.o)
  .debug_macro   0x0000000000000000      0x103 libopencm3/lib/libopencm3_stm32l0.a(usb_control.o)
  .debug_macro   0x0000000000000000       0x6a libopencm3/lib/libopencm3_stm32l0.a(usb_control.o)
  .debug_macro   0x0000000000000000      0x1df libopencm3/lib/libopencm3_stm32l0.a(usb_control.o)
@@ -341,6 +523,12 @@ Discarded input sections
  .debug_macro   0x0000000000000000      0x19c libopencm3/lib/libopencm3_stm32l0.a(usb_control.o)
  .debug_macro   0x0000000000000000       0x10 libopencm3/lib/libopencm3_stm32l0.a(usb_control.o)
  .debug_macro   0x0000000000000000       0x1c libopencm3/lib/libopencm3_stm32l0.a(usb_control.o)
+ .debug_line    0x0000000000000000      0x717 libopencm3/lib/libopencm3_stm32l0.a(usb_control.o)
+ .debug_str     0x0000000000000000     0x7fc6 libopencm3/lib/libopencm3_stm32l0.a(usb_control.o)
+ .comment       0x0000000000000000       0x4d libopencm3/lib/libopencm3_stm32l0.a(usb_control.o)
+ .debug_frame   0x0000000000000000      0x110 libopencm3/lib/libopencm3_stm32l0.a(usb_control.o)
+ .ARM.attributes
+                0x0000000000000000       0x2c libopencm3/lib/libopencm3_stm32l0.a(usb_control.o)
  .group         0x0000000000000000        0xc libopencm3/lib/libopencm3_stm32l0.a(usb_standard.o)
  .group         0x0000000000000000        0xc libopencm3/lib/libopencm3_stm32l0.a(usb_standard.o)
  .group         0x0000000000000000        0xc libopencm3/lib/libopencm3_stm32l0.a(usb_standard.o)
@@ -371,8 +559,47 @@ Discarded input sections
  .text          0x0000000000000000        0x0 libopencm3/lib/libopencm3_stm32l0.a(usb_standard.o)
  .data          0x0000000000000000        0x0 libopencm3/lib/libopencm3_stm32l0.a(usb_standard.o)
  .bss           0x0000000000000000        0x0 libopencm3/lib/libopencm3_stm32l0.a(usb_standard.o)
+ .text.usb_standard_set_address
+                0x0000000000000000       0x36 libopencm3/lib/libopencm3_stm32l0.a(usb_standard.o)
+ .text.usb_standard_set_configuration
+                0x0000000000000000       0xb8 libopencm3/lib/libopencm3_stm32l0.a(usb_standard.o)
+ .text.usb_standard_get_configuration
+                0x0000000000000000       0x2a libopencm3/lib/libopencm3_stm32l0.a(usb_standard.o)
+ .text.usb_standard_get_interface
+                0x0000000000000000       0x50 libopencm3/lib/libopencm3_stm32l0.a(usb_standard.o)
+ .text.usb_standard_device_get_status
+                0x0000000000000000       0x18 libopencm3/lib/libopencm3_stm32l0.a(usb_standard.o)
+ .text.usb_standard_endpoint_get_status
+                0x0000000000000000       0x26 libopencm3/lib/libopencm3_stm32l0.a(usb_standard.o)
+ .text.usb_standard_endpoint_stall
+                0x0000000000000000        0xe libopencm3/lib/libopencm3_stm32l0.a(usb_standard.o)
+ .text.usb_standard_endpoint_unstall
+                0x0000000000000000        0xe libopencm3/lib/libopencm3_stm32l0.a(usb_standard.o)
+ .text.usb_standard_set_interface
+                0x0000000000000000       0x7c libopencm3/lib/libopencm3_stm32l0.a(usb_standard.o)
+ .text.usb_standard_get_descriptor
+                0x0000000000000000      0x358 libopencm3/lib/libopencm3_stm32l0.a(usb_standard.o)
+ .text.usb_standard_interface_get_status
+                0x0000000000000000       0x18 libopencm3/lib/libopencm3_stm32l0.a(usb_standard.o)
+ .text.usbd_register_set_config_callback
+                0x0000000000000000       0x2e libopencm3/lib/libopencm3_stm32l0.a(usb_standard.o)
  .text.usbd_register_set_altsetting_callback
                 0x0000000000000000        0x6 libopencm3/lib/libopencm3_stm32l0.a(usb_standard.o)
+ .text._usbd_standard_request_device
+                0x0000000000000000       0x48 libopencm3/lib/libopencm3_stm32l0.a(usb_standard.o)
+ .text._usbd_standard_request_interface
+                0x0000000000000000       0x30 libopencm3/lib/libopencm3_stm32l0.a(usb_standard.o)
+ .text._usbd_standard_request_endpoint
+                0x0000000000000000       0x4c libopencm3/lib/libopencm3_stm32l0.a(usb_standard.o)
+ .text._usbd_standard_request
+                0x0000000000000000       0x38 libopencm3/lib/libopencm3_stm32l0.a(usb_standard.o)
+ .debug_info    0x0000000000000000     0x202f libopencm3/lib/libopencm3_stm32l0.a(usb_standard.o)
+ .debug_abbrev  0x0000000000000000      0x58b libopencm3/lib/libopencm3_stm32l0.a(usb_standard.o)
+ .debug_loc     0x0000000000000000     0x14ca libopencm3/lib/libopencm3_stm32l0.a(usb_standard.o)
+ .debug_aranges
+                0x0000000000000000       0x98 libopencm3/lib/libopencm3_stm32l0.a(usb_standard.o)
+ .debug_ranges  0x0000000000000000       0xf0 libopencm3/lib/libopencm3_stm32l0.a(usb_standard.o)
+ .debug_macro   0x0000000000000000      0x146 libopencm3/lib/libopencm3_stm32l0.a(usb_standard.o)
  .debug_macro   0x0000000000000000      0xa72 libopencm3/lib/libopencm3_stm32l0.a(usb_standard.o)
  .debug_macro   0x0000000000000000       0x22 libopencm3/lib/libopencm3_stm32l0.a(usb_standard.o)
  .debug_macro   0x0000000000000000       0x5e libopencm3/lib/libopencm3_stm32l0.a(usb_standard.o)
@@ -400,6 +627,12 @@ Discarded input sections
  .debug_macro   0x0000000000000000      0x19c libopencm3/lib/libopencm3_stm32l0.a(usb_standard.o)
  .debug_macro   0x0000000000000000       0x10 libopencm3/lib/libopencm3_stm32l0.a(usb_standard.o)
  .debug_macro   0x0000000000000000       0x1c libopencm3/lib/libopencm3_stm32l0.a(usb_standard.o)
+ .debug_line    0x0000000000000000      0xc9c libopencm3/lib/libopencm3_stm32l0.a(usb_standard.o)
+ .debug_str     0x0000000000000000     0x80f9 libopencm3/lib/libopencm3_stm32l0.a(usb_standard.o)
+ .comment       0x0000000000000000       0x4d libopencm3/lib/libopencm3_stm32l0.a(usb_standard.o)
+ .debug_frame   0x0000000000000000      0x1b8 libopencm3/lib/libopencm3_stm32l0.a(usb_standard.o)
+ .ARM.attributes
+                0x0000000000000000       0x2c libopencm3/lib/libopencm3_stm32l0.a(usb_standard.o)
  .group         0x0000000000000000        0xc libopencm3/lib/libopencm3_stm32l0.a(st_usbfs_v2.o)
  .group         0x0000000000000000        0xc libopencm3/lib/libopencm3_stm32l0.a(st_usbfs_v2.o)
  .group         0x0000000000000000        0xc libopencm3/lib/libopencm3_stm32l0.a(st_usbfs_v2.o)
@@ -425,6 +658,23 @@ Discarded input sections
  .text          0x0000000000000000        0x0 libopencm3/lib/libopencm3_stm32l0.a(st_usbfs_v2.o)
  .data          0x0000000000000000        0x0 libopencm3/lib/libopencm3_stm32l0.a(st_usbfs_v2.o)
  .bss           0x0000000000000000        0x0 libopencm3/lib/libopencm3_stm32l0.a(st_usbfs_v2.o)
+ .text.st_usbfs_v2_disconnect
+                0x0000000000000000       0x20 libopencm3/lib/libopencm3_stm32l0.a(st_usbfs_v2.o)
+ .text.st_usbfs_v2_usbd_init
+                0x0000000000000000       0x40 libopencm3/lib/libopencm3_stm32l0.a(st_usbfs_v2.o)
+ .text.st_usbfs_copy_to_pm
+                0x0000000000000000       0x1c libopencm3/lib/libopencm3_stm32l0.a(st_usbfs_v2.o)
+ .text.st_usbfs_copy_from_pm
+                0x0000000000000000       0x54 libopencm3/lib/libopencm3_stm32l0.a(st_usbfs_v2.o)
+ .rodata.st_usbfs_v2_usb_driver
+                0x0000000000000000       0x34 libopencm3/lib/libopencm3_stm32l0.a(st_usbfs_v2.o)
+ .debug_info    0x0000000000000000      0xe9e libopencm3/lib/libopencm3_stm32l0.a(st_usbfs_v2.o)
+ .debug_abbrev  0x0000000000000000      0x2ab libopencm3/lib/libopencm3_stm32l0.a(st_usbfs_v2.o)
+ .debug_loc     0x0000000000000000      0x260 libopencm3/lib/libopencm3_stm32l0.a(st_usbfs_v2.o)
+ .debug_aranges
+                0x0000000000000000       0x38 libopencm3/lib/libopencm3_stm32l0.a(st_usbfs_v2.o)
+ .debug_ranges  0x0000000000000000       0x40 libopencm3/lib/libopencm3_stm32l0.a(st_usbfs_v2.o)
+ .debug_macro   0x0000000000000000      0x139 libopencm3/lib/libopencm3_stm32l0.a(st_usbfs_v2.o)
  .debug_macro   0x0000000000000000      0xa72 libopencm3/lib/libopencm3_stm32l0.a(st_usbfs_v2.o)
  .debug_macro   0x0000000000000000       0x1c libopencm3/lib/libopencm3_stm32l0.a(st_usbfs_v2.o)
  .debug_macro   0x0000000000000000       0x22 libopencm3/lib/libopencm3_stm32l0.a(st_usbfs_v2.o)
@@ -441,10 +691,18 @@ Discarded input sections
  .debug_macro   0x0000000000000000       0x58 libopencm3/lib/libopencm3_stm32l0.a(st_usbfs_v2.o)
  .debug_macro   0x0000000000000000      0x91f libopencm3/lib/libopencm3_stm32l0.a(st_usbfs_v2.o)
  .debug_macro   0x0000000000000000       0x3a libopencm3/lib/libopencm3_stm32l0.a(st_usbfs_v2.o)
+ .debug_macro   0x0000000000000000      0x29e libopencm3/lib/libopencm3_stm32l0.a(st_usbfs_v2.o)
  .debug_macro   0x0000000000000000       0x9a libopencm3/lib/libopencm3_stm32l0.a(st_usbfs_v2.o)
  .debug_macro   0x0000000000000000      0x1a2 libopencm3/lib/libopencm3_stm32l0.a(st_usbfs_v2.o)
  .debug_macro   0x0000000000000000       0x10 libopencm3/lib/libopencm3_stm32l0.a(st_usbfs_v2.o)
  .debug_macro   0x0000000000000000       0x1c libopencm3/lib/libopencm3_stm32l0.a(st_usbfs_v2.o)
+ .debug_macro   0x0000000000000000       0x10 libopencm3/lib/libopencm3_stm32l0.a(st_usbfs_v2.o)
+ .debug_line    0x0000000000000000      0x5c6 libopencm3/lib/libopencm3_stm32l0.a(st_usbfs_v2.o)
+ .debug_str     0x0000000000000000     0x9d94 libopencm3/lib/libopencm3_stm32l0.a(st_usbfs_v2.o)
+ .comment       0x0000000000000000       0x4d libopencm3/lib/libopencm3_stm32l0.a(st_usbfs_v2.o)
+ .debug_frame   0x0000000000000000       0x78 libopencm3/lib/libopencm3_stm32l0.a(st_usbfs_v2.o)
+ .ARM.attributes
+                0x0000000000000000       0x2c libopencm3/lib/libopencm3_stm32l0.a(st_usbfs_v2.o)
  .group         0x0000000000000000        0xc libopencm3/lib/libopencm3_stm32l0.a(vector.o)
  .group         0x0000000000000000        0xc libopencm3/lib/libopencm3_stm32l0.a(vector.o)
  .group         0x0000000000000000        0xc libopencm3/lib/libopencm3_stm32l0.a(vector.o)
@@ -473,8 +731,6 @@ Discarded input sections
  .debug_macro   0x0000000000000000      0x1df libopencm3/lib/libopencm3_stm32l0.a(vector.o)
  .debug_macro   0x0000000000000000       0x22 libopencm3/lib/libopencm3_stm32l0.a(vector.o)
  .debug_macro   0x0000000000000000       0xe8 libopencm3/lib/libopencm3_stm32l0.a(vector.o)
- .debug_macro   0x0000000000000000       0x49 libopencm3/lib/libopencm3_stm32l0.a(vector.o)
- .debug_macro   0x0000000000000000       0xca libopencm3/lib/libopencm3_stm32l0.a(vector.o)
  .group         0x0000000000000000        0xc libopencm3/lib/libopencm3_stm32l0.a(assert.o)
  .group         0x0000000000000000        0xc libopencm3/lib/libopencm3_stm32l0.a(assert.o)
  .group         0x0000000000000000        0xc libopencm3/lib/libopencm3_stm32l0.a(assert.o)
@@ -590,6 +846,37 @@ Discarded input sections
  .text          0x0000000000000000        0x0 libopencm3/lib/libopencm3_stm32l0.a(st_usbfs_core.o)
  .data          0x0000000000000000        0x0 libopencm3/lib/libopencm3_stm32l0.a(st_usbfs_core.o)
  .bss           0x0000000000000000        0x0 libopencm3/lib/libopencm3_stm32l0.a(st_usbfs_core.o)
+ .text.st_usbfs_set_address
+                0x0000000000000000       0x10 libopencm3/lib/libopencm3_stm32l0.a(st_usbfs_core.o)
+ .text.st_usbfs_set_ep_rx_bufsize
+                0x0000000000000000       0x38 libopencm3/lib/libopencm3_stm32l0.a(st_usbfs_core.o)
+ .text.st_usbfs_ep_setup
+                0x0000000000000000      0x114 libopencm3/lib/libopencm3_stm32l0.a(st_usbfs_core.o)
+ .text.st_usbfs_endpoints_reset
+                0x0000000000000000       0x44 libopencm3/lib/libopencm3_stm32l0.a(st_usbfs_core.o)
+ .text.st_usbfs_ep_stall_set
+                0x0000000000000000       0xa4 libopencm3/lib/libopencm3_stm32l0.a(st_usbfs_core.o)
+ .text.st_usbfs_ep_stall_get
+                0x0000000000000000       0x3c libopencm3/lib/libopencm3_stm32l0.a(st_usbfs_core.o)
+ .text.st_usbfs_ep_nak_set
+                0x0000000000000000       0x4c libopencm3/lib/libopencm3_stm32l0.a(st_usbfs_core.o)
+ .text.st_usbfs_ep_write_packet
+                0x0000000000000000       0x74 libopencm3/lib/libopencm3_stm32l0.a(st_usbfs_core.o)
+ .text.st_usbfs_ep_read_packet
+                0x0000000000000000       0xa8 libopencm3/lib/libopencm3_stm32l0.a(st_usbfs_core.o)
+ .text.st_usbfs_poll
+                0x0000000000000000       0xfc libopencm3/lib/libopencm3_stm32l0.a(st_usbfs_core.o)
+ .bss.st_usbfs_dev
+                0x0000000000000000       0xfc libopencm3/lib/libopencm3_stm32l0.a(st_usbfs_core.o)
+ .bss.st_usbfs_force_nak
+                0x0000000000000000        0x8 libopencm3/lib/libopencm3_stm32l0.a(st_usbfs_core.o)
+ .debug_info    0x0000000000000000     0x109b libopencm3/lib/libopencm3_stm32l0.a(st_usbfs_core.o)
+ .debug_abbrev  0x0000000000000000      0x2c9 libopencm3/lib/libopencm3_stm32l0.a(st_usbfs_core.o)
+ .debug_loc     0x0000000000000000      0x8e5 libopencm3/lib/libopencm3_stm32l0.a(st_usbfs_core.o)
+ .debug_aranges
+                0x0000000000000000       0x68 libopencm3/lib/libopencm3_stm32l0.a(st_usbfs_core.o)
+ .debug_ranges  0x0000000000000000       0xf0 libopencm3/lib/libopencm3_stm32l0.a(st_usbfs_core.o)
+ .debug_macro   0x0000000000000000      0x139 libopencm3/lib/libopencm3_stm32l0.a(st_usbfs_core.o)
  .debug_macro   0x0000000000000000      0xa72 libopencm3/lib/libopencm3_stm32l0.a(st_usbfs_core.o)
  .debug_macro   0x0000000000000000       0x1c libopencm3/lib/libopencm3_stm32l0.a(st_usbfs_core.o)
  .debug_macro   0x0000000000000000       0x22 libopencm3/lib/libopencm3_stm32l0.a(st_usbfs_core.o)
@@ -612,23 +899,46 @@ Discarded input sections
  .debug_macro   0x0000000000000000       0x10 libopencm3/lib/libopencm3_stm32l0.a(st_usbfs_core.o)
  .debug_macro   0x0000000000000000       0x1c libopencm3/lib/libopencm3_stm32l0.a(st_usbfs_core.o)
  .debug_macro   0x0000000000000000       0x10 libopencm3/lib/libopencm3_stm32l0.a(st_usbfs_core.o)
+ .debug_line    0x0000000000000000      0x8da libopencm3/lib/libopencm3_stm32l0.a(st_usbfs_core.o)
+ .debug_str     0x0000000000000000     0x9bb6 libopencm3/lib/libopencm3_stm32l0.a(st_usbfs_core.o)
+ .comment       0x0000000000000000       0x4d libopencm3/lib/libopencm3_stm32l0.a(st_usbfs_core.o)
+ .debug_frame   0x0000000000000000      0x114 libopencm3/lib/libopencm3_stm32l0.a(st_usbfs_core.o)
+ .ARM.attributes
+                0x0000000000000000       0x2c libopencm3/lib/libopencm3_stm32l0.a(st_usbfs_core.o)
  .text          0x0000000000000000        0x0 /usr/local/Cellar/arm-gcc-bin/9-2020-q2-update/bin/../lib/gcc/arm-none-eabi/9.3.1/../../../../arm-none-eabi/lib/thumb/v6-m/nofp/libc_nano.a(lib_a-memcpy-stub.o)
  .data          0x0000000000000000        0x0 /usr/local/Cellar/arm-gcc-bin/9-2020-q2-update/bin/../lib/gcc/arm-none-eabi/9.3.1/../../../../arm-none-eabi/lib/thumb/v6-m/nofp/libc_nano.a(lib_a-memcpy-stub.o)
  .bss           0x0000000000000000        0x0 /usr/local/Cellar/arm-gcc-bin/9-2020-q2-update/bin/../lib/gcc/arm-none-eabi/9.3.1/../../../../arm-none-eabi/lib/thumb/v6-m/nofp/libc_nano.a(lib_a-memcpy-stub.o)
+ .text.memcpy   0x0000000000000000       0x12 /usr/local/Cellar/arm-gcc-bin/9-2020-q2-update/bin/../lib/gcc/arm-none-eabi/9.3.1/../../../../arm-none-eabi/lib/thumb/v6-m/nofp/libc_nano.a(lib_a-memcpy-stub.o)
+ .debug_frame   0x0000000000000000       0x28 /usr/local/Cellar/arm-gcc-bin/9-2020-q2-update/bin/../lib/gcc/arm-none-eabi/9.3.1/../../../../arm-none-eabi/lib/thumb/v6-m/nofp/libc_nano.a(lib_a-memcpy-stub.o)
+ .ARM.attributes
+                0x0000000000000000       0x2c /usr/local/Cellar/arm-gcc-bin/9-2020-q2-update/bin/../lib/gcc/arm-none-eabi/9.3.1/../../../../arm-none-eabi/lib/thumb/v6-m/nofp/libc_nano.a(lib_a-memcpy-stub.o)
+ .text          0x0000000000000000        0xe /usr/local/Cellar/arm-gcc-bin/9-2020-q2-update/bin/../lib/gcc/arm-none-eabi/9.3.1/../../../../arm-none-eabi/lib/thumb/v6-m/nofp/libc_nano.a(lib_a-strlen.o)
  .data          0x0000000000000000        0x0 /usr/local/Cellar/arm-gcc-bin/9-2020-q2-update/bin/../lib/gcc/arm-none-eabi/9.3.1/../../../../arm-none-eabi/lib/thumb/v6-m/nofp/libc_nano.a(lib_a-strlen.o)
  .bss           0x0000000000000000        0x0 /usr/local/Cellar/arm-gcc-bin/9-2020-q2-update/bin/../lib/gcc/arm-none-eabi/9.3.1/../../../../arm-none-eabi/lib/thumb/v6-m/nofp/libc_nano.a(lib_a-strlen.o)
+ .ARM.attributes
+                0x0000000000000000       0x1c /usr/local/Cellar/arm-gcc-bin/9-2020-q2-update/bin/../lib/gcc/arm-none-eabi/9.3.1/../../../../arm-none-eabi/lib/thumb/v6-m/nofp/libc_nano.a(lib_a-strlen.o)
+ .text          0x0000000000000000       0x14 /usr/local/Cellar/arm-gcc-bin/9-2020-q2-update/bin/../lib/gcc/arm-none-eabi/9.3.1/thumb/v6-m/nofp/libgcc.a(_thumb1_case_uqi.o)
  .data          0x0000000000000000        0x0 /usr/local/Cellar/arm-gcc-bin/9-2020-q2-update/bin/../lib/gcc/arm-none-eabi/9.3.1/thumb/v6-m/nofp/libgcc.a(_thumb1_case_uqi.o)
  .bss           0x0000000000000000        0x0 /usr/local/Cellar/arm-gcc-bin/9-2020-q2-update/bin/../lib/gcc/arm-none-eabi/9.3.1/thumb/v6-m/nofp/libgcc.a(_thumb1_case_uqi.o)
+ .ARM.attributes
+                0x0000000000000000       0x1e /usr/local/Cellar/arm-gcc-bin/9-2020-q2-update/bin/../lib/gcc/arm-none-eabi/9.3.1/thumb/v6-m/nofp/libgcc.a(_thumb1_case_uqi.o)
  .text          0x0000000000000000      0x114 /usr/local/Cellar/arm-gcc-bin/9-2020-q2-update/bin/../lib/gcc/arm-none-eabi/9.3.1/thumb/v6-m/nofp/libgcc.a(_udivsi3.o)
  .data          0x0000000000000000        0x0 /usr/local/Cellar/arm-gcc-bin/9-2020-q2-update/bin/../lib/gcc/arm-none-eabi/9.3.1/thumb/v6-m/nofp/libgcc.a(_udivsi3.o)
  .bss           0x0000000000000000        0x0 /usr/local/Cellar/arm-gcc-bin/9-2020-q2-update/bin/../lib/gcc/arm-none-eabi/9.3.1/thumb/v6-m/nofp/libgcc.a(_udivsi3.o)
  .debug_frame   0x0000000000000000       0x20 /usr/local/Cellar/arm-gcc-bin/9-2020-q2-update/bin/../lib/gcc/arm-none-eabi/9.3.1/thumb/v6-m/nofp/libgcc.a(_udivsi3.o)
  .ARM.attributes
                 0x0000000000000000       0x1e /usr/local/Cellar/arm-gcc-bin/9-2020-q2-update/bin/../lib/gcc/arm-none-eabi/9.3.1/thumb/v6-m/nofp/libgcc.a(_udivsi3.o)
+ .text          0x0000000000000000      0x1d4 /usr/local/Cellar/arm-gcc-bin/9-2020-q2-update/bin/../lib/gcc/arm-none-eabi/9.3.1/thumb/v6-m/nofp/libgcc.a(_divsi3.o)
  .data          0x0000000000000000        0x0 /usr/local/Cellar/arm-gcc-bin/9-2020-q2-update/bin/../lib/gcc/arm-none-eabi/9.3.1/thumb/v6-m/nofp/libgcc.a(_divsi3.o)
  .bss           0x0000000000000000        0x0 /usr/local/Cellar/arm-gcc-bin/9-2020-q2-update/bin/../lib/gcc/arm-none-eabi/9.3.1/thumb/v6-m/nofp/libgcc.a(_divsi3.o)
+ .debug_frame   0x0000000000000000       0x20 /usr/local/Cellar/arm-gcc-bin/9-2020-q2-update/bin/../lib/gcc/arm-none-eabi/9.3.1/thumb/v6-m/nofp/libgcc.a(_divsi3.o)
+ .ARM.attributes
+                0x0000000000000000       0x1e /usr/local/Cellar/arm-gcc-bin/9-2020-q2-update/bin/../lib/gcc/arm-none-eabi/9.3.1/thumb/v6-m/nofp/libgcc.a(_divsi3.o)
+ .text          0x0000000000000000        0x4 /usr/local/Cellar/arm-gcc-bin/9-2020-q2-update/bin/../lib/gcc/arm-none-eabi/9.3.1/thumb/v6-m/nofp/libgcc.a(_dvmd_tls.o)
  .data          0x0000000000000000        0x0 /usr/local/Cellar/arm-gcc-bin/9-2020-q2-update/bin/../lib/gcc/arm-none-eabi/9.3.1/thumb/v6-m/nofp/libgcc.a(_dvmd_tls.o)
  .bss           0x0000000000000000        0x0 /usr/local/Cellar/arm-gcc-bin/9-2020-q2-update/bin/../lib/gcc/arm-none-eabi/9.3.1/thumb/v6-m/nofp/libgcc.a(_dvmd_tls.o)
+ .ARM.attributes
+                0x0000000000000000       0x1e /usr/local/Cellar/arm-gcc-bin/9-2020-q2-update/bin/../lib/gcc/arm-none-eabi/9.3.1/thumb/v6-m/nofp/libgcc.a(_dvmd_tls.o)
 
 Memory Configuration
 
@@ -639,8 +949,14 @@ rom              0x0000000008000000 0x0000000000010000 xr
 
 Linker script and memory map
 
+LOAD hub/obj/bootloader.o
 LOAD hub/obj/cusb.o
-LOAD hub/obj/main.o
+LOAD hub/obj/hub.o
+LOAD hub/obj/test_hub.o
+LOAD hub/obj/bootlaoder_utils.o
+LOAD hub/obj/bootloader_utils.o
+LOAD hub/obj/rfm.o
+LOAD hub/obj/testing.o
 LOAD libopencm3/lib/libopencm3_stm32l0.a
 START GROUP
 LOAD /usr/local/Cellar/arm-gcc-bin/9-2020-q2-update/bin/../lib/gcc/arm-none-eabi/9.3.1/../../../../arm-none-eabi/lib/thumb/v6-m/nofp/libc_nano.a
@@ -656,612 +972,188 @@ LOAD /usr/local/Cellar/arm-gcc-bin/9-2020-q2-update/bin/../lib/gcc/arm-none-eabi
 LOAD /usr/local/Cellar/arm-gcc-bin/9-2020-q2-update/bin/../lib/gcc/arm-none-eabi/9.3.1/../../../../arm-none-eabi/lib/thumb/v6-m/nofp/libc_nano.a
 END GROUP
 
-.text           0x0000000008000000     0x1888
+.text           0x0000000008000000      0x180
  *(.vectors)
  .vectors       0x0000000008000000       0xc0 libopencm3/lib/libopencm3_stm32l0.a(vector.o)
                 0x0000000008000000                vector_table
  *(.text*)
- .text.hid_control_request
-                0x00000000080000c0       0x38 hub/obj/cusb.o
- .text.hid_report_callback
-                0x00000000080000f8       0x10 hub/obj/cusb.o
-                0x00000000080000f8                hid_report_callback
- .text.hid_set_config
-                0x0000000008000108       0x3c hub/obj/cusb.o
- .text.cusb_clock_init
-                0x0000000008000144       0xb8 hub/obj/cusb.o
- .text.cusb_init
-                0x00000000080001fc       0x60 hub/obj/cusb.o
-                0x00000000080001fc                cusb_init
- .text.cusb_test_poll
-                0x000000000800025c       0x10 hub/obj/cusb.o
-                0x000000000800025c                cusb_test_poll
- .text.main     0x000000000800026c        0xe hub/obj/main.o
-                0x000000000800026c                main
- *fill*         0x000000000800027a        0x2 
- .text.flash_set_ws
-                0x000000000800027c       0x14 libopencm3/lib/libopencm3_stm32l0.a(flash_common_all.o)
-                0x000000000800027c                flash_set_ws
- .text.rcc_osc_on
-                0x0000000008000290       0x54 libopencm3/lib/libopencm3_stm32l0.a(rcc.o)
-                0x0000000008000290                rcc_osc_on
- .text.rcc_osc_off
-                0x00000000080002e4       0x5c libopencm3/lib/libopencm3_stm32l0.a(rcc.o)
-                0x00000000080002e4                rcc_osc_off
- .text.rcc_is_osc_ready
-                0x0000000008000340       0x58 libopencm3/lib/libopencm3_stm32l0.a(rcc.o)
-                0x0000000008000340                rcc_is_osc_ready
- .text.rcc_wait_for_osc_ready
-                0x0000000008000398       0x10 libopencm3/lib/libopencm3_stm32l0.a(rcc.o)
-                0x0000000008000398                rcc_wait_for_osc_ready
- .text.rcc_set_hsi48_source_rc48
-                0x00000000080003a8       0x14 libopencm3/lib/libopencm3_stm32l0.a(rcc.o)
-                0x00000000080003a8                rcc_set_hsi48_source_rc48
- .text.rcc_set_sysclk_source
-                0x00000000080003bc       0x4c libopencm3/lib/libopencm3_stm32l0.a(rcc.o)
-                0x00000000080003bc                rcc_set_sysclk_source
- .text.rcc_set_ppre1
-                0x0000000008000408       0x18 libopencm3/lib/libopencm3_stm32l0.a(rcc.o)
-                0x0000000008000408                rcc_set_ppre1
- .text.rcc_set_ppre2
-                0x0000000008000420       0x18 libopencm3/lib/libopencm3_stm32l0.a(rcc.o)
-                0x0000000008000420                rcc_set_ppre2
- .text.rcc_set_hpre
-                0x0000000008000438       0x14 libopencm3/lib/libopencm3_stm32l0.a(rcc.o)
-                0x0000000008000438                rcc_set_hpre
- .text.rcc_periph_clock_enable
-                0x000000000800044c       0x1c libopencm3/lib/libopencm3_stm32l0.a(rcc_common_all.o)
-                0x000000000800044c                rcc_periph_clock_enable
- .text.usbd_init
-                0x0000000008000468       0x54 libopencm3/lib/libopencm3_stm32l0.a(usb.o)
-                0x0000000008000468                usbd_init
- .text.usbd_poll
-                0x00000000080004bc        0xe libopencm3/lib/libopencm3_stm32l0.a(usb.o)
-                0x00000000080004bc                usbd_poll
- .text.usbd_ep_setup
-                0x00000000080004ca       0x12 libopencm3/lib/libopencm3_stm32l0.a(usb.o)
-                0x00000000080004ca                usbd_ep_setup
- .text._usbd_reset
-                0x00000000080004dc       0x2e libopencm3/lib/libopencm3_stm32l0.a(usb.o)
-                0x00000000080004dc                _usbd_reset
- .text.usbd_ep_write_packet
-                0x000000000800050a        0xe libopencm3/lib/libopencm3_stm32l0.a(usb.o)
-                0x000000000800050a                usbd_ep_write_packet
- .text.usbd_ep_read_packet
-                0x0000000008000518        0xe libopencm3/lib/libopencm3_stm32l0.a(usb.o)
-                0x0000000008000518                usbd_ep_read_packet
- .text.usbd_ep_stall_set
-                0x0000000008000526        0xe libopencm3/lib/libopencm3_stm32l0.a(usb.o)
-                0x0000000008000526                usbd_ep_stall_set
- .text.usbd_ep_stall_get
-                0x0000000008000534        0xe libopencm3/lib/libopencm3_stm32l0.a(usb.o)
-                0x0000000008000534                usbd_ep_stall_get
- .text.usbd_ep_nak_set
-                0x0000000008000542        0xe libopencm3/lib/libopencm3_stm32l0.a(usb.o)
-                0x0000000008000542                usbd_ep_nak_set
- .text.usb_control_send_chunk
-                0x0000000008000550       0x50 libopencm3/lib/libopencm3_stm32l0.a(usb_control.o)
- .text.usb_control_request_dispatch
-                0x00000000080005a0       0x66 libopencm3/lib/libopencm3_stm32l0.a(usb_control.o)
- .text.stall_transaction
-                0x0000000008000606       0x14 libopencm3/lib/libopencm3_stm32l0.a(usb_control.o)
- .text.usb_control_recv_chunk
-                0x000000000800061a       0x3e libopencm3/lib/libopencm3_stm32l0.a(usb_control.o)
- .text.usb_control_setup_read
-                0x0000000008000658       0x68 libopencm3/lib/libopencm3_stm32l0.a(usb_control.o)
- .text.usbd_register_control_callback
-                0x00000000080006c0       0x30 libopencm3/lib/libopencm3_stm32l0.a(usb_control.o)
-                0x00000000080006c0                usbd_register_control_callback
- .text._usbd_control_setup
-                0x00000000080006f0       0x6a libopencm3/lib/libopencm3_stm32l0.a(usb_control.o)
-                0x00000000080006f0                _usbd_control_setup
- .text._usbd_control_out
-                0x000000000800075a       0x82 libopencm3/lib/libopencm3_stm32l0.a(usb_control.o)
-                0x000000000800075a                _usbd_control_out
- .text._usbd_control_in
-                0x00000000080007dc       0x60 libopencm3/lib/libopencm3_stm32l0.a(usb_control.o)
-                0x00000000080007dc                _usbd_control_in
- .text.usb_standard_set_address
-                0x000000000800083c       0x36 libopencm3/lib/libopencm3_stm32l0.a(usb_standard.o)
- .text.usb_standard_set_configuration
-                0x0000000008000872       0xb8 libopencm3/lib/libopencm3_stm32l0.a(usb_standard.o)
- .text.usb_standard_get_configuration
-                0x000000000800092a       0x2a libopencm3/lib/libopencm3_stm32l0.a(usb_standard.o)
- .text.usb_standard_get_interface
-                0x0000000008000954       0x50 libopencm3/lib/libopencm3_stm32l0.a(usb_standard.o)
- .text.usb_standard_device_get_status
-                0x00000000080009a4       0x18 libopencm3/lib/libopencm3_stm32l0.a(usb_standard.o)
- .text.usb_standard_endpoint_get_status
-                0x00000000080009bc       0x26 libopencm3/lib/libopencm3_stm32l0.a(usb_standard.o)
- .text.usb_standard_endpoint_stall
-                0x00000000080009e2        0xe libopencm3/lib/libopencm3_stm32l0.a(usb_standard.o)
- .text.usb_standard_endpoint_unstall
-                0x00000000080009f0        0xe libopencm3/lib/libopencm3_stm32l0.a(usb_standard.o)
- .text.usb_standard_set_interface
-                0x00000000080009fe       0x7c libopencm3/lib/libopencm3_stm32l0.a(usb_standard.o)
- *fill*         0x0000000008000a7a        0x2 
- .text.usb_standard_get_descriptor
-                0x0000000008000a7c      0x358 libopencm3/lib/libopencm3_stm32l0.a(usb_standard.o)
- .text.usb_standard_interface_get_status
-                0x0000000008000dd4       0x18 libopencm3/lib/libopencm3_stm32l0.a(usb_standard.o)
- .text.usbd_register_set_config_callback
-                0x0000000008000dec       0x2e libopencm3/lib/libopencm3_stm32l0.a(usb_standard.o)
-                0x0000000008000dec                usbd_register_set_config_callback
- *fill*         0x0000000008000e1a        0x2 
- .text._usbd_standard_request_device
-                0x0000000008000e1c       0x48 libopencm3/lib/libopencm3_stm32l0.a(usb_standard.o)
-                0x0000000008000e1c                _usbd_standard_request_device
- .text._usbd_standard_request_interface
-                0x0000000008000e64       0x30 libopencm3/lib/libopencm3_stm32l0.a(usb_standard.o)
-                0x0000000008000e64                _usbd_standard_request_interface
- .text._usbd_standard_request_endpoint
-                0x0000000008000e94       0x4c libopencm3/lib/libopencm3_stm32l0.a(usb_standard.o)
-                0x0000000008000e94                _usbd_standard_request_endpoint
- .text._usbd_standard_request
-                0x0000000008000ee0       0x38 libopencm3/lib/libopencm3_stm32l0.a(usb_standard.o)
-                0x0000000008000ee0                _usbd_standard_request
- .text.st_usbfs_v2_disconnect
-                0x0000000008000f18       0x20 libopencm3/lib/libopencm3_stm32l0.a(st_usbfs_v2.o)
- .text.st_usbfs_v2_usbd_init
-                0x0000000008000f38       0x40 libopencm3/lib/libopencm3_stm32l0.a(st_usbfs_v2.o)
- .text.st_usbfs_copy_to_pm
-                0x0000000008000f78       0x1c libopencm3/lib/libopencm3_stm32l0.a(st_usbfs_v2.o)
-                0x0000000008000f78                st_usbfs_copy_to_pm
- .text.st_usbfs_copy_from_pm
-                0x0000000008000f94       0x54 libopencm3/lib/libopencm3_stm32l0.a(st_usbfs_v2.o)
-                0x0000000008000f94                st_usbfs_copy_from_pm
+ .text.startup.main
+                0x00000000080000c0       0x10 hub/obj/hub.o
+                0x00000000080000c0                main
+ .text.boot_jump_to_application
+                0x00000000080000d0       0x1c hub/obj/bootloader_utils.o
+                0x00000000080000d0                boot_jump_to_application
+ .text.test_boot
+                0x00000000080000ec        0x8 hub/obj/testing.o
+                0x00000000080000ec                test_boot
  .text.blocking_handler
-                0x0000000008000fe8        0x2 libopencm3/lib/libopencm3_stm32l0.a(vector.o)
-                0x0000000008000fe8                exti0_1_isr
-                0x0000000008000fe8                tim7_isr
-                0x0000000008000fe8                blocking_handler
-                0x0000000008000fe8                tsc_isr
-                0x0000000008000fe8                spi1_isr
-                0x0000000008000fe8                i2c1_isr
-                0x0000000008000fe8                i2c2_isr
-                0x0000000008000fe8                tim21_isr
-                0x0000000008000fe8                usart1_isr
-                0x0000000008000fe8                i2c3_isr
-                0x0000000008000fe8                reserved4_isr
-                0x0000000008000fe8                exti2_3_isr
-                0x0000000008000fe8                lptim1_isr
-                0x0000000008000fe8                pvd_isr
-                0x0000000008000fe8                rcc_isr
-                0x0000000008000fe8                flash_isr
-                0x0000000008000fe8                hard_fault_handler
-                0x0000000008000fe8                spi2_isr
-                0x0000000008000fe8                lpuart1_aes_rng_isr
-                0x0000000008000fe8                usb_isr
-                0x0000000008000fe8                tim3_isr
-                0x0000000008000fe8                usart2_isr
-                0x0000000008000fe8                adc_comp_isr
-                0x0000000008000fe8                dma1_channel1_isr
-                0x0000000008000fe8                tim6_dac_isr
-                0x0000000008000fe8                lcd_isr
-                0x0000000008000fe8                dma1_channel2_3_isr
-                0x0000000008000fe8                tim22_isr
-                0x0000000008000fe8                exti4_15_isr
-                0x0000000008000fe8                usart4_5_isr
-                0x0000000008000fe8                wwdg_isr
-                0x0000000008000fe8                tim2_isr
-                0x0000000008000fe8                dma1_channel4_5_isr
-                0x0000000008000fe8                rtc_isr
+                0x00000000080000f4        0x2 libopencm3/lib/libopencm3_stm32l0.a(vector.o)
+                0x00000000080000f4                exti0_1_isr
+                0x00000000080000f4                tim7_isr
+                0x00000000080000f4                blocking_handler
+                0x00000000080000f4                tsc_isr
+                0x00000000080000f4                spi1_isr
+                0x00000000080000f4                i2c1_isr
+                0x00000000080000f4                i2c2_isr
+                0x00000000080000f4                tim21_isr
+                0x00000000080000f4                usart1_isr
+                0x00000000080000f4                i2c3_isr
+                0x00000000080000f4                reserved4_isr
+                0x00000000080000f4                exti2_3_isr
+                0x00000000080000f4                lptim1_isr
+                0x00000000080000f4                pvd_isr
+                0x00000000080000f4                rcc_isr
+                0x00000000080000f4                flash_isr
+                0x00000000080000f4                hard_fault_handler
+                0x00000000080000f4                spi2_isr
+                0x00000000080000f4                lpuart1_aes_rng_isr
+                0x00000000080000f4                usb_isr
+                0x00000000080000f4                tim3_isr
+                0x00000000080000f4                usart2_isr
+                0x00000000080000f4                adc_comp_isr
+                0x00000000080000f4                dma1_channel1_isr
+                0x00000000080000f4                tim6_dac_isr
+                0x00000000080000f4                lcd_isr
+                0x00000000080000f4                dma1_channel2_3_isr
+                0x00000000080000f4                tim22_isr
+                0x00000000080000f4                exti4_15_isr
+                0x00000000080000f4                usart4_5_isr
+                0x00000000080000f4                wwdg_isr
+                0x00000000080000f4                tim2_isr
+                0x00000000080000f4                dma1_channel4_5_isr
+                0x00000000080000f4                rtc_isr
  .text.null_handler
-                0x0000000008000fea        0x2 libopencm3/lib/libopencm3_stm32l0.a(vector.o)
-                0x0000000008000fea                null_handler
-                0x0000000008000fea                sv_call_handler
-                0x0000000008000fea                pend_sv_handler
-                0x0000000008000fea                sys_tick_handler
-                0x0000000008000fea                nmi_handler
+                0x00000000080000f6        0x2 libopencm3/lib/libopencm3_stm32l0.a(vector.o)
+                0x00000000080000f6                null_handler
+                0x00000000080000f6                sv_call_handler
+                0x00000000080000f6                pend_sv_handler
+                0x00000000080000f6                sys_tick_handler
+                0x00000000080000f6                nmi_handler
  .text.reset_handler
-                0x0000000008000fec       0x88 libopencm3/lib/libopencm3_stm32l0.a(vector.o)
-                0x0000000008000fec                reset_handler
- .text.st_usbfs_set_address
-                0x0000000008001074       0x10 libopencm3/lib/libopencm3_stm32l0.a(st_usbfs_core.o)
-                0x0000000008001074                st_usbfs_set_address
- .text.st_usbfs_set_ep_rx_bufsize
-                0x0000000008001084       0x38 libopencm3/lib/libopencm3_stm32l0.a(st_usbfs_core.o)
-                0x0000000008001084                st_usbfs_set_ep_rx_bufsize
- .text.st_usbfs_ep_setup
-                0x00000000080010bc      0x114 libopencm3/lib/libopencm3_stm32l0.a(st_usbfs_core.o)
-                0x00000000080010bc                st_usbfs_ep_setup
- .text.st_usbfs_endpoints_reset
-                0x00000000080011d0       0x44 libopencm3/lib/libopencm3_stm32l0.a(st_usbfs_core.o)
-                0x00000000080011d0                st_usbfs_endpoints_reset
- .text.st_usbfs_ep_stall_set
-                0x0000000008001214       0xa4 libopencm3/lib/libopencm3_stm32l0.a(st_usbfs_core.o)
-                0x0000000008001214                st_usbfs_ep_stall_set
- .text.st_usbfs_ep_stall_get
-                0x00000000080012b8       0x3c libopencm3/lib/libopencm3_stm32l0.a(st_usbfs_core.o)
-                0x00000000080012b8                st_usbfs_ep_stall_get
- .text.st_usbfs_ep_nak_set
-                0x00000000080012f4       0x4c libopencm3/lib/libopencm3_stm32l0.a(st_usbfs_core.o)
-                0x00000000080012f4                st_usbfs_ep_nak_set
- .text.st_usbfs_ep_write_packet
-                0x0000000008001340       0x74 libopencm3/lib/libopencm3_stm32l0.a(st_usbfs_core.o)
-                0x0000000008001340                st_usbfs_ep_write_packet
- .text.st_usbfs_ep_read_packet
-                0x00000000080013b4       0xa8 libopencm3/lib/libopencm3_stm32l0.a(st_usbfs_core.o)
-                0x00000000080013b4                st_usbfs_ep_read_packet
- .text.st_usbfs_poll
-                0x000000000800145c       0xfc libopencm3/lib/libopencm3_stm32l0.a(st_usbfs_core.o)
-                0x000000000800145c                st_usbfs_poll
- .text.memcpy   0x0000000008001558       0x12 /usr/local/Cellar/arm-gcc-bin/9-2020-q2-update/bin/../lib/gcc/arm-none-eabi/9.3.1/../../../../arm-none-eabi/lib/thumb/v6-m/nofp/libc_nano.a(lib_a-memcpy-stub.o)
-                0x0000000008001558                memcpy
- .text          0x000000000800156a        0xe /usr/local/Cellar/arm-gcc-bin/9-2020-q2-update/bin/../lib/gcc/arm-none-eabi/9.3.1/../../../../arm-none-eabi/lib/thumb/v6-m/nofp/libc_nano.a(lib_a-strlen.o)
-                0x000000000800156a                strlen
- .text          0x0000000008001578       0x14 /usr/local/Cellar/arm-gcc-bin/9-2020-q2-update/bin/../lib/gcc/arm-none-eabi/9.3.1/thumb/v6-m/nofp/libgcc.a(_thumb1_case_uqi.o)
-                0x0000000008001578                __gnu_thumb1_case_uqi
- .text          0x000000000800158c      0x1d4 /usr/local/Cellar/arm-gcc-bin/9-2020-q2-update/bin/../lib/gcc/arm-none-eabi/9.3.1/thumb/v6-m/nofp/libgcc.a(_divsi3.o)
-                0x000000000800158c                __aeabi_idiv
-                0x000000000800158c                __divsi3
-                0x0000000008001758                __aeabi_idivmod
- .text          0x0000000008001760        0x4 /usr/local/Cellar/arm-gcc-bin/9-2020-q2-update/bin/../lib/gcc/arm-none-eabi/9.3.1/thumb/v6-m/nofp/libgcc.a(_dvmd_tls.o)
-                0x0000000008001760                __aeabi_ldiv0
-                0x0000000008001760                __aeabi_idiv0
-                0x0000000008001764                . = ALIGN (0x4)
+                0x00000000080000f8       0x88 libopencm3/lib/libopencm3_stm32l0.a(vector.o)
+                0x00000000080000f8                reset_handler
+                0x0000000008000180                . = ALIGN (0x4)
  *(.rodata*)
- .rodata.str1.4
-                0x0000000008001764       0x4a hub/obj/cusb.o
- *fill*         0x00000000080017ae        0x2 
- .rodata.cfg_desc
-                0x00000000080017b0        0xd hub/obj/cusb.o
- *fill*         0x00000000080017bd        0x3 
- .rodata.dev_desc
-                0x00000000080017c0       0x12 hub/obj/cusb.o
- *fill*         0x00000000080017d2        0x2 
- .rodata.hid_function
-                0x00000000080017d4        0x9 hub/obj/cusb.o
- *fill*         0x00000000080017dd        0x3 
- .rodata.hid_interface
-                0x00000000080017e0       0x15 hub/obj/cusb.o
- *fill*         0x00000000080017f5        0x3 
- .rodata.hid_interface_endpoints
-                0x00000000080017f8       0x1e hub/obj/cusb.o
- *fill*         0x0000000008001816        0x2 
- .rodata.hid_report_descriptor
-                0x0000000008001818       0x19 hub/obj/cusb.o
- *fill*         0x0000000008001831        0x3 
- .rodata.interfaces
-                0x0000000008001834       0x10 hub/obj/cusb.o
- .rodata.usb_strings
-                0x0000000008001844       0x10 hub/obj/cusb.o
- .rodata.st_usbfs_v2_usb_driver
-                0x0000000008001854       0x34 libopencm3/lib/libopencm3_stm32l0.a(st_usbfs_v2.o)
-                0x0000000008001854                st_usbfs_v2_usb_driver
-                0x0000000008001888                . = ALIGN (0x4)
+                0x0000000008000180                . = ALIGN (0x4)
 
-.glue_7         0x0000000008001888        0x0
- .glue_7        0x0000000008001888        0x0 linker stubs
+.glue_7         0x0000000008000180        0x0
+ .glue_7        0x0000000008000180        0x0 linker stubs
 
-.glue_7t        0x0000000008001888        0x0
- .glue_7t       0x0000000008001888        0x0 linker stubs
+.glue_7t        0x0000000008000180        0x0
+ .glue_7t       0x0000000008000180        0x0 linker stubs
 
-.vfp11_veneer   0x0000000008001888        0x0
- .vfp11_veneer  0x0000000008001888        0x0 linker stubs
+.vfp11_veneer   0x0000000008000180        0x0
+ .vfp11_veneer  0x0000000008000180        0x0 linker stubs
 
-.v4_bx          0x0000000008001888        0x0
- .v4_bx         0x0000000008001888        0x0 linker stubs
+.v4_bx          0x0000000008000180        0x0
+ .v4_bx         0x0000000008000180        0x0 linker stubs
 
-.iplt           0x0000000008001888        0x0
- .iplt          0x0000000008001888        0x0 hub/obj/cusb.o
+.iplt           0x0000000008000180        0x0
+ .iplt          0x0000000008000180        0x0 hub/obj/hub.o
 
-.rel.dyn        0x0000000008001888        0x0
- .rel.iplt      0x0000000008001888        0x0 hub/obj/cusb.o
+.rel.dyn        0x0000000008000180        0x0
+ .rel.iplt      0x0000000008000180        0x0 hub/obj/hub.o
 
-.preinit_array  0x0000000008001888        0x0
-                0x0000000008001888                . = ALIGN (0x4)
-                0x0000000008001888                __preinit_array_start = .
+.preinit_array  0x0000000008000180        0x0
+                0x0000000008000180                . = ALIGN (0x4)
+                0x0000000008000180                __preinit_array_start = .
  *(.preinit_array)
-                0x0000000008001888                __preinit_array_end = .
+                0x0000000008000180                __preinit_array_end = .
 
-.init_array     0x0000000008001888        0x0
-                0x0000000008001888                . = ALIGN (0x4)
-                0x0000000008001888                __init_array_start = .
+.init_array     0x0000000008000180        0x0
+                0x0000000008000180                . = ALIGN (0x4)
+                0x0000000008000180                __init_array_start = .
  *(SORT_BY_NAME(.init_array.*))
  *(.init_array)
-                0x0000000008001888                __init_array_end = .
+                0x0000000008000180                __init_array_end = .
 
-.fini_array     0x0000000008001888        0x0
-                0x0000000008001888                . = ALIGN (0x4)
-                0x0000000008001888                __fini_array_start = .
+.fini_array     0x0000000008000180        0x0
+                0x0000000008000180                . = ALIGN (0x4)
+                0x0000000008000180                __fini_array_start = .
  *(.fini_array)
  *(SORT_BY_NAME(.fini_array.*))
-                0x0000000008001888                __fini_array_end = .
+                0x0000000008000180                __fini_array_end = .
 
 .ARM.extab
  *(.ARM.extab*)
 
-.ARM.exidx      0x0000000008001888        0x0
-                0x0000000008001888                __exidx_start = .
+.ARM.exidx      0x0000000008000180        0x0
+                0x0000000008000180                __exidx_start = .
  *(.ARM.exidx*)
-                0x0000000008001888                __exidx_end = .
-                0x0000000008001888                . = ALIGN (0x4)
-                0x0000000008001888                _etext = .
+                0x0000000008000180                __exidx_end = .
+                0x0000000008000180                . = ALIGN (0x4)
+                0x0000000008000180                _etext = .
 
-.data           0x0000000020000000       0x4c load address 0x0000000008001888
+.data           0x0000000020000000        0x0 load address 0x0000000008000180
                 0x0000000020000000                _data = .
  *(.data*)
- .data.hid_report_buf
-                0x0000000020000000       0x40 hub/obj/cusb.o
- .data.rcc_ahb_frequency
-                0x0000000020000040        0x4 libopencm3/lib/libopencm3_stm32l0.a(rcc.o)
-                0x0000000020000040                rcc_ahb_frequency
- .data.rcc_apb1_frequency
-                0x0000000020000044        0x4 libopencm3/lib/libopencm3_stm32l0.a(rcc.o)
-                0x0000000020000044                rcc_apb1_frequency
- .data.rcc_apb2_frequency
-                0x0000000020000048        0x4 libopencm3/lib/libopencm3_stm32l0.a(rcc.o)
-                0x0000000020000048                rcc_apb2_frequency
-                0x000000002000004c                . = ALIGN (0x4)
-                0x000000002000004c                _edata = .
-                0x0000000008001888                _data_loadaddr = LOADADDR (.data)
+                0x0000000020000000                . = ALIGN (0x4)
+                0x0000000020000000                _edata = .
+                0x0000000008000180                _data_loadaddr = LOADADDR (.data)
 
-.igot.plt       0x000000002000004c        0x0 load address 0x00000000080018d4
- .igot.plt      0x000000002000004c        0x0 hub/obj/cusb.o
+.igot.plt       0x0000000020000000        0x0 load address 0x0000000008000180
+ .igot.plt      0x0000000020000000        0x0 hub/obj/hub.o
 
-.bss            0x000000002000004c      0x188 load address 0x00000000080018d4
+.bss            0x0000000020000000        0x0 load address 0x0000000008000180
  *(.bss*)
- .bss.usbd_control_buffer
-                0x000000002000004c       0x80 hub/obj/cusb.o
- .bss.usbd_dev  0x00000000200000cc        0x4 hub/obj/cusb.o
- .bss.st_usbfs_dev
-                0x00000000200000d0       0xfc libopencm3/lib/libopencm3_stm32l0.a(st_usbfs_core.o)
-                0x00000000200000d0                st_usbfs_dev
- .bss.st_usbfs_force_nak
-                0x00000000200001cc        0x8 libopencm3/lib/libopencm3_stm32l0.a(st_usbfs_core.o)
-                0x00000000200001cc                st_usbfs_force_nak
  *(COMMON)
-                0x00000000200001d4                . = ALIGN (0x4)
-                0x00000000200001d4                _ebss = .
+                0x0000000020000000                . = ALIGN (0x4)
+                0x0000000020000000                _ebss = .
 
 /DISCARD/
  *(.eh_frame)
-                0x00000000200001d4                . = ALIGN (0x4)
-                0x00000000200001d4                end = .
+                0x0000000020000000                . = ALIGN (0x4)
+                0x0000000020000000                end = .
                 0x0000000020002000                PROVIDE (_stack = (ORIGIN (ram) + LENGTH (ram)))
-OUTPUT(hub/bin/hub.elf elf32-littlearm)
+OUTPUT(hub/bin/hub_bootloader.elf elf32-littlearm)
 LOAD linker stubs
 
-.debug_info     0x0000000000000000     0x9a57
- .debug_info    0x0000000000000000     0x1365 hub/obj/cusb.o
- .debug_info    0x0000000000001365       0x7d hub/obj/main.o
- .debug_info    0x00000000000013e2       0xf6 libopencm3/lib/libopencm3_stm32l0.a(flash_common_all.o)
- .debug_info    0x00000000000014d8      0xbbd libopencm3/lib/libopencm3_stm32l0.a(rcc.o)
- .debug_info    0x0000000000002095      0x648 libopencm3/lib/libopencm3_stm32l0.a(rcc_common_all.o)
- .debug_info    0x00000000000026dd     0x17fd libopencm3/lib/libopencm3_stm32l0.a(usb.o)
- .debug_info    0x0000000000003eda     0x1939 libopencm3/lib/libopencm3_stm32l0.a(usb_control.o)
- .debug_info    0x0000000000005813     0x202f libopencm3/lib/libopencm3_stm32l0.a(usb_standard.o)
- .debug_info    0x0000000000007842      0xe9e libopencm3/lib/libopencm3_stm32l0.a(st_usbfs_v2.o)
- .debug_info    0x00000000000086e0      0x2dc libopencm3/lib/libopencm3_stm32l0.a(vector.o)
- .debug_info    0x00000000000089bc     0x109b libopencm3/lib/libopencm3_stm32l0.a(st_usbfs_core.o)
-
-.debug_abbrev   0x0000000000000000     0x1bbf
- .debug_abbrev  0x0000000000000000      0x2bd hub/obj/cusb.o
- .debug_abbrev  0x00000000000002bd       0x69 hub/obj/main.o
- .debug_abbrev  0x0000000000000326       0x97 libopencm3/lib/libopencm3_stm32l0.a(flash_common_all.o)
- .debug_abbrev  0x00000000000003bd      0x302 libopencm3/lib/libopencm3_stm32l0.a(rcc.o)
- .debug_abbrev  0x00000000000006bf      0x14c libopencm3/lib/libopencm3_stm32l0.a(rcc_common_all.o)
- .debug_abbrev  0x000000000000080b      0x336 libopencm3/lib/libopencm3_stm32l0.a(usb.o)
- .debug_abbrev  0x0000000000000b41      0x43a libopencm3/lib/libopencm3_stm32l0.a(usb_control.o)
- .debug_abbrev  0x0000000000000f7b      0x58b libopencm3/lib/libopencm3_stm32l0.a(usb_standard.o)
- .debug_abbrev  0x0000000000001506      0x2ab libopencm3/lib/libopencm3_stm32l0.a(st_usbfs_v2.o)
- .debug_abbrev  0x00000000000017b1      0x145 libopencm3/lib/libopencm3_stm32l0.a(vector.o)
- .debug_abbrev  0x00000000000018f6      0x2c9 libopencm3/lib/libopencm3_stm32l0.a(st_usbfs_core.o)
-
-.debug_loc      0x0000000000000000     0x3618
- .debug_loc     0x0000000000000000      0x174 hub/obj/cusb.o
- .debug_loc     0x0000000000000174       0x15 libopencm3/lib/libopencm3_stm32l0.a(flash_common_all.o)
- .debug_loc     0x0000000000000189      0x65b libopencm3/lib/libopencm3_stm32l0.a(rcc.o)
- .debug_loc     0x00000000000007e4       0x94 libopencm3/lib/libopencm3_stm32l0.a(rcc_common_all.o)
- .debug_loc     0x0000000000000878      0x4db libopencm3/lib/libopencm3_stm32l0.a(usb.o)
- .debug_loc     0x0000000000000d53      0x79b libopencm3/lib/libopencm3_stm32l0.a(usb_control.o)
- .debug_loc     0x00000000000014ee     0x14ca libopencm3/lib/libopencm3_stm32l0.a(usb_standard.o)
- .debug_loc     0x00000000000029b8      0x260 libopencm3/lib/libopencm3_stm32l0.a(st_usbfs_v2.o)
- .debug_loc     0x0000000000002c18      0x11b libopencm3/lib/libopencm3_stm32l0.a(vector.o)
- .debug_loc     0x0000000000002d33      0x8e5 libopencm3/lib/libopencm3_stm32l0.a(st_usbfs_core.o)
-
-.debug_aranges  0x0000000000000000      0x418
- .debug_aranges
-                0x0000000000000000       0x48 hub/obj/cusb.o
- .debug_aranges
-                0x0000000000000048       0x20 hub/obj/main.o
- .debug_aranges
-                0x0000000000000068       0x38 libopencm3/lib/libopencm3_stm32l0.a(flash_common_all.o)
- .debug_aranges
-                0x00000000000000a0       0xd0 libopencm3/lib/libopencm3_stm32l0.a(rcc.o)
- .debug_aranges
-                0x0000000000000170       0x58 libopencm3/lib/libopencm3_stm32l0.a(rcc_common_all.o)
- .debug_aranges
-                0x00000000000001c8       0x88 libopencm3/lib/libopencm3_stm32l0.a(usb.o)
- .debug_aranges
-                0x0000000000000250       0x60 libopencm3/lib/libopencm3_stm32l0.a(usb_control.o)
- .debug_aranges
-                0x00000000000002b0       0x98 libopencm3/lib/libopencm3_stm32l0.a(usb_standard.o)
- .debug_aranges
-                0x0000000000000348       0x38 libopencm3/lib/libopencm3_stm32l0.a(st_usbfs_v2.o)
- .debug_aranges
-                0x0000000000000380       0x30 libopencm3/lib/libopencm3_stm32l0.a(vector.o)
- .debug_aranges
-                0x00000000000003b0       0x68 libopencm3/lib/libopencm3_stm32l0.a(st_usbfs_core.o)
-
-.debug_ranges   0x0000000000000000      0x508
- .debug_ranges  0x0000000000000000       0x38 hub/obj/cusb.o
- .debug_ranges  0x0000000000000038       0x10 hub/obj/main.o
- .debug_ranges  0x0000000000000048       0x28 libopencm3/lib/libopencm3_stm32l0.a(flash_common_all.o)
- .debug_ranges  0x0000000000000070      0x148 libopencm3/lib/libopencm3_stm32l0.a(rcc.o)
- .debug_ranges  0x00000000000001b8       0x48 libopencm3/lib/libopencm3_stm32l0.a(rcc_common_all.o)
- .debug_ranges  0x0000000000000200       0x78 libopencm3/lib/libopencm3_stm32l0.a(usb.o)
- .debug_ranges  0x0000000000000278       0x50 libopencm3/lib/libopencm3_stm32l0.a(usb_control.o)
- .debug_ranges  0x00000000000002c8       0xf0 libopencm3/lib/libopencm3_stm32l0.a(usb_standard.o)
- .debug_ranges  0x00000000000003b8       0x40 libopencm3/lib/libopencm3_stm32l0.a(st_usbfs_v2.o)
- .debug_ranges  0x00000000000003f8       0x20 libopencm3/lib/libopencm3_stm32l0.a(vector.o)
- .debug_ranges  0x0000000000000418       0xf0 libopencm3/lib/libopencm3_stm32l0.a(st_usbfs_core.o)
-
-.debug_macro    0x0000000000000000     0x4d54
- .debug_macro   0x0000000000000000      0x1b3 hub/obj/cusb.o
- .debug_macro   0x00000000000001b3      0xa72 hub/obj/cusb.o
- .debug_macro   0x0000000000000c25      0x16d hub/obj/cusb.o
- .debug_macro   0x0000000000000d92       0x1c hub/obj/cusb.o
- .debug_macro   0x0000000000000dae       0x22 hub/obj/cusb.o
- .debug_macro   0x0000000000000dd0       0x56 hub/obj/cusb.o
- .debug_macro   0x0000000000000e26       0x51 hub/obj/cusb.o
- .debug_macro   0x0000000000000e77      0x103 hub/obj/cusb.o
- .debug_macro   0x0000000000000f7a       0x6a hub/obj/cusb.o
- .debug_macro   0x0000000000000fe4      0x1df hub/obj/cusb.o
- .debug_macro   0x00000000000011c3       0x22 hub/obj/cusb.o
- .debug_macro   0x00000000000011e5       0xe8 hub/obj/cusb.o
- .debug_macro   0x00000000000012cd       0x52 hub/obj/cusb.o
- .debug_macro   0x000000000000131f      0x14e hub/obj/cusb.o
- .debug_macro   0x000000000000146d      0x13c hub/obj/cusb.o
- .debug_macro   0x00000000000015a9       0x8e hub/obj/cusb.o
- .debug_macro   0x0000000000001637       0x58 hub/obj/cusb.o
- .debug_macro   0x000000000000168f      0x91f hub/obj/cusb.o
- .debug_macro   0x0000000000001fae      0x166 hub/obj/cusb.o
- .debug_macro   0x0000000000002114       0x40 hub/obj/cusb.o
- .debug_macro   0x0000000000002154      0x136 hub/obj/cusb.o
- .debug_macro   0x000000000000228a       0x49 hub/obj/cusb.o
- .debug_macro   0x00000000000022d3       0xca hub/obj/cusb.o
- .debug_macro   0x000000000000239d      0x1a2 hub/obj/cusb.o
- .debug_macro   0x000000000000253f       0x10 hub/obj/cusb.o
- .debug_macro   0x000000000000254f       0x1c hub/obj/cusb.o
- .debug_macro   0x000000000000256b       0x3a hub/obj/cusb.o
- .debug_macro   0x00000000000025a5      0x298 hub/obj/cusb.o
- .debug_macro   0x000000000000283d       0x9a hub/obj/cusb.o
- .debug_macro   0x00000000000028d7       0x8e hub/obj/cusb.o
- .debug_macro   0x0000000000002965       0x1e hub/obj/main.o
- .debug_macro   0x0000000000002983       0xbc libopencm3/lib/libopencm3_stm32l0.a(flash_common_all.o)
- .debug_macro   0x0000000000002a3f      0xa72 libopencm3/lib/libopencm3_stm32l0.a(flash_common_all.o)
- .debug_macro   0x00000000000034b1      0x113 libopencm3/lib/libopencm3_stm32l0.a(rcc.o)
- .debug_macro   0x00000000000035c4       0x16 libopencm3/lib/libopencm3_stm32l0.a(rcc.o)
- .debug_macro   0x00000000000035da       0xfa libopencm3/lib/libopencm3_stm32l0.a(rcc_common_all.o)
- .debug_macro   0x00000000000036d4      0x146 libopencm3/lib/libopencm3_stm32l0.a(usb.o)
- .debug_macro   0x000000000000381a       0x5e libopencm3/lib/libopencm3_stm32l0.a(usb.o)
- .debug_macro   0x0000000000003878       0x18 libopencm3/lib/libopencm3_stm32l0.a(usb.o)
- .debug_macro   0x0000000000003890       0x5c libopencm3/lib/libopencm3_stm32l0.a(usb.o)
- .debug_macro   0x00000000000038ec       0x35 libopencm3/lib/libopencm3_stm32l0.a(usb.o)
- .debug_macro   0x0000000000003921       0x34 libopencm3/lib/libopencm3_stm32l0.a(usb.o)
- .debug_macro   0x0000000000003955       0x16 libopencm3/lib/libopencm3_stm32l0.a(usb.o)
- .debug_macro   0x000000000000396b       0x43 libopencm3/lib/libopencm3_stm32l0.a(usb.o)
- .debug_macro   0x00000000000039ae       0x57 libopencm3/lib/libopencm3_stm32l0.a(usb.o)
- .debug_macro   0x0000000000003a05       0x34 libopencm3/lib/libopencm3_stm32l0.a(usb.o)
- .debug_macro   0x0000000000003a39       0x10 libopencm3/lib/libopencm3_stm32l0.a(usb.o)
- .debug_macro   0x0000000000003a49       0x58 libopencm3/lib/libopencm3_stm32l0.a(usb.o)
- .debug_macro   0x0000000000003aa1      0x182 libopencm3/lib/libopencm3_stm32l0.a(usb.o)
- .debug_macro   0x0000000000003c23      0x35c libopencm3/lib/libopencm3_stm32l0.a(usb.o)
- .debug_macro   0x0000000000003f7f       0x10 libopencm3/lib/libopencm3_stm32l0.a(usb.o)
- .debug_macro   0x0000000000003f8f       0x35 libopencm3/lib/libopencm3_stm32l0.a(usb.o)
- .debug_macro   0x0000000000003fc4      0x19c libopencm3/lib/libopencm3_stm32l0.a(usb.o)
- .debug_macro   0x0000000000004160      0x154 libopencm3/lib/libopencm3_stm32l0.a(usb_control.o)
- .debug_macro   0x00000000000042b4       0x16 libopencm3/lib/libopencm3_stm32l0.a(usb_control.o)
- .debug_macro   0x00000000000042ca      0x10e libopencm3/lib/libopencm3_stm32l0.a(usb_control.o)
- .debug_macro   0x00000000000043d8       0x86 libopencm3/lib/libopencm3_stm32l0.a(usb_control.o)
- .debug_macro   0x000000000000445e       0x22 libopencm3/lib/libopencm3_stm32l0.a(usb_control.o)
- .debug_macro   0x0000000000004480      0x146 libopencm3/lib/libopencm3_stm32l0.a(usb_standard.o)
- .debug_macro   0x00000000000045c6      0x139 libopencm3/lib/libopencm3_stm32l0.a(st_usbfs_v2.o)
- .debug_macro   0x00000000000046ff      0x29e libopencm3/lib/libopencm3_stm32l0.a(st_usbfs_v2.o)
- .debug_macro   0x000000000000499d       0x10 libopencm3/lib/libopencm3_stm32l0.a(st_usbfs_v2.o)
- .debug_macro   0x00000000000049ad       0xcf libopencm3/lib/libopencm3_stm32l0.a(vector.o)
- .debug_macro   0x0000000000004a7c      0x19f libopencm3/lib/libopencm3_stm32l0.a(vector.o)
- .debug_macro   0x0000000000004c1b      0x139 libopencm3/lib/libopencm3_stm32l0.a(st_usbfs_core.o)
-
-.debug_line     0x0000000000000000     0x45df
- .debug_line    0x0000000000000000      0x62e hub/obj/cusb.o
- .debug_line    0x000000000000062e       0xc2 hub/obj/main.o
- .debug_line    0x00000000000006f0      0x392 libopencm3/lib/libopencm3_stm32l0.a(flash_common_all.o)
- .debug_line    0x0000000000000a82      0xa96 libopencm3/lib/libopencm3_stm32l0.a(rcc.o)
- .debug_line    0x0000000000001518      0x474 libopencm3/lib/libopencm3_stm32l0.a(rcc_common_all.o)
- .debug_line    0x000000000000198c      0x5a5 libopencm3/lib/libopencm3_stm32l0.a(usb.o)
- .debug_line    0x0000000000001f31      0x717 libopencm3/lib/libopencm3_stm32l0.a(usb_control.o)
- .debug_line    0x0000000000002648      0xc9c libopencm3/lib/libopencm3_stm32l0.a(usb_standard.o)
- .debug_line    0x00000000000032e4      0x5c6 libopencm3/lib/libopencm3_stm32l0.a(st_usbfs_v2.o)
- .debug_line    0x00000000000038aa      0x45b libopencm3/lib/libopencm3_stm32l0.a(vector.o)
- .debug_line    0x0000000000003d05      0x8da libopencm3/lib/libopencm3_stm32l0.a(st_usbfs_core.o)
-
-.debug_str      0x0000000000000000    0x1089c
- .debug_str     0x0000000000000000     0xbf62 hub/obj/cusb.o
-                                       0xc2aa (size before relaxing)
- .debug_str     0x000000000000bf62        0xf hub/obj/main.o
-                                       0x2fbb (size before relaxing)
- .debug_str     0x000000000000bf71      0x167 libopencm3/lib/libopencm3_stm32l0.a(flash_common_all.o)
-                                       0x5299 (size before relaxing)
- .debug_str     0x000000000000c0d8      0x2ea libopencm3/lib/libopencm3_stm32l0.a(rcc.o)
-                                       0x83e6 (size before relaxing)
- .debug_str     0x000000000000c3c2      0x2f1 libopencm3/lib/libopencm3_stm32l0.a(rcc_common_all.o)
-                                       0x79a4 (size before relaxing)
- .debug_str     0x000000000000c6b3     0x2d7a libopencm3/lib/libopencm3_stm32l0.a(usb.o)
-                                       0x7f79 (size before relaxing)
- .debug_str     0x000000000000f42d      0x19b libopencm3/lib/libopencm3_stm32l0.a(usb_control.o)
-                                       0x7fc6 (size before relaxing)
- .debug_str     0x000000000000f5c8      0x2c2 libopencm3/lib/libopencm3_stm32l0.a(usb_standard.o)
-                                       0x80f9 (size before relaxing)
- .debug_str     0x000000000000f88a       0xb9 libopencm3/lib/libopencm3_stm32l0.a(st_usbfs_v2.o)
-                                       0x9d94 (size before relaxing)
- .debug_str     0x000000000000f943      0xe40 libopencm3/lib/libopencm3_stm32l0.a(vector.o)
-                                       0x52f9 (size before relaxing)
- .debug_str     0x0000000000010783      0x119 libopencm3/lib/libopencm3_stm32l0.a(st_usbfs_core.o)
-                                       0x9bb6 (size before relaxing)
-
 .comment        0x0000000000000000       0x4c
- .comment       0x0000000000000000       0x4c hub/obj/cusb.o
+ .comment       0x0000000000000000       0x4c hub/obj/hub.o
                                          0x4d (size before relaxing)
- .comment       0x000000000000004c       0x4d hub/obj/main.o
- .comment       0x000000000000004c       0x4d libopencm3/lib/libopencm3_stm32l0.a(flash_common_all.o)
- .comment       0x000000000000004c       0x4d libopencm3/lib/libopencm3_stm32l0.a(rcc.o)
- .comment       0x000000000000004c       0x4d libopencm3/lib/libopencm3_stm32l0.a(rcc_common_all.o)
- .comment       0x000000000000004c       0x4d libopencm3/lib/libopencm3_stm32l0.a(usb.o)
- .comment       0x000000000000004c       0x4d libopencm3/lib/libopencm3_stm32l0.a(usb_control.o)
- .comment       0x000000000000004c       0x4d libopencm3/lib/libopencm3_stm32l0.a(usb_standard.o)
- .comment       0x000000000000004c       0x4d libopencm3/lib/libopencm3_stm32l0.a(st_usbfs_v2.o)
+ .comment       0x000000000000004c       0x4d hub/obj/bootloader_utils.o
+ .comment       0x000000000000004c       0x4d hub/obj/testing.o
  .comment       0x000000000000004c       0x4d libopencm3/lib/libopencm3_stm32l0.a(vector.o)
- .comment       0x000000000000004c       0x4d libopencm3/lib/libopencm3_stm32l0.a(st_usbfs_core.o)
 
 .ARM.attributes
-                0x0000000000000000       0x2a
+                0x0000000000000000       0x30
  .ARM.attributes
-                0x0000000000000000       0x2c hub/obj/cusb.o
+                0x0000000000000000       0x2c hub/obj/hub.o
  .ARM.attributes
-                0x000000000000002c       0x2c hub/obj/main.o
+                0x000000000000002c       0x2c hub/obj/bootloader_utils.o
  .ARM.attributes
-                0x0000000000000058       0x2c libopencm3/lib/libopencm3_stm32l0.a(flash_common_all.o)
+                0x0000000000000058       0x2c hub/obj/testing.o
  .ARM.attributes
-                0x0000000000000084       0x2c libopencm3/lib/libopencm3_stm32l0.a(rcc.o)
- .ARM.attributes
-                0x00000000000000b0       0x2c libopencm3/lib/libopencm3_stm32l0.a(rcc_common_all.o)
- .ARM.attributes
-                0x00000000000000dc       0x2c libopencm3/lib/libopencm3_stm32l0.a(usb.o)
- .ARM.attributes
-                0x0000000000000108       0x2c libopencm3/lib/libopencm3_stm32l0.a(usb_control.o)
- .ARM.attributes
-                0x0000000000000134       0x2c libopencm3/lib/libopencm3_stm32l0.a(usb_standard.o)
- .ARM.attributes
-                0x0000000000000160       0x2c libopencm3/lib/libopencm3_stm32l0.a(st_usbfs_v2.o)
- .ARM.attributes
-                0x000000000000018c       0x2c libopencm3/lib/libopencm3_stm32l0.a(vector.o)
- .ARM.attributes
-                0x00000000000001b8       0x2c libopencm3/lib/libopencm3_stm32l0.a(st_usbfs_core.o)
- .ARM.attributes
-                0x00000000000001e4       0x2c /usr/local/Cellar/arm-gcc-bin/9-2020-q2-update/bin/../lib/gcc/arm-none-eabi/9.3.1/../../../../arm-none-eabi/lib/thumb/v6-m/nofp/libc_nano.a(lib_a-memcpy-stub.o)
- .ARM.attributes
-                0x0000000000000210       0x1c /usr/local/Cellar/arm-gcc-bin/9-2020-q2-update/bin/../lib/gcc/arm-none-eabi/9.3.1/../../../../arm-none-eabi/lib/thumb/v6-m/nofp/libc_nano.a(lib_a-strlen.o)
- .ARM.attributes
-                0x000000000000022c       0x1e /usr/local/Cellar/arm-gcc-bin/9-2020-q2-update/bin/../lib/gcc/arm-none-eabi/9.3.1/thumb/v6-m/nofp/libgcc.a(_thumb1_case_uqi.o)
- .ARM.attributes
-                0x000000000000024a       0x1e /usr/local/Cellar/arm-gcc-bin/9-2020-q2-update/bin/../lib/gcc/arm-none-eabi/9.3.1/thumb/v6-m/nofp/libgcc.a(_divsi3.o)
- .ARM.attributes
-                0x0000000000000268       0x1e /usr/local/Cellar/arm-gcc-bin/9-2020-q2-update/bin/../lib/gcc/arm-none-eabi/9.3.1/thumb/v6-m/nofp/libgcc.a(_dvmd_tls.o)
+                0x0000000000000084       0x2c libopencm3/lib/libopencm3_stm32l0.a(vector.o)
 
-.debug_frame    0x0000000000000000      0xa28
- .debug_frame   0x0000000000000000       0x9c hub/obj/cusb.o
- .debug_frame   0x000000000000009c       0x28 hub/obj/main.o
- .debug_frame   0x00000000000000c4       0x50 libopencm3/lib/libopencm3_stm32l0.a(flash_common_all.o)
- .debug_frame   0x0000000000000114      0x1f4 libopencm3/lib/libopencm3_stm32l0.a(rcc.o)
- .debug_frame   0x0000000000000308       0xe0 libopencm3/lib/libopencm3_stm32l0.a(rcc_common_all.o)
- .debug_frame   0x00000000000003e8      0x15c libopencm3/lib/libopencm3_stm32l0.a(usb.o)
- .debug_frame   0x0000000000000544      0x110 libopencm3/lib/libopencm3_stm32l0.a(usb_control.o)
- .debug_frame   0x0000000000000654      0x1b8 libopencm3/lib/libopencm3_stm32l0.a(usb_standard.o)
- .debug_frame   0x000000000000080c       0x78 libopencm3/lib/libopencm3_stm32l0.a(st_usbfs_v2.o)
- .debug_frame   0x0000000000000884       0x48 libopencm3/lib/libopencm3_stm32l0.a(vector.o)
- .debug_frame   0x00000000000008cc      0x114 libopencm3/lib/libopencm3_stm32l0.a(st_usbfs_core.o)
- .debug_frame   0x00000000000009e0       0x28 /usr/local/Cellar/arm-gcc-bin/9-2020-q2-update/bin/../lib/gcc/arm-none-eabi/9.3.1/../../../../arm-none-eabi/lib/thumb/v6-m/nofp/libc_nano.a(lib_a-memcpy-stub.o)
- .debug_frame   0x0000000000000a08       0x20 /usr/local/Cellar/arm-gcc-bin/9-2020-q2-update/bin/../lib/gcc/arm-none-eabi/9.3.1/thumb/v6-m/nofp/libgcc.a(_divsi3.o)
+.debug_info     0x0000000000000000      0x2dc
+ .debug_info    0x0000000000000000      0x2dc libopencm3/lib/libopencm3_stm32l0.a(vector.o)
+
+.debug_abbrev   0x0000000000000000      0x145
+ .debug_abbrev  0x0000000000000000      0x145 libopencm3/lib/libopencm3_stm32l0.a(vector.o)
+
+.debug_loc      0x0000000000000000      0x11b
+ .debug_loc     0x0000000000000000      0x11b libopencm3/lib/libopencm3_stm32l0.a(vector.o)
+
+.debug_aranges  0x0000000000000000       0x30
+ .debug_aranges
+                0x0000000000000000       0x30 libopencm3/lib/libopencm3_stm32l0.a(vector.o)
+
+.debug_ranges   0x0000000000000000       0x20
+ .debug_ranges  0x0000000000000000       0x20 libopencm3/lib/libopencm3_stm32l0.a(vector.o)
+
+.debug_macro    0x0000000000000000      0x381
+ .debug_macro   0x0000000000000000       0xcf libopencm3/lib/libopencm3_stm32l0.a(vector.o)
+ .debug_macro   0x00000000000000cf      0x19f libopencm3/lib/libopencm3_stm32l0.a(vector.o)
+ .debug_macro   0x000000000000026e       0x49 libopencm3/lib/libopencm3_stm32l0.a(vector.o)
+ .debug_macro   0x00000000000002b7       0xca libopencm3/lib/libopencm3_stm32l0.a(vector.o)
+
+.debug_line     0x0000000000000000      0x45b
+ .debug_line    0x0000000000000000      0x45b libopencm3/lib/libopencm3_stm32l0.a(vector.o)
+
+.debug_str      0x0000000000000000     0x5190
+ .debug_str     0x0000000000000000     0x5190 libopencm3/lib/libopencm3_stm32l0.a(vector.o)
+                                       0x52f9 (size before relaxing)
+
+.debug_frame    0x0000000000000000       0x48
+ .debug_frame   0x0000000000000000       0x48 libopencm3/lib/libopencm3_stm32l0.a(vector.o)

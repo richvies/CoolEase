@@ -41,7 +41,7 @@
  *
  * Disable the interrupt mask and enable interrupts globally
  */
-static inline void cm_enable_interrupts(void)
+static inline void ccm_enable_interrupts(void)
 {
 	__asm__ volatile ("CPSIE I\n");
 }

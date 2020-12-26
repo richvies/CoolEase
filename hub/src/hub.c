@@ -1,21 +1,20 @@
 /**
 ******************************************************************************
-* @file    main.c
+* @file    hub.c
 * @author  Richard Davies
 * @brief   CoolEase Hub Main Function
 */
 
-#include <stddef.h>
+#include "hub/test_hub.h"
+#include "common/testing.h"
 
-#include <hub/cusb.h>
-
-#include <hub/test_hub.h>
-#include <common/testing.h>
+#define APP_ADDRESS 0x08002000
 
 int main(void)
 {
 
-  cusb_init();
+  // test_cusb_poll();
+  test_boot(APP_ADDRESS);
 
   return 0;
 }

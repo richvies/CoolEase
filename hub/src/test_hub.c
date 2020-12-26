@@ -9,12 +9,14 @@
  * @{
  */
 
-#include <hub/testing.h>
-#include <hub/cusb.h>
+#include "hub/test_hub.h"
+
+#include "hub/cusb.h"
+#include "hub/bootloader.h"
 
 void test_cusb_poll(void)
 {
-    cusb_init();
+  cusb_init();
   cusb_test_poll();
 }
 

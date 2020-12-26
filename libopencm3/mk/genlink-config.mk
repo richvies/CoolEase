@@ -21,20 +21,21 @@ ifeq ($(DEVICE),)
 $(warning no DEVICE specified for linker script generator)
 endif
 
-LDSCRIPT	= generated.$(DEVICE).ld
-DEVICES_DATA = $(OPENCM3_DIR)/ld/devices.data
+LDSCRIPT		= generated.$(DEVICE).ld
+DEVICES_DATA	= $(OPENCM3_DIR)/ld/devices.data
 
 genlink_family		:=$(shell $(OPENCM3_DIR)/scripts/genlink.py $(DEVICES_DATA) $(DEVICE) FAMILY)
 genlink_subfamily	:=$(shell $(OPENCM3_DIR)/scripts/genlink.py $(DEVICES_DATA) $(DEVICE) SUBFAMILY)
-genlink_cpu		:=$(shell $(OPENCM3_DIR)/scripts/genlink.py $(DEVICES_DATA) $(DEVICE) CPU)
-genlink_fpu		:=$(shell $(OPENCM3_DIR)/scripts/genlink.py $(DEVICES_DATA) $(DEVICE) FPU)
+genlink_cpu			:=$(shell $(OPENCM3_DIR)/scripts/genlink.py $(DEVICES_DATA) $(DEVICE) CPU)
+genlink_fpu			:=$(shell $(OPENCM3_DIR)/scripts/genlink.py $(DEVICES_DATA) $(DEVICE) FPU)
 genlink_cppflags	:=$(shell $(OPENCM3_DIR)/scripts/genlink.py $(DEVICES_DATA) $(DEVICE) CPPFLAGS)
 
 CPPFLAGS	+= $(genlink_cppflags)
 
 ARCH_FLAGS	:=-mcpu=$(genlink_cpu)
+
 ifeq ($(genlink_cpu),$(filter $(genlink_cpu),cortex-m0 cortex-m0plus cortex-m3 cortex-m4 cortex-m7))
-ARCH_FLAGS    +=-mthumb
+ARCH_FLAGS	+=-mthumb
 endif
 
 ifeq ($(genlink_fpu),soft)
@@ -42,7 +43,7 @@ ARCH_FLAGS	+= -msoft-float
 else ifeq ($(genlink_fpu),hard-fpv4-sp-d16)
 ARCH_FLAGS	+= -mfloat-abi=hard -mfpu=fpv4-sp-d16
 else ifeq ($(genlink_fpu),hard-fpv5-sp-d16)
-ARCH_FLAGS      += -mfloat-abi=hard -mfpu=fpv5-sp-d16
+ARCH_FLAGS  += -mfloat-abi=hard -mfpu=fpv5-sp-d16
 else
 $(warning No match for the FPU flags)
 endif

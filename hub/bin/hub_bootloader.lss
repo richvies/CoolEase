@@ -1,5 +1,5 @@
 
-hub/bin/hub.elf:     file format elf32-littlearm
+hub/bin/hub_bootloader.elf:     file format elf32-littlearm
 
 Sections:
 Idx Name          Size      VMA       LMA       File off  Algn

@@ -29,6 +29,8 @@
 // Includes
 ////////////////////////////////////////////////////////////////////////////////
 
+#include <stdint.h>
+
 #ifdef __cplusplus
 extern "C" {
 #endif
@@ -46,8 +48,8 @@ extern "C" {
 // Exported Function Declarations
 ////////////////////////////////////////////////////////////////////////////////
 
-void boot_deinit();
-void boot_jump(uint32_t address);
+void boot_deinit(void);
+void boot_jump_to_application(uint32_t address);
 
 /** @} */
 

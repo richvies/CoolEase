@@ -1,9 +1,6 @@
-PROJECT 		= hub
-
-# TODO - you will need to edit these two lines!
-DEVICE 		= 	stm32l052c8t6
-
-# You shouldn't have to edit anything below here.
-INCLUDES 	+= 	-Ihub/include
+PROJECT 	= hub
+BOOTLOADER	= hub_bootloader
+TARGETS		= hub.elf hub_bootloader.elf
+DEVICE 		= stm32l052c8t6
 
 include Makefile.inc
