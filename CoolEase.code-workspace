@@ -14,7 +14,7 @@
 			
 			"000Webhost":true,
 			"Development Invoices": true, 
-			"hardware": true,
+			"hardware": false,
 
 			"README.md": true,
 			"coolterm":true,
