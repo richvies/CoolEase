@@ -2,7 +2,7 @@
 web/old
 coolterm
 invoices
-**/?nvoice*
+**/*nvoice*
 old
 *.d
 *.o
