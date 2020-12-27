@@ -1,0 +1,101 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<book xmlns="http://docbook.org/ns/docbook" version="5.0" xmlns:xlink="http://www.w3.org/1999/xlink" xml:id="_index" xml:lang="en-US">
+    <info>
+    <title>CoolEase Sensor</title>
+    </info>
+<chapter>
+    <title>Module Documentation</title>
+    <xi:include href="group___h_u_b___f_i_l_e.xml" xmlns:xi="http://www.w3.org/2001/XInclude"/>
+    <xi:include href="group___h_u_b___a_p_i.xml" xmlns:xi="http://www.w3.org/2001/XInclude"/>
+    <xi:include href="group___h_u_b___i_n_t.xml" xmlns:xi="http://www.w3.org/2001/XInclude"/>
+    <xi:include href="group___h_u_b___b_o_o_t_l_o_a_d_e_r___f_i_l_e.xml" xmlns:xi="http://www.w3.org/2001/XInclude"/>
+    <xi:include href="group___c_u_s_b___f_i_l_e.xml" xmlns:xi="http://www.w3.org/2001/XInclude"/>
+    <xi:include href="group___s_e_n_s_o_r___f_i_l_e.xml" xmlns:xi="http://www.w3.org/2001/XInclude"/>
+    <xi:include href="group___c_o_m_m_o_n___f_i_l_e.xml" xmlns:xi="http://www.w3.org/2001/XInclude"/>
+    <xi:include href="group___c_u_s_b___a_p_i.xml" xmlns:xi="http://www.w3.org/2001/XInclude"/>
+    <xi:include href="group___c_u_s_b___i_n_t.xml" xmlns:xi="http://www.w3.org/2001/XInclude"/>
+    <xi:include href="group___c_u_s_b___c_f_g.xml" xmlns:xi="http://www.w3.org/2001/XInclude"/>
+    <xi:include href="group___h_u_b___b_o_o_t_l_o_a_d_e_r___a_p_i.xml" xmlns:xi="http://www.w3.org/2001/XInclude"/>
+    <xi:include href="group___h_u_b___b_o_o_t_l_o_a_d_e_r___i_n_t.xml" xmlns:xi="http://www.w3.org/2001/XInclude"/>
+    <xi:include href="group___h_u_b___t_e_s_t___f_i_l_e.xml" xmlns:xi="http://www.w3.org/2001/XInclude"/>
+    <xi:include href="group___h_u_b___t_e_s_t___a_p_i.xml" xmlns:xi="http://www.w3.org/2001/XInclude"/>
+    <xi:include href="group___h_u_b___t_e_s_t___i_n_t.xml" xmlns:xi="http://www.w3.org/2001/XInclude"/>
+    <xi:include href="group___b_o_o_t_l_o_a_d_e_r___u_t_i_l_s___f_i_l_e.xml" xmlns:xi="http://www.w3.org/2001/XInclude"/>
+    <xi:include href="group___b_o_o_t_l_o_a_d_e_r___u_t_i_l_s___a_p_i.xml" xmlns:xi="http://www.w3.org/2001/XInclude"/>
+    <xi:include href="group___b_o_o_t_l_o_a_d_e_r___u_t_i_l_s___i_n_t.xml" xmlns:xi="http://www.w3.org/2001/XInclude"/>
+    <xi:include href="group___r_f_m___f_i_l_e.xml" xmlns:xi="http://www.w3.org/2001/XInclude"/>
+    <xi:include href="group___r_f_m___a_p_i.xml" xmlns:xi="http://www.w3.org/2001/XInclude"/>
+    <xi:include href="group___r_f_m___i_n_t.xml" xmlns:xi="http://www.w3.org/2001/XInclude"/>
+    <xi:include href="group___r_f_m___r_e_g.xml" xmlns:xi="http://www.w3.org/2001/XInclude"/>
+    <xi:include href="group___t_e_s_t_i_n_g___f_i_l_e.xml" xmlns:xi="http://www.w3.org/2001/XInclude"/>
+    <xi:include href="group___t_e_s_t_i_n_g___a_p_i.xml" xmlns:xi="http://www.w3.org/2001/XInclude"/>
+    <xi:include href="group___t_e_s_t_i_n_g___i_n_t.xml" xmlns:xi="http://www.w3.org/2001/XInclude"/>
+</chapter>
+<chapter>
+    <title>Data Structure Documentation</title>
+    <xi:include href="structhid__function__descriptor.xml" xmlns:xi="http://www.w3.org/2001/XInclude"/>
+    <xi:include href="structrfm__packet__s.xml" xmlns:xi="http://www.w3.org/2001/XInclude"/>
+</chapter>
+<chapter>
+    <title>File Documentation</title>
+    <xi:include href="bootloader__utils_8h.xml" xmlns:xi="http://www.w3.org/2001/XInclude"/>
+    <xi:include href="bootloader__utils_8h_source.xml" xmlns:xi="http://www.w3.org/2001/XInclude"/>
+    <xi:include href="_report___desc_8h.xml" xmlns:xi="http://www.w3.org/2001/XInclude"/>
+    <xi:include href="_report___desc_8h_source.xml" xmlns:xi="http://www.w3.org/2001/XInclude"/>
+    <xi:include href="rfm_8h.xml" xmlns:xi="http://www.w3.org/2001/XInclude"/>
+    <xi:include href="rfm_8h_source.xml" xmlns:xi="http://www.w3.org/2001/XInclude"/>
+    <xi:include href="testing_8h.xml" xmlns:xi="http://www.w3.org/2001/XInclude"/>
+    <xi:include href="testing_8h_source.xml" xmlns:xi="http://www.w3.org/2001/XInclude"/>
+    <xi:include href="bootloader__utils_8c.xml" xmlns:xi="http://www.w3.org/2001/XInclude"/>
+    <xi:include href="bootloader__utils_8c_source.xml" xmlns:xi="http://www.w3.org/2001/XInclude"/>
+    <xi:include href="rfm_8c.xml" xmlns:xi="http://www.w3.org/2001/XInclude"/>
+    <xi:include href="rfm_8c_source.xml" xmlns:xi="http://www.w3.org/2001/XInclude"/>
+    <xi:include href="testing_8c.xml" xmlns:xi="http://www.w3.org/2001/XInclude"/>
+    <xi:include href="testing_8c_source.xml" xmlns:xi="http://www.w3.org/2001/XInclude"/>
+    <xi:include href="dox__layout_8h.xml" xmlns:xi="http://www.w3.org/2001/XInclude"/>
+    <xi:include href="dox__layout_8h_source.xml" xmlns:xi="http://www.w3.org/2001/XInclude"/>
+    <xi:include href="cusb_8h.xml" xmlns:xi="http://www.w3.org/2001/XInclude"/>
+    <xi:include href="cusb_8h_source.xml" xmlns:xi="http://www.w3.org/2001/XInclude"/>
+    <xi:include href="hub__bootloader_8h.xml" xmlns:xi="http://www.w3.org/2001/XInclude"/>
+    <xi:include href="hub__bootloader_8h_source.xml" xmlns:xi="http://www.w3.org/2001/XInclude"/>
+    <xi:include href="hub__test_8h.xml" xmlns:xi="http://www.w3.org/2001/XInclude"/>
+    <xi:include href="hub__test_8h_source.xml" xmlns:xi="http://www.w3.org/2001/XInclude"/>
+    <xi:include href="bootloader__utils_8d.xml" xmlns:xi="http://www.w3.org/2001/XInclude"/>
+    <xi:include href="bootloader__utils_8d_source.xml" xmlns:xi="http://www.w3.org/2001/XInclude"/>
+    <xi:include href="bootloader__utils_8o_8d.xml" xmlns:xi="http://www.w3.org/2001/XInclude"/>
+    <xi:include href="bootloader__utils_8o_8d_source.xml" xmlns:xi="http://www.w3.org/2001/XInclude"/>
+    <xi:include href="cusb_8d.xml" xmlns:xi="http://www.w3.org/2001/XInclude"/>
+    <xi:include href="cusb_8d_source.xml" xmlns:xi="http://www.w3.org/2001/XInclude"/>
+    <xi:include href="cusb_8o_8d.xml" xmlns:xi="http://www.w3.org/2001/XInclude"/>
+    <xi:include href="cusb_8o_8d_source.xml" xmlns:xi="http://www.w3.org/2001/XInclude"/>
+    <xi:include href="hub_8d.xml" xmlns:xi="http://www.w3.org/2001/XInclude"/>
+    <xi:include href="hub_8d_source.xml" xmlns:xi="http://www.w3.org/2001/XInclude"/>
+    <xi:include href="hub_8o_8d.xml" xmlns:xi="http://www.w3.org/2001/XInclude"/>
+    <xi:include href="hub_8o_8d_source.xml" xmlns:xi="http://www.w3.org/2001/XInclude"/>
+    <xi:include href="hub__bootloader_8d.xml" xmlns:xi="http://www.w3.org/2001/XInclude"/>
+    <xi:include href="hub__bootloader_8d_source.xml" xmlns:xi="http://www.w3.org/2001/XInclude"/>
+    <xi:include href="hub__bootloader_8o_8d.xml" xmlns:xi="http://www.w3.org/2001/XInclude"/>
+    <xi:include href="hub__bootloader_8o_8d_source.xml" xmlns:xi="http://www.w3.org/2001/XInclude"/>
+    <xi:include href="rfm_8d.xml" xmlns:xi="http://www.w3.org/2001/XInclude"/>
+    <xi:include href="rfm_8d_source.xml" xmlns:xi="http://www.w3.org/2001/XInclude"/>
+    <xi:include href="rfm_8o_8d.xml" xmlns:xi="http://www.w3.org/2001/XInclude"/>
+    <xi:include href="rfm_8o_8d_source.xml" xmlns:xi="http://www.w3.org/2001/XInclude"/>
+    <xi:include href="test__hub_8d.xml" xmlns:xi="http://www.w3.org/2001/XInclude"/>
+    <xi:include href="test__hub_8d_source.xml" xmlns:xi="http://www.w3.org/2001/XInclude"/>
+    <xi:include href="test__hub_8o_8d.xml" xmlns:xi="http://www.w3.org/2001/XInclude"/>
+    <xi:include href="test__hub_8o_8d_source.xml" xmlns:xi="http://www.w3.org/2001/XInclude"/>
+    <xi:include href="testing_8d.xml" xmlns:xi="http://www.w3.org/2001/XInclude"/>
+    <xi:include href="testing_8d_source.xml" xmlns:xi="http://www.w3.org/2001/XInclude"/>
+    <xi:include href="testing_8o_8d.xml" xmlns:xi="http://www.w3.org/2001/XInclude"/>
+    <xi:include href="testing_8o_8d_source.xml" xmlns:xi="http://www.w3.org/2001/XInclude"/>
+    <xi:include href="cusb_8c.xml" xmlns:xi="http://www.w3.org/2001/XInclude"/>
+    <xi:include href="cusb_8c_source.xml" xmlns:xi="http://www.w3.org/2001/XInclude"/>
+    <xi:include href="hub_8c.xml" xmlns:xi="http://www.w3.org/2001/XInclude"/>
+    <xi:include href="hub_8c_source.xml" xmlns:xi="http://www.w3.org/2001/XInclude"/>
+    <xi:include href="hub__bootloader_8c.xml" xmlns:xi="http://www.w3.org/2001/XInclude"/>
+    <xi:include href="hub__bootloader_8c_source.xml" xmlns:xi="http://www.w3.org/2001/XInclude"/>
+    <xi:include href="hub__test_8c.xml" xmlns:xi="http://www.w3.org/2001/XInclude"/>
+    <xi:include href="hub__test_8c_source.xml" xmlns:xi="http://www.w3.org/2001/XInclude"/>
+</chapter>
+<index/>
+</book>

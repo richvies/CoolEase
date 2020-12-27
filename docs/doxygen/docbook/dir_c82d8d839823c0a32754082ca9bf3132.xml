@@ -1,0 +1,38 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<section xmlns="http://docbook.org/ns/docbook" version="5.0" xmlns:xlink="http://www.w3.org/1999/xlink" xml:id="_dir_c82d8d839823c0a32754082ca9bf3132" xml:lang="en-US">
+<title>hub/obj Directory Reference</title>
+<indexterm><primary>hub/obj Directory Reference</primary></indexterm>
+<simplesect>
+    <title>Files    </title>
+        <itemizedlist>
+            <listitem><para>file <link linkend="_bootloader__utils_8d">bootloader_utils.d</link></para>
+</listitem>
+            <listitem><para>file <link linkend="_bootloader__utils_8o_8d">bootloader_utils.o.d</link></para>
+</listitem>
+            <listitem><para>file <link linkend="_cusb_8d">cusb.d</link></para>
+</listitem>
+            <listitem><para>file <link linkend="_cusb_8o_8d">cusb.o.d</link></para>
+</listitem>
+            <listitem><para>file <link linkend="_hub_8d">hub.d</link></para>
+</listitem>
+            <listitem><para>file <link linkend="_hub_8o_8d">hub.o.d</link></para>
+</listitem>
+            <listitem><para>file <link linkend="_hub__bootloader_8d">hub_bootloader.d</link></para>
+</listitem>
+            <listitem><para>file <link linkend="_hub__bootloader_8o_8d">hub_bootloader.o.d</link></para>
+</listitem>
+            <listitem><para>file <link linkend="_rfm_8d">rfm.d</link></para>
+</listitem>
+            <listitem><para>file <link linkend="_rfm_8o_8d">rfm.o.d</link></para>
+</listitem>
+            <listitem><para>file <link linkend="_test__hub_8d">test_hub.d</link></para>
+</listitem>
+            <listitem><para>file <link linkend="_test__hub_8o_8d">test_hub.o.d</link></para>
+</listitem>
+            <listitem><para>file <link linkend="_testing_8d">testing.d</link></para>
+</listitem>
+            <listitem><para>file <link linkend="_testing_8o_8d">testing.o.d</link></para>
+</listitem>
+        </itemizedlist>
+</simplesect>
+</section>

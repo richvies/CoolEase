@@ -1,0 +1,271 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<section xmlns="http://docbook.org/ns/docbook" version="5.0" xmlns:xlink="http://www.w3.org/1999/xlink" xml:id="_group___r_f_m___a_p_i" xml:lang="en-US">
+<title>RFM API</title>
+<indexterm><primary>RFM API</primary></indexterm>
+<para>
+
+<para>Programming interface and key macros. </para>
+ 
+</para>
+<simplesect>
+    <title>Data Structures    </title>
+        <itemizedlist>
+            <listitem><para>struct <link linkend="_structrfm__packet__s">rfm_packet_s</link></para>
+
+<para>RFM data packet structure. </para>
+</listitem>
+        </itemizedlist>
+</simplesect>
+<simplesect>
+    <title>Macros    </title>
+        <itemizedlist>
+            <listitem><para>#define <link linkend="_group___r_f_m___a_p_i_1ga084d18aefa2602f8340422a54d5270ff">RFM_FIFO_SIZE</link>   255</para>
+
+<para>Max number of octets the LORA Rx/Tx FIFO can hold. </para>
+</listitem>
+            <listitem><para>#define <link linkend="_group___r_f_m___a_p_i_1ga53cfca3f6735c8909f611f3c315d6a01">RFM_MAX_PAYLOAD_LEN</link>   <link linkend="_group___r_f_m___a_p_i_1ga084d18aefa2602f8340422a54d5270ff">RFM_FIFO_SIZE</link></para>
+
+<para>This is the maximum number of bytes that can be carried by the LORA. </para>
+</listitem>
+            <listitem><para>#define <link linkend="_group___r_f_m___a_p_i_1gaacbfa0b8396ddab9bf2a3bd1044763fa">RFM_HEADER_LEN</link>   4</para>
+
+<para>The length of the headers we add to to the packet. </para>
+</listitem>
+            <listitem><para>#define <link linkend="_group___r_f_m___a_p_i_1ga393212916e081aae2819f67717f30f59">RFM_PACKET_DATA_LEN_MAX</link>   (<link linkend="_group___r_f_m___a_p_i_1ga53cfca3f6735c8909f611f3c315d6a01">RFM_MAX_PAYLOAD_LEN</link> - <link linkend="_group___r_f_m___a_p_i_1gaacbfa0b8396ddab9bf2a3bd1044763fa">RFM_HEADER_LEN</link>)</para>
+
+<para>This is the maximum message length that can be supported by this driver. </para>
+</listitem>
+            <listitem><para>#define <link linkend="_group___r_f_m___a_p_i_1ga253449333540a74cc368187008d56dab">RFM_FXOSC</link>   32000000.0</para>
+
+<para>The crystal oscillator frequency of the module. </para>
+</listitem>
+            <listitem><para>#define <link linkend="_group___r_f_m___a_p_i_1ga1ad73259ef43c3d5f9e1a947d2736d1b">RFM_FSTEP</link>   (<link linkend="_group___r_f_m___a_p_i_1ga253449333540a74cc368187008d56dab">RFM_FXOSC</link> / 524288)</para>
+
+<para>The Frequency Synthesizer step = RFM_FXOSC / 2^^19. </para>
+</listitem>
+            <listitem><para>#define <link linkend="_group___r_f_m___a_p_i_1ga9db5dca6ffe64e5fed68586931c956a3">PACKETS_BUF_SIZE</link>   16</para>
+
+<para>Size of buffer that holds RFM packets. </para>
+</listitem>
+        </itemizedlist>
+</simplesect>
+<simplesect>
+    <title>Typedefs    </title>
+        <itemizedlist>
+            <listitem><para>typedef struct <link linkend="_structrfm__packet__s">rfm_packet_s</link> <link linkend="_group___r_f_m___a_p_i_1gafc01238e3835178530cf6f0f8bf57f52">rfm_packet_t</link></para>
+
+<para>RFM data packet structure. </para>
+</listitem>
+        </itemizedlist>
+</simplesect>
+<simplesect>
+    <title>Functions    </title>
+        <itemizedlist>
+            <listitem><para>void <link linkend="_group___r_f_m___a_p_i_1ga87ffd6a21c7cf0faa01991fd044c4276">rfm_init</link> (void)</para>
+</listitem>
+            <listitem><para>void <link linkend="_group___r_f_m___a_p_i_1ga91b75a04991a4c31cba4957ba4289961">rfm_reset</link> (void)</para>
+</listitem>
+            <listitem><para>void <link linkend="_group___r_f_m___a_p_i_1gae0e65347dc7112c646ba18cb1fe04e14">rfm_end</link> (void)</para>
+</listitem>
+            <listitem><para>void <link linkend="_group___r_f_m___a_p_i_1gadfb35c9040d9c6f99adcbfe4502cefa7">rfm_calibrate_crystal</link> (void)</para>
+</listitem>
+            <listitem><para>void <link linkend="_group___r_f_m___a_p_i_1ga37243125120fd0a34edcb3b8856adfec">rfm_config_for_lora</link> (uint8_t BW, uint8_t CR, uint8_t SF, bool crc_turn_on, int8_t power)</para>
+</listitem>
+            <listitem><para>void <link linkend="_group___r_f_m___a_p_i_1ga52c72188a1ffdeb199c5d7991f5c9dc6">rfm_config_for_gfsk</link> (void)</para>
+</listitem>
+            <listitem><para>void <link linkend="_group___r_f_m___a_p_i_1ga5058dfa294d68004eb9a815c7405f826">rfm_set_power</link> (int8_t power, uint8_t ramp_time)</para>
+</listitem>
+            <listitem><para>void <link linkend="_group___r_f_m___a_p_i_1gab1fb248dbc46f0899ffef38ca68d5ab4">rfm_get_stats</link> (void)</para>
+</listitem>
+            <listitem><para>void <link linkend="_group___r_f_m___a_p_i_1ga5564693cd8d951c7bcc00873760e1cec">rfm_reset_stats</link> (void)</para>
+</listitem>
+            <listitem><para>uint8_t <link linkend="_group___r_f_m___a_p_i_1ga76decc202958c9640472be156c7b81f3">rfm_get_version</link> (void)</para>
+</listitem>
+            <listitem><para>void <link linkend="_group___r_f_m___a_p_i_1ga72db678f5aaf52d58a8619c0c02657ff">rfm_start_listening</link> (void)</para>
+</listitem>
+            <listitem><para>void <link linkend="_group___r_f_m___a_p_i_1ga06f769ee719ce52ceaa5d0ec6e63b1c6">rfm_get_packets</link> (void)</para>
+</listitem>
+            <listitem><para><link linkend="_group___r_f_m___a_p_i_1gafc01238e3835178530cf6f0f8bf57f52">rfm_packet_t</link> * <link linkend="_group___r_f_m___a_p_i_1ga5fb407c80b9ce99fbfdf8c516edffca5">rfm_get_next_packet</link> (void)</para>
+</listitem>
+            <listitem><para>uint8_t <link linkend="_group___r_f_m___a_p_i_1gace9a6b928f692d8c264f2387baacdddc">rfm_get_num_packets</link> (void)</para>
+</listitem>
+            <listitem><para>void <link linkend="_group___r_f_m___a_p_i_1ga18a5b5ba0eca9bf5ee9732e0a89f1170">rfm_organize_packet</link> (<link linkend="_group___r_f_m___a_p_i_1gafc01238e3835178530cf6f0f8bf57f52">rfm_packet_t</link> *packet)</para>
+</listitem>
+            <listitem><para>bool <link linkend="_group___r_f_m___a_p_i_1gae92d1597fc479b67c71e1c126cc6b59a">rfm_transmit_packet</link> (<link linkend="_group___r_f_m___a_p_i_1gafc01238e3835178530cf6f0f8bf57f52">rfm_packet_t</link> packet)</para>
+</listitem>
+            <listitem><para>void <link linkend="_group___r_f_m___a_p_i_1ga2077909a7fda80633cc079a458b31c2f">rfm_set_tx_continuous</link> (void)</para>
+</listitem>
+            <listitem><para>void <link linkend="_group___r_f_m___a_p_i_1gafb671f7a1fc42c09ae058d8edfcd3ddf">rfm_clear_tx_continuous</link> (void)</para>
+</listitem>
+        </itemizedlist>
+</simplesect>
+<section>
+<title>Detailed Description</title>
+
+<para>Programming interface and key macros. </para>
+</section>
+<section>
+<title>Macro Definition Documentation</title>
+<anchor xml:id="_group___r_f_m___a_p_i_1ga9db5dca6ffe64e5fed68586931c956a3"/>    <section>
+    <title>PACKETS_BUF_SIZE</title>
+<indexterm><primary>PACKETS_BUF_SIZE</primary><secondary>RFM API</secondary></indexterm>
+<indexterm><primary>RFM API</primary><secondary>PACKETS_BUF_SIZE</secondary></indexterm>
+<para><computeroutput>#define PACKETS_BUF_SIZE   16</computeroutput></para><para>
+
+<para>Size of buffer that holds RFM packets. </para>
+</para>
+<para>
+Definition at line <link linkend="_rfm_8h_source_1l00338">338</link> of file <link linkend="_rfm_8h_source">rfm.h</link>.</para>
+    </section><anchor xml:id="_group___r_f_m___a_p_i_1ga084d18aefa2602f8340422a54d5270ff"/>    <section>
+    <title>RFM_FIFO_SIZE</title>
+<indexterm><primary>RFM_FIFO_SIZE</primary><secondary>RFM API</secondary></indexterm>
+<indexterm><primary>RFM API</primary><secondary>RFM_FIFO_SIZE</secondary></indexterm>
+<para><computeroutput>#define RFM_FIFO_SIZE   255</computeroutput></para><para>
+
+<para>Max number of octets the LORA Rx/Tx FIFO can hold. </para>
+</para>
+<para>
+Definition at line <link linkend="_rfm_8h_source_1l00276">276</link> of file <link linkend="_rfm_8h_source">rfm.h</link>.</para>
+    </section><anchor xml:id="_group___r_f_m___a_p_i_1ga1ad73259ef43c3d5f9e1a947d2736d1b"/>    <section>
+    <title>RFM_FSTEP</title>
+<indexterm><primary>RFM_FSTEP</primary><secondary>RFM API</secondary></indexterm>
+<indexterm><primary>RFM API</primary><secondary>RFM_FSTEP</secondary></indexterm>
+<para><computeroutput>#define RFM_FSTEP   (<link linkend="_group___r_f_m___a_p_i_1ga253449333540a74cc368187008d56dab">RFM_FXOSC</link> / 524288)</computeroutput></para><para>
+
+<para>The Frequency Synthesizer step = RFM_FXOSC / 2^^19. </para>
+</para>
+<para>
+Definition at line <link linkend="_rfm_8h_source_1l00291">291</link> of file <link linkend="_rfm_8h_source">rfm.h</link>.</para>
+    </section><anchor xml:id="_group___r_f_m___a_p_i_1ga253449333540a74cc368187008d56dab"/>    <section>
+    <title>RFM_FXOSC</title>
+<indexterm><primary>RFM_FXOSC</primary><secondary>RFM API</secondary></indexterm>
+<indexterm><primary>RFM API</primary><secondary>RFM_FXOSC</secondary></indexterm>
+<para><computeroutput>#define RFM_FXOSC   32000000.0</computeroutput></para><para>
+
+<para>The crystal oscillator frequency of the module. </para>
+</para>
+<para>
+Definition at line <link linkend="_rfm_8h_source_1l00288">288</link> of file <link linkend="_rfm_8h_source">rfm.h</link>.</para>
+    </section><anchor xml:id="_group___r_f_m___a_p_i_1gaacbfa0b8396ddab9bf2a3bd1044763fa"/>    <section>
+    <title>RFM_HEADER_LEN</title>
+<indexterm><primary>RFM_HEADER_LEN</primary><secondary>RFM API</secondary></indexterm>
+<indexterm><primary>RFM API</primary><secondary>RFM_HEADER_LEN</secondary></indexterm>
+<para><computeroutput>#define RFM_HEADER_LEN   4</computeroutput></para><para>
+
+<para>The length of the headers we add to to the packet. </para>
+</para>
+<para>
+Definition at line <link linkend="_rfm_8h_source_1l00282">282</link> of file <link linkend="_rfm_8h_source">rfm.h</link>.</para>
+    </section><anchor xml:id="_group___r_f_m___a_p_i_1ga53cfca3f6735c8909f611f3c315d6a01"/>    <section>
+    <title>RFM_MAX_PAYLOAD_LEN</title>
+<indexterm><primary>RFM_MAX_PAYLOAD_LEN</primary><secondary>RFM API</secondary></indexterm>
+<indexterm><primary>RFM API</primary><secondary>RFM_MAX_PAYLOAD_LEN</secondary></indexterm>
+<para><computeroutput>#define RFM_MAX_PAYLOAD_LEN   <link linkend="_group___r_f_m___a_p_i_1ga084d18aefa2602f8340422a54d5270ff">RFM_FIFO_SIZE</link></computeroutput></para><para>
+
+<para>This is the maximum number of bytes that can be carried by the LORA. </para>
+</para>
+<para>
+Definition at line <link linkend="_rfm_8h_source_1l00279">279</link> of file <link linkend="_rfm_8h_source">rfm.h</link>.</para>
+    </section><anchor xml:id="_group___r_f_m___a_p_i_1ga393212916e081aae2819f67717f30f59"/>    <section>
+    <title>RFM_PACKET_DATA_LEN_MAX</title>
+<indexterm><primary>RFM_PACKET_DATA_LEN_MAX</primary><secondary>RFM API</secondary></indexterm>
+<indexterm><primary>RFM API</primary><secondary>RFM_PACKET_DATA_LEN_MAX</secondary></indexterm>
+<para><computeroutput>#define RFM_PACKET_DATA_LEN_MAX   (<link linkend="_group___r_f_m___a_p_i_1ga53cfca3f6735c8909f611f3c315d6a01">RFM_MAX_PAYLOAD_LEN</link> - <link linkend="_group___r_f_m___a_p_i_1gaacbfa0b8396ddab9bf2a3bd1044763fa">RFM_HEADER_LEN</link>)</computeroutput></para><para>
+
+<para>This is the maximum message length that can be supported by this driver. </para>
+</para>
+<para>
+Definition at line <link linkend="_rfm_8h_source_1l00285">285</link> of file <link linkend="_rfm_8h_source">rfm.h</link>.</para>
+</section>
+</section>
+<section>
+<title>Typedef Documentation</title>
+<anchor xml:id="_group___r_f_m___a_p_i_1gafc01238e3835178530cf6f0f8bf57f52"/>    <section>
+    <title>rfm_packet_t</title>
+<indexterm><primary>rfm_packet_t</primary><secondary>RFM API</secondary></indexterm>
+<indexterm><primary>RFM API</primary><secondary>rfm_packet_t</secondary></indexterm>
+<para><computeroutput>typedef struct <link linkend="_structrfm__packet__s">rfm_packet_s</link> <link linkend="_group___r_f_m___a_p_i_1gafc01238e3835178530cf6f0f8bf57f52">rfm_packet_t</link></computeroutput></para><para>
+
+<para>RFM data packet structure. </para>
+</para>
+
+<para>Defines the packet structure for the radio module </para>
+</section>
+</section>
+<section>
+<title>Function Documentation</title>
+<anchor xml:id="_group___r_f_m___a_p_i_1gadfb35c9040d9c6f99adcbfe4502cefa7"/>    <section>
+    <title>rfm_calibrate_crystal()</title>
+<indexterm><primary>rfm_calibrate_crystal</primary><secondary>RFM API</secondary></indexterm>
+<indexterm><primary>RFM API</primary><secondary>rfm_calibrate_crystal</secondary></indexterm>
+<para><computeroutput>void rfm_calibrate_crystal (void )</computeroutput></para>    </section><anchor xml:id="_group___r_f_m___a_p_i_1gafb671f7a1fc42c09ae058d8edfcd3ddf"/>    <section>
+    <title>rfm_clear_tx_continuous()</title>
+<indexterm><primary>rfm_clear_tx_continuous</primary><secondary>RFM API</secondary></indexterm>
+<indexterm><primary>RFM API</primary><secondary>rfm_clear_tx_continuous</secondary></indexterm>
+<para><computeroutput>void rfm_clear_tx_continuous (void )</computeroutput></para>    </section><anchor xml:id="_group___r_f_m___a_p_i_1ga52c72188a1ffdeb199c5d7991f5c9dc6"/>    <section>
+    <title>rfm_config_for_gfsk()</title>
+<indexterm><primary>rfm_config_for_gfsk</primary><secondary>RFM API</secondary></indexterm>
+<indexterm><primary>RFM API</primary><secondary>rfm_config_for_gfsk</secondary></indexterm>
+<para><computeroutput>void rfm_config_for_gfsk (void )</computeroutput></para>    </section><anchor xml:id="_group___r_f_m___a_p_i_1ga37243125120fd0a34edcb3b8856adfec"/>    <section>
+    <title>rfm_config_for_lora()</title>
+<indexterm><primary>rfm_config_for_lora</primary><secondary>RFM API</secondary></indexterm>
+<indexterm><primary>RFM API</primary><secondary>rfm_config_for_lora</secondary></indexterm>
+<para><computeroutput>void rfm_config_for_lora (uint8_t BW, uint8_t CR, uint8_t SF, bool crc_turn_on, int8_t power)</computeroutput></para>    </section><anchor xml:id="_group___r_f_m___a_p_i_1gae0e65347dc7112c646ba18cb1fe04e14"/>    <section>
+    <title>rfm_end()</title>
+<indexterm><primary>rfm_end</primary><secondary>RFM API</secondary></indexterm>
+<indexterm><primary>RFM API</primary><secondary>rfm_end</secondary></indexterm>
+<para><computeroutput>void rfm_end (void )</computeroutput></para>    </section><anchor xml:id="_group___r_f_m___a_p_i_1ga5fb407c80b9ce99fbfdf8c516edffca5"/>    <section>
+    <title>rfm_get_next_packet()</title>
+<indexterm><primary>rfm_get_next_packet</primary><secondary>RFM API</secondary></indexterm>
+<indexterm><primary>RFM API</primary><secondary>rfm_get_next_packet</secondary></indexterm>
+<para><computeroutput><link linkend="_group___r_f_m___a_p_i_1gafc01238e3835178530cf6f0f8bf57f52">rfm_packet_t</link>* rfm_get_next_packet (void )</computeroutput></para>    </section><anchor xml:id="_group___r_f_m___a_p_i_1gace9a6b928f692d8c264f2387baacdddc"/>    <section>
+    <title>rfm_get_num_packets()</title>
+<indexterm><primary>rfm_get_num_packets</primary><secondary>RFM API</secondary></indexterm>
+<indexterm><primary>RFM API</primary><secondary>rfm_get_num_packets</secondary></indexterm>
+<para><computeroutput>uint8_t rfm_get_num_packets (void )</computeroutput></para>    </section><anchor xml:id="_group___r_f_m___a_p_i_1ga06f769ee719ce52ceaa5d0ec6e63b1c6"/>    <section>
+    <title>rfm_get_packets()</title>
+<indexterm><primary>rfm_get_packets</primary><secondary>RFM API</secondary></indexterm>
+<indexterm><primary>RFM API</primary><secondary>rfm_get_packets</secondary></indexterm>
+<para><computeroutput>void rfm_get_packets (void )</computeroutput></para>    </section><anchor xml:id="_group___r_f_m___a_p_i_1gab1fb248dbc46f0899ffef38ca68d5ab4"/>    <section>
+    <title>rfm_get_stats()</title>
+<indexterm><primary>rfm_get_stats</primary><secondary>RFM API</secondary></indexterm>
+<indexterm><primary>RFM API</primary><secondary>rfm_get_stats</secondary></indexterm>
+<para><computeroutput>void rfm_get_stats (void )</computeroutput></para>    </section><anchor xml:id="_group___r_f_m___a_p_i_1ga76decc202958c9640472be156c7b81f3"/>    <section>
+    <title>rfm_get_version()</title>
+<indexterm><primary>rfm_get_version</primary><secondary>RFM API</secondary></indexterm>
+<indexterm><primary>RFM API</primary><secondary>rfm_get_version</secondary></indexterm>
+<para><computeroutput>uint8_t rfm_get_version (void )</computeroutput></para>    </section><anchor xml:id="_group___r_f_m___a_p_i_1ga87ffd6a21c7cf0faa01991fd044c4276"/>    <section>
+    <title>rfm_init()</title>
+<indexterm><primary>rfm_init</primary><secondary>RFM API</secondary></indexterm>
+<indexterm><primary>RFM API</primary><secondary>rfm_init</secondary></indexterm>
+<para><computeroutput>void rfm_init (void )</computeroutput></para>    </section><anchor xml:id="_group___r_f_m___a_p_i_1ga18a5b5ba0eca9bf5ee9732e0a89f1170"/>    <section>
+    <title>rfm_organize_packet()</title>
+<indexterm><primary>rfm_organize_packet</primary><secondary>RFM API</secondary></indexterm>
+<indexterm><primary>RFM API</primary><secondary>rfm_organize_packet</secondary></indexterm>
+<para><computeroutput>void rfm_organize_packet (<link linkend="_group___r_f_m___a_p_i_1gafc01238e3835178530cf6f0f8bf57f52">rfm_packet_t</link> * packet)</computeroutput></para>    </section><anchor xml:id="_group___r_f_m___a_p_i_1ga91b75a04991a4c31cba4957ba4289961"/>    <section>
+    <title>rfm_reset()</title>
+<indexterm><primary>rfm_reset</primary><secondary>RFM API</secondary></indexterm>
+<indexterm><primary>RFM API</primary><secondary>rfm_reset</secondary></indexterm>
+<para><computeroutput>void rfm_reset (void )</computeroutput></para>    </section><anchor xml:id="_group___r_f_m___a_p_i_1ga5564693cd8d951c7bcc00873760e1cec"/>    <section>
+    <title>rfm_reset_stats()</title>
+<indexterm><primary>rfm_reset_stats</primary><secondary>RFM API</secondary></indexterm>
+<indexterm><primary>RFM API</primary><secondary>rfm_reset_stats</secondary></indexterm>
+<para><computeroutput>void rfm_reset_stats (void )</computeroutput></para>    </section><anchor xml:id="_group___r_f_m___a_p_i_1ga5058dfa294d68004eb9a815c7405f826"/>    <section>
+    <title>rfm_set_power()</title>
+<indexterm><primary>rfm_set_power</primary><secondary>RFM API</secondary></indexterm>
+<indexterm><primary>RFM API</primary><secondary>rfm_set_power</secondary></indexterm>
+<para><computeroutput>void rfm_set_power (int8_t power, uint8_t ramp_time)</computeroutput></para>    </section><anchor xml:id="_group___r_f_m___a_p_i_1ga2077909a7fda80633cc079a458b31c2f"/>    <section>
+    <title>rfm_set_tx_continuous()</title>
+<indexterm><primary>rfm_set_tx_continuous</primary><secondary>RFM API</secondary></indexterm>
+<indexterm><primary>RFM API</primary><secondary>rfm_set_tx_continuous</secondary></indexterm>
+<para><computeroutput>void rfm_set_tx_continuous (void )</computeroutput></para>    </section><anchor xml:id="_group___r_f_m___a_p_i_1ga72db678f5aaf52d58a8619c0c02657ff"/>    <section>
+    <title>rfm_start_listening()</title>
+<indexterm><primary>rfm_start_listening</primary><secondary>RFM API</secondary></indexterm>
+<indexterm><primary>RFM API</primary><secondary>rfm_start_listening</secondary></indexterm>
+<para><computeroutput>void rfm_start_listening (void )</computeroutput></para>    </section><anchor xml:id="_group___r_f_m___a_p_i_1gae92d1597fc479b67c71e1c126cc6b59a"/>    <section>
+    <title>rfm_transmit_packet()</title>
+<indexterm><primary>rfm_transmit_packet</primary><secondary>RFM API</secondary></indexterm>
+<indexterm><primary>RFM API</primary><secondary>rfm_transmit_packet</secondary></indexterm>
+<para><computeroutput>bool rfm_transmit_packet (<link linkend="_group___r_f_m___a_p_i_1gafc01238e3835178530cf6f0f8bf57f52">rfm_packet_t</link> packet)</computeroutput></para></section>
+</section>
+</section>

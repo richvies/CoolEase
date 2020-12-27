@@ -2,7 +2,7 @@
 \label{cusb_8c}\index{hub/src/cusb.c@{hub/src/cusb.c}}
 
 
-Cool\+Ease Hub U\+SB driver source file.  
+Cusb Source File.  
 
 
 {\ttfamily \#include $<$hub/cusb.\+h$>$}\newline
@@ -67,7 +67,7 @@ static const struct \mbox{\hyperlink{structhid__function__descriptor}{hid\+\_\+f
 \begin{DoxyCompactList}\small\item\em H\+ID Function Definition. \end{DoxyCompactList}\item 
 static enum usbd\+\_\+request\+\_\+return\+\_\+codes \mbox{\hyperlink{group___c_u_s_b___i_n_t_ga29b474a495e8084ca9f797e1fcf75eb8}{hid\+\_\+control\+\_\+request}} (usbd\+\_\+device $\ast$dev, struct usb\+\_\+setup\+\_\+data $\ast$req, uint8\+\_\+t $\ast$$\ast$buf, uint16\+\_\+t $\ast$len, void($\ast$$\ast$complete)(usbd\+\_\+device $\ast$, struct usb\+\_\+setup\+\_\+data $\ast$))
 \begin{DoxyCompactList}\small\item\em H\+ID Control Callback. \end{DoxyCompactList}\item 
-void \mbox{\hyperlink{group___c_u_s_b___i_n_t_ga1bde282ff924bedfe37a99146df8b251}{hid\+\_\+report\+\_\+callback}} (usbd\+\_\+device $\ast$\mbox{\hyperlink{group___c_u_s_b___i_n_t_ga371fec116e56a5c485a09d5dd8cd6c95}{usbd\+\_\+dev}}, uint8\+\_\+t ea)
+void \mbox{\hyperlink{group___c_u_s_b___i_n_t_ga1bde282ff924bedfe37a99146df8b251}{hid\+\_\+report\+\_\+callback}} (usbd\+\_\+device $\ast$\mbox{\hyperlink{group___c_u_s_b___a_p_i_ga371fec116e56a5c485a09d5dd8cd6c95}{usbd\+\_\+dev}}, uint8\+\_\+t ea)
 \begin{DoxyCompactList}\small\item\em H\+ID Resport Callback. \end{DoxyCompactList}\item 
 static void \mbox{\hyperlink{group___c_u_s_b___i_n_t_gaa8a5a4bf8f2341314373f98f386d19ee}{hid\+\_\+set\+\_\+config}} (usbd\+\_\+device $\ast$dev, uint16\+\_\+t w\+Value)
 \begin{DoxyCompactList}\small\item\em Configuration callback to setup device as H\+ID. \end{DoxyCompactList}\item 
@@ -96,20 +96,23 @@ static const struct usb\+\_\+interface \mbox{\hyperlink{group___c_u_s_b___c_f_g_
 \begin{DoxyCompactList}\small\item\em Struct containing all used interfaces. \end{DoxyCompactList}\item 
 static const struct usb\+\_\+config\+\_\+descriptor \mbox{\hyperlink{group___c_u_s_b___c_f_g_ga82f3c163f54e2a1e4c606f965227af7c}{cfg\+\_\+desc}}
 \begin{DoxyCompactList}\small\item\em U\+SB Device Config Descriptor. \end{DoxyCompactList}\item 
-static uint8\+\_\+t \mbox{\hyperlink{group___c_u_s_b___i_n_t_ga3f5c5e68ae07d989114524003357a6f7}{usbd\+\_\+control\+\_\+buffer}} \mbox{[}128\mbox{]}
-\begin{DoxyCompactList}\small\item\em Buffer to be used for control requests. \end{DoxyCompactList}\item 
 static uint8\+\_\+t \mbox{\hyperlink{group___c_u_s_b___i_n_t_ga4cfa67ae725c5211ad5ab6e6b5e2c47a}{hid\+\_\+report\+\_\+buf}} \mbox{[}64\mbox{]} = \char`\"{}Default Report Buffer\char`\"{}
 \begin{DoxyCompactList}\small\item\em H\+ID Report buffer. \end{DoxyCompactList}\item 
-static usbd\+\_\+device $\ast$ \mbox{\hyperlink{group___c_u_s_b___i_n_t_ga371fec116e56a5c485a09d5dd8cd6c95}{usbd\+\_\+dev}}
-\end{DoxyCompactItemize}
+static usbd\+\_\+device $\ast$ \mbox{\hyperlink{group___c_u_s_b___a_p_i_ga371fec116e56a5c485a09d5dd8cd6c95}{usbd\+\_\+dev}}
+\begin{DoxyCompactList}\small\item\em U\+SB device handle. \end{DoxyCompactList}\item 
+static uint8\+\_\+t \mbox{\hyperlink{group___c_u_s_b___a_p_i_ga3f5c5e68ae07d989114524003357a6f7}{usbd\+\_\+control\+\_\+buffer}} \mbox{[}128\mbox{]}
+\begin{DoxyCompactList}\small\item\em Buffer to be used for control requests. \end{DoxyCompactList}\end{DoxyCompactItemize}
 
 
 \doxysubsection{Detailed Description}
-Cool\+Ease Hub U\+SB driver source file. 
+Cusb Source File. 
 
 \begin{DoxyAuthor}{Author}
 Richard Davies 
 \end{DoxyAuthor}
+\begin{DoxyDate}{Date}
+27/\+Dec/2020 
+\end{DoxyDate}
 
 
 \doxysubsection{Variable Documentation}
@@ -119,15 +122,27 @@ Richard Davies
 \doxysubsubsection{\texorpdfstring{bReportDescriptorType}{bReportDescriptorType}}
 {\footnotesize\ttfamily uint8\+\_\+t b\+Report\+Descriptor\+Type}
 
+
+
+Definition at line 209 of file cusb.\+c.
+
 \mbox{\Hypertarget{cusb_8c_aaac39c31cd472c2b7e766f70f43e97b4}\label{cusb_8c_aaac39c31cd472c2b7e766f70f43e97b4}} 
 \index{cusb.c@{cusb.c}!hid\_descriptor@{hid\_descriptor}}
 \index{hid\_descriptor@{hid\_descriptor}!cusb.c@{cusb.c}}
 \doxysubsubsection{\texorpdfstring{hid\_descriptor}{hid\_descriptor}}
 {\footnotesize\ttfamily struct usb\+\_\+hid\+\_\+descriptor hid\+\_\+descriptor}
 
+
+
+Definition at line 203 of file cusb.\+c.
+
 \mbox{\Hypertarget{cusb_8c_a55bf7164e75ed7bce74dfae2c2680992}\label{cusb_8c_a55bf7164e75ed7bce74dfae2c2680992}} 
 \index{cusb.c@{cusb.c}!wDescriptorLength@{wDescriptorLength}}
 \index{wDescriptorLength@{wDescriptorLength}!cusb.c@{cusb.c}}
 \doxysubsubsection{\texorpdfstring{wDescriptorLength}{wDescriptorLength}}
 {\footnotesize\ttfamily uint16\+\_\+t w\+Descriptor\+Length}
+
+
+
+Definition at line 210 of file cusb.\+c.
 

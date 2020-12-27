@@ -1,0 +1,44 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<section xmlns="http://docbook.org/ns/docbook" version="5.0" xmlns:xlink="http://www.w3.org/1999/xlink" xml:id="_group___b_o_o_t_l_o_a_d_e_r___u_t_i_l_s___a_p_i" xml:lang="en-US">
+<title>Bootloader_utils API</title>
+<indexterm><primary>Bootloader_utils API</primary></indexterm>
+<para>
+
+<para>
+<literallayout>&#160;&#xa;</literallayout>
+ </para>
+ 
+</para>
+<simplesect>
+    <title>Functions    </title>
+        <itemizedlist>
+            <listitem><para>void <link linkend="_group___b_o_o_t_l_o_a_d_e_r___u_t_i_l_s___a_p_i_1ga6252b1935a7b8e2e6c14a969372929a2">boot_deinit</link> (void)</para>
+</listitem>
+            <listitem><para>void <link linkend="_group___b_o_o_t_l_o_a_d_e_r___u_t_i_l_s___a_p_i_1gae9e4d81efbd526a6c67fd8f1f104d5b3">boot_jump_to_application</link> (uint32_t address)</para>
+</listitem>
+        </itemizedlist>
+</simplesect>
+<section>
+<title>Detailed Description</title>
+
+<para>
+<literallayout>&#160;&#xa;</literallayout>
+ </para>
+</section>
+<section>
+<title>Function Documentation</title>
+<anchor xml:id="_group___b_o_o_t_l_o_a_d_e_r___u_t_i_l_s___a_p_i_1ga6252b1935a7b8e2e6c14a969372929a2"/>    <section>
+    <title>boot_deinit()</title>
+<indexterm><primary>boot_deinit</primary><secondary>Bootloader_utils API</secondary></indexterm>
+<indexterm><primary>Bootloader_utils API</primary><secondary>boot_deinit</secondary></indexterm>
+<para><computeroutput>void boot_deinit (void )</computeroutput></para><para>
+Definition at line <link linkend="_bootloader__utils_8c_source_1l00046">46</link> of file <link linkend="_bootloader__utils_8c_source">bootloader_utils.c</link>.</para>
+    </section><anchor xml:id="_group___b_o_o_t_l_o_a_d_e_r___u_t_i_l_s___a_p_i_1gae9e4d81efbd526a6c67fd8f1f104d5b3"/>    <section>
+    <title>boot_jump_to_application()</title>
+<indexterm><primary>boot_jump_to_application</primary><secondary>Bootloader_utils API</secondary></indexterm>
+<indexterm><primary>Bootloader_utils API</primary><secondary>boot_jump_to_application</secondary></indexterm>
+<para><computeroutput>void boot_jump_to_application (uint32_t address)</computeroutput></para><para>
+Definition at line <link linkend="_bootloader__utils_8c_source_1l00051">51</link> of file <link linkend="_bootloader__utils_8c_source">bootloader_utils.c</link>.</para>
+</section>
+</section>
+</section>

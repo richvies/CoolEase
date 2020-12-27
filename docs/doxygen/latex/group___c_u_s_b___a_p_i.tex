@@ -12,6 +12,13 @@ void \mbox{\hyperlink{group___c_u_s_b___a_p_i_gab4184b48312c430e82701746df0a97ca
 \item 
 void \mbox{\hyperlink{group___c_u_s_b___a_p_i_gac3db1642b64b360258b24bdd9496a390}{cusb\+\_\+test\+\_\+poll}} (void)
 \end{DoxyCompactItemize}
+\doxysubsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+static usbd\+\_\+device $\ast$ \mbox{\hyperlink{group___c_u_s_b___a_p_i_ga371fec116e56a5c485a09d5dd8cd6c95}{usbd\+\_\+dev}}
+\begin{DoxyCompactList}\small\item\em U\+SB device handle. \end{DoxyCompactList}\item 
+static uint8\+\_\+t \mbox{\hyperlink{group___c_u_s_b___a_p_i_ga3f5c5e68ae07d989114524003357a6f7}{usbd\+\_\+control\+\_\+buffer}} \mbox{[}128\mbox{]}
+\begin{DoxyCompactList}\small\item\em Buffer to be used for control requests. \end{DoxyCompactList}\end{DoxyCompactItemize}
 
 
 \doxysubsection{Detailed Description}
@@ -26,9 +33,48 @@ Programming interface and key macros.
 \doxysubsubsection{\texorpdfstring{cusb\_init()}{cusb\_init()}}
 {\footnotesize\ttfamily void cusb\+\_\+init (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})}
 
+
+
+Definition at line 380 of file cusb.\+c.
+
 \mbox{\Hypertarget{group___c_u_s_b___a_p_i_gac3db1642b64b360258b24bdd9496a390}\label{group___c_u_s_b___a_p_i_gac3db1642b64b360258b24bdd9496a390}} 
 \index{Cusb API@{Cusb API}!cusb\_test\_poll@{cusb\_test\_poll}}
 \index{cusb\_test\_poll@{cusb\_test\_poll}!Cusb API@{Cusb API}}
 \doxysubsubsection{\texorpdfstring{cusb\_test\_poll()}{cusb\_test\_poll()}}
 {\footnotesize\ttfamily void cusb\+\_\+test\+\_\+poll (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})}
+
+
+
+Definition at line 397 of file cusb.\+c.
+
+
+
+\doxysubsection{Variable Documentation}
+\mbox{\Hypertarget{group___c_u_s_b___a_p_i_ga3f5c5e68ae07d989114524003357a6f7}\label{group___c_u_s_b___a_p_i_ga3f5c5e68ae07d989114524003357a6f7}} 
+\index{Cusb API@{Cusb API}!usbd\_control\_buffer@{usbd\_control\_buffer}}
+\index{usbd\_control\_buffer@{usbd\_control\_buffer}!Cusb API@{Cusb API}}
+\doxysubsubsection{\texorpdfstring{usbd\_control\_buffer}{usbd\_control\_buffer}}
+{\footnotesize\ttfamily uint8\+\_\+t usbd\+\_\+control\+\_\+buffer\mbox{[}128\mbox{]}\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Buffer to be used for control requests. 
+
+
+
+Definition at line 378 of file cusb.\+c.
+
+\mbox{\Hypertarget{group___c_u_s_b___a_p_i_ga371fec116e56a5c485a09d5dd8cd6c95}\label{group___c_u_s_b___a_p_i_ga371fec116e56a5c485a09d5dd8cd6c95}} 
+\index{Cusb API@{Cusb API}!usbd\_dev@{usbd\_dev}}
+\index{usbd\_dev@{usbd\_dev}!Cusb API@{Cusb API}}
+\doxysubsubsection{\texorpdfstring{usbd\_dev}{usbd\_dev}}
+{\footnotesize\ttfamily usbd\+\_\+device$\ast$ usbd\+\_\+dev\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+U\+SB device handle. 
+
+
+
+Definition at line 375 of file cusb.\+c.
 

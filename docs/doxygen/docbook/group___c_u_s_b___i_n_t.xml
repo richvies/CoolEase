@@ -1,0 +1,109 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<section xmlns="http://docbook.org/ns/docbook" version="5.0" xmlns:xlink="http://www.w3.org/1999/xlink" xml:id="_group___c_u_s_b___i_n_t" xml:lang="en-US">
+<title>Cusb Internal</title>
+<indexterm><primary>Cusb Internal</primary></indexterm>
+<para>
+
+<para>Static Vars, Functions &amp; Internal Macros. </para>
+ 
+</para>
+<simplesect>
+    <title>Functions    </title>
+        <itemizedlist>
+            <listitem><para>static enum usbd_request_return_codes <link linkend="_group___c_u_s_b___i_n_t_1ga29b474a495e8084ca9f797e1fcf75eb8">hid_control_request</link> (usbd_device *dev, struct usb_setup_data *req, uint8_t **buf, uint16_t *len, void(**complete)(usbd_device *, struct usb_setup_data *))</para>
+
+<para>HID Control Callback. </para>
+</listitem>
+            <listitem><para>void <link linkend="_group___c_u_s_b___i_n_t_1ga1bde282ff924bedfe37a99146df8b251">hid_report_callback</link> (usbd_device *<link linkend="_group___c_u_s_b___a_p_i_1ga371fec116e56a5c485a09d5dd8cd6c95">usbd_dev</link>, uint8_t ea)</para>
+
+<para>HID Resport Callback. </para>
+</listitem>
+            <listitem><para>static void <link linkend="_group___c_u_s_b___i_n_t_1gaa8a5a4bf8f2341314373f98f386d19ee">hid_set_config</link> (usbd_device *dev, uint16_t wValue)</para>
+
+<para>Configuration callback to setup device as HID. </para>
+</listitem>
+            <listitem><para>static void <link linkend="_group___c_u_s_b___i_n_t_1gac63b9392f307996959131c5a4e047fa4">cusb_clock_init</link> (void)</para>
+
+<para>Setup CPU and peripheral clocks for usb. </para>
+</listitem>
+        </itemizedlist>
+</simplesect>
+<simplesect>
+    <title>Variables    </title>
+        <itemizedlist>
+            <listitem><para>static uint8_t <link linkend="_group___c_u_s_b___i_n_t_1ga4cfa67ae725c5211ad5ab6e6b5e2c47a">hid_report_buf</link> [64] = &quot;Default Report Buffer&quot;</para>
+
+<para>HID Report buffer. </para>
+</listitem>
+        </itemizedlist>
+</simplesect>
+<section>
+<title>Detailed Description</title>
+
+<para>Static Vars, Functions &amp; Internal Macros. </para>
+</section>
+<section>
+<title>Function Documentation</title>
+<anchor xml:id="_group___c_u_s_b___i_n_t_1gac63b9392f307996959131c5a4e047fa4"/>    <section>
+    <title>cusb_clock_init()</title>
+<indexterm><primary>cusb_clock_init</primary><secondary>Cusb Internal</secondary></indexterm>
+<indexterm><primary>Cusb Internal</primary><secondary>cusb_clock_init</secondary></indexterm>
+<para><computeroutput>static void cusb_clock_init (void )<computeroutput>[static]</computeroutput></computeroutput></para><para>
+
+<para>Setup CPU and peripheral clocks for usb. </para>
+</para>
+<para>
+Definition at line <link linkend="_cusb_8c_source_1l00416">416</link> of file <link linkend="_cusb_8c_source">cusb.c</link>.</para>
+    </section><anchor xml:id="_group___c_u_s_b___i_n_t_1ga29b474a495e8084ca9f797e1fcf75eb8"/>    <section>
+    <title>hid_control_request()</title>
+<indexterm><primary>hid_control_request</primary><secondary>Cusb Internal</secondary></indexterm>
+<indexterm><primary>Cusb Internal</primary><secondary>hid_control_request</secondary></indexterm>
+<para><computeroutput>static enum usbd_request_return_codes hid_control_request (usbd_device * dev, struct usb_setup_data * req, uint8_t ** buf, uint16_t * len, void(**)(usbd_device *, struct usb_setup_data *) complete)<computeroutput>[static]</computeroutput></computeroutput></para><para>
+
+<para>HID Control Callback. </para>
+</para>
+
+<para>Sends hid report descriptor to host </para>
+<para>
+Definition at line <link linkend="_cusb_8c_source_1l00180">180</link> of file <link linkend="_cusb_8c_source">cusb.c</link>.</para>
+    </section><anchor xml:id="_group___c_u_s_b___i_n_t_1ga1bde282ff924bedfe37a99146df8b251"/>    <section>
+    <title>hid_report_callback()</title>
+<indexterm><primary>hid_report_callback</primary><secondary>Cusb Internal</secondary></indexterm>
+<indexterm><primary>Cusb Internal</primary><secondary>hid_report_callback</secondary></indexterm>
+<para><computeroutput>void hid_report_callback (usbd_device * usbd_dev, uint8_t ea)</computeroutput></para><para>
+
+<para>HID Resport Callback. </para>
+</para>
+<para>
+Definition at line <link linkend="_cusb_8c_source_1l00333">333</link> of file <link linkend="_cusb_8c_source">cusb.c</link>.</para>
+    </section><anchor xml:id="_group___c_u_s_b___i_n_t_1gaa8a5a4bf8f2341314373f98f386d19ee"/>    <section>
+    <title>hid_set_config()</title>
+<indexterm><primary>hid_set_config</primary><secondary>Cusb Internal</secondary></indexterm>
+<indexterm><primary>Cusb Internal</primary><secondary>hid_set_config</secondary></indexterm>
+<para><computeroutput>static void hid_set_config (usbd_device * dev, uint16_t wValue)<computeroutput>[static]</computeroutput></computeroutput></para><para>
+
+<para>Configuration callback to setup device as HID. </para>
+</para>
+
+<para>Sets up HID endpoints &amp; registers the <link linkend="_group___c_u_s_b___i_n_t_1ga29b474a495e8084ca9f797e1fcf75eb8">hid_control_request</link> callback which </para>
+<para>
+Definition at line <link linkend="_cusb_8c_source_1l00343">343</link> of file <link linkend="_cusb_8c_source">cusb.c</link>.</para>
+</section>
+</section>
+<section>
+<title>Variable Documentation</title>
+<anchor xml:id="_group___c_u_s_b___i_n_t_1ga4cfa67ae725c5211ad5ab6e6b5e2c47a"/>    <section>
+    <title>hid_report_buf</title>
+<indexterm><primary>hid_report_buf</primary><secondary>Cusb Internal</secondary></indexterm>
+<indexterm><primary>Cusb Internal</primary><secondary>hid_report_buf</secondary></indexterm>
+<para><computeroutput>uint8_t hid_report_buf[64] = &quot;Default Report Buffer&quot;<computeroutput>[static]</computeroutput></computeroutput></para><para>
+
+<para>HID Report buffer. </para>
+</para>
+
+<para>Buffer used for all HID in &amp; out transactions </para>
+<para>
+Definition at line <link linkend="_cusb_8c_source_1l00329">329</link> of file <link linkend="_cusb_8c_source">cusb.c</link>.</para>
+</section>
+</section>
+</section>

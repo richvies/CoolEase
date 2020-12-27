@@ -1,6 +1,6 @@
 PROJECT 	= hub
-BOOTLOADER	= hub_bootloader
-TARGETS		= hub.elf hub_bootloader.elf
+BOOTLOADER	= $(PROJECT)_bootloader
 DEVICE 		= stm32l052c8t6
+
 
 include Makefile.inc

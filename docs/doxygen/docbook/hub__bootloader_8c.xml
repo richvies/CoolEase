@@ -1,0 +1,35 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<section xmlns="http://docbook.org/ns/docbook" version="5.0" xmlns:xlink="http://www.w3.org/1999/xlink" xml:id="_hub__bootloader_8c" xml:lang="en-US">
+<title>hub/src/hub_bootloader.c File Reference</title>
+<indexterm><primary>hub/src/hub_bootloader.c</primary></indexterm>
+<para>
+
+<para>Hub Bootloader Source File. </para>
+ 
+</para>
+<programlisting>#include &quot;hub/hub_bootloader.h&quot;
+</programlisting><simplesect>
+    <title>Functions    </title>
+        <itemizedlist>
+            <listitem><para>int <link linkend="_group___h_u_b___b_o_o_t_l_o_a_d_e_r___a_p_i_1ga840291bc02cba5474a4cb46a9b9566fe">main</link> (void)</para>
+</listitem>
+        </itemizedlist>
+</simplesect>
+<section>
+<title>Detailed Description</title>
+
+<para>Hub Bootloader Source File. </para>
+
+<para><formalpara><title>Author</title>
+
+<para>Richard Davies </para>
+</formalpara>
+<formalpara><title>Date</title>
+
+<para>25/Dec/2020 </para>
+</formalpara>
+</para>
+<para>
+Definition in file <link linkend="_hub__bootloader_8c_source">hub_bootloader.c</link>.</para>
+</section>
+</section>

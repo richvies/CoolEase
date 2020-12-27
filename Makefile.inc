@@ -32,7 +32,7 @@ endif
 LDLIBS += -Wl,--start-group -lc -lgcc -lnosys -Wl,--end-group
 
 #############################################################
-# Project Files
+# General Project Files
 #############################################################
 
 # Include Headers
@@ -42,20 +42,33 @@ INCLUDES += -I$(PROJECT)/include -Icommon/include
 SRCDIR = $(PROJECT)/src
 COMDIR = common/src
 CFILES = $(wildcard $(SRCDIR)/*.c) $(wildcard $(COMDIR)/*.c)
-VPATH = $(SRCDIR) $(COMDIR)
 
 # Object Files
 OBJDIR = $(PROJECT)/obj
-OBJS   = $(addprefix $(OBJDIR)/,$(notdir $(CFILES:.c=.o)))
+OBJS   = $(addprefix $(OBJDIR)/, $(notdir $(CFILES:.c=.o)))
 
 # Build Directory
 BINDIR = $(PROJECT)/bin
 
-# Linker script
-LDSCRIPT = $(PROJECT).ld
+# Add paths
+VPATH = $(PROJECT) $(SRCDIR) $(COMDIR) $(OBJDIR) $(BINDIR)
 
 # List of files for make_clean
 GENERATED_BINS = $(BINDIR)/*.elf $(BINDIR)/*.bin $(BINDIR)/*.map $(BINDIR)/*.list $(BINDIR)/*.lss
+
+#############################################################
+# Specific Project Files
+#############################################################
+
+# App
+$(PROJECT)_OBJS 	= $(filter-out %/$(BOOTLOADER).o, $(OBJS))
+# Bootloader
+$(BOOTLOADER)_OBJS 	= $(filter-out  %/$(PROJECT).o, $(OBJS))
+
+# Linker scripts
+$(PROJECT)_LDSCRIPT 	= $(PROJECT)/$(PROJECT).ld
+$(BOOTLOADER)_LDSCRIPT 	= $(PROJECT)/$(BOOTLOADER).ld
+LDSCRIPTS				= $($(PROJECT)_LDSCRIPT) $($(BOOTLOADER)_LDSCRIPT)
 
 
 #############################################################
@@ -89,14 +102,14 @@ TGT_CXXFLAGS += -Wextra -Wshadow -Wredundant-decls  -Weffc++
 
 TGT_ASFLAGS += $(OPT) $(ARCH_FLAGS) -ggdb3
 
-TGT_LDFLAGS += -T$(LDSCRIPT) -L$(OPENCM3_DIR)/lib -nostartfiles
+TGT_LDFLAGS += -L$(OPENCM3_DIR)/lib -nostartfiles
 TGT_LDFLAGS += $(ARCH_FLAGS)
 TGT_LDFLAGS += -specs=nano.specs
 TGT_LDFLAGS += -Wl,--gc-sections
-TGT_LDFLAGS += -Wl,-Map=$(BINDIR)/$(PROJECT).map
+TGT_LDFLAGS += -Wl,--print-gc-sections
 
 ifeq ($(V),99)
-TGT_LDFLAGS += -Wl,--print-gc-sections
+
 endif
 
 # Be silent per default, but 'make V=1' will show all compiler calls.
@@ -112,17 +125,17 @@ endif
 
 all: project bootloader
 
-project: 	$(BINDIR)/$(PROJECT).elf $(BINDIR)/$(PROJECT).bin $(BINDIR)/$(PROJECT).lss $(BINDIR)/$(PROJECT).list
-			$(SIZE) $(BINDIR)/$(PROJECT).elf
-
 bootloader:	$(BINDIR)/$(BOOTLOADER).elf $(BINDIR)/$(BOOTLOADER).bin $(BINDIR)/$(BOOTLOADER).lss $(BINDIR)/$(BOOTLOADER).list
 			$(SIZE) $(BINDIR)/$(BOOTLOADER).elf
+
+project:	$(BINDIR)/$(PROJECT).elf $(BINDIR)/$(PROJECT).bin $(BINDIR)/$(PROJECT).lss $(BINDIR)/$(PROJECT).list
+			$(SIZE) $(BINDIR)/$(PROJECT).elf
 
 clean:
 	rm -rf $(OBJDIR) $(GENERATED_BINS)
 
 print-%:
-	@echo VARIABLE=$($*)
+	@echo $* = $($*)
 
 .PHONY: all clean print
 
@@ -130,22 +143,16 @@ print-%:
 # File build rules
 #############################################################
 
-# Elf
-$(BINDIR)/$(PROJECT).elf: $(OBJS) $(LDSCRIPT) $(LIBDEPS)
+%.elf: $(OBJS) $(LDSCRIPTS) $(LIBDEPS)
 	@printf "  LD\t$@\n"
-	$(Q)$(LD) $(TGT_LDFLAGS) $(LDFLAGS) $(OBJS) $(LDLIBS) -o $@
+	@echo $(*F)_LDSCRIPT
+	$(Q)$(LD) -T$($(*F)_LDSCRIPT) $(TGT_LDFLAGS) $(LDFLAGS) -Wl,-Map=$*.map $($(*F)_OBJS) $(LDLIBS) -o $@
 
-# Object files
 $(OBJDIR)/%.o: %.c
 	@printf "  CC\t$<\n"
 	@mkdir -p $(dir $@)
 	$(Q)$(CC) $(TGT_CFLAGS) $(CFLAGS) $(TGT_CPPFLAGS) $(CPPFLAGS) -o $@.S -E $<
 	$(Q)$(CC) $(TGT_CFLAGS) $(CFLAGS) $(TGT_CPPFLAGS) $(CPPFLAGS) -o $@ -c $<
-
-# # Bootloader elf
-# $(BINDIR)/$(BOOTLOADER).elf: $(OBJS) $(LDSCRIPT) $(LIBDEPS)
-# 	@printf "  LD\t$@\n"
-# 	$(Q)$(LD) $(TGT_LDFLAGS) $(LDFLAGS) $(OBJS) $(LDLIBS) -o $@
 
 %.bin: %.elf
 	@printf "  OBJCOPY\t$@\n"
@@ -158,5 +165,3 @@ $(OBJDIR)/%.o: %.c
 	$(OBJDUMP) -S $< > $@
 
 -include $(OBJS:.o=.d)
-
-include $(OPENCM3_DIR)/mk/genlink-rules.mk

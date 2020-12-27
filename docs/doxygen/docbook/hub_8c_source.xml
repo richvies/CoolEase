@@ -1,0 +1,45 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<section xmlns="http://docbook.org/ns/docbook" version="5.0" xmlns:xlink="http://www.w3.org/1999/xlink" xml:id="_hub_8c_source" xml:lang="en-US">
+<title>hub.c</title>
+<indexterm><primary>hub/src/hub.c</primary></indexterm>
+<programlisting>00001 
+00011 <emphasis role="comment">/*////////////////////////////////////////////////////////////////////////////*/</emphasis>
+00012 <emphasis role="comment">//&#32;Includes</emphasis>
+00013 <emphasis role="comment">/*////////////////////////////////////////////////////////////////////////////*/</emphasis>
+00014 
+00015 <emphasis role="preprocessor">#include&#32;&quot;<link linkend="_hub__test_8h">hub/hub_test.h</link>&quot;</emphasis>
+00016 <emphasis role="preprocessor">#include&#32;&quot;<link linkend="_testing_8h">common/testing.h</link>&quot;</emphasis>
+00017 
+<anchor xml:id="_hub_8c_source_1l00022"/><link linkend="_group___h_u_b___f_i_l_e_1gaeeec01180221fc32a831f91982f6311e">00022</link> <emphasis role="preprocessor">#define&#32;APP_ADDRESS&#32;0x08002000</emphasis>
+00023 
+00028 <emphasis role="comment">/*////////////////////////////////////////////////////////////////////////////*/</emphasis>
+00029 <emphasis role="comment">//&#32;Static&#32;Variables</emphasis>
+00030 <emphasis role="comment">/*////////////////////////////////////////////////////////////////////////////*/</emphasis>
+00031 
+00032 
+00033 
+00034 <emphasis role="comment">/*////////////////////////////////////////////////////////////////////////////*/</emphasis>
+00035 <emphasis role="comment">//&#32;Static&#32;Function&#32;Declarations</emphasis>
+00036 <emphasis role="comment">/*////////////////////////////////////////////////////////////////////////////*/</emphasis>
+00037 
+00038 
+00039 
+00046 <emphasis role="comment">/*////////////////////////////////////////////////////////////////////////////*/</emphasis>
+00047 <emphasis role="comment">//&#32;Exported&#32;Function&#32;Definitions</emphasis>
+00048 <emphasis role="comment">/*////////////////////////////////////////////////////////////////////////////*/</emphasis>
+00049 
+<anchor xml:id="_hub_8c_source_1l00050"/><link linkend="_group___h_u_b___a_p_i_1ga840291bc02cba5474a4cb46a9b9566fe">00050</link> <emphasis role="keywordtype">int</emphasis>&#32;<link linkend="_group___h_u_b___a_p_i_1ga840291bc02cba5474a4cb46a9b9566fe">main</link>(<emphasis role="keywordtype">void</emphasis>)
+00051 {
+00052 &#32;&#32;<emphasis role="comment">//&#32;test_cusb_poll();</emphasis>
+00053 &#32;&#32;<link linkend="_group___t_e_s_t_i_n_g___a_p_i_1ga69ea690611b372034a01fa6c5e492c8b">test_boot</link>(<link linkend="_group___h_u_b___f_i_l_e_1gaeeec01180221fc32a831f91982f6311e">APP_ADDRESS</link>);
+00054 
+00055 &#32;&#32;<emphasis role="keywordflow">return</emphasis>&#32;0;
+00056 }
+00057 
+00064 <emphasis role="comment">/*////////////////////////////////////////////////////////////////////////////*/</emphasis>
+00065 <emphasis role="comment">//&#32;Static&#32;Function&#32;Definitions</emphasis>
+00066 <emphasis role="comment">/*////////////////////////////////////////////////////////////////////////////*/</emphasis>
+00067 
+00068 
+00069 
+</programlisting></section>

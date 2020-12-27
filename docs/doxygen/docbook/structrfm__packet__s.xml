@@ -1,0 +1,204 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<section xmlns="http://docbook.org/ns/docbook" version="5.0" xmlns:xlink="http://www.w3.org/1999/xlink" xml:id="_structrfm__packet__s" xml:lang="en-US">
+<title>rfm_packet_s Struct Reference</title>
+<indexterm><primary>rfm_packet_s</primary></indexterm>
+<para>
+
+<para>RFM data packet structure. </para>
+ 
+</para>
+<para>
+<computeroutput>#include &lt;rfm.h&gt;</computeroutput>
+</para>
+<simplesect>
+    <title>Public Types    </title>
+        <itemizedlist>
+            <listitem><para>enum { 
+<link linkend="_structrfm__packet__s_1a57a572161580c44de0397d506f762ee8a72bd18632cc0896300d6c77c14830e87">RFM_PACKET_DEV_NUM_0</link> = 0, 
+<link linkend="_structrfm__packet__s_1a57a572161580c44de0397d506f762ee8a365847c89d3663ad2190a99f48d7bca9">RFM_PACKET_DEV_NUM_1</link>, 
+<link linkend="_structrfm__packet__s_1a57a572161580c44de0397d506f762ee8a89f3512ee762ec269e090e0dfbdb787b">RFM_PACKET_DEV_NUM_2</link>, 
+<link linkend="_structrfm__packet__s_1a57a572161580c44de0397d506f762ee8af786324388d3274a62f8afb62185a4ef">RFM_PACKET_DEV_NUM_3</link>, 
+
+<link linkend="_structrfm__packet__s_1a57a572161580c44de0397d506f762ee8a4b2c5d5ef8e77674ff08e6f34f9dae80">RFM_PACKET_MSG_NUM_0</link>, 
+<link linkend="_structrfm__packet__s_1a57a572161580c44de0397d506f762ee8a5ab8e807ff64ce9d62a7ed314e38921d">RFM_PACKET_MSG_NUM_1</link>, 
+<link linkend="_structrfm__packet__s_1a57a572161580c44de0397d506f762ee8a2f3d1caa3965791240a6ce38e26c1f68">RFM_PACKET_MSG_NUM_2</link>, 
+<link linkend="_structrfm__packet__s_1a57a572161580c44de0397d506f762ee8acbb0a871ecd893c4322fff0c4b5331a1">RFM_PACKET_MSG_NUM_3</link>, 
+
+<link linkend="_structrfm__packet__s_1a57a572161580c44de0397d506f762ee8aaf675934de60ec67e1f80d432100b5b2">RFM_PACKET_POWER</link>, 
+<link linkend="_structrfm__packet__s_1a57a572161580c44de0397d506f762ee8a71a583484ab2e8ff6b55c80ad6a87009">RFM_PACKET_BATTERY_0</link>, 
+<link linkend="_structrfm__packet__s_1a57a572161580c44de0397d506f762ee8a6f63b019712c31d1a54292e430c3e042">RFM_PACKET_BATTERY_1</link>, 
+<link linkend="_structrfm__packet__s_1a57a572161580c44de0397d506f762ee8aba8f5fe75d768c9875dc827b5ff7854d">RFM_PACKET_TEMP_0</link>, 
+
+<link linkend="_structrfm__packet__s_1a57a572161580c44de0397d506f762ee8a4320c5e41c955e8d9f3c358cee8afba2">RFM_PACKET_TEMP_1</link>
+ }</para>
+</listitem>
+        </itemizedlist>
+</simplesect>
+<simplesect>
+    <title>Data Fields    </title>
+        <itemizedlist>
+            <listitem><para>union {</para>
+        <itemizedlist>
+            <listitem><para>   uint8_t <link linkend="_structrfm__packet__s_1af1a876da67a681b40b75540ae2bc6176">buffer</link> [<link linkend="_rfm_8h_1a666eda2cf7405dc9f26e01c59f058409">RFM_PACKET_LENGTH</link>]</para>
+</listitem>
+            <listitem><para>   struct {</para>
+        <itemizedlist>
+            <listitem><para>      uint32_t <link linkend="_structrfm__packet__s_1afacaeb2dc3a00ac32fe3eac6402b3a60">device_number</link></para>
+</listitem>
+            <listitem><para>      uint32_t <link linkend="_structrfm__packet__s_1af8b2c44a30f9b071c8565b93ad5138d0">msg_number</link></para>
+</listitem>
+            <listitem><para>      int8_t <link linkend="_structrfm__packet__s_1ad3a6f7c8a005755bd2b2eadbea34e172">power</link></para>
+</listitem>
+            <listitem><para>      uint16_t <link linkend="_structrfm__packet__s_1aa6b550d91337037ef4ba0837b711ae77">battery</link></para>
+</listitem>
+            <listitem><para>      int16_t <link linkend="_structrfm__packet__s_1a287f7926024f1cf8854776ecd0a23b4c">temperature</link></para>
+</listitem>
+        </itemizedlist>
+</listitem>
+            <listitem><para>   } </para>
+</listitem>
+        </itemizedlist>
+</listitem>
+            <listitem><para>} <link linkend="_structrfm__packet__s_1adc8ac85df32f3dc109624956d64fcd1f">data</link></para>
+</listitem>
+            <listitem><para>uint8_t <link linkend="_structrfm__packet__s_1a48623fcad37276e510247bb1ce509b0f">flags</link></para>
+</listitem>
+            <listitem><para>bool <link linkend="_structrfm__packet__s_1afd279ad01e9c21bd3b740c8790715115">crc_ok</link></para>
+</listitem>
+            <listitem><para>int8_t <link linkend="_structrfm__packet__s_1a4095303e7dce5b3ba060a88910133614">snr</link></para>
+</listitem>
+            <listitem><para>int16_t <link linkend="_structrfm__packet__s_1ac3b6d6f761557e18a3402c11a984e938">rssi</link></para>
+</listitem>
+            <listitem><para>enum rfm_packet_s:: { ... }  <link linkend="_structrfm__packet__s_1ab0de19635d1b80f7886408aa90325b97">packet_data_e</link></para>
+</listitem>
+        </itemizedlist>
+</simplesect>
+<section>
+<title>Detailed Description</title>
+
+<para>RFM data packet structure. </para>
+
+
+
+<para>Defines the packet structure for the radio module </para>
+<para>
+Definition at line <link linkend="_rfm_8h_source_1l00301">301</link> of file <link linkend="_rfm_8h_source">rfm.h</link>.</para>
+</section>
+<section>
+<title>Member Enumeration Documentation</title>
+<anchor xml:id="_structrfm__packet__s_1a57a572161580c44de0397d506f762ee8"/>    <section>
+    <title>anonymous enum</title>
+<para><computeroutput>anonymous enum</computeroutput></para><informaltable frame="all">
+<title>Enumerator</title>
+    <tgroup cols="2" align="left" colsep="1" rowsep="1">
+      <colspec colname='c1'/>
+      <colspec colname='c2'/>
+<tbody>
+<row><entry><indexterm><primary>RFM_PACKET_DEV_NUM_0</primary><secondary>rfm_packet_s</secondary></indexterm>
+<indexterm><primary>rfm_packet_s</primary><secondary>RFM_PACKET_DEV_NUM_0</secondary></indexterm>
+<anchor xml:id="_structrfm__packet__s_1a57a572161580c44de0397d506f762ee8a72bd18632cc0896300d6c77c14830e87"/>RFM_PACKET_DEV_NUM_0</entry><entry></entry></row><row><entry><indexterm><primary>RFM_PACKET_DEV_NUM_1</primary><secondary>rfm_packet_s</secondary></indexterm>
+<indexterm><primary>rfm_packet_s</primary><secondary>RFM_PACKET_DEV_NUM_1</secondary></indexterm>
+<anchor xml:id="_structrfm__packet__s_1a57a572161580c44de0397d506f762ee8a365847c89d3663ad2190a99f48d7bca9"/>RFM_PACKET_DEV_NUM_1</entry><entry></entry></row><row><entry><indexterm><primary>RFM_PACKET_DEV_NUM_2</primary><secondary>rfm_packet_s</secondary></indexterm>
+<indexterm><primary>rfm_packet_s</primary><secondary>RFM_PACKET_DEV_NUM_2</secondary></indexterm>
+<anchor xml:id="_structrfm__packet__s_1a57a572161580c44de0397d506f762ee8a89f3512ee762ec269e090e0dfbdb787b"/>RFM_PACKET_DEV_NUM_2</entry><entry></entry></row><row><entry><indexterm><primary>RFM_PACKET_DEV_NUM_3</primary><secondary>rfm_packet_s</secondary></indexterm>
+<indexterm><primary>rfm_packet_s</primary><secondary>RFM_PACKET_DEV_NUM_3</secondary></indexterm>
+<anchor xml:id="_structrfm__packet__s_1a57a572161580c44de0397d506f762ee8af786324388d3274a62f8afb62185a4ef"/>RFM_PACKET_DEV_NUM_3</entry><entry></entry></row><row><entry><indexterm><primary>RFM_PACKET_MSG_NUM_0</primary><secondary>rfm_packet_s</secondary></indexterm>
+<indexterm><primary>rfm_packet_s</primary><secondary>RFM_PACKET_MSG_NUM_0</secondary></indexterm>
+<anchor xml:id="_structrfm__packet__s_1a57a572161580c44de0397d506f762ee8a4b2c5d5ef8e77674ff08e6f34f9dae80"/>RFM_PACKET_MSG_NUM_0</entry><entry></entry></row><row><entry><indexterm><primary>RFM_PACKET_MSG_NUM_1</primary><secondary>rfm_packet_s</secondary></indexterm>
+<indexterm><primary>rfm_packet_s</primary><secondary>RFM_PACKET_MSG_NUM_1</secondary></indexterm>
+<anchor xml:id="_structrfm__packet__s_1a57a572161580c44de0397d506f762ee8a5ab8e807ff64ce9d62a7ed314e38921d"/>RFM_PACKET_MSG_NUM_1</entry><entry></entry></row><row><entry><indexterm><primary>RFM_PACKET_MSG_NUM_2</primary><secondary>rfm_packet_s</secondary></indexterm>
+<indexterm><primary>rfm_packet_s</primary><secondary>RFM_PACKET_MSG_NUM_2</secondary></indexterm>
+<anchor xml:id="_structrfm__packet__s_1a57a572161580c44de0397d506f762ee8a2f3d1caa3965791240a6ce38e26c1f68"/>RFM_PACKET_MSG_NUM_2</entry><entry></entry></row><row><entry><indexterm><primary>RFM_PACKET_MSG_NUM_3</primary><secondary>rfm_packet_s</secondary></indexterm>
+<indexterm><primary>rfm_packet_s</primary><secondary>RFM_PACKET_MSG_NUM_3</secondary></indexterm>
+<anchor xml:id="_structrfm__packet__s_1a57a572161580c44de0397d506f762ee8acbb0a871ecd893c4322fff0c4b5331a1"/>RFM_PACKET_MSG_NUM_3</entry><entry></entry></row><row><entry><indexterm><primary>RFM_PACKET_POWER</primary><secondary>rfm_packet_s</secondary></indexterm>
+<indexterm><primary>rfm_packet_s</primary><secondary>RFM_PACKET_POWER</secondary></indexterm>
+<anchor xml:id="_structrfm__packet__s_1a57a572161580c44de0397d506f762ee8aaf675934de60ec67e1f80d432100b5b2"/>RFM_PACKET_POWER</entry><entry></entry></row><row><entry><indexterm><primary>RFM_PACKET_BATTERY_0</primary><secondary>rfm_packet_s</secondary></indexterm>
+<indexterm><primary>rfm_packet_s</primary><secondary>RFM_PACKET_BATTERY_0</secondary></indexterm>
+<anchor xml:id="_structrfm__packet__s_1a57a572161580c44de0397d506f762ee8a71a583484ab2e8ff6b55c80ad6a87009"/>RFM_PACKET_BATTERY_0</entry><entry></entry></row><row><entry><indexterm><primary>RFM_PACKET_BATTERY_1</primary><secondary>rfm_packet_s</secondary></indexterm>
+<indexterm><primary>rfm_packet_s</primary><secondary>RFM_PACKET_BATTERY_1</secondary></indexterm>
+<anchor xml:id="_structrfm__packet__s_1a57a572161580c44de0397d506f762ee8a6f63b019712c31d1a54292e430c3e042"/>RFM_PACKET_BATTERY_1</entry><entry></entry></row><row><entry><indexterm><primary>RFM_PACKET_TEMP_0</primary><secondary>rfm_packet_s</secondary></indexterm>
+<indexterm><primary>rfm_packet_s</primary><secondary>RFM_PACKET_TEMP_0</secondary></indexterm>
+<anchor xml:id="_structrfm__packet__s_1a57a572161580c44de0397d506f762ee8aba8f5fe75d768c9875dc827b5ff7854d"/>RFM_PACKET_TEMP_0</entry><entry></entry></row><row><entry><indexterm><primary>RFM_PACKET_TEMP_1</primary><secondary>rfm_packet_s</secondary></indexterm>
+<indexterm><primary>rfm_packet_s</primary><secondary>RFM_PACKET_TEMP_1</secondary></indexterm>
+<anchor xml:id="_structrfm__packet__s_1a57a572161580c44de0397d506f762ee8a4320c5e41c955e8d9f3c358cee8afba2"/>RFM_PACKET_TEMP_1</entry><entry></entry></row>    </tbody>
+    </tgroup>
+</informaltable>
+<para>
+Definition at line <link linkend="_rfm_8h_source_1l00325">325</link> of file <link linkend="_rfm_8h_source">rfm.h</link>.</para>
+</section>
+</section>
+<section>
+<title>Field Documentation</title>
+<anchor xml:id="_structrfm__packet__s_1aa6b550d91337037ef4ba0837b711ae77"/>    <section>
+    <title>battery</title>
+<indexterm><primary>battery</primary><secondary>rfm_packet_s</secondary></indexterm>
+<indexterm><primary>rfm_packet_s</primary><secondary>battery</secondary></indexterm>
+<para><computeroutput>uint16_t rfm_packet_s::battery</computeroutput></para><para>
+Definition at line <link linkend="_rfm_8h_source_1l00313">313</link> of file <link linkend="_rfm_8h_source">rfm.h</link>.</para>
+    </section><anchor xml:id="_structrfm__packet__s_1af1a876da67a681b40b75540ae2bc6176"/>    <section>
+    <title>buffer</title>
+<indexterm><primary>buffer</primary><secondary>rfm_packet_s</secondary></indexterm>
+<indexterm><primary>rfm_packet_s</primary><secondary>buffer</secondary></indexterm>
+<para><computeroutput>uint8_t rfm_packet_s::buffer[<link linkend="_rfm_8h_1a666eda2cf7405dc9f26e01c59f058409">RFM_PACKET_LENGTH</link>]</computeroutput></para><para>
+Definition at line <link linkend="_rfm_8h_source_1l00307">307</link> of file <link linkend="_rfm_8h_source">rfm.h</link>.</para>
+    </section><anchor xml:id="_structrfm__packet__s_1afd279ad01e9c21bd3b740c8790715115"/>    <section>
+    <title>crc_ok</title>
+<indexterm><primary>crc_ok</primary><secondary>rfm_packet_s</secondary></indexterm>
+<indexterm><primary>rfm_packet_s</primary><secondary>crc_ok</secondary></indexterm>
+<para><computeroutput>bool rfm_packet_s::crc_ok</computeroutput></para><para>
+Definition at line <link linkend="_rfm_8h_source_1l00320">320</link> of file <link linkend="_rfm_8h_source">rfm.h</link>.</para>
+    </section><anchor xml:id="_structrfm__packet__s_1adc8ac85df32f3dc109624956d64fcd1f"/>    <section>
+    <title>data</title>
+<indexterm><primary>data</primary><secondary>rfm_packet_s</secondary></indexterm>
+<indexterm><primary>rfm_packet_s</primary><secondary>data</secondary></indexterm>
+<para><computeroutput>union { ... }  rfm_packet_s::data</computeroutput></para>    </section><anchor xml:id="_structrfm__packet__s_1afacaeb2dc3a00ac32fe3eac6402b3a60"/>    <section>
+    <title>device_number</title>
+<indexterm><primary>device_number</primary><secondary>rfm_packet_s</secondary></indexterm>
+<indexterm><primary>rfm_packet_s</primary><secondary>device_number</secondary></indexterm>
+<para><computeroutput>uint32_t rfm_packet_s::device_number</computeroutput></para><para>
+Definition at line <link linkend="_rfm_8h_source_1l00310">310</link> of file <link linkend="_rfm_8h_source">rfm.h</link>.</para>
+    </section><anchor xml:id="_structrfm__packet__s_1a48623fcad37276e510247bb1ce509b0f"/>    <section>
+    <title>flags</title>
+<indexterm><primary>flags</primary><secondary>rfm_packet_s</secondary></indexterm>
+<indexterm><primary>rfm_packet_s</primary><secondary>flags</secondary></indexterm>
+<para><computeroutput>uint8_t rfm_packet_s::flags</computeroutput></para><para>
+Definition at line <link linkend="_rfm_8h_source_1l00319">319</link> of file <link linkend="_rfm_8h_source">rfm.h</link>.</para>
+    </section><anchor xml:id="_structrfm__packet__s_1af8b2c44a30f9b071c8565b93ad5138d0"/>    <section>
+    <title>msg_number</title>
+<indexterm><primary>msg_number</primary><secondary>rfm_packet_s</secondary></indexterm>
+<indexterm><primary>rfm_packet_s</primary><secondary>msg_number</secondary></indexterm>
+<para><computeroutput>uint32_t rfm_packet_s::msg_number</computeroutput></para><para>
+Definition at line <link linkend="_rfm_8h_source_1l00311">311</link> of file <link linkend="_rfm_8h_source">rfm.h</link>.</para>
+    </section><anchor xml:id="_structrfm__packet__s_1ab0de19635d1b80f7886408aa90325b97"/>    <section>
+    <title>packet_data_e</title>
+<indexterm><primary>packet_data_e</primary><secondary>rfm_packet_s</secondary></indexterm>
+<indexterm><primary>rfm_packet_s</primary><secondary>packet_data_e</secondary></indexterm>
+<para><computeroutput>enum { ... }  rfm_packet_s::packet_data_e</computeroutput></para>    </section><anchor xml:id="_structrfm__packet__s_1ad3a6f7c8a005755bd2b2eadbea34e172"/>    <section>
+    <title>power</title>
+<indexterm><primary>power</primary><secondary>rfm_packet_s</secondary></indexterm>
+<indexterm><primary>rfm_packet_s</primary><secondary>power</secondary></indexterm>
+<para><computeroutput>int8_t rfm_packet_s::power</computeroutput></para><para>
+Definition at line <link linkend="_rfm_8h_source_1l00312">312</link> of file <link linkend="_rfm_8h_source">rfm.h</link>.</para>
+    </section><anchor xml:id="_structrfm__packet__s_1ac3b6d6f761557e18a3402c11a984e938"/>    <section>
+    <title>rssi</title>
+<indexterm><primary>rssi</primary><secondary>rfm_packet_s</secondary></indexterm>
+<indexterm><primary>rfm_packet_s</primary><secondary>rssi</secondary></indexterm>
+<para><computeroutput>int16_t rfm_packet_s::rssi</computeroutput></para><para>
+Definition at line <link linkend="_rfm_8h_source_1l00322">322</link> of file <link linkend="_rfm_8h_source">rfm.h</link>.</para>
+    </section><anchor xml:id="_structrfm__packet__s_1a4095303e7dce5b3ba060a88910133614"/>    <section>
+    <title>snr</title>
+<indexterm><primary>snr</primary><secondary>rfm_packet_s</secondary></indexterm>
+<indexterm><primary>rfm_packet_s</primary><secondary>snr</secondary></indexterm>
+<para><computeroutput>int8_t rfm_packet_s::snr</computeroutput></para><para>
+Definition at line <link linkend="_rfm_8h_source_1l00321">321</link> of file <link linkend="_rfm_8h_source">rfm.h</link>.</para>
+    </section><anchor xml:id="_structrfm__packet__s_1a287f7926024f1cf8854776ecd0a23b4c"/>    <section>
+    <title>temperature</title>
+<indexterm><primary>temperature</primary><secondary>rfm_packet_s</secondary></indexterm>
+<indexterm><primary>rfm_packet_s</primary><secondary>temperature</secondary></indexterm>
+<para><computeroutput>int16_t rfm_packet_s::temperature</computeroutput></para><para>
+Definition at line <link linkend="_rfm_8h_source_1l00314">314</link> of file <link linkend="_rfm_8h_source">rfm.h</link>.</para>
+</section>
+<para>
+The documentation for this struct was generated from the following file:</para>
+common/include/common/<link linkend="_rfm_8h">rfm.h</link></section>
+</section>

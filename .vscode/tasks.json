@@ -1,14 +1,27 @@
 {
     "version": "2.0.0",
     "tasks": [
+        //////////////////////////////
+        // Builds
+        //////////////////////////////
+        // All
         {
-            "label": "Build project",
+            "label": "Build all",
             "group": {
                 "kind": "build",
                 "isDefault": true
             },
+            "dependsOn":["Build hub", "Build sensor"],
+            "presentation": {
+                "focus": true
+            }
+        },   
+        // Hub
+        {
+            "label": "Build hub",
+            "group": "build",
             "type": "shell",
-            "command": "make -fHub/Makefile all",
+            "command": "make -fhub/Makefile all",
             "args": [],
             "problemMatcher": {
                 "pattern": {
@@ -24,6 +37,49 @@
                 "focus": true
             }
         },
+        // Sensor
+        {
+            "label": "Build project",
+            "group": "build",
+            "type": "shell",
+            "command": "make -fsensor/Makefile all",
+            "problemMatcher": {
+                "pattern": {
+                    "regexp": "^(.*):(\\d+):(\\d+):\\s+(warning|error):\\s+(.*)$",
+                    "file": 1,
+                    "line": 2,
+                    "column": 3,
+                    "severity": 4,
+                    "message": 5
+                }
+            },
+            "presentation": {
+                "focus": true
+            }
+        },
+        // Clean
+        {
+            "label": "Clean project",
+            "group": "build",
+            "type": "shell",
+            "command": "make -fhub/Makefile clean",
+            "problemMatcher": {
+                "pattern": {
+                    "regexp": "^(.*):(\\d+):(\\d+):\\s+(warning|error):\\s+(.*)$",
+                    "file": 1,
+                    "line": 2,
+                    "column": 3,
+                    "severity": 4,
+                    "message": 5
+                }
+            },
+            "presentation": {
+                "focus": true
+            }
+        },
+        
+
+
         {
             "label": "Compile current file",
             "type": "shell",
@@ -83,6 +139,7 @@
                 "focus": true
             }
         },
+
         {
             "label": "Delete build folder",
             "type": "shell",

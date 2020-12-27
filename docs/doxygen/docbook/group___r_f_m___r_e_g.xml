@@ -1,0 +1,1476 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<section xmlns="http://docbook.org/ns/docbook" version="5.0" xmlns:xlink="http://www.w3.org/1999/xlink" xml:id="_group___r_f_m___r_e_g" xml:lang="en-US">
+<title>RFM Registers</title>
+<indexterm><primary>RFM Registers</primary></indexterm>
+<para>
+
+<para>Register Descriptions. </para>
+ 
+</para>
+<simplesect>
+    <title>Macros    </title>
+        <itemizedlist>
+            <listitem><para>#define <link linkend="_group___r_f_m___r_e_g_1ga0e7acb562b24ab76d6c4c5b61341245e">RFM_REG_00_FIFO</link>   0x00</para>
+
+<para>Shared TX/RX FIFO Address. </para>
+</listitem>
+            <listitem><para>#define <link linkend="_group___r_f_m___r_e_g_1ga9baa0076f0eeabfd5502a2af14ae4a53">RFM_REG_01_OP_MODE</link>   0x01</para>
+
+<para>Operating Mode RFM_IRQ. </para>
+</listitem>
+            <listitem><para>#define <link linkend="_group___r_f_m___r_e_g_1ga8b85802bc69d552b61867c498b986237">RFM_REG_02_RESERVED</link>   0x02</para>
+</listitem>
+            <listitem><para>#define <link linkend="_group___r_f_m___r_e_g_1ga878c5d807f8d78506c4d063cfc97ede3">RFM_REG_03_RESERVED</link>   0x03</para>
+</listitem>
+            <listitem><para>#define <link linkend="_group___r_f_m___r_e_g_1gafb246120c6965da0fc38ebf774e37513">RFM_REG_04_RESERVED</link>   0x04</para>
+</listitem>
+            <listitem><para>#define <link linkend="_group___r_f_m___r_e_g_1ga16e5d318e7ff8c38b1c687569dccb992">RFM_REG_05_RESERVED</link>   0x05</para>
+</listitem>
+            <listitem><para>#define <link linkend="_group___r_f_m___r_e_g_1ga725effcc1ebcc89fd56028d7ca291aa6">RFM_REG_06_FRF_MSB</link>   0x06</para>
+</listitem>
+            <listitem><para>#define <link linkend="_group___r_f_m___r_e_g_1gaa7c01d8a673baab3c8f558a7a96afa3e">RFM_REG_07_FRF_MID</link>   0x07</para>
+</listitem>
+            <listitem><para>#define <link linkend="_group___r_f_m___r_e_g_1gae8d067c9a9847b048c722f089a5d3795">RFM_REG_08_FRF_LSB</link>   0x08</para>
+</listitem>
+            <listitem><para>#define <link linkend="_group___r_f_m___r_e_g_1ga7a214a2032cf7006c341c764aae65d4c">RFM_REG_09_PA_CONFIG</link>   0x09</para>
+</listitem>
+            <listitem><para>#define <link linkend="_group___r_f_m___r_e_g_1ga2d056e9c4e7e36704c5b838b302fa353">RFM_REG_0A_PA_RAMP</link>   0x0a</para>
+</listitem>
+            <listitem><para>#define <link linkend="_group___r_f_m___r_e_g_1ga8f53da922d9f1c8e3dd4b4388dec7825">RFM_REG_0B_OCP</link>   0x0b</para>
+</listitem>
+            <listitem><para>#define <link linkend="_group___r_f_m___r_e_g_1ga46501454a761b6839a3d86d75c5f3176">RFM_REG_0C_LNA</link>   0x0c</para>
+</listitem>
+            <listitem><para>#define <link linkend="_group___r_f_m___r_e_g_1ga397b0f175bcc9dcf9b4cbb9326bb39d7">RFM_REG_0D_FIFO_ADDR_PTR</link>   0x0d</para>
+</listitem>
+            <listitem><para>#define <link linkend="_group___r_f_m___r_e_g_1gaf52209910380bdc7ed4bf2b5f9fae8fe">RFM_REG_0E_FIFO_TX_BASE_ADDR</link>   0x0e</para>
+</listitem>
+            <listitem><para>#define <link linkend="_group___r_f_m___r_e_g_1gaef013ab9a7aa95cc2746f9a1fedd67fb">RFM_REG_0F_FIFO_RX_BASE_ADDR</link>   0x0f</para>
+</listitem>
+            <listitem><para>#define <link linkend="_group___r_f_m___r_e_g_1ga2b2359aedfd00ce0008003eb423792e3">RFM_REG_10_FIFO_RX_CURRENT_ADDR</link>   0x10</para>
+</listitem>
+            <listitem><para>#define <link linkend="_group___r_f_m___r_e_g_1ga42630a4d594a66f489ef59319d7ad9d5">RFM_REG_11_IRQ_FLAGS_MASK</link>   0x11</para>
+</listitem>
+            <listitem><para>#define <link linkend="_group___r_f_m___r_e_g_1gaa34bab7260f7ecb7dd09233f04876c0a">RFM_REG_12_IRQ_FLAGS</link>   0x12</para>
+</listitem>
+            <listitem><para>#define <link linkend="_group___r_f_m___r_e_g_1gaf1e5d312d036e83095851f9215d87f67">RFM_REG_13_RX_NB_BYTES</link>   0x13</para>
+</listitem>
+            <listitem><para>#define <link linkend="_group___r_f_m___r_e_g_1ga366f10853f72fb682f879caee1c7d24c">RFM_REG_14_RX_HEADER_CNT_VALUE_MSB</link>   0x14</para>
+</listitem>
+            <listitem><para>#define <link linkend="_group___r_f_m___r_e_g_1gaadfaf098c05c3fe9cba0e896ab7f22cd">RFM_REG_15_RX_HEADER_CNT_VALUE_LSB</link>   0x15</para>
+</listitem>
+            <listitem><para>#define <link linkend="_group___r_f_m___r_e_g_1ga163274e602525602166db0cf8f853430">RFM_REG_16_RX_PACKET_CNT_VALUE_MSB</link>   0x16</para>
+</listitem>
+            <listitem><para>#define <link linkend="_group___r_f_m___r_e_g_1gab9b9433a65b526a0cec1eea448485d42">RFM_REG_17_RX_PACKET_CNT_VALUE_LSB</link>   0x17</para>
+</listitem>
+            <listitem><para>#define <link linkend="_group___r_f_m___r_e_g_1gaa4cc855ab2379e352ddb993c48a8dead">RFM_REG_18_MODEM_STAT</link>   0x18</para>
+</listitem>
+            <listitem><para>#define <link linkend="_group___r_f_m___r_e_g_1ga3a0fb65349f600092278bb5bd83dfea5">RFM_REG_19_PKT_SNR_VALUE</link>   0x19</para>
+</listitem>
+            <listitem><para>#define <link linkend="_group___r_f_m___r_e_g_1gafa5d36547a50b460aa261a70296899d0">RFM_REG_1A_PKT_RSSI_VALUE</link>   0x1a</para>
+</listitem>
+            <listitem><para>#define <link linkend="_group___r_f_m___r_e_g_1ga7b1696ee84f56bfb97e30ea25b825ffd">RFM_REG_1B_RSSI_VALUE</link>   0x1b</para>
+</listitem>
+            <listitem><para>#define <link linkend="_group___r_f_m___r_e_g_1ga1550402280c5b437e922adb1e6a5e87a">RFM_REG_1C_HOP_CHANNEL</link>   0x1c</para>
+</listitem>
+            <listitem><para>#define <link linkend="_group___r_f_m___r_e_g_1gaa932a9af646d9529da8c45a50dfec766">RFM_REG_1D_MODEM_CONFIG1</link>   0x1d</para>
+</listitem>
+            <listitem><para>#define <link linkend="_group___r_f_m___r_e_g_1ga6593800a43804946ec83b888f5ab83fe">RFM_REG_1E_MODEM_CONFIG2</link>   0x1e</para>
+</listitem>
+            <listitem><para>#define <link linkend="_group___r_f_m___r_e_g_1gaf8e677c87d42543f7d2af1a3299bd4b1">RFM_REG_1F_SYMB_TIMEOUT_LSB</link>   0x1f</para>
+</listitem>
+            <listitem><para>#define <link linkend="_group___r_f_m___r_e_g_1ga631528a64c394bc82ee252e30b9a963d">RFM_REG_20_PREAMBLE_MSB</link>   0x20</para>
+</listitem>
+            <listitem><para>#define <link linkend="_group___r_f_m___r_e_g_1ga0525c23c9d16cd81ebb26facf62c1574">RFM_REG_21_PREAMBLE_LSB</link>   0x21</para>
+</listitem>
+            <listitem><para>#define <link linkend="_group___r_f_m___r_e_g_1ga590c0a497ba4af11ade3e87245c6b94d">RFM_REG_22_PAYLOAD_LENGTH</link>   0x22</para>
+</listitem>
+            <listitem><para>#define <link linkend="_group___r_f_m___r_e_g_1gaa953b71f48a9e3e0be740ec1a44579eb">RFM_REG_23_MAX_PAYLOAD_LENGTH</link>   0x23</para>
+</listitem>
+            <listitem><para>#define <link linkend="_group___r_f_m___r_e_g_1ga5a9e5926f67415fa18a848107c6a7840">RFM_REG_24_HOP_PERIOD</link>   0x24</para>
+</listitem>
+            <listitem><para>#define <link linkend="_group___r_f_m___r_e_g_1ga1de6c594f2161cf3a0277a1251dd2a89">RFM_REG_25_FIFO_RX_BYTE_ADDR</link>   0x25</para>
+</listitem>
+            <listitem><para>#define <link linkend="_group___r_f_m___r_e_g_1ga2a12d0ed6ab0f475969f6328c7d4ac6d">RFM_REG_26_MODEM_CONFIG3</link>   0x26</para>
+</listitem>
+            <listitem><para>#define <link linkend="_group___r_f_m___r_e_g_1gad74006ba6a135916de0e183cb9fc56c5">RFM_REG_27_PPM_CORRECTION</link>   0x27</para>
+</listitem>
+            <listitem><para>#define <link linkend="_group___r_f_m___r_e_g_1gaa0299b1b1b190eb3d472c16521c00c36">RFM_REG_28_FEI_MSB</link>   0x28</para>
+</listitem>
+            <listitem><para>#define <link linkend="_group___r_f_m___r_e_g_1ga898eb352dc4ce0a9ce1f8e9d2ce90358">RFM_REG_29_FEI_MID</link>   0x29</para>
+</listitem>
+            <listitem><para>#define <link linkend="_group___r_f_m___r_e_g_1ga83095be89530beccb987394f36cc2adf">RFM_REG_2A_FEI_LSB</link>   0x2a</para>
+</listitem>
+            <listitem><para>#define <link linkend="_group___r_f_m___r_e_g_1ga2a59b3abd4150e7090b824939e7d65ed">RFM_REG_2C_RSSI_WIDEBAND</link>   0x2c</para>
+</listitem>
+            <listitem><para>#define <link linkend="_group___r_f_m___r_e_g_1ga664249e022db28bb3614e42ee0aafaae">RFM_REG_31_DETECT_OPTIMIZE</link>   0x31</para>
+</listitem>
+            <listitem><para>#define <link linkend="_group___r_f_m___r_e_g_1ga3ff2ebf26fdc0cebc32c2b064ee218f0">RFM_REG_33_INVERT_IQ</link>   0x33</para>
+</listitem>
+            <listitem><para>#define <link linkend="_group___r_f_m___r_e_g_1ga0f4ddf7034bb3b5392beae28cf3adde6">RFM_REG_37_DETECTION_THRESHOLD</link>   0x37</para>
+</listitem>
+            <listitem><para>#define <link linkend="_group___r_f_m___r_e_g_1gad4c325c0c16c1ab5e8f78e02d07098da">RFM_REG_39_SYNC_WORD</link>   0x39</para>
+</listitem>
+            <listitem><para>#define <link linkend="_group___r_f_m___r_e_g_1ga6b9638f2b2f191008f8353de8760bfb3">RFM_REG_40_DIO_MAPPING1</link>   0x40</para>
+</listitem>
+            <listitem><para>#define <link linkend="_group___r_f_m___r_e_g_1ga3e1bfc3439158e705617b4574f98a991">RFM_REG_41_DIO_MAPPING2</link>   0x41</para>
+</listitem>
+            <listitem><para>#define <link linkend="_group___r_f_m___r_e_g_1gaffa0e65cbbe21cdbacbbaa90430bbd6c">RFM_REG_42_VERSION</link>   0x42</para>
+</listitem>
+            <listitem><para>#define <link linkend="_group___r_f_m___r_e_g_1ga4fbd56ba97dcb9ff8f7f1851049d768f">RFM_REG_4B_TCXO</link>   0x4b</para>
+</listitem>
+            <listitem><para>#define <link linkend="_group___r_f_m___r_e_g_1ga5cc42fb14f55e3e06929614826f3e807">RFM_REG_4D_PA_DAC</link>   0x4d</para>
+</listitem>
+            <listitem><para>#define <link linkend="_group___r_f_m___r_e_g_1gaa0c183302d9f7ad79fef7d1893c72c66">RFM_REG_5B_FORMER_TEMP</link>   0x5b</para>
+</listitem>
+            <listitem><para>#define <link linkend="_group___r_f_m___r_e_g_1gac15b1388d12f594d1fda26fac5bf89c5">RFM_REG_61_AGC_REF</link>   0x61</para>
+</listitem>
+            <listitem><para>#define <link linkend="_group___r_f_m___r_e_g_1ga35804f846e34bc15e0c13ca058a4039f">RFM_REG_62_AGC_THRESH1</link>   0x62</para>
+</listitem>
+            <listitem><para>#define <link linkend="_group___r_f_m___r_e_g_1ga8cddd993e8cc063e484d1ec7624e7768">RFM_REG_63_AGC_THRESH2</link>   0x63</para>
+</listitem>
+            <listitem><para>#define <link linkend="_group___r_f_m___r_e_g_1gaf15a77834e0d293219fd9cd82cb5cb1a">RFM_REG_64_AGC_THRESH3</link>   0x64</para>
+</listitem>
+            <listitem><para>#define <link linkend="_group___r_f_m___r_e_g_1ga3eb853cc819d5585c6ae00d653e3cb2b">RFM_LONG_RANGE_MODE</link>   0x80</para>
+</listitem>
+            <listitem><para>#define <link linkend="_group___r_f_m___r_e_g_1gaea7ee1acf4e5bb89bd057619be163d00">RFM_ACCESS_SHARED_REG</link>   0x40</para>
+</listitem>
+            <listitem><para>#define <link linkend="_group___r_f_m___r_e_g_1ga0c9fa032ff669aa59bdbb8298ca7b84d">RFM_LOW_FREQUENCY_MODE</link>   0x08</para>
+</listitem>
+            <listitem><para>#define <link linkend="_group___r_f_m___r_e_g_1gad36327544af17d57a33a135b7454f34c">RFM_MODE</link>   0x07</para>
+</listitem>
+            <listitem><para>#define <link linkend="_group___r_f_m___r_e_g_1ga8753b4175be3f74136c3f7a7f8620774">RFM_MODE_SLEEP</link>   0x00</para>
+</listitem>
+            <listitem><para>#define <link linkend="_group___r_f_m___r_e_g_1gaff6b46713347c4c3f2fbc4a2033bb958">RFM_MODE_STDBY</link>   0x01</para>
+</listitem>
+            <listitem><para>#define <link linkend="_group___r_f_m___r_e_g_1ga42c6a0498709e6abdcafc3079dd02e7b">RFM_MODE_FSTX</link>   0x02</para>
+</listitem>
+            <listitem><para>#define <link linkend="_group___r_f_m___r_e_g_1gab28486a8c0393dc12ff0dd04325fd84b">RFM_MODE_TX</link>   0x03</para>
+</listitem>
+            <listitem><para>#define <link linkend="_group___r_f_m___r_e_g_1ga7465645bef3dd4d7c7b1ba31803d4850">RFM_MODE_FSRX</link>   0x04</para>
+</listitem>
+            <listitem><para>#define <link linkend="_group___r_f_m___r_e_g_1ga8f7860205c9d44d922201a1c6124553c">RFM_MODE_RXCONTINUOUS</link>   0x05</para>
+</listitem>
+            <listitem><para>#define <link linkend="_group___r_f_m___r_e_g_1ga68a460c52bae16ef4a404d518256d908">RFM_MODE_RXSINGLE</link>   0x06</para>
+</listitem>
+            <listitem><para>#define <link linkend="_group___r_f_m___r_e_g_1ga879286a499ac6485feca3422d48a8882">RFM_MODE_CAD</link>   0x07</para>
+</listitem>
+            <listitem><para>#define <link linkend="_group___r_f_m___r_e_g_1ga77caf23af20ce85f5ae37f12d0d806ab">RFM_PA_SELECT</link>   0x80</para>
+</listitem>
+            <listitem><para>#define <link linkend="_group___r_f_m___r_e_g_1ga501f04fcb8b91bfeab0a904b035d0e20">RFM_MAX_POWER</link>   0x70</para>
+</listitem>
+            <listitem><para>#define <link linkend="_group___r_f_m___r_e_g_1ga8627ba0d89061e4162112b44a12b85bf">RFM_OUTPUT_POWER</link>   0x0f</para>
+</listitem>
+            <listitem><para>#define <link linkend="_group___r_f_m___r_e_g_1ga59198253c729f13bfe2dac7190a2c7a8">RFM_LOW_PN_TX_PLL_OFF</link>   0x10</para>
+</listitem>
+            <listitem><para>#define <link linkend="_group___r_f_m___r_e_g_1ga3ae15ddc8efec7c5c00a62b6f1c14d76">RFM_PA_RAMP_MASK</link>   0x0f</para>
+</listitem>
+            <listitem><para>#define <link linkend="_group___r_f_m___r_e_g_1gaa2d1fa9904e8844dde4d6dc5933a5e39">RFM_PA_RAMP_3_4MS</link>   0x00</para>
+</listitem>
+            <listitem><para>#define <link linkend="_group___r_f_m___r_e_g_1ga98333f4c37610682241f8c5c653cdf82">RFM_PA_RAMP_2MS</link>   0x01</para>
+</listitem>
+            <listitem><para>#define <link linkend="_group___r_f_m___r_e_g_1ga1f5701d073233d97e83777fd502740d8">RFM_PA_RAMP_1MS</link>   0x02</para>
+</listitem>
+            <listitem><para>#define <link linkend="_group___r_f_m___r_e_g_1gac6646adcdd2b637347d15bcd09904cbf">RFM_PA_RAMP_500US</link>   0x03</para>
+</listitem>
+            <listitem><para>#define <link linkend="_group___r_f_m___r_e_g_1gad84cd5fba79c9191d0d7b131d98a8a01">RFM_PA_RAMP_250US</link>   0x04</para>
+</listitem>
+            <listitem><para>#define <link linkend="_group___r_f_m___r_e_g_1ga9690a22faffb0310e1830a77491032ff">RFM_PA_RAMP_125US</link>   0x05</para>
+</listitem>
+            <listitem><para>#define <link linkend="_group___r_f_m___r_e_g_1gab6940b062ad3eab06b21be0410c4928a">RFM_PA_RAMP_100US</link>   0x06</para>
+</listitem>
+            <listitem><para>#define <link linkend="_group___r_f_m___r_e_g_1ga7f17258baf8a39b8a8f1f06ff0c3fda5">RFM_PA_RAMP_62US</link>   0x07</para>
+</listitem>
+            <listitem><para>#define <link linkend="_group___r_f_m___r_e_g_1gac37664710c9dd48c07b54b42202c9c1e">RFM_PA_RAMP_50US</link>   0x08</para>
+</listitem>
+            <listitem><para>#define <link linkend="_group___r_f_m___r_e_g_1gac711d620c58f13196614f3988de81596">RFM_PA_RAMP_40US</link>   0x09</para>
+</listitem>
+            <listitem><para>#define <link linkend="_group___r_f_m___r_e_g_1ga997814144a6f371c375a9e5ce5e3fdfd">RFM_PA_RAMP_31US</link>   0x0a</para>
+</listitem>
+            <listitem><para>#define <link linkend="_group___r_f_m___r_e_g_1ga60cab33376fa3512e515c282f2c61d07">RFM_PA_RAMP_25US</link>   0x0b</para>
+</listitem>
+            <listitem><para>#define <link linkend="_group___r_f_m___r_e_g_1ga0f2ec984819fa2f84abc5a4375312c6c">RFM_PA_RAMP_20US</link>   0x0c</para>
+</listitem>
+            <listitem><para>#define <link linkend="_group___r_f_m___r_e_g_1ga7fc9b5a5be832689958dc0b9be88beef">RFM_PA_RAMP_15US</link>   0x0d</para>
+</listitem>
+            <listitem><para>#define <link linkend="_group___r_f_m___r_e_g_1gab1d1f56fedc61482f4d9677eb77dcc94">RFM_PA_RAMP_12US</link>   0x0e</para>
+</listitem>
+            <listitem><para>#define <link linkend="_group___r_f_m___r_e_g_1gaacbd16da23855d35071e54fab3d8cbf8">RFM_PA_RAMP_10US</link>   0x0f</para>
+</listitem>
+            <listitem><para>#define <link linkend="_group___r_f_m___r_e_g_1ga4090553ba4959e33afe1200f39c5ce15">RFM_OCP_ON</link>   0x20</para>
+</listitem>
+            <listitem><para>#define <link linkend="_group___r_f_m___r_e_g_1gab44b6dd5983e7ffbcbd88e1c407ad356">RFM_OCP_TRIM</link>   0x1f</para>
+</listitem>
+            <listitem><para>#define <link linkend="_group___r_f_m___r_e_g_1ga24fa88c835e1475ae0bca8c27454ce5b">RFM_LNA_GAIN</link>   0xe0</para>
+</listitem>
+            <listitem><para>#define <link linkend="_group___r_f_m___r_e_g_1gadf5f76aeccc745546d8dc3ef7885ea4b">RFM_LNA_GAIN_G1</link>   0x20</para>
+</listitem>
+            <listitem><para>#define <link linkend="_group___r_f_m___r_e_g_1ga72587a5952d01f8c8466e1e4c2c06dc0">RFM_LNA_GAIN_G2</link>   0x40</para>
+</listitem>
+            <listitem><para>#define <link linkend="_group___r_f_m___r_e_g_1gaeff69fdc30366934b78c078542a07981">RFM_LNA_GAIN_G3</link>   0x60</para>
+</listitem>
+            <listitem><para>#define <link linkend="_group___r_f_m___r_e_g_1ga9bde20197b1f04c608f7f38a1eff6bc6">RFM_LNA_GAIN_G4</link>   0x80</para>
+</listitem>
+            <listitem><para>#define <link linkend="_group___r_f_m___r_e_g_1ga3ddd75f37172d8fbd8eb7d7de42cc685">RFM_LNA_GAIN_G5</link>   0xa0</para>
+</listitem>
+            <listitem><para>#define <link linkend="_group___r_f_m___r_e_g_1ga15c716918dd52948ace26ea6d231bb6d">RFM_LNA_GAIN_G6</link>   0xc0</para>
+</listitem>
+            <listitem><para>#define <link linkend="_group___r_f_m___r_e_g_1ga6040d513a5c1a75294a1c7227ed3b4fc">RFM_LNA_BOOST_LF</link>   0x18</para>
+</listitem>
+            <listitem><para>#define <link linkend="_group___r_f_m___r_e_g_1ga6094f0481dd7968d6aba532a62f430bb">RFM_LNA_BOOST_LF_DEFAULT</link>   0x00</para>
+</listitem>
+            <listitem><para>#define <link linkend="_group___r_f_m___r_e_g_1ga4e545b5a92087bb72cc56fe18af84ab1">RFM_LNA_BOOST_HF</link>   0x03</para>
+</listitem>
+            <listitem><para>#define <link linkend="_group___r_f_m___r_e_g_1gae8907553681176d030d17fa7da701d89">RFM_LNA_BOOST_HF_DEFAULT</link>   0x00</para>
+</listitem>
+            <listitem><para>#define <link linkend="_group___r_f_m___r_e_g_1gac827c0769313671e247958742ac893b9">RFM_LNA_BOOST_HF_150PC</link>   0x03</para>
+</listitem>
+            <listitem><para>#define <link linkend="_group___r_f_m___r_e_g_1ga46c8d638fd5d677ff00574202749a60d">RFM_RX_TIMEOUT_MASK</link>   0x80</para>
+</listitem>
+            <listitem><para>#define <link linkend="_group___r_f_m___r_e_g_1ga886c9f196a27dceab3c71a2b08d4db2d">RFM_RX_DONE_MASK</link>   0x40</para>
+</listitem>
+            <listitem><para>#define <link linkend="_group___r_f_m___r_e_g_1ga65a837ca136ec77aad8b73c4ab851e4f">RFM_PAYLOAD_CRC_ERROR_MASK</link>   0x20</para>
+</listitem>
+            <listitem><para>#define <link linkend="_group___r_f_m___r_e_g_1ga580bb89afbf9b7055f73a2ae358c6a7a">RFM_VALID_HEADER_MASK</link>   0x10</para>
+</listitem>
+            <listitem><para>#define <link linkend="_group___r_f_m___r_e_g_1ga4d67743361ea6df5dcb97570afd6f661">RFM_TX_DONE_MASK</link>   0x08</para>
+</listitem>
+            <listitem><para>#define <link linkend="_group___r_f_m___r_e_g_1gac15beb51b598be10605c31402f942604">RFM_CAD_DONE_MASK</link>   0x04</para>
+</listitem>
+            <listitem><para>#define <link linkend="_group___r_f_m___r_e_g_1ga7160498da85504b4fb1e66eefee148c2">RFM_FHSS_CHANGE_CHANNEL_MASK</link>   0x02</para>
+</listitem>
+            <listitem><para>#define <link linkend="_group___r_f_m___r_e_g_1ga11ff04d8a0261ab90e95f7b53a5be732">RFM_CAD_DETECTED_MASK</link>   0x01</para>
+</listitem>
+            <listitem><para>#define <link linkend="_group___r_f_m___r_e_g_1gac4466525e6cf4716e7be485ec496763d">RFM_IRQ_ALL</link>   0xFF</para>
+</listitem>
+            <listitem><para>#define <link linkend="_group___r_f_m___r_e_g_1gaf6cdf56add76e5f2ece02710cfc6b2ab">RFM_IRQ_NONE</link>   0x00</para>
+</listitem>
+            <listitem><para>#define <link linkend="_group___r_f_m___r_e_g_1ga9687d1220a0ded952e7119d5219779f4">RFM_IRQ_RX_TIMEOUT</link>   0x80</para>
+</listitem>
+            <listitem><para>#define <link linkend="_group___r_f_m___r_e_g_1ga50b07045d10fe450256900fb0392dcd9">RFM_IRQ_RX_DONE</link>   0x40</para>
+</listitem>
+            <listitem><para>#define <link linkend="_group___r_f_m___r_e_g_1gafff2997606702b74acf477ce9a1141e0">RFM_IRQ_PAYLOAD_CRC_ERROR</link>   0x20</para>
+</listitem>
+            <listitem><para>#define <link linkend="_group___r_f_m___r_e_g_1ga20b6294b23c246066a0dd46aaefc2e68">RFM_IRQ_VALID_HEADER</link>   0x10</para>
+</listitem>
+            <listitem><para>#define <link linkend="_group___r_f_m___r_e_g_1ga22cfeb678799b2affeb3f2f4084792f8">RFM_IRQ_TX_DONE</link>   0x08</para>
+</listitem>
+            <listitem><para>#define <link linkend="_group___r_f_m___r_e_g_1gac8d939f752fbb70a12af72db29238ce8">RFM_IRQ_CAD_DONE</link>   0x04</para>
+</listitem>
+            <listitem><para>#define <link linkend="_group___r_f_m___r_e_g_1ga376784fe05633d7b9dc0bda4e84b50a3">RFM_IRQ_FHSS_CHANGE_CHANNEL</link>   0x02</para>
+</listitem>
+            <listitem><para>#define <link linkend="_group___r_f_m___r_e_g_1gac1d02291848211f49df1455134b00f7d">RFM_IRQ_CAD_DETECTED</link>   0x01</para>
+</listitem>
+            <listitem><para>#define <link linkend="_group___r_f_m___r_e_g_1gadb849b331c82e5844141c66fce8b12b8">RFM_RX_CODING_RATE</link>   0xe0</para>
+</listitem>
+            <listitem><para>#define <link linkend="_group___r_f_m___r_e_g_1gadbd2ff3317eae3c8e95dc584d3ee0ee4">RFM_MODEM_STATUS_CLEAR</link>   0x10</para>
+</listitem>
+            <listitem><para>#define <link linkend="_group___r_f_m___r_e_g_1gab00b6e3bab4bad7723c05675a57d777b">RFM_MODEM_STATUS_HEADER_INFO_VALID</link>   0x08</para>
+</listitem>
+            <listitem><para>#define <link linkend="_group___r_f_m___r_e_g_1ga519236312c124f2a1af51cb2f1c34607">RFM_MODEM_STATUS_RX_ONGOING</link>   0x04</para>
+</listitem>
+            <listitem><para>#define <link linkend="_group___r_f_m___r_e_g_1ga68d52effda4f0f9ee941d13b478909c9">RFM_MODEM_STATUS_SIGNAL_SYNCHRONIZED</link>   0x02</para>
+</listitem>
+            <listitem><para>#define <link linkend="_group___r_f_m___r_e_g_1ga21714004a3b6fc2fd2d7ac2f02d4bdbd">RFM_MODEM_STATUS_SIGNAL_DETECTED</link>   0x01</para>
+</listitem>
+            <listitem><para>#define <link linkend="_group___r_f_m___r_e_g_1ga6468e74cdb785242a848d53fd35d50b2">RFM_PLL_TIMEOUT</link>   0x80</para>
+</listitem>
+            <listitem><para>#define <link linkend="_group___r_f_m___r_e_g_1ga6f03946c297feb41070e2fe6811e041d">RFM_RX_PAYLOAD_CRC_IS_ON</link>   0x40</para>
+</listitem>
+            <listitem><para>#define <link linkend="_group___r_f_m___r_e_g_1ga7e3ef623be57b9a5870634bfc21391b2">RFM_FHSS_PRESENT_CHANNEL</link>   0x3f</para>
+</listitem>
+            <listitem><para>#define <link linkend="_group___r_f_m___r_e_g_1ga4366bcf084242030c50978964075dfe6">RFM_BW</link>   0xf0</para>
+</listitem>
+            <listitem><para>#define <link linkend="_group___r_f_m___r_e_g_1gafacb21b9e5da88cb37415af124260250">RFM_BW_7_8KHZ</link>   0x00</para>
+</listitem>
+            <listitem><para>#define <link linkend="_group___r_f_m___r_e_g_1ga132c4bb79c705333e11240951ec9d245">RFM_BW_10_4KHZ</link>   0x10</para>
+</listitem>
+            <listitem><para>#define <link linkend="_group___r_f_m___r_e_g_1ga246911e1dfc46b3003d3ab5c0d8cc9f7">RFM_BW_15_6KHZ</link>   0x20</para>
+</listitem>
+            <listitem><para>#define <link linkend="_group___r_f_m___r_e_g_1ga03e633adab87201b7e15504b1ae17119">RFM_BW_20_8KHZ</link>   0x30</para>
+</listitem>
+            <listitem><para>#define <link linkend="_group___r_f_m___r_e_g_1ga9f4bd4f132b47c53051635265540cf4b">RFM_BW_31_25KHZ</link>   0x40</para>
+</listitem>
+            <listitem><para>#define <link linkend="_group___r_f_m___r_e_g_1gac3a326b0b8b85f87724168a20f6a9b5c">RFM_BW_41_7KHZ</link>   0x50</para>
+</listitem>
+            <listitem><para>#define <link linkend="_group___r_f_m___r_e_g_1gaf296d76f8cd35dfca9b5ac5c33d9ca37">RFM_BW_62_5KHZ</link>   0x60</para>
+</listitem>
+            <listitem><para>#define <link linkend="_group___r_f_m___r_e_g_1gac10a8b57e3caab32ace83340431ca741">RFM_BW_125KHZ</link>   0x70</para>
+</listitem>
+            <listitem><para>#define <link linkend="_group___r_f_m___r_e_g_1gae6aaa8f181faae6f0afe1d4cee7ba3e6">RFM_BW_250KHZ</link>   0x80</para>
+</listitem>
+            <listitem><para>#define <link linkend="_group___r_f_m___r_e_g_1ga72cadc5bdfcb5a4871485107f8939cb9">RFM_BW_500KHZ</link>   0x90</para>
+</listitem>
+            <listitem><para>#define <link linkend="_group___r_f_m___r_e_g_1gaf01ea0efd19cc76918f34f12bda11043">RFM_CODING_RATE</link>   0x0e</para>
+</listitem>
+            <listitem><para>#define <link linkend="_group___r_f_m___r_e_g_1ga791e64216981f68b5a7f7dc986f703ed">RFM_CODING_RATE_4_5</link>   0x02</para>
+</listitem>
+            <listitem><para>#define <link linkend="_group___r_f_m___r_e_g_1ga0edc07f9df69ae638f8f8dea971325dd">RFM_CODING_RATE_4_6</link>   0x04</para>
+</listitem>
+            <listitem><para>#define <link linkend="_group___r_f_m___r_e_g_1gad05390d421fd3888871ff9b7adce0842">RFM_CODING_RATE_4_7</link>   0x06</para>
+</listitem>
+            <listitem><para>#define <link linkend="_group___r_f_m___r_e_g_1gafa0465073bb64c9a204d3a2f8bc7667f">RFM_CODING_RATE_4_8</link>   0x08</para>
+</listitem>
+            <listitem><para>#define <link linkend="_group___r_f_m___r_e_g_1ga2705328bc48a2dabe66953781715a749">RFM_IMPLICIT_HEADER_MODE_ON</link>   0x01</para>
+</listitem>
+            <listitem><para>#define <link linkend="_group___r_f_m___r_e_g_1gae2231ea56372274b91e7d07dbf2252d0">RFM_SPREADING_FACTOR</link>   0xf0</para>
+</listitem>
+            <listitem><para>#define <link linkend="_group___r_f_m___r_e_g_1ga4badda06bea16f2ab302998e0c2eeb06">RFM_SPREADING_FACTOR_64CPS</link>   0x60</para>
+</listitem>
+            <listitem><para>#define <link linkend="_group___r_f_m___r_e_g_1ga91493e17a62f89f8b1950938ac178ae4">RFM_SPREADING_FACTOR_128CPS</link>   0x70</para>
+</listitem>
+            <listitem><para>#define <link linkend="_group___r_f_m___r_e_g_1ga303e4100146cca067c82d5ba835f2ae1">RFM_SPREADING_FACTOR_256CPS</link>   0x80</para>
+</listitem>
+            <listitem><para>#define <link linkend="_group___r_f_m___r_e_g_1ga75a6a399d21143395ba3b356b068f661">RFM_SPREADING_FACTOR_512CPS</link>   0x90</para>
+</listitem>
+            <listitem><para>#define <link linkend="_group___r_f_m___r_e_g_1gaf627d2f43a068f7d914d571442f925f2">RFM_SPREADING_FACTOR_1024CPS</link>   0xa0</para>
+</listitem>
+            <listitem><para>#define <link linkend="_group___r_f_m___r_e_g_1ga46a9a7dcffcb60f499f40ae4b0d2349e">RFM_SPREADING_FACTOR_2048CPS</link>   0xb0</para>
+</listitem>
+            <listitem><para>#define <link linkend="_group___r_f_m___r_e_g_1gac399f154772e269d43f3c55b12a89711">RFM_SPREADING_FACTOR_4096CPS</link>   0xc0</para>
+</listitem>
+            <listitem><para>#define <link linkend="_group___r_f_m___r_e_g_1ga554b5c39acd3776e6af1d38a48b143d0">RFM_TX_CONTINUOUS_MODE</link>   0x08</para>
+</listitem>
+            <listitem><para>#define <link linkend="_group___r_f_m___r_e_g_1ga8b45fbec47f488bd4fc4fc6cb4d35135">RFM_PAYLOAD_CRC_ON</link>   0x04</para>
+</listitem>
+            <listitem><para>#define <link linkend="_group___r_f_m___r_e_g_1ga038b2d99d6fc892ddd65379fa5a35fd2">RFM_SYM_TIMEOUT_MSB</link>   0x03</para>
+</listitem>
+            <listitem><para>#define <link linkend="_group___r_f_m___r_e_g_1ga90c030f1fe44b889d051b36a4ea98b9b">RFM_MOBILE_NODE</link>   0x08</para>
+</listitem>
+            <listitem><para>#define <link linkend="_group___r_f_m___r_e_g_1gab21f907ab4aa6b64c09c70e218b773fd">RFM_LOW_DATA_RATE_OPTIMIZE</link>   0x08</para>
+</listitem>
+            <listitem><para>#define <link linkend="_group___r_f_m___r_e_g_1ga153911044958d9f36626716c73568160">RFM_AGC_AUTO_ON</link>   0x04</para>
+</listitem>
+            <listitem><para>#define <link linkend="_group___r_f_m___r_e_g_1ga657b03a41342dd05dd39f4b54630ffdf">RFM_IO_0_IRQ_RX_DONE</link>   (0 &lt;&lt; 6)</para>
+</listitem>
+            <listitem><para>#define <link linkend="_group___r_f_m___r_e_g_1gad71183932b987a24c7d4456690f8e295">RFM_IO_0_IRQ_TX_DONE</link>   (1 &lt;&lt; 6)</para>
+</listitem>
+            <listitem><para>#define <link linkend="_group___r_f_m___r_e_g_1gaaf2cf3e03065da977122367604834f08">RFM_IO_0_IRQ_CAD_DONE</link>   (2 &lt;&lt; 6)</para>
+</listitem>
+            <listitem><para>#define <link linkend="_group___r_f_m___r_e_g_1ga84a2a7d8e3080937f2445362ff5a4b86">RFM_IO_1_IRQ_RX_TIMEOUT</link>   (0 &lt;&lt; 4)</para>
+</listitem>
+            <listitem><para>#define <link linkend="_group___r_f_m___r_e_g_1gaed4b67063ddca2211606153d2e1daaa2">RFM_IO_1_IRQ_FHSS_CHANGE</link>   (1 &lt;&lt; 4)</para>
+</listitem>
+            <listitem><para>#define <link linkend="_group___r_f_m___r_e_g_1ga8239da1de069cd6994738f1915c30139">RFM_IO_1_IRQ_CAD_DETECTED</link>   (2 &lt;&lt; 4)</para>
+</listitem>
+            <listitem><para>#define <link linkend="_group___r_f_m___r_e_g_1gad61bc2f2221aa7f95086f8311a4c0171">RFM_IO_2_IRQ_FHSS_CHANGE</link>   (0 &lt;&lt; 2)</para>
+</listitem>
+            <listitem><para>#define <link linkend="_group___r_f_m___r_e_g_1ga809f98918d3c7aa841c737cc1e032abf">RFM_IO_3_IRQ_CAD_DONE</link>   (0 &lt;&lt; 0)</para>
+</listitem>
+            <listitem><para>#define <link linkend="_group___r_f_m___r_e_g_1ga3431ce3ca9e1003a90317dadcc66bf88">RFM_IO_3_IRQ_VALID_HEADER</link>   (1 &lt;&lt; 0)</para>
+</listitem>
+            <listitem><para>#define <link linkend="_group___r_f_m___r_e_g_1gaf33831a9ac6e59402d50bd72b5065bf3">RFM_IO_3_IRQ_CRC_ERROR</link>   (2 &lt;&lt; 0)</para>
+</listitem>
+            <listitem><para>#define <link linkend="_group___r_f_m___r_e_g_1gab2b235c49c2617216a459c0ecfc65dc6">RFM_IO_4_IRQ_CAD_DETECTED</link>   (0 &lt;&lt; 6)</para>
+</listitem>
+            <listitem><para>#define <link linkend="_group___r_f_m___r_e_g_1gadaba45bd5a8d81b95f46716ee717aee0">RFM_IO_4_IRQ_PLL_LOCK</link>   (1 &lt;&lt; 6)</para>
+</listitem>
+            <listitem><para>#define <link linkend="_group___r_f_m___r_e_g_1gaf4aa90f3d7f65979df67af1071dac9cb">RFM_IO_5_IRQ_MODE_READY</link>   (0 &lt;&lt; 4)</para>
+</listitem>
+            <listitem><para>#define <link linkend="_group___r_f_m___r_e_g_1ga3f663448938914a099c47fdfe164fb82">RFM_IO_5_IRQ_CLKOUT</link>   (1 &lt;&lt; 4)</para>
+</listitem>
+            <listitem><para>#define <link linkend="_group___r_f_m___r_e_g_1gacb8982cb829c8be96dbe6521760111c9">RFM_PA_DAC_DISABLE</link>   0x04</para>
+</listitem>
+            <listitem><para>#define <link linkend="_group___r_f_m___r_e_g_1gaca826dad14f024d074ec50bd1b68794d">RFM_PA_DAC_ENABLE</link>   0x07</para>
+</listitem>
+            <listitem><para>#define <link linkend="_group___r_f_m___r_e_g_1gafe6c49cce3fff604c567cde3ac5446bd">RFM_PA_DAC_MASK</link>   0x07</para>
+</listitem>
+        </itemizedlist>
+</simplesect>
+<section>
+<title>Detailed Description</title>
+
+<para>Register Descriptions. </para>
+</section>
+<section>
+<title>Macro Definition Documentation</title>
+<anchor xml:id="_group___r_f_m___r_e_g_1gaea7ee1acf4e5bb89bd057619be163d00"/>    <section>
+    <title>RFM_ACCESS_SHARED_REG</title>
+<indexterm><primary>RFM_ACCESS_SHARED_REG</primary><secondary>RFM Registers</secondary></indexterm>
+<indexterm><primary>RFM Registers</primary><secondary>RFM_ACCESS_SHARED_REG</secondary></indexterm>
+<para><computeroutput>#define RFM_ACCESS_SHARED_REG   0x40</computeroutput></para><para>
+Definition at line <link linkend="_rfm_8h_source_1l00112">112</link> of file <link linkend="_rfm_8h_source">rfm.h</link>.</para>
+    </section><anchor xml:id="_group___r_f_m___r_e_g_1ga153911044958d9f36626716c73568160"/>    <section>
+    <title>RFM_AGC_AUTO_ON</title>
+<indexterm><primary>RFM_AGC_AUTO_ON</primary><secondary>RFM Registers</secondary></indexterm>
+<indexterm><primary>RFM Registers</primary><secondary>RFM_AGC_AUTO_ON</secondary></indexterm>
+<para><computeroutput>#define RFM_AGC_AUTO_ON   0x04</computeroutput></para><para>
+Definition at line <link linkend="_rfm_8h_source_1l00240">240</link> of file <link linkend="_rfm_8h_source">rfm.h</link>.</para>
+    </section><anchor xml:id="_group___r_f_m___r_e_g_1ga4366bcf084242030c50978964075dfe6"/>    <section>
+    <title>RFM_BW</title>
+<indexterm><primary>RFM_BW</primary><secondary>RFM Registers</secondary></indexterm>
+<indexterm><primary>RFM Registers</primary><secondary>RFM_BW</secondary></indexterm>
+<para><computeroutput>#define RFM_BW   0xf0</computeroutput></para><para>
+Definition at line <link linkend="_rfm_8h_source_1l00202">202</link> of file <link linkend="_rfm_8h_source">rfm.h</link>.</para>
+    </section><anchor xml:id="_group___r_f_m___r_e_g_1ga132c4bb79c705333e11240951ec9d245"/>    <section>
+    <title>RFM_BW_10_4KHZ</title>
+<indexterm><primary>RFM_BW_10_4KHZ</primary><secondary>RFM Registers</secondary></indexterm>
+<indexterm><primary>RFM Registers</primary><secondary>RFM_BW_10_4KHZ</secondary></indexterm>
+<para><computeroutput>#define RFM_BW_10_4KHZ   0x10</computeroutput></para><para>
+Definition at line <link linkend="_rfm_8h_source_1l00205">205</link> of file <link linkend="_rfm_8h_source">rfm.h</link>.</para>
+    </section><anchor xml:id="_group___r_f_m___r_e_g_1gac10a8b57e3caab32ace83340431ca741"/>    <section>
+    <title>RFM_BW_125KHZ</title>
+<indexterm><primary>RFM_BW_125KHZ</primary><secondary>RFM Registers</secondary></indexterm>
+<indexterm><primary>RFM Registers</primary><secondary>RFM_BW_125KHZ</secondary></indexterm>
+<para><computeroutput>#define RFM_BW_125KHZ   0x70</computeroutput></para><para>
+Definition at line <link linkend="_rfm_8h_source_1l00211">211</link> of file <link linkend="_rfm_8h_source">rfm.h</link>.</para>
+    </section><anchor xml:id="_group___r_f_m___r_e_g_1ga246911e1dfc46b3003d3ab5c0d8cc9f7"/>    <section>
+    <title>RFM_BW_15_6KHZ</title>
+<indexterm><primary>RFM_BW_15_6KHZ</primary><secondary>RFM Registers</secondary></indexterm>
+<indexterm><primary>RFM Registers</primary><secondary>RFM_BW_15_6KHZ</secondary></indexterm>
+<para><computeroutput>#define RFM_BW_15_6KHZ   0x20</computeroutput></para><para>
+Definition at line <link linkend="_rfm_8h_source_1l00206">206</link> of file <link linkend="_rfm_8h_source">rfm.h</link>.</para>
+    </section><anchor xml:id="_group___r_f_m___r_e_g_1ga03e633adab87201b7e15504b1ae17119"/>    <section>
+    <title>RFM_BW_20_8KHZ</title>
+<indexterm><primary>RFM_BW_20_8KHZ</primary><secondary>RFM Registers</secondary></indexterm>
+<indexterm><primary>RFM Registers</primary><secondary>RFM_BW_20_8KHZ</secondary></indexterm>
+<para><computeroutput>#define RFM_BW_20_8KHZ   0x30</computeroutput></para><para>
+Definition at line <link linkend="_rfm_8h_source_1l00207">207</link> of file <link linkend="_rfm_8h_source">rfm.h</link>.</para>
+    </section><anchor xml:id="_group___r_f_m___r_e_g_1gae6aaa8f181faae6f0afe1d4cee7ba3e6"/>    <section>
+    <title>RFM_BW_250KHZ</title>
+<indexterm><primary>RFM_BW_250KHZ</primary><secondary>RFM Registers</secondary></indexterm>
+<indexterm><primary>RFM Registers</primary><secondary>RFM_BW_250KHZ</secondary></indexterm>
+<para><computeroutput>#define RFM_BW_250KHZ   0x80</computeroutput></para><para>
+Definition at line <link linkend="_rfm_8h_source_1l00212">212</link> of file <link linkend="_rfm_8h_source">rfm.h</link>.</para>
+    </section><anchor xml:id="_group___r_f_m___r_e_g_1ga9f4bd4f132b47c53051635265540cf4b"/>    <section>
+    <title>RFM_BW_31_25KHZ</title>
+<indexterm><primary>RFM_BW_31_25KHZ</primary><secondary>RFM Registers</secondary></indexterm>
+<indexterm><primary>RFM Registers</primary><secondary>RFM_BW_31_25KHZ</secondary></indexterm>
+<para><computeroutput>#define RFM_BW_31_25KHZ   0x40</computeroutput></para><para>
+Definition at line <link linkend="_rfm_8h_source_1l00208">208</link> of file <link linkend="_rfm_8h_source">rfm.h</link>.</para>
+    </section><anchor xml:id="_group___r_f_m___r_e_g_1gac3a326b0b8b85f87724168a20f6a9b5c"/>    <section>
+    <title>RFM_BW_41_7KHZ</title>
+<indexterm><primary>RFM_BW_41_7KHZ</primary><secondary>RFM Registers</secondary></indexterm>
+<indexterm><primary>RFM Registers</primary><secondary>RFM_BW_41_7KHZ</secondary></indexterm>
+<para><computeroutput>#define RFM_BW_41_7KHZ   0x50</computeroutput></para><para>
+Definition at line <link linkend="_rfm_8h_source_1l00209">209</link> of file <link linkend="_rfm_8h_source">rfm.h</link>.</para>
+    </section><anchor xml:id="_group___r_f_m___r_e_g_1ga72cadc5bdfcb5a4871485107f8939cb9"/>    <section>
+    <title>RFM_BW_500KHZ</title>
+<indexterm><primary>RFM_BW_500KHZ</primary><secondary>RFM Registers</secondary></indexterm>
+<indexterm><primary>RFM Registers</primary><secondary>RFM_BW_500KHZ</secondary></indexterm>
+<para><computeroutput>#define RFM_BW_500KHZ   0x90</computeroutput></para><para>
+Definition at line <link linkend="_rfm_8h_source_1l00213">213</link> of file <link linkend="_rfm_8h_source">rfm.h</link>.</para>
+    </section><anchor xml:id="_group___r_f_m___r_e_g_1gaf296d76f8cd35dfca9b5ac5c33d9ca37"/>    <section>
+    <title>RFM_BW_62_5KHZ</title>
+<indexterm><primary>RFM_BW_62_5KHZ</primary><secondary>RFM Registers</secondary></indexterm>
+<indexterm><primary>RFM Registers</primary><secondary>RFM_BW_62_5KHZ</secondary></indexterm>
+<para><computeroutput>#define RFM_BW_62_5KHZ   0x60</computeroutput></para><para>
+Definition at line <link linkend="_rfm_8h_source_1l00210">210</link> of file <link linkend="_rfm_8h_source">rfm.h</link>.</para>
+    </section><anchor xml:id="_group___r_f_m___r_e_g_1gafacb21b9e5da88cb37415af124260250"/>    <section>
+    <title>RFM_BW_7_8KHZ</title>
+<indexterm><primary>RFM_BW_7_8KHZ</primary><secondary>RFM Registers</secondary></indexterm>
+<indexterm><primary>RFM Registers</primary><secondary>RFM_BW_7_8KHZ</secondary></indexterm>
+<para><computeroutput>#define RFM_BW_7_8KHZ   0x00</computeroutput></para><para>
+Definition at line <link linkend="_rfm_8h_source_1l00204">204</link> of file <link linkend="_rfm_8h_source">rfm.h</link>.</para>
+    </section><anchor xml:id="_group___r_f_m___r_e_g_1ga11ff04d8a0261ab90e95f7b53a5be732"/>    <section>
+    <title>RFM_CAD_DETECTED_MASK</title>
+<indexterm><primary>RFM_CAD_DETECTED_MASK</primary><secondary>RFM Registers</secondary></indexterm>
+<indexterm><primary>RFM Registers</primary><secondary>RFM_CAD_DETECTED_MASK</secondary></indexterm>
+<para><computeroutput>#define RFM_CAD_DETECTED_MASK   0x01</computeroutput></para><para>
+Definition at line <link linkend="_rfm_8h_source_1l00174">174</link> of file <link linkend="_rfm_8h_source">rfm.h</link>.</para>
+    </section><anchor xml:id="_group___r_f_m___r_e_g_1gac15beb51b598be10605c31402f942604"/>    <section>
+    <title>RFM_CAD_DONE_MASK</title>
+<indexterm><primary>RFM_CAD_DONE_MASK</primary><secondary>RFM Registers</secondary></indexterm>
+<indexterm><primary>RFM Registers</primary><secondary>RFM_CAD_DONE_MASK</secondary></indexterm>
+<para><computeroutput>#define RFM_CAD_DONE_MASK   0x04</computeroutput></para><para>
+Definition at line <link linkend="_rfm_8h_source_1l00172">172</link> of file <link linkend="_rfm_8h_source">rfm.h</link>.</para>
+    </section><anchor xml:id="_group___r_f_m___r_e_g_1gaf01ea0efd19cc76918f34f12bda11043"/>    <section>
+    <title>RFM_CODING_RATE</title>
+<indexterm><primary>RFM_CODING_RATE</primary><secondary>RFM Registers</secondary></indexterm>
+<indexterm><primary>RFM Registers</primary><secondary>RFM_CODING_RATE</secondary></indexterm>
+<para><computeroutput>#define RFM_CODING_RATE   0x0e</computeroutput></para><para>
+Definition at line <link linkend="_rfm_8h_source_1l00215">215</link> of file <link linkend="_rfm_8h_source">rfm.h</link>.</para>
+    </section><anchor xml:id="_group___r_f_m___r_e_g_1ga791e64216981f68b5a7f7dc986f703ed"/>    <section>
+    <title>RFM_CODING_RATE_4_5</title>
+<indexterm><primary>RFM_CODING_RATE_4_5</primary><secondary>RFM Registers</secondary></indexterm>
+<indexterm><primary>RFM Registers</primary><secondary>RFM_CODING_RATE_4_5</secondary></indexterm>
+<para><computeroutput>#define RFM_CODING_RATE_4_5   0x02</computeroutput></para><para>
+Definition at line <link linkend="_rfm_8h_source_1l00216">216</link> of file <link linkend="_rfm_8h_source">rfm.h</link>.</para>
+    </section><anchor xml:id="_group___r_f_m___r_e_g_1ga0edc07f9df69ae638f8f8dea971325dd"/>    <section>
+    <title>RFM_CODING_RATE_4_6</title>
+<indexterm><primary>RFM_CODING_RATE_4_6</primary><secondary>RFM Registers</secondary></indexterm>
+<indexterm><primary>RFM Registers</primary><secondary>RFM_CODING_RATE_4_6</secondary></indexterm>
+<para><computeroutput>#define RFM_CODING_RATE_4_6   0x04</computeroutput></para><para>
+Definition at line <link linkend="_rfm_8h_source_1l00217">217</link> of file <link linkend="_rfm_8h_source">rfm.h</link>.</para>
+    </section><anchor xml:id="_group___r_f_m___r_e_g_1gad05390d421fd3888871ff9b7adce0842"/>    <section>
+    <title>RFM_CODING_RATE_4_7</title>
+<indexterm><primary>RFM_CODING_RATE_4_7</primary><secondary>RFM Registers</secondary></indexterm>
+<indexterm><primary>RFM Registers</primary><secondary>RFM_CODING_RATE_4_7</secondary></indexterm>
+<para><computeroutput>#define RFM_CODING_RATE_4_7   0x06</computeroutput></para><para>
+Definition at line <link linkend="_rfm_8h_source_1l00218">218</link> of file <link linkend="_rfm_8h_source">rfm.h</link>.</para>
+    </section><anchor xml:id="_group___r_f_m___r_e_g_1gafa0465073bb64c9a204d3a2f8bc7667f"/>    <section>
+    <title>RFM_CODING_RATE_4_8</title>
+<indexterm><primary>RFM_CODING_RATE_4_8</primary><secondary>RFM Registers</secondary></indexterm>
+<indexterm><primary>RFM Registers</primary><secondary>RFM_CODING_RATE_4_8</secondary></indexterm>
+<para><computeroutput>#define RFM_CODING_RATE_4_8   0x08</computeroutput></para><para>
+Definition at line <link linkend="_rfm_8h_source_1l00219">219</link> of file <link linkend="_rfm_8h_source">rfm.h</link>.</para>
+    </section><anchor xml:id="_group___r_f_m___r_e_g_1ga7160498da85504b4fb1e66eefee148c2"/>    <section>
+    <title>RFM_FHSS_CHANGE_CHANNEL_MASK</title>
+<indexterm><primary>RFM_FHSS_CHANGE_CHANNEL_MASK</primary><secondary>RFM Registers</secondary></indexterm>
+<indexterm><primary>RFM Registers</primary><secondary>RFM_FHSS_CHANGE_CHANNEL_MASK</secondary></indexterm>
+<para><computeroutput>#define RFM_FHSS_CHANGE_CHANNEL_MASK   0x02</computeroutput></para><para>
+Definition at line <link linkend="_rfm_8h_source_1l00173">173</link> of file <link linkend="_rfm_8h_source">rfm.h</link>.</para>
+    </section><anchor xml:id="_group___r_f_m___r_e_g_1ga7e3ef623be57b9a5870634bfc21391b2"/>    <section>
+    <title>RFM_FHSS_PRESENT_CHANNEL</title>
+<indexterm><primary>RFM_FHSS_PRESENT_CHANNEL</primary><secondary>RFM Registers</secondary></indexterm>
+<indexterm><primary>RFM Registers</primary><secondary>RFM_FHSS_PRESENT_CHANNEL</secondary></indexterm>
+<para><computeroutput>#define RFM_FHSS_PRESENT_CHANNEL   0x3f</computeroutput></para><para>
+Definition at line <link linkend="_rfm_8h_source_1l00199">199</link> of file <link linkend="_rfm_8h_source">rfm.h</link>.</para>
+    </section><anchor xml:id="_group___r_f_m___r_e_g_1ga2705328bc48a2dabe66953781715a749"/>    <section>
+    <title>RFM_IMPLICIT_HEADER_MODE_ON</title>
+<indexterm><primary>RFM_IMPLICIT_HEADER_MODE_ON</primary><secondary>RFM Registers</secondary></indexterm>
+<indexterm><primary>RFM Registers</primary><secondary>RFM_IMPLICIT_HEADER_MODE_ON</secondary></indexterm>
+<para><computeroutput>#define RFM_IMPLICIT_HEADER_MODE_ON   0x01</computeroutput></para><para>
+Definition at line <link linkend="_rfm_8h_source_1l00221">221</link> of file <link linkend="_rfm_8h_source">rfm.h</link>.</para>
+    </section><anchor xml:id="_group___r_f_m___r_e_g_1gaaf2cf3e03065da977122367604834f08"/>    <section>
+    <title>RFM_IO_0_IRQ_CAD_DONE</title>
+<indexterm><primary>RFM_IO_0_IRQ_CAD_DONE</primary><secondary>RFM Registers</secondary></indexterm>
+<indexterm><primary>RFM Registers</primary><secondary>RFM_IO_0_IRQ_CAD_DONE</secondary></indexterm>
+<para><computeroutput>#define RFM_IO_0_IRQ_CAD_DONE   (2 &lt;&lt; 6)</computeroutput></para><para>
+Definition at line <link linkend="_rfm_8h_source_1l00245">245</link> of file <link linkend="_rfm_8h_source">rfm.h</link>.</para>
+    </section><anchor xml:id="_group___r_f_m___r_e_g_1ga657b03a41342dd05dd39f4b54630ffdf"/>    <section>
+    <title>RFM_IO_0_IRQ_RX_DONE</title>
+<indexterm><primary>RFM_IO_0_IRQ_RX_DONE</primary><secondary>RFM Registers</secondary></indexterm>
+<indexterm><primary>RFM Registers</primary><secondary>RFM_IO_0_IRQ_RX_DONE</secondary></indexterm>
+<para><computeroutput>#define RFM_IO_0_IRQ_RX_DONE   (0 &lt;&lt; 6)</computeroutput></para><para>
+Definition at line <link linkend="_rfm_8h_source_1l00243">243</link> of file <link linkend="_rfm_8h_source">rfm.h</link>.</para>
+    </section><anchor xml:id="_group___r_f_m___r_e_g_1gad71183932b987a24c7d4456690f8e295"/>    <section>
+    <title>RFM_IO_0_IRQ_TX_DONE</title>
+<indexterm><primary>RFM_IO_0_IRQ_TX_DONE</primary><secondary>RFM Registers</secondary></indexterm>
+<indexterm><primary>RFM Registers</primary><secondary>RFM_IO_0_IRQ_TX_DONE</secondary></indexterm>
+<para><computeroutput>#define RFM_IO_0_IRQ_TX_DONE   (1 &lt;&lt; 6)</computeroutput></para><para>
+Definition at line <link linkend="_rfm_8h_source_1l00244">244</link> of file <link linkend="_rfm_8h_source">rfm.h</link>.</para>
+    </section><anchor xml:id="_group___r_f_m___r_e_g_1ga8239da1de069cd6994738f1915c30139"/>    <section>
+    <title>RFM_IO_1_IRQ_CAD_DETECTED</title>
+<indexterm><primary>RFM_IO_1_IRQ_CAD_DETECTED</primary><secondary>RFM Registers</secondary></indexterm>
+<indexterm><primary>RFM Registers</primary><secondary>RFM_IO_1_IRQ_CAD_DETECTED</secondary></indexterm>
+<para><computeroutput>#define RFM_IO_1_IRQ_CAD_DETECTED   (2 &lt;&lt; 4)</computeroutput></para><para>
+Definition at line <link linkend="_rfm_8h_source_1l00249">249</link> of file <link linkend="_rfm_8h_source">rfm.h</link>.</para>
+    </section><anchor xml:id="_group___r_f_m___r_e_g_1gaed4b67063ddca2211606153d2e1daaa2"/>    <section>
+    <title>RFM_IO_1_IRQ_FHSS_CHANGE</title>
+<indexterm><primary>RFM_IO_1_IRQ_FHSS_CHANGE</primary><secondary>RFM Registers</secondary></indexterm>
+<indexterm><primary>RFM Registers</primary><secondary>RFM_IO_1_IRQ_FHSS_CHANGE</secondary></indexterm>
+<para><computeroutput>#define RFM_IO_1_IRQ_FHSS_CHANGE   (1 &lt;&lt; 4)</computeroutput></para><para>
+Definition at line <link linkend="_rfm_8h_source_1l00248">248</link> of file <link linkend="_rfm_8h_source">rfm.h</link>.</para>
+    </section><anchor xml:id="_group___r_f_m___r_e_g_1ga84a2a7d8e3080937f2445362ff5a4b86"/>    <section>
+    <title>RFM_IO_1_IRQ_RX_TIMEOUT</title>
+<indexterm><primary>RFM_IO_1_IRQ_RX_TIMEOUT</primary><secondary>RFM Registers</secondary></indexterm>
+<indexterm><primary>RFM Registers</primary><secondary>RFM_IO_1_IRQ_RX_TIMEOUT</secondary></indexterm>
+<para><computeroutput>#define RFM_IO_1_IRQ_RX_TIMEOUT   (0 &lt;&lt; 4)</computeroutput></para><para>
+Definition at line <link linkend="_rfm_8h_source_1l00247">247</link> of file <link linkend="_rfm_8h_source">rfm.h</link>.</para>
+    </section><anchor xml:id="_group___r_f_m___r_e_g_1gad61bc2f2221aa7f95086f8311a4c0171"/>    <section>
+    <title>RFM_IO_2_IRQ_FHSS_CHANGE</title>
+<indexterm><primary>RFM_IO_2_IRQ_FHSS_CHANGE</primary><secondary>RFM Registers</secondary></indexterm>
+<indexterm><primary>RFM Registers</primary><secondary>RFM_IO_2_IRQ_FHSS_CHANGE</secondary></indexterm>
+<para><computeroutput>#define RFM_IO_2_IRQ_FHSS_CHANGE   (0 &lt;&lt; 2)</computeroutput></para><para>
+Definition at line <link linkend="_rfm_8h_source_1l00251">251</link> of file <link linkend="_rfm_8h_source">rfm.h</link>.</para>
+    </section><anchor xml:id="_group___r_f_m___r_e_g_1ga809f98918d3c7aa841c737cc1e032abf"/>    <section>
+    <title>RFM_IO_3_IRQ_CAD_DONE</title>
+<indexterm><primary>RFM_IO_3_IRQ_CAD_DONE</primary><secondary>RFM Registers</secondary></indexterm>
+<indexterm><primary>RFM Registers</primary><secondary>RFM_IO_3_IRQ_CAD_DONE</secondary></indexterm>
+<para><computeroutput>#define RFM_IO_3_IRQ_CAD_DONE   (0 &lt;&lt; 0)</computeroutput></para><para>
+Definition at line <link linkend="_rfm_8h_source_1l00253">253</link> of file <link linkend="_rfm_8h_source">rfm.h</link>.</para>
+    </section><anchor xml:id="_group___r_f_m___r_e_g_1gaf33831a9ac6e59402d50bd72b5065bf3"/>    <section>
+    <title>RFM_IO_3_IRQ_CRC_ERROR</title>
+<indexterm><primary>RFM_IO_3_IRQ_CRC_ERROR</primary><secondary>RFM Registers</secondary></indexterm>
+<indexterm><primary>RFM Registers</primary><secondary>RFM_IO_3_IRQ_CRC_ERROR</secondary></indexterm>
+<para><computeroutput>#define RFM_IO_3_IRQ_CRC_ERROR   (2 &lt;&lt; 0)</computeroutput></para><para>
+Definition at line <link linkend="_rfm_8h_source_1l00255">255</link> of file <link linkend="_rfm_8h_source">rfm.h</link>.</para>
+    </section><anchor xml:id="_group___r_f_m___r_e_g_1ga3431ce3ca9e1003a90317dadcc66bf88"/>    <section>
+    <title>RFM_IO_3_IRQ_VALID_HEADER</title>
+<indexterm><primary>RFM_IO_3_IRQ_VALID_HEADER</primary><secondary>RFM Registers</secondary></indexterm>
+<indexterm><primary>RFM Registers</primary><secondary>RFM_IO_3_IRQ_VALID_HEADER</secondary></indexterm>
+<para><computeroutput>#define RFM_IO_3_IRQ_VALID_HEADER   (1 &lt;&lt; 0)</computeroutput></para><para>
+Definition at line <link linkend="_rfm_8h_source_1l00254">254</link> of file <link linkend="_rfm_8h_source">rfm.h</link>.</para>
+    </section><anchor xml:id="_group___r_f_m___r_e_g_1gab2b235c49c2617216a459c0ecfc65dc6"/>    <section>
+    <title>RFM_IO_4_IRQ_CAD_DETECTED</title>
+<indexterm><primary>RFM_IO_4_IRQ_CAD_DETECTED</primary><secondary>RFM Registers</secondary></indexterm>
+<indexterm><primary>RFM Registers</primary><secondary>RFM_IO_4_IRQ_CAD_DETECTED</secondary></indexterm>
+<para><computeroutput>#define RFM_IO_4_IRQ_CAD_DETECTED   (0 &lt;&lt; 6)</computeroutput></para><para>
+Definition at line <link linkend="_rfm_8h_source_1l00258">258</link> of file <link linkend="_rfm_8h_source">rfm.h</link>.</para>
+    </section><anchor xml:id="_group___r_f_m___r_e_g_1gadaba45bd5a8d81b95f46716ee717aee0"/>    <section>
+    <title>RFM_IO_4_IRQ_PLL_LOCK</title>
+<indexterm><primary>RFM_IO_4_IRQ_PLL_LOCK</primary><secondary>RFM Registers</secondary></indexterm>
+<indexterm><primary>RFM Registers</primary><secondary>RFM_IO_4_IRQ_PLL_LOCK</secondary></indexterm>
+<para><computeroutput>#define RFM_IO_4_IRQ_PLL_LOCK   (1 &lt;&lt; 6)</computeroutput></para><para>
+Definition at line <link linkend="_rfm_8h_source_1l00259">259</link> of file <link linkend="_rfm_8h_source">rfm.h</link>.</para>
+    </section><anchor xml:id="_group___r_f_m___r_e_g_1ga3f663448938914a099c47fdfe164fb82"/>    <section>
+    <title>RFM_IO_5_IRQ_CLKOUT</title>
+<indexterm><primary>RFM_IO_5_IRQ_CLKOUT</primary><secondary>RFM Registers</secondary></indexterm>
+<indexterm><primary>RFM Registers</primary><secondary>RFM_IO_5_IRQ_CLKOUT</secondary></indexterm>
+<para><computeroutput>#define RFM_IO_5_IRQ_CLKOUT   (1 &lt;&lt; 4)</computeroutput></para><para>
+Definition at line <link linkend="_rfm_8h_source_1l00262">262</link> of file <link linkend="_rfm_8h_source">rfm.h</link>.</para>
+    </section><anchor xml:id="_group___r_f_m___r_e_g_1gaf4aa90f3d7f65979df67af1071dac9cb"/>    <section>
+    <title>RFM_IO_5_IRQ_MODE_READY</title>
+<indexterm><primary>RFM_IO_5_IRQ_MODE_READY</primary><secondary>RFM Registers</secondary></indexterm>
+<indexterm><primary>RFM Registers</primary><secondary>RFM_IO_5_IRQ_MODE_READY</secondary></indexterm>
+<para><computeroutput>#define RFM_IO_5_IRQ_MODE_READY   (0 &lt;&lt; 4)</computeroutput></para><para>
+Definition at line <link linkend="_rfm_8h_source_1l00261">261</link> of file <link linkend="_rfm_8h_source">rfm.h</link>.</para>
+    </section><anchor xml:id="_group___r_f_m___r_e_g_1gac4466525e6cf4716e7be485ec496763d"/>    <section>
+    <title>RFM_IRQ_ALL</title>
+<indexterm><primary>RFM_IRQ_ALL</primary><secondary>RFM Registers</secondary></indexterm>
+<indexterm><primary>RFM Registers</primary><secondary>RFM_IRQ_ALL</secondary></indexterm>
+<para><computeroutput>#define RFM_IRQ_ALL   0xFF</computeroutput></para><para>
+Definition at line <link linkend="_rfm_8h_source_1l00175">175</link> of file <link linkend="_rfm_8h_source">rfm.h</link>.</para>
+    </section><anchor xml:id="_group___r_f_m___r_e_g_1gac1d02291848211f49df1455134b00f7d"/>    <section>
+    <title>RFM_IRQ_CAD_DETECTED</title>
+<indexterm><primary>RFM_IRQ_CAD_DETECTED</primary><secondary>RFM Registers</secondary></indexterm>
+<indexterm><primary>RFM Registers</primary><secondary>RFM_IRQ_CAD_DETECTED</secondary></indexterm>
+<para><computeroutput>#define RFM_IRQ_CAD_DETECTED   0x01</computeroutput></para><para>
+Definition at line <link linkend="_rfm_8h_source_1l00186">186</link> of file <link linkend="_rfm_8h_source">rfm.h</link>.</para>
+    </section><anchor xml:id="_group___r_f_m___r_e_g_1gac8d939f752fbb70a12af72db29238ce8"/>    <section>
+    <title>RFM_IRQ_CAD_DONE</title>
+<indexterm><primary>RFM_IRQ_CAD_DONE</primary><secondary>RFM Registers</secondary></indexterm>
+<indexterm><primary>RFM Registers</primary><secondary>RFM_IRQ_CAD_DONE</secondary></indexterm>
+<para><computeroutput>#define RFM_IRQ_CAD_DONE   0x04</computeroutput></para><para>
+Definition at line <link linkend="_rfm_8h_source_1l00184">184</link> of file <link linkend="_rfm_8h_source">rfm.h</link>.</para>
+    </section><anchor xml:id="_group___r_f_m___r_e_g_1ga376784fe05633d7b9dc0bda4e84b50a3"/>    <section>
+    <title>RFM_IRQ_FHSS_CHANGE_CHANNEL</title>
+<indexterm><primary>RFM_IRQ_FHSS_CHANGE_CHANNEL</primary><secondary>RFM Registers</secondary></indexterm>
+<indexterm><primary>RFM Registers</primary><secondary>RFM_IRQ_FHSS_CHANGE_CHANNEL</secondary></indexterm>
+<para><computeroutput>#define RFM_IRQ_FHSS_CHANGE_CHANNEL   0x02</computeroutput></para><para>
+Definition at line <link linkend="_rfm_8h_source_1l00185">185</link> of file <link linkend="_rfm_8h_source">rfm.h</link>.</para>
+    </section><anchor xml:id="_group___r_f_m___r_e_g_1gaf6cdf56add76e5f2ece02710cfc6b2ab"/>    <section>
+    <title>RFM_IRQ_NONE</title>
+<indexterm><primary>RFM_IRQ_NONE</primary><secondary>RFM Registers</secondary></indexterm>
+<indexterm><primary>RFM Registers</primary><secondary>RFM_IRQ_NONE</secondary></indexterm>
+<para><computeroutput>#define RFM_IRQ_NONE   0x00</computeroutput></para><para>
+Definition at line <link linkend="_rfm_8h_source_1l00176">176</link> of file <link linkend="_rfm_8h_source">rfm.h</link>.</para>
+    </section><anchor xml:id="_group___r_f_m___r_e_g_1gafff2997606702b74acf477ce9a1141e0"/>    <section>
+    <title>RFM_IRQ_PAYLOAD_CRC_ERROR</title>
+<indexterm><primary>RFM_IRQ_PAYLOAD_CRC_ERROR</primary><secondary>RFM Registers</secondary></indexterm>
+<indexterm><primary>RFM Registers</primary><secondary>RFM_IRQ_PAYLOAD_CRC_ERROR</secondary></indexterm>
+<para><computeroutput>#define RFM_IRQ_PAYLOAD_CRC_ERROR   0x20</computeroutput></para><para>
+Definition at line <link linkend="_rfm_8h_source_1l00181">181</link> of file <link linkend="_rfm_8h_source">rfm.h</link>.</para>
+    </section><anchor xml:id="_group___r_f_m___r_e_g_1ga50b07045d10fe450256900fb0392dcd9"/>    <section>
+    <title>RFM_IRQ_RX_DONE</title>
+<indexterm><primary>RFM_IRQ_RX_DONE</primary><secondary>RFM Registers</secondary></indexterm>
+<indexterm><primary>RFM Registers</primary><secondary>RFM_IRQ_RX_DONE</secondary></indexterm>
+<para><computeroutput>#define RFM_IRQ_RX_DONE   0x40</computeroutput></para><para>
+Definition at line <link linkend="_rfm_8h_source_1l00180">180</link> of file <link linkend="_rfm_8h_source">rfm.h</link>.</para>
+    </section><anchor xml:id="_group___r_f_m___r_e_g_1ga9687d1220a0ded952e7119d5219779f4"/>    <section>
+    <title>RFM_IRQ_RX_TIMEOUT</title>
+<indexterm><primary>RFM_IRQ_RX_TIMEOUT</primary><secondary>RFM Registers</secondary></indexterm>
+<indexterm><primary>RFM Registers</primary><secondary>RFM_IRQ_RX_TIMEOUT</secondary></indexterm>
+<para><computeroutput>#define RFM_IRQ_RX_TIMEOUT   0x80</computeroutput></para><para>
+Definition at line <link linkend="_rfm_8h_source_1l00179">179</link> of file <link linkend="_rfm_8h_source">rfm.h</link>.</para>
+    </section><anchor xml:id="_group___r_f_m___r_e_g_1ga22cfeb678799b2affeb3f2f4084792f8"/>    <section>
+    <title>RFM_IRQ_TX_DONE</title>
+<indexterm><primary>RFM_IRQ_TX_DONE</primary><secondary>RFM Registers</secondary></indexterm>
+<indexterm><primary>RFM Registers</primary><secondary>RFM_IRQ_TX_DONE</secondary></indexterm>
+<para><computeroutput>#define RFM_IRQ_TX_DONE   0x08</computeroutput></para><para>
+Definition at line <link linkend="_rfm_8h_source_1l00183">183</link> of file <link linkend="_rfm_8h_source">rfm.h</link>.</para>
+    </section><anchor xml:id="_group___r_f_m___r_e_g_1ga20b6294b23c246066a0dd46aaefc2e68"/>    <section>
+    <title>RFM_IRQ_VALID_HEADER</title>
+<indexterm><primary>RFM_IRQ_VALID_HEADER</primary><secondary>RFM Registers</secondary></indexterm>
+<indexterm><primary>RFM Registers</primary><secondary>RFM_IRQ_VALID_HEADER</secondary></indexterm>
+<para><computeroutput>#define RFM_IRQ_VALID_HEADER   0x10</computeroutput></para><para>
+Definition at line <link linkend="_rfm_8h_source_1l00182">182</link> of file <link linkend="_rfm_8h_source">rfm.h</link>.</para>
+    </section><anchor xml:id="_group___r_f_m___r_e_g_1ga4e545b5a92087bb72cc56fe18af84ab1"/>    <section>
+    <title>RFM_LNA_BOOST_HF</title>
+<indexterm><primary>RFM_LNA_BOOST_HF</primary><secondary>RFM Registers</secondary></indexterm>
+<indexterm><primary>RFM Registers</primary><secondary>RFM_LNA_BOOST_HF</secondary></indexterm>
+<para><computeroutput>#define RFM_LNA_BOOST_HF   0x03</computeroutput></para><para>
+Definition at line <link linkend="_rfm_8h_source_1l00162">162</link> of file <link linkend="_rfm_8h_source">rfm.h</link>.</para>
+    </section><anchor xml:id="_group___r_f_m___r_e_g_1gac827c0769313671e247958742ac893b9"/>    <section>
+    <title>RFM_LNA_BOOST_HF_150PC</title>
+<indexterm><primary>RFM_LNA_BOOST_HF_150PC</primary><secondary>RFM Registers</secondary></indexterm>
+<indexterm><primary>RFM Registers</primary><secondary>RFM_LNA_BOOST_HF_150PC</secondary></indexterm>
+<para><computeroutput>#define RFM_LNA_BOOST_HF_150PC   0x03</computeroutput></para><para>
+Definition at line <link linkend="_rfm_8h_source_1l00164">164</link> of file <link linkend="_rfm_8h_source">rfm.h</link>.</para>
+    </section><anchor xml:id="_group___r_f_m___r_e_g_1gae8907553681176d030d17fa7da701d89"/>    <section>
+    <title>RFM_LNA_BOOST_HF_DEFAULT</title>
+<indexterm><primary>RFM_LNA_BOOST_HF_DEFAULT</primary><secondary>RFM Registers</secondary></indexterm>
+<indexterm><primary>RFM Registers</primary><secondary>RFM_LNA_BOOST_HF_DEFAULT</secondary></indexterm>
+<para><computeroutput>#define RFM_LNA_BOOST_HF_DEFAULT   0x00</computeroutput></para><para>
+Definition at line <link linkend="_rfm_8h_source_1l00163">163</link> of file <link linkend="_rfm_8h_source">rfm.h</link>.</para>
+    </section><anchor xml:id="_group___r_f_m___r_e_g_1ga6040d513a5c1a75294a1c7227ed3b4fc"/>    <section>
+    <title>RFM_LNA_BOOST_LF</title>
+<indexterm><primary>RFM_LNA_BOOST_LF</primary><secondary>RFM Registers</secondary></indexterm>
+<indexterm><primary>RFM Registers</primary><secondary>RFM_LNA_BOOST_LF</secondary></indexterm>
+<para><computeroutput>#define RFM_LNA_BOOST_LF   0x18</computeroutput></para><para>
+Definition at line <link linkend="_rfm_8h_source_1l00160">160</link> of file <link linkend="_rfm_8h_source">rfm.h</link>.</para>
+    </section><anchor xml:id="_group___r_f_m___r_e_g_1ga6094f0481dd7968d6aba532a62f430bb"/>    <section>
+    <title>RFM_LNA_BOOST_LF_DEFAULT</title>
+<indexterm><primary>RFM_LNA_BOOST_LF_DEFAULT</primary><secondary>RFM Registers</secondary></indexterm>
+<indexterm><primary>RFM Registers</primary><secondary>RFM_LNA_BOOST_LF_DEFAULT</secondary></indexterm>
+<para><computeroutput>#define RFM_LNA_BOOST_LF_DEFAULT   0x00</computeroutput></para><para>
+Definition at line <link linkend="_rfm_8h_source_1l00161">161</link> of file <link linkend="_rfm_8h_source">rfm.h</link>.</para>
+    </section><anchor xml:id="_group___r_f_m___r_e_g_1ga24fa88c835e1475ae0bca8c27454ce5b"/>    <section>
+    <title>RFM_LNA_GAIN</title>
+<indexterm><primary>RFM_LNA_GAIN</primary><secondary>RFM Registers</secondary></indexterm>
+<indexterm><primary>RFM Registers</primary><secondary>RFM_LNA_GAIN</secondary></indexterm>
+<para><computeroutput>#define RFM_LNA_GAIN   0xe0</computeroutput></para><para>
+Definition at line <link linkend="_rfm_8h_source_1l00153">153</link> of file <link linkend="_rfm_8h_source">rfm.h</link>.</para>
+    </section><anchor xml:id="_group___r_f_m___r_e_g_1gadf5f76aeccc745546d8dc3ef7885ea4b"/>    <section>
+    <title>RFM_LNA_GAIN_G1</title>
+<indexterm><primary>RFM_LNA_GAIN_G1</primary><secondary>RFM Registers</secondary></indexterm>
+<indexterm><primary>RFM Registers</primary><secondary>RFM_LNA_GAIN_G1</secondary></indexterm>
+<para><computeroutput>#define RFM_LNA_GAIN_G1   0x20</computeroutput></para><para>
+Definition at line <link linkend="_rfm_8h_source_1l00154">154</link> of file <link linkend="_rfm_8h_source">rfm.h</link>.</para>
+    </section><anchor xml:id="_group___r_f_m___r_e_g_1ga72587a5952d01f8c8466e1e4c2c06dc0"/>    <section>
+    <title>RFM_LNA_GAIN_G2</title>
+<indexterm><primary>RFM_LNA_GAIN_G2</primary><secondary>RFM Registers</secondary></indexterm>
+<indexterm><primary>RFM Registers</primary><secondary>RFM_LNA_GAIN_G2</secondary></indexterm>
+<para><computeroutput>#define RFM_LNA_GAIN_G2   0x40</computeroutput></para><para>
+Definition at line <link linkend="_rfm_8h_source_1l00155">155</link> of file <link linkend="_rfm_8h_source">rfm.h</link>.</para>
+    </section><anchor xml:id="_group___r_f_m___r_e_g_1gaeff69fdc30366934b78c078542a07981"/>    <section>
+    <title>RFM_LNA_GAIN_G3</title>
+<indexterm><primary>RFM_LNA_GAIN_G3</primary><secondary>RFM Registers</secondary></indexterm>
+<indexterm><primary>RFM Registers</primary><secondary>RFM_LNA_GAIN_G3</secondary></indexterm>
+<para><computeroutput>#define RFM_LNA_GAIN_G3   0x60</computeroutput></para><para>
+Definition at line <link linkend="_rfm_8h_source_1l00156">156</link> of file <link linkend="_rfm_8h_source">rfm.h</link>.</para>
+    </section><anchor xml:id="_group___r_f_m___r_e_g_1ga9bde20197b1f04c608f7f38a1eff6bc6"/>    <section>
+    <title>RFM_LNA_GAIN_G4</title>
+<indexterm><primary>RFM_LNA_GAIN_G4</primary><secondary>RFM Registers</secondary></indexterm>
+<indexterm><primary>RFM Registers</primary><secondary>RFM_LNA_GAIN_G4</secondary></indexterm>
+<para><computeroutput>#define RFM_LNA_GAIN_G4   0x80</computeroutput></para><para>
+Definition at line <link linkend="_rfm_8h_source_1l00157">157</link> of file <link linkend="_rfm_8h_source">rfm.h</link>.</para>
+    </section><anchor xml:id="_group___r_f_m___r_e_g_1ga3ddd75f37172d8fbd8eb7d7de42cc685"/>    <section>
+    <title>RFM_LNA_GAIN_G5</title>
+<indexterm><primary>RFM_LNA_GAIN_G5</primary><secondary>RFM Registers</secondary></indexterm>
+<indexterm><primary>RFM Registers</primary><secondary>RFM_LNA_GAIN_G5</secondary></indexterm>
+<para><computeroutput>#define RFM_LNA_GAIN_G5   0xa0</computeroutput></para><para>
+Definition at line <link linkend="_rfm_8h_source_1l00158">158</link> of file <link linkend="_rfm_8h_source">rfm.h</link>.</para>
+    </section><anchor xml:id="_group___r_f_m___r_e_g_1ga15c716918dd52948ace26ea6d231bb6d"/>    <section>
+    <title>RFM_LNA_GAIN_G6</title>
+<indexterm><primary>RFM_LNA_GAIN_G6</primary><secondary>RFM Registers</secondary></indexterm>
+<indexterm><primary>RFM Registers</primary><secondary>RFM_LNA_GAIN_G6</secondary></indexterm>
+<para><computeroutput>#define RFM_LNA_GAIN_G6   0xc0</computeroutput></para><para>
+Definition at line <link linkend="_rfm_8h_source_1l00159">159</link> of file <link linkend="_rfm_8h_source">rfm.h</link>.</para>
+    </section><anchor xml:id="_group___r_f_m___r_e_g_1ga3eb853cc819d5585c6ae00d653e3cb2b"/>    <section>
+    <title>RFM_LONG_RANGE_MODE</title>
+<indexterm><primary>RFM_LONG_RANGE_MODE</primary><secondary>RFM Registers</secondary></indexterm>
+<indexterm><primary>RFM Registers</primary><secondary>RFM_LONG_RANGE_MODE</secondary></indexterm>
+<para><computeroutput>#define RFM_LONG_RANGE_MODE   0x80</computeroutput></para><para>
+Definition at line <link linkend="_rfm_8h_source_1l00111">111</link> of file <link linkend="_rfm_8h_source">rfm.h</link>.</para>
+    </section><anchor xml:id="_group___r_f_m___r_e_g_1gab21f907ab4aa6b64c09c70e218b773fd"/>    <section>
+    <title>RFM_LOW_DATA_RATE_OPTIMIZE</title>
+<indexterm><primary>RFM_LOW_DATA_RATE_OPTIMIZE</primary><secondary>RFM Registers</secondary></indexterm>
+<indexterm><primary>RFM Registers</primary><secondary>RFM_LOW_DATA_RATE_OPTIMIZE</secondary></indexterm>
+<para><computeroutput>#define RFM_LOW_DATA_RATE_OPTIMIZE   0x08</computeroutput></para><para>
+Definition at line <link linkend="_rfm_8h_source_1l00239">239</link> of file <link linkend="_rfm_8h_source">rfm.h</link>.</para>
+    </section><anchor xml:id="_group___r_f_m___r_e_g_1ga0c9fa032ff669aa59bdbb8298ca7b84d"/>    <section>
+    <title>RFM_LOW_FREQUENCY_MODE</title>
+<indexterm><primary>RFM_LOW_FREQUENCY_MODE</primary><secondary>RFM Registers</secondary></indexterm>
+<indexterm><primary>RFM Registers</primary><secondary>RFM_LOW_FREQUENCY_MODE</secondary></indexterm>
+<para><computeroutput>#define RFM_LOW_FREQUENCY_MODE   0x08</computeroutput></para><para>
+Definition at line <link linkend="_rfm_8h_source_1l00113">113</link> of file <link linkend="_rfm_8h_source">rfm.h</link>.</para>
+    </section><anchor xml:id="_group___r_f_m___r_e_g_1ga59198253c729f13bfe2dac7190a2c7a8"/>    <section>
+    <title>RFM_LOW_PN_TX_PLL_OFF</title>
+<indexterm><primary>RFM_LOW_PN_TX_PLL_OFF</primary><secondary>RFM Registers</secondary></indexterm>
+<indexterm><primary>RFM Registers</primary><secondary>RFM_LOW_PN_TX_PLL_OFF</secondary></indexterm>
+<para><computeroutput>#define RFM_LOW_PN_TX_PLL_OFF   0x10</computeroutput></para><para>
+Definition at line <link linkend="_rfm_8h_source_1l00129">129</link> of file <link linkend="_rfm_8h_source">rfm.h</link>.</para>
+    </section><anchor xml:id="_group___r_f_m___r_e_g_1ga501f04fcb8b91bfeab0a904b035d0e20"/>    <section>
+    <title>RFM_MAX_POWER</title>
+<indexterm><primary>RFM_MAX_POWER</primary><secondary>RFM Registers</secondary></indexterm>
+<indexterm><primary>RFM Registers</primary><secondary>RFM_MAX_POWER</secondary></indexterm>
+<para><computeroutput>#define RFM_MAX_POWER   0x70</computeroutput></para><para>
+Definition at line <link linkend="_rfm_8h_source_1l00125">125</link> of file <link linkend="_rfm_8h_source">rfm.h</link>.</para>
+    </section><anchor xml:id="_group___r_f_m___r_e_g_1ga90c030f1fe44b889d051b36a4ea98b9b"/>    <section>
+    <title>RFM_MOBILE_NODE</title>
+<indexterm><primary>RFM_MOBILE_NODE</primary><secondary>RFM Registers</secondary></indexterm>
+<indexterm><primary>RFM Registers</primary><secondary>RFM_MOBILE_NODE</secondary></indexterm>
+<para><computeroutput>#define RFM_MOBILE_NODE   0x08</computeroutput></para><para>
+Definition at line <link linkend="_rfm_8h_source_1l00238">238</link> of file <link linkend="_rfm_8h_source">rfm.h</link>.</para>
+    </section><anchor xml:id="_group___r_f_m___r_e_g_1gad36327544af17d57a33a135b7454f34c"/>    <section>
+    <title>RFM_MODE</title>
+<indexterm><primary>RFM_MODE</primary><secondary>RFM Registers</secondary></indexterm>
+<indexterm><primary>RFM Registers</primary><secondary>RFM_MODE</secondary></indexterm>
+<para><computeroutput>#define RFM_MODE   0x07</computeroutput></para><para>
+Definition at line <link linkend="_rfm_8h_source_1l00114">114</link> of file <link linkend="_rfm_8h_source">rfm.h</link>.</para>
+    </section><anchor xml:id="_group___r_f_m___r_e_g_1ga879286a499ac6485feca3422d48a8882"/>    <section>
+    <title>RFM_MODE_CAD</title>
+<indexterm><primary>RFM_MODE_CAD</primary><secondary>RFM Registers</secondary></indexterm>
+<indexterm><primary>RFM Registers</primary><secondary>RFM_MODE_CAD</secondary></indexterm>
+<para><computeroutput>#define RFM_MODE_CAD   0x07</computeroutput></para><para>
+Definition at line <link linkend="_rfm_8h_source_1l00122">122</link> of file <link linkend="_rfm_8h_source">rfm.h</link>.</para>
+    </section><anchor xml:id="_group___r_f_m___r_e_g_1ga7465645bef3dd4d7c7b1ba31803d4850"/>    <section>
+    <title>RFM_MODE_FSRX</title>
+<indexterm><primary>RFM_MODE_FSRX</primary><secondary>RFM Registers</secondary></indexterm>
+<indexterm><primary>RFM Registers</primary><secondary>RFM_MODE_FSRX</secondary></indexterm>
+<para><computeroutput>#define RFM_MODE_FSRX   0x04</computeroutput></para><para>
+Definition at line <link linkend="_rfm_8h_source_1l00119">119</link> of file <link linkend="_rfm_8h_source">rfm.h</link>.</para>
+    </section><anchor xml:id="_group___r_f_m___r_e_g_1ga42c6a0498709e6abdcafc3079dd02e7b"/>    <section>
+    <title>RFM_MODE_FSTX</title>
+<indexterm><primary>RFM_MODE_FSTX</primary><secondary>RFM Registers</secondary></indexterm>
+<indexterm><primary>RFM Registers</primary><secondary>RFM_MODE_FSTX</secondary></indexterm>
+<para><computeroutput>#define RFM_MODE_FSTX   0x02</computeroutput></para><para>
+Definition at line <link linkend="_rfm_8h_source_1l00117">117</link> of file <link linkend="_rfm_8h_source">rfm.h</link>.</para>
+    </section><anchor xml:id="_group___r_f_m___r_e_g_1ga8f7860205c9d44d922201a1c6124553c"/>    <section>
+    <title>RFM_MODE_RXCONTINUOUS</title>
+<indexterm><primary>RFM_MODE_RXCONTINUOUS</primary><secondary>RFM Registers</secondary></indexterm>
+<indexterm><primary>RFM Registers</primary><secondary>RFM_MODE_RXCONTINUOUS</secondary></indexterm>
+<para><computeroutput>#define RFM_MODE_RXCONTINUOUS   0x05</computeroutput></para><para>
+Definition at line <link linkend="_rfm_8h_source_1l00120">120</link> of file <link linkend="_rfm_8h_source">rfm.h</link>.</para>
+    </section><anchor xml:id="_group___r_f_m___r_e_g_1ga68a460c52bae16ef4a404d518256d908"/>    <section>
+    <title>RFM_MODE_RXSINGLE</title>
+<indexterm><primary>RFM_MODE_RXSINGLE</primary><secondary>RFM Registers</secondary></indexterm>
+<indexterm><primary>RFM Registers</primary><secondary>RFM_MODE_RXSINGLE</secondary></indexterm>
+<para><computeroutput>#define RFM_MODE_RXSINGLE   0x06</computeroutput></para><para>
+Definition at line <link linkend="_rfm_8h_source_1l00121">121</link> of file <link linkend="_rfm_8h_source">rfm.h</link>.</para>
+    </section><anchor xml:id="_group___r_f_m___r_e_g_1ga8753b4175be3f74136c3f7a7f8620774"/>    <section>
+    <title>RFM_MODE_SLEEP</title>
+<indexterm><primary>RFM_MODE_SLEEP</primary><secondary>RFM Registers</secondary></indexterm>
+<indexterm><primary>RFM Registers</primary><secondary>RFM_MODE_SLEEP</secondary></indexterm>
+<para><computeroutput>#define RFM_MODE_SLEEP   0x00</computeroutput></para><para>
+Definition at line <link linkend="_rfm_8h_source_1l00115">115</link> of file <link linkend="_rfm_8h_source">rfm.h</link>.</para>
+    </section><anchor xml:id="_group___r_f_m___r_e_g_1gaff6b46713347c4c3f2fbc4a2033bb958"/>    <section>
+    <title>RFM_MODE_STDBY</title>
+<indexterm><primary>RFM_MODE_STDBY</primary><secondary>RFM Registers</secondary></indexterm>
+<indexterm><primary>RFM Registers</primary><secondary>RFM_MODE_STDBY</secondary></indexterm>
+<para><computeroutput>#define RFM_MODE_STDBY   0x01</computeroutput></para><para>
+Definition at line <link linkend="_rfm_8h_source_1l00116">116</link> of file <link linkend="_rfm_8h_source">rfm.h</link>.</para>
+    </section><anchor xml:id="_group___r_f_m___r_e_g_1gab28486a8c0393dc12ff0dd04325fd84b"/>    <section>
+    <title>RFM_MODE_TX</title>
+<indexterm><primary>RFM_MODE_TX</primary><secondary>RFM Registers</secondary></indexterm>
+<indexterm><primary>RFM Registers</primary><secondary>RFM_MODE_TX</secondary></indexterm>
+<para><computeroutput>#define RFM_MODE_TX   0x03</computeroutput></para><para>
+Definition at line <link linkend="_rfm_8h_source_1l00118">118</link> of file <link linkend="_rfm_8h_source">rfm.h</link>.</para>
+    </section><anchor xml:id="_group___r_f_m___r_e_g_1gadbd2ff3317eae3c8e95dc584d3ee0ee4"/>    <section>
+    <title>RFM_MODEM_STATUS_CLEAR</title>
+<indexterm><primary>RFM_MODEM_STATUS_CLEAR</primary><secondary>RFM Registers</secondary></indexterm>
+<indexterm><primary>RFM Registers</primary><secondary>RFM_MODEM_STATUS_CLEAR</secondary></indexterm>
+<para><computeroutput>#define RFM_MODEM_STATUS_CLEAR   0x10</computeroutput></para><para>
+Definition at line <link linkend="_rfm_8h_source_1l00190">190</link> of file <link linkend="_rfm_8h_source">rfm.h</link>.</para>
+    </section><anchor xml:id="_group___r_f_m___r_e_g_1gab00b6e3bab4bad7723c05675a57d777b"/>    <section>
+    <title>RFM_MODEM_STATUS_HEADER_INFO_VALID</title>
+<indexterm><primary>RFM_MODEM_STATUS_HEADER_INFO_VALID</primary><secondary>RFM Registers</secondary></indexterm>
+<indexterm><primary>RFM Registers</primary><secondary>RFM_MODEM_STATUS_HEADER_INFO_VALID</secondary></indexterm>
+<para><computeroutput>#define RFM_MODEM_STATUS_HEADER_INFO_VALID   0x08</computeroutput></para><para>
+Definition at line <link linkend="_rfm_8h_source_1l00191">191</link> of file <link linkend="_rfm_8h_source">rfm.h</link>.</para>
+    </section><anchor xml:id="_group___r_f_m___r_e_g_1ga519236312c124f2a1af51cb2f1c34607"/>    <section>
+    <title>RFM_MODEM_STATUS_RX_ONGOING</title>
+<indexterm><primary>RFM_MODEM_STATUS_RX_ONGOING</primary><secondary>RFM Registers</secondary></indexterm>
+<indexterm><primary>RFM Registers</primary><secondary>RFM_MODEM_STATUS_RX_ONGOING</secondary></indexterm>
+<para><computeroutput>#define RFM_MODEM_STATUS_RX_ONGOING   0x04</computeroutput></para><para>
+Definition at line <link linkend="_rfm_8h_source_1l00192">192</link> of file <link linkend="_rfm_8h_source">rfm.h</link>.</para>
+    </section><anchor xml:id="_group___r_f_m___r_e_g_1ga21714004a3b6fc2fd2d7ac2f02d4bdbd"/>    <section>
+    <title>RFM_MODEM_STATUS_SIGNAL_DETECTED</title>
+<indexterm><primary>RFM_MODEM_STATUS_SIGNAL_DETECTED</primary><secondary>RFM Registers</secondary></indexterm>
+<indexterm><primary>RFM Registers</primary><secondary>RFM_MODEM_STATUS_SIGNAL_DETECTED</secondary></indexterm>
+<para><computeroutput>#define RFM_MODEM_STATUS_SIGNAL_DETECTED   0x01</computeroutput></para><para>
+Definition at line <link linkend="_rfm_8h_source_1l00194">194</link> of file <link linkend="_rfm_8h_source">rfm.h</link>.</para>
+    </section><anchor xml:id="_group___r_f_m___r_e_g_1ga68d52effda4f0f9ee941d13b478909c9"/>    <section>
+    <title>RFM_MODEM_STATUS_SIGNAL_SYNCHRONIZED</title>
+<indexterm><primary>RFM_MODEM_STATUS_SIGNAL_SYNCHRONIZED</primary><secondary>RFM Registers</secondary></indexterm>
+<indexterm><primary>RFM Registers</primary><secondary>RFM_MODEM_STATUS_SIGNAL_SYNCHRONIZED</secondary></indexterm>
+<para><computeroutput>#define RFM_MODEM_STATUS_SIGNAL_SYNCHRONIZED   0x02</computeroutput></para><para>
+Definition at line <link linkend="_rfm_8h_source_1l00193">193</link> of file <link linkend="_rfm_8h_source">rfm.h</link>.</para>
+    </section><anchor xml:id="_group___r_f_m___r_e_g_1ga4090553ba4959e33afe1200f39c5ce15"/>    <section>
+    <title>RFM_OCP_ON</title>
+<indexterm><primary>RFM_OCP_ON</primary><secondary>RFM Registers</secondary></indexterm>
+<indexterm><primary>RFM Registers</primary><secondary>RFM_OCP_ON</secondary></indexterm>
+<para><computeroutput>#define RFM_OCP_ON   0x20</computeroutput></para><para>
+Definition at line <link linkend="_rfm_8h_source_1l00149">149</link> of file <link linkend="_rfm_8h_source">rfm.h</link>.</para>
+    </section><anchor xml:id="_group___r_f_m___r_e_g_1gab44b6dd5983e7ffbcbd88e1c407ad356"/>    <section>
+    <title>RFM_OCP_TRIM</title>
+<indexterm><primary>RFM_OCP_TRIM</primary><secondary>RFM Registers</secondary></indexterm>
+<indexterm><primary>RFM Registers</primary><secondary>RFM_OCP_TRIM</secondary></indexterm>
+<para><computeroutput>#define RFM_OCP_TRIM   0x1f</computeroutput></para><para>
+Definition at line <link linkend="_rfm_8h_source_1l00150">150</link> of file <link linkend="_rfm_8h_source">rfm.h</link>.</para>
+    </section><anchor xml:id="_group___r_f_m___r_e_g_1ga8627ba0d89061e4162112b44a12b85bf"/>    <section>
+    <title>RFM_OUTPUT_POWER</title>
+<indexterm><primary>RFM_OUTPUT_POWER</primary><secondary>RFM Registers</secondary></indexterm>
+<indexterm><primary>RFM Registers</primary><secondary>RFM_OUTPUT_POWER</secondary></indexterm>
+<para><computeroutput>#define RFM_OUTPUT_POWER   0x0f</computeroutput></para><para>
+Definition at line <link linkend="_rfm_8h_source_1l00126">126</link> of file <link linkend="_rfm_8h_source">rfm.h</link>.</para>
+    </section><anchor xml:id="_group___r_f_m___r_e_g_1gacb8982cb829c8be96dbe6521760111c9"/>    <section>
+    <title>RFM_PA_DAC_DISABLE</title>
+<indexterm><primary>RFM_PA_DAC_DISABLE</primary><secondary>RFM Registers</secondary></indexterm>
+<indexterm><primary>RFM Registers</primary><secondary>RFM_PA_DAC_DISABLE</secondary></indexterm>
+<para><computeroutput>#define RFM_PA_DAC_DISABLE   0x04</computeroutput></para><para>
+Definition at line <link linkend="_rfm_8h_source_1l00265">265</link> of file <link linkend="_rfm_8h_source">rfm.h</link>.</para>
+    </section><anchor xml:id="_group___r_f_m___r_e_g_1gaca826dad14f024d074ec50bd1b68794d"/>    <section>
+    <title>RFM_PA_DAC_ENABLE</title>
+<indexterm><primary>RFM_PA_DAC_ENABLE</primary><secondary>RFM Registers</secondary></indexterm>
+<indexterm><primary>RFM Registers</primary><secondary>RFM_PA_DAC_ENABLE</secondary></indexterm>
+<para><computeroutput>#define RFM_PA_DAC_ENABLE   0x07</computeroutput></para><para>
+Definition at line <link linkend="_rfm_8h_source_1l00266">266</link> of file <link linkend="_rfm_8h_source">rfm.h</link>.</para>
+    </section><anchor xml:id="_group___r_f_m___r_e_g_1gafe6c49cce3fff604c567cde3ac5446bd"/>    <section>
+    <title>RFM_PA_DAC_MASK</title>
+<indexterm><primary>RFM_PA_DAC_MASK</primary><secondary>RFM Registers</secondary></indexterm>
+<indexterm><primary>RFM Registers</primary><secondary>RFM_PA_DAC_MASK</secondary></indexterm>
+<para><computeroutput>#define RFM_PA_DAC_MASK   0x07</computeroutput></para><para>
+Definition at line <link linkend="_rfm_8h_source_1l00267">267</link> of file <link linkend="_rfm_8h_source">rfm.h</link>.</para>
+    </section><anchor xml:id="_group___r_f_m___r_e_g_1gab6940b062ad3eab06b21be0410c4928a"/>    <section>
+    <title>RFM_PA_RAMP_100US</title>
+<indexterm><primary>RFM_PA_RAMP_100US</primary><secondary>RFM Registers</secondary></indexterm>
+<indexterm><primary>RFM Registers</primary><secondary>RFM_PA_RAMP_100US</secondary></indexterm>
+<para><computeroutput>#define RFM_PA_RAMP_100US   0x06</computeroutput></para><para>
+Definition at line <link linkend="_rfm_8h_source_1l00137">137</link> of file <link linkend="_rfm_8h_source">rfm.h</link>.</para>
+    </section><anchor xml:id="_group___r_f_m___r_e_g_1gaacbd16da23855d35071e54fab3d8cbf8"/>    <section>
+    <title>RFM_PA_RAMP_10US</title>
+<indexterm><primary>RFM_PA_RAMP_10US</primary><secondary>RFM Registers</secondary></indexterm>
+<indexterm><primary>RFM Registers</primary><secondary>RFM_PA_RAMP_10US</secondary></indexterm>
+<para><computeroutput>#define RFM_PA_RAMP_10US   0x0f</computeroutput></para><para>
+Definition at line <link linkend="_rfm_8h_source_1l00146">146</link> of file <link linkend="_rfm_8h_source">rfm.h</link>.</para>
+    </section><anchor xml:id="_group___r_f_m___r_e_g_1ga9690a22faffb0310e1830a77491032ff"/>    <section>
+    <title>RFM_PA_RAMP_125US</title>
+<indexterm><primary>RFM_PA_RAMP_125US</primary><secondary>RFM Registers</secondary></indexterm>
+<indexterm><primary>RFM Registers</primary><secondary>RFM_PA_RAMP_125US</secondary></indexterm>
+<para><computeroutput>#define RFM_PA_RAMP_125US   0x05</computeroutput></para><para>
+Definition at line <link linkend="_rfm_8h_source_1l00136">136</link> of file <link linkend="_rfm_8h_source">rfm.h</link>.</para>
+    </section><anchor xml:id="_group___r_f_m___r_e_g_1gab1d1f56fedc61482f4d9677eb77dcc94"/>    <section>
+    <title>RFM_PA_RAMP_12US</title>
+<indexterm><primary>RFM_PA_RAMP_12US</primary><secondary>RFM Registers</secondary></indexterm>
+<indexterm><primary>RFM Registers</primary><secondary>RFM_PA_RAMP_12US</secondary></indexterm>
+<para><computeroutput>#define RFM_PA_RAMP_12US   0x0e</computeroutput></para><para>
+Definition at line <link linkend="_rfm_8h_source_1l00145">145</link> of file <link linkend="_rfm_8h_source">rfm.h</link>.</para>
+    </section><anchor xml:id="_group___r_f_m___r_e_g_1ga7fc9b5a5be832689958dc0b9be88beef"/>    <section>
+    <title>RFM_PA_RAMP_15US</title>
+<indexterm><primary>RFM_PA_RAMP_15US</primary><secondary>RFM Registers</secondary></indexterm>
+<indexterm><primary>RFM Registers</primary><secondary>RFM_PA_RAMP_15US</secondary></indexterm>
+<para><computeroutput>#define RFM_PA_RAMP_15US   0x0d</computeroutput></para><para>
+Definition at line <link linkend="_rfm_8h_source_1l00144">144</link> of file <link linkend="_rfm_8h_source">rfm.h</link>.</para>
+    </section><anchor xml:id="_group___r_f_m___r_e_g_1ga1f5701d073233d97e83777fd502740d8"/>    <section>
+    <title>RFM_PA_RAMP_1MS</title>
+<indexterm><primary>RFM_PA_RAMP_1MS</primary><secondary>RFM Registers</secondary></indexterm>
+<indexterm><primary>RFM Registers</primary><secondary>RFM_PA_RAMP_1MS</secondary></indexterm>
+<para><computeroutput>#define RFM_PA_RAMP_1MS   0x02</computeroutput></para><para>
+Definition at line <link linkend="_rfm_8h_source_1l00133">133</link> of file <link linkend="_rfm_8h_source">rfm.h</link>.</para>
+    </section><anchor xml:id="_group___r_f_m___r_e_g_1ga0f2ec984819fa2f84abc5a4375312c6c"/>    <section>
+    <title>RFM_PA_RAMP_20US</title>
+<indexterm><primary>RFM_PA_RAMP_20US</primary><secondary>RFM Registers</secondary></indexterm>
+<indexterm><primary>RFM Registers</primary><secondary>RFM_PA_RAMP_20US</secondary></indexterm>
+<para><computeroutput>#define RFM_PA_RAMP_20US   0x0c</computeroutput></para><para>
+Definition at line <link linkend="_rfm_8h_source_1l00143">143</link> of file <link linkend="_rfm_8h_source">rfm.h</link>.</para>
+    </section><anchor xml:id="_group___r_f_m___r_e_g_1gad84cd5fba79c9191d0d7b131d98a8a01"/>    <section>
+    <title>RFM_PA_RAMP_250US</title>
+<indexterm><primary>RFM_PA_RAMP_250US</primary><secondary>RFM Registers</secondary></indexterm>
+<indexterm><primary>RFM Registers</primary><secondary>RFM_PA_RAMP_250US</secondary></indexterm>
+<para><computeroutput>#define RFM_PA_RAMP_250US   0x04</computeroutput></para><para>
+Definition at line <link linkend="_rfm_8h_source_1l00135">135</link> of file <link linkend="_rfm_8h_source">rfm.h</link>.</para>
+    </section><anchor xml:id="_group___r_f_m___r_e_g_1ga60cab33376fa3512e515c282f2c61d07"/>    <section>
+    <title>RFM_PA_RAMP_25US</title>
+<indexterm><primary>RFM_PA_RAMP_25US</primary><secondary>RFM Registers</secondary></indexterm>
+<indexterm><primary>RFM Registers</primary><secondary>RFM_PA_RAMP_25US</secondary></indexterm>
+<para><computeroutput>#define RFM_PA_RAMP_25US   0x0b</computeroutput></para><para>
+Definition at line <link linkend="_rfm_8h_source_1l00142">142</link> of file <link linkend="_rfm_8h_source">rfm.h</link>.</para>
+    </section><anchor xml:id="_group___r_f_m___r_e_g_1ga98333f4c37610682241f8c5c653cdf82"/>    <section>
+    <title>RFM_PA_RAMP_2MS</title>
+<indexterm><primary>RFM_PA_RAMP_2MS</primary><secondary>RFM Registers</secondary></indexterm>
+<indexterm><primary>RFM Registers</primary><secondary>RFM_PA_RAMP_2MS</secondary></indexterm>
+<para><computeroutput>#define RFM_PA_RAMP_2MS   0x01</computeroutput></para><para>
+Definition at line <link linkend="_rfm_8h_source_1l00132">132</link> of file <link linkend="_rfm_8h_source">rfm.h</link>.</para>
+    </section><anchor xml:id="_group___r_f_m___r_e_g_1ga997814144a6f371c375a9e5ce5e3fdfd"/>    <section>
+    <title>RFM_PA_RAMP_31US</title>
+<indexterm><primary>RFM_PA_RAMP_31US</primary><secondary>RFM Registers</secondary></indexterm>
+<indexterm><primary>RFM Registers</primary><secondary>RFM_PA_RAMP_31US</secondary></indexterm>
+<para><computeroutput>#define RFM_PA_RAMP_31US   0x0a</computeroutput></para><para>
+Definition at line <link linkend="_rfm_8h_source_1l00141">141</link> of file <link linkend="_rfm_8h_source">rfm.h</link>.</para>
+    </section><anchor xml:id="_group___r_f_m___r_e_g_1gaa2d1fa9904e8844dde4d6dc5933a5e39"/>    <section>
+    <title>RFM_PA_RAMP_3_4MS</title>
+<indexterm><primary>RFM_PA_RAMP_3_4MS</primary><secondary>RFM Registers</secondary></indexterm>
+<indexterm><primary>RFM Registers</primary><secondary>RFM_PA_RAMP_3_4MS</secondary></indexterm>
+<para><computeroutput>#define RFM_PA_RAMP_3_4MS   0x00</computeroutput></para><para>
+Definition at line <link linkend="_rfm_8h_source_1l00131">131</link> of file <link linkend="_rfm_8h_source">rfm.h</link>.</para>
+    </section><anchor xml:id="_group___r_f_m___r_e_g_1gac711d620c58f13196614f3988de81596"/>    <section>
+    <title>RFM_PA_RAMP_40US</title>
+<indexterm><primary>RFM_PA_RAMP_40US</primary><secondary>RFM Registers</secondary></indexterm>
+<indexterm><primary>RFM Registers</primary><secondary>RFM_PA_RAMP_40US</secondary></indexterm>
+<para><computeroutput>#define RFM_PA_RAMP_40US   0x09</computeroutput></para><para>
+Definition at line <link linkend="_rfm_8h_source_1l00140">140</link> of file <link linkend="_rfm_8h_source">rfm.h</link>.</para>
+    </section><anchor xml:id="_group___r_f_m___r_e_g_1gac6646adcdd2b637347d15bcd09904cbf"/>    <section>
+    <title>RFM_PA_RAMP_500US</title>
+<indexterm><primary>RFM_PA_RAMP_500US</primary><secondary>RFM Registers</secondary></indexterm>
+<indexterm><primary>RFM Registers</primary><secondary>RFM_PA_RAMP_500US</secondary></indexterm>
+<para><computeroutput>#define RFM_PA_RAMP_500US   0x03</computeroutput></para><para>
+Definition at line <link linkend="_rfm_8h_source_1l00134">134</link> of file <link linkend="_rfm_8h_source">rfm.h</link>.</para>
+    </section><anchor xml:id="_group___r_f_m___r_e_g_1gac37664710c9dd48c07b54b42202c9c1e"/>    <section>
+    <title>RFM_PA_RAMP_50US</title>
+<indexterm><primary>RFM_PA_RAMP_50US</primary><secondary>RFM Registers</secondary></indexterm>
+<indexterm><primary>RFM Registers</primary><secondary>RFM_PA_RAMP_50US</secondary></indexterm>
+<para><computeroutput>#define RFM_PA_RAMP_50US   0x08</computeroutput></para><para>
+Definition at line <link linkend="_rfm_8h_source_1l00139">139</link> of file <link linkend="_rfm_8h_source">rfm.h</link>.</para>
+    </section><anchor xml:id="_group___r_f_m___r_e_g_1ga7f17258baf8a39b8a8f1f06ff0c3fda5"/>    <section>
+    <title>RFM_PA_RAMP_62US</title>
+<indexterm><primary>RFM_PA_RAMP_62US</primary><secondary>RFM Registers</secondary></indexterm>
+<indexterm><primary>RFM Registers</primary><secondary>RFM_PA_RAMP_62US</secondary></indexterm>
+<para><computeroutput>#define RFM_PA_RAMP_62US   0x07</computeroutput></para><para>
+Definition at line <link linkend="_rfm_8h_source_1l00138">138</link> of file <link linkend="_rfm_8h_source">rfm.h</link>.</para>
+    </section><anchor xml:id="_group___r_f_m___r_e_g_1ga3ae15ddc8efec7c5c00a62b6f1c14d76"/>    <section>
+    <title>RFM_PA_RAMP_MASK</title>
+<indexterm><primary>RFM_PA_RAMP_MASK</primary><secondary>RFM Registers</secondary></indexterm>
+<indexterm><primary>RFM Registers</primary><secondary>RFM_PA_RAMP_MASK</secondary></indexterm>
+<para><computeroutput>#define RFM_PA_RAMP_MASK   0x0f</computeroutput></para><para>
+Definition at line <link linkend="_rfm_8h_source_1l00130">130</link> of file <link linkend="_rfm_8h_source">rfm.h</link>.</para>
+    </section><anchor xml:id="_group___r_f_m___r_e_g_1ga77caf23af20ce85f5ae37f12d0d806ab"/>    <section>
+    <title>RFM_PA_SELECT</title>
+<indexterm><primary>RFM_PA_SELECT</primary><secondary>RFM Registers</secondary></indexterm>
+<indexterm><primary>RFM Registers</primary><secondary>RFM_PA_SELECT</secondary></indexterm>
+<para><computeroutput>#define RFM_PA_SELECT   0x80</computeroutput></para><para>
+Definition at line <link linkend="_rfm_8h_source_1l00124">124</link> of file <link linkend="_rfm_8h_source">rfm.h</link>.</para>
+    </section><anchor xml:id="_group___r_f_m___r_e_g_1ga65a837ca136ec77aad8b73c4ab851e4f"/>    <section>
+    <title>RFM_PAYLOAD_CRC_ERROR_MASK</title>
+<indexterm><primary>RFM_PAYLOAD_CRC_ERROR_MASK</primary><secondary>RFM Registers</secondary></indexterm>
+<indexterm><primary>RFM Registers</primary><secondary>RFM_PAYLOAD_CRC_ERROR_MASK</secondary></indexterm>
+<para><computeroutput>#define RFM_PAYLOAD_CRC_ERROR_MASK   0x20</computeroutput></para><para>
+Definition at line <link linkend="_rfm_8h_source_1l00169">169</link> of file <link linkend="_rfm_8h_source">rfm.h</link>.</para>
+    </section><anchor xml:id="_group___r_f_m___r_e_g_1ga8b45fbec47f488bd4fc4fc6cb4d35135"/>    <section>
+    <title>RFM_PAYLOAD_CRC_ON</title>
+<indexterm><primary>RFM_PAYLOAD_CRC_ON</primary><secondary>RFM Registers</secondary></indexterm>
+<indexterm><primary>RFM Registers</primary><secondary>RFM_PAYLOAD_CRC_ON</secondary></indexterm>
+<para><computeroutput>#define RFM_PAYLOAD_CRC_ON   0x04</computeroutput></para><para>
+Definition at line <link linkend="_rfm_8h_source_1l00234">234</link> of file <link linkend="_rfm_8h_source">rfm.h</link>.</para>
+    </section><anchor xml:id="_group___r_f_m___r_e_g_1ga6468e74cdb785242a848d53fd35d50b2"/>    <section>
+    <title>RFM_PLL_TIMEOUT</title>
+<indexterm><primary>RFM_PLL_TIMEOUT</primary><secondary>RFM Registers</secondary></indexterm>
+<indexterm><primary>RFM Registers</primary><secondary>RFM_PLL_TIMEOUT</secondary></indexterm>
+<para><computeroutput>#define RFM_PLL_TIMEOUT   0x80</computeroutput></para><para>
+Definition at line <link linkend="_rfm_8h_source_1l00197">197</link> of file <link linkend="_rfm_8h_source">rfm.h</link>.</para>
+    </section><anchor xml:id="_group___r_f_m___r_e_g_1ga0e7acb562b24ab76d6c4c5b61341245e"/>    <section>
+    <title>RFM_REG_00_FIFO</title>
+<indexterm><primary>RFM_REG_00_FIFO</primary><secondary>RFM Registers</secondary></indexterm>
+<indexterm><primary>RFM Registers</primary><secondary>RFM_REG_00_FIFO</secondary></indexterm>
+<para><computeroutput>#define RFM_REG_00_FIFO   0x00</computeroutput></para><para>
+
+<para>Shared TX/RX FIFO Address. </para>
+</para>
+<para>
+Definition at line <link linkend="_rfm_8h_source_1l00048">48</link> of file <link linkend="_rfm_8h_source">rfm.h</link>.</para>
+    </section><anchor xml:id="_group___r_f_m___r_e_g_1ga9baa0076f0eeabfd5502a2af14ae4a53"/>    <section>
+    <title>RFM_REG_01_OP_MODE</title>
+<indexterm><primary>RFM_REG_01_OP_MODE</primary><secondary>RFM Registers</secondary></indexterm>
+<indexterm><primary>RFM Registers</primary><secondary>RFM_REG_01_OP_MODE</secondary></indexterm>
+<para><computeroutput>#define RFM_REG_01_OP_MODE   0x01</computeroutput></para><para>
+
+<para>Operating Mode RFM_IRQ. </para>
+</para>
+<para>
+Definition at line <link linkend="_rfm_8h_source_1l00049">49</link> of file <link linkend="_rfm_8h_source">rfm.h</link>.</para>
+    </section><anchor xml:id="_group___r_f_m___r_e_g_1ga8b85802bc69d552b61867c498b986237"/>    <section>
+    <title>RFM_REG_02_RESERVED</title>
+<indexterm><primary>RFM_REG_02_RESERVED</primary><secondary>RFM Registers</secondary></indexterm>
+<indexterm><primary>RFM Registers</primary><secondary>RFM_REG_02_RESERVED</secondary></indexterm>
+<para><computeroutput>#define RFM_REG_02_RESERVED   0x02</computeroutput></para><para>
+Definition at line <link linkend="_rfm_8h_source_1l00050">50</link> of file <link linkend="_rfm_8h_source">rfm.h</link>.</para>
+    </section><anchor xml:id="_group___r_f_m___r_e_g_1ga878c5d807f8d78506c4d063cfc97ede3"/>    <section>
+    <title>RFM_REG_03_RESERVED</title>
+<indexterm><primary>RFM_REG_03_RESERVED</primary><secondary>RFM Registers</secondary></indexterm>
+<indexterm><primary>RFM Registers</primary><secondary>RFM_REG_03_RESERVED</secondary></indexterm>
+<para><computeroutput>#define RFM_REG_03_RESERVED   0x03</computeroutput></para><para>
+Definition at line <link linkend="_rfm_8h_source_1l00051">51</link> of file <link linkend="_rfm_8h_source">rfm.h</link>.</para>
+    </section><anchor xml:id="_group___r_f_m___r_e_g_1gafb246120c6965da0fc38ebf774e37513"/>    <section>
+    <title>RFM_REG_04_RESERVED</title>
+<indexterm><primary>RFM_REG_04_RESERVED</primary><secondary>RFM Registers</secondary></indexterm>
+<indexterm><primary>RFM Registers</primary><secondary>RFM_REG_04_RESERVED</secondary></indexterm>
+<para><computeroutput>#define RFM_REG_04_RESERVED   0x04</computeroutput></para><para>
+Definition at line <link linkend="_rfm_8h_source_1l00052">52</link> of file <link linkend="_rfm_8h_source">rfm.h</link>.</para>
+    </section><anchor xml:id="_group___r_f_m___r_e_g_1ga16e5d318e7ff8c38b1c687569dccb992"/>    <section>
+    <title>RFM_REG_05_RESERVED</title>
+<indexterm><primary>RFM_REG_05_RESERVED</primary><secondary>RFM Registers</secondary></indexterm>
+<indexterm><primary>RFM Registers</primary><secondary>RFM_REG_05_RESERVED</secondary></indexterm>
+<para><computeroutput>#define RFM_REG_05_RESERVED   0x05</computeroutput></para><para>
+Definition at line <link linkend="_rfm_8h_source_1l00053">53</link> of file <link linkend="_rfm_8h_source">rfm.h</link>.</para>
+    </section><anchor xml:id="_group___r_f_m___r_e_g_1ga725effcc1ebcc89fd56028d7ca291aa6"/>    <section>
+    <title>RFM_REG_06_FRF_MSB</title>
+<indexterm><primary>RFM_REG_06_FRF_MSB</primary><secondary>RFM Registers</secondary></indexterm>
+<indexterm><primary>RFM Registers</primary><secondary>RFM_REG_06_FRF_MSB</secondary></indexterm>
+<para><computeroutput>#define RFM_REG_06_FRF_MSB   0x06</computeroutput></para><para>
+Definition at line <link linkend="_rfm_8h_source_1l00054">54</link> of file <link linkend="_rfm_8h_source">rfm.h</link>.</para>
+    </section><anchor xml:id="_group___r_f_m___r_e_g_1gaa7c01d8a673baab3c8f558a7a96afa3e"/>    <section>
+    <title>RFM_REG_07_FRF_MID</title>
+<indexterm><primary>RFM_REG_07_FRF_MID</primary><secondary>RFM Registers</secondary></indexterm>
+<indexterm><primary>RFM Registers</primary><secondary>RFM_REG_07_FRF_MID</secondary></indexterm>
+<para><computeroutput>#define RFM_REG_07_FRF_MID   0x07</computeroutput></para><para>
+Definition at line <link linkend="_rfm_8h_source_1l00055">55</link> of file <link linkend="_rfm_8h_source">rfm.h</link>.</para>
+    </section><anchor xml:id="_group___r_f_m___r_e_g_1gae8d067c9a9847b048c722f089a5d3795"/>    <section>
+    <title>RFM_REG_08_FRF_LSB</title>
+<indexterm><primary>RFM_REG_08_FRF_LSB</primary><secondary>RFM Registers</secondary></indexterm>
+<indexterm><primary>RFM Registers</primary><secondary>RFM_REG_08_FRF_LSB</secondary></indexterm>
+<para><computeroutput>#define RFM_REG_08_FRF_LSB   0x08</computeroutput></para><para>
+Definition at line <link linkend="_rfm_8h_source_1l00056">56</link> of file <link linkend="_rfm_8h_source">rfm.h</link>.</para>
+    </section><anchor xml:id="_group___r_f_m___r_e_g_1ga7a214a2032cf7006c341c764aae65d4c"/>    <section>
+    <title>RFM_REG_09_PA_CONFIG</title>
+<indexterm><primary>RFM_REG_09_PA_CONFIG</primary><secondary>RFM Registers</secondary></indexterm>
+<indexterm><primary>RFM Registers</primary><secondary>RFM_REG_09_PA_CONFIG</secondary></indexterm>
+<para><computeroutput>#define RFM_REG_09_PA_CONFIG   0x09</computeroutput></para><para>
+Definition at line <link linkend="_rfm_8h_source_1l00057">57</link> of file <link linkend="_rfm_8h_source">rfm.h</link>.</para>
+    </section><anchor xml:id="_group___r_f_m___r_e_g_1ga2d056e9c4e7e36704c5b838b302fa353"/>    <section>
+    <title>RFM_REG_0A_PA_RAMP</title>
+<indexterm><primary>RFM_REG_0A_PA_RAMP</primary><secondary>RFM Registers</secondary></indexterm>
+<indexterm><primary>RFM Registers</primary><secondary>RFM_REG_0A_PA_RAMP</secondary></indexterm>
+<para><computeroutput>#define RFM_REG_0A_PA_RAMP   0x0a</computeroutput></para><para>
+Definition at line <link linkend="_rfm_8h_source_1l00058">58</link> of file <link linkend="_rfm_8h_source">rfm.h</link>.</para>
+    </section><anchor xml:id="_group___r_f_m___r_e_g_1ga8f53da922d9f1c8e3dd4b4388dec7825"/>    <section>
+    <title>RFM_REG_0B_OCP</title>
+<indexterm><primary>RFM_REG_0B_OCP</primary><secondary>RFM Registers</secondary></indexterm>
+<indexterm><primary>RFM Registers</primary><secondary>RFM_REG_0B_OCP</secondary></indexterm>
+<para><computeroutput>#define RFM_REG_0B_OCP   0x0b</computeroutput></para><para>
+Definition at line <link linkend="_rfm_8h_source_1l00059">59</link> of file <link linkend="_rfm_8h_source">rfm.h</link>.</para>
+    </section><anchor xml:id="_group___r_f_m___r_e_g_1ga46501454a761b6839a3d86d75c5f3176"/>    <section>
+    <title>RFM_REG_0C_LNA</title>
+<indexterm><primary>RFM_REG_0C_LNA</primary><secondary>RFM Registers</secondary></indexterm>
+<indexterm><primary>RFM Registers</primary><secondary>RFM_REG_0C_LNA</secondary></indexterm>
+<para><computeroutput>#define RFM_REG_0C_LNA   0x0c</computeroutput></para><para>
+Definition at line <link linkend="_rfm_8h_source_1l00060">60</link> of file <link linkend="_rfm_8h_source">rfm.h</link>.</para>
+    </section><anchor xml:id="_group___r_f_m___r_e_g_1ga397b0f175bcc9dcf9b4cbb9326bb39d7"/>    <section>
+    <title>RFM_REG_0D_FIFO_ADDR_PTR</title>
+<indexterm><primary>RFM_REG_0D_FIFO_ADDR_PTR</primary><secondary>RFM Registers</secondary></indexterm>
+<indexterm><primary>RFM Registers</primary><secondary>RFM_REG_0D_FIFO_ADDR_PTR</secondary></indexterm>
+<para><computeroutput>#define RFM_REG_0D_FIFO_ADDR_PTR   0x0d</computeroutput></para><para>
+Definition at line <link linkend="_rfm_8h_source_1l00061">61</link> of file <link linkend="_rfm_8h_source">rfm.h</link>.</para>
+    </section><anchor xml:id="_group___r_f_m___r_e_g_1gaf52209910380bdc7ed4bf2b5f9fae8fe"/>    <section>
+    <title>RFM_REG_0E_FIFO_TX_BASE_ADDR</title>
+<indexterm><primary>RFM_REG_0E_FIFO_TX_BASE_ADDR</primary><secondary>RFM Registers</secondary></indexterm>
+<indexterm><primary>RFM Registers</primary><secondary>RFM_REG_0E_FIFO_TX_BASE_ADDR</secondary></indexterm>
+<para><computeroutput>#define RFM_REG_0E_FIFO_TX_BASE_ADDR   0x0e</computeroutput></para><para>
+Definition at line <link linkend="_rfm_8h_source_1l00062">62</link> of file <link linkend="_rfm_8h_source">rfm.h</link>.</para>
+    </section><anchor xml:id="_group___r_f_m___r_e_g_1gaef013ab9a7aa95cc2746f9a1fedd67fb"/>    <section>
+    <title>RFM_REG_0F_FIFO_RX_BASE_ADDR</title>
+<indexterm><primary>RFM_REG_0F_FIFO_RX_BASE_ADDR</primary><secondary>RFM Registers</secondary></indexterm>
+<indexterm><primary>RFM Registers</primary><secondary>RFM_REG_0F_FIFO_RX_BASE_ADDR</secondary></indexterm>
+<para><computeroutput>#define RFM_REG_0F_FIFO_RX_BASE_ADDR   0x0f</computeroutput></para><para>
+Definition at line <link linkend="_rfm_8h_source_1l00063">63</link> of file <link linkend="_rfm_8h_source">rfm.h</link>.</para>
+    </section><anchor xml:id="_group___r_f_m___r_e_g_1ga2b2359aedfd00ce0008003eb423792e3"/>    <section>
+    <title>RFM_REG_10_FIFO_RX_CURRENT_ADDR</title>
+<indexterm><primary>RFM_REG_10_FIFO_RX_CURRENT_ADDR</primary><secondary>RFM Registers</secondary></indexterm>
+<indexterm><primary>RFM Registers</primary><secondary>RFM_REG_10_FIFO_RX_CURRENT_ADDR</secondary></indexterm>
+<para><computeroutput>#define RFM_REG_10_FIFO_RX_CURRENT_ADDR   0x10</computeroutput></para><para>
+Definition at line <link linkend="_rfm_8h_source_1l00064">64</link> of file <link linkend="_rfm_8h_source">rfm.h</link>.</para>
+    </section><anchor xml:id="_group___r_f_m___r_e_g_1ga42630a4d594a66f489ef59319d7ad9d5"/>    <section>
+    <title>RFM_REG_11_IRQ_FLAGS_MASK</title>
+<indexterm><primary>RFM_REG_11_IRQ_FLAGS_MASK</primary><secondary>RFM Registers</secondary></indexterm>
+<indexterm><primary>RFM Registers</primary><secondary>RFM_REG_11_IRQ_FLAGS_MASK</secondary></indexterm>
+<para><computeroutput>#define RFM_REG_11_IRQ_FLAGS_MASK   0x11</computeroutput></para><para>
+Definition at line <link linkend="_rfm_8h_source_1l00065">65</link> of file <link linkend="_rfm_8h_source">rfm.h</link>.</para>
+    </section><anchor xml:id="_group___r_f_m___r_e_g_1gaa34bab7260f7ecb7dd09233f04876c0a"/>    <section>
+    <title>RFM_REG_12_IRQ_FLAGS</title>
+<indexterm><primary>RFM_REG_12_IRQ_FLAGS</primary><secondary>RFM Registers</secondary></indexterm>
+<indexterm><primary>RFM Registers</primary><secondary>RFM_REG_12_IRQ_FLAGS</secondary></indexterm>
+<para><computeroutput>#define RFM_REG_12_IRQ_FLAGS   0x12</computeroutput></para><para>
+Definition at line <link linkend="_rfm_8h_source_1l00066">66</link> of file <link linkend="_rfm_8h_source">rfm.h</link>.</para>
+    </section><anchor xml:id="_group___r_f_m___r_e_g_1gaf1e5d312d036e83095851f9215d87f67"/>    <section>
+    <title>RFM_REG_13_RX_NB_BYTES</title>
+<indexterm><primary>RFM_REG_13_RX_NB_BYTES</primary><secondary>RFM Registers</secondary></indexterm>
+<indexterm><primary>RFM Registers</primary><secondary>RFM_REG_13_RX_NB_BYTES</secondary></indexterm>
+<para><computeroutput>#define RFM_REG_13_RX_NB_BYTES   0x13</computeroutput></para><para>
+Definition at line <link linkend="_rfm_8h_source_1l00067">67</link> of file <link linkend="_rfm_8h_source">rfm.h</link>.</para>
+    </section><anchor xml:id="_group___r_f_m___r_e_g_1ga366f10853f72fb682f879caee1c7d24c"/>    <section>
+    <title>RFM_REG_14_RX_HEADER_CNT_VALUE_MSB</title>
+<indexterm><primary>RFM_REG_14_RX_HEADER_CNT_VALUE_MSB</primary><secondary>RFM Registers</secondary></indexterm>
+<indexterm><primary>RFM Registers</primary><secondary>RFM_REG_14_RX_HEADER_CNT_VALUE_MSB</secondary></indexterm>
+<para><computeroutput>#define RFM_REG_14_RX_HEADER_CNT_VALUE_MSB   0x14</computeroutput></para><para>
+Definition at line <link linkend="_rfm_8h_source_1l00068">68</link> of file <link linkend="_rfm_8h_source">rfm.h</link>.</para>
+    </section><anchor xml:id="_group___r_f_m___r_e_g_1gaadfaf098c05c3fe9cba0e896ab7f22cd"/>    <section>
+    <title>RFM_REG_15_RX_HEADER_CNT_VALUE_LSB</title>
+<indexterm><primary>RFM_REG_15_RX_HEADER_CNT_VALUE_LSB</primary><secondary>RFM Registers</secondary></indexterm>
+<indexterm><primary>RFM Registers</primary><secondary>RFM_REG_15_RX_HEADER_CNT_VALUE_LSB</secondary></indexterm>
+<para><computeroutput>#define RFM_REG_15_RX_HEADER_CNT_VALUE_LSB   0x15</computeroutput></para><para>
+Definition at line <link linkend="_rfm_8h_source_1l00069">69</link> of file <link linkend="_rfm_8h_source">rfm.h</link>.</para>
+    </section><anchor xml:id="_group___r_f_m___r_e_g_1ga163274e602525602166db0cf8f853430"/>    <section>
+    <title>RFM_REG_16_RX_PACKET_CNT_VALUE_MSB</title>
+<indexterm><primary>RFM_REG_16_RX_PACKET_CNT_VALUE_MSB</primary><secondary>RFM Registers</secondary></indexterm>
+<indexterm><primary>RFM Registers</primary><secondary>RFM_REG_16_RX_PACKET_CNT_VALUE_MSB</secondary></indexterm>
+<para><computeroutput>#define RFM_REG_16_RX_PACKET_CNT_VALUE_MSB   0x16</computeroutput></para><para>
+Definition at line <link linkend="_rfm_8h_source_1l00070">70</link> of file <link linkend="_rfm_8h_source">rfm.h</link>.</para>
+    </section><anchor xml:id="_group___r_f_m___r_e_g_1gab9b9433a65b526a0cec1eea448485d42"/>    <section>
+    <title>RFM_REG_17_RX_PACKET_CNT_VALUE_LSB</title>
+<indexterm><primary>RFM_REG_17_RX_PACKET_CNT_VALUE_LSB</primary><secondary>RFM Registers</secondary></indexterm>
+<indexterm><primary>RFM Registers</primary><secondary>RFM_REG_17_RX_PACKET_CNT_VALUE_LSB</secondary></indexterm>
+<para><computeroutput>#define RFM_REG_17_RX_PACKET_CNT_VALUE_LSB   0x17</computeroutput></para><para>
+Definition at line <link linkend="_rfm_8h_source_1l00071">71</link> of file <link linkend="_rfm_8h_source">rfm.h</link>.</para>
+    </section><anchor xml:id="_group___r_f_m___r_e_g_1gaa4cc855ab2379e352ddb993c48a8dead"/>    <section>
+    <title>RFM_REG_18_MODEM_STAT</title>
+<indexterm><primary>RFM_REG_18_MODEM_STAT</primary><secondary>RFM Registers</secondary></indexterm>
+<indexterm><primary>RFM Registers</primary><secondary>RFM_REG_18_MODEM_STAT</secondary></indexterm>
+<para><computeroutput>#define RFM_REG_18_MODEM_STAT   0x18</computeroutput></para><para>
+Definition at line <link linkend="_rfm_8h_source_1l00072">72</link> of file <link linkend="_rfm_8h_source">rfm.h</link>.</para>
+    </section><anchor xml:id="_group___r_f_m___r_e_g_1ga3a0fb65349f600092278bb5bd83dfea5"/>    <section>
+    <title>RFM_REG_19_PKT_SNR_VALUE</title>
+<indexterm><primary>RFM_REG_19_PKT_SNR_VALUE</primary><secondary>RFM Registers</secondary></indexterm>
+<indexterm><primary>RFM Registers</primary><secondary>RFM_REG_19_PKT_SNR_VALUE</secondary></indexterm>
+<para><computeroutput>#define RFM_REG_19_PKT_SNR_VALUE   0x19</computeroutput></para><para>
+Definition at line <link linkend="_rfm_8h_source_1l00073">73</link> of file <link linkend="_rfm_8h_source">rfm.h</link>.</para>
+    </section><anchor xml:id="_group___r_f_m___r_e_g_1gafa5d36547a50b460aa261a70296899d0"/>    <section>
+    <title>RFM_REG_1A_PKT_RSSI_VALUE</title>
+<indexterm><primary>RFM_REG_1A_PKT_RSSI_VALUE</primary><secondary>RFM Registers</secondary></indexterm>
+<indexterm><primary>RFM Registers</primary><secondary>RFM_REG_1A_PKT_RSSI_VALUE</secondary></indexterm>
+<para><computeroutput>#define RFM_REG_1A_PKT_RSSI_VALUE   0x1a</computeroutput></para><para>
+Definition at line <link linkend="_rfm_8h_source_1l00074">74</link> of file <link linkend="_rfm_8h_source">rfm.h</link>.</para>
+    </section><anchor xml:id="_group___r_f_m___r_e_g_1ga7b1696ee84f56bfb97e30ea25b825ffd"/>    <section>
+    <title>RFM_REG_1B_RSSI_VALUE</title>
+<indexterm><primary>RFM_REG_1B_RSSI_VALUE</primary><secondary>RFM Registers</secondary></indexterm>
+<indexterm><primary>RFM Registers</primary><secondary>RFM_REG_1B_RSSI_VALUE</secondary></indexterm>
+<para><computeroutput>#define RFM_REG_1B_RSSI_VALUE   0x1b</computeroutput></para><para>
+Definition at line <link linkend="_rfm_8h_source_1l00075">75</link> of file <link linkend="_rfm_8h_source">rfm.h</link>.</para>
+    </section><anchor xml:id="_group___r_f_m___r_e_g_1ga1550402280c5b437e922adb1e6a5e87a"/>    <section>
+    <title>RFM_REG_1C_HOP_CHANNEL</title>
+<indexterm><primary>RFM_REG_1C_HOP_CHANNEL</primary><secondary>RFM Registers</secondary></indexterm>
+<indexterm><primary>RFM Registers</primary><secondary>RFM_REG_1C_HOP_CHANNEL</secondary></indexterm>
+<para><computeroutput>#define RFM_REG_1C_HOP_CHANNEL   0x1c</computeroutput></para><para>
+Definition at line <link linkend="_rfm_8h_source_1l00076">76</link> of file <link linkend="_rfm_8h_source">rfm.h</link>.</para>
+    </section><anchor xml:id="_group___r_f_m___r_e_g_1gaa932a9af646d9529da8c45a50dfec766"/>    <section>
+    <title>RFM_REG_1D_MODEM_CONFIG1</title>
+<indexterm><primary>RFM_REG_1D_MODEM_CONFIG1</primary><secondary>RFM Registers</secondary></indexterm>
+<indexterm><primary>RFM Registers</primary><secondary>RFM_REG_1D_MODEM_CONFIG1</secondary></indexterm>
+<para><computeroutput>#define RFM_REG_1D_MODEM_CONFIG1   0x1d</computeroutput></para><para>
+Definition at line <link linkend="_rfm_8h_source_1l00077">77</link> of file <link linkend="_rfm_8h_source">rfm.h</link>.</para>
+    </section><anchor xml:id="_group___r_f_m___r_e_g_1ga6593800a43804946ec83b888f5ab83fe"/>    <section>
+    <title>RFM_REG_1E_MODEM_CONFIG2</title>
+<indexterm><primary>RFM_REG_1E_MODEM_CONFIG2</primary><secondary>RFM Registers</secondary></indexterm>
+<indexterm><primary>RFM Registers</primary><secondary>RFM_REG_1E_MODEM_CONFIG2</secondary></indexterm>
+<para><computeroutput>#define RFM_REG_1E_MODEM_CONFIG2   0x1e</computeroutput></para><para>
+Definition at line <link linkend="_rfm_8h_source_1l00078">78</link> of file <link linkend="_rfm_8h_source">rfm.h</link>.</para>
+    </section><anchor xml:id="_group___r_f_m___r_e_g_1gaf8e677c87d42543f7d2af1a3299bd4b1"/>    <section>
+    <title>RFM_REG_1F_SYMB_TIMEOUT_LSB</title>
+<indexterm><primary>RFM_REG_1F_SYMB_TIMEOUT_LSB</primary><secondary>RFM Registers</secondary></indexterm>
+<indexterm><primary>RFM Registers</primary><secondary>RFM_REG_1F_SYMB_TIMEOUT_LSB</secondary></indexterm>
+<para><computeroutput>#define RFM_REG_1F_SYMB_TIMEOUT_LSB   0x1f</computeroutput></para><para>
+Definition at line <link linkend="_rfm_8h_source_1l00079">79</link> of file <link linkend="_rfm_8h_source">rfm.h</link>.</para>
+    </section><anchor xml:id="_group___r_f_m___r_e_g_1ga631528a64c394bc82ee252e30b9a963d"/>    <section>
+    <title>RFM_REG_20_PREAMBLE_MSB</title>
+<indexterm><primary>RFM_REG_20_PREAMBLE_MSB</primary><secondary>RFM Registers</secondary></indexterm>
+<indexterm><primary>RFM Registers</primary><secondary>RFM_REG_20_PREAMBLE_MSB</secondary></indexterm>
+<para><computeroutput>#define RFM_REG_20_PREAMBLE_MSB   0x20</computeroutput></para><para>
+Definition at line <link linkend="_rfm_8h_source_1l00080">80</link> of file <link linkend="_rfm_8h_source">rfm.h</link>.</para>
+    </section><anchor xml:id="_group___r_f_m___r_e_g_1ga0525c23c9d16cd81ebb26facf62c1574"/>    <section>
+    <title>RFM_REG_21_PREAMBLE_LSB</title>
+<indexterm><primary>RFM_REG_21_PREAMBLE_LSB</primary><secondary>RFM Registers</secondary></indexterm>
+<indexterm><primary>RFM Registers</primary><secondary>RFM_REG_21_PREAMBLE_LSB</secondary></indexterm>
+<para><computeroutput>#define RFM_REG_21_PREAMBLE_LSB   0x21</computeroutput></para><para>
+Definition at line <link linkend="_rfm_8h_source_1l00081">81</link> of file <link linkend="_rfm_8h_source">rfm.h</link>.</para>
+    </section><anchor xml:id="_group___r_f_m___r_e_g_1ga590c0a497ba4af11ade3e87245c6b94d"/>    <section>
+    <title>RFM_REG_22_PAYLOAD_LENGTH</title>
+<indexterm><primary>RFM_REG_22_PAYLOAD_LENGTH</primary><secondary>RFM Registers</secondary></indexterm>
+<indexterm><primary>RFM Registers</primary><secondary>RFM_REG_22_PAYLOAD_LENGTH</secondary></indexterm>
+<para><computeroutput>#define RFM_REG_22_PAYLOAD_LENGTH   0x22</computeroutput></para><para>
+Definition at line <link linkend="_rfm_8h_source_1l00082">82</link> of file <link linkend="_rfm_8h_source">rfm.h</link>.</para>
+    </section><anchor xml:id="_group___r_f_m___r_e_g_1gaa953b71f48a9e3e0be740ec1a44579eb"/>    <section>
+    <title>RFM_REG_23_MAX_PAYLOAD_LENGTH</title>
+<indexterm><primary>RFM_REG_23_MAX_PAYLOAD_LENGTH</primary><secondary>RFM Registers</secondary></indexterm>
+<indexterm><primary>RFM Registers</primary><secondary>RFM_REG_23_MAX_PAYLOAD_LENGTH</secondary></indexterm>
+<para><computeroutput>#define RFM_REG_23_MAX_PAYLOAD_LENGTH   0x23</computeroutput></para><para>
+Definition at line <link linkend="_rfm_8h_source_1l00083">83</link> of file <link linkend="_rfm_8h_source">rfm.h</link>.</para>
+    </section><anchor xml:id="_group___r_f_m___r_e_g_1ga5a9e5926f67415fa18a848107c6a7840"/>    <section>
+    <title>RFM_REG_24_HOP_PERIOD</title>
+<indexterm><primary>RFM_REG_24_HOP_PERIOD</primary><secondary>RFM Registers</secondary></indexterm>
+<indexterm><primary>RFM Registers</primary><secondary>RFM_REG_24_HOP_PERIOD</secondary></indexterm>
+<para><computeroutput>#define RFM_REG_24_HOP_PERIOD   0x24</computeroutput></para><para>
+Definition at line <link linkend="_rfm_8h_source_1l00084">84</link> of file <link linkend="_rfm_8h_source">rfm.h</link>.</para>
+    </section><anchor xml:id="_group___r_f_m___r_e_g_1ga1de6c594f2161cf3a0277a1251dd2a89"/>    <section>
+    <title>RFM_REG_25_FIFO_RX_BYTE_ADDR</title>
+<indexterm><primary>RFM_REG_25_FIFO_RX_BYTE_ADDR</primary><secondary>RFM Registers</secondary></indexterm>
+<indexterm><primary>RFM Registers</primary><secondary>RFM_REG_25_FIFO_RX_BYTE_ADDR</secondary></indexterm>
+<para><computeroutput>#define RFM_REG_25_FIFO_RX_BYTE_ADDR   0x25</computeroutput></para><para>
+Definition at line <link linkend="_rfm_8h_source_1l00085">85</link> of file <link linkend="_rfm_8h_source">rfm.h</link>.</para>
+    </section><anchor xml:id="_group___r_f_m___r_e_g_1ga2a12d0ed6ab0f475969f6328c7d4ac6d"/>    <section>
+    <title>RFM_REG_26_MODEM_CONFIG3</title>
+<indexterm><primary>RFM_REG_26_MODEM_CONFIG3</primary><secondary>RFM Registers</secondary></indexterm>
+<indexterm><primary>RFM Registers</primary><secondary>RFM_REG_26_MODEM_CONFIG3</secondary></indexterm>
+<para><computeroutput>#define RFM_REG_26_MODEM_CONFIG3   0x26</computeroutput></para><para>
+Definition at line <link linkend="_rfm_8h_source_1l00086">86</link> of file <link linkend="_rfm_8h_source">rfm.h</link>.</para>
+    </section><anchor xml:id="_group___r_f_m___r_e_g_1gad74006ba6a135916de0e183cb9fc56c5"/>    <section>
+    <title>RFM_REG_27_PPM_CORRECTION</title>
+<indexterm><primary>RFM_REG_27_PPM_CORRECTION</primary><secondary>RFM Registers</secondary></indexterm>
+<indexterm><primary>RFM Registers</primary><secondary>RFM_REG_27_PPM_CORRECTION</secondary></indexterm>
+<para><computeroutput>#define RFM_REG_27_PPM_CORRECTION   0x27</computeroutput></para><para>
+Definition at line <link linkend="_rfm_8h_source_1l00088">88</link> of file <link linkend="_rfm_8h_source">rfm.h</link>.</para>
+    </section><anchor xml:id="_group___r_f_m___r_e_g_1gaa0299b1b1b190eb3d472c16521c00c36"/>    <section>
+    <title>RFM_REG_28_FEI_MSB</title>
+<indexterm><primary>RFM_REG_28_FEI_MSB</primary><secondary>RFM Registers</secondary></indexterm>
+<indexterm><primary>RFM Registers</primary><secondary>RFM_REG_28_FEI_MSB</secondary></indexterm>
+<para><computeroutput>#define RFM_REG_28_FEI_MSB   0x28</computeroutput></para><para>
+Definition at line <link linkend="_rfm_8h_source_1l00089">89</link> of file <link linkend="_rfm_8h_source">rfm.h</link>.</para>
+    </section><anchor xml:id="_group___r_f_m___r_e_g_1ga898eb352dc4ce0a9ce1f8e9d2ce90358"/>    <section>
+    <title>RFM_REG_29_FEI_MID</title>
+<indexterm><primary>RFM_REG_29_FEI_MID</primary><secondary>RFM Registers</secondary></indexterm>
+<indexterm><primary>RFM Registers</primary><secondary>RFM_REG_29_FEI_MID</secondary></indexterm>
+<para><computeroutput>#define RFM_REG_29_FEI_MID   0x29</computeroutput></para><para>
+Definition at line <link linkend="_rfm_8h_source_1l00090">90</link> of file <link linkend="_rfm_8h_source">rfm.h</link>.</para>
+    </section><anchor xml:id="_group___r_f_m___r_e_g_1ga83095be89530beccb987394f36cc2adf"/>    <section>
+    <title>RFM_REG_2A_FEI_LSB</title>
+<indexterm><primary>RFM_REG_2A_FEI_LSB</primary><secondary>RFM Registers</secondary></indexterm>
+<indexterm><primary>RFM Registers</primary><secondary>RFM_REG_2A_FEI_LSB</secondary></indexterm>
+<para><computeroutput>#define RFM_REG_2A_FEI_LSB   0x2a</computeroutput></para><para>
+Definition at line <link linkend="_rfm_8h_source_1l00091">91</link> of file <link linkend="_rfm_8h_source">rfm.h</link>.</para>
+    </section><anchor xml:id="_group___r_f_m___r_e_g_1ga2a59b3abd4150e7090b824939e7d65ed"/>    <section>
+    <title>RFM_REG_2C_RSSI_WIDEBAND</title>
+<indexterm><primary>RFM_REG_2C_RSSI_WIDEBAND</primary><secondary>RFM Registers</secondary></indexterm>
+<indexterm><primary>RFM Registers</primary><secondary>RFM_REG_2C_RSSI_WIDEBAND</secondary></indexterm>
+<para><computeroutput>#define RFM_REG_2C_RSSI_WIDEBAND   0x2c</computeroutput></para><para>
+Definition at line <link linkend="_rfm_8h_source_1l00092">92</link> of file <link linkend="_rfm_8h_source">rfm.h</link>.</para>
+    </section><anchor xml:id="_group___r_f_m___r_e_g_1ga664249e022db28bb3614e42ee0aafaae"/>    <section>
+    <title>RFM_REG_31_DETECT_OPTIMIZE</title>
+<indexterm><primary>RFM_REG_31_DETECT_OPTIMIZE</primary><secondary>RFM Registers</secondary></indexterm>
+<indexterm><primary>RFM Registers</primary><secondary>RFM_REG_31_DETECT_OPTIMIZE</secondary></indexterm>
+<para><computeroutput>#define RFM_REG_31_DETECT_OPTIMIZE   0x31</computeroutput></para><para>
+Definition at line <link linkend="_rfm_8h_source_1l00093">93</link> of file <link linkend="_rfm_8h_source">rfm.h</link>.</para>
+    </section><anchor xml:id="_group___r_f_m___r_e_g_1ga3ff2ebf26fdc0cebc32c2b064ee218f0"/>    <section>
+    <title>RFM_REG_33_INVERT_IQ</title>
+<indexterm><primary>RFM_REG_33_INVERT_IQ</primary><secondary>RFM Registers</secondary></indexterm>
+<indexterm><primary>RFM Registers</primary><secondary>RFM_REG_33_INVERT_IQ</secondary></indexterm>
+<para><computeroutput>#define RFM_REG_33_INVERT_IQ   0x33</computeroutput></para><para>
+Definition at line <link linkend="_rfm_8h_source_1l00094">94</link> of file <link linkend="_rfm_8h_source">rfm.h</link>.</para>
+    </section><anchor xml:id="_group___r_f_m___r_e_g_1ga0f4ddf7034bb3b5392beae28cf3adde6"/>    <section>
+    <title>RFM_REG_37_DETECTION_THRESHOLD</title>
+<indexterm><primary>RFM_REG_37_DETECTION_THRESHOLD</primary><secondary>RFM Registers</secondary></indexterm>
+<indexterm><primary>RFM Registers</primary><secondary>RFM_REG_37_DETECTION_THRESHOLD</secondary></indexterm>
+<para><computeroutput>#define RFM_REG_37_DETECTION_THRESHOLD   0x37</computeroutput></para><para>
+Definition at line <link linkend="_rfm_8h_source_1l00095">95</link> of file <link linkend="_rfm_8h_source">rfm.h</link>.</para>
+    </section><anchor xml:id="_group___r_f_m___r_e_g_1gad4c325c0c16c1ab5e8f78e02d07098da"/>    <section>
+    <title>RFM_REG_39_SYNC_WORD</title>
+<indexterm><primary>RFM_REG_39_SYNC_WORD</primary><secondary>RFM Registers</secondary></indexterm>
+<indexterm><primary>RFM Registers</primary><secondary>RFM_REG_39_SYNC_WORD</secondary></indexterm>
+<para><computeroutput>#define RFM_REG_39_SYNC_WORD   0x39</computeroutput></para><para>
+Definition at line <link linkend="_rfm_8h_source_1l00096">96</link> of file <link linkend="_rfm_8h_source">rfm.h</link>.</para>
+    </section><anchor xml:id="_group___r_f_m___r_e_g_1ga6b9638f2b2f191008f8353de8760bfb3"/>    <section>
+    <title>RFM_REG_40_DIO_MAPPING1</title>
+<indexterm><primary>RFM_REG_40_DIO_MAPPING1</primary><secondary>RFM Registers</secondary></indexterm>
+<indexterm><primary>RFM Registers</primary><secondary>RFM_REG_40_DIO_MAPPING1</secondary></indexterm>
+<para><computeroutput>#define RFM_REG_40_DIO_MAPPING1   0x40</computeroutput></para><para>
+Definition at line <link linkend="_rfm_8h_source_1l00098">98</link> of file <link linkend="_rfm_8h_source">rfm.h</link>.</para>
+    </section><anchor xml:id="_group___r_f_m___r_e_g_1ga3e1bfc3439158e705617b4574f98a991"/>    <section>
+    <title>RFM_REG_41_DIO_MAPPING2</title>
+<indexterm><primary>RFM_REG_41_DIO_MAPPING2</primary><secondary>RFM Registers</secondary></indexterm>
+<indexterm><primary>RFM Registers</primary><secondary>RFM_REG_41_DIO_MAPPING2</secondary></indexterm>
+<para><computeroutput>#define RFM_REG_41_DIO_MAPPING2   0x41</computeroutput></para><para>
+Definition at line <link linkend="_rfm_8h_source_1l00099">99</link> of file <link linkend="_rfm_8h_source">rfm.h</link>.</para>
+    </section><anchor xml:id="_group___r_f_m___r_e_g_1gaffa0e65cbbe21cdbacbbaa90430bbd6c"/>    <section>
+    <title>RFM_REG_42_VERSION</title>
+<indexterm><primary>RFM_REG_42_VERSION</primary><secondary>RFM Registers</secondary></indexterm>
+<indexterm><primary>RFM Registers</primary><secondary>RFM_REG_42_VERSION</secondary></indexterm>
+<para><computeroutput>#define RFM_REG_42_VERSION   0x42</computeroutput></para><para>
+Definition at line <link linkend="_rfm_8h_source_1l00100">100</link> of file <link linkend="_rfm_8h_source">rfm.h</link>.</para>
+    </section><anchor xml:id="_group___r_f_m___r_e_g_1ga4fbd56ba97dcb9ff8f7f1851049d768f"/>    <section>
+    <title>RFM_REG_4B_TCXO</title>
+<indexterm><primary>RFM_REG_4B_TCXO</primary><secondary>RFM Registers</secondary></indexterm>
+<indexterm><primary>RFM Registers</primary><secondary>RFM_REG_4B_TCXO</secondary></indexterm>
+<para><computeroutput>#define RFM_REG_4B_TCXO   0x4b</computeroutput></para><para>
+Definition at line <link linkend="_rfm_8h_source_1l00102">102</link> of file <link linkend="_rfm_8h_source">rfm.h</link>.</para>
+    </section><anchor xml:id="_group___r_f_m___r_e_g_1ga5cc42fb14f55e3e06929614826f3e807"/>    <section>
+    <title>RFM_REG_4D_PA_DAC</title>
+<indexterm><primary>RFM_REG_4D_PA_DAC</primary><secondary>RFM Registers</secondary></indexterm>
+<indexterm><primary>RFM Registers</primary><secondary>RFM_REG_4D_PA_DAC</secondary></indexterm>
+<para><computeroutput>#define RFM_REG_4D_PA_DAC   0x4d</computeroutput></para><para>
+Definition at line <link linkend="_rfm_8h_source_1l00103">103</link> of file <link linkend="_rfm_8h_source">rfm.h</link>.</para>
+    </section><anchor xml:id="_group___r_f_m___r_e_g_1gaa0c183302d9f7ad79fef7d1893c72c66"/>    <section>
+    <title>RFM_REG_5B_FORMER_TEMP</title>
+<indexterm><primary>RFM_REG_5B_FORMER_TEMP</primary><secondary>RFM Registers</secondary></indexterm>
+<indexterm><primary>RFM Registers</primary><secondary>RFM_REG_5B_FORMER_TEMP</secondary></indexterm>
+<para><computeroutput>#define RFM_REG_5B_FORMER_TEMP   0x5b</computeroutput></para><para>
+Definition at line <link linkend="_rfm_8h_source_1l00104">104</link> of file <link linkend="_rfm_8h_source">rfm.h</link>.</para>
+    </section><anchor xml:id="_group___r_f_m___r_e_g_1gac15b1388d12f594d1fda26fac5bf89c5"/>    <section>
+    <title>RFM_REG_61_AGC_REF</title>
+<indexterm><primary>RFM_REG_61_AGC_REF</primary><secondary>RFM Registers</secondary></indexterm>
+<indexterm><primary>RFM Registers</primary><secondary>RFM_REG_61_AGC_REF</secondary></indexterm>
+<para><computeroutput>#define RFM_REG_61_AGC_REF   0x61</computeroutput></para><para>
+Definition at line <link linkend="_rfm_8h_source_1l00105">105</link> of file <link linkend="_rfm_8h_source">rfm.h</link>.</para>
+    </section><anchor xml:id="_group___r_f_m___r_e_g_1ga35804f846e34bc15e0c13ca058a4039f"/>    <section>
+    <title>RFM_REG_62_AGC_THRESH1</title>
+<indexterm><primary>RFM_REG_62_AGC_THRESH1</primary><secondary>RFM Registers</secondary></indexterm>
+<indexterm><primary>RFM Registers</primary><secondary>RFM_REG_62_AGC_THRESH1</secondary></indexterm>
+<para><computeroutput>#define RFM_REG_62_AGC_THRESH1   0x62</computeroutput></para><para>
+Definition at line <link linkend="_rfm_8h_source_1l00106">106</link> of file <link linkend="_rfm_8h_source">rfm.h</link>.</para>
+    </section><anchor xml:id="_group___r_f_m___r_e_g_1ga8cddd993e8cc063e484d1ec7624e7768"/>    <section>
+    <title>RFM_REG_63_AGC_THRESH2</title>
+<indexterm><primary>RFM_REG_63_AGC_THRESH2</primary><secondary>RFM Registers</secondary></indexterm>
+<indexterm><primary>RFM Registers</primary><secondary>RFM_REG_63_AGC_THRESH2</secondary></indexterm>
+<para><computeroutput>#define RFM_REG_63_AGC_THRESH2   0x63</computeroutput></para><para>
+Definition at line <link linkend="_rfm_8h_source_1l00107">107</link> of file <link linkend="_rfm_8h_source">rfm.h</link>.</para>
+    </section><anchor xml:id="_group___r_f_m___r_e_g_1gaf15a77834e0d293219fd9cd82cb5cb1a"/>    <section>
+    <title>RFM_REG_64_AGC_THRESH3</title>
+<indexterm><primary>RFM_REG_64_AGC_THRESH3</primary><secondary>RFM Registers</secondary></indexterm>
+<indexterm><primary>RFM Registers</primary><secondary>RFM_REG_64_AGC_THRESH3</secondary></indexterm>
+<para><computeroutput>#define RFM_REG_64_AGC_THRESH3   0x64</computeroutput></para><para>
+Definition at line <link linkend="_rfm_8h_source_1l00108">108</link> of file <link linkend="_rfm_8h_source">rfm.h</link>.</para>
+    </section><anchor xml:id="_group___r_f_m___r_e_g_1gadb849b331c82e5844141c66fce8b12b8"/>    <section>
+    <title>RFM_RX_CODING_RATE</title>
+<indexterm><primary>RFM_RX_CODING_RATE</primary><secondary>RFM Registers</secondary></indexterm>
+<indexterm><primary>RFM Registers</primary><secondary>RFM_RX_CODING_RATE</secondary></indexterm>
+<para><computeroutput>#define RFM_RX_CODING_RATE   0xe0</computeroutput></para><para>
+Definition at line <link linkend="_rfm_8h_source_1l00189">189</link> of file <link linkend="_rfm_8h_source">rfm.h</link>.</para>
+    </section><anchor xml:id="_group___r_f_m___r_e_g_1ga886c9f196a27dceab3c71a2b08d4db2d"/>    <section>
+    <title>RFM_RX_DONE_MASK</title>
+<indexterm><primary>RFM_RX_DONE_MASK</primary><secondary>RFM Registers</secondary></indexterm>
+<indexterm><primary>RFM Registers</primary><secondary>RFM_RX_DONE_MASK</secondary></indexterm>
+<para><computeroutput>#define RFM_RX_DONE_MASK   0x40</computeroutput></para><para>
+Definition at line <link linkend="_rfm_8h_source_1l00168">168</link> of file <link linkend="_rfm_8h_source">rfm.h</link>.</para>
+    </section><anchor xml:id="_group___r_f_m___r_e_g_1ga6f03946c297feb41070e2fe6811e041d"/>    <section>
+    <title>RFM_RX_PAYLOAD_CRC_IS_ON</title>
+<indexterm><primary>RFM_RX_PAYLOAD_CRC_IS_ON</primary><secondary>RFM Registers</secondary></indexterm>
+<indexterm><primary>RFM Registers</primary><secondary>RFM_RX_PAYLOAD_CRC_IS_ON</secondary></indexterm>
+<para><computeroutput>#define RFM_RX_PAYLOAD_CRC_IS_ON   0x40</computeroutput></para><para>
+Definition at line <link linkend="_rfm_8h_source_1l00198">198</link> of file <link linkend="_rfm_8h_source">rfm.h</link>.</para>
+    </section><anchor xml:id="_group___r_f_m___r_e_g_1ga46c8d638fd5d677ff00574202749a60d"/>    <section>
+    <title>RFM_RX_TIMEOUT_MASK</title>
+<indexterm><primary>RFM_RX_TIMEOUT_MASK</primary><secondary>RFM Registers</secondary></indexterm>
+<indexterm><primary>RFM Registers</primary><secondary>RFM_RX_TIMEOUT_MASK</secondary></indexterm>
+<para><computeroutput>#define RFM_RX_TIMEOUT_MASK   0x80</computeroutput></para><para>
+Definition at line <link linkend="_rfm_8h_source_1l00167">167</link> of file <link linkend="_rfm_8h_source">rfm.h</link>.</para>
+    </section><anchor xml:id="_group___r_f_m___r_e_g_1gae2231ea56372274b91e7d07dbf2252d0"/>    <section>
+    <title>RFM_SPREADING_FACTOR</title>
+<indexterm><primary>RFM_SPREADING_FACTOR</primary><secondary>RFM Registers</secondary></indexterm>
+<indexterm><primary>RFM Registers</primary><secondary>RFM_SPREADING_FACTOR</secondary></indexterm>
+<para><computeroutput>#define RFM_SPREADING_FACTOR   0xf0</computeroutput></para><para>
+Definition at line <link linkend="_rfm_8h_source_1l00224">224</link> of file <link linkend="_rfm_8h_source">rfm.h</link>.</para>
+    </section><anchor xml:id="_group___r_f_m___r_e_g_1gaf627d2f43a068f7d914d571442f925f2"/>    <section>
+    <title>RFM_SPREADING_FACTOR_1024CPS</title>
+<indexterm><primary>RFM_SPREADING_FACTOR_1024CPS</primary><secondary>RFM Registers</secondary></indexterm>
+<indexterm><primary>RFM Registers</primary><secondary>RFM_SPREADING_FACTOR_1024CPS</secondary></indexterm>
+<para><computeroutput>#define RFM_SPREADING_FACTOR_1024CPS   0xa0</computeroutput></para><para>
+Definition at line <link linkend="_rfm_8h_source_1l00229">229</link> of file <link linkend="_rfm_8h_source">rfm.h</link>.</para>
+    </section><anchor xml:id="_group___r_f_m___r_e_g_1ga91493e17a62f89f8b1950938ac178ae4"/>    <section>
+    <title>RFM_SPREADING_FACTOR_128CPS</title>
+<indexterm><primary>RFM_SPREADING_FACTOR_128CPS</primary><secondary>RFM Registers</secondary></indexterm>
+<indexterm><primary>RFM Registers</primary><secondary>RFM_SPREADING_FACTOR_128CPS</secondary></indexterm>
+<para><computeroutput>#define RFM_SPREADING_FACTOR_128CPS   0x70</computeroutput></para><para>
+Definition at line <link linkend="_rfm_8h_source_1l00226">226</link> of file <link linkend="_rfm_8h_source">rfm.h</link>.</para>
+    </section><anchor xml:id="_group___r_f_m___r_e_g_1ga46a9a7dcffcb60f499f40ae4b0d2349e"/>    <section>
+    <title>RFM_SPREADING_FACTOR_2048CPS</title>
+<indexterm><primary>RFM_SPREADING_FACTOR_2048CPS</primary><secondary>RFM Registers</secondary></indexterm>
+<indexterm><primary>RFM Registers</primary><secondary>RFM_SPREADING_FACTOR_2048CPS</secondary></indexterm>
+<para><computeroutput>#define RFM_SPREADING_FACTOR_2048CPS   0xb0</computeroutput></para><para>
+Definition at line <link linkend="_rfm_8h_source_1l00230">230</link> of file <link linkend="_rfm_8h_source">rfm.h</link>.</para>
+    </section><anchor xml:id="_group___r_f_m___r_e_g_1ga303e4100146cca067c82d5ba835f2ae1"/>    <section>
+    <title>RFM_SPREADING_FACTOR_256CPS</title>
+<indexterm><primary>RFM_SPREADING_FACTOR_256CPS</primary><secondary>RFM Registers</secondary></indexterm>
+<indexterm><primary>RFM Registers</primary><secondary>RFM_SPREADING_FACTOR_256CPS</secondary></indexterm>
+<para><computeroutput>#define RFM_SPREADING_FACTOR_256CPS   0x80</computeroutput></para><para>
+Definition at line <link linkend="_rfm_8h_source_1l00227">227</link> of file <link linkend="_rfm_8h_source">rfm.h</link>.</para>
+    </section><anchor xml:id="_group___r_f_m___r_e_g_1gac399f154772e269d43f3c55b12a89711"/>    <section>
+    <title>RFM_SPREADING_FACTOR_4096CPS</title>
+<indexterm><primary>RFM_SPREADING_FACTOR_4096CPS</primary><secondary>RFM Registers</secondary></indexterm>
+<indexterm><primary>RFM Registers</primary><secondary>RFM_SPREADING_FACTOR_4096CPS</secondary></indexterm>
+<para><computeroutput>#define RFM_SPREADING_FACTOR_4096CPS   0xc0</computeroutput></para><para>
+Definition at line <link linkend="_rfm_8h_source_1l00231">231</link> of file <link linkend="_rfm_8h_source">rfm.h</link>.</para>
+    </section><anchor xml:id="_group___r_f_m___r_e_g_1ga75a6a399d21143395ba3b356b068f661"/>    <section>
+    <title>RFM_SPREADING_FACTOR_512CPS</title>
+<indexterm><primary>RFM_SPREADING_FACTOR_512CPS</primary><secondary>RFM Registers</secondary></indexterm>
+<indexterm><primary>RFM Registers</primary><secondary>RFM_SPREADING_FACTOR_512CPS</secondary></indexterm>
+<para><computeroutput>#define RFM_SPREADING_FACTOR_512CPS   0x90</computeroutput></para><para>
+Definition at line <link linkend="_rfm_8h_source_1l00228">228</link> of file <link linkend="_rfm_8h_source">rfm.h</link>.</para>
+    </section><anchor xml:id="_group___r_f_m___r_e_g_1ga4badda06bea16f2ab302998e0c2eeb06"/>    <section>
+    <title>RFM_SPREADING_FACTOR_64CPS</title>
+<indexterm><primary>RFM_SPREADING_FACTOR_64CPS</primary><secondary>RFM Registers</secondary></indexterm>
+<indexterm><primary>RFM Registers</primary><secondary>RFM_SPREADING_FACTOR_64CPS</secondary></indexterm>
+<para><computeroutput>#define RFM_SPREADING_FACTOR_64CPS   0x60</computeroutput></para><para>
+Definition at line <link linkend="_rfm_8h_source_1l00225">225</link> of file <link linkend="_rfm_8h_source">rfm.h</link>.</para>
+    </section><anchor xml:id="_group___r_f_m___r_e_g_1ga038b2d99d6fc892ddd65379fa5a35fd2"/>    <section>
+    <title>RFM_SYM_TIMEOUT_MSB</title>
+<indexterm><primary>RFM_SYM_TIMEOUT_MSB</primary><secondary>RFM Registers</secondary></indexterm>
+<indexterm><primary>RFM Registers</primary><secondary>RFM_SYM_TIMEOUT_MSB</secondary></indexterm>
+<para><computeroutput>#define RFM_SYM_TIMEOUT_MSB   0x03</computeroutput></para><para>
+Definition at line <link linkend="_rfm_8h_source_1l00235">235</link> of file <link linkend="_rfm_8h_source">rfm.h</link>.</para>
+    </section><anchor xml:id="_group___r_f_m___r_e_g_1ga554b5c39acd3776e6af1d38a48b143d0"/>    <section>
+    <title>RFM_TX_CONTINUOUS_MODE</title>
+<indexterm><primary>RFM_TX_CONTINUOUS_MODE</primary><secondary>RFM Registers</secondary></indexterm>
+<indexterm><primary>RFM Registers</primary><secondary>RFM_TX_CONTINUOUS_MODE</secondary></indexterm>
+<para><computeroutput>#define RFM_TX_CONTINUOUS_MODE   0x08</computeroutput></para><para>
+Definition at line <link linkend="_rfm_8h_source_1l00232">232</link> of file <link linkend="_rfm_8h_source">rfm.h</link>.</para>
+    </section><anchor xml:id="_group___r_f_m___r_e_g_1ga4d67743361ea6df5dcb97570afd6f661"/>    <section>
+    <title>RFM_TX_DONE_MASK</title>
+<indexterm><primary>RFM_TX_DONE_MASK</primary><secondary>RFM Registers</secondary></indexterm>
+<indexterm><primary>RFM Registers</primary><secondary>RFM_TX_DONE_MASK</secondary></indexterm>
+<para><computeroutput>#define RFM_TX_DONE_MASK   0x08</computeroutput></para><para>
+Definition at line <link linkend="_rfm_8h_source_1l00171">171</link> of file <link linkend="_rfm_8h_source">rfm.h</link>.</para>
+    </section><anchor xml:id="_group___r_f_m___r_e_g_1ga580bb89afbf9b7055f73a2ae358c6a7a"/>    <section>
+    <title>RFM_VALID_HEADER_MASK</title>
+<indexterm><primary>RFM_VALID_HEADER_MASK</primary><secondary>RFM Registers</secondary></indexterm>
+<indexterm><primary>RFM Registers</primary><secondary>RFM_VALID_HEADER_MASK</secondary></indexterm>
+<para><computeroutput>#define RFM_VALID_HEADER_MASK   0x10</computeroutput></para><para>
+Definition at line <link linkend="_rfm_8h_source_1l00170">170</link> of file <link linkend="_rfm_8h_source">rfm.h</link>.</para>
+</section>
+</section>
+</section>

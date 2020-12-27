@@ -3,177 +3,156 @@ hub/bin/hub_bootloader.elf:     file format elf32-littlearm
 
 Sections:
 Idx Name          Size      VMA       LMA       File off  Algn
-  0 .text         00000180  08000000  08000000  00010000  2**2
+  0 .text         00000150  08000000  08000000  00010000  2**2
                   CONTENTS, ALLOC, LOAD, READONLY, CODE
-  1 .preinit_array 00000000  08000180  08000180  00010180  2**0
+  1 .preinit_array 00000000  08000150  08000150  00010150  2**0
                   CONTENTS, ALLOC, LOAD, DATA
-  2 .init_array   00000000  08000180  08000180  00010180  2**0
+  2 .init_array   00000000  08000150  08000150  00010150  2**0
                   CONTENTS, ALLOC, LOAD, DATA
-  3 .fini_array   00000000  08000180  08000180  00010180  2**0
+  3 .fini_array   00000000  08000150  08000150  00010150  2**0
                   CONTENTS, ALLOC, LOAD, DATA
-  4 .data         00000000  20000000  20000000  00010180  2**0
+  4 .data         00000000  20000000  20000000  00010150  2**0
                   CONTENTS, ALLOC, LOAD, DATA
-  5 .bss          00000000  20000000  20000000  00000000  2**0
+  5 .bss          00000000  20000000  08000150  00000000  2**0
                   ALLOC
-  6 .comment      0000004c  00000000  00000000  00010180  2**0
+  6 ._user_heap_stack 00001000  20000000  08000150  00020000  2**0
+                  ALLOC
+  7 .ARM.attributes 0000002a  00000000  00000000  00010150  2**0
                   CONTENTS, READONLY
-  7 .ARM.attributes 00000030  00000000  00000000  000101cc  2**0
+  8 .comment      0000004c  00000000  00000000  0001017a  2**0
                   CONTENTS, READONLY
-  8 .debug_info   000002dc  00000000  00000000  000101fc  2**0
+  9 .debug_info   000002dc  00000000  00000000  000101c6  2**0
                   CONTENTS, READONLY, DEBUGGING, OCTETS
-  9 .debug_abbrev 00000145  00000000  00000000  000104d8  2**0
+ 10 .debug_abbrev 00000145  00000000  00000000  000104a2  2**0
                   CONTENTS, READONLY, DEBUGGING, OCTETS
- 10 .debug_loc    0000011b  00000000  00000000  0001061d  2**0
+ 11 .debug_loc    0000011b  00000000  00000000  000105e7  2**0
                   CONTENTS, READONLY, DEBUGGING, OCTETS
- 11 .debug_aranges 00000030  00000000  00000000  00010738  2**0
+ 12 .debug_aranges 00000030  00000000  00000000  00010702  2**0
                   CONTENTS, READONLY, DEBUGGING, OCTETS
- 12 .debug_ranges 00000020  00000000  00000000  00010768  2**0
+ 13 .debug_ranges 00000020  00000000  00000000  00010732  2**0
                   CONTENTS, READONLY, DEBUGGING, OCTETS
- 13 .debug_macro  00000381  00000000  00000000  00010788  2**0
+ 14 .debug_macro  00000381  00000000  00000000  00010752  2**0
                   CONTENTS, READONLY, DEBUGGING, OCTETS
- 14 .debug_line   0000045b  00000000  00000000  00010b09  2**0
+ 15 .debug_line   0000045b  00000000  00000000  00010ad3  2**0
                   CONTENTS, READONLY, DEBUGGING, OCTETS
- 15 .debug_str    00005190  00000000  00000000  00010f64  2**0
+ 16 .debug_str    00005190  00000000  00000000  00010f2e  2**0
                   CONTENTS, READONLY, DEBUGGING, OCTETS
- 16 .debug_frame  00000048  00000000  00000000  000160f4  2**2
+ 17 .debug_frame  00000048  00000000  00000000  000160c0  2**2
                   CONTENTS, READONLY, DEBUGGING, OCTETS
 
 Disassembly of section .text:
 
 08000000 <vector_table>:
- 8000000:	00 20 00 20 f9 00 00 08 f7 00 00 08 f5 00 00 08     . . ............
+ 8000000:	00 20 00 20 c9 00 00 08 c7 00 00 08 c5 00 00 08     . . ............
 	...
- 800002c:	f7 00 00 08 00 00 00 00 00 00 00 00 f7 00 00 08     ................
- 800003c:	f7 00 00 08 f5 00 00 08 f5 00 00 08 f5 00 00 08     ................
- 800004c:	f5 00 00 08 f5 00 00 08 f5 00 00 08 f5 00 00 08     ................
- 800005c:	f5 00 00 08 f5 00 00 08 f5 00 00 08 f5 00 00 08     ................
- 800006c:	f5 00 00 08 f5 00 00 08 f5 00 00 08 f5 00 00 08     ................
- 800007c:	f5 00 00 08 f5 00 00 08 f5 00 00 08 f5 00 00 08     ................
- 800008c:	f5 00 00 08 f5 00 00 08 f5 00 00 08 f5 00 00 08     ................
- 800009c:	f5 00 00 08 f5 00 00 08 f5 00 00 08 f5 00 00 08     ................
- 80000ac:	f5 00 00 08 f5 00 00 08 f5 00 00 08 f5 00 00 08     ................
- 80000bc:	f5 00 00 08                                         ....
+ 800002c:	c7 00 00 08 00 00 00 00 00 00 00 00 c7 00 00 08     ................
+ 800003c:	c7 00 00 08 c5 00 00 08 c5 00 00 08 c5 00 00 08     ................
+ 800004c:	c5 00 00 08 c5 00 00 08 c5 00 00 08 c5 00 00 08     ................
+ 800005c:	c5 00 00 08 c5 00 00 08 c5 00 00 08 c5 00 00 08     ................
+ 800006c:	c5 00 00 08 c5 00 00 08 c5 00 00 08 c5 00 00 08     ................
+ 800007c:	c5 00 00 08 c5 00 00 08 c5 00 00 08 c5 00 00 08     ................
+ 800008c:	c5 00 00 08 c5 00 00 08 c5 00 00 08 c5 00 00 08     ................
+ 800009c:	c5 00 00 08 c5 00 00 08 c5 00 00 08 c5 00 00 08     ................
+ 80000ac:	c5 00 00 08 c5 00 00 08 c5 00 00 08 c5 00 00 08     ................
+ 80000bc:	c5 00 00 08                                         ....
 
 080000c0 <main>:
- 80000c0:	b510      	push	{r4, lr}
- 80000c2:	4802      	ldr	r0, [pc, #8]	; (80000cc <main+0xc>)
- 80000c4:	f000 f812 	bl	80000ec <test_boot>
- 80000c8:	2000      	movs	r0, #0
- 80000ca:	bd10      	pop	{r4, pc}
- 80000cc:	08002000 	.word	0x08002000
+ 80000c0:	2000      	movs	r0, #0
+ 80000c2:	4770      	bx	lr
 
-080000d0 <boot_jump_to_application>:
- 80000d0:	b510      	push	{r4, lr}
- 80000d2:	b672      	cpsid	i
- 80000d4:	4b04      	ldr	r3, [pc, #16]	; (80000e8 <boot_jump_to_application+0x18>)
- 80000d6:	6018      	str	r0, [r3, #0]
- 80000d8:	6803      	ldr	r3, [r0, #0]
- 80000da:	f383 8808 	msr	MSP, r3
- 80000de:	6843      	ldr	r3, [r0, #4]
- 80000e0:	b662      	cpsie	i
- 80000e2:	4798      	blx	r3
- 80000e4:	e7fe      	b.n	80000e4 <boot_jump_to_application+0x14>
- 80000e6:	46c0      	nop			; (mov r8, r8)
- 80000e8:	e000ed08 	.word	0xe000ed08
-
-080000ec <test_boot>:
- 80000ec:	b510      	push	{r4, lr}
- 80000ee:	f7ff ffef 	bl	80000d0 <boot_jump_to_application>
- 80000f2:	bd10      	pop	{r4, pc}
-
-080000f4 <blocking_handler>:
+080000c4 <blocking_handler>:
 
 }
 
 void blocking_handler(void)
 {
 	while (1);
- 80000f4:	e7fe      	b.n	80000f4 <blocking_handler>
+ 80000c4:	e7fe      	b.n	80000c4 <blocking_handler>
 
-080000f6 <null_handler>:
+080000c6 <null_handler>:
 }
 
 void null_handler(void)
 {
 	/* Do nothing. */
 }
- 80000f6:	4770      	bx	lr
+ 80000c6:	4770      	bx	lr
 
-080000f8 <reset_handler>:
+080000c8 <reset_handler>:
 {
- 80000f8:	b510      	push	{r4, lr}
+ 80000c8:	b510      	push	{r4, lr}
 	for (src = &_data_loadaddr, dest = &_data;
- 80000fa:	4b16      	ldr	r3, [pc, #88]	; (8000154 <reset_handler+0x5c>)
- 80000fc:	4a16      	ldr	r2, [pc, #88]	; (8000158 <reset_handler+0x60>)
- 80000fe:	4917      	ldr	r1, [pc, #92]	; (800015c <reset_handler+0x64>)
- 8000100:	428b      	cmp	r3, r1
- 8000102:	d318      	bcc.n	8000136 <reset_handler+0x3e>
+ 80000ca:	4b16      	ldr	r3, [pc, #88]	; (8000124 <reset_handler+0x5c>)
+ 80000cc:	4a16      	ldr	r2, [pc, #88]	; (8000128 <reset_handler+0x60>)
+ 80000ce:	4917      	ldr	r1, [pc, #92]	; (800012c <reset_handler+0x64>)
+ 80000d0:	428b      	cmp	r3, r1
+ 80000d2:	d318      	bcc.n	8000106 <reset_handler+0x3e>
 		*dest++ = 0;
- 8000104:	2100      	movs	r1, #0
+ 80000d4:	2100      	movs	r1, #0
 	while (dest < &_ebss) {
- 8000106:	4a16      	ldr	r2, [pc, #88]	; (8000160 <reset_handler+0x68>)
- 8000108:	4293      	cmp	r3, r2
- 800010a:	d317      	bcc.n	800013c <reset_handler+0x44>
+ 80000d6:	4a16      	ldr	r2, [pc, #88]	; (8000130 <reset_handler+0x68>)
+ 80000d8:	4293      	cmp	r3, r2
+ 80000da:	d317      	bcc.n	800010c <reset_handler+0x44>
 	SCB_CCR |= SCB_CCR_STKALIGN;
- 800010c:	2380      	movs	r3, #128	; 0x80
- 800010e:	4a15      	ldr	r2, [pc, #84]	; (8000164 <reset_handler+0x6c>)
- 8000110:	009b      	lsls	r3, r3, #2
- 8000112:	6811      	ldr	r1, [r2, #0]
+ 80000dc:	2380      	movs	r3, #128	; 0x80
+ 80000de:	4a15      	ldr	r2, [pc, #84]	; (8000134 <reset_handler+0x6c>)
+ 80000e0:	009b      	lsls	r3, r3, #2
+ 80000e2:	6811      	ldr	r1, [r2, #0]
 	for (fp = &__preinit_array_start; fp < &__preinit_array_end; fp++) {
- 8000114:	4c14      	ldr	r4, [pc, #80]	; (8000168 <reset_handler+0x70>)
+ 80000e4:	4c14      	ldr	r4, [pc, #80]	; (8000138 <reset_handler+0x70>)
 	SCB_CCR |= SCB_CCR_STKALIGN;
- 8000116:	430b      	orrs	r3, r1
- 8000118:	6013      	str	r3, [r2, #0]
+ 80000e6:	430b      	orrs	r3, r1
+ 80000e8:	6013      	str	r3, [r2, #0]
 	for (fp = &__preinit_array_start; fp < &__preinit_array_end; fp++) {
- 800011a:	4b14      	ldr	r3, [pc, #80]	; (800016c <reset_handler+0x74>)
- 800011c:	429c      	cmp	r4, r3
- 800011e:	d30f      	bcc.n	8000140 <reset_handler+0x48>
+ 80000ea:	4b14      	ldr	r3, [pc, #80]	; (800013c <reset_handler+0x74>)
+ 80000ec:	429c      	cmp	r4, r3
+ 80000ee:	d30f      	bcc.n	8000110 <reset_handler+0x48>
 	for (fp = &__init_array_start; fp < &__init_array_end; fp++) {
- 8000120:	4c13      	ldr	r4, [pc, #76]	; (8000170 <reset_handler+0x78>)
- 8000122:	4b14      	ldr	r3, [pc, #80]	; (8000174 <reset_handler+0x7c>)
- 8000124:	429c      	cmp	r4, r3
- 8000126:	d30e      	bcc.n	8000146 <reset_handler+0x4e>
+ 80000f0:	4c13      	ldr	r4, [pc, #76]	; (8000140 <reset_handler+0x78>)
+ 80000f2:	4b14      	ldr	r3, [pc, #80]	; (8000144 <reset_handler+0x7c>)
+ 80000f4:	429c      	cmp	r4, r3
+ 80000f6:	d30e      	bcc.n	8000116 <reset_handler+0x4e>
 	(void)main();
- 8000128:	f7ff ffca 	bl	80000c0 <main>
+ 80000f8:	f7ff ffe2 	bl	80000c0 <main>
 	for (fp = &__fini_array_start; fp < &__fini_array_end; fp++) {
- 800012c:	4c12      	ldr	r4, [pc, #72]	; (8000178 <reset_handler+0x80>)
- 800012e:	4b13      	ldr	r3, [pc, #76]	; (800017c <reset_handler+0x84>)
- 8000130:	429c      	cmp	r4, r3
- 8000132:	d30b      	bcc.n	800014c <reset_handler+0x54>
+ 80000fc:	4c12      	ldr	r4, [pc, #72]	; (8000148 <reset_handler+0x80>)
+ 80000fe:	4b13      	ldr	r3, [pc, #76]	; (800014c <reset_handler+0x84>)
+ 8000100:	429c      	cmp	r4, r3
+ 8000102:	d30b      	bcc.n	800011c <reset_handler+0x54>
 }
- 8000134:	bd10      	pop	{r4, pc}
+ 8000104:	bd10      	pop	{r4, pc}
 		*dest = *src;
- 8000136:	ca01      	ldmia	r2!, {r0}
- 8000138:	c301      	stmia	r3!, {r0}
+ 8000106:	ca01      	ldmia	r2!, {r0}
+ 8000108:	c301      	stmia	r3!, {r0}
 		src++, dest++) {
- 800013a:	e7e1      	b.n	8000100 <reset_handler+0x8>
+ 800010a:	e7e1      	b.n	80000d0 <reset_handler+0x8>
 		*dest++ = 0;
- 800013c:	c302      	stmia	r3!, {r1}
- 800013e:	e7e3      	b.n	8000108 <reset_handler+0x10>
+ 800010c:	c302      	stmia	r3!, {r1}
+ 800010e:	e7e3      	b.n	80000d8 <reset_handler+0x10>
 		(*fp)();
- 8000140:	cc08      	ldmia	r4!, {r3}
- 8000142:	4798      	blx	r3
+ 8000110:	cc08      	ldmia	r4!, {r3}
+ 8000112:	4798      	blx	r3
 	for (fp = &__preinit_array_start; fp < &__preinit_array_end; fp++) {
- 8000144:	e7e9      	b.n	800011a <reset_handler+0x22>
+ 8000114:	e7e9      	b.n	80000ea <reset_handler+0x22>
 		(*fp)();
- 8000146:	cc08      	ldmia	r4!, {r3}
- 8000148:	4798      	blx	r3
+ 8000116:	cc08      	ldmia	r4!, {r3}
+ 8000118:	4798      	blx	r3
 	for (fp = &__init_array_start; fp < &__init_array_end; fp++) {
- 800014a:	e7ea      	b.n	8000122 <reset_handler+0x2a>
+ 800011a:	e7ea      	b.n	80000f2 <reset_handler+0x2a>
 		(*fp)();
- 800014c:	cc08      	ldmia	r4!, {r3}
- 800014e:	4798      	blx	r3
+ 800011c:	cc08      	ldmia	r4!, {r3}
+ 800011e:	4798      	blx	r3
 	for (fp = &__fini_array_start; fp < &__fini_array_end; fp++) {
- 8000150:	e7ed      	b.n	800012e <reset_handler+0x36>
- 8000152:	46c0      	nop			; (mov r8, r8)
- 8000154:	20000000 	.word	0x20000000
- 8000158:	08000180 	.word	0x08000180
- 800015c:	20000000 	.word	0x20000000
- 8000160:	20000000 	.word	0x20000000
- 8000164:	e000ed14 	.word	0xe000ed14
- 8000168:	08000180 	.word	0x08000180
- 800016c:	08000180 	.word	0x08000180
- 8000170:	08000180 	.word	0x08000180
- 8000174:	08000180 	.word	0x08000180
- 8000178:	08000180 	.word	0x08000180
- 800017c:	08000180 	.word	0x08000180
+ 8000120:	e7ed      	b.n	80000fe <reset_handler+0x36>
+ 8000122:	46c0      	nop			; (mov r8, r8)
+ 8000124:	20000000 	.word	0x20000000
+ 8000128:	08000150 	.word	0x08000150
+ 800012c:	20000000 	.word	0x20000000
+ 8000130:	20000000 	.word	0x20000000
+ 8000134:	e000ed14 	.word	0xe000ed14
+ 8000138:	08000150 	.word	0x08000150
+ 800013c:	08000150 	.word	0x08000150
+ 8000140:	08000150 	.word	0x08000150
+ 8000144:	08000150 	.word	0x08000150
+ 8000148:	08000150 	.word	0x08000150
+ 800014c:	08000150 	.word	0x08000150

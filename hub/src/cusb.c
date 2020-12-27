@@ -1,9 +1,16 @@
 /**
-******************************************************************************
-* @file    cusb.c
-* @author  Richard Davies
-* @brief   CoolEase Hub USB driver source file
-*/
+ ******************************************************************************
+ * @file    cusb.c
+ * @author  Richard Davies
+ * @date    27/Dec/2020
+ * @brief   Cusb Source File
+ *  
+ ******************************************************************************
+ */
+
+/*////////////////////////////////////////////////////////////////////////////*/
+// Includes
+/*////////////////////////////////////////////////////////////////////////////*/
 
 #include <hub/cusb.h>
 
@@ -23,6 +30,10 @@
 /** @addtogroup CUSB_FILE 
  * @{
  */
+
+/*////////////////////////////////////////////////////////////////////////////*/
+// USB Configuration & Descriptors
+/*////////////////////////////////////////////////////////////////////////////*/
 
 /** @addtogroup CUSB_CFG
  * 
@@ -279,15 +290,15 @@ static const struct usb_config_descriptor cfg_desc =
 
 /** @} */
 
-/****************************************************************** 
- * HID Callback functions and buffer definitions
- ******************************************************************/
-/** @addtogroup CUSB_INT
+/** @addtogroup CUSB_INT 
  * @{
  */
 
-/** @brief Buffer to be used for control requests. */
-static uint8_t usbd_control_buffer[128];
+/*////////////////////////////////////////////////////////////////////////////*/
+// Static Variables
+/*////////////////////////////////////////////////////////////////////////////*/
+
+
 
 /** @brief HID Control Callback 
  * 
@@ -314,7 +325,7 @@ static enum usbd_request_return_codes hid_control_request(usbd_device *dev, stru
 /** @brief HID Report buffer 
  * 
  * Buffer used for all HID in & out transactions
-*/
+ */
 static uint8_t hid_report_buf[64] = "Default Report Buffer";
 
 /** @brief HID Resport Callback */
@@ -328,7 +339,7 @@ void hid_report_callback(usbd_device *usbd_dev, uint8_t ea)
  * 
  * Sets up HID endpoints &
  * registers the @ref hid_control_request callback which 
-*/
+ */
 static void hid_set_config(usbd_device *dev, uint16_t wValue)
 {
     (void)wValue;
@@ -344,30 +355,30 @@ static void hid_set_config(usbd_device *dev, uint16_t wValue)
         hid_control_request);
 }
 
-/******************************************************************** 
- * Static Vairbale Declarations
- *******************************************************************/
 
-static usbd_device *usbd_dev;
-
-/******************************************************************** 
- * Static Function Declarations
- *******************************************************************/
+/*////////////////////////////////////////////////////////////////////////////*/
+// Static Function Declarations
+/*////////////////////////////////////////////////////////////////////////////*/
 
 static void cusb_clock_init(void);
 
 /** @} */
 
-/******************************************************************** 
- * Exported Function Definitions
- *******************************************************************/
 /** @addtogroup CUSB_API
  * @{
  */
 
+/*////////////////////////////////////////////////////////////////////////////*/
+// Exported Function Definitions
+/*////////////////////////////////////////////////////////////////////////////*/
+/** @brief USB device handle */
+static usbd_device *usbd_dev;
+
+/** @brief Buffer to be used for control requests. */
+static uint8_t usbd_control_buffer[128];
+
 void cusb_init(void)
 {
-
     /* Initialize clocks */
     cusb_clock_init();
 
@@ -393,12 +404,13 @@ void cusb_test_poll(void)
 
 /** @} */
 
-/******************************************************************** 
- * Static Function Definitions
- *******************************************************************/
 /** @addtogroup CUSB_INT
  * @{
  */
+
+/*////////////////////////////////////////////////////////////////////////////*/
+// Static Function Definitions
+/*////////////////////////////////////////////////////////////////////////////*/
 
 /** @brief Setup CPU and peripheral clocks for usb */
 static void cusb_clock_init(void)
@@ -450,6 +462,7 @@ static void cusb_clock_init(void)
     /* turn off MSI */
     rcc_osc_off(RCC_MSI);
 }
+
 
 /** @} */
 /** @} */

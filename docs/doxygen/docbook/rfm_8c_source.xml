@@ -1,0 +1,797 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<section xmlns="http://docbook.org/ns/docbook" version="5.0" xmlns:xlink="http://www.w3.org/1999/xlink" xml:id="_rfm_8c_source" xml:lang="en-US">
+<title>rfm.c</title>
+<indexterm><primary>common/src/rfm.c</primary></indexterm>
+<programlisting>00001 <emphasis role="comment">//&#32;/**</emphasis>
+00002 <emphasis role="comment">//&#32;&#32;******************************************************************************</emphasis>
+00003 <emphasis role="comment">//&#32;&#32;*&#32;@file&#32;&#32;&#32;&#32;rfm.c</emphasis>
+00004 <emphasis role="comment">//&#32;&#32;*&#32;@author&#32;&#32;Richard&#32;Davies</emphasis>
+00005 <emphasis role="comment">//&#32;&#32;*&#32;@date&#32;&#32;&#32;&#32;25/Dec/2020</emphasis>
+00006 <emphasis role="comment">//&#32;&#32;*&#32;@brief&#32;&#32;&#32;Rfm&#32;Source&#32;File</emphasis>
+00007 <emphasis role="comment">//&#32;&#32;*&#32;&#32;</emphasis>
+00008 <emphasis role="comment">//&#32;&#32;******************************************************************************</emphasis>
+00009 <emphasis role="comment">//&#32;&#32;*/</emphasis>
+00010 
+00011 <emphasis role="comment">//&#32;/*////////////////////////////////////////////////////////////////////////////*/</emphasis>
+00012 <emphasis role="comment">//&#32;//&#32;Includes</emphasis>
+00013 <emphasis role="comment">//&#32;/*////////////////////////////////////////////////////////////////////////////*/</emphasis>
+00014 
+00015 <emphasis role="comment">//&#32;#include&#32;&quot;common/rfm.h&quot;</emphasis>
+00016 
+00017 <emphasis role="comment">//&#32;#include&#32;&lt;stdint.h&gt;</emphasis>
+00018 <emphasis role="comment">//&#32;#include&#32;&lt;stdbool.h&gt;</emphasis>
+00019 
+00020 <emphasis role="comment">//&#32;#include&#32;&lt;libopencm3/stm32/rcc.h&gt;</emphasis>
+00021 <emphasis role="comment">//&#32;#include&#32;&lt;libopencm3/stm32/gpio.h&gt;</emphasis>
+00022 <emphasis role="comment">//&#32;#include&#32;&lt;libopencm3/stm32/flash.h&gt;</emphasis>
+00023 <emphasis role="comment">//&#32;#include&#32;&lt;libopencm3/stm32/spi.h&gt;</emphasis>
+00024 <emphasis role="comment">//&#32;#include&#32;&lt;libopencm3/stm32/exti.h&gt;</emphasis>
+00025 <emphasis role="comment">//&#32;#include&#32;&lt;libopencm3/stm32/syscfg.h&gt;</emphasis>
+00026 <emphasis role="comment">//&#32;#include&#32;&lt;libopencm3/cm3/nvic.h&gt;</emphasis>
+00027 
+00028 <emphasis role="comment">//&#32;#include&#32;&quot;hub/board_defs.h&quot;</emphasis>
+00029 <emphasis role="comment">//&#32;#include&#32;&quot;common/serial_printf.h&quot;</emphasis>
+00030 <emphasis role="comment">//&#32;#include&#32;&quot;common/timers.h&quot;</emphasis>
+00031 
+00032 <emphasis role="comment">//&#32;/**&#32;@addtogroup&#32;&#32;RFM_FILE</emphasis>
+00033 <emphasis role="comment">//&#32;&#32;*&#32;@{</emphasis>
+00034 <emphasis role="comment">//&#32;&#32;*/</emphasis>
+00035 
+00036 <emphasis role="comment">//&#32;/**&#32;@addtogroup&#32;&#32;RFM_INT</emphasis>
+00037 <emphasis role="comment">//&#32;&#32;*&#32;&#32;@{</emphasis>
+00038 <emphasis role="comment">//&#32;&#32;*/</emphasis>
+00039 
+00040 <emphasis role="comment">//&#32;/**&#32;@brief&#32;&#32;Set&#32;RFM&#32;NSS&#32;Pin.&#32;Start&#32;SPI&#32;transaction</emphasis>
+00041 <emphasis role="comment">//&#32;&#32;*/</emphasis>
+00042 <emphasis role="comment">//&#32;#define&#32;spi_chip_select()&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;gpio_clear(RFM_SPI_NSS_PORT,&#32;RFM_SPI_NSS)</emphasis>
+00043 
+00044 <emphasis role="comment">//&#32;/**&#32;@brief&#32;&#32;Clear&#32;RFM&#32;NSS&#32;Pin.&#32;End&#32;SPI&#32;transaction</emphasis>
+00045 <emphasis role="comment">//&#32;&#32;*/</emphasis>
+00046 <emphasis role="comment">//&#32;#define&#32;spi_chip_deselect()&#32;&#32;&#32;&#32;&#32;&#32;&#32;gpio_set(RFM_SPI_NSS_PORT,&#32;RFM_SPI_NSS)</emphasis>
+00047 
+00048 <emphasis role="comment">//&#32;/**&#32;@brief&#32;&#32;Stalls&#32;until&#32;RFM&#32;IO&#32;Pin&#32;0&#32;is&#32;asserted&#32;high</emphasis>
+00049 <emphasis role="comment">//&#32;&#32;*&#32;</emphasis>
+00050 <emphasis role="comment">//&#32;&#32;*&#32;RFM&#32;is&#32;setup&#32;to&#32;assert&#32;this&#32;pin&#32;upon&#32;succesful&#32;transmission&#32;of&#32;a&#32;packet.</emphasis>
+00051 <emphasis role="comment">//&#32;&#32;*&#32;See&#32;@ref&#32;rfm_transmit_packet()</emphasis>
+00052 <emphasis role="comment">//&#32;&#32;*/</emphasis>
+00053 <emphasis role="comment">//&#32;#define&#32;wait_rf_io_0_high()&#32;&#32;&#32;&#32;&#32;&#32;&#32;while(!(gpio_get(RFM_IO_0_PORT,&#32;RFM_IO_0)))</emphasis>
+00054 
+00055 <emphasis role="comment">//&#32;/**&#32;@}&#32;*/</emphasis>
+00056 
+00057 <emphasis role="comment">//&#32;/**&#32;@addtogroup&#32;&#32;RFM_INT</emphasis>
+00058 <emphasis role="comment">//&#32;&#32;*&#32;@{</emphasis>
+00059 <emphasis role="comment">//&#32;&#32;*/</emphasis>
+00060 
+00061 <emphasis role="comment">//&#32;/*////////////////////////////////////////////////////////////////////////////*/</emphasis>
+00062 <emphasis role="comment">//&#32;//&#32;Static&#32;Variables</emphasis>
+00063 <emphasis role="comment">//&#32;/*////////////////////////////////////////////////////////////////////////////*/</emphasis>
+00064 
+00065 <emphasis role="comment">//&#32;/**&#32;@brief&#32;Signals&#32;if&#32;automatic&#32;CRC&#32;checking&#32;is&#32;currently&#32;enabled&#32;on&#32;the&#32;RFM&#32;*/</emphasis>
+00066 <emphasis role="comment">//&#32;static&#32;bool&#32;crc_on&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;=&#32;false;</emphasis>
+00067 <emphasis role="comment">//&#32;static&#32;uint8_t&#32;random_data[16]&#32;&#32;=&#32;{0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1};</emphasis>
+00068 
+00069 
+00070 <emphasis role="comment">//&#32;//&#32;Updated&#32;when&#32;packet&#32;received&#32;</emphasis>
+00071 <emphasis role="comment">//&#32;static&#32;uint8_t&#32;&#32;&#32;&#32;&#32;&#32;packets_head&#32;=&#32;0;</emphasis>
+00072 <emphasis role="comment">//&#32;static&#32;uint8_t&#32;&#32;&#32;&#32;&#32;&#32;packets_tail&#32;=&#32;0;</emphasis>
+00073 <emphasis role="comment">//&#32;static&#32;uint8_t&#32;&#32;&#32;&#32;&#32;&#32;packets_read&#32;=&#32;0;</emphasis>
+00074 <emphasis role="comment">//&#32;static&#32;rfm_packet_t&#32;packets_buf[PACKETS_BUF_SIZE];</emphasis>
+00075 
+00076 <emphasis role="comment">//&#32;/**&#32;@}&#32;*/</emphasis>
+00077 
+00078 <emphasis role="comment">//&#32;/**&#32;@addtogroup&#32;&#32;RFM_INT</emphasis>
+00079 <emphasis role="comment">//&#32;&#32;*&#32;@{</emphasis>
+00080 <emphasis role="comment">//&#32;&#32;*/</emphasis>
+00081 
+00082 <emphasis role="comment">//&#32;/*////////////////////////////////////////////////////////////////////////////*/</emphasis>
+00083 <emphasis role="comment">//&#32;//&#32;Static&#32;Function&#32;Declarations</emphasis>
+00084 <emphasis role="comment">//&#32;/*////////////////////////////////////////////////////////////////////////////*/</emphasis>
+00085 
+00086 <emphasis role="comment">//&#32;static&#32;void&#32;clock_setup(void);</emphasis>
+00087 <emphasis role="comment">//&#32;static&#32;void&#32;spi_setup(void);</emphasis>
+00088 <emphasis role="comment">//&#32;static&#32;uint8_t&#32;spi_read_single(uint8_t&#32;reg);</emphasis>
+00089 <emphasis role="comment">//&#32;static&#32;void&#32;spi_read_burst(uint8_t&#32;reg,&#32;uint8_t&#32;*buf,&#32;uint8_t&#32;len);</emphasis>
+00090 <emphasis role="comment">//&#32;static&#32;void&#32;spi_write_single(uint8_t&#32;reg,&#32;uint8_t&#32;data);</emphasis>
+00091 <emphasis role="comment">//&#32;static&#32;void&#32;spi_write_burst(uint8_t&#32;reg,&#32;uint8_t&#32;*buf,&#32;uint8_t&#32;len);</emphasis>
+00092 <emphasis role="comment">//&#32;static&#32;void&#32;set_frequency(uint32_t&#32;frequency_hz);</emphasis>
+00093 <emphasis role="comment">//&#32;static&#32;void&#32;set_dio_irq(uint8_t&#32;io0_3,&#32;uint8_t&#32;io4_5);</emphasis>
+00094 <emphasis role="comment">//&#32;static&#32;void&#32;set_preamble_length(uint16_t&#32;num_sym);</emphasis>
+00095 <emphasis role="comment">//&#32;static&#32;void&#32;print_registers(void);</emphasis>
+00096 <emphasis role="comment">//&#32;static&#32;void&#32;clear_buffer(void);</emphasis>
+00097 <emphasis role="comment">//&#32;static&#32;inline&#32;void&#32;mask_irq(uint8_t&#32;irq);</emphasis>
+00098 <emphasis role="comment">//&#32;static&#32;inline&#32;void&#32;unmask_irq(uint8_t&#32;irq);</emphasis>
+00099 <emphasis role="comment">//&#32;static&#32;inline&#32;uint8_t&#32;get_irq(void);</emphasis>
+00100 <emphasis role="comment">//&#32;static&#32;inline&#32;void&#32;clear_irq(uint8_t&#32;irq);</emphasis>
+00101 <emphasis role="comment">//&#32;static&#32;inline&#32;void&#32;set_standby_mode(void);</emphasis>
+00102 <emphasis role="comment">//&#32;static&#32;inline&#32;void&#32;set_tx_mode(void);</emphasis>
+00103 <emphasis role="comment">//&#32;static&#32;inline&#32;void&#32;set_rx_mode(void);</emphasis>
+00104 <emphasis role="comment">//&#32;static&#32;inline&#32;void&#32;set_sleep_mode(void);</emphasis>
+00105 
+00106 <emphasis role="comment">//&#32;/**&#32;@}&#32;*/</emphasis>
+00107 
+00108 
+00109 <emphasis role="comment">//&#32;/**&#32;@addtogroup&#32;&#32;&#32;&#32;RFM_API</emphasis>
+00110 <emphasis role="comment">//&#32;&#32;*&#32;@{</emphasis>
+00111 <emphasis role="comment">//&#32;&#32;*/</emphasis>
+00112 
+00113 <emphasis role="comment">//&#32;/*////////////////////////////////////////////////////////////////////////////*/</emphasis>
+00114 <emphasis role="comment">//&#32;//&#32;Exported&#32;Function&#32;Definitions</emphasis>
+00115 <emphasis role="comment">//&#32;/*////////////////////////////////////////////////////////////////////////////*/</emphasis>
+00116 
+00117 <emphasis role="comment">//&#32;/**&#32;@brief&#32;Initialize&#32;radio&#32;module</emphasis>
+00118 <emphasis role="comment">//&#32;&#32;*&#32;&#32;&#32;&#32;&#32;</emphasis>
+00119 <emphasis role="comment">//&#32;&#32;*&#32;Initializes&#32;the&#32;clock&#32;and&#32;spi&#32;peripheral</emphasis>
+00120 <emphasis role="comment">//&#32;&#32;*&#32;Resets&#32;the&#32;radio&#32;and&#32;configures&#32;for&#32;LORA&#32;&#32;&#32;&#32;</emphasis>
+00121 <emphasis role="comment">//&#32;&#32;*/</emphasis>
+00122 <emphasis role="comment">//&#32;void&#32;rfm_init(void)&#32;</emphasis>
+00123 <emphasis role="comment">//&#32;{&#32;</emphasis>
+00124 <emphasis role="comment">//&#32;&#32;&#32;rcc_periph_clock_enable(RCC_GPIOA);</emphasis>
+00125 <emphasis role="comment">//&#32;&#32;&#32;rcc_periph_clock_enable(RCC_GPIOB);</emphasis>
+00126 <emphasis role="comment">//&#32;&#32;&#32;rcc_periph_clock_enable(RCC_SYSCFG);</emphasis>
+00127 
+00128 <emphasis role="comment">//&#32;&#32;&#32;//&#32;Configure&#32;device&#32;clock&#32;and&#32;spi&#32;port</emphasis>
+00129 <emphasis role="comment">//&#32;&#32;&#32;clock_setup();</emphasis>
+00130 <emphasis role="comment">//&#32;&#32;&#32;spi_setup();&#32;&#32;</emphasis>
+00131 
+00132 <emphasis role="comment">//&#32;&#32;&#32;//&#32;Config&#32;Inputs</emphasis>
+00133 <emphasis role="comment">//&#32;&#32;&#32;gpio_mode_setup(RFM_IO_0_PORT,&#32;GPIO_MODE_INPUT,&#32;GPIO_PUPD_NONE,&#32;RFM_IO_0);</emphasis>
+00134 <emphasis role="comment">//&#32;&#32;&#32;gpio_mode_setup(RFM_IO_1_PORT,&#32;GPIO_MODE_INPUT,&#32;GPIO_PUPD_NONE,&#32;RFM_IO_1);</emphasis>
+00135 <emphasis role="comment">//&#32;&#32;&#32;gpio_mode_setup(RFM_IO_2_PORT,&#32;GPIO_MODE_INPUT,&#32;GPIO_PUPD_NONE,&#32;RFM_IO_2);</emphasis>
+00136 <emphasis role="comment">//&#32;&#32;&#32;gpio_mode_setup(RFM_IO_3_PORT,&#32;GPIO_MODE_INPUT,&#32;GPIO_PUPD_NONE,&#32;RFM_IO_3);</emphasis>
+00137 <emphasis role="comment">//&#32;&#32;&#32;gpio_mode_setup(RFM_IO_4_PORT,&#32;GPIO_MODE_INPUT,&#32;GPIO_PUPD_NONE,&#32;RFM_IO_4);</emphasis>
+00138 <emphasis role="comment">//&#32;&#32;&#32;gpio_mode_setup(RFM_IO_5_PORT,&#32;GPIO_MODE_INPUT,&#32;GPIO_PUPD_NONE,&#32;RFM_IO_5);</emphasis>
+00139 
+00140 <emphasis role="comment">//&#32;&#32;&#32;//&#32;Config&#32;Output&#32;</emphasis>
+00141 <emphasis role="comment">//&#32;&#32;&#32;gpio_mode_setup(RFM_RESET_PORT,&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;GPIO_MODE_OUTPUT,&#32;GPIO_PUPD_NONE,&#32;RFM_RESET);&#32;&#32;</emphasis>
+00142 <emphasis role="comment">//&#32;&#32;&#32;gpio_set_output_options(RFM_RESET_PORT,&#32;GPIO_OTYPE_PP,&#32;GPIO_OSPEED_2MHZ,&#32;RFM_RESET);</emphasis>
+00143 <emphasis role="comment">//&#32;&#32;&#32;gpio_set(RFM_RESET_PORT,&#32;RFM_RESET);</emphasis>
+00144 
+00145 <emphasis role="comment">//&#32;&#32;&#32;spi_chip_deselect();</emphasis>
+00146 
+00147 <emphasis role="comment">//&#32;&#32;&#32;set_sleep_mode();</emphasis>
+00148 
+00149 <emphasis role="comment">//&#32;&#32;&#32;rfm_reset();</emphasis>
+00150 
+00151 <emphasis role="comment">//&#32;&#32;&#32;spf_serial_printf(&quot;RFM&#32;Init&#32;Done\n&quot;);</emphasis>
+00152 <emphasis role="comment">//&#32;}</emphasis>
+00153 
+00154 <emphasis role="comment">//&#32;void&#32;rfm_reset(void)</emphasis>
+00155 <emphasis role="comment">//&#32;{</emphasis>
+00156 <emphasis role="comment">//&#32;&#32;&#32;//&#32;Reset&#32;device</emphasis>
+00157 <emphasis role="comment">//&#32;&#32;&#32;gpio_clear(RFM_RESET_PORT,&#32;RFM_RESET);</emphasis>
+00158 <emphasis role="comment">//&#32;&#32;&#32;timers_delay_milliseconds(1);</emphasis>
+00159 
+00160 <emphasis role="comment">//&#32;&#32;&#32;gpio_set(RFM_RESET_PORT,&#32;RFM_RESET);</emphasis>
+00161 <emphasis role="comment">//&#32;&#32;&#32;timers_delay_milliseconds(1);</emphasis>
+00162 
+00163 <emphasis role="comment">//&#32;&#32;&#32;timers_delay_milliseconds(10);</emphasis>
+00164 
+00165 <emphasis role="comment">//&#32;&#32;&#32;print_registers();</emphasis>
+00166 
+00167 <emphasis role="comment">//&#32;&#32;&#32;set_sleep_mode();</emphasis>
+00168 
+00169 <emphasis role="comment">//&#32;&#32;&#32;spf_serial_printf(&quot;RFM&#32;Reset&#32;Done\n&quot;);</emphasis>
+00170 <emphasis role="comment">//&#32;}</emphasis>
+00171 
+00172 <emphasis role="comment">//&#32;void&#32;rfm_end(void)</emphasis>
+00173 <emphasis role="comment">//&#32;{</emphasis>
+00174 <emphasis role="comment">//&#32;&#32;&#32;set_standby_mode();</emphasis>
+00175 <emphasis role="comment">//&#32;&#32;&#32;set_sleep_mode();</emphasis>
+00176 
+00177 <emphasis role="comment">//&#32;&#32;&#32;spi_disable(RFM_SPI);</emphasis>
+00178 <emphasis role="comment">//&#32;&#32;&#32;rcc_periph_clock_disable(RFM_SPI_RCC);</emphasis>
+00179 
+00180 <emphasis role="comment">//&#32;&#32;&#32;spf_serial_printf(&quot;RFM&#32;End&#32;Done\n&quot;);</emphasis>
+00181 <emphasis role="comment">//&#32;}</emphasis>
+00182 
+00183 <emphasis role="comment">//&#32;void&#32;rfm_calibrate_crystal(void)</emphasis>
+00184 <emphasis role="comment">//&#32;{</emphasis>
+00185 <emphasis role="comment">//&#32;&#32;&#32;//&#32;Use&#32;ClkOut&#32;to&#32;calibrate&#32;crystal</emphasis>
+00186 <emphasis role="comment">//&#32;}</emphasis>
+00187 
+00188 <emphasis role="comment">//&#32;void&#32;rfm_config_for_lora(uint8_t&#32;BW,&#32;uint8_t&#32;CR,&#32;uint8_t&#32;SF,&#32;bool&#32;crc_turn_on,&#32;int8_t&#32;power)&#32;</emphasis>
+00189 <emphasis role="comment">//&#32;{</emphasis>
+00190 <emphasis role="comment">//&#32;&#32;&#32;//&#32;Go&#32;to&#32;sleep&#32;mode&#32;to&#32;be&#32;able&#32;to&#32;change&#32;packet&#32;type</emphasis>
+00191 <emphasis role="comment">//&#32;&#32;&#32;set_sleep_mode();</emphasis>
+00192 
+00193 <emphasis role="comment">//&#32;&#32;&#32;//&#32;Select&#32;Lora&#32;as&#32;packet&#32;type</emphasis>
+00194 <emphasis role="comment">//&#32;&#32;&#32;spi_write_single(RFM_REG_01_OP_MODE,&#32;RFM_MODE_SLEEP&#32;|&#32;RFM_LONG_RANGE_MODE);</emphasis>
+00195 
+00196 <emphasis role="comment">//&#32;&#32;&#32;//&#32;Go&#32;to&#32;standby&#32;mode&#32;to&#32;set&#32;other&#32;parameters</emphasis>
+00197 <emphasis role="comment">//&#32;&#32;&#32;set_standby_mode();</emphasis>
+00198 
+00199 <emphasis role="comment">//&#32;&#32;&#32;//&#32;print_registers();</emphasis>
+00200 
+00201 <emphasis role="comment">//&#32;&#32;&#32;//&#32;Set&#32;frequency</emphasis>
+00202 <emphasis role="comment">//&#32;&#32;&#32;set_frequency(868000000);</emphasis>
+00203 
+00204 <emphasis role="comment">//&#32;&#32;&#32;//&#32;Set&#32;power</emphasis>
+00205 <emphasis role="comment">//&#32;&#32;&#32;rfm_set_power(power,&#32;RFM_PA_RAMP_40US);</emphasis>
+00206 
+00207 <emphasis role="comment">//&#32;&#32;&#32;//&#32;Set&#32;RX&#32;Timeout</emphasis>
+00208 <emphasis role="comment">//&#32;&#32;&#32;spi_write_single(RFM_REG_1F_SYMB_TIMEOUT_LSB,&#32;0x64);</emphasis>
+00209 &#32;&#32;
+00210 <emphasis role="comment">//&#32;&#32;&#32;//&#32;Actual&#32;preamble&#32;length&#32;=&#32;value&#32;+&#32;4</emphasis>
+00211 <emphasis role="comment">//&#32;&#32;&#32;set_preamble_length(6);</emphasis>
+00212 
+00213 <emphasis role="comment">//&#32;&#32;&#32;//&#32;Set&#32;Bandwidth,&#32;Coding&#32;rate&#32;&amp;&#32;Turn&#32;off&#32;explicit&#32;header</emphasis>
+00214 <emphasis role="comment">//&#32;&#32;&#32;spi_write_single(RFM_REG_1D_MODEM_CONFIG1,&#32;BW&#32;|&#32;CR&#32;|&#32;1);</emphasis>
+00215 <emphasis role="comment">//&#32;&#32;&#32;//&#32;spi_write_single(RFM_REG_1D_MODEM_CONFIG1,&#32;BW&#32;|&#32;CR&#32;|&#32;!explicit_header_turn_on);</emphasis>
+00216 <emphasis role="comment">//&#32;&#32;&#32;//&#32;explicit_header_on&#32;=&#32;explicit_header_turn_on;</emphasis>
+00217 
+00218 <emphasis role="comment">//&#32;&#32;&#32;//&#32;//&#32;FSK&#32;Register&#32;settings&#32;for&#32;CRC</emphasis>
+00219 <emphasis role="comment">//&#32;&#32;&#32;//&#32;if(crc_turn_on)</emphasis>
+00220 <emphasis role="comment">//&#32;&#32;&#32;//&#32;{</emphasis>
+00221 <emphasis role="comment">//&#32;&#32;&#32;//&#32;&#32;&#32;spf_serial_printf(&quot;Turn&#32;on&#32;CRC\n&quot;);</emphasis>
+00222 
+00223 <emphasis role="comment">//&#32;&#32;&#32;//&#32;&#32;&#32;//&#32;Access&#32;Shared&#32;Registers</emphasis>
+00224 <emphasis role="comment">//&#32;&#32;&#32;//&#32;&#32;&#32;spi_write_single(RFM_REG_01_OP_MODE,&#32;(&#32;spi_read_single(RFM_REG_01_OP_MODE)&#32;|&#32;RFM_ACCESS_SHARED_REG&#32;));</emphasis>
+00225 
+00226 <emphasis role="comment">//&#32;&#32;&#32;//&#32;&#32;&#32;//&#32;RegPacketConfig1&#32;(0x30)</emphasis>
+00227 <emphasis role="comment">//&#32;&#32;&#32;//&#32;&#32;&#32;spi_write_single(0x30,&#32;0x18&#32;);</emphasis>
+00228 
+00229 <emphasis role="comment">//&#32;&#32;&#32;//&#32;&#32;&#32;//&#32;Access&#32;back&#32;to&#32;LORA&#32;Registers</emphasis>
+00230 <emphasis role="comment">//&#32;&#32;&#32;//&#32;&#32;&#32;spi_write_single(RFM_REG_01_OP_MODE,&#32;(&#32;spi_read_single(RFM_REG_01_OP_MODE)&#32;&amp;&#32;~RFM_ACCESS_SHARED_REG&#32;));</emphasis>
+00231 <emphasis role="comment">//&#32;&#32;&#32;//&#32;}</emphasis>
+00232 
+00233 <emphasis role="comment">//&#32;&#32;&#32;//&#32;Set&#32;Spreading&#32;factor&#32;and&#32;CRC</emphasis>
+00234 <emphasis role="comment">//&#32;&#32;&#32;spi_write_single(RFM_REG_1E_MODEM_CONFIG2,&#32;SF&#32;|&#32;(crc_turn_on&#32;&lt;&lt;&#32;2));</emphasis>
+00235 <emphasis role="comment">//&#32;&#32;&#32;crc_on&#32;=&#32;crc_turn_on;</emphasis>
+00236 
+00237 <emphasis role="comment">//&#32;&#32;&#32;//&#32;Pg.&#32;24&#32;settings&#32;if&#32;SF&#32;=&#32;6,&#32;Header&#32;must&#32;be&#32;implicit&#32;and&#32;change&#32;a&#32;couple&#32;of&#32;register&#32;values</emphasis>
+00238 <emphasis role="comment">//&#32;&#32;&#32;if(SF&#32;==&#32;RFM_SPREADING_FACTOR_64CPS)</emphasis>
+00239 <emphasis role="comment">//&#32;&#32;&#32;{</emphasis>
+00240 <emphasis role="comment">//&#32;&#32;&#32;&#32;&#32;spi_write_single(0x31,&#32;(spi_read_single(0x31)&#32;&amp;&#32;~0xF8)&#32;|&#32;0x05);</emphasis>
+00241 <emphasis role="comment">//&#32;&#32;&#32;&#32;&#32;spi_write_single(0x37,&#32;0x0C);</emphasis>
+00242 <emphasis role="comment">//&#32;&#32;&#32;}</emphasis>
+00243 
+00244 <emphasis role="comment">//&#32;&#32;&#32;//&#32;Set&#32;Packet&#32;Length</emphasis>
+00245 <emphasis role="comment">//&#32;&#32;&#32;spi_write_single(RFM_REG_22_PAYLOAD_LENGTH,&#32;RFM_PACKET_LENGTH);</emphasis>
+00246 
+00247 <emphasis role="comment">//&#32;&#32;&#32;//&#32;spi_write_single(RFM_REG_0C_LNA,&#32;0x20);</emphasis>
+00248 <emphasis role="comment">//&#32;&#32;&#32;//&#32;spi_write_single(RFM_REG_26_MODEM_CONFIG3,&#32;0x00);</emphasis>
+00249 
+00250 <emphasis role="comment">//&#32;&#32;&#32;//&#32;print_registers();</emphasis>
+00251 
+00252 <emphasis role="comment">//&#32;&#32;&#32;//&#32;Go&#32;to&#32;sleep&#32;mode</emphasis>
+00253 <emphasis role="comment">//&#32;&#32;&#32;set_sleep_mode();</emphasis>
+00254 <emphasis role="comment">//&#32;}</emphasis>
+00255 
+00256 <emphasis role="comment">//&#32;void&#32;rfm_config_for_gfsk(void)</emphasis>
+00257 <emphasis role="comment">//&#32;{</emphasis>
+00258 <emphasis role="comment">//&#32;&#32;&#32;//&#32;//&#32;Select&#32;GFSK&#32;as&#32;packet&#32;type</emphasis>
+00259 <emphasis role="comment">//&#32;&#32;&#32;//&#32;spi_write_single(RFM_CMD_SET_PACKET_TYPE,&#32;RFM_PACKET_TYPE_GFSK);</emphasis>
+00260 
+00261 <emphasis role="comment">//&#32;&#32;&#32;//&#32;spi_write_single(RFM_CMD_STOP_TIMER_ON_PREAMBLE,&#32;false);</emphasis>
+00262 
+00263 <emphasis role="comment">//&#32;&#32;&#32;//&#32;//&#32;Set&#32;GFSK&#32;Sync&#32;words</emphasis>
+00264 <emphasis role="comment">//&#32;&#32;&#32;//&#32;spi_buf[0]&#32;=&#32;0x06;&#32;spi_buf[1]&#32;=&#32;0xC0;&#32;spi_buf[2]&#32;=&#32;0x14;</emphasis>
+00265 <emphasis role="comment">//&#32;&#32;&#32;//&#32;spi_transfer(RFM_CMD_WRITE_REGISTER,&#32;spi_buf,&#32;3,&#32;NULL,&#32;0);</emphasis>
+00266 
+00267 <emphasis role="comment">//&#32;&#32;&#32;//&#32;spi_buf[0]&#32;=&#32;0x06;&#32;spi_buf[1]&#32;=&#32;0xC1;&#32;spi_buf[2]&#32;=&#32;0x24;</emphasis>
+00268 <emphasis role="comment">//&#32;&#32;&#32;//&#32;spi_transfer(RFM_CMD_WRITE_REGISTER,&#32;spi_buf,&#32;3,&#32;NULL,&#32;0);</emphasis>
+00269 
+00270 <emphasis role="comment">//&#32;&#32;&#32;//&#32;//&#32;Modulation&#32;Params&#32;{br1,&#32;br2,&#32;br3,&#32;Gauss&#32;BT,&#32;BW,&#32;Fdev1,&#32;Fdev2,&#32;Fdev3};</emphasis>
+00271 <emphasis role="comment">//&#32;&#32;&#32;//&#32;uint32_t&#32;br&#32;=&#32;102400;</emphasis>
+00272 <emphasis role="comment">//&#32;&#32;&#32;//&#32;uint32_t&#32;fdev&#32;=&#32;19922;</emphasis>
+00273 <emphasis role="comment">//&#32;&#32;&#32;//&#32;spi_buf[0]&#32;=&#32;br&#32;&gt;&gt;&#32;16;&#32;spi_buf[1]&#32;=&#32;br&#32;&gt;&gt;&#32;8;&#32;spi_buf[2]&#32;=&#32;br;&#32;spi_buf[3]&#32;=&#32;0x09;&#32;spi_buf[4]&#32;=&#32;RFM_GFSK_RX_BW_93_8;&#32;spi_buf[5]&#32;=&#32;fdev&#32;&gt;&gt;&#32;16;&#32;spi_buf[6]&#32;=&#32;fdev&#32;&gt;&gt;&#32;8;&#32;spi_buf[7]&#32;=&#32;fdev;</emphasis>
+00274 <emphasis role="comment">//&#32;&#32;&#32;//&#32;spi_transfer(RFM_CMD_SET_MODULATION_PARAMS,&#32;spi_buf,&#32;8,&#32;NULL,&#32;0);</emphasis>
+00275 
+00276 <emphasis role="comment">//&#32;&#32;&#32;//&#32;//&#32;Packet&#32;Params&#32;{preambleLength1,&#32;preambleLength2,&#32;Preamble&#32;detect,&#32;Sync&#32;Length,&#32;Addr&#32;Comp,&#32;Fixed&#32;Lengh,&#32;Payload&#32;length,&#32;CRC,&#32;Whitening};</emphasis>
+00277 <emphasis role="comment">//&#32;&#32;&#32;//&#32;spi_buf[0]&#32;=&#32;0x00;&#32;spi_buf[1]&#32;=&#32;0x10;&#32;spi_buf[2]&#32;=&#32;0x04;&#32;spi_buf[3]&#32;=&#32;0x10;&#32;spi_buf[4]&#32;=&#32;0x00;&#32;spi_buf[5]&#32;=&#32;0x00;&#32;spi_buf[6]&#32;=&#32;0x10;&#32;spi_buf[7]&#32;=&#32;0x00;&#32;spi_buf[8]&#32;=&#32;0x00;</emphasis>
+00278 <emphasis role="comment">//&#32;&#32;&#32;//&#32;spi_transfer(RFM_CMD_SET_PACKET_PARAMS,&#32;spi_buf,&#32;9,&#32;NULL,&#32;0);</emphasis>
+00279 <emphasis role="comment">//&#32;}</emphasis>
+00280 
+00281 <emphasis role="comment">//&#32;void&#32;rfm_set_power(int8_t&#32;power,&#32;uint8_t&#32;ramp_time)</emphasis>
+00282 <emphasis role="comment">//&#32;{</emphasis>
+00283 <emphasis role="comment">//&#32;&#32;&#32;if(&#32;power&#32;&gt;&#32;20&#32;)</emphasis>
+00284 <emphasis role="comment">//&#32;&#32;&#32;&#32;&#32;&#32;&#32;power&#32;=&#32;20;</emphasis>
+00285 <emphasis role="comment">//&#32;&#32;&#32;//&#32;else&#32;if(&#32;power&#32;&lt;&#32;-3&#32;)</emphasis>
+00286 <emphasis role="comment">//&#32;&#32;&#32;//&#32;&#32;&#32;&#32;&#32;power&#32;=&#32;-3;</emphasis>
+00287 
+00288 <emphasis role="comment">//&#32;&#32;&#32;if(ramp_time&#32;&gt;&#32;0x0F)</emphasis>
+00289 <emphasis role="comment">//&#32;&#32;&#32;&#32;&#32;ramp_time&#32;=&#32;0x0F;</emphasis>
+00290 
+00291 <emphasis role="comment">//&#32;&#32;&#32;//&#32;Pout&#32;=&#32;2&#32;+&#32;OutputPower&#32;(+3dBm&#32;if&#32;DAC&#32;enabled)</emphasis>
+00292 <emphasis role="comment">//&#32;&#32;&#32;spi_write_single(RFM_REG_4D_PA_DAC,&#32;(spi_read_single(RFM_REG_4D_PA_DAC)&#32;&amp;&#32;~RFM_PA_DAC_MASK)&#32;|&#32;RFM_PA_DAC_DISABLE);</emphasis>
+00293 
+00294 <emphasis role="comment">//&#32;&#32;//&#32;Set&#32;the&#32;MaxPower&#32;register&#32;to&#32;0x7&#32;=&gt;&#32;MaxPower&#32;=&#32;10.8&#32;+&#32;0.6&#32;*&#32;7&#32;=&#32;15dBm</emphasis>
+00295 <emphasis role="comment">//&#32;&#32;//&#32;So&#32;Pout&#32;=&#32;17&#32;-&#32;(15&#32;-&#32;power)&#32;=&#32;2&#32;+&#32;power</emphasis>
+00296 <emphasis role="comment">//&#32;&#32;spi_write_single(RFM_REG_09_PA_CONFIG,&#32;RFM_PA_SELECT&#32;|&#32;RFM_MAX_POWER&#32;|&#32;(power-2));</emphasis>
+00297 
+00298 <emphasis role="comment">//&#32;&#32;&#32;//&#32;Set&#32;ramp&#32;time</emphasis>
+00299 <emphasis role="comment">//&#32;&#32;&#32;spi_write_single(RFM_REG_0A_PA_RAMP,&#32;(spi_read_single(RFM_REG_0A_PA_RAMP)&#32;&amp;&#32;~RFM_PA_RAMP_MASK)&#32;|&#32;ramp_time);</emphasis>
+00300 <emphasis role="comment">//&#32;}</emphasis>
+00301 
+00302 <emphasis role="comment">//&#32;void&#32;rfm_get_stats(void)</emphasis>
+00303 <emphasis role="comment">//&#32;{</emphasis>
+00304 <emphasis role="comment">//&#32;&#32;&#32;//&#32;spi_transfer(RFM_CMD_GET_STATS,&#32;NULL,&#32;0,&#32;stats,&#32;6);</emphasis>
+00305 <emphasis role="comment">//&#32;}</emphasis>
+00306 
+00307 <emphasis role="comment">//&#32;void&#32;rfm_reset_stats(void)</emphasis>
+00308 <emphasis role="comment">//&#32;{</emphasis>
+00309 <emphasis role="comment">//&#32;&#32;&#32;//&#32;spi_transfer(RFM_CMD_RESET_STATS,&#32;NULL,&#32;0,&#32;NULL,&#32;0);</emphasis>
+00310 <emphasis role="comment">//&#32;}</emphasis>
+00311 
+00312 <emphasis role="comment">//&#32;uint8_t&#32;rfm_get_version(void)</emphasis>
+00313 <emphasis role="comment">//&#32;{</emphasis>
+00314 <emphasis role="comment">//&#32;&#32;&#32;return&#32;spi_read_single(RFM_REG_42_VERSION);</emphasis>
+00315 <emphasis role="comment">//&#32;}</emphasis>
+00316 
+00317 
+00318 <emphasis role="comment">//&#32;void&#32;rfm_start_listening(void)</emphasis>
+00319 <emphasis role="comment">//&#32;{</emphasis>
+00320 <emphasis role="comment">//&#32;&#32;&#32;//&#32;Go&#32;to&#32;standby&#32;mode</emphasis>
+00321 <emphasis role="comment">//&#32;&#32;&#32;set_standby_mode();&#32;&#32;&#32;&#32;&#32;&#32;&#32;</emphasis>
+00322 
+00323 <emphasis role="comment">//&#32;&#32;&#32;//&#32;Set&#32;buffer&#32;offset&#32;to&#32;0</emphasis>
+00324 <emphasis role="comment">//&#32;&#32;&#32;clear_buffer();</emphasis>
+00325 
+00326 <emphasis role="comment">//&#32;&#32;&#32;//&#32;Set&#32;RX&#32;Done&#32;IRQ&#32;on&#32;IO0</emphasis>
+00327 <emphasis role="comment">//&#32;&#32;&#32;set_dio_irq(RFM_IO_0_IRQ_RX_DONE&#32;|&#32;RFM_IO_1_IRQ_RX_TIMEOUT&#32;|&#32;RFM_IO_2_IRQ_FHSS_CHANGE&#32;|&#32;RFM_IO_3_IRQ_CRC_ERROR,&#32;RFM_IO_4_IRQ_CAD_DETECTED&#32;|&#32;RFM_IO_5_IRQ_MODE_READY);</emphasis>
+00328 &#32;&#32;
+00329 <emphasis role="comment">//&#32;&#32;&#32;//&#32;Unmask&#32;interrupt&#32;for&#32;RX&#32;Done</emphasis>
+00330 <emphasis role="comment">//&#32;&#32;&#32;mask_irq(RFM_IRQ_ALL);</emphasis>
+00331 <emphasis role="comment">//&#32;&#32;&#32;unmask_irq(RFM_RX_TIMEOUT_MASK&#32;|&#32;RFM_RX_DONE_MASK&#32;|&#32;RFM_VALID_HEADER_MASK&#32;|&#32;RFM_PAYLOAD_CRC_ERROR_MASK);</emphasis>
+00332 <emphasis role="comment">//&#32;&#32;&#32;clear_irq(RFM_IRQ_ALL);</emphasis>
+00333 
+00334 <emphasis role="comment">//&#32;&#32;&#32;//&#32;Enable&#32;interrupt&#32;on&#32;MCU&#32;for&#32;RX&#32;done&#32;GPIO_RF_IO_0</emphasis>
+00335 <emphasis role="comment">//&#32;&#32;&#32;exti_reset_request(RFM_IO_0_EXTI);</emphasis>
+00336 <emphasis role="comment">//&#32;&#32;&#32;exti_select_source(RFM_IO_0_EXTI,&#32;RFM_IO_0_PORT);</emphasis>
+00337 <emphasis role="comment">//&#32;&#32;exti_set_trigger(RFM_IO_0_EXTI,&#32;EXTI_TRIGGER_RISING);</emphasis>
+00338 <emphasis role="comment">//&#32;&#32;exti_enable_request(RFM_IO_0_EXTI);</emphasis>
+00339 &#32;&#32;&#32;&#32;
+00340 <emphasis role="comment">//&#32;&#32;nvic_enable_irq(RFM_IO_0_NVIC);</emphasis>
+00341 <emphasis role="comment">//&#32;&#32;&#32;nvic_set_priority(RFM_IO_0_NVIC,&#32;0);</emphasis>
+00342 
+00343 <emphasis role="comment">//&#32;&#32;&#32;//&#32;Start&#32;listening</emphasis>
+00344 <emphasis role="comment">//&#32;&#32;&#32;set_rx_mode();</emphasis>
+00345 <emphasis role="comment">//&#32;}</emphasis>
+00346 
+00347 <emphasis role="comment">//&#32;void&#32;rfm_organize_packet(rfm_packet_t&#32;*packet)</emphasis>
+00348 <emphasis role="comment">//&#32;{</emphasis>
+00349 <emphasis role="comment">//&#32;&#32;&#32;&#32;&#32;&#32;&#32;//&#32;Organize&#32;Data</emphasis>
+00350 <emphasis role="comment">//&#32;&#32;&#32;&#32;&#32;&#32;&#32;packet-&gt;data.device_number&#32;&#32;=&#32;packet-&gt;data.buffer[RFM_PACKET_DEV_NUM_3]&#32;&lt;&lt;&#32;24&#32;|&#32;packet-&gt;data.buffer[RFM_PACKET_DEV_NUM_2]&#32;&lt;&lt;&#32;16&#32;|&#32;packet-&gt;data.buffer[RFM_PACKET_DEV_NUM_1]&#32;&lt;&lt;&#32;8&#32;|&#32;packet-&gt;data.buffer[RFM_PACKET_DEV_NUM_0];</emphasis>
+00351 <emphasis role="comment">//&#32;&#32;&#32;&#32;&#32;&#32;&#32;packet-&gt;data.msg_number&#32;&#32;&#32;&#32;&#32;=&#32;packet-&gt;data.buffer[RFM_PACKET_MSG_NUM_3]&#32;&lt;&lt;&#32;24&#32;|&#32;packet-&gt;data.buffer[RFM_PACKET_MSG_NUM_2]&#32;&lt;&lt;&#32;16&#32;|&#32;packet-&gt;data.buffer[RFM_PACKET_MSG_NUM_1]&#32;&lt;&lt;&#32;8&#32;|&#32;packet-&gt;data.buffer[RFM_PACKET_MSG_NUM_0];</emphasis>
+00352 <emphasis role="comment">//&#32;&#32;&#32;&#32;&#32;&#32;&#32;packet-&gt;data.power&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;=&#32;packet-&gt;data.buffer[RFM_PACKET_POWER];</emphasis>
+00353 <emphasis role="comment">//&#32;&#32;&#32;&#32;&#32;&#32;&#32;packet-&gt;data.battery&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;=&#32;packet-&gt;data.buffer[RFM_PACKET_BATTERY_1]&#32;&lt;&lt;&#32;8&#32;&#32;|&#32;packet-&gt;data.buffer[RFM_PACKET_BATTERY_0];</emphasis>
+00354 <emphasis role="comment">//&#32;&#32;&#32;&#32;&#32;&#32;&#32;packet-&gt;data.temperature&#32;&#32;&#32;&#32;=&#32;packet-&gt;data.buffer[RFM_PACKET_TEMP_1]&#32;&#32;&#32;&#32;&lt;&lt;&#32;8&#32;&#32;|&#32;packet-&gt;data.buffer[RFM_PACKET_TEMP_0];</emphasis>
+00355 <emphasis role="comment">//&#32;}</emphasis>
+00356 
+00357 <emphasis role="comment">//&#32;void&#32;rfm_get_packets(void)</emphasis>
+00358 <emphasis role="comment">//&#32;{</emphasis>
+00359 <emphasis role="comment">//&#32;&#32;&#32;if(packets_tail&#32;!=&#32;packets_head)</emphasis>
+00360 <emphasis role="comment">//&#32;&#32;&#32;{</emphasis>
+00361 <emphasis role="comment">//&#32;&#32;&#32;&#32;&#32;//&#32;Enter&#32;standby&#32;mode&#32;while&#32;getting&#32;data</emphasis>
+00362 <emphasis role="comment">//&#32;&#32;&#32;&#32;&#32;set_standby_mode();</emphasis>
+00363 
+00364 <emphasis role="comment">//&#32;&#32;&#32;&#32;&#32;//&#32;Set&#32;buffer&#32;offset&#32;to&#32;zero</emphasis>
+00365 <emphasis role="comment">//&#32;&#32;&#32;&#32;&#32;clear_buffer();</emphasis>
+00366 
+00367 <emphasis role="comment">//&#32;&#32;&#32;&#32;&#32;while(packets_tail&#32;!=&#32;packets_head)</emphasis>
+00368 <emphasis role="comment">//&#32;&#32;&#32;&#32;&#32;{</emphasis>
+00369 <emphasis role="comment">//&#32;&#32;&#32;&#32;&#32;&#32;&#32;spf_serial_printf(&quot;Get&#32;%u&#32;%u\n&quot;,&#32;packets_head,&#32;packets_tail);</emphasis>
+00370 
+00371 <emphasis role="comment">//&#32;&#32;&#32;&#32;&#32;&#32;&#32;//&#32;Read&#32;data&#32;from&#32;RFM</emphasis>
+00372 <emphasis role="comment">//&#32;&#32;&#32;&#32;&#32;&#32;&#32;spi_read_burst(RFM_REG_00_FIFO,&#32;packets_buf[packets_tail].data.buffer,&#32;RFM_PACKET_LENGTH);</emphasis>
+00373 
+00374 <emphasis role="comment">//&#32;&#32;&#32;&#32;&#32;&#32;&#32;//&#32;Increment&#32;pointer</emphasis>
+00375 <emphasis role="comment">//&#32;&#32;&#32;&#32;&#32;&#32;&#32;packets_tail&#32;=&#32;(packets_tail&#32;+&#32;1)&#32;%&#32;PACKETS_BUF_SIZE;</emphasis>
+00376 <emphasis role="comment">//&#32;&#32;&#32;&#32;&#32;}</emphasis>
+00377 
+00378 <emphasis role="comment">//&#32;&#32;&#32;&#32;&#32;//&#32;Set&#32;buffer&#32;offset&#32;to&#32;zero</emphasis>
+00379 <emphasis role="comment">//&#32;&#32;&#32;&#32;&#32;clear_buffer();</emphasis>
+00380 
+00381 <emphasis role="comment">//&#32;&#32;&#32;&#32;&#32;//&#32;Go&#32;back&#32;to&#32;listening</emphasis>
+00382 <emphasis role="comment">//&#32;&#32;&#32;&#32;&#32;set_rx_mode();</emphasis>
+00383 <emphasis role="comment">//&#32;&#32;&#32;}</emphasis>
+00384 <emphasis role="comment">//&#32;}</emphasis>
+00385 
+00386 <emphasis role="comment">//&#32;rfm_packet_t*&#32;rfm_get_next_packet(void)</emphasis>
+00387 <emphasis role="comment">//&#32;{</emphasis>
+00388 <emphasis role="comment">//&#32;&#32;&#32;rfm_get_packets();</emphasis>
+00389 
+00390 <emphasis role="comment">//&#32;&#32;&#32;spf_serial_printf(&quot;Read&#32;%u\n&quot;,&#32;packets_read);</emphasis>
+00391 <emphasis role="comment">//&#32;&#32;&#32;rfm_packet_t&#32;*packet&#32;=&#32;&amp;packets_buf[packets_read];</emphasis>
+00392 
+00393 <emphasis role="comment">//&#32;&#32;&#32;packets_read&#32;=&#32;(packets_read&#32;+&#32;1)&#32;%&#32;PACKETS_BUF_SIZE;</emphasis>
+00394 
+00395 <emphasis role="comment">//&#32;&#32;&#32;return&#32;packet;</emphasis>
+00396 <emphasis role="comment">//&#32;}</emphasis>
+00397 
+00398 <emphasis role="comment">//&#32;uint8_t&#32;rfm_get_num_packets(void)</emphasis>
+00399 <emphasis role="comment">//&#32;{</emphasis>
+00400 <emphasis role="comment">//&#32;&#32;&#32;return&#32;((uint16_t)(PACKETS_BUF_SIZE&#32;+&#32;packets_head&#32;-&#32;packets_read))&#32;%&#32;PACKETS_BUF_SIZE;</emphasis>
+00401 <emphasis role="comment">//&#32;}</emphasis>
+00402 
+00403 <emphasis role="comment">//&#32;/**&#32;@brief&#32;Transmit&#32;packet</emphasis>
+00404 <emphasis role="comment">//&#32;&#32;*&#32;</emphasis>
+00405 <emphasis role="comment">//&#32;&#32;*&#32;Clears&#32;buffers,&#32;enables&#32;interrupt,&#32;writes&#32;packet&#32;data&#32;and&#32;enters&#32;TX&#32;mode\n</emphasis>
+00406 <emphasis role="comment">//&#32;&#32;*&#32;RFM&#32;interrupt&#32;on&#32;IO0&#32;is&#32;asserted&#32;on&#32;susccesful&#32;transmitssion\n</emphasis>
+00407 <emphasis role="comment">//&#32;&#32;*&#32;Enters&#32;sleep&#32;mode&#32;when&#32;complete.</emphasis>
+00408 <emphasis role="comment">//&#32;&#32;*&#32;</emphasis>
+00409 <emphasis role="comment">//&#32;&#32;*&#32;@param&#32;&#32;&#32;packet&#32;rfm&#32;packet&#32;to&#32;send&#32;@ref&#32;rfm_packet_t</emphasis>
+00410 <emphasis role="comment">//&#32;&#32;*&#32;@retval&#32;&#32;bool&#32;true&#32;if&#32;transmitted&#32;succesfully,&#32;false&#32;if&#32;timeout</emphasis>
+00411 <emphasis role="comment">//&#32;&#32;*/</emphasis>
+00412 <emphasis role="comment">//&#32;bool&#32;rfm_transmit_packet(rfm_packet_t&#32;packet)</emphasis>
+00413 <emphasis role="comment">//&#32;{</emphasis>
+00414 <emphasis role="comment">//&#32;&#32;&#32;/*&#32;Go&#32;to&#32;standby&#32;and&#32;clear&#32;buffer&#32;*/</emphasis>
+00415 <emphasis role="comment">//&#32;&#32;&#32;set_standby_mode();&#32;</emphasis>
+00416 <emphasis role="comment">//&#32;&#32;&#32;clear_buffer();&#32;&#32;&#32;&#32;&#32;&#32;&#32;</emphasis>
+00417 &#32;&#32;
+00418 <emphasis role="comment">//&#32;&#32;&#32;/*&#32;Disable&#32;MCU&#32;interrupt&#32;used&#32;for&#32;receiving&#32;data&#32;*/</emphasis>
+00419 <emphasis role="comment">//&#32;&#32;&#32;exti_disable_request(RFM_IO_0_EXTI);</emphasis>
+00420 <emphasis role="comment">//&#32;&#32;nvic_disable_irq(RFM_IO_0_NVIC);</emphasis>
+00421 
+00422 <emphasis role="comment">//&#32;&#32;&#32;/*&#32;Enable&#32;TX&#32;Done&#32;IRQ&#32;on&#32;RFM&#32;(IO0)&#32;*/&#32;</emphasis>
+00423 <emphasis role="comment">//&#32;&#32;&#32;set_dio_irq(RFM_IO_0_IRQ_TX_DONE&#32;|&#32;RFM_IO_1_IRQ_RX_TIMEOUT&#32;|&#32;RFM_IO_2_IRQ_FHSS_CHANGE&#32;|&#32;RFM_IO_3_IRQ_CRC_ERROR,&#32;RFM_IO_4_IRQ_CAD_DETECTED&#32;|&#32;RFM_IO_5_IRQ_MODE_READY);</emphasis>
+00424 <emphasis role="comment">//&#32;&#32;&#32;mask_irq(RFM_IRQ_ALL);</emphasis>
+00425 <emphasis role="comment">//&#32;&#32;&#32;unmask_irq(RFM_TX_DONE_MASK);</emphasis>
+00426 <emphasis role="comment">//&#32;&#32;&#32;clear_irq(RFM_IRQ_ALL);</emphasis>
+00427 
+00428 <emphasis role="comment">//&#32;&#32;&#32;/*&#32;Write&#32;packet&#32;length&#32;*/</emphasis>
+00429 <emphasis role="comment">//&#32;&#32;&#32;//&#32;if(packet.length&#32;==&#32;0)</emphasis>
+00430 <emphasis role="comment">//&#32;&#32;&#32;//&#32;&#32;&#32;&#32;&#32;packet.length&#32;=&#32;1;</emphasis>
+00431 <emphasis role="comment">//&#32;&#32;&#32;//&#32;spi_write_single(RFM_REG_22_PAYLOAD_LENGTH,&#32;packet.length);</emphasis>
+00432 
+00433 <emphasis role="comment">//&#32;&#32;&#32;/*&#32;Write&#32;packet&#32;data&#32;*/</emphasis>
+00434 <emphasis role="comment">//&#32;&#32;&#32;spi_write_burst(RFM_REG_00_FIFO,&#32;packet.data.buffer,&#32;RFM_PACKET_LENGTH);</emphasis>
+00435 <emphasis role="comment">//&#32;&#32;&#32;//&#32;spi_write_burst(RFM_REG_00_FIFO,&#32;packet.data,&#32;packet.length);</emphasis>
+00436 <emphasis role="comment">//&#32;&#32;&#32;//&#32;spf_serial_printf(&quot;SPI&#32;Pointer:&#32;%02x&#32;:&#32;%02x\n&quot;,&#32;RFM_REG_0D_FIFO_ADDR_PTR,&#32;spi_read_single(RFM_REG_0D_FIFO_ADDR_PTR));</emphasis>
+00437 
+00438 <emphasis role="comment">//&#32;&#32;&#32;/*&#32;Wait&#32;for&#32;clear&#32;channel&#32;*/</emphasis>
+00439 &#32;&#32;&#32;
+00440 <emphasis role="comment">//&#32;&#32;&#32;//&#32;About&#32;50ms&#32;to&#32;send&#32;packet&#32;currently</emphasis>
+00441 <emphasis role="comment">//&#32;&#32;&#32;//&#32;uint16_t&#32;start&#32;=&#32;timers_millis();</emphasis>
+00442 
+00443 <emphasis role="comment">//&#32;&#32;&#32;/*&#32;Enter&#32;TX&#32;state&#32;*/</emphasis>
+00444 <emphasis role="comment">//&#32;&#32;&#32;set_tx_mode();</emphasis>
+00445 
+00446 <emphasis role="comment">//&#32;&#32;&#32;//&#32;wait_rf_io_0_high();</emphasis>
+00447 <emphasis role="comment">//&#32;&#32;&#32;//&#32;uint16_t&#32;end&#32;=&#32;timers_millis();</emphasis>
+00448 <emphasis role="comment">//&#32;&#32;&#32;//&#32;spf_serial_printf(&quot;Transmit&#32;Time:&#32;%u&#32;ms\n&quot;,&#32;(uint16_t)(end&#32;-&#32;start));</emphasis>
+00449 <emphasis role="comment">//&#32;&#32;&#32;//&#32;bool&#32;sent&#32;=&#32;true;</emphasis>
+00450 
+00451 <emphasis role="comment">//&#32;&#32;&#32;bool&#32;sent&#32;=&#32;false;</emphasis>
+00452 <emphasis role="comment">//&#32;&#32;&#32;TIMEOUT(100000,&#32;&quot;RFM&#32;TX&quot;,&#32;0,&#32;gpio_get(RFM_IO_0_PORT,&#32;RFM_IO_0),&#32;sent&#32;=&#32;true;,&#32;;);</emphasis>
+00453 
+00454 <emphasis role="comment">//&#32;&#32;&#32;/*&#32;Clear&#32;interrupt&#32;*/</emphasis>
+00455 <emphasis role="comment">//&#32;&#32;&#32;mask_irq(RFM_IRQ_ALL);</emphasis>
+00456 <emphasis role="comment">//&#32;&#32;&#32;clear_irq(RFM_IRQ_ALL);</emphasis>
+00457 
+00458 <emphasis role="comment">//&#32;&#32;&#32;/*&#32;Clear&#32;buffer&#32;*/</emphasis>
+00459 <emphasis role="comment">//&#32;&#32;&#32;clear_buffer();&#32;</emphasis>
+00460 
+00461 <emphasis role="comment">//&#32;&#32;&#32;/*&#32;Go&#32;to&#32;sleep&#32;*/</emphasis>
+00462 <emphasis role="comment">//&#32;&#32;&#32;set_sleep_mode();&#32;</emphasis>
+00463 
+00464 <emphasis role="comment">//&#32;&#32;&#32;return&#32;sent;</emphasis>
+00465 <emphasis role="comment">//&#32;}</emphasis>
+00466 
+00467 <emphasis role="comment">//&#32;void&#32;rfm_set_tx_continuous(void)</emphasis>
+00468 <emphasis role="comment">//&#32;{</emphasis>
+00469 <emphasis role="comment">//&#32;&#32;&#32;spi_write_burst(RFM_REG_00_FIFO,&#32;random_data,&#32;16);</emphasis>
+00470 
+00471 <emphasis role="comment">//&#32;&#32;&#32;clear_buffer();</emphasis>
+00472 &#32;&#32;
+00473 <emphasis role="comment">//&#32;&#32;&#32;uint8_t&#32;current&#32;=&#32;spi_read_single(RFM_REG_1E_MODEM_CONFIG2);</emphasis>
+00474 <emphasis role="comment">//&#32;&#32;&#32;spi_write_single(RFM_REG_1E_MODEM_CONFIG2,&#32;current&#32;|&#32;RFM_TX_CONTINUOUS_MODE);</emphasis>
+00475 <emphasis role="comment">//&#32;&#32;&#32;set_tx_mode();</emphasis>
+00476 <emphasis role="comment">//&#32;}</emphasis>
+00477 
+00478 <emphasis role="comment">//&#32;void&#32;rfm_clear_tx_continuous(void)</emphasis>
+00479 <emphasis role="comment">//&#32;{</emphasis>
+00480 <emphasis role="comment">//&#32;&#32;&#32;set_standby_mode();</emphasis>
+00481 <emphasis role="comment">//&#32;&#32;&#32;spi_write(RFM_REG_1E_MODEM_CONFIG2,&#32;spi_read_single(RFM_REG_1E_MODEM_CONFIG2)&#32;&amp;&#32;~RFM_TX_CONTINUOUS_MODE);</emphasis>
+00482 <emphasis role="comment">//&#32;}</emphasis>
+00483 
+00484 <emphasis role="comment">//&#32;/**&#32;@}&#32;*/</emphasis>
+00485 
+00486 <emphasis role="comment">//&#32;/**&#32;@addtogroup&#32;RFM_INT</emphasis>
+00487 <emphasis role="comment">//&#32;&#32;*&#32;@{</emphasis>
+00488 <emphasis role="comment">//&#32;&#32;*/</emphasis>
+00489 
+00490 <emphasis role="comment">//&#32;/*////////////////////////////////////////////////////////////////////////////*/</emphasis>
+00491 <emphasis role="comment">//&#32;//&#32;Static&#32;Function&#32;Definitions</emphasis>
+00492 <emphasis role="comment">//&#32;/*////////////////////////////////////////////////////////////////////////////*/</emphasis>
+00493 
+00494 <emphasis role="comment">//&#32;/**&#32;@brief&#32;Setup&#32;Clock</emphasis>
+00495 <emphasis role="comment">//&#32;&#32;*&#32;</emphasis>
+00496 <emphasis role="comment">//&#32;&#32;*&#32;Initializes&#32;clock&#32;to&#32;be&#32;2Mhz&#32;and&#32;sets&#32;baud&#32;divider&#32;to&#32;8</emphasis>
+00497 <emphasis role="comment">//&#32;&#32;*/</emphasis>
+00498 <emphasis role="comment">//&#32;static&#32;void&#32;clock_setup(void)</emphasis>
+00499 <emphasis role="comment">//&#32;{</emphasis>
+00500 <emphasis role="comment">//&#32;&#32;//&#32;Enable&#32;MSI&#32;Osc&#32;2.097Mhz</emphasis>
+00501 <emphasis role="comment">//&#32;&#32;rcc_osc_on(RCC_MSI);</emphasis>
+00502 <emphasis role="comment">//&#32;&#32;rcc_wait_for_osc_ready(RCC_MSI);</emphasis>
+00503 
+00504 <emphasis role="comment">//&#32;&#32;//&#32;Set&#32;MSI&#32;to&#32;2.097Mhz</emphasis>
+00505 <emphasis role="comment">//&#32;&#32;rcc_set_msi_range(5);</emphasis>
+00506 
+00507 <emphasis role="comment">//&#32;&#32;//&#32;Set&#32;prescalers&#32;for&#32;AHB,&#32;APB1,&#32;APB2</emphasis>
+00508 <emphasis role="comment">//&#32;&#32;rcc_set_hpre(RCC_CFGR_HPRE_NODIV);&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;//&#32;AHB&#32;-&gt;&#32;2.097Mhz</emphasis>
+00509 <emphasis role="comment">//&#32;&#32;rcc_set_ppre1(RCC_CFGR_PPRE1_NODIV);&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;//&#32;APB1&#32;-&gt;&#32;2.097Mhz</emphasis>
+00510 <emphasis role="comment">//&#32;&#32;rcc_set_ppre2(RCC_CFGR_PPRE2_NODIV);&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;//&#32;APB2&#32;-&gt;&#32;2.097Mhz</emphasis>
+00511 
+00512 <emphasis role="comment">//&#32;&#32;//&#32;Set&#32;flash,&#32;2.097Mhz&#32;-&gt;&#32;0&#32;waitstates</emphasis>
+00513 <emphasis role="comment">//&#32;&#32;flash_set_ws(FLASH_ACR_LATENCY_0WS);</emphasis>
+00514 
+00515 <emphasis role="comment">//&#32;&#32;//&#32;Set&#32;Peripheral&#32;Clock&#32;Frequencies&#32;used</emphasis>
+00516 <emphasis role="comment">//&#32;&#32;rcc_ahb_frequency&#32;=&#32;2097000;</emphasis>
+00517 <emphasis role="comment">//&#32;&#32;rcc_apb1_frequency&#32;=&#32;2097000;</emphasis>
+00518 <emphasis role="comment">//&#32;&#32;rcc_apb2_frequency&#32;=&#32;2097000;</emphasis>
+00519 <emphasis role="comment">//&#32;}</emphasis>
+00520 
+00521 <emphasis role="comment">//&#32;static&#32;void&#32;spi_setup(void)</emphasis>
+00522 <emphasis role="comment">//&#32;{</emphasis>
+00523 <emphasis role="comment">//&#32;&#32;&#32;//&#32;Set&#32;GPIO&#32;Mode</emphasis>
+00524 <emphasis role="comment">//&#32;&#32;&#32;gpio_mode_setup(RFM_SPI_MISO_PORT,&#32;&#32;GPIO_MODE_AF,&#32;&#32;&#32;&#32;&#32;GPIO_PUPD_NONE,&#32;&#32;&#32;RFM_SPI_MISO);</emphasis>
+00525 
+00526 <emphasis role="comment">//&#32;&#32;&#32;gpio_mode_setup(RFM_SPI_SCK_PORT,&#32;&#32;&#32;GPIO_MODE_AF,&#32;&#32;&#32;&#32;&#32;GPIO_PUPD_NONE,&#32;&#32;&#32;RFM_SPI_SCK);</emphasis>
+00527 <emphasis role="comment">//&#32;&#32;&#32;gpio_mode_setup(RFM_SPI_MOSI_PORT,&#32;&#32;GPIO_MODE_AF,&#32;&#32;&#32;&#32;&#32;GPIO_PUPD_NONE,&#32;&#32;&#32;RFM_SPI_MOSI);</emphasis>
+00528 <emphasis role="comment">//&#32;&#32;&#32;gpio_mode_setup(RFM_SPI_NSS_PORT,&#32;&#32;&#32;GPIO_MODE_OUTPUT,&#32;GPIO_PUPD_NONE,&#32;RFM_SPI_NSS);</emphasis>
+00529 
+00530 <emphasis role="comment">//&#32;&#32;&#32;//&#32;Push&#32;Pull&#32;for&#32;outputs</emphasis>
+00531 <emphasis role="comment">//&#32;&#32;&#32;gpio_set_output_options(RFM_SPI_SCK_PORT,&#32;&#32;&#32;GPIO_OTYPE_PP,&#32;GPIO_OSPEED_25MHZ,&#32;RFM_SPI_SCK);</emphasis>
+00532 <emphasis role="comment">//&#32;&#32;&#32;gpio_set_output_options(RFM_SPI_MOSI_PORT,&#32;&#32;GPIO_OTYPE_PP,&#32;GPIO_OSPEED_25MHZ,&#32;RFM_SPI_MOSI);</emphasis>
+00533 <emphasis role="comment">//&#32;&#32;&#32;gpio_set_output_options(RFM_SPI_NSS_PORT,&#32;&#32;&#32;GPIO_OTYPE_PP,&#32;GPIO_OSPEED_25MHZ,&#32;RFM_SPI_NSS);</emphasis>
+00534 &#32;&#32;
+00535 <emphasis role="comment">//&#32;&#32;&#32;//&#32;Set&#32;NSS&#32;pin&#32;high</emphasis>
+00536 <emphasis role="comment">//&#32;&#32;&#32;gpio_set(RFM_SPI_NSS_PORT,&#32;RFM_SPI_NSS);</emphasis>
+00537 
+00538 <emphasis role="comment">//&#32;&#32;&#32;//&#32;Set&#32;alternate&#32;function</emphasis>
+00539 <emphasis role="comment">//&#32;&#32;&#32;gpio_set_af(RFM_SPI_MISO_PORT,&#32;&#32;RFM_SPI_AF,&#32;RFM_SPI_MISO);</emphasis>
+00540 
+00541 <emphasis role="comment">//&#32;&#32;&#32;gpio_set_af(RFM_SPI_SCK_PORT,&#32;&#32;&#32;RFM_SPI_AF,&#32;RFM_SPI_SCK);</emphasis>
+00542 <emphasis role="comment">//&#32;&#32;&#32;gpio_set_af(RFM_SPI_MOSI_PORT,&#32;&#32;RFM_SPI_AF,&#32;RFM_SPI_MOSI);</emphasis>
+00543 &#32;&#32;
+00544 <emphasis role="comment">//&#32;&#32;&#32;//&#32;Init&#32;SPI</emphasis>
+00545 <emphasis role="comment">//&#32;&#32;&#32;rcc_periph_clock_enable(RFM_SPI_RCC);</emphasis>
+00546 <emphasis role="comment">//&#32;&#32;&#32;rcc_periph_reset_pulse(RFM_SPI_RST);&#32;</emphasis>
+00547 <emphasis role="comment">//&#32;&#32;&#32;spi_disable(RFM_SPI);</emphasis>
+00548 <emphasis role="comment">//&#32;&#32;&#32;spi_init_master(RFM_SPI,&#32;SPI_CR1_BAUDRATE_FPCLK_DIV_8,</emphasis>
+00549 <emphasis role="comment">//&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;SPI_CR1_CPOL_CLK_TO_0_WHEN_IDLE,&#32;SPI_CR1_CPHA_CLK_TRANSITION_1,</emphasis>
+00550 <emphasis role="comment">//&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;SPI_CR1_DFF_8BIT,&#32;SPI_CR1_MSBFIRST);</emphasis>
+00551 <emphasis role="comment">//&#32;&#32;&#32;spi_enable(RFM_SPI);</emphasis>
+00552 <emphasis role="comment">//&#32;}</emphasis>
+00553 
+00554 <emphasis role="comment">//&#32;/**&#32;@brief&#32;SPI&#32;Read&#32;Register</emphasis>
+00555 <emphasis role="comment">//&#32;&#32;*&#32;</emphasis>
+00556 <emphasis role="comment">//&#32;&#32;*&#32;Reads&#32;a&#32;register&#32;from&#32;the&#32;rfm</emphasis>
+00557 <emphasis role="comment">//&#32;&#32;*&#32;</emphasis>
+00558 <emphasis role="comment">//&#32;&#32;*&#32;@param&#32;reg&#32;Register&#32;to&#32;read</emphasis>
+00559 <emphasis role="comment">//&#32;&#32;*&#32;@retval&#32;Value&#32;read&#32;from&#32;register</emphasis>
+00560 <emphasis role="comment">//&#32;&#32;*/</emphasis>
+00561 <emphasis role="comment">//&#32;static&#32;uint8_t&#32;spi_read_single(uint8_t&#32;reg)</emphasis>
+00562 <emphasis role="comment">//&#32;{</emphasis>
+00563 <emphasis role="comment">//&#32;&#32;&#32;spi_chip_select();</emphasis>
+00564 <emphasis role="comment">//&#32;&#32;&#32;timers_delay_microseconds(1);</emphasis>
+00565 
+00566 <emphasis role="comment">//&#32;&#32;&#32;spi_xfer(RFM_SPI,&#32;reg);&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;</emphasis>
+00567 <emphasis role="comment">//&#32;&#32;&#32;uint8_t&#32;in&#32;=&#32;&#32;spi_xfer(RFM_SPI,&#32;0x00);&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;</emphasis>
+00568 &#32;&#32;&#32;&#32;
+00569 <emphasis role="comment">//&#32;&#32;&#32;spi_chip_deselect();&#32;</emphasis>
+00570 <emphasis role="comment">//&#32;&#32;&#32;timers_delay_microseconds(1);</emphasis>
+00571 
+00572 <emphasis role="comment">//&#32;&#32;&#32;return&#32;in;</emphasis>
+00573 <emphasis role="comment">//&#32;}</emphasis>
+00574 
+00575 <emphasis role="comment">//&#32;static&#32;void&#32;spi_read_burst(uint8_t&#32;reg,&#32;uint8_t&#32;*buf,&#32;uint8_t&#32;len)</emphasis>
+00576 <emphasis role="comment">//&#32;{</emphasis>
+00577 <emphasis role="comment">//&#32;&#32;&#32;spi_chip_select();</emphasis>
+00578 <emphasis role="comment">//&#32;&#32;&#32;timers_delay_microseconds(1);</emphasis>
+00579 
+00580 <emphasis role="comment">//&#32;&#32;&#32;spi_xfer(RFM_SPI,&#32;reg);</emphasis>
+00581 
+00582 <emphasis role="comment">//&#32;&#32;&#32;for(int&#32;i&#32;=&#32;0;&#32;i&#32;&lt;&#32;len;&#32;i++)</emphasis>
+00583 <emphasis role="comment">//&#32;&#32;&#32;{&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;</emphasis>
+00584 <emphasis role="comment">//&#32;&#32;&#32;&#32;&#32;buf[i]&#32;=&#32;&#32;spi_xfer(RFM_SPI,&#32;0x00);&#32;&#32;</emphasis>
+00585 <emphasis role="comment">//&#32;&#32;&#32;}&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;</emphasis>
+00586 
+00587 <emphasis role="comment">//&#32;&#32;&#32;spi_chip_deselect();&#32;&#32;&#32;&#32;&#32;</emphasis>
+00588 <emphasis role="comment">//&#32;&#32;&#32;timers_delay_microseconds(1);</emphasis>
+00589 <emphasis role="comment">//&#32;}</emphasis>
+00590 
+00591 <emphasis role="comment">//&#32;static&#32;void&#32;spi_write_single(uint8_t&#32;reg,&#32;uint8_t&#32;data)</emphasis>
+00592 <emphasis role="comment">//&#32;{</emphasis>
+00593 <emphasis role="comment">//&#32;&#32;&#32;//&#32;Set&#32;MSB&#32;for&#32;write&#32;operation</emphasis>
+00594 <emphasis role="comment">//&#32;&#32;&#32;uint8_t&#32;cmd&#32;=&#32;0x80&#32;|&#32;reg;</emphasis>
+00595 
+00596 <emphasis role="comment">//&#32;&#32;&#32;spi_chip_select();</emphasis>
+00597 <emphasis role="comment">//&#32;&#32;&#32;timers_delay_microseconds(1);</emphasis>
+00598 
+00599 <emphasis role="comment">//&#32;&#32;&#32;spi_xfer(RFM_SPI,&#32;cmd);&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;</emphasis>
+00600 <emphasis role="comment">//&#32;&#32;&#32;spi_xfer(RFM_SPI,&#32;data);&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;</emphasis>
+00601 
+00602 <emphasis role="comment">//&#32;&#32;&#32;spi_chip_deselect();&#32;</emphasis>
+00603 <emphasis role="comment">//&#32;&#32;&#32;timers_delay_microseconds(1);</emphasis>
+00604 
+00605 <emphasis role="comment">//&#32;&#32;&#32;uint8_t&#32;curr_data&#32;=&#32;spi_read_single(reg);</emphasis>
+00606 
+00607 <emphasis role="comment">//&#32;&#32;&#32;//&#32;spf_serial_printf(&quot;%02x&#32;:&#32;%02x\n&quot;,&#32;reg,&#32;data);</emphasis>
+00608 
+00609 <emphasis role="comment">//&#32;&#32;&#32;if(reg&#32;==&#32;RFM_REG_12_IRQ_FLAGS)&#32;&#32;&#32;&#32;</emphasis>
+00610 <emphasis role="comment">//&#32;&#32;&#32;&#32;&#32;return;</emphasis>
+00611 
+00612 <emphasis role="comment">//&#32;&#32;&#32;TIMEOUT(10000,&#32;&quot;RFM&#32;SPI&#32;Write&quot;,&#32;((reg&#32;&lt;&lt;&#32;16)&#32;|&#32;data),&#32;(curr_data&#32;==&#32;data),&#32;;,&#32;timers_delay_microseconds(100);&#32;curr_data&#32;=&#32;spi_read_single(reg););</emphasis>
+00613 
+00614 <emphasis role="comment">//&#32;&#32;&#32;//&#32;spf_serial_printf(&quot;%02x&#32;:&#32;%02x&#32;:&#32;%02x\n&quot;,&#32;reg,&#32;data,&#32;curr_data);</emphasis>
+00615 <emphasis role="comment">//&#32;}</emphasis>
+00616 
+00617 <emphasis role="comment">//&#32;static&#32;void&#32;spi_write_burst(uint8_t&#32;reg,&#32;uint8_t&#32;*buf,&#32;uint8_t&#32;len)</emphasis>
+00618 <emphasis role="comment">//&#32;{</emphasis>
+00619 <emphasis role="comment">//&#32;&#32;&#32;spi_chip_select();</emphasis>
+00620 <emphasis role="comment">//&#32;&#32;&#32;timers_delay_microseconds(1);</emphasis>
+00621 
+00622 <emphasis role="comment">//&#32;&#32;&#32;//&#32;Set&#32;MSB&#32;for&#32;write&#32;operation</emphasis>
+00623 <emphasis role="comment">//&#32;&#32;&#32;uint8_t&#32;cmd&#32;=&#32;0x80&#32;|&#32;reg;</emphasis>
+00624 
+00625 <emphasis role="comment">//&#32;&#32;&#32;spi_xfer(RFM_SPI,&#32;cmd);&#32;&#32;</emphasis>
+00626 
+00627 <emphasis role="comment">//&#32;&#32;&#32;for(int&#32;i&#32;=&#32;0;&#32;i&#32;&lt;&#32;len;&#32;i++)</emphasis>
+00628 <emphasis role="comment">//&#32;&#32;&#32;{&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;</emphasis>
+00629 <emphasis role="comment">//&#32;&#32;&#32;&#32;&#32;spi_xfer(RFM_SPI,&#32;buf[i]);&#32;</emphasis>
+00630 <emphasis role="comment">//&#32;&#32;&#32;}&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;</emphasis>
+00631 
+00632 <emphasis role="comment">//&#32;&#32;&#32;spi_chip_deselect();&#32;&#32;&#32;&#32;&#32;</emphasis>
+00633 <emphasis role="comment">//&#32;&#32;&#32;timers_delay_microseconds(1);</emphasis>
+00634 <emphasis role="comment">//&#32;}</emphasis>
+00635 
+00636 <emphasis role="comment">//&#32;static&#32;void&#32;set_frequency(uint32_t&#32;frequency_hz)</emphasis>
+00637 <emphasis role="comment">//&#32;{</emphasis>
+00638 <emphasis role="comment">//&#32;&#32;&#32;&#32;&#32;//&#32;Frf&#32;=&#32;FRF&#32;/&#32;FSTEP</emphasis>
+00639 <emphasis role="comment">//&#32;&#32;&#32;&#32;&#32;uint32_t&#32;frf&#32;=&#32;frequency_hz&#32;/&#32;RFM_FSTEP;</emphasis>
+00640 <emphasis role="comment">//&#32;&#32;&#32;&#32;&#32;spi_write_single(RFM_REG_06_FRF_MSB,&#32;(frf&#32;&gt;&gt;&#32;16)&#32;&amp;&#32;0xff);</emphasis>
+00641 <emphasis role="comment">//&#32;&#32;&#32;&#32;&#32;spi_write_single(RFM_REG_07_FRF_MID,&#32;(frf&#32;&gt;&gt;&#32;8)&#32;&amp;&#32;0xff);</emphasis>
+00642 <emphasis role="comment">//&#32;&#32;&#32;&#32;&#32;spi_write_single(RFM_REG_08_FRF_LSB,&#32;frf&#32;&amp;&#32;0xff);</emphasis>
+00643 
+00644 <emphasis role="comment">//&#32;&#32;&#32;&#32;&#32;//&#32;_usingHFport&#32;=&#32;(centre&#32;&gt;=&#32;779.0);</emphasis>
+00645 <emphasis role="comment">//&#32;}</emphasis>
+00646 
+00647 <emphasis role="comment">//&#32;static&#32;void&#32;set_dio_irq(uint8_t&#32;io0_3,&#32;uint8_t&#32;io4_5)</emphasis>
+00648 <emphasis role="comment">//&#32;{</emphasis>
+00649 <emphasis role="comment">//&#32;&#32;&#32;spi_write_single(RFM_REG_40_DIO_MAPPING1,&#32;io0_3);</emphasis>
+00650 <emphasis role="comment">//&#32;&#32;&#32;spi_write_single(RFM_REG_41_DIO_MAPPING2,&#32;io4_5);</emphasis>
+00651 <emphasis role="comment">//&#32;}</emphasis>
+00652 
+00653 <emphasis role="comment">//&#32;static&#32;void&#32;set_preamble_length(uint16_t&#32;num_sym)</emphasis>
+00654 <emphasis role="comment">//&#32;{</emphasis>
+00655 <emphasis role="comment">//&#32;&#32;&#32;&#32;&#32;spi_write_single(RFM_REG_20_PREAMBLE_MSB,&#32;num_sym&#32;&gt;&gt;&#32;8);</emphasis>
+00656 <emphasis role="comment">//&#32;&#32;&#32;&#32;&#32;spi_write_single(RFM_REG_21_PREAMBLE_LSB,&#32;num_sym&#32;&amp;&#32;0xff);</emphasis>
+00657 <emphasis role="comment">//&#32;}</emphasis>
+00658 
+00659 <emphasis role="comment">//&#32;static&#32;void&#32;print_registers(void)</emphasis>
+00660 <emphasis role="comment">//&#32;{</emphasis>
+00661 <emphasis role="comment">//&#32;&#32;&#32;uint8_t&#32;registers[]&#32;=&#32;{&#32;0x01,&#32;0x06,&#32;0x07,&#32;0x08,&#32;0x09,&#32;0x0a,&#32;0x0b,&#32;0x0c,&#32;0x0d,&#32;0x0e,&#32;0x0f,&#32;0x10,&#32;0x11,&#32;0x12,&#32;0x13,&#32;0x014,&#32;0x15,&#32;0x16,&#32;0x17,&#32;0x18,&#32;0x19,&#32;0x1a,&#32;0x1b,&#32;0x1c,&#32;0x1d,&#32;0x1e,&#32;0x1f,&#32;0x20,&#32;0x21,&#32;0x22,&#32;0x23,&#32;0x24,&#32;0x25,&#32;0x26,&#32;0x27,&#32;0x4b,&#32;0x4d};</emphasis>
+00662 
+00663 <emphasis role="comment">//&#32;&#32;&#32;uint8_t&#32;i;</emphasis>
+00664 <emphasis role="comment">//&#32;&#32;&#32;for&#32;(i&#32;=&#32;0;&#32;i&#32;&lt;&#32;sizeof(registers);&#32;i++)</emphasis>
+00665 <emphasis role="comment">//&#32;&#32;&#32;{</emphasis>
+00666 <emphasis role="comment">//&#32;&#32;&#32;&#32;spf_serial_printf(&quot;%02x&#32;:&#32;%02x\n&quot;,&#32;registers[i],&#32;spi_read_single(registers[i]));</emphasis>
+00667 <emphasis role="comment">//&#32;&#32;&#32;}</emphasis>
+00668 <emphasis role="comment">//&#32;}</emphasis>
+00669 
+00670 <emphasis role="comment">//&#32;static&#32;void&#32;clear_buffer(void)</emphasis>
+00671 <emphasis role="comment">//&#32;{</emphasis>
+00672 <emphasis role="comment">//&#32;&#32;&#32;&#32;&#32;spi_write_single(RFM_REG_0D_FIFO_ADDR_PTR,&#32;0);</emphasis>
+00673 <emphasis role="comment">//&#32;&#32;&#32;&#32;&#32;spi_write_single(RFM_REG_0E_FIFO_TX_BASE_ADDR,&#32;0);</emphasis>
+00674 <emphasis role="comment">//&#32;&#32;&#32;&#32;&#32;spi_write_single(RFM_REG_0F_FIFO_RX_BASE_ADDR,&#32;0);</emphasis>
+00675 <emphasis role="comment">//&#32;}</emphasis>
+00676 
+00677 <emphasis role="comment">//&#32;//&#32;static&#32;uint16_t&#32;calculate_crc(rfm_packet_t&#32;*packet)</emphasis>
+00678 <emphasis role="comment">//&#32;//&#32;{</emphasis>
+00679 <emphasis role="comment">//&#32;//&#32;}</emphasis>
+00680 
+00681 <emphasis role="comment">//&#32;//&#32;From&#32;section&#32;4.1.5&#32;of&#32;SX1276/77/78/79</emphasis>
+00682 <emphasis role="comment">//&#32;//&#32;Ferror&#32;=&#32;FreqError&#32;*&#32;2**24&#32;*&#32;BW&#32;/&#32;Fxtal&#32;/&#32;500</emphasis>
+00683 <emphasis role="comment">//&#32;//&#32;int&#32;RH_RF95::frequencyError()</emphasis>
+00684 <emphasis role="comment">//&#32;//&#32;{</emphasis>
+00685 <emphasis role="comment">//&#32;//&#32;&#32;&#32;&#32;&#32;int32_t&#32;freqerror&#32;=&#32;0;</emphasis>
+00686 <emphasis role="comment">//&#32;//&#32;</emphasis>
+00687 <emphasis role="comment">//&#32;//&#32;&#32;&#32;&#32;&#32;//&#32;Convert&#32;2.5&#32;bytes&#32;(5&#32;nibbles,&#32;20&#32;bits)&#32;to&#32;32&#32;bit&#32;signed&#32;int</emphasis>
+00688 <emphasis role="comment">//&#32;//&#32;&#32;&#32;&#32;&#32;//&#32;Caution:&#32;some&#32;C&#32;compilers&#32;make&#32;errors&#32;with&#32;eg:</emphasis>
+00689 <emphasis role="comment">//&#32;//&#32;&#32;&#32;&#32;&#32;//&#32;freqerror&#32;=&#32;spiRead(RH_RF95_REG_28_FEI_MSB)&#32;&lt;&lt;&#32;16</emphasis>
+00690 <emphasis role="comment">//&#32;//&#32;&#32;&#32;&#32;&#32;//&#32;so&#32;we&#32;go&#32;more&#32;carefully.</emphasis>
+00691 <emphasis role="comment">//&#32;//&#32;&#32;&#32;&#32;&#32;freqerror&#32;=&#32;spiRead(RH_RF95_REG_28_FEI_MSB);</emphasis>
+00692 <emphasis role="comment">//&#32;//&#32;&#32;&#32;&#32;&#32;freqerror&#32;&lt;&lt;=&#32;8;</emphasis>
+00693 <emphasis role="comment">//&#32;//&#32;&#32;&#32;&#32;&#32;freqerror&#32;|=&#32;spiRead(RH_RF95_REG_29_FEI_MID);</emphasis>
+00694 <emphasis role="comment">//&#32;//&#32;&#32;&#32;&#32;&#32;freqerror&#32;&lt;&lt;=&#32;8;</emphasis>
+00695 <emphasis role="comment">//&#32;//&#32;&#32;&#32;&#32;&#32;freqerror&#32;|=&#32;spiRead(RH_RF95_REG_2A_FEI_LSB);</emphasis>
+00696 <emphasis role="comment">//&#32;//&#32;&#32;&#32;&#32;&#32;//&#32;Sign&#32;extension&#32;into&#32;top&#32;3&#32;nibbles</emphasis>
+00697 <emphasis role="comment">//&#32;//&#32;&#32;&#32;&#32;&#32;if&#32;(freqerror&#32;&amp;&#32;0x80000)</emphasis>
+00698 <emphasis role="comment">//&#32;//&#32;&#32;&#32;freqerror&#32;|=&#32;0xfff00000;</emphasis>
+00699 <emphasis role="comment">//&#32;//&#32;</emphasis>
+00700 <emphasis role="comment">//&#32;//&#32;&#32;&#32;&#32;&#32;int&#32;error&#32;=&#32;0;&#32;//&#32;In&#32;hertz</emphasis>
+00701 <emphasis role="comment">//&#32;//&#32;&#32;&#32;&#32;&#32;float&#32;bw_tab[]&#32;=&#32;{7.8,&#32;10.4,&#32;15.6,&#32;20.8,&#32;31.25,&#32;41.7,&#32;62.5,&#32;125,&#32;250,&#32;500};</emphasis>
+00702 <emphasis role="comment">//&#32;//&#32;&#32;&#32;&#32;&#32;uint8_t&#32;bwindex&#32;=&#32;spiRead(RH_RF95_REG_1D_MODEM_CONFIG1)&#32;&gt;&gt;&#32;4;</emphasis>
+00703 <emphasis role="comment">//&#32;//&#32;&#32;&#32;&#32;&#32;if&#32;(bwindex&#32;&lt;&#32;(sizeof(bw_tab)&#32;/&#32;sizeof(float)))</emphasis>
+00704 <emphasis role="comment">//&#32;//&#32;&#32;&#32;error&#32;=&#32;(float)freqerror&#32;*&#32;bw_tab[bwindex]&#32;*&#32;((float)(1L&#32;&lt;&lt;&#32;24)&#32;/&#32;(float)RH_RF95_FXOSC&#32;/&#32;500.0);</emphasis>
+00705 <emphasis role="comment">//&#32;//&#32;&#32;&#32;&#32;&#32;//&#32;else&#32;not&#32;defined</emphasis>
+00706 <emphasis role="comment">//&#32;//&#32;</emphasis>
+00707 <emphasis role="comment">//&#32;//&#32;&#32;&#32;&#32;&#32;return&#32;error;</emphasis>
+00708 <emphasis role="comment">//&#32;//&#32;}</emphasis>
+00709 
+00710 
+00711 <emphasis role="comment">//&#32;static&#32;inline&#32;void&#32;mask_irq(uint8_t&#32;irq)</emphasis>
+00712 <emphasis role="comment">//&#32;{</emphasis>
+00713 <emphasis role="comment">//&#32;&#32;&#32;spi_write_single(RFM_REG_11_IRQ_FLAGS_MASK,&#32;spi_read_single(RFM_REG_11_IRQ_FLAGS_MASK)&#32;|&#32;irq);&#32;</emphasis>
+00714 <emphasis role="comment">//&#32;}</emphasis>
+00715 
+00716 <emphasis role="comment">//&#32;static&#32;inline&#32;void&#32;unmask_irq(uint8_t&#32;irq)</emphasis>
+00717 <emphasis role="comment">//&#32;{</emphasis>
+00718 <emphasis role="comment">//&#32;&#32;&#32;spi_write_single(RFM_REG_11_IRQ_FLAGS_MASK,&#32;spi_read_single(RFM_REG_11_IRQ_FLAGS_MASK)&#32;&amp;&#32;~irq);&#32;</emphasis>
+00719 <emphasis role="comment">//&#32;}</emphasis>
+00720 
+00721 <emphasis role="comment">//&#32;static&#32;inline&#32;uint8_t&#32;get_irq(void)</emphasis>
+00722 <emphasis role="comment">//&#32;{</emphasis>
+00723 <emphasis role="comment">//&#32;&#32;&#32;return&#32;spi_read_single(RFM_REG_12_IRQ_FLAGS);</emphasis>
+00724 <emphasis role="comment">//&#32;}</emphasis>
+00725 
+00726 <emphasis role="comment">//&#32;static&#32;inline&#32;void&#32;clear_irq(uint8_t&#32;irq)</emphasis>
+00727 <emphasis role="comment">//&#32;{</emphasis>
+00728 <emphasis role="comment">//&#32;&#32;&#32;//&#32;uint8_t&#32;reg&#32;=&#32;0;</emphasis>
+00729 <emphasis role="comment">//&#32;&#32;&#32;//&#32;reg&#32;&amp;=&#32;~irq;</emphasis>
+00730 <emphasis role="comment">//&#32;&#32;&#32;//&#32;reg&#32;|=&#32;irq;</emphasis>
+00731 <emphasis role="comment">//&#32;&#32;&#32;//&#32;spf_serial_printf(&quot;Clear&#32;%02x&#32;:&#32;%02x\n&quot;,&#32;irq,&#32;reg);</emphasis>
+00732 <emphasis role="comment">//&#32;&#32;&#32;spi_write_single(RFM_REG_12_IRQ_FLAGS,&#32;irq);</emphasis>
+00733 <emphasis role="comment">//&#32;}</emphasis>
+00734 
+00735 <emphasis role="comment">//&#32;static&#32;inline&#32;void&#32;set_tx_mode(void)</emphasis>
+00736 <emphasis role="comment">//&#32;{&#32;</emphasis>
+00737 <emphasis role="comment">//&#32;&#32;&#32;spi_write_single(RFM_REG_01_OP_MODE,&#32;(spi_read_single(RFM_REG_01_OP_MODE)&#32;&amp;&#32;~RFM_MODE)&#32;|&#32;RFM_MODE_TX);</emphasis>
+00738 <emphasis role="comment">//&#32;}</emphasis>
+00739 
+00740 <emphasis role="comment">//&#32;static&#32;inline&#32;void&#32;set_rx_mode(void)</emphasis>
+00741 <emphasis role="comment">//&#32;{</emphasis>
+00742 <emphasis role="comment">//&#32;&#32;&#32;spi_write_single(RFM_REG_01_OP_MODE,&#32;(spi_read_single(RFM_REG_01_OP_MODE)&#32;&amp;&#32;~RFM_MODE)&#32;|&#32;RFM_MODE_RXCONTINUOUS);</emphasis>
+00743 <emphasis role="comment">//&#32;}</emphasis>
+00744 
+00745 <emphasis role="comment">//&#32;static&#32;inline&#32;void&#32;set_standby_mode(void)</emphasis>
+00746 <emphasis role="comment">//&#32;{</emphasis>
+00747 <emphasis role="comment">//&#32;&#32;&#32;spi_write_single(RFM_REG_01_OP_MODE,&#32;(spi_read_single(RFM_REG_01_OP_MODE)&#32;&amp;&#32;~RFM_MODE)&#32;|&#32;RFM_MODE_STDBY);</emphasis>
+00748 <emphasis role="comment">//&#32;}</emphasis>
+00749 
+00750 <emphasis role="comment">//&#32;static&#32;inline&#32;void&#32;set_sleep_mode(void)</emphasis>
+00751 <emphasis role="comment">//&#32;{</emphasis>
+00752 <emphasis role="comment">//&#32;&#32;&#32;spi_write_single(RFM_REG_01_OP_MODE,&#32;(spi_read_single(RFM_REG_01_OP_MODE)&#32;&amp;&#32;~RFM_MODE)&#32;|&#32;&#32;RFM_MODE_SLEEP);</emphasis>
+00753 <emphasis role="comment">//&#32;}</emphasis>
+00754 
+00755 <emphasis role="comment">//&#32;/**&#32;@}&#32;*/</emphasis>
+00756 
+00757 <emphasis role="comment">//&#32;/**&#32;@addtogroup&#32;&#32;RFM_API</emphasis>
+00758 <emphasis role="comment">//&#32;&#32;*&#32;&#32;@{</emphasis>
+00759 <emphasis role="comment">//&#32;&#32;*/</emphasis>
+00760 
+00761 <emphasis role="comment">//&#32;/*////////////////////////////////////////////////////////////////////////////*/</emphasis>
+00762 <emphasis role="comment">//&#32;//&#32;Interrupts</emphasis>
+00763 <emphasis role="comment">//&#32;/*////////////////////////////////////////////////////////////////////////////*/</emphasis>
+00764 
+00765 <emphasis role="comment">//&#32;void&#32;exti4_15_isr(void)</emphasis>
+00766 <emphasis role="comment">//&#32;{</emphasis>
+00767 <emphasis role="comment">//&#32;&#32;&#32;uint16_t&#32;timer&#32;=&#32;timers_micros();</emphasis>
+00768 &#32;&#32;
+00769 <emphasis role="comment">//&#32;&#32;&#32;exti_reset_request(RFM_IO_0_EXTI);</emphasis>
+00770 <emphasis role="comment">//&#32;&#32;&#32;exti_reset_request(RFM_IO_0_EXTI);</emphasis>
+00771 
+00772 <emphasis role="comment">//&#32;&#32;&#32;//&#32;Store&#32;IRQ&#32;Flags</emphasis>
+00773 <emphasis role="comment">//&#32;&#32;&#32;packets_buf[packets_head].flags&#32;=&#32;get_irq();</emphasis>
+00774 <emphasis role="comment">//&#32;&#32;&#32;clear_irq(RFM_IRQ_ALL);</emphasis>
+00775 <emphasis role="comment">//&#32;&#32;&#32;clear_irq(RFM_IRQ_ALL);</emphasis>
+00776 
+00777 <emphasis role="comment">//&#32;&#32;&#32;//&#32;Get&#32;signal&#32;strength</emphasis>
+00778 <emphasis role="comment">//&#32;&#32;&#32;packets_buf[packets_head].rssi&#32;=&#32;spi_read_single(RFM_REG_1A_PKT_RSSI_VALUE);</emphasis>
+00779 <emphasis role="comment">//&#32;&#32;&#32;packets_buf[packets_head].rssi&#32;-=&#32;137;</emphasis>
+00780 <emphasis role="comment">//&#32;&#32;&#32;packets_buf[packets_head].snr&#32;=&#32;spi_read_single(RFM_REG_19_PKT_SNR_VALUE)&#32;/&#32;4;</emphasis>
+00781 
+00782 <emphasis role="comment">//&#32;&#32;&#32;//&#32;Check&#32;for&#32;CRC&#32;error</emphasis>
+00783 <emphasis role="comment">//&#32;&#32;&#32;packets_buf[packets_head].crc_ok&#32;=&#32;!(packets_buf[packets_head].flags&#32;&amp;&#32;RFM_IRQ_PAYLOAD_CRC_ERROR);</emphasis>
+00784 
+00785 <emphasis role="comment">//&#32;&#32;&#32;packets_head&#32;=&#32;(packets_head&#32;+&#32;1)&#32;%&#32;PACKETS_BUF_SIZE;</emphasis>
+00786 
+00787 <emphasis role="comment">//&#32;&#32;&#32;uint16_t&#32;time&#32;=&#32;timers_micros()&#32;-&#32;timer;</emphasis>
+00788 <emphasis role="comment">//&#32;&#32;&#32;//&#32;spf_serial_printf(&quot;ISR&#32;%u&#32;%u&#32;%u\n&quot;,&#32;time,&#32;packets_head,&#32;packets_tail);</emphasis>
+00789 <emphasis role="comment">//&#32;}</emphasis>
+00790 
+00791 <emphasis role="comment">//&#32;/**&#32;@}&#32;*/</emphasis>
+00792 <emphasis role="comment">//&#32;/**&#32;@}&#32;*/</emphasis>
+</programlisting></section>

@@ -1,0 +1,34 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<section xmlns="http://docbook.org/ns/docbook" version="5.0" xmlns:xlink="http://www.w3.org/1999/xlink" xml:id="_cusb_8h_source" xml:lang="en-US">
+<title>cusb.h</title>
+<indexterm><primary>hub/include/hub/cusb.h</primary></indexterm>
+<programlisting>00001 
+00028 <emphasis role="preprocessor">#ifndef&#32;CUSB_H</emphasis>
+00029 <emphasis role="preprocessor">#define&#32;CUSB_H</emphasis>
+00030 
+00031 <emphasis role="comment">/*////////////////////////////////////////////////////////////////////////////*/</emphasis>
+00032 <emphasis role="comment">//&#32;Includes</emphasis>
+00033 <emphasis role="comment">/*////////////////////////////////////////////////////////////////////////////*/</emphasis>
+00034 
+00035 <emphasis role="preprocessor">#ifdef&#32;__cplusplus</emphasis>
+00036 <emphasis role="keyword">extern</emphasis>&#32;<emphasis role="stringliteral">&quot;C&quot;</emphasis>&#32;{
+00037 <emphasis role="preprocessor">#endif</emphasis>
+00038 
+00043 <emphasis role="comment">/*////////////////////////////////////////////////////////////////////////////*/</emphasis>
+00044 <emphasis role="comment">//&#32;Exported&#32;Variables</emphasis>
+00045 <emphasis role="comment">/*////////////////////////////////////////////////////////////////////////////*/</emphasis>
+00046 
+00047 
+00048 <emphasis role="comment">/*////////////////////////////////////////////////////////////////////////////*/</emphasis>
+00049 <emphasis role="comment">//&#32;Exported&#32;Function&#32;Declarations</emphasis>
+00050 <emphasis role="comment">/*////////////////////////////////////////////////////////////////////////////*/</emphasis>
+00051 
+00052 <emphasis role="keywordtype">void</emphasis>&#32;<link linkend="_group___c_u_s_b___a_p_i_1gab4184b48312c430e82701746df0a97ca">cusb_init</link>(<emphasis role="keywordtype">void</emphasis>);
+00053 <emphasis role="keywordtype">void</emphasis>&#32;<link linkend="_group___c_u_s_b___a_p_i_1gac3db1642b64b360258b24bdd9496a390">cusb_test_poll</link>(<emphasis role="keywordtype">void</emphasis>);
+00054 
+00057 <emphasis role="preprocessor">#ifdef&#32;__cplusplus</emphasis>
+00058 }
+00059 <emphasis role="preprocessor">#endif</emphasis>
+00060 
+00061 <emphasis role="preprocessor">#endif&#32;</emphasis><emphasis role="comment">/*&#32;CUSB_H&#32;*/</emphasis><emphasis role="preprocessor"></emphasis>
+</programlisting></section>

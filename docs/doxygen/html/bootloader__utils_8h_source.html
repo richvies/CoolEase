@@ -73,28 +73,36 @@ $(function() {
 <div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160;<span class="preprocessor">#ifndef BOOTLOADER_UTILS_H</span></div>
 <div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;<span class="preprocessor">#define BOOTLOADER_UTILS_H</span></div>
 <div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160; </div>
+<div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;<span class="comment">/*////////////////////////////////////////////////////////////////////////////*/</span></div>
 <div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;<span class="comment">// Includes</span></div>
-<div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160;<span class="comment"></span> </div>
-<div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160;<span class="preprocessor">#ifdef __cplusplus</span></div>
-<div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160;<span class="keyword">extern</span> <span class="stringliteral">&quot;C&quot;</span> {</div>
-<div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160;<span class="preprocessor">#endif</span></div>
-<div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160; </div>
-<div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160;<span class="comment">// Exported Variables</span></div>
-<div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;<span class="comment"></span> </div>
-<div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160; </div>
-<div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160;<span class="comment">// Exported Function Declarations</span></div>
-<div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160;<span class="comment"></span> </div>
-<div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160;<span class="keywordtype">void</span> <a class="code" href="group___b_o_o_t_l_o_a_d_e_r___u_t_i_l_s___a_p_i.html#ga04f64e6854504397885e2319bc2964fa">boot_deinit</a>();</div>
-<div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160;<span class="keywordtype">void</span> <a class="code" href="group___b_o_o_t_l_o_a_d_e_r___u_t_i_l_s___a_p_i.html#ga9278f778a8be5f6f435fbd10fcaeb471">boot_jump</a>(uint32_t address);</div>
-<div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160; </div>
-<div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160;<span class="preprocessor">#ifdef __cplusplus</span></div>
-<div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160;}</div>
-<div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160;<span class="preprocessor">#endif</span></div>
-<div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160; </div>
-<div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160;<span class="preprocessor">#endif </span><span class="comment">/* BOOTLOADER_UTILS_H */</span><span class="preprocessor"></span></div>
+<div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;<span class="comment">/*////////////////////////////////////////////////////////////////////////////*/</span></div>
+<div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160; </div>
+<div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160;<span class="preprocessor">#include &lt;stdint.h&gt;</span></div>
+<div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160; </div>
+<div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160;<span class="preprocessor">#ifdef __cplusplus</span></div>
+<div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160;<span class="keyword">extern</span> <span class="stringliteral">&quot;C&quot;</span> {</div>
+<div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160;<span class="preprocessor">#endif</span></div>
+<div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160; </div>
+<div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160;<span class="comment">/*////////////////////////////////////////////////////////////////////////////*/</span></div>
+<div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;<span class="comment">// Exported Variables</span></div>
+<div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160;<span class="comment">/*////////////////////////////////////////////////////////////////////////////*/</span></div>
+<div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160; </div>
+<div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160; </div>
+<div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160;<span class="comment">/*////////////////////////////////////////////////////////////////////////////*/</span></div>
+<div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160;<span class="comment">// Exported Function Declarations</span></div>
+<div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160;<span class="comment">/*////////////////////////////////////////////////////////////////////////////*/</span></div>
+<div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160; </div>
+<div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160;<span class="keywordtype">void</span> <a class="code" href="group___b_o_o_t_l_o_a_d_e_r___u_t_i_l_s___a_p_i.html#ga6252b1935a7b8e2e6c14a969372929a2">boot_deinit</a>(<span class="keywordtype">void</span>);</div>
+<div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160;<span class="keywordtype">void</span> <a class="code" href="group___b_o_o_t_l_o_a_d_e_r___u_t_i_l_s___a_p_i.html#gae9e4d81efbd526a6c67fd8f1f104d5b3">boot_jump_to_application</a>(uint32_t address);</div>
+<div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160; </div>
+<div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160;<span class="preprocessor">#ifdef __cplusplus</span></div>
+<div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160;}</div>
+<div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160;<span class="preprocessor">#endif</span></div>
+<div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160; </div>
+<div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160;<span class="preprocessor">#endif </span><span class="comment">/* BOOTLOADER_UTILS_H */</span><span class="preprocessor"></span></div>
 </div><!-- fragment --></div><!-- contents -->
-<div class="ttc" id="agroup___b_o_o_t_l_o_a_d_e_r___u_t_i_l_s___a_p_i_html_ga9278f778a8be5f6f435fbd10fcaeb471"><div class="ttname"><a href="group___b_o_o_t_l_o_a_d_e_r___u_t_i_l_s___a_p_i.html#ga9278f778a8be5f6f435fbd10fcaeb471">boot_jump</a></div><div class="ttdeci">void boot_jump(uint32_t address)</div><div class="ttdef"><b>Definition:</b> bootloader_utils.c:49</div></div>
-<div class="ttc" id="agroup___b_o_o_t_l_o_a_d_e_r___u_t_i_l_s___a_p_i_html_ga04f64e6854504397885e2319bc2964fa"><div class="ttname"><a href="group___b_o_o_t_l_o_a_d_e_r___u_t_i_l_s___a_p_i.html#ga04f64e6854504397885e2319bc2964fa">boot_deinit</a></div><div class="ttdeci">void boot_deinit()</div><div class="ttdef"><b>Definition:</b> bootloader_utils.c:42</div></div>
+<div class="ttc" id="agroup___b_o_o_t_l_o_a_d_e_r___u_t_i_l_s___a_p_i_html_ga6252b1935a7b8e2e6c14a969372929a2"><div class="ttname"><a href="group___b_o_o_t_l_o_a_d_e_r___u_t_i_l_s___a_p_i.html#ga6252b1935a7b8e2e6c14a969372929a2">boot_deinit</a></div><div class="ttdeci">void boot_deinit(void)</div><div class="ttdef"><b>Definition:</b> <a href="bootloader__utils_8c_source.html#l00046">bootloader_utils.c:46</a></div></div>
+<div class="ttc" id="agroup___b_o_o_t_l_o_a_d_e_r___u_t_i_l_s___a_p_i_html_gae9e4d81efbd526a6c67fd8f1f104d5b3"><div class="ttname"><a href="group___b_o_o_t_l_o_a_d_e_r___u_t_i_l_s___a_p_i.html#gae9e4d81efbd526a6c67fd8f1f104d5b3">boot_jump_to_application</a></div><div class="ttdeci">void boot_jump_to_application(uint32_t address)</div><div class="ttdef"><b>Definition:</b> <a href="bootloader__utils_8c_source.html#l00051">bootloader_utils.c:51</a></div></div>
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
 Generated by&#160;<a href="http://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.8.20

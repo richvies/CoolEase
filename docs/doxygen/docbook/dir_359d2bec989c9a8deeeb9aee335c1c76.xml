@@ -1,0 +1,16 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<section xmlns="http://docbook.org/ns/docbook" version="5.0" xmlns:xlink="http://www.w3.org/1999/xlink" xml:id="_dir_359d2bec989c9a8deeeb9aee335c1c76" xml:lang="en-US">
+<title>docs/doxygen Directory Reference</title>
+<indexterm><primary>docs/doxygen Directory Reference</primary></indexterm>
+<simplesect>
+    <title>Files    </title>
+        <itemizedlist>
+            <listitem><para>file <link linkend="_dox__layout_8h">dox_layout.h</link></para>
+
+<para>Doxygen layout 
+<literallayout>&#160;&#xa;</literallayout>
+ </para>
+</listitem>
+        </itemizedlist>
+</simplesect>
+</section>
