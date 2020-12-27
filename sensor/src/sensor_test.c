@@ -1,9 +1,9 @@
 /**
  ******************************************************************************
- * @file    hub_test.c
+ * @file    sensor_test.c
  * @author  Richard Davies
  * @date    27/Dec/2020
- * @brief   Hub testing Source File
+ * @brief   Sensor testing Source File
  *  
  ******************************************************************************
  */
@@ -12,16 +12,15 @@
 // Includes
 /*////////////////////////////////////////////////////////////////////////////*/
 
-#include "hub/hub_test.h"
+#include "sensor/sensor_test.h"
 
-#include "hub/cusb.h"
-#include "hub/hub_bootloader.h"
+#include "sensor/sensor_bootloader.h"
 
-/** @addtogroup HUB_TEST_FILE 
+/** @addtogroup SENSOR_TEST_FILE 
  * @{
  */
 
-/** @addtogroup HUB_TEST_INT 
+/** @addtogroup SENSOR_TEST_INT 
  * @{
  */
 
@@ -39,7 +38,7 @@
 
 /** @} */
 
-/** @addtogroup HUB_TEST_API
+/** @addtogroup SENSOR_TEST_API
  * @{
  */
 
@@ -47,16 +46,10 @@
 // Exported Function Definitions
 /*////////////////////////////////////////////////////////////////////////////*/
 
-void test_cusb_poll(void)
-{
-  cusb_init();
-  cusb_test_poll();
-}
-
 
 /** @} */
 
-/** @addtogroup HUB_TEST_INT
+/** @addtogroup SENSOR_TEST_INT
  * @{
  */
 

@@ -7,7 +7,6 @@
             "request": "launch",
             "servertype": "openocd",
             "cwd": "${workspaceFolder}",
-            "executable": "Hub/build/Hub.elf",
             "svdFile": "Tools/OpenOCD/STM32L052.svd",
             "configFiles": [
                 "Tools/OpenOCD/stlink.cfg",

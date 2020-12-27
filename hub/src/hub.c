@@ -19,7 +19,7 @@
  * @{
  */
 
-#define APP_ADDRESS 0x08002000
+#define APP_ADDRESS 0x08004000
 
 /** @addtogroup HUB_INT 
  * @{

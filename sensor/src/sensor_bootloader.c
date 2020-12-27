@@ -1,9 +1,9 @@
 /**
  ******************************************************************************
- * @file    hub_test.c
+ * @file    sensor_bootloader.c
  * @author  Richard Davies
- * @date    27/Dec/2020
- * @brief   Hub testing Source File
+ * @date    25/Dec/2020
+ * @brief   Sensor Bootloader Source File
  *  
  ******************************************************************************
  */
@@ -12,16 +12,13 @@
 // Includes
 /*////////////////////////////////////////////////////////////////////////////*/
 
-#include "hub/hub_test.h"
+#include "sensor/sensor_bootloader.h"
 
-#include "hub/cusb.h"
-#include "hub/hub_bootloader.h"
-
-/** @addtogroup HUB_TEST_FILE 
+/** @addtogroup SENSOR_BOOTLOADER_FILE 
  * @{
  */
 
-/** @addtogroup HUB_TEST_INT 
+/** @addtogroup SENSOR_BOOTLOADER_INT 
  * @{
  */
 
@@ -29,17 +26,13 @@
 // Static Variables
 /*////////////////////////////////////////////////////////////////////////////*/
 
-
-
 /*////////////////////////////////////////////////////////////////////////////*/
 // Static Function Declarations
 /*////////////////////////////////////////////////////////////////////////////*/
 
-
-
 /** @} */
 
-/** @addtogroup HUB_TEST_API
+/** @addtogroup SENSOR_BOOTLOADER_API
  * @{
  */
 
@@ -47,24 +40,20 @@
 // Exported Function Definitions
 /*////////////////////////////////////////////////////////////////////////////*/
 
-void test_cusb_poll(void)
+int main(void)
 {
-  cusb_init();
-  cusb_test_poll();
+    return 0;
 }
-
 
 /** @} */
 
-/** @addtogroup HUB_TEST_INT
+/** @addtogroup SENSOR_BOOTLOADER_INT
  * @{
  */
 
 /*////////////////////////////////////////////////////////////////////////////*/
 // Static Function Definitions
 /*////////////////////////////////////////////////////////////////////////////*/
-
-
 
 /** @} */
 /** @} */

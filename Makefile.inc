@@ -106,10 +106,9 @@ TGT_LDFLAGS += -L$(OPENCM3_DIR)/lib -nostartfiles
 TGT_LDFLAGS += $(ARCH_FLAGS)
 TGT_LDFLAGS += -specs=nano.specs
 TGT_LDFLAGS += -Wl,--gc-sections
-TGT_LDFLAGS += -Wl,--print-gc-sections
 
 ifeq ($(V),99)
-
+TGT_LDFLAGS += -Wl,--print-gc-sections
 endif
 
 # Be silent per default, but 'make V=1' will show all compiler calls.

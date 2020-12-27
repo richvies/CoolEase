@@ -1309,7 +1309,13 @@ static const struct usb_config_descriptor cfg_desc =
     .bMaxPower = 200,
     .interface = interfaces,
 };
-# 307 "hub/src/cusb.c"
+# 305 "hub/src/cusb.c"
+static uint8_t hid_report_buf[64] = "Default Report Buffer";
+
+
+
+
+
 static enum usbd_request_return_codes hid_control_request(usbd_device *dev, struct usb_setup_data *req, uint8_t **buf, uint16_t *len,
                                                           void (**complete)(usbd_device *, struct usb_setup_data *))
 {
@@ -1329,10 +1335,6 @@ static enum usbd_request_return_codes hid_control_request(usbd_device *dev, stru
 }
 
 
-
-
-
-static uint8_t hid_report_buf[64] = "Default Report Buffer";
 
 
 void hid_report_callback(usbd_device *usbd_dev, uint8_t ea);
@@ -1362,17 +1364,17 @@ static void hid_set_config(usbd_device *dev, uint16_t wValue)
 }
 
 
-
-
-
-
-static void cusb_clock_init(void);
-# 375 "hub/src/cusb.c"
 static usbd_device *usbd_dev;
 
 
 static uint8_t usbd_control_buffer[128];
 
+
+
+
+
+static void cusb_clock_init(void);
+# 380 "hub/src/cusb.c"
 void cusb_init(void)
 {
 

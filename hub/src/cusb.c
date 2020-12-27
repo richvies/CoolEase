@@ -298,7 +298,11 @@ static const struct usb_config_descriptor cfg_desc =
 // Static Variables
 /*////////////////////////////////////////////////////////////////////////////*/
 
-
+/** @brief HID Report buffer 
+ * 
+ * Buffer used for all HID in & out transactions
+ */
+static uint8_t hid_report_buf[64] = "Default Report Buffer";
 
 /** @brief HID Control Callback 
  * 
@@ -322,11 +326,7 @@ static enum usbd_request_return_codes hid_control_request(usbd_device *dev, stru
     return USBD_REQ_HANDLED;
 }
 
-/** @brief HID Report buffer 
- * 
- * Buffer used for all HID in & out transactions
- */
-static uint8_t hid_report_buf[64] = "Default Report Buffer";
+
 
 /** @brief HID Resport Callback */
 void hid_report_callback(usbd_device *usbd_dev, uint8_t ea);
@@ -355,6 +355,11 @@ static void hid_set_config(usbd_device *dev, uint16_t wValue)
         hid_control_request);
 }
 
+/** @brief USB device handle */
+static usbd_device *usbd_dev;
+
+/** @brief Buffer to be used for control requests. */
+static uint8_t usbd_control_buffer[128];
 
 /*////////////////////////////////////////////////////////////////////////////*/
 // Static Function Declarations
@@ -371,11 +376,6 @@ static void cusb_clock_init(void);
 /*////////////////////////////////////////////////////////////////////////////*/
 // Exported Function Definitions
 /*////////////////////////////////////////////////////////////////////////////*/
-/** @brief USB device handle */
-static usbd_device *usbd_dev;
-
-/** @brief Buffer to be used for control requests. */
-static uint8_t usbd_control_buffer[128];
 
 void cusb_init(void)
 {

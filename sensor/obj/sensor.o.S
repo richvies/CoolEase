@@ -1,8 +1,10 @@
-# 1 "common/src/testing.c"
+# 1 "sensor/src/sensor.c"
 # 1 "<built-in>"
 # 1 "<command-line>"
-# 1 "common/src/testing.c"
-# 15 "common/src/testing.c"
+# 1 "sensor/src/sensor.c"
+# 15 "sensor/src/sensor.c"
+# 1 "sensor/include/sensor/sensor_test.h" 1
+# 16 "sensor/src/sensor.c" 2
 # 1 "common/include/common/testing.h" 1
 # 25 "common/include/common/testing.h"
 # 1 "/usr/local/Cellar/arm-gcc-bin/9-2020-q2-update/lib/gcc/arm-none-eabi/9.3.1/include/stdint.h" 1 3 4
@@ -213,9 +215,12 @@ void boot_jump_to_application(uint32_t address);
 # 35 "common/include/common/testing.h" 2
 # 55 "common/include/common/testing.h"
 void test_boot(uint32_t address);
-# 16 "common/src/testing.c" 2
-# 53 "common/src/testing.c"
-void test_boot(uint32_t address)
+# 17 "sensor/src/sensor.c" 2
+# 50 "sensor/src/sensor.c"
+int main(void)
 {
-    boot_jump_to_application(address);
+
+  test_boot(0x08002000);
+
+  return 0;
 }

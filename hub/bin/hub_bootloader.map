@@ -79,14 +79,14 @@ Discarded input sections
  .text          0x0000000000000000        0x0 hub/obj/hub_bootloader.o
  .data          0x0000000000000000        0x0 hub/obj/hub_bootloader.o
  .bss           0x0000000000000000        0x0 hub/obj/hub_bootloader.o
- .text          0x0000000000000000        0x0 hub/obj/test_hub.o
- .data          0x0000000000000000        0x0 hub/obj/test_hub.o
- .bss           0x0000000000000000        0x0 hub/obj/test_hub.o
+ .text          0x0000000000000000        0x0 hub/obj/hub_test.o
+ .data          0x0000000000000000        0x0 hub/obj/hub_test.o
+ .bss           0x0000000000000000        0x0 hub/obj/hub_test.o
  .text.test_cusb_poll
-                0x0000000000000000        0xc hub/obj/test_hub.o
- .comment       0x0000000000000000       0x4d hub/obj/test_hub.o
+                0x0000000000000000        0xc hub/obj/hub_test.o
+ .comment       0x0000000000000000       0x4d hub/obj/hub_test.o
  .ARM.attributes
-                0x0000000000000000       0x2c hub/obj/test_hub.o
+                0x0000000000000000       0x2c hub/obj/hub_test.o
  .text          0x0000000000000000        0x0 hub/obj/bootloader_utils.o
  .data          0x0000000000000000        0x0 hub/obj/bootloader_utils.o
  .bss           0x0000000000000000        0x0 hub/obj/bootloader_utils.o
@@ -949,7 +949,7 @@ Linker script and memory map
 
 LOAD hub/obj/cusb.o
 LOAD hub/obj/hub_bootloader.o
-LOAD hub/obj/test_hub.o
+LOAD hub/obj/hub_test.o
 LOAD hub/obj/bootloader_utils.o
 LOAD hub/obj/rfm.o
 LOAD hub/obj/testing.o

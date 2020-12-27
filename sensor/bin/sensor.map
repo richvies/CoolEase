@@ -1,0 +1,290 @@
+Archive member included to satisfy reference by file (symbol)
+
+libopencm3/lib/libopencm3_stm32l0.a(vector.o)
+                              (reset_handler)
+
+Discarded input sections
+
+ .text          0x0000000000000000        0x0 sensor/obj/sensor.o
+ .data          0x0000000000000000        0x0 sensor/obj/sensor.o
+ .bss           0x0000000000000000        0x0 sensor/obj/sensor.o
+ .text          0x0000000000000000        0x0 sensor/obj/sensor_test.o
+ .data          0x0000000000000000        0x0 sensor/obj/sensor_test.o
+ .bss           0x0000000000000000        0x0 sensor/obj/sensor_test.o
+ .comment       0x0000000000000000       0x4d sensor/obj/sensor_test.o
+ .ARM.attributes
+                0x0000000000000000       0x32 sensor/obj/sensor_test.o
+ .text          0x0000000000000000        0x0 sensor/obj/bootloader_utils.o
+ .data          0x0000000000000000        0x0 sensor/obj/bootloader_utils.o
+ .bss           0x0000000000000000        0x0 sensor/obj/bootloader_utils.o
+ .text.boot_deinit
+                0x0000000000000000        0x4 sensor/obj/bootloader_utils.o
+ .text          0x0000000000000000        0x0 sensor/obj/rfm.o
+ .data          0x0000000000000000        0x0 sensor/obj/rfm.o
+ .bss           0x0000000000000000        0x0 sensor/obj/rfm.o
+ .comment       0x0000000000000000       0x4d sensor/obj/rfm.o
+ .ARM.attributes
+                0x0000000000000000       0x32 sensor/obj/rfm.o
+ .text          0x0000000000000000        0x0 sensor/obj/testing.o
+ .data          0x0000000000000000        0x0 sensor/obj/testing.o
+ .bss           0x0000000000000000        0x0 sensor/obj/testing.o
+ .group         0x0000000000000000        0xc libopencm3/lib/libopencm3_stm32l0.a(vector.o)
+ .group         0x0000000000000000        0xc libopencm3/lib/libopencm3_stm32l0.a(vector.o)
+ .group         0x0000000000000000        0xc libopencm3/lib/libopencm3_stm32l0.a(vector.o)
+ .group         0x0000000000000000        0xc libopencm3/lib/libopencm3_stm32l0.a(vector.o)
+ .group         0x0000000000000000        0xc libopencm3/lib/libopencm3_stm32l0.a(vector.o)
+ .group         0x0000000000000000        0xc libopencm3/lib/libopencm3_stm32l0.a(vector.o)
+ .group         0x0000000000000000        0xc libopencm3/lib/libopencm3_stm32l0.a(vector.o)
+ .group         0x0000000000000000        0xc libopencm3/lib/libopencm3_stm32l0.a(vector.o)
+ .group         0x0000000000000000        0xc libopencm3/lib/libopencm3_stm32l0.a(vector.o)
+ .group         0x0000000000000000        0xc libopencm3/lib/libopencm3_stm32l0.a(vector.o)
+ .group         0x0000000000000000        0xc libopencm3/lib/libopencm3_stm32l0.a(vector.o)
+ .group         0x0000000000000000        0xc libopencm3/lib/libopencm3_stm32l0.a(vector.o)
+ .group         0x0000000000000000        0xc libopencm3/lib/libopencm3_stm32l0.a(vector.o)
+ .group         0x0000000000000000        0xc libopencm3/lib/libopencm3_stm32l0.a(vector.o)
+ .text          0x0000000000000000        0x0 libopencm3/lib/libopencm3_stm32l0.a(vector.o)
+ .data          0x0000000000000000        0x0 libopencm3/lib/libopencm3_stm32l0.a(vector.o)
+ .bss           0x0000000000000000        0x0 libopencm3/lib/libopencm3_stm32l0.a(vector.o)
+
+Memory Configuration
+
+Name             Origin             Length             Attributes
+ram              0x0000000020000000 0x0000000000002000 xrw
+rom              0x0000000008004000 0x000000000000c000 xr
+*default*        0x0000000000000000 0xffffffffffffffff
+
+Linker script and memory map
+
+LOAD sensor/obj/sensor.o
+LOAD sensor/obj/sensor_test.o
+LOAD sensor/obj/bootloader_utils.o
+LOAD sensor/obj/rfm.o
+LOAD sensor/obj/testing.o
+LOAD libopencm3/lib/libopencm3_stm32l0.a
+START GROUP
+LOAD /usr/local/Cellar/arm-gcc-bin/9-2020-q2-update/bin/../lib/gcc/arm-none-eabi/9.3.1/../../../../arm-none-eabi/lib/thumb/v6-m/nofp/libc_nano.a
+LOAD /usr/local/Cellar/arm-gcc-bin/9-2020-q2-update/bin/../lib/gcc/arm-none-eabi/9.3.1/thumb/v6-m/nofp/libgcc.a
+LOAD /usr/local/Cellar/arm-gcc-bin/9-2020-q2-update/bin/../lib/gcc/arm-none-eabi/9.3.1/../../../../arm-none-eabi/lib/thumb/v6-m/nofp/libnosys.a
+END GROUP
+START GROUP
+LOAD /usr/local/Cellar/arm-gcc-bin/9-2020-q2-update/bin/../lib/gcc/arm-none-eabi/9.3.1/thumb/v6-m/nofp/libgcc.a
+LOAD /usr/local/Cellar/arm-gcc-bin/9-2020-q2-update/bin/../lib/gcc/arm-none-eabi/9.3.1/../../../../arm-none-eabi/lib/thumb/v6-m/nofp/libc_nano.a
+END GROUP
+START GROUP
+LOAD /usr/local/Cellar/arm-gcc-bin/9-2020-q2-update/bin/../lib/gcc/arm-none-eabi/9.3.1/thumb/v6-m/nofp/libgcc.a
+LOAD /usr/local/Cellar/arm-gcc-bin/9-2020-q2-update/bin/../lib/gcc/arm-none-eabi/9.3.1/../../../../arm-none-eabi/lib/thumb/v6-m/nofp/libc_nano.a
+END GROUP
+                0x0000000000000800                _min_heap_size = 0x800
+                0x0000000000000800                _min_stack_size = 0x800
+
+.text           0x0000000008004000      0x180
+ *(.vectors)
+ .vectors       0x0000000008004000       0xc0 libopencm3/lib/libopencm3_stm32l0.a(vector.o)
+                0x0000000008004000                vector_table
+ *(.text*)
+ .text.startup.main
+                0x00000000080040c0       0x10 sensor/obj/sensor.o
+                0x00000000080040c0                main
+ .text.boot_jump_to_application
+                0x00000000080040d0       0x1c sensor/obj/bootloader_utils.o
+                0x00000000080040d0                boot_jump_to_application
+ .text.test_boot
+                0x00000000080040ec        0x8 sensor/obj/testing.o
+                0x00000000080040ec                test_boot
+ .text.blocking_handler
+                0x00000000080040f4        0x2 libopencm3/lib/libopencm3_stm32l0.a(vector.o)
+                0x00000000080040f4                exti0_1_isr
+                0x00000000080040f4                tim7_isr
+                0x00000000080040f4                blocking_handler
+                0x00000000080040f4                tsc_isr
+                0x00000000080040f4                spi1_isr
+                0x00000000080040f4                i2c1_isr
+                0x00000000080040f4                i2c2_isr
+                0x00000000080040f4                tim21_isr
+                0x00000000080040f4                usart1_isr
+                0x00000000080040f4                i2c3_isr
+                0x00000000080040f4                reserved4_isr
+                0x00000000080040f4                exti2_3_isr
+                0x00000000080040f4                lptim1_isr
+                0x00000000080040f4                pvd_isr
+                0x00000000080040f4                rcc_isr
+                0x00000000080040f4                flash_isr
+                0x00000000080040f4                hard_fault_handler
+                0x00000000080040f4                spi2_isr
+                0x00000000080040f4                lpuart1_aes_rng_isr
+                0x00000000080040f4                usb_isr
+                0x00000000080040f4                tim3_isr
+                0x00000000080040f4                usart2_isr
+                0x00000000080040f4                adc_comp_isr
+                0x00000000080040f4                dma1_channel1_isr
+                0x00000000080040f4                tim6_dac_isr
+                0x00000000080040f4                lcd_isr
+                0x00000000080040f4                dma1_channel2_3_isr
+                0x00000000080040f4                tim22_isr
+                0x00000000080040f4                exti4_15_isr
+                0x00000000080040f4                usart4_5_isr
+                0x00000000080040f4                wwdg_isr
+                0x00000000080040f4                tim2_isr
+                0x00000000080040f4                dma1_channel4_5_isr
+                0x00000000080040f4                rtc_isr
+ .text.null_handler
+                0x00000000080040f6        0x2 libopencm3/lib/libopencm3_stm32l0.a(vector.o)
+                0x00000000080040f6                null_handler
+                0x00000000080040f6                sv_call_handler
+                0x00000000080040f6                pend_sv_handler
+                0x00000000080040f6                sys_tick_handler
+                0x00000000080040f6                nmi_handler
+ .text.reset_handler
+                0x00000000080040f8       0x88 libopencm3/lib/libopencm3_stm32l0.a(vector.o)
+                0x00000000080040f8                reset_handler
+ *(.glue_7)
+ .glue_7        0x0000000008004180        0x0 linker stubs
+ *(.glue_7t)
+ .glue_7t       0x0000000008004180        0x0 linker stubs
+ *(.eh_frame)
+                0x0000000008004180                . = ALIGN (0x4)
+ *(.rodata*)
+                0x0000000008004180                . = ALIGN (0x4)
+
+.vfp11_veneer   0x0000000008004180        0x0
+ .vfp11_veneer  0x0000000008004180        0x0 linker stubs
+
+.v4_bx          0x0000000008004180        0x0
+ .v4_bx         0x0000000008004180        0x0 linker stubs
+
+.iplt           0x0000000008004180        0x0
+ .iplt          0x0000000008004180        0x0 sensor/obj/sensor.o
+
+.rel.dyn        0x0000000008004180        0x0
+ .rel.iplt      0x0000000008004180        0x0 sensor/obj/sensor.o
+
+.preinit_array  0x0000000008004180        0x0
+                0x0000000008004180                . = ALIGN (0x4)
+                0x0000000008004180                __preinit_array_start = .
+ *(.preinit_array)
+                0x0000000008004180                __preinit_array_end = .
+
+.init_array     0x0000000008004180        0x0
+                0x0000000008004180                . = ALIGN (0x4)
+                0x0000000008004180                __init_array_start = .
+ *(SORT_BY_NAME(.init_array.*))
+ *(.init_array)
+                0x0000000008004180                __init_array_end = .
+
+.fini_array     0x0000000008004180        0x0
+                0x0000000008004180                . = ALIGN (0x4)
+                0x0000000008004180                __fini_array_start = .
+ *(.fini_array)
+ *(SORT_BY_NAME(.fini_array.*))
+                0x0000000008004180                __fini_array_end = .
+
+.ARM.extab
+ *(.ARM.extab*)
+
+.ARM.exidx      0x0000000008004180        0x0
+                0x0000000008004180                __exidx_start = .
+ *(.ARM.exidx*)
+                0x0000000008004180                __exidx_end = .
+                0x0000000008004180                . = ALIGN (0x4)
+                0x0000000008004180                _etext = .
+
+.data           0x0000000020000000        0x0 load address 0x0000000008004180
+                0x0000000020000000                _data = .
+ *(.data*)
+                0x0000000020000000                . = ALIGN (0x4)
+                0x0000000020000000                _edata = .
+                0x0000000008004180                _data_loadaddr = LOADADDR (.data)
+
+.igot.plt       0x0000000020000000        0x0 load address 0x0000000008004180
+ .igot.plt      0x0000000020000000        0x0 sensor/obj/sensor.o
+
+.bss            0x0000000020000000        0x0 load address 0x0000000008004180
+ *(.bss*)
+ *(COMMON)
+                0x0000000020000000                . = ALIGN (0x4)
+                0x0000000020000000                _ebss = .
+                0x0000000020000000                . = ALIGN (0x4)
+                [!provide]                        PROVIDE (end = .)
+
+._user_heap_stack
+                0x0000000020000000     0x1000 load address 0x0000000008004180
+                0x0000000020000000                . = ALIGN (0x8)
+                0x0000000020000800                . = (. + _min_heap_size)
+ *fill*         0x0000000020000000      0x800 
+                0x0000000020001000                . = (. + _min_stack_size)
+ *fill*         0x0000000020000800      0x800 
+                0x0000000020001000                . = ALIGN (0x8)
+
+/DISCARD/
+ *(.eh_frame)
+ libc.a(*)
+ libm.a(*)
+ libgcc.a(*)
+
+.ARM.attributes
+                0x0000000000000000       0x2c
+ *(.ARM.attributes)
+ .ARM.attributes
+                0x0000000000000000       0x2c sensor/obj/sensor.o
+ .ARM.attributes
+                0x000000000000002c       0x2c sensor/obj/bootloader_utils.o
+ .ARM.attributes
+                0x0000000000000058       0x2c sensor/obj/testing.o
+ .ARM.attributes
+                0x0000000000000084       0x2c libopencm3/lib/libopencm3_stm32l0.a(vector.o)
+                0x0000000020002000                PROVIDE (_stack = (ORIGIN (ram) + LENGTH (ram)))
+OUTPUT(sensor/bin/sensor.elf elf32-littlearm)
+LOAD linker stubs
+LOAD /usr/local/Cellar/arm-gcc-bin/9-2020-q2-update/bin/../lib/gcc/arm-none-eabi/9.3.1/../../../../arm-none-eabi/lib/thumb/v6-m/nofp/libc.a
+LOAD /usr/local/Cellar/arm-gcc-bin/9-2020-q2-update/bin/../lib/gcc/arm-none-eabi/9.3.1/../../../../arm-none-eabi/lib/thumb/v6-m/nofp/libm.a
+LOAD /usr/local/Cellar/arm-gcc-bin/9-2020-q2-update/bin/../lib/gcc/arm-none-eabi/9.3.1/thumb/v6-m/nofp/libgcc.a
+
+.comment        0x0000000000000000       0x4c
+ .comment       0x0000000000000000       0x4c sensor/obj/sensor.o
+                                         0x4d (size before relaxing)
+ .comment       0x000000000000004c       0x4d sensor/obj/bootloader_utils.o
+ .comment       0x000000000000004c       0x4d sensor/obj/testing.o
+ .comment       0x000000000000004c       0x4d libopencm3/lib/libopencm3_stm32l0.a(vector.o)
+
+.debug_info     0x0000000000000000      0x2dc
+ .debug_info    0x0000000000000000      0x2dc libopencm3/lib/libopencm3_stm32l0.a(vector.o)
+
+.debug_abbrev   0x0000000000000000      0x145
+ .debug_abbrev  0x0000000000000000      0x145 libopencm3/lib/libopencm3_stm32l0.a(vector.o)
+
+.debug_loc      0x0000000000000000      0x11b
+ .debug_loc     0x0000000000000000      0x11b libopencm3/lib/libopencm3_stm32l0.a(vector.o)
+
+.debug_aranges  0x0000000000000000       0x30
+ .debug_aranges
+                0x0000000000000000       0x30 libopencm3/lib/libopencm3_stm32l0.a(vector.o)
+
+.debug_ranges   0x0000000000000000       0x20
+ .debug_ranges  0x0000000000000000       0x20 libopencm3/lib/libopencm3_stm32l0.a(vector.o)
+
+.debug_macro    0x0000000000000000     0x1380
+ .debug_macro   0x0000000000000000       0xcf libopencm3/lib/libopencm3_stm32l0.a(vector.o)
+ .debug_macro   0x00000000000000cf      0xa72 libopencm3/lib/libopencm3_stm32l0.a(vector.o)
+ .debug_macro   0x0000000000000b41       0x52 libopencm3/lib/libopencm3_stm32l0.a(vector.o)
+ .debug_macro   0x0000000000000b93       0x1c libopencm3/lib/libopencm3_stm32l0.a(vector.o)
+ .debug_macro   0x0000000000000baf       0x22 libopencm3/lib/libopencm3_stm32l0.a(vector.o)
+ .debug_macro   0x0000000000000bd1       0x56 libopencm3/lib/libopencm3_stm32l0.a(vector.o)
+ .debug_macro   0x0000000000000c27       0x51 libopencm3/lib/libopencm3_stm32l0.a(vector.o)
+ .debug_macro   0x0000000000000c78      0x103 libopencm3/lib/libopencm3_stm32l0.a(vector.o)
+ .debug_macro   0x0000000000000d7b       0x6a libopencm3/lib/libopencm3_stm32l0.a(vector.o)
+ .debug_macro   0x0000000000000de5      0x1df libopencm3/lib/libopencm3_stm32l0.a(vector.o)
+ .debug_macro   0x0000000000000fc4       0x22 libopencm3/lib/libopencm3_stm32l0.a(vector.o)
+ .debug_macro   0x0000000000000fe6       0xe8 libopencm3/lib/libopencm3_stm32l0.a(vector.o)
+ .debug_macro   0x00000000000010ce      0x19f libopencm3/lib/libopencm3_stm32l0.a(vector.o)
+ .debug_macro   0x000000000000126d       0x49 libopencm3/lib/libopencm3_stm32l0.a(vector.o)
+ .debug_macro   0x00000000000012b6       0xca libopencm3/lib/libopencm3_stm32l0.a(vector.o)
+
+.debug_line     0x0000000000000000      0x45b
+ .debug_line    0x0000000000000000      0x45b libopencm3/lib/libopencm3_stm32l0.a(vector.o)
+
+.debug_str      0x0000000000000000     0x5190
+ .debug_str     0x0000000000000000     0x5190 libopencm3/lib/libopencm3_stm32l0.a(vector.o)
+                                       0x52f9 (size before relaxing)
+
+.debug_frame    0x0000000000000000       0x48
+ .debug_frame   0x0000000000000000       0x48 libopencm3/lib/libopencm3_stm32l0.a(vector.o)

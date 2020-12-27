@@ -4,7 +4,7 @@
         //////////////////////////////
         // Builds
         //////////////////////////////
-        // All
+        // Build all
         {
             "label": "Build all",
             "group": {
@@ -14,9 +14,10 @@
             "dependsOn":["Build hub", "Build sensor"],
             "presentation": {
                 "focus": true
-            }
+            },
+            "problemMatcher":[]
         },   
-        // Hub
+        // Build hub
         {
             "label": "Build hub",
             "group": "build",
@@ -37,9 +38,9 @@
                 "focus": true
             }
         },
-        // Sensor
+        // Build sensor
         {
-            "label": "Build project",
+            "label": "Build sensor",
             "group": "build",
             "type": "shell",
             "command": "make -fsensor/Makefile all",
@@ -57,12 +58,43 @@
                 "focus": true
             }
         },
-        // Clean
+        // Clean all
         {
-            "label": "Clean project",
+            "label": "Clean projects",
+            "group": "build",
+            "dependsOn":["Clean hub", "Clean sensor"],
+            "presentation": {
+                "focus": true
+            },
+            "problemMatcher":[]
+        },
+        // Clean hub
+        {
+            "label": "Clean hub",
             "group": "build",
             "type": "shell",
             "command": "make -fhub/Makefile clean",
+            "args": [],
+            "problemMatcher": {
+                "pattern": {
+                    "regexp": "^(.*):(\\d+):(\\d+):\\s+(warning|error):\\s+(.*)$",
+                    "file": 1,
+                    "line": 2,
+                    "column": 3,
+                    "severity": 4,
+                    "message": 5
+                }
+            },
+            "presentation": {
+                "focus": true
+            }
+        },
+        // Clean sensor
+        {
+            "label": "Clean sensor",
+            "group": "build",
+            "type": "shell",
+            "command": "make -fsensor/Makefile clean",
             "problemMatcher": {
                 "pattern": {
                     "regexp": "^(.*):(\\d+):(\\d+):\\s+(warning|error):\\s+(.*)$",
@@ -78,7 +110,6 @@
             }
         },
         
-
 
         {
             "label": "Compile current file",
@@ -140,16 +171,6 @@
             }
         },
 
-        {
-            "label": "Delete build folder",
-            "type": "shell",
-            "command": "/usr/bin/make -fHub/Makefile clean",
-            "args": [],
-            "problemMatcher": [],
-            "presentation": {
-                "focus": false
-            }
-        },
         {
             "label": "CPU: Build, Download and run",
             "type": "shell",
@@ -248,6 +269,11 @@
             },
             "problemMatcher": []
         },
+        
+        //////////////////////////////
+        // Doxygen
+        //////////////////////////////
+        // Generate
         {
             "label": "Generate Doxygen",
             "type": "shell",
@@ -257,6 +283,7 @@
             },
             "problemMatcher": []
         },
+        // Open
         {
             "label": "Open Doxygen",
             "type": "shell",

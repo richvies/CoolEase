@@ -2,17 +2,11 @@
 # 1 "<built-in>"
 # 1 "<command-line>"
 # 1 "hub/src/hub.c"
-
-
-
-
-
-
-
-# 1 "hub/include/hub/test_hub.h" 1
-# 25 "hub/include/hub/test_hub.h"
+# 15 "hub/src/hub.c"
+# 1 "hub/include/hub/hub_test.h" 1
+# 52 "hub/include/hub/hub_test.h"
 void test_cusb_poll(void);
-# 9 "hub/src/hub.c" 2
+# 16 "hub/src/hub.c" 2
 # 1 "common/include/common/testing.h" 1
 # 25 "common/include/common/testing.h"
 # 1 "/usr/local/Cellar/arm-gcc-bin/9-2020-q2-update/lib/gcc/arm-none-eabi/9.3.1/include/stdint.h" 1 3 4
@@ -223,13 +217,10 @@ void boot_jump_to_application(uint32_t address);
 # 35 "common/include/common/testing.h" 2
 # 55 "common/include/common/testing.h"
 void test_boot(uint32_t address);
-# 10 "hub/src/hub.c" 2
-
-
-
+# 17 "hub/src/hub.c" 2
+# 50 "hub/src/hub.c"
 int main(void)
 {
-
 
   test_boot(0x08002000);
 

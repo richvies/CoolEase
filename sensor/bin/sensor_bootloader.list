@@ -1,0 +1,120 @@
+
+sensor/bin/sensor_bootloader.elf:     file format elf32-littlearm
+
+
+Disassembly of section .text:
+
+08000000 <vector_table>:
+ 8000000:	00 20 00 20 c9 00 00 08 c7 00 00 08 c5 00 00 08     . . ............
+	...
+ 800002c:	c7 00 00 08 00 00 00 00 00 00 00 00 c7 00 00 08     ................
+ 800003c:	c7 00 00 08 c5 00 00 08 c5 00 00 08 c5 00 00 08     ................
+ 800004c:	c5 00 00 08 c5 00 00 08 c5 00 00 08 c5 00 00 08     ................
+ 800005c:	c5 00 00 08 c5 00 00 08 c5 00 00 08 c5 00 00 08     ................
+ 800006c:	c5 00 00 08 c5 00 00 08 c5 00 00 08 c5 00 00 08     ................
+ 800007c:	c5 00 00 08 c5 00 00 08 c5 00 00 08 c5 00 00 08     ................
+ 800008c:	c5 00 00 08 c5 00 00 08 c5 00 00 08 c5 00 00 08     ................
+ 800009c:	c5 00 00 08 c5 00 00 08 c5 00 00 08 c5 00 00 08     ................
+ 80000ac:	c5 00 00 08 c5 00 00 08 c5 00 00 08 c5 00 00 08     ................
+ 80000bc:	c5 00 00 08                                         ....
+
+080000c0 <main>:
+ 80000c0:	2000      	movs	r0, #0
+ 80000c2:	4770      	bx	lr
+
+080000c4 <blocking_handler>:
+
+}
+
+void blocking_handler(void)
+{
+	while (1);
+ 80000c4:	e7fe      	b.n	80000c4 <blocking_handler>
+
+080000c6 <null_handler>:
+}
+
+void null_handler(void)
+{
+	/* Do nothing. */
+}
+ 80000c6:	4770      	bx	lr
+
+080000c8 <reset_handler>:
+{
+ 80000c8:	b510      	push	{r4, lr}
+	for (src = &_data_loadaddr, dest = &_data;
+ 80000ca:	4b16      	ldr	r3, [pc, #88]	; (8000124 <reset_handler+0x5c>)
+ 80000cc:	4a16      	ldr	r2, [pc, #88]	; (8000128 <reset_handler+0x60>)
+ 80000ce:	4917      	ldr	r1, [pc, #92]	; (800012c <reset_handler+0x64>)
+ 80000d0:	428b      	cmp	r3, r1
+ 80000d2:	d318      	bcc.n	8000106 <reset_handler+0x3e>
+		*dest++ = 0;
+ 80000d4:	2100      	movs	r1, #0
+	while (dest < &_ebss) {
+ 80000d6:	4a16      	ldr	r2, [pc, #88]	; (8000130 <reset_handler+0x68>)
+ 80000d8:	4293      	cmp	r3, r2
+ 80000da:	d317      	bcc.n	800010c <reset_handler+0x44>
+	SCB_CCR |= SCB_CCR_STKALIGN;
+ 80000dc:	2380      	movs	r3, #128	; 0x80
+ 80000de:	4a15      	ldr	r2, [pc, #84]	; (8000134 <reset_handler+0x6c>)
+ 80000e0:	009b      	lsls	r3, r3, #2
+ 80000e2:	6811      	ldr	r1, [r2, #0]
+	for (fp = &__preinit_array_start; fp < &__preinit_array_end; fp++) {
+ 80000e4:	4c14      	ldr	r4, [pc, #80]	; (8000138 <reset_handler+0x70>)
+	SCB_CCR |= SCB_CCR_STKALIGN;
+ 80000e6:	430b      	orrs	r3, r1
+ 80000e8:	6013      	str	r3, [r2, #0]
+	for (fp = &__preinit_array_start; fp < &__preinit_array_end; fp++) {
+ 80000ea:	4b14      	ldr	r3, [pc, #80]	; (800013c <reset_handler+0x74>)
+ 80000ec:	429c      	cmp	r4, r3
+ 80000ee:	d30f      	bcc.n	8000110 <reset_handler+0x48>
+	for (fp = &__init_array_start; fp < &__init_array_end; fp++) {
+ 80000f0:	4c13      	ldr	r4, [pc, #76]	; (8000140 <reset_handler+0x78>)
+ 80000f2:	4b14      	ldr	r3, [pc, #80]	; (8000144 <reset_handler+0x7c>)
+ 80000f4:	429c      	cmp	r4, r3
+ 80000f6:	d30e      	bcc.n	8000116 <reset_handler+0x4e>
+	(void)main();
+ 80000f8:	f7ff ffe2 	bl	80000c0 <main>
+	for (fp = &__fini_array_start; fp < &__fini_array_end; fp++) {
+ 80000fc:	4c12      	ldr	r4, [pc, #72]	; (8000148 <reset_handler+0x80>)
+ 80000fe:	4b13      	ldr	r3, [pc, #76]	; (800014c <reset_handler+0x84>)
+ 8000100:	429c      	cmp	r4, r3
+ 8000102:	d30b      	bcc.n	800011c <reset_handler+0x54>
+}
+ 8000104:	bd10      	pop	{r4, pc}
+		*dest = *src;
+ 8000106:	ca01      	ldmia	r2!, {r0}
+ 8000108:	c301      	stmia	r3!, {r0}
+		src++, dest++) {
+ 800010a:	e7e1      	b.n	80000d0 <reset_handler+0x8>
+		*dest++ = 0;
+ 800010c:	c302      	stmia	r3!, {r1}
+ 800010e:	e7e3      	b.n	80000d8 <reset_handler+0x10>
+		(*fp)();
+ 8000110:	cc08      	ldmia	r4!, {r3}
+ 8000112:	4798      	blx	r3
+	for (fp = &__preinit_array_start; fp < &__preinit_array_end; fp++) {
+ 8000114:	e7e9      	b.n	80000ea <reset_handler+0x22>
+		(*fp)();
+ 8000116:	cc08      	ldmia	r4!, {r3}
+ 8000118:	4798      	blx	r3
+	for (fp = &__init_array_start; fp < &__init_array_end; fp++) {
+ 800011a:	e7ea      	b.n	80000f2 <reset_handler+0x2a>
+		(*fp)();
+ 800011c:	cc08      	ldmia	r4!, {r3}
+ 800011e:	4798      	blx	r3
+	for (fp = &__fini_array_start; fp < &__fini_array_end; fp++) {
+ 8000120:	e7ed      	b.n	80000fe <reset_handler+0x36>
+ 8000122:	46c0      	nop			; (mov r8, r8)
+ 8000124:	20000000 	.word	0x20000000
+ 8000128:	08000150 	.word	0x08000150
+ 800012c:	20000000 	.word	0x20000000
+ 8000130:	20000000 	.word	0x20000000
+ 8000134:	e000ed14 	.word	0xe000ed14
+ 8000138:	08000150 	.word	0x08000150
+ 800013c:	08000150 	.word	0x08000150
+ 8000140:	08000150 	.word	0x08000150
+ 8000144:	08000150 	.word	0x08000150
+ 8000148:	08000150 	.word	0x08000150
+ 800014c:	08000150 	.word	0x08000150
