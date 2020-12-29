@@ -10,7 +10,7 @@
 #include "common/memory.h"
 
 // Flash and EEPROM Read by Word, Half Word or byte
-// Flash and EEPROM erase by page
+// Flash and EEPROM erase by page (1 word)
 // Flash programmed by word or half page
 // EEPROM programmed by word, half word or byte
 
@@ -46,10 +46,8 @@ static uint32_t msg_num_add         = 0x08080300;
 
 static uint32_t msg_num             = 0;
 
-static void flash_erase_page(uint32_t add);
 
-
-void        mem_init(void)
+void mem_init(void)
 {
     rcc_periph_clock_enable(RCC_MIF);
 
@@ -57,7 +55,7 @@ void        mem_init(void)
     if(!MMIO32(dev_state_add))
     {
         mem_wipe_readings();
-        mem_program_word(dev_state_add, 0x11111111);
+        mem_eeprom_write_word(dev_state_add, 0x11111111);
     }
 
     // Get number of messages and next reading memory location
@@ -71,9 +69,12 @@ void        mem_init(void)
 }
 
 
-void        mem_program_word(uint32_t address, uint32_t data)
+void mem_eeprom_write_word(uint32_t address, uint32_t data)
 {
-    flash_unlock();
+    if( !(address >= EEPROM_START && address < EEPROM_END) )
+        return false;
+        
+    flash_unlock_pecr();
     FLASH_PECR &= ~FLASH_PECR_FTDW;
 
     MMIO32(address) = data;
@@ -82,93 +83,151 @@ void        mem_program_word(uint32_t address, uint32_t data)
     if (FLASH_SR & FLASH_SR_EOP)
         FLASH_SR = FLASH_SR_EOP;
 
-    flash_lock();
+    flash_lock_pecr();
 }
 
-bool        mem_program_half_word(uint32_t address, uint16_t data)
+bool mem_eeprom_write_half_word(uint32_t address, uint16_t data)
 {
     if( !(address >= EEPROM_START && address < EEPROM_END) )
         return false;
 
-    flash_unlock();
+    flash_unlock_pecr();
     FLASH_PECR &= ~FLASH_PECR_FTDW;
 
     MMIO16(address) = data;
+
     while (FLASH_SR & FLASH_SR_BSY);
     if (FLASH_SR & FLASH_SR_EOP)
         FLASH_SR = FLASH_SR_EOP;
 
-    flash_lock();
+    flash_lock_pecr();
 
     return true;
 }
 
-bool        mem_program_byte(uint32_t address, uint8_t data)
+bool mem_eeprom_write_byte(uint32_t address, uint8_t data)
 {
     if( !(address >= EEPROM_START && address < EEPROM_END) )
         return false;
 
-    flash_unlock();
+    flash_unlock_pecr();
     FLASH_PECR &= ~FLASH_PECR_FTDW;
 
     MMIO8(address) = data;
+
     while (FLASH_SR & FLASH_SR_BSY);
     if (FLASH_SR & FLASH_SR_EOP)
         FLASH_SR = FLASH_SR_EOP;
 
-    flash_lock();
+    flash_lock_pecr();
 
     return true;
 }
 
-void        mem_save_reading(int16_t reading)
+
+void mem_flash_erase_page(uint32_t address)
+{
+    // Check if page aligned
+    if ((uint32_t)address & 0x7F)
+        return false; 
+
+    flash_unlock();
+
+    FLASH_PECR |= FLASH_PECR_ERASE | FLASH_PECR_PROG; 
+    
+    MMIO32(address) = (uint32_t)0;
+
+    while ((FLASH_SR & FLASH_SR_BSY) != 0);
+
+    if ((FLASH_SR & FLASH_SR_EOP) != 0) {
+        FLASH_SR = FLASH_SR_EOP; }
+
+    FLASH_PECR &= ~(FLASH_PECR_ERASE | FLASH_PECR_PROG);
+
+    flash_lock();
+}
+
+bool mem_flash_write_half_page(uint32_t address, uint32_t *data)
+{
+    flash_unlock();
+
+    uint8_t i = 0;
+
+    //half-page program operation
+    FLASH->PECR |= FLASH_PECR_PROG | FLASH_PECR_FPRG;
+    for (i = 0; i < 16; i++)
+    {
+        //the actual address written is unimportant as these words will be queued
+        MMIO32(address) = data[i];
+    }
+    //wait for completion
+    while (FLASH->SR & FLASH_SR_BSY) { }
+    flash_lock();
+
+    if (FLASH->SR & FLASH_SR_EOP)
+    {
+        //completed without incident
+        FLASH->SR = FLASH_SR_EOP;
+        return true;
+    }
+    else
+    {
+        //there was an error
+        FLASH->SR = FLASH_SR_FWWERR | FLASH_SR_NOTZEROERR | FLASH_SR_PGAERR | FLASH_SR_WRPERR;
+        return false;
+
+    }
+}
+
+
+void mem_save_reading(int16_t reading)
 {
     msg_num++;
-    mem_program_word(next_reading_add, reading);
+    mem_eeprom_write_word(next_reading_add, reading);
     next_reading_add += 4;
 
     if(msg_num % MAX_READINGS == 0)
     {
-        mem_program_word(msg_num_add, msg_num);
+        mem_eeprom_write_word(msg_num_add, msg_num);
         mem_wipe_readings();
         next_reading_add = READINGS_START;
     }
 }
 
 
-uint32_t    mem_get_dev_state(void)
+uint32_t mem_get_dev_state(void)
 {
     return MMIO32(dev_state_add);
 }
 
-uint32_t    mem_get_dev_num(void)
+uint32_t mem_get_dev_num(void)
 {
     return MMIO32(dev_num_add);
 }
 
-uint32_t    mem_get_msg_num(void)
+uint32_t mem_get_msg_num(void)
 {
     return msg_num;
 }
 
-void        mem_update_msg_num(uint32_t new)
+void mem_update_msg_num(uint32_t new)
 {
-    mem_program_word(msg_num_add, new);
+    mem_eeprom_write_word(msg_num_add, new);
 }
 
 
-uint32_t    mem_get_num_readings(void)
+uint32_t mem_get_num_readings(void)
 {
     return msg_num;
 }
 
-int16_t     mem_get_reading(uint32_t reading_num)
+int16_t mem_get_reading(uint32_t reading_num)
 {
     return MMIO32(READINGS_START + (reading_num * 4));
 }
 
 
-int         mem_log_printf(const char* format, ...)
+int mem_log_printf(const char* format, ...)
 {
   	va_list va;
   	va_start(va, format);
@@ -178,19 +237,19 @@ int         mem_log_printf(const char* format, ...)
 	return ret;
 }
 
-void        _putchar_log(char character)
+void _putchar_log(char character)
 {
-    mem_program_byte(log_add++, character);
+    mem_eeprom_write_byte(log_add++, character);
     if(log_add >= LOG_START + LOG_SIZE)
             log_add = LOG_START; 
 }
 
-void        mem_wipe_log(void)
+void mem_wipe_log(void)
 {
     
 }
 
-void        mem_get_log(char log[LOG_SIZE])
+void mem_get_log(char log[LOG_SIZE])
 {
     for(uint16_t i = 0; i < LOG_SIZE; i++)
     {
@@ -198,7 +257,7 @@ void        mem_get_log(char log[LOG_SIZE])
     }
 }
 
-void        mem_print_log(void)
+void mem_print_log(void)
 {
     spf_serial_printf("LOG START\n");
     for(uint16_t i = 0; i < LOG_SIZE; i++)
@@ -209,7 +268,7 @@ void        mem_print_log(void)
 }
 
 
-void        mem_get_aes_key(uint8_t *aes_key)
+void mem_get_aes_key(uint8_t *aes_key)
 {
     uint32_t tmp;
 
@@ -224,7 +283,7 @@ void        mem_get_aes_key(uint8_t *aes_key)
     } 
 }
 
-void        mem_set_aes_key(uint8_t *aes_key)
+void mem_set_aes_key(uint8_t *aes_key)
 {
     uint32_t tmp = 0;
 
@@ -241,7 +300,7 @@ void        mem_set_aes_key(uint8_t *aes_key)
     } 
 }
 
-void        mem_get_aes_key_exp(uint8_t *aes_key_exp)
+void mem_get_aes_key_exp(uint8_t *aes_key_exp)
 {
     uint32_t tmp;
 
@@ -256,7 +315,7 @@ void        mem_get_aes_key_exp(uint8_t *aes_key_exp)
     } 
 }
 
-void        mem_set_aes_key_exp(uint8_t *aes_key_exp)
+void mem_set_aes_key_exp(uint8_t *aes_key_exp)
 {
     uint32_t tmp = 0;
 
@@ -273,7 +332,7 @@ void        mem_set_aes_key_exp(uint8_t *aes_key_exp)
     } 
 }
 
-void        mem_wipe_readings(void)
+void mem_wipe_readings(void)
 {
     spf_serial_printf("Mem Wipe Readings\n");
 
@@ -282,27 +341,9 @@ void        mem_wipe_readings(void)
     while( page_add < FLASH_END )
     {
         // spf_serial_printf("Erasing %08X\n", page_add);
-        flash_erase_page(page_add);
+        mem_flash_erase_page(page_add);
         page_add += FLASH_PAGE_SIZE;
     }
 
     spf_serial_printf("Done\n", page_add);
-}
-
-static void flash_erase_page(uint32_t add)
-{
-    flash_unlock();
-
-    FLASH_PECR |= FLASH_PECR_ERASE | FLASH_PECR_PROG; 
-    
-    MMIO32(add) = (uint32_t)0;
-
-    while ((FLASH_SR & FLASH_SR_BSY) != 0);
-
-    if ((FLASH_SR & FLASH_SR_EOP) != 0) {
-        FLASH_SR = FLASH_SR_EOP; }
-
-    FLASH_PECR &= ~(FLASH_PECR_ERASE | FLASH_PECR_PROG);
-
-    flash_lock();
 }

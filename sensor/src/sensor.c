@@ -20,7 +20,7 @@
 #include "common/rf_scan.h"
 #include "common/rfm.h"
 #include "common/serial_printf.h"
-#include "common/testing.h"
+#include "common/test.h"
 #include "common/timers.h"
 
 #include "sensor/tmp112.h"
@@ -83,32 +83,32 @@ int main(void)
 	// tmp112_init();
 	// tmp112_end();
 	
-	// testing_wakeup();
-	// testing_standby(60);
-	// testing_rf();
-	// testing_rf_listen();
-	// testing_sensor(DEV_NUM_CHIP);
-	// testing_sensor(0x12345678);
-	// testing_receiver(3);
-	// testing_receiver(DEV_NUM_PCB);
-	// testing_voltage_scale(2);
-	// testing_low_power_run();
-	// testing_eeprom();
-	// testing_eeprom_keys();
-	// testing_eeprom_wipe();
-	// testing_lptim();
-	// testing_si7051(5);
-	// testing_tmp112(5);
-	// testing_rfm();
-	// testing_reset_eeprom();
-	// testing_encryption();
-	// testing_timeout();
-	// testing_log();
+	// test_wakeup();
+	// test_standby(60);
+	// test_rf();
+	// test_rf_listen();
+	// test_sensor(DEV_NUM_CHIP);
+	// test_sensor(0x12345678);
+	// test_receiver(3);
+	// test_receiver(DEV_NUM_PCB);
+	// test_voltage_scale(2);
+	// test_low_power_run();
+	// test_eeprom();
+	// test_eeprom_keys();
+	// test_eeprom_wipe();
+	// test_lptim();
+	// test_si7051(5);
+	// test_tmp112(5);
+	// test_rfm();
+	// test_reset_eeprom();
+	// test_encryption();
+	// test_timeout();
+	// test_log();
 
 
 	for (;;)
 	{
-		// testing_sensor(DEV_NUM_CHIP);
+		// test_sensor(DEV_NUM_CHIP);
 		// spf_serial_printf("Loop\n");
 		// timers_delay_milliseconds(1000);
 	}

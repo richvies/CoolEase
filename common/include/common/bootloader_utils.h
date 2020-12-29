@@ -48,6 +48,7 @@ extern "C" {
 // Exported Function Declarations
 /*////////////////////////////////////////////////////////////////////////////*/
 
+void boot_init(void);
 void boot_deinit(void);
 void boot_jump_to_application(uint32_t address);
 

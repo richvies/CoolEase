@@ -12,7 +12,7 @@
 // Includes
 /*////////////////////////////////////////////////////////////////////////////*/
 
-#include <common/testing.h>
+#include <common/test.h>
 
 #include <string.h>
 #include <stdbool.h>
@@ -36,11 +36,11 @@
 #include "common/memory.h"
 
 
-/** @addtogroup TESTING_FILE 
+/** @addtogroup TEST_FILE 
  * @{
  */
 
-/** @addtogroup TESTING_INT 
+/** @addtogroup TEST_INT 
  * @{
  */
 
@@ -58,7 +58,7 @@
 
 /** @} */
 
-/** @addtogroup TESTING_API
+/** @addtogroup TEST_API
  * @{
  */
 
@@ -90,7 +90,7 @@ void flash_led(uint16_t milliseconds, uint8_t num_flashes)
 	}
 }
 
-void testing_wakeup(void)
+void test_wakeup(void)
 {
 	spf_serial_printf("Reset\n");
 	reset_print_cause();
@@ -104,7 +104,7 @@ void testing_wakeup(void)
 	#endif
 }
 
-void testing_standby(uint32_t standby_time)
+void test_standby(uint32_t standby_time)
 {
 	spf_serial_printf("Testing Standby for %i seconds\n", standby_time);
 
@@ -129,7 +129,7 @@ void testing_standby(uint32_t standby_time)
 	timers_enter_standby();
 }
 
-void testing_rf(void)
+void test_rf(void)
 {
 	spf_serial_printf("Testing RF\n");
 
@@ -169,7 +169,7 @@ void testing_rf(void)
 	}
 }
 
-void testing_rf_listen(void)
+void test_rf_listen(void)
 {
 	spf_serial_printf("Testing RF Listen\n");
 
@@ -200,7 +200,7 @@ void testing_rf_listen(void)
 	}
 }
 
-void testing_receiver(uint32_t dev_num)
+void test_receiver(uint32_t dev_num)
 {
 	spf_serial_printf("Testing Receiver\n");
 
@@ -312,7 +312,7 @@ void testing_receiver(uint32_t dev_num)
 	}	
 }
 
-void testing_voltage_scale(uint8_t scale)
+void test_voltage_scale(uint8_t scale)
 {
 	spf_serial_printf("Testing Voltage Scale\n");
 
@@ -342,7 +342,7 @@ void testing_voltage_scale(uint8_t scale)
 	}
 }
 
-void testing_low_power_run(void)
+void test_low_power_run(void)
 {
 	spf_serial_printf("Testing LP Run\n");
 
@@ -371,7 +371,7 @@ void testing_low_power_run(void)
 	}
 }
 
-void testing_eeprom(void)
+void test_eeprom(void)
 {
 	spf_serial_printf("Testing EEPROM\n");
 
@@ -388,7 +388,7 @@ void testing_eeprom(void)
 	}
 }
 
-void testing_eeprom_keys(void)
+void test_eeprom_keys(void)
 {
 	spf_serial_printf("Testing EEPROM Encryption Keys\n");
 
@@ -418,7 +418,7 @@ void testing_eeprom_keys(void)
 	for(int i = 0; i < 176; i++){spf_serial_printf("%02x ", aes_key_exp[i]);}
 }
 
-void testing_eeprom_wipe(void)
+void test_eeprom_wipe(void)
 {
 	spf_serial_printf("Testing EEPROM Wipe\n");
 
@@ -451,7 +451,7 @@ void testing_eeprom_wipe(void)
 	spf_serial_printf("Done\n");
 }
 
-void testing_lptim(void)
+void test_lptim(void)
 {
 	spf_serial_printf("Testing LP Timer\n");
 
@@ -464,7 +464,7 @@ void testing_lptim(void)
 	}
 }
 
-void testing_rfm(void)
+void test_rfm(void)
 {
 	spf_serial_printf("Testing RFM\n");
 
@@ -473,7 +473,7 @@ void testing_rfm(void)
 	rfm_set_tx_continuous();
 }
 
-void testing_reset_eeprom(void)
+void test_reset_eeprom(void)
 {
 	spf_serial_printf("Resetting MEM\n");
 
@@ -490,7 +490,7 @@ void testing_reset_eeprom(void)
 	spf_serial_printf("Done\n");
 }
 
-void testing_encryption(void)
+void test_encryption(void)
 {
 	spf_serial_printf("Testing Encryption\n");
 
@@ -510,7 +510,7 @@ void testing_encryption(void)
 	spf_serial_printf("\n");
 }
 
-bool testing_timeout(void)
+bool test_timeout(void)
 {
 	spf_serial_printf("Testing Timeout\n");
 	
@@ -528,7 +528,7 @@ bool testing_timeout(void)
 	return true;
 }
 
-void testing_log(void)
+void test_log(void)
 {
 	spf_serial_printf("Testing Log\n");
 
@@ -544,7 +544,7 @@ void testing_log(void)
 	mem_print_log();
 }
 
-void testing_analog_watchdog(void)
+void test_analog_watchdog(void)
 {
 	spf_serial_printf("Testing Analog Watchdog\n");
 	batt_enable_interrupt();
@@ -559,7 +559,7 @@ void testing_analog_watchdog(void)
 
 /** @} */
 
-/** @addtogroup TESTING_INT
+/** @addtogroup TEST_INT
  * @{
  */
 

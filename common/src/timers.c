@@ -22,7 +22,7 @@
 #include "common/rf_scan.h"
 #include "common/rfm.h"
 #include "common/serial_printf.h"
-#include "common/testing.h"
+#include "common/test.h"
 #include "common/timers.h"
 
 static uint16_t timeout_timer = 0;

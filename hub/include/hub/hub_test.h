@@ -50,9 +50,9 @@ extern "C" {
 /*////////////////////////////////////////////////////////////////////////////*/
 
 void test_cusb_poll(void);
-void testing_hub(void);
-void testing_sim(void);
-void testing_sim_serial_pass_through(void);
+void test_hub(void);
+void test_sim(void);
+void test_sim_serial_pass_through(void);
 
 /** @} */
 

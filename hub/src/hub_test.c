@@ -76,7 +76,7 @@ void test_cusb_poll(void)
   cusb_test_poll();
 }
 
-void testing_sim(void)
+void test_sim(void)
 {
 	spf_serial_printf("Testing Sim\n");
 
@@ -139,13 +139,13 @@ void testing_sim(void)
 	}
 }
 
-void testing_sim_serial_pass_through(void)
+void test_sim_serial_pass_through(void)
 {
 	spf_serial_printf("Testing sim serial pass through\n");
 	sim_serial_pass_through();
 }
 
-void testing_hub(void)
+void test_hub(void)
 {
 	// spf_serial_printf("Testing Hub\n");
 

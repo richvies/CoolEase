@@ -14,6 +14,7 @@
 
 #include "hub/hub_bootloader.h"
 
+#include "common/timers.h"
 #include "common/serial_printf.h"
 
 /** @addtogroup HUB_BOOTLOADER_FILE 
@@ -46,9 +47,17 @@
 
 int main(void)
 {
-    // spf_init();
-    // spf_serial_printf("Hub Bootloader Start\n");
+    spf_init();
+	timers_lptim_init();
+	timers_tim6_init();
+    spf_serial_printf("Hub Bootloader Start\n");
     boot_jump_to_application(APP_ADDRESS);
+
+    for (;;)
+	{
+		spf_serial_printf("Hub Bootloader Loop\n\n");
+		timers_delay_milliseconds(1000);
+	}
 
     return 0;
 }

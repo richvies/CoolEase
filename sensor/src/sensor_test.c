@@ -70,7 +70,7 @@
 // Exported Function Definitions
 /*////////////////////////////////////////////////////////////////////////////*/
 
-void testing_si7051(uint8_t num_readings)
+void test_si7051(uint8_t num_readings)
 {
 	spf_serial_printf("Testing SI7051\n");
 
@@ -89,7 +89,7 @@ void testing_si7051(uint8_t num_readings)
 	}
 }
 
-void testing_tmp112(uint8_t num_readings)
+void test_tmp112(uint8_t num_readings)
 {
 	spf_serial_printf("Testing TMP112\n");
 
@@ -108,7 +108,7 @@ void testing_tmp112(uint8_t num_readings)
 	}
 }
 
-void testing_sensor(uint32_t dev_num)
+void test_sensor(uint32_t dev_num)
 {
 	spf_serial_printf("Testing Sensor\n");
 

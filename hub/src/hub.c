@@ -25,7 +25,7 @@
 #include "common/rfm.h"
 #include "common/serial_printf.h"
 #include "common/timers.h"
-#include "common/testing.h"
+#include "common/test.h"
 
 #include "hub/hub_test.h"
 #include "hub/sim.h"
@@ -48,7 +48,7 @@
 // Static Function Declarations
 /*////////////////////////////////////////////////////////////////////////////*/
 
-static void testing_hub2(void);
+static void test_hub2(void);
 static void hub_download_info(void);
 
 /** @} */
@@ -63,23 +63,18 @@ static void hub_download_info(void);
 
 int main(void)
 {
-	// spf_init();
-	// spf_serial_printf("Hub Start\n");
-  // test_cusb_poll();
-  // test_boot(APP_ADDRESS);
-
-  	// // gpio_init();
-	// spf_init();
+	spf_init();
+	timers_lptim_init();
+	timers_tim6_init();
+  	// gpio_init();
 	// mem_init();
 	// aes_init();
 	// batt_init();
-	// timers_lptim_init();
-	// timers_tim6_init();
 
-	// for(int i = 0; i < 100000; i++){__asm__("nop");};
+	for(int i = 0; i < 100000; i++){__asm__("nop");};
 
-	// spf_serial_printf("Hub Start\n");
-	// flash_led(100, 5);
+	spf_serial_printf("Hub Start\n");
+	flash_led(100, 5);
 
 	// Read Bootloader ID causes hard fault
 	// spf_serial_printf("%08x : %08x\n", 0x1FF00FFE, tst);
@@ -90,29 +85,29 @@ int main(void)
 	// sim_init();
 	// sim_end();
 
-	// testing_wakeup();
-	// testing_rf();
-	// testing_rf_listen();
-	// testing_receiver(DEV_NUM_CHIP);
-	// testing_hub();
-	// testing_rfm();
-	// testing_sensor();
-	// testing_sim();
-	// testing_sim_serial_pass_through();
-	// if( testing_timeout() ) spf_serial_printf("Good\n"); else spf_serial_printf("Timeout\n");
-	// testing_analog_watchdog();
+	// test_wakeup();
+	// test_rf();
+	// test_rf_listen();
+	// test_receiver(DEV_NUM_CHIP);
+	// test_hub();
+	// test_rfm();
+	// test_sensor();
+	// test_sim();
+	// test_sim_serial_pass_through();
+	// if( test_timeout() ) spf_serial_printf("Good\n"); else spf_serial_printf("Timeout\n");
+	// test_analog_watchdog();
+	// test_cusb_poll();
 
-	// testing_hub2();
+	// test_hub2();
 
 
-	// for (;;)
-	// {
-	// 	spf_serial_printf("Loop\n\n");
-	// 	timers_delay_milliseconds(1000);
-	// }
-	// return 0;
+	for (;;)
+	{
+		spf_serial_printf("Hub Loop\n\n");
+		timers_delay_milliseconds(1000);
+	}
 
-    // testing_hub2();
+    // test_hub2();
 
   return 0;
 }
@@ -127,7 +122,7 @@ int main(void)
 // Static Function Definitions
 /*////////////////////////////////////////////////////////////////////////////*/
 
-static void testing_hub2(void)
+static void test_hub2(void)
 {
 	spf_serial_printf("Testing Hub 2\n");
 
