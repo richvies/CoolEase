@@ -28,12 +28,12 @@
 #include "common/aes.h"
 #include "common/battery.h"
 #include "common/board_defs.h"
-#include "common/aes.h"
+#include "common/bootloader_utils.h"
+#include "common/memory.h"
 #include "common/reset.h"
 #include "common/rfm.h"
 #include "common/serial_printf.h"
 #include "common/timers.h"
-#include "common/memory.h"
 
 
 /** @addtogroup TEST_FILE 
@@ -66,12 +66,38 @@
 // Exported Function Definitions
 /*////////////////////////////////////////////////////////////////////////////*/
 
+/*////////////////////////////////////////////////////////////////////////////*/
+// Memory tests
+/*////////////////////////////////////////////////////////////////////////////*/
+
+void test_mem_write_read(void)
+{
+    uint32_t eeprom_address = EEPROM_END - EEPROM_PAGE_SIZE;
+    uint32_t eeprom_word    = 0x12345678;
+
+    uint32_t flash_address = FLASH_END - FLASH_PAGE_SIZE;
+    uint32_t *flash_data   = (uint32_t*)malloc(64); 
+    flash_data[0] = 0x12345678;
+    flash_data[1] = 0x24681234;
+
+    spf_serial_printf("Test Mem Write Read\n\n");
+
+    spf_serial_printf("EEPROM Start: %08x : %08x\n", eeprom_address, MMIO32(eeprom_address));
+    spf_serial_printf("Programming: %08x\n", eeprom_word); mem_eeprom_write_word(eeprom_address, eeprom_word);
+    spf_serial_printf("EEPROM End: %08x : %08x\n\n", eeprom_address, MMIO32(eeprom_address));
+
+    spf_serial_printf("Flash Erase\n"); mem_flash_erase_page(flash_address);
+    spf_serial_printf("Flash Start: %08x : %08x\n%08x : %08x\n", flash_address, MMIO32(flash_address), flash_address+4, MMIO32(flash_address+4));
+    spf_serial_printf("Programming %08x %08x\n", flash_data[0], flash_data[1]); mem_flash_write_half_page(flash_address, flash_data);
+    // spf_serial_printf("Programming %08x\n", flash_data[1]); mem_flash_write_word(flash_address, flash_data[1]);
+    spf_serial_printf("Flash End: %08x : %08x\n%08x : %08x\n", flash_address, MMIO32(flash_address), flash_address+4, MMIO32(flash_address+4));
+}
+
 /** @brief Test jumping to user defined address
  * 
  * @ref boot_jump_to_application() 
  * Updates VTOR, stack pointer and calls fn(address+4) i.e.reset handler()
  */
-
 void test_boot(uint32_t address)
 {
     boot_jump_to_application(address);

@@ -33,7 +33,10 @@
 		"files.associations": {
 			"*.include": "makefile",
 			"*.inc": "makefile",
-			"type_traits": "c"
+			"Doxyfile": "makefile",
+			"*.h": "c",
+			"type_traits": "c",
+			"cstdlib": "c"
 		},
 		"explorer.autoReveal": false,
 		"python.pythonPath": "/usr/local/anaconda3/bin/python",

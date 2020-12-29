@@ -76,6 +76,8 @@ int main(void)
 	spf_serial_printf("Hub Start\n");
 	flash_led(100, 5);
 
+	test_mem_write_read();
+
 	// Read Bootloader ID causes hard fault
 	// spf_serial_printf("%08x : %08x\n", 0x1FF00FFE, tst);
 
