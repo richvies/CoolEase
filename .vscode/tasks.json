@@ -17,6 +17,17 @@
             },
             "problemMatcher":[]
         },   
+        // Rebuild all
+        {
+            "label": "Rebuild all",
+            "group": "build",
+            "dependsOrder": "sequence",
+            "dependsOn":["Clean all", "Build all"],
+            "presentation": {
+                "focus": true
+            },
+            "problemMatcher":[]
+        },  
         // Build hub
         {
             "label": "Build hub",
@@ -60,7 +71,7 @@
         },
         // Clean all
         {
-            "label": "Clean projects",
+            "label": "Clean all",
             "group": "build",
             "dependsOn":["Clean hub", "Clean sensor"],
             "presentation": {
@@ -110,141 +121,106 @@
             }
         },
         
-
+        //////////////////////////////
+        // Download
+        //////////////////////////////
+        // Hub
         {
-            "label": "Compile current file",
-            "type": "shell",
-            "command": "/usr/local/bin/arm-none-eabi-gcc",
-            "args": [
-                "-c",
-                "-DUSE_HAL_DRIVER",
-                "-DSTM32L052xx",
-                "-IUSB_DEVICE/App",
-                "-IUSB_DEVICE/Target",
-                "-ICore/Inc",
-                "-IDrivers/STM32L0xx_HAL_Driver/Inc",
-                "-IDrivers/STM32L0xx_HAL_Driver/Inc/Legacy",
-                "-IMiddlewares/ST/STM32_USB_Device_Library/Core/Inc",
-                "-IMiddlewares/ST/STM32_USB_Device_Library/Class/CustomHID/Inc",
-                "-IDrivers/CMSIS/Device/ST/STM32L0xx/Include",
-                "-IDrivers/CMSIS/Include",
-                "-IDrivers/CMSIS/Include",
-                "-mcpu=cortex-m0plus",
-                "-mthumb",
-                "-DUSE_HAL_DRIVER",
-                "-DSTM32L052xx",
-                "-IUSB_DEVICE/App",
-                "-IUSB_DEVICE/Target",
-                "-ICore/Inc",
-                "-IDrivers/STM32L0xx_HAL_Driver/Inc",
-                "-IDrivers/STM32L0xx_HAL_Driver/Inc/Legacy",
-                "-IMiddlewares/ST/STM32_USB_Device_Library/Core/Inc",
-                "-IMiddlewares/ST/STM32_USB_Device_Library/Class/CustomHID/Inc",
-                "-IDrivers/CMSIS/Device/ST/STM32L0xx/Include",
-                "-IDrivers/CMSIS/Include",
-                "-IDrivers/CMSIS/Include",
-                "-Og",
-                "-Wall",
-                "-fdata-sections",
-                "-ffunction-sections",
-                "-g",
-                "-gdwarf-2",
-                "-MMD",
-                "-MP",
-                "-MF'build/${fileBasenameNoExtension}.d'",
-                "'${relativeFile}'",
-                "-o",
-                "'build/${fileBasenameNoExtension}.o'"
-            ],
-            "problemMatcher": {
-                "pattern": {
-                    "regexp": "^(.*):(\\d+):(\\d+):\\s+(warning|error):\\s+(.*)$",
-                    "file": 1,
-                    "line": 2,
-                    "column": 3,
-                    "severity": 4,
-                    "message": 5
-                }
-            },
-            "presentation": {
-                "focus": true
-            }
-        },
-
-        {
-            "label": "CPU: Build, Download and run",
+            "label": "Hub Download",
             "type": "shell",
             "command": "/usr/local/bin/openocd",
             "args": [
                 "-f",
-                "Tools/OpenOCD/stlink.cfg",
+                "tools/openocd/stlink.cfg",
                 "-f",
-                "Tools/OpenOCD/stm32l0.cfg",
+                "tools/openocd/stm32l0.cfg",
                 "-c",
-                "program hub/bin/hub.elf verify reset exit"
-            ],
-            "problemMatcher": [],
-            "dependsOn": "Build project"
-        },
-        {
-            "label": "CPU: Download and run",
-            "type": "shell",
-            "command": "/usr/local/bin/openocd",
-            "args": [
-                "-f",
-                "/Users/richarddavies/Desktop/Projects/Learn:Practice/CubeMXTest/.vscode/stlink.cfg",
-                "-f",
-                ".vscode/stm32l0.cfg",
+                "program hub/bin/hub.elf verify",
                 "-c",
-                "program build/CubeMXTest.elf verify reset exit"
+                "program hub/bin/hub_bootloader.elf verify",
+                "-c",
+                "reset",
+                "-c",
+                "exit"
             ],
+            "dependsOn": ["Build hub"],
             "problemMatcher": []
         },
+        // Sensor
+        {
+            "label": "Sensor Download",
+            "type": "shell",
+            "command": "/usr/local/bin/openocd",
+            "args": [
+                "-f",
+                "tools/openocd/stlink.cfg",
+                "-f",
+                "tools/openocd/stm32l0.cfg",
+                "-c",
+                "program sensor/bin/sensor.elf verify",
+                "-c",
+                "program sensor/bin/sensor_bootloader.elf verify",
+                "-c",
+                "reset",
+                "-c",
+                "exit"
+            ],
+            "dependsOn": ["Build sensor"],
+            "problemMatcher": []
+        },
+        // CPU: Reset & run
         {
             "label": "CPU: Reset and run",
             "type": "shell",
             "command": "/usr/local/bin/openocd",
             "args": [
                 "-f",
-                "/Users/richarddavies/Desktop/Projects/Learn:Practice/CubeMXTest/.vscode/stlink.cfg",
+                "tools/openocd/stlink.cfg",
                 "-f",
-                ".vscode/stm32l0.cfg",
+                "tools/openocd/stm32l0.cfg",
                 "-c init",
                 "-c reset",
                 "-c exit"
             ],
             "problemMatcher": []
         },
+        // CPU: Halt
         {
             "label": "CPU: Halt",
             "type": "shell",
             "command": "/usr/local/bin/openocd",
             "args": [
                 "-f",
-                "/Users/richarddavies/Desktop/Projects/Learn:Practice/CubeMXTest/.vscode/stlink.cfg",
+                "tools/openocd/stlink.cfg",
                 "-f",
-                ".vscode/stm32l0.cfg",
+                "tools/openocd/stm32l0.cfg",
                 "-c init",
                 "-c halt",
                 "-c exit"
             ],
             "problemMatcher": []
         },
+        // CPU: Resume
         {
-            "label": "CPU: Run",
+            "label": "CPU: Resume",
             "type": "shell",
             "command": "/usr/local/bin/openocd",
             "args": [
                 "-f",
-                "/Users/richarddavies/Desktop/Projects/Learn:Practice/CubeMXTest/.vscode/stlink.cfg",
+                "tools/openocd/stlink.cfg",
                 "-f",
-                ".vscode/stm32l0.cfg",
+                "tools/openocd/stm32l0.cfg",
                 "-c init",
                 "-c resume",
                 "-c exit"
             ],
             "problemMatcher": []
         },
+        
+        //////////////////////////////
+        // Python
+        //////////////////////////////
+        // Run python file
         {
             "label": "Run Python file",
             "type": "shell",
@@ -257,6 +233,12 @@
             },
             "problemMatcher": []
         },
+        
+        
+        //////////////////////////////
+        // CubeMX
+        //////////////////////////////
+        // Open .ioc
         {
             "label": "Open CubeMX project",
             "type": "shell",

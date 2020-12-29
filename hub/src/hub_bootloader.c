@@ -14,9 +14,13 @@
 
 #include "hub/hub_bootloader.h"
 
+#include "common/serial_printf.h"
+
 /** @addtogroup HUB_BOOTLOADER_FILE 
  * @{
  */
+
+#define APP_ADDRESS 0x08004000
 
 /** @addtogroup HUB_BOOTLOADER_INT 
  * @{
@@ -42,6 +46,10 @@
 
 int main(void)
 {
+    // spf_init();
+    // spf_serial_printf("Hub Bootloader Start\n");
+    boot_jump_to_application(APP_ADDRESS);
+
     return 0;
 }
 

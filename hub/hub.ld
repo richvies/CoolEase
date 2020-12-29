@@ -72,13 +72,13 @@ SECTIONS
     /* Initialized data cpoied to RAM */
     .data : 
     {
-        /* Start address of data in flash */
+        /* Start address of data in RAM */
         _data = .;
         *(.data*)
         . = ALIGN(4);
         _edata = .;
     } >ram AT >rom
-    /* Address in RAM to load data */
+    /* Start address in flash */
     _data_loadaddr = LOADADDR(.data);
     
     /* Uninitialized data zero'd section of RAM */

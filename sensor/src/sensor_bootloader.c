@@ -14,6 +14,8 @@
 
 #include "sensor/sensor_bootloader.h"
 
+#include "common/serial_printf.h"
+
 /** @addtogroup SENSOR_BOOTLOADER_FILE 
  * @{
  */
@@ -42,6 +44,8 @@
 
 int main(void)
 {
+    spf_init();
+    spf_serial_printf("Sensor Bootloader Start\n");
     return 0;
 }
 

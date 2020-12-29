@@ -24,7 +24,8 @@
             "libopencm3/include"
         ],
         "libopencm3_defines": [
-            "STM32L0"
+            "STM32L0",
+            "_HUB"
         ],
         "gccExePath": "/usr/local/bin/arm-none-eabi-gcc",
         "gccIncludePath": "/usr/local/lib/gcc/arm-none-eabi/9.3.1/include"

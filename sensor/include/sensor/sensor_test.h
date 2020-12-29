@@ -29,6 +29,7 @@
 // Includes
 /*////////////////////////////////////////////////////////////////////////////*/
 
+#include <stdint.h>
 
 
 #ifdef __cplusplus
@@ -48,6 +49,11 @@ extern "C" {
 /*////////////////////////////////////////////////////////////////////////////*/
 // Exported Function Declarations
 /*////////////////////////////////////////////////////////////////////////////*/
+
+void testing_tmp112a(uint8_t num_readings);
+void testing_sensor(uint32_t dev_num);
+void testing_si7051(uint8_t num_readings);
+void testing_tmp112(uint8_t num_readings);
 
 /** @} */
 

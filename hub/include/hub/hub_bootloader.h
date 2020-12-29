@@ -29,6 +29,8 @@
 // Includes
 /*////////////////////////////////////////////////////////////////////////////*/
 
+#include "common/bootloader_utils.h"
+
 #ifdef __cplusplus
 extern "C" {
 #endif

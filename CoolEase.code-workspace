@@ -11,27 +11,36 @@
 			"**/.hg": true,
 			"**/CVS": true,
 			"**/.DS_Store": true,
+			".gitignore": true,
+			".vscode": false,
 			
+			"tools":false,
+			"web":true,
 			"000Webhost":true,
 			"Development Invoices": true, 
-			"hardware": false,
-
-			"README.md": true,
+			"hardware": true,
 			"coolterm":true,
 			"old": true,
 			"docs": true,
-			".gitignore": false,
+			"README.md": true,
+			
+			"**/obj/":false,
+			"**/bin/":false,
+			"**/*.ld/":true,
+			"**/*eeprom.bin":true,
+
 		},
-		"python.pythonPath": "/usr/local/anaconda3/bin/python",
-		"terminal.integrated.inheritEnv": false,
-		"terminal.integrated.env.osx": {
-			"PATH":"/usr/local/anaconda3/bin:/usr/local/anaconda3/condabin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/opt/X11/bin:/usr/local/CrossPack-AVR/bin:/Applications/Wireshark.app/Contents/MacOS"
-		},
-		"explorer.autoReveal": false,
 		"files.associations": {
 			"*.include": "makefile",
 			"*.inc": "makefile",
 			"type_traits": "c"
 		},
+		"explorer.autoReveal": false,
+		"python.pythonPath": "/usr/local/anaconda3/bin/python",
+		"terminal.integrated.shell.osx": "/bin/bash",
+		"terminal.integrated.inheritEnv": false,
+		"terminal.integrated.shellArgs.osx": [
+			"-l"
+		]
 	}
 }

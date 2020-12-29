@@ -42,9 +42,11 @@ extern "C" {
 #endif
 
 /** @addtogroup RFM_REG
+ * 
+ * Definitiion of registers in RFM95
  * @{
  */
-
+// #region RFM Registers
 #define RFM_REG_00_FIFO                                0x00 ///< @brief Shared TX/RX FIFO Address
 #define RFM_REG_01_OP_MODE                             0x01 ///< Operating Mode @ref RFM_IRQ
 #define RFM_REG_02_RESERVED                            0x02
@@ -265,7 +267,7 @@ extern "C" {
 #define RFM_PA_DAC_DISABLE                        0x04
 #define RFM_PA_DAC_ENABLE                         0x07
 #define RFM_PA_DAC_MASK                           0x07
-
+// #endregion
 /** @} */
 
 /** @addtogroup RFM_API

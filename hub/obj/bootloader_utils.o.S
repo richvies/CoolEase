@@ -221,7 +221,7 @@ void boot_jump_to_application(uint32_t address);
 
 
 
-static inline void ccm_enable_interrupts(void)
+static inline void cm_enable_interrupts(void)
 {
  __asm__ volatile ("CPSIE I\n");
 }

@@ -35,6 +35,10 @@ LDLIBS += -Wl,--start-group -lc -lgcc -lnosys -Wl,--end-group
 # General Project Files
 #############################################################
 
+ifeq ($(PROJECT), hub)
+TGT_CFLAGS	   	+=	-D_HUB
+endif
+
 # Include Headers
 INCLUDES += -I$(PROJECT)/include -Icommon/include
 
@@ -46,6 +50,7 @@ CFILES = $(wildcard $(SRCDIR)/*.c) $(wildcard $(COMDIR)/*.c)
 # Object Files
 OBJDIR = $(PROJECT)/obj
 OBJS   = $(addprefix $(OBJDIR)/, $(notdir $(CFILES:.c=.o)))
+.SECONDARY: $(OBJS) # So that make does not think they are intermediate files and delete them
 
 # Build Directory
 BINDIR = $(PROJECT)/bin
@@ -54,7 +59,7 @@ BINDIR = $(PROJECT)/bin
 VPATH = $(PROJECT) $(SRCDIR) $(COMDIR) $(OBJDIR) $(BINDIR)
 
 # List of files for make_clean
-GENERATED_BINS = $(BINDIR)/*.elf $(BINDIR)/*.bin $(BINDIR)/*.map $(BINDIR)/*.list $(BINDIR)/*.lss
+GENERATED_BINS = $(BINDIR)/*.elf $(BINDIR)/*.hex $(BINDIR)/*.bin $(BINDIR)/*.map $(BINDIR)/*.list $(BINDIR)/*.lss
 
 #############################################################
 # Specific Project Files
@@ -77,10 +82,11 @@ LDSCRIPTS				= $($(PROJECT)_LDSCRIPT) $($(BOOTLOADER)_LDSCRIPT)
 
 CSTD ?= -std=c99
 
-ifeq ($(D),)
+ifeq ($(R), 1)
 OPT = -O3
 else
-OPT = -Og -ggdb3
+# OPT = -Og -ggdb3
+OPT = -Os -s
 endif
 
 TGT_CPPFLAGS += -MD
@@ -106,6 +112,7 @@ TGT_LDFLAGS += -L$(OPENCM3_DIR)/lib -nostartfiles
 TGT_LDFLAGS += $(ARCH_FLAGS)
 TGT_LDFLAGS += -specs=nano.specs
 TGT_LDFLAGS += -Wl,--gc-sections
+TGT_LDFLAGS += -Wl,--nmagic
 
 ifeq ($(V),99)
 TGT_LDFLAGS += -Wl,--print-gc-sections
@@ -124,10 +131,10 @@ endif
 
 all: project bootloader
 
-bootloader:	$(BINDIR)/$(BOOTLOADER).elf $(BINDIR)/$(BOOTLOADER).bin $(BINDIR)/$(BOOTLOADER).lss $(BINDIR)/$(BOOTLOADER).list
+bootloader:	$(BINDIR)/$(BOOTLOADER).elf $(BINDIR)/$(BOOTLOADER).hex $(BINDIR)/$(BOOTLOADER).bin $(BINDIR)/$(BOOTLOADER).lss $(BINDIR)/$(BOOTLOADER).list
 			$(SIZE) $(BINDIR)/$(BOOTLOADER).elf
 
-project:	$(BINDIR)/$(PROJECT).elf $(BINDIR)/$(PROJECT).bin $(BINDIR)/$(PROJECT).lss $(BINDIR)/$(PROJECT).list
+project:	$(BINDIR)/$(PROJECT).elf $(BINDIR)/$(PROJECT).hex $(BINDIR)/$(PROJECT).bin $(BINDIR)/$(PROJECT).lss $(BINDIR)/$(PROJECT).list
 			$(SIZE) $(BINDIR)/$(PROJECT).elf
 
 clean:
@@ -136,7 +143,7 @@ clean:
 print-%:
 	@echo $* = $($*)
 
-.PHONY: all clean print
+.PHONY: all bootloader project clean print-
 
 #############################################################
 # File build rules
@@ -144,7 +151,6 @@ print-%:
 
 %.elf: $(OBJS) $(LDSCRIPTS) $(LIBDEPS)
 	@printf "  LD\t$@\n"
-	@echo $(*F)_LDSCRIPT
 	$(Q)$(LD) -T$($(*F)_LDSCRIPT) $(TGT_LDFLAGS) $(LDFLAGS) -Wl,-Map=$*.map $($(*F)_OBJS) $(LDLIBS) -o $@
 
 $(OBJDIR)/%.o: %.c
@@ -153,8 +159,11 @@ $(OBJDIR)/%.o: %.c
 	$(Q)$(CC) $(TGT_CFLAGS) $(CFLAGS) $(TGT_CPPFLAGS) $(CPPFLAGS) -o $@.S -E $<
 	$(Q)$(CC) $(TGT_CFLAGS) $(CFLAGS) $(TGT_CPPFLAGS) $(CPPFLAGS) -o $@ -c $<
 
-%.bin: %.elf
+%.hex: %.elf
 	@printf "  OBJCOPY\t$@\n"
+	$(Q)$(OBJCOPY) -O ihex  $< $@
+
+%.bin: %.elf
 	$(Q)$(OBJCOPY) -O binary  $< $@
 
 %.lss: %.elf
@@ -162,5 +171,12 @@ $(OBJDIR)/%.o: %.c
 
 %.list: %.elf
 	$(OBJDUMP) -S $< > $@
+
+test.elf: $(TESTOBJS)
+	@printf "  LD\t$@\n"
+	$(Q)$(LD) -Thub/hub.ld $(TGT_LDFLAGS) $(LDFLAGS) -Wl,-Map=$*.map $(TESTOBJS) $(LDLIBS) -o $@
+	$(OBJDUMP) -x test.elf
+	$(SIZE) test.elf
+	rm -rf test.elf
 
 -include $(OBJS:.o=.d)
