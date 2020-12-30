@@ -19,7 +19,7 @@
 #include "common/reset.h"
 #include "common/rf_scan.h"
 #include "common/rfm.h"
-#include "common/serial_printf.h"
+#include "common/log.h"
 #include "common/test.h"
 #include "common/timers.h"
 
@@ -64,7 +64,7 @@ int main(void)
   	// test_cusb_poll();
   	// test_boot(APP_ADDRESS);
   	// gpio_init();
-	spf_init();
+	log_init();
 	// mem_init();
 	// aes_init();
 	// batt_init();
@@ -74,7 +74,7 @@ int main(void)
 	// for(int i = 0; i < 100000; i++){__asm__("nop");};
 
 
-	spf_serial_printf("Sensor Start\n");
+	log_printf(MAIN, "Sensor Start\n");
 	// flash_led(100, 5);
 
 	// rfm_init();
@@ -109,7 +109,7 @@ int main(void)
 	for (;;)
 	{
 		// test_sensor(DEV_NUM_CHIP);
-		// spf_serial_printf("Loop\n");
+		// log_printf(MAIN, "Loop\n");
 		// timers_delay_milliseconds(1000);
 	}
 

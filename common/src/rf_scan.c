@@ -6,7 +6,7 @@
 // #include <libopencm3/stm32/timer.h>
 
 // #include "common/rfm.h"
-// #include "common/serial_printf.h"
+// #include "common/log.h"
 // #include "common/timers.h"
 
 // static uint8_t channel_number = 0;
@@ -31,7 +31,7 @@
 
 // 	rfm_set_tx_pa_table_index(power);
 
-// 	spf_serial_printf("%c", 255);
+// 	log_printf(MAIN, "%c", 255);
 
 // 	channel_number = 0;
 // 	test_number = 0;
@@ -66,8 +66,8 @@
 // 		// Get received packet and print info to serial
 // 		if(rfm_get_packet(&packet))
 // 		{
-// 			//spf_serial_printf("Received: %i Channel: %i Test: %i ", packet.length, packet.data.buffer[0], packet.data.buffer[1]);
-// 			//spf_serial_printf("RSSI: %i LQI: %i\n", packet.rssi, packet.lqi);
+// 			//log_printf(MAIN, "Received: %i Channel: %i Test: %i ", packet.length, packet.data.buffer[0], packet.data.buffer[1]);
+// 			//log_printf(MAIN, "RSSI: %i LQI: %i\n", packet.rssi, packet.lqi);
 
 // 			_putchar(packet.data.buffer[0]);
 // 			_putchar(packet.rssi);
@@ -109,11 +109,11 @@
 // 		rfm_transmit_packet(packet);
 
 // 		// Print test information to serial
-// 		/*spf_serial_printf("Sending Channel: %i Test: %i ", packet.data.buffer[0], packet.data.buffer[1]);
+// 		/*log_printf(MAIN, "Sending Channel: %i Test: %i ", packet.data.buffer[0], packet.data.buffer[1]);
 
 // 		if(rfm_transmit_packet(packet))
-// 			spf_serial_printf("Success\n");
+// 			log_printf(MAIN, "Success\n");
 // 		else
-// 			spf_serial_printf("Failed\n");*/
+// 			log_printf(MAIN, "Failed\n");*/
 // 	}
 // }

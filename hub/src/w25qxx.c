@@ -12,7 +12,7 @@
 #include <libopencm3/cm3/nvic.h>
 
 #include "common/board_defs.h"
-#include "common/serial_printf.h"
+#include "common/log.h"
 #include "common/timers.h"
 
 #define W25_DUMMY_BYTE         0xA5
@@ -37,65 +37,65 @@ bool w25_Init(void)
   	timers_delay_microseconds(100);
 
 	uint32_t	id;
-	spf_serial_printf("w25 Init Begin...\r\n");
+	log_printf(MAIN, "w25 Init Begin...\r\n");
 
 	id=w25_ReadID();
 	
-	spf_serial_printf("w25 ID:0x%X\r\n",id);
+	log_printf(MAIN, "w25 ID:0x%X\r\n",id);
 	switch(id&0x0000FFFF)
 	{
 		case 0x401A:	// 	w25q512
 			w25.ID=W25Q512;
 			w25.BlockCount=1024;
-			spf_serial_printf("w25 Chip: w25q512\r\n");
+			log_printf(MAIN, "w25 Chip: w25q512\r\n");
 		break;
 		case 0x4019:	// 	w25q256
 			w25.ID=W25Q256;
 			w25.BlockCount=512;
-			spf_serial_printf("w25 Chip: w25q256\r\n");
+			log_printf(MAIN, "w25 Chip: w25q256\r\n");
 		break;
 		case 0x4018:	// 	w25q128
 			w25.ID=W25Q128;
 			w25.BlockCount=256;
-			spf_serial_printf("w25 Chip: w25q128\r\n");
+			log_printf(MAIN, "w25 Chip: w25q128\r\n");
 		break;
 		case 0x4017:	//	w25q64
 			w25.ID=W25Q64;
 			w25.BlockCount=128;
-			spf_serial_printf("w25 Chip: w25q64\r\n");
+			log_printf(MAIN, "w25 Chip: w25q64\r\n");
 		break;
 		case 0x4016:	//	w25q32
 			w25.ID=W25Q32;
 			w25.BlockCount=64;
-			spf_serial_printf("w25 Chip: w25q32\r\n");
+			log_printf(MAIN, "w25 Chip: w25q32\r\n");
 		break;
 		case 0x4015:	//	w25q16
 			w25.ID=W25Q16;
 			w25.BlockCount=32;
-			spf_serial_printf("w25 Chip: w25q16\r\n");
+			log_printf(MAIN, "w25 Chip: w25q16\r\n");
 		break;
 		case 0x4014:	//	w25q80
 			w25.ID=W25Q80;
 			w25.BlockCount=16;
-			spf_serial_printf("w25 Chip: w25q80\r\n");
+			log_printf(MAIN, "w25 Chip: w25q80\r\n");
 		break;
 		case 0x4013:	//	w25q40
 			w25.ID=W25Q40;
 			w25.BlockCount=8;
-			spf_serial_printf("w25 Chip: w25q40\r\n");
+			log_printf(MAIN, "w25 Chip: w25q40\r\n");
 		break;
 		case 0x4012:	//	w25q20
 			w25.ID=W25Q20;
 			w25.BlockCount=4;
-			spf_serial_printf("w25 Chip: w25q20\r\n");
+			log_printf(MAIN, "w25 Chip: w25q20\r\n");
 		break;
 		case 0x4011:	//	w25q10
 			w25.ID=W25Q10;
 			w25.BlockCount=2;
-			spf_serial_printf("w25 Chip: w25q10\r\n");
+			log_printf(MAIN, "w25 Chip: w25q10\r\n");
 		break;
 		default:
-				spf_serial_printf("w25 Unknown ID\r\n");
+				log_printf(MAIN, "w25 Unknown ID\r\n");
 			w25.Lock=0;	
 			return false;
 				
@@ -112,13 +112,13 @@ bool w25_Init(void)
 	w25_ReadStatusRegister(1);
 	w25_ReadStatusRegister(2);
 	w25_ReadStatusRegister(3);
-	spf_serial_printf("w25 Page Size: %d Bytes\r\n",w25.PageSize);
-	spf_serial_printf("w25 Sector Size: %d Bytes\r\n",w25.SectorSize);
-	spf_serial_printf("w25 Sector Count: %d\r\n",w25.SectorCount);
-	spf_serial_printf("w25 Block Size: %d Bytes\r\n",w25.BlockSize);
-	spf_serial_printf("w25 Block Count: %d\r\n",w25.BlockCount);
-	spf_serial_printf("w25 Capacity: %d KiloBytes\r\n",w25.CapacityInKiloByte);
-	spf_serial_printf("w25 Init Done\r\n");
+	log_printf(MAIN, "w25 Page Size: %d Bytes\r\n",w25.PageSize);
+	log_printf(MAIN, "w25 Sector Size: %d Bytes\r\n",w25.SectorSize);
+	log_printf(MAIN, "w25 Sector Count: %d\r\n",w25.SectorCount);
+	log_printf(MAIN, "w25 Block Size: %d Bytes\r\n",w25.BlockSize);
+	log_printf(MAIN, "w25 Block Count: %d\r\n",w25.BlockCount);
+	log_printf(MAIN, "w25 Capacity: %d KiloBytes\r\n",w25.CapacityInKiloByte);
+	log_printf(MAIN, "w25 Init Done\r\n");
 
 	w25.Lock=0;
 	
@@ -270,7 +270,7 @@ void	w25_EraseChip(void)
 	w25.Lock=1;	
 	
 	// uint32_t	StartTime=HAL_GetTick();	
-	spf_serial_printf("w25 EraseChip Begin...\r\n");
+	log_printf(MAIN, "w25 EraseChip Begin...\r\n");
 
 	w25_WriteEnable();
 
@@ -284,7 +284,7 @@ void	w25_EraseChip(void)
 
 	w25_WaitForWriteEnd();
 
-	// spf_serial_printf("w25 EraseBlock done after %d ms!\r\n",HAL_GetTick()-StartTime);
+	// log_printf(MAIN, "w25 EraseBlock done after %d ms!\r\n",HAL_GetTick()-StartTime);
 
 	timers_delay_microseconds(10);
 
@@ -296,7 +296,7 @@ void 	w25_EraseSector(uint32_t SectorAddr)
 		timers_delay_microseconds(1);
 	w25.Lock=1;	
 	// uint32_t	StartTime=HAL_GetTick();	
-	spf_serial_printf("w25 EraseSector %d Begin...\r\n",SectorAddr);
+	log_printf(MAIN, "w25 EraseSector %d Begin...\r\n",SectorAddr);
 	w25_WaitForWriteEnd();
 	SectorAddr = SectorAddr * w25.SectorSize;
   w25_WriteEnable();
@@ -311,7 +311,7 @@ void 	w25_EraseSector(uint32_t SectorAddr)
 	  	spi_chip_deselect(); 
   	timers_delay_microseconds(1);
   w25_WaitForWriteEnd();
-	// spf_serial_printf("w25 EraseSector done after %d ms\r\n",HAL_GetTick()-StartTime);
+	// log_printf(MAIN, "w25 EraseSector done after %d ms\r\n",HAL_GetTick()-StartTime);
 	timers_delay_microseconds(1);
 	w25.Lock=0;
 }
@@ -320,7 +320,7 @@ void 	w25_EraseBlock(uint32_t BlockAddr)
 	while(w25.Lock==1)
 		timers_delay_microseconds(1);
 	w25.Lock=1;	
-	spf_serial_printf("w25 EraseBlock %d Begin...\r\n",BlockAddr);
+	log_printf(MAIN, "w25 EraseBlock %d Begin...\r\n",BlockAddr);
 	// uint32_t	StartTime=HAL_GetTick();	
 	w25_WaitForWriteEnd();
 	BlockAddr = BlockAddr * w25.SectorSize*16;
@@ -336,7 +336,7 @@ void 	w25_EraseBlock(uint32_t BlockAddr)
 	  	spi_chip_deselect(); 
   	timers_delay_microseconds(1);
   w25_WaitForWriteEnd();
-	// spf_serial_printf("w25 EraseBlock done after %d ms\r\n",HAL_GetTick()-StartTime);
+	// log_printf(MAIN, "w25 EraseBlock done after %d ms\r\n",HAL_GetTick()-StartTime);
 	timers_delay_microseconds(1);
 	w25.Lock=0;
 }
@@ -373,7 +373,7 @@ bool 	w25_IsEmptyPage(uint32_t Page_Address,uint32_t OffsetInByte,uint32_t NumBy
 	w25.Lock=1;	
 	if(((NumByteToCheck_up_to_PageSize+OffsetInByte)>w25.PageSize)||(NumByteToCheck_up_to_PageSize==0))
 		NumByteToCheck_up_to_PageSize=w25.PageSize-OffsetInByte;
-	spf_serial_printf("w25 CheckPage:%d, Offset:%d, Bytes:%d begin...\r\n",Page_Address,OffsetInByte,NumByteToCheck_up_to_PageSize);
+	log_printf(MAIN, "w25 CheckPage:%d, Offset:%d, Bytes:%d begin...\r\n",Page_Address,OffsetInByte,NumByteToCheck_up_to_PageSize);
 	// uint32_t	StartTime=HAL_GetTick();
 	uint8_t	pBuffer[32];
 	uint32_t	WorkAddress;
@@ -429,11 +429,11 @@ bool 	w25_IsEmptyPage(uint32_t Page_Address,uint32_t OffsetInByte,uint32_t NumBy
 				// goto NOT_EMPTY;
 		}
 	}	
-	// spf_serial_printf("w25 CheckPage is Empty in %d ms\r\n",HAL_GetTick()-StartTime);
+	// log_printf(MAIN, "w25 CheckPage is Empty in %d ms\r\n",HAL_GetTick()-StartTime);
 	w25.Lock=0;
 	return true;	
 	// NOT_EMPTY:
-	// spf_serial_printf("w25 CheckPage is Not Empty in %d ms\r\n",HAL_GetTick()-StartTime);
+	// log_printf(MAIN, "w25 CheckPage is Not Empty in %d ms\r\n",HAL_GetTick()-StartTime);
 	w25.Lock=0;
 	return false;
 }
@@ -444,7 +444,7 @@ bool 	w25_IsEmptySector(uint32_t Sector_Address,uint32_t OffsetInByte,uint32_t N
 	w25.Lock=1;	
 	if((NumByteToCheck_up_to_SectorSize>w25.SectorSize)||(NumByteToCheck_up_to_SectorSize==0))
 		NumByteToCheck_up_to_SectorSize=w25.SectorSize;
-	spf_serial_printf("w25 CheckSector:%d, Offset:%d, Bytes:%d begin...\r\n",Sector_Address,OffsetInByte,NumByteToCheck_up_to_SectorSize);
+	log_printf(MAIN, "w25 CheckSector:%d, Offset:%d, Bytes:%d begin...\r\n",Sector_Address,OffsetInByte,NumByteToCheck_up_to_SectorSize);
 	// uint32_t	StartTime=HAL_GetTick();	
 	uint8_t	pBuffer[32];
 	uint32_t	WorkAddress;
@@ -498,10 +498,10 @@ bool 	w25_IsEmptySector(uint32_t Sector_Address,uint32_t OffsetInByte,uint32_t N
 				// goto NOT_EMPTY;
 		}
 	}	
-	// spf_serial_printf("w25 CheckSector is Empty in %d ms\r\n",HAL_GetTick()-StartTime);
+	// log_printf(MAIN, "w25 CheckSector is Empty in %d ms\r\n",HAL_GetTick()-StartTime);
 	w25.Lock=0;
 	return true;	
-	// spf_serial_printf("w25 CheckSector is Not Empty in %d ms\r\n",HAL_GetTick()-StartTime);
+	// log_printf(MAIN, "w25 CheckSector is Not Empty in %d ms\r\n",HAL_GetTick()-StartTime);
 	w25.Lock=0;
 	return false;
 }
@@ -512,7 +512,7 @@ bool 	w25_IsEmptyBlock(uint32_t Block_Address,uint32_t OffsetInByte,uint32_t Num
 	w25.Lock=1;	
 	if((NumByteToCheck_up_to_BlockSize>w25.BlockSize)||(NumByteToCheck_up_to_BlockSize==0))
 		NumByteToCheck_up_to_BlockSize=w25.BlockSize;
-	spf_serial_printf("w25 CheckBlock:%d, Offset:%d, Bytes:%d begin...\r\n",Block_Address,OffsetInByte,NumByteToCheck_up_to_BlockSize);
+	log_printf(MAIN, "w25 CheckBlock:%d, Offset:%d, Bytes:%d begin...\r\n",Block_Address,OffsetInByte,NumByteToCheck_up_to_BlockSize);
 	// uint32_t	StartTime=HAL_GetTick();	
 	uint8_t	pBuffer[32];
 	uint32_t	WorkAddress;
@@ -560,12 +560,12 @@ bool 	w25_IsEmptyBlock(uint32_t Block_Address,uint32_t OffsetInByte,uint32_t Num
 				// goto NOT_EMPTY;
 		}
 	}	
-	// spf_serial_printf("w25 CheckBlock is Empty in %d ms\r\n",HAL_GetTick()-StartTime);
+	// log_printf(MAIN, "w25 CheckBlock is Empty in %d ms\r\n",HAL_GetTick()-StartTime);
 	
 	w25.Lock=0;
 	return true;	
 	// NOT_EMPTY:
-	// spf_serial_printf("w25 CheckBlock is Not Empty in %d ms\r\n",HAL_GetTick()-StartTime);
+	// log_printf(MAIN, "w25 CheckBlock is Not Empty in %d ms\r\n",HAL_GetTick()-StartTime);
 	
 	w25.Lock=0;
 	return false;
@@ -580,7 +580,7 @@ void 	w25_WriteByte(uint8_t pBuffer, uint32_t WriteAddr_inBytes)
 	w25.Lock=1;
 
 	// uint32_t	StartTime=HAL_GetTick();
-	spf_serial_printf("w25 WriteByte 0x%02X at address %d begin...",pBuffer,WriteAddr_inBytes);
+	log_printf(MAIN, "w25 WriteByte 0x%02X at address %d begin...",pBuffer,WriteAddr_inBytes);
 
 	w25_WaitForWriteEnd();
   w25_WriteEnable();
@@ -596,7 +596,7 @@ void 	w25_WriteByte(uint8_t pBuffer, uint32_t WriteAddr_inBytes)
 	  	spi_chip_deselect(); 
   	timers_delay_microseconds(1);
   w25_WaitForWriteEnd();
-	// spf_serial_printf("w25 WriteByte done after %d ms\r\n",HAL_GetTick()-StartTime);
+	// log_printf(MAIN, "w25 WriteByte done after %d ms\r\n",HAL_GetTick()-StartTime);
 	w25.Lock=0;
 }
 void 	w25_WritePage(uint8_t *pBuffer	,uint32_t Page_Address,uint32_t OffsetInByte,uint32_t NumByteToWrite_up_to_PageSize)
@@ -608,7 +608,7 @@ void 	w25_WritePage(uint8_t *pBuffer	,uint32_t Page_Address,uint32_t OffsetInByt
 		NumByteToWrite_up_to_PageSize=w25.PageSize-OffsetInByte;
 	if((OffsetInByte+NumByteToWrite_up_to_PageSize) > w25.PageSize)
 		NumByteToWrite_up_to_PageSize = w25.PageSize-OffsetInByte;
-	spf_serial_printf("w25 WritePage:%d, Offset:%d ,Writes %d Bytes, begin...\r\n",Page_Address,OffsetInByte,NumByteToWrite_up_to_PageSize);
+	log_printf(MAIN, "w25 WritePage:%d, Offset:%d ,Writes %d Bytes, begin...\r\n",Page_Address,OffsetInByte,NumByteToWrite_up_to_PageSize);
 	// uint32_t	StartTime=HAL_GetTick();
 	#	
 	w25_WaitForWriteEnd();
@@ -632,13 +632,13 @@ void 	w25_WritePage(uint8_t *pBuffer	,uint32_t Page_Address,uint32_t OffsetInByt
 	{
 		if((i%8==0)&&(i>2))
 		{
-			spf_serial_printf("\r\n");
+			log_printf(MAIN, "\r\n");
 			timers_delay_microseconds(10);			
 		}
-		spf_serial_printf("0x%02X,",pBuffer[i]);		
+		log_printf(MAIN, "0x%02X,",pBuffer[i]);		
 	}	
-	spf_serial_printf("\r\n");
-	// spf_serial_printf("w25 WritePage done after %d ms\r\n",StartTime);
+	log_printf(MAIN, "\r\n");
+	// log_printf(MAIN, "w25 WritePage done after %d ms\r\n",StartTime);
 	timers_delay_microseconds(100);
 	#	
 	timers_delay_microseconds(1);
@@ -648,11 +648,11 @@ void 	w25_WriteSector(uint8_t *pBuffer	,uint32_t Sector_Address,uint32_t OffsetI
 {
 	if((NumByteToWrite_up_to_SectorSize>w25.SectorSize)||(NumByteToWrite_up_to_SectorSize==0))
 		NumByteToWrite_up_to_SectorSize=w25.SectorSize;
-	spf_serial_printf("+++w25 WriteSector:%d, Offset:%d ,Write %d Bytes, begin...\r\n",Sector_Address,OffsetInByte,NumByteToWrite_up_to_SectorSize);
+	log_printf(MAIN, "+++w25 WriteSector:%d, Offset:%d ,Write %d Bytes, begin...\r\n",Sector_Address,OffsetInByte,NumByteToWrite_up_to_SectorSize);
 	#	
 	if(OffsetInByte>=w25.SectorSize)
 	{
-		spf_serial_printf("---w25 WriteSector Faild!\r\n");
+		log_printf(MAIN, "---w25 WriteSector Faild!\r\n");
 
 		return;
 	}	
@@ -673,18 +673,18 @@ void 	w25_WriteSector(uint8_t *pBuffer	,uint32_t Sector_Address,uint32_t OffsetI
 		pBuffer += w25.PageSize - LocalOffset;
 		LocalOffset=0;
 	}while(BytesToWrite>0);		
-	spf_serial_printf("---w25 WriteSector Done\r\n");
+	log_printf(MAIN, "---w25 WriteSector Done\r\n");
 
 }
 void 	w25_WriteBlock	(uint8_t* pBuffer ,uint32_t Block_Address	,uint32_t OffsetInByte	,uint32_t	NumByteToWrite_up_to_BlockSize)
 {
 	if((NumByteToWrite_up_to_BlockSize>w25.BlockSize)||(NumByteToWrite_up_to_BlockSize==0))
 		NumByteToWrite_up_to_BlockSize=w25.BlockSize;
-	spf_serial_printf("+++w25 WriteBlock:%d, Offset:%d ,Write %d Bytes, begin...\r\n",Block_Address,OffsetInByte,NumByteToWrite_up_to_BlockSize);
+	log_printf(MAIN, "+++w25 WriteBlock:%d, Offset:%d ,Write %d Bytes, begin...\r\n",Block_Address,OffsetInByte,NumByteToWrite_up_to_BlockSize);
 
 	if(OffsetInByte>=w25.BlockSize)
 	{
-		spf_serial_printf("---w25 WriteBlock Faild!\r\n");
+		log_printf(MAIN, "---w25 WriteBlock Faild!\r\n");
 		
 		return;
 	}	
@@ -705,7 +705,7 @@ void 	w25_WriteBlock	(uint8_t* pBuffer ,uint32_t Block_Address	,uint32_t OffsetI
 		pBuffer += w25.PageSize - LocalOffset;
 		LocalOffset=0;
 	}while(BytesToWrite>0);		
-	spf_serial_printf("---w25 WriteBlock Done\r\n");
+	log_printf(MAIN, "---w25 WriteBlock Done\r\n");
 	
 }
 
@@ -718,7 +718,7 @@ void 	w25_ReadByte(uint8_t *pBuffer,uint32_t Bytes_Address)
 	w25.Lock=1;
 	
 	// uint32_t	StartTime=HAL_GetTick();
-	spf_serial_printf("w25 ReadByte at address %d begin...\r\n",Bytes_Address);
+	log_printf(MAIN, "w25 ReadByte at address %d begin...\r\n",Bytes_Address);
 
 	spi_chip_select();
   	timers_delay_microseconds(1);
@@ -732,7 +732,7 @@ void 	w25_ReadByte(uint8_t *pBuffer,uint32_t Bytes_Address)
 	*pBuffer = spi_xfer(W25_SPI, W25_DUMMY_BYTE);
 	  	spi_chip_deselect(); 
   	timers_delay_microseconds(1);	
-	// spf_serial_printf("w25 ReadByte 0x%02X done after %d ms\r\n",*pBuffer,HAL_GetTick()-StartTime);
+	// log_printf(MAIN, "w25 ReadByte 0x%02X done after %d ms\r\n",*pBuffer,HAL_GetTick()-StartTime);
 	w25.Lock=0;
 }
 void 	w25_ReadBytes(uint8_t* pBuffer, uint32_t ReadAddr, uint32_t NumByteToRead)
@@ -742,7 +742,7 @@ void 	w25_ReadBytes(uint8_t* pBuffer, uint32_t ReadAddr, uint32_t NumByteToRead)
 	w25.Lock=1;
 	
 	// uint32_t	StartTime=HAL_GetTick();
-	spf_serial_printf("w25 ReadBytes at Address:%d, %d Bytes  begin...\r\n",ReadAddr,NumByteToRead);
+	log_printf(MAIN, "w25 ReadBytes at Address:%d, %d Bytes  begin...\r\n",ReadAddr,NumByteToRead);
 	
 	spi_chip_select();
   	timers_delay_microseconds(1);
@@ -762,13 +762,13 @@ void 	w25_ReadBytes(uint8_t* pBuffer, uint32_t ReadAddr, uint32_t NumByteToRead)
 	{
 		if((i%8==0)&&(i>2))
 		{
-			spf_serial_printf("\r\n");
+			log_printf(MAIN, "\r\n");
 			timers_delay_microseconds(10);
 		}
-		spf_serial_printf("0x%02X,",pBuffer[i]);		
+		log_printf(MAIN, "0x%02X,",pBuffer[i]);		
 	}
-	spf_serial_printf("\r\n");
-	// spf_serial_printf("w25 ReadBytes done after %d ms\r\n",StartTime);
+	log_printf(MAIN, "\r\n");
+	// log_printf(MAIN, "w25 ReadBytes done after %d ms\r\n",StartTime);
 	timers_delay_microseconds(100);
 	
 	timers_delay_microseconds(1);
@@ -783,7 +783,7 @@ void 	w25_ReadPage(uint8_t *pBuffer,uint32_t Page_Address,uint32_t OffsetInByte,
 		NumByteToRead_up_to_PageSize=w25.PageSize;
 	if((OffsetInByte+NumByteToRead_up_to_PageSize) > w25.PageSize)
 		NumByteToRead_up_to_PageSize = w25.PageSize-OffsetInByte;
-	spf_serial_printf("w25 ReadPage:%d, Offset:%d ,Read %d Bytes, begin...\r\n",Page_Address,OffsetInByte,NumByteToRead_up_to_PageSize);
+	log_printf(MAIN, "w25 ReadPage:%d, Offset:%d ,Read %d Bytes, begin...\r\n",Page_Address,OffsetInByte,NumByteToRead_up_to_PageSize);
 	// uint32_t	StartTime=HAL_GetTick();
 	
 	Page_Address = Page_Address*w25.PageSize+OffsetInByte;
@@ -805,13 +805,13 @@ void 	w25_ReadPage(uint8_t *pBuffer,uint32_t Page_Address,uint32_t OffsetInByte,
 	{
 		if((i%8==0)&&(i>2))
 		{
-			spf_serial_printf("\r\n");
+			log_printf(MAIN, "\r\n");
 			timers_delay_microseconds(10);
 		}
-		spf_serial_printf("0x%02X,",pBuffer[i]);		
+		log_printf(MAIN, "0x%02X,",pBuffer[i]);		
 	}	
-	spf_serial_printf("\r\n");
-	// spf_serial_printf("w25 ReadPage done after %d ms\r\n",StartTime);
+	log_printf(MAIN, "\r\n");
+	// log_printf(MAIN, "w25 ReadPage done after %d ms\r\n",StartTime);
 	timers_delay_microseconds(100);
 	
 	timers_delay_microseconds(1);
@@ -821,11 +821,11 @@ void 	w25_ReadSector(uint8_t *pBuffer,uint32_t Sector_Address,uint32_t OffsetInB
 {	
 	if((NumByteToRead_up_to_SectorSize>w25.SectorSize)||(NumByteToRead_up_to_SectorSize==0))
 		NumByteToRead_up_to_SectorSize=w25.SectorSize;
-	spf_serial_printf("+++w25 ReadSector:%d, Offset:%d ,Read %d Bytes, begin...\r\n",Sector_Address,OffsetInByte,NumByteToRead_up_to_SectorSize);
+	log_printf(MAIN, "+++w25 ReadSector:%d, Offset:%d ,Read %d Bytes, begin...\r\n",Sector_Address,OffsetInByte,NumByteToRead_up_to_SectorSize);
 	
 	if(OffsetInByte>=w25.SectorSize)
 	{
-		spf_serial_printf("---w25 ReadSector Faild!\r\n");
+		log_printf(MAIN, "---w25 ReadSector Faild!\r\n");
 		
 		return;
 	}	
@@ -846,18 +846,18 @@ void 	w25_ReadSector(uint8_t *pBuffer,uint32_t Sector_Address,uint32_t OffsetInB
 		pBuffer += w25.PageSize - LocalOffset;
 		LocalOffset=0;
 	}while(BytesToRead>0);		
-	spf_serial_printf("---w25 ReadSector Done\r\n");
+	log_printf(MAIN, "---w25 ReadSector Done\r\n");
 	
 }
 void 	w25_ReadBlock(uint8_t* pBuffer,uint32_t Block_Address,uint32_t OffsetInByte,uint32_t	NumByteToRead_up_to_BlockSize)
 {
 	if((NumByteToRead_up_to_BlockSize>w25.BlockSize)||(NumByteToRead_up_to_BlockSize==0))
 		NumByteToRead_up_to_BlockSize=w25.BlockSize;
-	spf_serial_printf("+++w25 ReadBlock:%d, Offset:%d ,Read %d Bytes, begin...\r\n",Block_Address,OffsetInByte,NumByteToRead_up_to_BlockSize);
+	log_printf(MAIN, "+++w25 ReadBlock:%d, Offset:%d ,Read %d Bytes, begin...\r\n",Block_Address,OffsetInByte,NumByteToRead_up_to_BlockSize);
 	
 	if(OffsetInByte>=w25.BlockSize)
 	{
-		spf_serial_printf("w25 ReadBlock Faild!\r\n");
+		log_printf(MAIN, "w25 ReadBlock Faild!\r\n");
 		
 		return;
 	}	
@@ -878,7 +878,7 @@ void 	w25_ReadBlock(uint8_t* pBuffer,uint32_t Block_Address,uint32_t OffsetInByt
 		pBuffer += w25.PageSize - LocalOffset;
 		LocalOffset=0;
 	}while(BytesToRead>0);		
-	spf_serial_printf("---w25 ReadBlock Done\r\n");
+	log_printf(MAIN, "---w25 ReadBlock Done\r\n");
 	
 }
 

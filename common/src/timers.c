@@ -21,7 +21,7 @@
 #include "common/reset.h"
 #include "common/rf_scan.h"
 #include "common/rfm.h"
-#include "common/serial_printf.h"
+#include "common/log.h"
 #include "common/test.h"
 #include "common/timers.h"
 
@@ -203,7 +203,7 @@ void timers_enter_standby(void)
     // Enter standby
     while(1)
     {
-        spf_serial_printf("WFI/E\n");
+        log_printf(MAIN, "WFI/E\n");
         set_gpio_for_standby();
         cm_disable_interrupts();
         __asm__("wfi");
@@ -225,11 +225,11 @@ bool timeout(uint32_t time_microseconds, char *msg, uint32_t data)
     timeout_counter    += (uint16_t)(timers_micros() - timeout_timer);
     timeout_timer       = timers_micros();
 
-    // spf_serial_printf("%u\n", timeout_counter);
+    // log_printf(MAIN, "%u\n", timeout_counter);
 
     if(timeout_counter > time_microseconds)
     {
-        spf_serial_printf("Timeout %s %08X\n", msg, data);
+        log_printf(MAIN, "Timeout %s %08X\n", msg, data);
         return true;
     }
     else    
@@ -287,8 +287,8 @@ void rtc_isr(void)
 
     // scb_reset_system();
 
-    spf_init();
-    spf_serial_printf("RTC ISR\n");
+    log_init();
+    log_printf(MAIN, "RTC ISR\n");
 
     if(RTC_ISR & RTC_ISR_WUTF)
     { 

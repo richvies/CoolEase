@@ -19,11 +19,11 @@
 #include "common/aes.h"
 #include "common/battery.h"
 #include "common/board_defs.h"
+#include "common/log.h"
 #include "common/memory.h"
 #include "common/reset.h"
 #include "common/rf_scan.h"
 #include "common/rfm.h"
-#include "common/serial_printf.h"
 #include "common/timers.h"
 #include "common/test.h"
 
@@ -63,7 +63,7 @@ static void hub_download_info(void);
 
 int main(void)
 {
-	spf_init();
+	log_init();
 	timers_lptim_init();
 	timers_tim6_init();
   	// gpio_init();
@@ -73,13 +73,13 @@ int main(void)
 
 	for(int i = 0; i < 100000; i++){__asm__("nop");};
 
-	spf_serial_printf("Hub Start\n");
+	log_printf(MAIN, "Hub Start\n");
 	flash_led(100, 5);
 
 	test_mem_write_read();
 
 	// Read Bootloader ID causes hard fault
-	// spf_serial_printf("%08x : %08x\n", 0x1FF00FFE, tst);
+	// log_printf(MAIN, "%08x : %08x\n", 0x1FF00FFE, tst);
 
 	// rfm_init();
 	// rfm_end();
@@ -96,16 +96,16 @@ int main(void)
 	// test_sensor();
 	// test_sim();
 	// test_sim_serial_pass_through();
-	// if( test_timeout() ) spf_serial_printf("Good\n"); else spf_serial_printf("Timeout\n");
+	// if( test_timeout() ) log_printf(MAIN, "Good\n"); else log_printf(MAIN, "Timeout\n");
 	// test_analog_watchdog();
 	// test_cusb_poll();
 
-	// test_hub2();
+	(void)test_hub2();
 
 
 	for (;;)
 	{
-		spf_serial_printf("Hub Loop\n\n");
+		log_printf(MAIN, "Hub Loop\n\n");
 		timers_delay_milliseconds(1000);
 	}
 
@@ -126,7 +126,7 @@ int main(void)
 
 static void test_hub2(void)
 {
-	spf_serial_printf("Testing Hub 2\n");
+	log_printf(MAIN, "Testing Hub 2\n");
 
 	// Enable power voltgae checking
 	batt_enable_interrupt();
@@ -152,16 +152,16 @@ static void test_hub2(void)
 	uint8_t sim_buf[256];
 	uint8_t sim_buf_idx 	= 0;
 
-	spf_serial_printf("Ready\n");
+	log_printf(MAIN, "Ready\n");
 
 	for(;;)
 	{
-		// spf_serial_printf("Packets:%u\n", rfm_get_num_packets());
+		// log_printf(MAIN, "Packets:%u\n", rfm_get_num_packets());
 
 		// Check for packets and upload if any from sensors
 		if(rfm_get_num_packets() > 0)
 		{
-			mem_log_printf("GetPkts %u\n", rfm_get_num_packets());
+			log_printf(MAIN, "GetPkts %u\n", rfm_get_num_packets());
 
 			upload_packets = false;
 			sim_buf_idx = 0;
@@ -177,7 +177,7 @@ static void test_hub2(void)
 
 			while(rfm_get_num_packets())
 			{
-				// spf_serial_printf("Pkts %u\n", rfm_get_num_packets());
+				// log_printf(MAIN, "Pkts %u\n", rfm_get_num_packets());
 
 				// Get packet, decrypt and organise
 				packet = rfm_get_next_packet();
@@ -187,15 +187,15 @@ static void test_hub2(void)
 				// Check CRC
 				if( !packet->crc_ok )
 				{
-					spf_serial_printf("CRC Fail\n");
-					mem_log_printf("!Crc\n");
+					log_printf(MAIN, "CRC Fail\n");
+					log_printf(MAIN, "!Crc\n");
 					flash_led(100, 5);
 					continue;
 				}
 				else
 				{
-					spf_serial_printf("CRC OK\n");
-					mem_log_printf("CrcOk\n");
+					log_printf(MAIN, "CRC OK\n");
+					log_printf(MAIN, "CrcOk\n");
 				}
 
 				// Get sensor from device number
@@ -204,8 +204,8 @@ static void test_hub2(void)
 				// Skip if wrong device number
 				if(sensor == NULL)
 				{
-					spf_serial_printf("Wrong Dev Num: %08X\n", packet->data.device_number);
-					mem_log_printf("WDN%08X\n", packet->data.device_number);
+					log_printf(MAIN, "Wrong Dev Num: %08X\n", packet->data.device_number);
+					log_printf(MAIN, "WDN%08X\n", packet->data.device_number);
 					flash_led(100, 3);
 					continue;
 				}
@@ -214,7 +214,7 @@ static void test_hub2(void)
 					// Good packet to upload
 					upload_packets = true;
 					flash_led(100, 1);
-					mem_log_printf("PktOk\n", packet->data.device_number);
+					log_printf(MAIN, "PktOk\n", packet->data.device_number);
 				}
 
 				// Initialize sensor if first message received
@@ -225,13 +225,13 @@ static void test_hub2(void)
 					sensor->total_packets 	= 0;
 					sensor->ok_packets 		= 0;
 					sensor->active = true;
-					spf_serial_printf("First message from %u\nNumber: %i\n",sensor->dev_num, sensor->msg_num_start);
+					log_printf(MAIN, "First message from %u\nNumber: %i\n",sensor->dev_num, sensor->msg_num_start);
 				}
 				// Check if message number is correct
 				else if(++sensor->msg_num != packet->data.msg_number)
 				{
-					spf_serial_printf("Missed Message %i\n", sensor->msg_num);
-					// mem_log_printf("Missed Message %i\n", sensor->msg_num);
+					log_printf(MAIN, "Missed Message %i\n", sensor->msg_num);
+					// log_printf(MAIN, "Missed Message %i\n", sensor->msg_num);
 					sensor->msg_num = packet->data.msg_number;
 				}
 
@@ -240,23 +240,23 @@ static void test_hub2(void)
 				sensor->total_packets = 1 + packet->data.msg_number - sensor->msg_num_start;
 
 				// Print packet details
-				spf_serial_printf("Device ID: %08x\n", packet->data.device_number);
-				spf_serial_printf("Packet RSSI: %i dbm\n", packet->rssi);
-				spf_serial_printf("Packet SNR: %i dB\n", packet->snr);
-				spf_serial_printf("Power: %i\n", packet->data.power);
-				spf_serial_printf("Battery: %uV\n", packet->data.battery);
-				spf_serial_printf("Temperature: %i\n", packet->data.temperature);
-				spf_serial_printf("Message Number: %i\n", packet->data.msg_number);
-				spf_serial_printf("Accuracy: %i / %i packets\n\n", sensor->ok_packets, sensor->total_packets);
+				log_printf(MAIN, "Device ID: %08x\n", packet->data.device_number);
+				log_printf(MAIN, "Packet RSSI: %i dbm\n", packet->rssi);
+				log_printf(MAIN, "Packet SNR: %i dB\n", packet->snr);
+				log_printf(MAIN, "Power: %i\n", packet->data.power);
+				log_printf(MAIN, "Battery: %uV\n", packet->data.battery);
+				log_printf(MAIN, "Temperature: %i\n", packet->data.temperature);
+				log_printf(MAIN, "Message Number: %i\n", packet->data.msg_number);
+				log_printf(MAIN, "Accuracy: %i / %i packets\n\n", sensor->ok_packets, sensor->total_packets);
 				// Log packet details
-				// mem_log_printf("Device ID: %08x\n", packet->data.device_number);
-				// mem_log_printf("Packet RSSI: %i dbm\n", packet->rssi);
-				// mem_log_printf("Packet SNR: %i dB\n", packet->snr);
-				// mem_log_printf("Power: %i\n", packet->data.power);
-				// mem_log_printf("Battery: %uV\n", packet->data.battery);
-				// mem_log_printf("Temperature: %i\n", packet->data.temperature);
-				// mem_log_printf("Message Number: %i\n", packet->data.msg_number);
-				// mem_log_printf("Accuracy: %i / %i packets\n\n", sensor->ok_packets, sensor->total_packets);
+				// log_printf(MAIN, "Device ID: %08x\n", packet->data.device_number);
+				// log_printf(MAIN, "Packet RSSI: %i dbm\n", packet->rssi);
+				// log_printf(MAIN, "Packet SNR: %i dB\n", packet->snr);
+				// log_printf(MAIN, "Power: %i\n", packet->data.power);
+				// log_printf(MAIN, "Battery: %uV\n", packet->data.battery);
+				// log_printf(MAIN, "Temperature: %i\n", packet->data.temperature);
+				// log_printf(MAIN, "Message Number: %i\n", packet->data.msg_number);
+				// log_printf(MAIN, "Accuracy: %i / %i packets\n\n", sensor->ok_packets, sensor->total_packets);
 
 				// Append Sim Packet
 				// packets[i].device_number, packets[i].temperature, packets[i].battery, total_packets[i], ok_packets[i], packets[i].rssi); }
@@ -272,14 +272,14 @@ static void test_hub2(void)
 		// Upload to server	if good packets
 		if(upload_packets)
 		{		
-			spf_serial_printf("Uploading\n");
-			mem_log_printf("SimUp\n");
+			log_printf(MAIN, "Uploading\n");
+			log_printf(MAIN, "SimUp\n");
 			sim_init();
-			mem_log_printf("SimInit\n");
+			log_printf(MAIN, "SimInit\n");
 			sim_connect();
-			mem_log_printf("SimCnt\n");
+			log_printf(MAIN, "SimCnt\n");
 			sim_send_data(sim_buf, sim_buf_idx);
-			spf_serial_printf("SimDone\n\n");
+			log_printf(MAIN, "SimDone\n\n");
 			sim_end();
 
 			upload_packets = false;
@@ -290,7 +290,7 @@ static void test_hub2(void)
 		{
 			batt_rst_seq = false;
 			hub_download_info();
-			mem_log_printf("BattRst\n");
+			log_printf(MAIN, "BattRst\n");
 		}
 
 		timers_delay_milliseconds(1);
@@ -299,7 +299,7 @@ static void test_hub2(void)
 
 static void hub_download_info(void)
 {
-	spf_serial_printf("Hub Redownload Info\n");
+	log_printf(MAIN, "Hub Redownload Info\n");
 }
 
 /** @} */
@@ -310,7 +310,7 @@ static void hub_download_info(void)
 
 void nmi_handler(void)
 {
-  spf_serial_printf("nmi\n");
+  log_printf(MAIN, "nmi\n");
 	while(1)
 	{
 		
@@ -319,7 +319,7 @@ void nmi_handler(void)
 
 void hard_fault_handler(void)
 {
-  spf_serial_printf("hard fault\n");
+  log_printf(MAIN, "hard fault\n");
 	while(1)
 	{
 

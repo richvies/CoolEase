@@ -14,8 +14,10 @@
 
 #include "hub/hub_bootloader.h"
 
+#include "common/memory.h"
 #include "common/timers.h"
-#include "common/serial_printf.h"
+#include "common/log.h"
+#include "common/log.h"
 
 /** @addtogroup HUB_BOOTLOADER_FILE 
  * @{
@@ -30,6 +32,7 @@
 /*////////////////////////////////////////////////////////////////////////////*/
 // Static Variables
 /*////////////////////////////////////////////////////////////////////////////*/
+
 
 /*////////////////////////////////////////////////////////////////////////////*/
 // Static Function Declarations
@@ -47,15 +50,16 @@
 
 int main(void)
 {
-    spf_init();
+    log_init();
 	timers_lptim_init();
 	timers_tim6_init();
-    spf_serial_printf("Hub Bootloader Start\n");
+    log_printf(MAIN, "Hub Bootloader Start\n");
+
     boot_jump_to_application(APP_ADDRESS);
 
     for (;;)
 	{
-		spf_serial_printf("Hub Bootloader Loop\n\n");
+		log_printf(MAIN, "Hub Bootloader Loop\n\n");
 		timers_delay_milliseconds(1000);
 	}
 

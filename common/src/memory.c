@@ -19,7 +19,7 @@
 #include <libopencm3/stm32/flash.h>
 
 #include "common/board_defs.h"
-#include "common/serial_printf.h"
+#include "common/log.h"
 #include "common/timers.h"
 #include "common/memory.h"
 
@@ -93,7 +93,7 @@ void mem_init(void)
     msg_num = MMIO32(msg_num_add);
     while(MMIO32(next_reading_add) != 0x00000000)
     {
-        // spf_serial_printf("%08x : %08x\n", next_reading_add, MMIO32(next_reading_add));
+        // log_printf(MAIN, "%08x : %08x\n", next_reading_add, MMIO32(next_reading_add));
         msg_num++;
         next_reading_add += 4;
     }
@@ -196,12 +196,12 @@ bool mem_flash_write_word(uint32_t address, uint32_t data)
     if ((FLASH_SR & FLASH_SR_EOP) != 0)
     {
         FLASH_SR |= FLASH_SR_EOP;
-        spf_serial_printf("Write success\n");
+        log_printf(MAIN, "Write success\n");
         return true;
     }
     else
     {
-        spf_serial_printf("Write fail\n");
+        log_printf(MAIN, "Write fail\n");
         return false;
     }
     return true; 
@@ -255,23 +255,6 @@ int16_t mem_get_reading(uint32_t reading_num)
 }
 
 
-int mem_log_printf(const char* format, ...)
-{
-  	va_list va;
-  	va_start(va, format);
-  	const int ret = vprintf_log(format, va);
-  	va_end(va);
-
-	return ret;
-}
-
-void _putchar_log(char character)
-{
-    mem_eeprom_write_byte(log_add++, character);
-    if(log_add >= LOG_START + LOG_SIZE)
-            log_add = LOG_START; 
-}
-
 void mem_wipe_log(void)
 {
     
@@ -287,12 +270,12 @@ void mem_get_log(char log[LOG_SIZE])
 
 void mem_print_log(void)
 {
-    spf_serial_printf("LOG START\n");
+    log_printf(MAIN, "LOG START\n");
     for(uint16_t i = 0; i < LOG_SIZE; i++)
     {
-        spf_serial_printf("%c", MMIO8(LOG_START + i));
+        log_printf(MAIN, "%c", MMIO8(LOG_START + i));
     }   
-    spf_serial_printf("LOG END\n");
+    log_printf(MAIN, "LOG END\n");
 }
 
 
@@ -362,18 +345,18 @@ void mem_set_aes_key_exp(uint8_t *aes_key_exp)
 
 void mem_wipe_readings(void)
 {
-    spf_serial_printf("Mem Wipe Readings\n");
+    log_printf(MAIN, "Mem Wipe Readings\n");
 
     uint32_t page_add = READINGS_START;
 
     while( page_add < FLASH_END )
     {
-        // spf_serial_printf("Erasing %08X\n", page_add);
+        // log_printf(MAIN, "Erasing %08X\n", page_add);
         mem_flash_erase_page(page_add);
         page_add += FLASH_PAGE_SIZE;
     }
 
-    spf_serial_printf("Done\n", page_add);
+    log_printf(MAIN, "Done\n", page_add);
 }
 
 

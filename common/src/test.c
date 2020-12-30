@@ -30,9 +30,10 @@
 #include "common/board_defs.h"
 #include "common/bootloader_utils.h"
 #include "common/memory.h"
+#include "common/log.h"
 #include "common/reset.h"
 #include "common/rfm.h"
-#include "common/serial_printf.h"
+#include "common/log.h"
 #include "common/timers.h"
 
 
@@ -80,17 +81,17 @@ void test_mem_write_read(void)
     flash_data[0] = 0x12345678;
     flash_data[1] = 0x24681234;
 
-    spf_serial_printf("Test Mem Write Read\n\n");
+    log_printf(MAIN, "Test Mem Write Read\n\n");
 
-    spf_serial_printf("EEPROM Start: %08x : %08x\n", eeprom_address, MMIO32(eeprom_address));
-    spf_serial_printf("Programming: %08x\n", eeprom_word); mem_eeprom_write_word(eeprom_address, eeprom_word);
-    spf_serial_printf("EEPROM End: %08x : %08x\n\n", eeprom_address, MMIO32(eeprom_address));
+    log_printf(MAIN, "EEPROM Start: %08x : %08x\n", eeprom_address, MMIO32(eeprom_address));
+    log_printf(MAIN, "Programming: %08x\n", eeprom_word); mem_eeprom_write_word(eeprom_address, eeprom_word);
+    log_printf(MAIN, "EEPROM End: %08x : %08x\n\n", eeprom_address, MMIO32(eeprom_address));
 
-    spf_serial_printf("Flash Erase\n"); mem_flash_erase_page(flash_address);
-    spf_serial_printf("Flash Start: %08x : %08x\n%08x : %08x\n", flash_address, MMIO32(flash_address), flash_address+4, MMIO32(flash_address+4));
-    spf_serial_printf("Programming %08x %08x\n", flash_data[0], flash_data[1]); mem_flash_write_half_page(flash_address, flash_data);
-    // spf_serial_printf("Programming %08x\n", flash_data[1]); mem_flash_write_word(flash_address, flash_data[1]);
-    spf_serial_printf("Flash End: %08x : %08x\n%08x : %08x\n", flash_address, MMIO32(flash_address), flash_address+4, MMIO32(flash_address+4));
+    log_printf(MAIN, "Flash Erase\n"); mem_flash_erase_page(flash_address);
+    log_printf(MAIN, "Flash Start: %08x : %08x\n%08x : %08x\n", flash_address, MMIO32(flash_address), flash_address+4, MMIO32(flash_address+4));
+    log_printf(MAIN, "Programming %08x %08x\n", flash_data[0], flash_data[1]); mem_flash_write_half_page(flash_address, flash_data);
+    // log_printf(MAIN, "Programming %08x\n", flash_data[1]); mem_flash_write_word(flash_address, flash_data[1]);
+    log_printf(MAIN, "Flash End: %08x : %08x\n%08x : %08x\n", flash_address, MMIO32(flash_address), flash_address+4, MMIO32(flash_address+4));
 }
 
 /** @brief Test jumping to user defined address
@@ -118,21 +119,21 @@ void flash_led(uint16_t milliseconds, uint8_t num_flashes)
 
 void test_wakeup(void)
 {
-	spf_serial_printf("Reset\n");
+	log_printf(MAIN, "Reset\n");
 	reset_print_cause();
 	
 	batt_init();
 	batt_update_voltages();
 
-	spf_serial_printf("Battery = %uV\n", batt_voltages[BATT_VOLTAGE]);
+	log_printf(MAIN, "Battery = %uV\n", batt_voltages[BATT_VOLTAGE]);
 	#ifdef _HUB
-	spf_serial_printf("Power = %uV\n", batt_voltages[PWR_VOLTAGE]);
+	log_printf(MAIN, "Power = %uV\n", batt_voltages[PWR_VOLTAGE]);
 	#endif
 }
 
 void test_standby(uint32_t standby_time)
 {
-	spf_serial_printf("Testing Standby for %i seconds\n", standby_time);
+	log_printf(MAIN, "Testing Standby for %i seconds\n", standby_time);
 
 	timers_rtc_init(standby_time);
 
@@ -151,13 +152,13 @@ void test_standby(uint32_t standby_time)
 	// gpio_mode_setup(GPIOA, GPIO_MODE_INPUT, GPIO_PUPD_NONE, GPIO0 | GPIO1 | GPIO4 | GPIO7 | GPIO9 | GPIO10 | GPIO13 | GPIO14);
 	// rcc_periph_clock_disable(RCC_GPIOA);
 	
-	spf_serial_printf("Entering Standby\n");
+	log_printf(MAIN, "Entering Standby\n");
 	timers_enter_standby();
 }
 
 void test_rf(void)
 {
-	spf_serial_printf("Testing RF\n");
+	log_printf(MAIN, "Testing RF\n");
 
 	rfm_init();
 	rfm_config_for_lora(RFM_BW_125KHZ, RFM_CODING_RATE_4_5, RFM_SPREADING_FACTOR_128CPS, true, 0);
@@ -172,7 +173,7 @@ void test_rf(void)
     for (;;)
 	{
 		rfm_transmit_packet(packet_send);
-		spf_serial_printf("Sent\n");
+		log_printf(MAIN, "Sent\n");
 
 		rfm_start_listening();
 		for (int i = 0; i < 300000; i++) __asm__("nop");
@@ -181,14 +182,14 @@ void test_rf(void)
 			uint16_t timer = timers_micros();
 			packet_received = rfm_get_next_packet();
 			uint16_t timer2 = timers_micros();
-			spf_serial_printf("%i us\n", (uint16_t)(timer2 - timer));
+			log_printf(MAIN, "%i us\n", (uint16_t)(timer2 - timer));
 
-			spf_serial_printf("Packet Received\n");
+			log_printf(MAIN, "Packet Received\n");
 
 			for(int i = 0; i < RFM_PACKET_LENGTH; i++)
-				spf_serial_printf("%02x, ", packet_received->data.buffer[i]);
+				log_printf(MAIN, "%02x, ", packet_received->data.buffer[i]);
 
-			spf_serial_printf("\n");
+			log_printf(MAIN, "\n");
 		}
 
 		for (int i = 0; i < 300000; i++) __asm__("nop");
@@ -197,7 +198,7 @@ void test_rf(void)
 
 void test_rf_listen(void)
 {
-	spf_serial_printf("Testing RF Listen\n");
+	log_printf(MAIN, "Testing RF Listen\n");
 
 	rfm_init();
 	rfm_config_for_lora(RFM_BW_125KHZ, RFM_CODING_RATE_4_5, RFM_SPREADING_FACTOR_128CPS, true, 0);
@@ -212,14 +213,14 @@ void test_rf_listen(void)
 			uint16_t timer = timers_micros();
 			packet_received = rfm_get_next_packet();
 			uint16_t timer2 = timers_micros();
-			spf_serial_printf("%i us\n", (uint16_t)(timer2 - timer));
+			log_printf(MAIN, "%i us\n", (uint16_t)(timer2 - timer));
 
-			spf_serial_printf("Packet Received\n");
+			log_printf(MAIN, "Packet Received\n");
 
 			for(int i = 0; i < RFM_PACKET_LENGTH; i++)
-				spf_serial_printf("%02x, ", packet_received->data.buffer[i]);
+				log_printf(MAIN, "%02x, ", packet_received->data.buffer[i]);
 
-			spf_serial_printf("\n");
+			log_printf(MAIN, "\n");
 		}
 
 		for (int i = 0; i < 300000; i++) __asm__("nop");
@@ -228,7 +229,7 @@ void test_rf_listen(void)
 
 void test_receiver(uint32_t dev_num)
 {
-	spf_serial_printf("Testing Receiver\n");
+	log_printf(MAIN, "Testing Receiver\n");
 
 	// Sensors
 	num_sensors = 3;
@@ -245,7 +246,7 @@ void test_receiver(uint32_t dev_num)
 	rfm_start_listening();
 
 	// Get First message number
-	spf_serial_printf("Waiting for first message\n");
+	log_printf(MAIN, "Waiting for first message\n");
 	bool recv = false;
 	while(!recv)
 	{
@@ -258,25 +259,25 @@ void test_receiver(uint32_t dev_num)
 		rfm_organize_packet(packet);
 
 		// Print data received
-		spf_serial_printf("Received "); for(int i = 0; i < 16; i++){spf_serial_printf("%02X ", packet->data.buffer[i]);} spf_serial_printf("\n");
+		log_printf(MAIN, "Received "); for(int i = 0; i < 16; i++){log_printf(MAIN, "%02X ", packet->data.buffer[i]);} log_printf(MAIN, "\n");
 
 		// Skip if not correct device number
 		sensor = get_sensor(packet->data.device_number);
 		if(sensor == NULL)
 		{
-			spf_serial_printf("Wrong Dev Num: %08X\n", packet->data.device_number);
+			log_printf(MAIN, "Wrong Dev Num: %08X\n", packet->data.device_number);
 			continue;
 		}
 		else
 		{
 			sensor->msg_num 		= packet->data.msg_number;
 			sensor->msg_num_start 	= packet->data.msg_number;
-			spf_serial_printf("First Message Number: %i %i\n", packet->data.msg_number, sensor->msg_num);
+			log_printf(MAIN, "First Message Number: %i %i\n", packet->data.msg_number, sensor->msg_num);
 			recv = true;
 		}
 	}
 
-	spf_serial_printf("Ready\n");
+	log_printf(MAIN, "Ready\n");
 
 	for(;;)
 	{
@@ -292,13 +293,13 @@ void test_receiver(uint32_t dev_num)
 				// Check CRC
 				if( !packet->crc_ok )
 				{
-					spf_serial_printf("CRC Fail\n");
+					log_printf(MAIN, "CRC Fail\n");
 					flash_led(100, 5);
 					continue;
 				}
 				else
 				{
-					spf_serial_printf("CRC OK\n");
+					log_printf(MAIN, "CRC OK\n");
 				}
 
 				// Get sensor from device number
@@ -307,7 +308,7 @@ void test_receiver(uint32_t dev_num)
 				// Skip if wrong device number
 				if(sensor == NULL)
 				{
-					spf_serial_printf("Wrong Dev Num: %08X\n", packet->data.device_number);
+					log_printf(MAIN, "Wrong Dev Num: %08X\n", packet->data.device_number);
 					flash_led(100, 3);
 					continue;
 				}
@@ -319,20 +320,20 @@ void test_receiver(uint32_t dev_num)
 				// Check if message number is correct
 				if(packet->data.msg_number != ++sensor->msg_num)
 				{
-					spf_serial_printf("Missed Message %i\n", sensor->msg_num);
+					log_printf(MAIN, "Missed Message %i\n", sensor->msg_num);
 				}
 
 				sensor->total_packets = packet->data.msg_number - sensor->msg_num_start;
 
 				// Print packet details
-				spf_serial_printf("Device ID: %08x\n", packet->data.device_number);
-				spf_serial_printf("Packet RSSI: %i dbm\n", packet->rssi);
-				spf_serial_printf("Packet SNR: %i dB\n", packet->snr);
-				spf_serial_printf("Power: %i\n", packet->data.power);
-				spf_serial_printf("Battery: %uV\n", packet->data.battery);
-				spf_serial_printf("Temperature: %i\n", packet->data.temperature);
-				spf_serial_printf("Message Number: %i\n", packet->data.msg_number);
-				spf_serial_printf("Accuracy: %i / %i packets\n\n", sensor->ok_packets, sensor->total_packets);
+				log_printf(MAIN, "Device ID: %08x\n", packet->data.device_number);
+				log_printf(MAIN, "Packet RSSI: %i dbm\n", packet->rssi);
+				log_printf(MAIN, "Packet SNR: %i dB\n", packet->snr);
+				log_printf(MAIN, "Power: %i\n", packet->data.power);
+				log_printf(MAIN, "Battery: %uV\n", packet->data.battery);
+				log_printf(MAIN, "Temperature: %i\n", packet->data.temperature);
+				log_printf(MAIN, "Message Number: %i\n", packet->data.msg_number);
+				log_printf(MAIN, "Accuracy: %i / %i packets\n\n", sensor->ok_packets, sensor->total_packets);
 			}
 		}
 	}	
@@ -340,7 +341,7 @@ void test_receiver(uint32_t dev_num)
 
 void test_voltage_scale(uint8_t scale)
 {
-	spf_serial_printf("Testing Voltage Scale\n");
+	log_printf(MAIN, "Testing Voltage Scale\n");
 
 	rfm_init();
 	rfm_end();
@@ -355,12 +356,12 @@ void test_voltage_scale(uint8_t scale)
 	// #endif
 
 
-	spf_serial_printf("Testing Voltage Scaling\n");
-	spf_serial_printf("Current Scaling: %08x\n", PWR_CR);
+	log_printf(MAIN, "Testing Voltage Scaling\n");
+	log_printf(MAIN, "Current Scaling: %08x\n", PWR_CR);
 
 	batt_set_voltage_scale(scale);
 
-	spf_serial_printf("New Scaling: %08x\n", PWR_CR);
+	log_printf(MAIN, "New Scaling: %08x\n", PWR_CR);
 
 	for (;;)
 	{
@@ -370,7 +371,7 @@ void test_voltage_scale(uint8_t scale)
 
 void test_low_power_run(void)
 {
-	spf_serial_printf("Testing LP Run\n");
+	log_printf(MAIN, "Testing LP Run\n");
 
 	rfm_init();
 	rfm_end();
@@ -384,7 +385,7 @@ void test_low_power_run(void)
 	// // tmp112_end();
 	// #endif
 
-	spf_serial_printf("Testing Low Power Run\n");
+	log_printf(MAIN, "Testing Low Power Run\n");
 
 	// rcc_periph_clock_enable(RCC_GPIOA);
 	// gpio_mode_setup(GPIOA, GPIO_MODE_INPUT, GPIO_PUPD_NONE, GPIO0 | GPIO1 | GPIO4 | GPIO7 | GPIO9 | GPIO10 | GPIO13 | GPIO14);
@@ -399,14 +400,14 @@ void test_low_power_run(void)
 
 void test_eeprom(void)
 {
-	spf_serial_printf("Testing EEPROM\n");
+	log_printf(MAIN, "Testing EEPROM\n");
 
 	rcc_periph_clock_enable(RCC_MIF);
 
 	for(;;)
 	{
-		spf_serial_printf("Device: %04x\n", mem_get_dev_num());
-		spf_serial_printf("Message: %04x\n", mem_get_msg_num());
+		log_printf(MAIN, "Device: %04x\n", mem_get_dev_num());
+		log_printf(MAIN, "Message: %04x\n", mem_get_msg_num());
 
 		// mem_update_msg_num(mem_get_msg_num() + 1);
 
@@ -416,7 +417,7 @@ void test_eeprom(void)
 
 void test_eeprom_keys(void)
 {
-	spf_serial_printf("Testing EEPROM Encryption Keys\n");
+	log_printf(MAIN, "Testing EEPROM Encryption Keys\n");
 
 	mem_init();
 
@@ -431,22 +432,22 @@ void test_eeprom_keys(void)
 	mem_get_aes_key_exp(aes_key_exp);
 
 
-	spf_serial_printf("AES Key: ");
-	for(int i = 0; i < 16; i++){spf_serial_printf("%02x ", aes_key[i]);}
+	log_printf(MAIN, "AES Key: ");
+	for(int i = 0; i < 16; i++){log_printf(MAIN, "%02x ", aes_key[i]);}
 
-	spf_serial_printf("\n\nAES Key Exp: ");
-	for(int i = 0; i < 176; i++){spf_serial_printf("%02x ", aes_key_exp[i]);}
+	log_printf(MAIN, "\n\nAES Key Exp: ");
+	for(int i = 0; i < 176; i++){log_printf(MAIN, "%02x ", aes_key_exp[i]);}
 
 	aes_expand_key();
 	mem_get_aes_key_exp(aes_key_exp);
 
-	spf_serial_printf("\n\nAES Key Exp: ");
-	for(int i = 0; i < 176; i++){spf_serial_printf("%02x ", aes_key_exp[i]);}
+	log_printf(MAIN, "\n\nAES Key Exp: ");
+	for(int i = 0; i < 176; i++){log_printf(MAIN, "%02x ", aes_key_exp[i]);}
 }
 
 void test_eeprom_wipe(void)
 {
-	spf_serial_printf("Testing EEPROM Wipe\n");
+	log_printf(MAIN, "Testing EEPROM Wipe\n");
 
 	rcc_periph_clock_enable(RCC_MIF);
 
@@ -454,7 +455,7 @@ void test_eeprom_wipe(void)
 
 	while(address <  0x080807FF)
 	{
-		spf_serial_printf("%08x : %08x\n", address, MMIO32(address));
+		log_printf(MAIN, "%08x : %08x\n", address, MMIO32(address));
 		address += 4;
 	}
 
@@ -470,29 +471,29 @@ void test_eeprom_wipe(void)
 
 	while(address <  0x080807FF)
 	{
-		spf_serial_printf("%08x : %08x\n", address, MMIO32(address));
+		log_printf(MAIN, "%08x : %08x\n", address, MMIO32(address));
 		address += 4;
 	}
 
-	spf_serial_printf("Done\n");
+	log_printf(MAIN, "Done\n");
 }
 
 void test_lptim(void)
 {
-	spf_serial_printf("Testing LP Timer\n");
+	log_printf(MAIN, "Testing LP Timer\n");
 
 	timers_lptim_init();
 
 	for(;;)
 	{
-		spf_serial_printf("LPTim Count: %i\n", lptimer_get_counter(LPTIM1));
+		log_printf(MAIN, "LPTim Count: %i\n", lptimer_get_counter(LPTIM1));
 		for(int i = 0; i < 1000; i++){__asm__("nop");}
 	}
 }
 
 void test_rfm(void)
 {
-	spf_serial_printf("Testing RFM\n");
+	log_printf(MAIN, "Testing RFM\n");
 
 	rfm_init();
 	rfm_config_for_lora(RFM_BW_125KHZ, RFM_CODING_RATE_4_5, RFM_SPREADING_FACTOR_128CPS, true, -5);
@@ -501,7 +502,7 @@ void test_rfm(void)
 
 void test_reset_eeprom(void)
 {
-	spf_serial_printf("Resetting MEM\n");
+	log_printf(MAIN, "Resetting MEM\n");
 
 	rcc_periph_clock_enable(RCC_MIF);
 	eeprom_program_word(0x08080000, 0);
@@ -509,36 +510,36 @@ void test_reset_eeprom(void)
 	eeprom_program_word(0x08080008, 2);
 	eeprom_program_word(0x0808000C, 0);
 
-	spf_serial_printf("%04x : %i\n", 0x08080000, MMIO32(0x08080000));
-	spf_serial_printf("%04x : %i\n", 0x08080004, MMIO32(0x08080004));
-	spf_serial_printf("%04x : %i\n", 0x08080008, MMIO32(0x08080008));
-	spf_serial_printf("%04x : %i\n", 0x0808000C, MMIO32(0x0808000C));
-	spf_serial_printf("Done\n");
+	log_printf(MAIN, "%04x : %i\n", 0x08080000, MMIO32(0x08080000));
+	log_printf(MAIN, "%04x : %i\n", 0x08080004, MMIO32(0x08080004));
+	log_printf(MAIN, "%04x : %i\n", 0x08080008, MMIO32(0x08080008));
+	log_printf(MAIN, "%04x : %i\n", 0x0808000C, MMIO32(0x0808000C));
+	log_printf(MAIN, "Done\n");
 }
 
 void test_encryption(void)
 {
-	spf_serial_printf("Testing Encryption\n");
+	log_printf(MAIN, "Testing Encryption\n");
 
 	aes_init();
 	mem_init();
 
 	uint8_t data[16] = {'H', 'e', 'l', 'l', 'o', ' ', 't', 'h', 'e', 'r', 'e', '1', '2', '3', '4', '5'};
-	for(int i = 0; i < 16; i++){spf_serial_printf("%c ", data[i]);}
-	spf_serial_printf("\n");
+	for(int i = 0; i < 16; i++){log_printf(MAIN, "%c ", data[i]);}
+	log_printf(MAIN, "\n");
 
 	aes_ecb_encrypt(data);
-	for(int i = 0; i < 16; i++){spf_serial_printf("%c ", data[i]);}
-	spf_serial_printf("\n");
+	for(int i = 0; i < 16; i++){log_printf(MAIN, "%c ", data[i]);}
+	log_printf(MAIN, "\n");
 
 	aes_ecb_decrypt(data);
-	for(int i = 0; i < 16; i++){spf_serial_printf("%c ", data[i]);}
-	spf_serial_printf("\n");
+	for(int i = 0; i < 16; i++){log_printf(MAIN, "%c ", data[i]);}
+	log_printf(MAIN, "\n");
 }
 
 bool test_timeout(void)
 {
-	spf_serial_printf("Testing Timeout\n");
+	log_printf(MAIN, "Testing Timeout\n");
 	
 	timeout_init();
 
@@ -556,23 +557,22 @@ bool test_timeout(void)
 
 void test_log(void)
 {
-	spf_serial_printf("Testing Log\n");
-
-	mem_log_printf("Testing Log\n");
+	log_init();
+	log_printf(MAIN, "Testing Log\n");
 
 	for(int i = 0; i < 10; i++)
 	{
-		mem_log_printf("Number: %i\n", i);
+		log_printf(MAIN, "Number: %i\n", i);
 	}
 
-	spf_serial_printf("Done\n");
+	log_printf(MAIN, "Done\n");
 
 	mem_print_log();
 }
 
 void test_analog_watchdog(void)
 {
-	spf_serial_printf("Testing Analog Watchdog\n");
+	log_printf(MAIN, "Testing Analog Watchdog\n");
 	batt_enable_interrupt();
 	// batt_enable_comp();
 

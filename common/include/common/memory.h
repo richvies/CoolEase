@@ -49,6 +49,7 @@ extern "C" {
 #define FLASH_PAGE_SIZE     128
 #define FLASH_NUM_PAGES     512
 #define FLASH_START         0x08000000           
+#define FLASH_START_APP     0x08004000           
 #define FLASH_END           0x08010000   
 
 #define EEPROM_PAGE_SIZE    4
@@ -88,7 +89,6 @@ void     mem_update_msg_num(uint32_t new);
 uint32_t mem_get_num_readings(void);
 int16_t  mem_get_reading(uint32_t reading_num);
 
-int  mem_log_printf(const char* format, ...);
 void mem_get_log(char log[LOG_SIZE]);
 void mem_wipe_log(void);
 void mem_print_log(void);

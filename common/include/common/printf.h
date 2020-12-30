@@ -46,13 +46,10 @@ extern "C" {
  * This function is declared here only. You have to write your custom implementation somewhere
  * \param character Character to output
  */
-void _putchar_spf(char character);
-void _putchar_sim(char character);
-void _putchar_log(char character);
 
-int vprintf_spf(const char* format, va_list va);
-int vprintf_sim(const char* format, va_list va);
-int vprintf_log(const char* format, va_list va);
+// output function type
+typedef void (*out_fct_type)(char character, void* buffer, size_t idx, size_t maxlen);
+int _vsnprintf(out_fct_type out, char* buffer, const size_t maxlen, const char* format, va_list va);
 
 
 #ifdef __cplusplus

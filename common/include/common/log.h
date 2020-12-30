@@ -1,11 +1,11 @@
 /**
  ******************************************************************************
- * @file    bootloader_utils.h
+ * @file    log.h
  * @author  Richard Davies
- * @date    25/Dec/2020
- * @brief   Bootloader_utils Header File
+ * @date    30/Dec/2020
+ * @brief   Log Header File
  *  
- * @defgroup   BOOTLOADER_UTILS_FILE  Bootloader_utils
+ * @defgroup   LOG_FILE  Log
  * @brief      
  * 
  * Description
@@ -13,17 +13,17 @@
  * @note     
  * 
  * @{
- * @defgroup   BOOTLOADER_UTILS_API  Bootloader_utils API
+ * @defgroup   LOG_API  Log API
  * @brief      
  * 
- * @defgroup   BOOTLOADER_UTILS_INT  Bootloader_utils Internal
+ * @defgroup   LOG_INT  Log Internal
  * @brief      
  * @}
  ******************************************************************************
  */
 
-#ifndef BOOTLOADER_UTILS_H
-#define BOOTLOADER_UTILS_H
+#ifndef LOG_H
+#define LOG_H
 
 /*////////////////////////////////////////////////////////////////////////////*/
 // Includes
@@ -36,23 +36,29 @@
 extern "C" {
 #endif
 
-/** @addtogroup BOOTLOADER_UTILS_API
+/** @addtogroup LOG_API
  * @{
  */
+
+enum log_type
+{
+    MAIN=0,
+    BOOT,
+    RFM,
+    TMP
+};
 
 /*////////////////////////////////////////////////////////////////////////////*/
 // Exported Variables
 /*////////////////////////////////////////////////////////////////////////////*/
 
 
+
 /*////////////////////////////////////////////////////////////////////////////*/
 // Exported Function Declarations
 /*////////////////////////////////////////////////////////////////////////////*/
-
-void boot_init(void);
-void boot_deinit(void);
-void boot_jump_to_application(uint32_t address);
-bool boot_program_application(uint32_t *data, uint32_t start_address, uint32_t len);
+void log_init(void);
+void log_printf(enum log_type type, const char *format, ...);
 
 /** @} */
 
@@ -60,4 +66,4 @@ bool boot_program_application(uint32_t *data, uint32_t start_address, uint32_t l
 }
 #endif
 
-#endif /* BOOTLOADER_UTILS_H */
+#endif /* LOG_H */

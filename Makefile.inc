@@ -82,11 +82,12 @@ LDSCRIPTS				= $($(PROJECT)_LDSCRIPT) $($(BOOTLOADER)_LDSCRIPT)
 
 CSTD ?= -std=c99
 
+# Release or debug version
 ifeq ($(R), 1)
-OPT = -O3
+OPT = -Os -s 
 else
-# OPT = -Og -ggdb3
-OPT = -Os -s
+OPT = -Og -ggdb3
+TGT_CFLAGS += -DDEBUG
 endif
 
 TGT_CPPFLAGS += -MD
@@ -100,13 +101,7 @@ TGT_CFLAGS += -ffunction-sections -fdata-sections
 TGT_CFLAGS += -Wextra -Wshadow -Wno-unused-variable -Wimplicit-function-declaration
 TGT_CFLAGS += -Wredundant-decls -Wstrict-prototypes -Wmissing-prototypes
 
-TGT_CXXFLAGS += $(OPT) $(CXXSTD) -ggdb3
-TGT_CXXFLAGS += $(ARCH_FLAGS)
-TGT_CXXFLAGS += -fno-common
-TGT_CXXFLAGS += -ffunction-sections -fdata-sections
-TGT_CXXFLAGS += -Wextra -Wshadow -Wredundant-decls  -Weffc++
-
-TGT_ASFLAGS += $(OPT) $(ARCH_FLAGS) -ggdb3
+TGT_ASFLAGS += $(OPT) $(ARCH_FLAGS)
 
 TGT_LDFLAGS += -L$(OPENCM3_DIR)/lib -nostartfiles
 TGT_LDFLAGS += $(ARCH_FLAGS)

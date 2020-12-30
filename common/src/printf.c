@@ -115,25 +115,6 @@
 #endif
 
 
-// output function type
-typedef void (*out_fct_type)(char character, void* buffer, size_t idx, size_t maxlen);
-
-
-// wrapper (used as buffer) for output function type
-typedef struct {
-  void  (*fct)(char character, void* arg);
-  void* arg;
-} out_fct_wrap_type;
-
-
-// internal buffer output
-static inline void _out_buffer(char character, void* buffer, size_t idx, size_t maxlen)
-{
-  if (idx < maxlen) {
-    ((char*)buffer)[idx] = character;
-  }
-}
-
 
 // internal null output
 static inline void _out_null(char character, void* buffer, size_t idx, size_t maxlen)
@@ -141,41 +122,6 @@ static inline void _out_null(char character, void* buffer, size_t idx, size_t ma
   (void)character; (void)buffer; (void)idx; (void)maxlen;
 }
 
-
-// internal _putchar wrapper
-static inline void _out_char_spf(char character, void* buffer, size_t idx, size_t maxlen)
-{
-  (void)buffer; (void)idx; (void)maxlen;
-  if (character) {
-    _putchar_spf(character);
-  }
-}
-
-static inline void _out_char_sim(char character, void* buffer, size_t idx, size_t maxlen)
-{
-  (void)buffer; (void)idx; (void)maxlen;
-  if (character) {
-    _putchar_sim(character);
-  }
-}
-
-static inline void _out_char_log(char character, void* buffer, size_t idx, size_t maxlen)
-{
-  (void)buffer; (void)idx; (void)maxlen;
-  if (character) {
-    _putchar_log(character);
-  }
-}
-
-// internal output function wrapper
-static inline void _out_fct(char character, void* buffer, size_t idx, size_t maxlen)
-{
-  (void)idx; (void)maxlen;
-  if (character) {
-    // buffer is the output fct pointer
-    ((out_fct_wrap_type*)buffer)->fct(character, ((out_fct_wrap_type*)buffer)->arg);
-  }
-}
 
 
 // internal secure strlen
@@ -585,8 +531,8 @@ static size_t _etoa(out_fct_type out, char* buffer, size_t idx, size_t maxlen, d
 #endif  // PRINTF_SUPPORT_FLOAT
 
 
-// internal vsnprintf
-static int _vsnprintf(out_fct_type out, char* buffer, const size_t maxlen, const char* format, va_list va)
+
+int _vsnprintf(out_fct_type out, char* buffer, const size_t maxlen, const char* format, va_list va)
 {
   unsigned int flags, width, precision, n;
   size_t idx = 0U;
@@ -862,28 +808,10 @@ static int _vsnprintf(out_fct_type out, char* buffer, const size_t maxlen, const
   }
 
   // termination
-  out((char)0, buffer, idx < maxlen ? idx : maxlen - 1U, maxlen);
+  // out((char)0, buffer, idx < maxlen ? idx : maxlen - 1U, maxlen);
 
   // return written chars without terminating \0
   return (int)idx;
 }
 
 ///////////////////////////////////////////////////////////////////////////////
-
-int  vprintf_spf(const char* format, va_list va)
-{
-  char buffer[1];
-  return _vsnprintf(_out_char_spf, buffer, (size_t)-1, format, va);
-}
-
-int vprintf_sim(const char* format, va_list va)
-{
-  char buffer[1];
-  return _vsnprintf(_out_char_sim, buffer, (size_t)-1, format, va);
-}
-
-int vprintf_log(const char* format, va_list va)
-{
-  char buffer[1];
-  return _vsnprintf(_out_char_log, buffer, (size_t)-1, format, va);
-}

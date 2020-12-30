@@ -3,7 +3,7 @@
 #include <libopencm3/stm32/pwr.h>
 #include <libopencm3/stm32/rcc.h>
 
-#include "common/serial_printf.h"
+#include "common/log.h"
 
 void reset_print_cause(void)
 {
@@ -11,44 +11,44 @@ void reset_print_cause(void)
 	
     if(pwr_get_standby_flag())
 	{
-		spf_serial_printf("Standby flag set\n");
+		log_printf(MAIN, "Standby flag set\n");
 		pwr_clear_standby_flag();
 	}
 
 	if(pwr_get_wakeup_flag())
 	{
-		spf_serial_printf("Wakeup flag set\n");
+		log_printf(MAIN, "Wakeup flag set\n");
 		pwr_clear_wakeup_flag();
 	}
 
     if(RCC_CSR & RCC_CSR_LPWRRSTF)
 	{
-		spf_serial_printf("Low Power Reset\n");
+		log_printf(MAIN, "Low Power Reset\n");
 	}
 
 	if(RCC_CSR & RCC_CSR_WWDGRSTF)
 	{
-		spf_serial_printf("Window Watchdog Reset\n");
+		log_printf(MAIN, "Window Watchdog Reset\n");
 	}
 
 	if(RCC_CSR & RCC_CSR_IWDGRSTF)
 	{
-		spf_serial_printf("I Watchdog Reset\n");
+		log_printf(MAIN, "I Watchdog Reset\n");
 	}
 
 	if(RCC_CSR & RCC_CSR_SFTRSTF)
 	{
-		spf_serial_printf("SFTRSTF Reset\n");
+		log_printf(MAIN, "SFTRSTF Reset\n");
 	}
 
 	if(RCC_CSR & RCC_CSR_PORRSTF)
 	{
-		spf_serial_printf("PORRSTF Reset\n");
+		log_printf(MAIN, "PORRSTF Reset\n");
 	}
 
 	if(RCC_CSR & RCC_CSR_PINRSTF)
 	{
-		spf_serial_printf("PINRSTF Reset\n");
+		log_printf(MAIN, "PINRSTF Reset\n");
 	}
 
     RCC_CSR |= RCC_CSR_RMVF;

@@ -12,7 +12,7 @@
                 "Tools/OpenOCD/stlink.cfg",
                 "Tools/OpenOCD/stm32l0.cfg"
             ],
-            "preLaunchTask": "Hub Download",
+            "preLaunchTask": "Build hub",
             "executable": "hub/bin/hub.elf"
         },
         {

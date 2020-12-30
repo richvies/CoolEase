@@ -26,7 +26,7 @@
 #include <libopencm3/cm3/nvic.h>
 
 #include "common/board_defs.h"
-#include "common/serial_printf.h"
+#include "common/log.h"
 #include "common/timers.h"
 
 
@@ -149,7 +149,7 @@ void rfm_init(void)
 
   rfm_reset();
 
-  spf_serial_printf("RFM Init Done\n");
+  log_printf(MAIN, "RFM Init Done\n");
 }
 
 void rfm_reset(void)
@@ -167,7 +167,7 @@ void rfm_reset(void)
 
   set_sleep_mode();
 
-  spf_serial_printf("RFM Reset Done\n");
+  log_printf(MAIN, "RFM Reset Done\n");
 }
 
 void rfm_end(void)
@@ -178,7 +178,7 @@ void rfm_end(void)
   spi_disable(RFM_SPI);
   rcc_periph_clock_disable(RFM_SPI_RCC);
 
-  spf_serial_printf("RFM End Done\n");
+  log_printf(MAIN, "RFM End Done\n");
 }
 
 void rfm_calibrate_crystal(void)
@@ -219,7 +219,7 @@ void rfm_config_for_lora(uint8_t BW, uint8_t CR, uint8_t SF, bool crc_turn_on, i
   // // FSK Register settings for CRC
   // if(crc_turn_on)
   // {
-  //   spf_serial_printf("Turn on CRC\n");
+  //   log_printf(MAIN, "Turn on CRC\n");
 
   //   // Access Shared Registers
   //   spi_write_single(RFM_REG_01_OP_MODE, ( spi_read_single(RFM_REG_01_OP_MODE) | RFM_ACCESS_SHARED_REG ));
@@ -367,7 +367,7 @@ void rfm_get_packets(void)
 
     while(packets_tail != packets_head)
     {
-      spf_serial_printf("Get %u %u\n", packets_head, packets_tail);
+      log_printf(MAIN, "Get %u %u\n", packets_head, packets_tail);
 
       // Read data from RFM
       spi_read_burst(RFM_REG_00_FIFO, packets_buf[packets_tail].data.buffer, RFM_PACKET_LENGTH);
@@ -388,7 +388,7 @@ rfm_packet_t* rfm_get_next_packet(void)
 {
   rfm_get_packets();
 
-  spf_serial_printf("Read %u\n", packets_read);
+  log_printf(MAIN, "Read %u\n", packets_read);
   rfm_packet_t *packet = &packets_buf[packets_read];
 
   packets_read = (packets_read + 1) % PACKETS_BUF_SIZE;
@@ -434,7 +434,7 @@ bool rfm_transmit_packet(rfm_packet_t packet)
   /* Write packet data */
   spi_write_burst(RFM_REG_00_FIFO, packet.data.buffer, RFM_PACKET_LENGTH);
   // spi_write_burst(RFM_REG_00_FIFO, packet.data, packet.length);
-  // spf_serial_printf("SPI Pointer: %02x : %02x\n", RFM_REG_0D_FIFO_ADDR_PTR, spi_read_single(RFM_REG_0D_FIFO_ADDR_PTR));
+  // log_printf(MAIN, "SPI Pointer: %02x : %02x\n", RFM_REG_0D_FIFO_ADDR_PTR, spi_read_single(RFM_REG_0D_FIFO_ADDR_PTR));
 
   /* Wait for clear channel */
    
@@ -446,7 +446,7 @@ bool rfm_transmit_packet(rfm_packet_t packet)
 
   // wait_rf_io_0_high();
   // uint16_t end = timers_millis();
-  // spf_serial_printf("Transmit Time: %u ms\n", (uint16_t)(end - start));
+  // log_printf(MAIN, "Transmit Time: %u ms\n", (uint16_t)(end - start));
   // bool sent = true;
 
   bool sent = false;
@@ -605,14 +605,14 @@ static void spi_write_single(uint8_t reg, uint8_t data)
 
   uint8_t curr_data = spi_read_single(reg);
 
-  // spf_serial_printf("%02x : %02x\n", reg, data);
+  // log_printf(MAIN, "%02x : %02x\n", reg, data);
 
   if(reg == RFM_REG_12_IRQ_FLAGS)    
     return;
 
   TIMEOUT(10000, "RFM SPI Write", ((reg << 16) | data), (curr_data == data), ;, timers_delay_microseconds(100); curr_data = spi_read_single(reg););
 
-  // spf_serial_printf("%02x : %02x : %02x\n", reg, data, curr_data);
+  // log_printf(MAIN, "%02x : %02x : %02x\n", reg, data, curr_data);
 }
 
 static void spi_write_burst(uint8_t reg, uint8_t *buf, uint8_t len)
@@ -664,7 +664,7 @@ static void print_registers(void)
   uint8_t i;
   for (i = 0; i < sizeof(registers); i++)
   {
-	  spf_serial_printf("%02x : %02x\n", registers[i], spi_read_single(registers[i]));
+	  log_printf(MAIN, "%02x : %02x\n", registers[i], spi_read_single(registers[i]));
   }
 }
 
@@ -729,7 +729,7 @@ static inline void clear_irq(uint8_t irq)
   // uint8_t reg = 0;
   // reg &= ~irq;
   // reg |= irq;
-  // spf_serial_printf("Clear %02x : %02x\n", irq, reg);
+  // log_printf(MAIN, "Clear %02x : %02x\n", irq, reg);
   spi_write_single(RFM_REG_12_IRQ_FLAGS, irq);
 }
 
@@ -786,7 +786,7 @@ void exti4_15_isr(void)
   packets_head = (packets_head + 1) % PACKETS_BUF_SIZE;
 
   uint16_t time = timers_micros() - timer;
-  // spf_serial_printf("ISR %u %u %u\n", time, packets_head, packets_tail);
+  // log_printf(MAIN, "ISR %u %u %u\n", time, packets_head, packets_tail);
 }
 
 /** @} */

@@ -6,7 +6,7 @@
 #include "common/board_defs.h"
 #include "common/timers.h"
 #include "sensor/tmp112.h"
-#include "common/serial_printf.h"
+#include "common/log.h"
 
 // Helper functions for setting up i2c communication
 static void tmp112_clock_setup(void);
@@ -18,7 +18,7 @@ void tmp112_init(void)
 	tmp112_clock_setup();
 	tmp112_i2c_setup();
 
-	spf_serial_printf("TMP Init Done\n");
+	log_printf(MAIN, "TMP Init Done\n");
 }
 
 void tmp112_end(void)
@@ -35,7 +35,7 @@ void tmp112_end(void)
 	i2c_peripheral_disable(TEMP_I2C);
 	rcc_periph_clock_disable(TEMP_I2C_RCC);
 
-	spf_serial_printf("TMP End Done\n");
+	log_printf(MAIN, "TMP End Done\n");
 }
 
 void tmp112_reset(void)

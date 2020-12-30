@@ -10,7 +10,7 @@
 #include <libopencm3/stm32/exti.h>
 #include <libopencm3/cm3/nvic.h>
 
-#include "common/serial_printf.h"
+#include "common/log.h"
 #include "common/board_defs.h"
 #include "common/timers.h"
 
@@ -179,7 +179,7 @@ void batt_enable_interrupt(void)
     // Interrupt if voltage below 4.7V (2.35 on pin)
     uint16_t vrefint_low    = (300 * ST_VREFINT_CAL) / 600;
     uint16_t vrefint_high   = (300 * ST_VREFINT_CAL) / 235;
-    spf_serial_printf("Thresh %i %i\n", vrefint_low, vrefint_high);
+    log_printf(MAIN, "Thresh %i %i\n", vrefint_low, vrefint_high);
     ADC_TR1(ADC1)           = (vrefint_high << 16) + vrefint_low; 
     // Configure ADC
     ADC_CFGR1(ADC1)  |= (1<<26) | ADC_CFGR1_AWD1EN | ADC_CFGR1_AWD1SGL;
@@ -316,7 +316,7 @@ void adc_comp_isr(void)
 {
     // Takes about 150us to run
 
-    // spf_serial_printf("ADC ISR %08X\n", ADC_ISR(ADC1));
+    // log_printf(MAIN, "ADC ISR %08X\n", ADC_ISR(ADC1));
 
     // Calculate batt_voltages
     for(uint8_t i = 0; i < NUM_VOLTAGES; i++){
@@ -351,14 +351,14 @@ void adc_comp_isr(void)
             else if(timers_millis() - timer > 10000){
                 state = 3;
                 plugged_in = false;
-                spf_serial_printf("Plugged Out\n");}
+                log_printf(MAIN, "Plugged Out\n");}
             break;
         
         case 3:
             if(batt_voltages[PWR_VOLTAGE] > batt_voltages[BATT_VOLTAGE]){
                 timer = timers_millis();
                 state = 0;
-                spf_serial_printf("Plugged In\n");}
+                log_printf(MAIN, "Plugged In\n");}
             break;
 
         case 4:
@@ -367,15 +367,15 @@ void adc_comp_isr(void)
             else if(timers_millis() - timer > 1000){
                 state = 0;
                 batt_rst_seq = true; 
-                spf_serial_printf("Reset Sequence\n"); }
+                log_printf(MAIN, "Reset Sequence\n"); }
             break;
 
         default:
-            spf_serial_printf("Error ADC ISR Defaut Case\n");
+            log_printf(MAIN, "Error ADC ISR Defaut Case\n");
             break;
     }
 
-    // spf_serial_printf("ADC ISR %u %u %u V\n",state, batt_voltages[0], batt_voltages[1]);
+    // log_printf(MAIN, "ADC ISR %u %u %u V\n",state, batt_voltages[0], batt_voltages[1]);
 
     ADC_ISR(ADC1) = 0xFFFFFFFF;
     adc_start_conversion_regular(ADC1);
@@ -385,7 +385,7 @@ void adc_comp_isr(void)
 // For use with comp1
 void adc_comp_isr(void)
 {
-    // spf_serial_printf("ADC ISR %08X\n", ADC_ISR(ADC1));
+    // log_printf(MAIN, "ADC ISR %08X\n", ADC_ISR(ADC1));
 
     exti_reset_request(EXTI21);
 
@@ -413,10 +413,10 @@ void adc_comp_isr(void)
             if(comp_high){
                 state = 0;
                 batt_rst_seq = true; 
-                spf_serial_printf("Reset Sequence\n");}
+                log_printf(MAIN, "Reset Sequence\n");}
             else if(timers_millis() - timer > 10000){
                 plugged_in = false;
-                spf_serial_printf("Plugged Out\n");}
+                log_printf(MAIN, "Plugged Out\n");}
             break;
 
         default:
@@ -424,7 +424,7 @@ void adc_comp_isr(void)
 
     }
 
-    spf_serial_printf("ADC ISR %u %u %u V\n",state, batt_voltages[0], batt_voltages[1]);
+    log_printf(MAIN, "ADC ISR %u %u %u V\n",state, batt_voltages[0], batt_voltages[1]);
 
     ADC_ISR(ADC1) = 0xFFFFFFFF;
     adc_start_conversion_regular(ADC1);

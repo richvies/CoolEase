@@ -137,6 +137,24 @@
                 "-c",
                 "program hub/bin/hub.elf verify",
                 "-c",
+                "reset",
+                "-c",
+                "exit"
+            ],
+            "dependsOn": ["Build hub"],
+            "problemMatcher": []
+        },
+        // Hub Bootloader
+        {
+            "label": "Hub Bootloader Download",
+            "type": "shell",
+            "command": "/usr/local/bin/openocd",
+            "args": [
+                "-f",
+                "tools/openocd/stlink.cfg",
+                "-f",
+                "tools/openocd/stm32l0.cfg",
+                "-c",
                 "program hub/bin/hub_bootloader.elf verify",
                 "-c",
                 "reset",

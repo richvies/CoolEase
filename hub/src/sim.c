@@ -10,7 +10,8 @@
 #include <libopencm3/cm3/nvic.h>
 
 #include "common/board_defs.h"
-#include "common/serial_printf.h"
+#include "common/printf.h"
+#include "common/log.h"
 #include "common/timers.h"
 #include "common/aes.h"
 
@@ -23,12 +24,13 @@ uint8_t	msg_idx;
 // Static Function Decls
 static void clock_setup(void);
 static void usart_setup(void);
+static void _putchar(char character, void* buffer, size_t idx, size_t maxlen);
 
 
 // Global Function Definitions
 void sim_init(void)
 {
-	spf_serial_printf("Sim Init\n");
+	log_printf(MAIN, "Sim Init\n");
 
 	rcc_periph_clock_enable(RCC_GPIOA);
 	rcc_periph_clock_enable(RCC_GPIOB);
@@ -52,7 +54,7 @@ void sim_init(void)
 	sim_printf("ate0\r\n");
 	TIMEOUT(1000000, "SIM: ate0", 0, check_response("OK"), ;, ;);
 
-	spf_serial_printf("Sim Init Done\n");
+	log_printf(MAIN, "Sim Init Done\n");
 }
 
 void sim_end(void)
@@ -69,7 +71,7 @@ void sim_end(void)
 	usart_disable(SIM_USART);
 	rcc_periph_clock_disable(SIM_USART_RCC);
 
-	spf_serial_printf("Sim End Done\n");
+	log_printf(MAIN, "Sim End Done\n");
 }
 
 
@@ -118,10 +120,10 @@ void sim_send_temp(rfm_packet_t *packets,  uint8_t len)
 	// TIMEOUT(10000000, "SIM: at+httppara=url,www.circuitboardsamurai.com/upload.php?s=", 0, check_response("OK"), ;, ;);
 	
 	// sim_printf("at+sapbr=1,1\r\n");
-	// TIMEOUT(10000000, "SIM: at+sapbr=1,1", 0, check_response("OK"), ;, timers_delay_milliseconds(1000);sim_printf("at+sapbr=1,1\r\n");spf_serial_printf("else code\n"););
+	// TIMEOUT(10000000, "SIM: at+sapbr=1,1", 0, check_response("OK"), ;, timers_delay_milliseconds(1000);sim_printf("at+sapbr=1,1\r\n");log_printf(MAIN, "else code\n"););
 	
 	// sim_printf("at+httpaction=0\r\n");
-	// TIMEOUT(20000000, "SIM: at+httpaction=0", 0, check_response("OK"), ;, timers_delay_milliseconds(1000);sim_printf("at+httpaction=0\r\n");spf_serial_printf("else code\n"););
+	// TIMEOUT(20000000, "SIM: at+httpaction=0", 0, check_response("OK"), ;, timers_delay_milliseconds(1000);sim_printf("at+httpaction=0\r\n");log_printf(MAIN, "else code\n"););
 	// TIMEOUT(20000000, "SIM: at+httpaction=0", 0, check_response("+HTTPACTION"), ;, ;);
 
 	// sim_printf("at+httpread\r\n");
@@ -233,7 +235,7 @@ bool check_response(char *str)
 		char character = sim_rx_buf[sim_rx_tail++];
 		msg[msg_idx++] = character;
 
-		// spf_serial_printf("%c", character);
+		// log_printf(MAIN, "%c", character);
 
 		// End of message
 		if(character == '\n')
@@ -262,22 +264,26 @@ bool check_response(char *str)
 
 
 int sim_printf(const char* format, ...)
-{
-  	va_list va;
-  	va_start(va, format);
-  	const int ret = vprintf_sim(format, va);
-  	va_end(va);
+{	
+	char buffer[1];
 
-	while(!usart_get_flag(SIM_USART, USART_ISR_TC)) {__asm__("nop");}
+	va_list va;
+	va_start(va, format);
+  	const int ret = _vsnprintf(_putchar, buffer, (size_t)-1, format, va);
+  	va_end(va);
 	
+	while(!usart_get_flag(SIM_USART, USART_ISR_TC)) {__asm__("nop");}
+
 	return ret;
 }
 
-void _putchar_sim(char character)
+static void _putchar(char character, void* buffer, size_t idx, size_t maxlen)
 {
-    usart_send_blocking(SIM_USART, character);
-	usart_send_blocking(SPF_USART, character);
+	(void)buffer; (void)idx; (void)maxlen;
+	usart_send_blocking(SIM_USART, character);
+	usart_send_blocking(SPF_USART, character);	
 }
+
 
 void sim_serial_pass_through(void)
 {
@@ -287,7 +293,7 @@ void sim_serial_pass_through(void)
 
     sim_init();
 
-    spf_serial_printf("Ready\n");
+    log_printf(MAIN, "Ready\n");
 
     while(1)
     {

@@ -1,4 +1,4 @@
-# 1 "sensor/src/tmp112.c"
+# 1 "common/src/log.c"
 # 1 "/Users/richarddavies/Desktop/Projects/CoolEase//"
 # 1 "<built-in>"
 #define __STDC__ 1
@@ -479,26 +479,20 @@
 #define __ELF__ 1
 # 1 "<command-line>"
 #define __USES_INITFINI__ 1
+#define _HUB 1
 #define DEBUG 1
 #define STM32L0 1
-#define STM32L051C8T6 1
-# 1 "sensor/src/tmp112.c"
-# 1 "libopencm3/include/libopencm3/stm32/rcc.h" 1
-# 20 "libopencm3/include/libopencm3/stm32/rcc.h"
-# 1 "libopencm3/include/libopencm3/cm3/common.h" 1
-# 21 "libopencm3/include/libopencm3/cm3/common.h"
-#define LIBOPENCM3_CM3_COMMON_H 
-# 33 "libopencm3/include/libopencm3/cm3/common.h"
-#define BEGIN_DECLS 
-#define END_DECLS 
+#define STM32L052C8T6 1
+# 1 "common/src/log.c"
+# 15 "common/src/log.c"
+# 1 "common/include/common/log.h" 1
+# 26 "common/include/common/log.h"
+#define LOG_H 
 
 
 
 
 
-
-#define LIBOPENCM3_DEPRECATED(x) __attribute__((deprecated(x)))
-# 63 "libopencm3/include/libopencm3/cm3/common.h"
 # 1 "/usr/local/Cellar/arm-gcc-bin/9-2020-q2-update/lib/gcc/arm-none-eabi/9.3.1/include/stdint.h" 1 3 4
 # 9 "/usr/local/Cellar/arm-gcc-bin/9-2020-q2-update/lib/gcc/arm-none-eabi/9.3.1/include/stdint.h" 3 4
 # 1 "/usr/local/Cellar/arm-gcc-bin/9-2020-q2-update/arm-none-eabi/include/stdint.h" 1 3 4
@@ -1088,7 +1082,7 @@ typedef __uint_least64_t uint_least64_t;
 
 
 #define _GCC_WRAP_STDINT_H 
-# 64 "libopencm3/include/libopencm3/cm3/common.h" 2
+# 33 "common/include/common/log.h" 2
 # 1 "/usr/local/Cellar/arm-gcc-bin/9-2020-q2-update/lib/gcc/arm-none-eabi/9.3.1/include/stdbool.h" 1 3 4
 # 29 "/usr/local/Cellar/arm-gcc-bin/9-2020-q2-update/lib/gcc/arm-none-eabi/9.3.1/include/stdbool.h" 3 4
 #define _STDBOOL_H 
@@ -1100,9 +1094,38 @@ typedef __uint_least64_t uint_least64_t;
 #define false 0
 # 52 "/usr/local/Cellar/arm-gcc-bin/9-2020-q2-update/lib/gcc/arm-none-eabi/9.3.1/include/stdbool.h" 3 4
 #define __bool_true_false_are_defined 1
-# 65 "libopencm3/include/libopencm3/cm3/common.h" 2
+# 34 "common/include/common/log.h" 2
+# 43 "common/include/common/log.h"
+
+# 43 "common/include/common/log.h"
+enum log_type
+{
+    MAIN=0,
+    BOOT,
+    RFM,
+    TMP
+};
+# 60 "common/include/common/log.h"
+void log_init(void);
+void log_printf(enum log_type type, const char *format, ...);
+# 16 "common/src/log.c" 2
+
+# 1 "libopencm3/include/libopencm3/stm32/rcc.h" 1
+# 20 "libopencm3/include/libopencm3/stm32/rcc.h"
+# 1 "libopencm3/include/libopencm3/cm3/common.h" 1
+# 21 "libopencm3/include/libopencm3/cm3/common.h"
+#define LIBOPENCM3_CM3_COMMON_H 
+# 33 "libopencm3/include/libopencm3/cm3/common.h"
+#define BEGIN_DECLS 
+#define END_DECLS 
 
 
+
+
+
+
+#define LIBOPENCM3_DEPRECATED(x) __attribute__((deprecated(x)))
+# 67 "libopencm3/include/libopencm3/cm3/common.h"
 #define MMIO8(addr) (*(volatile uint8_t *)(addr))
 #define MMIO16(addr) (*(volatile uint16_t *)(addr))
 #define MMIO32(addr) (*(volatile uint32_t *)(addr))
@@ -1362,8 +1385,6 @@ typedef __uint_least64_t uint_least64_t;
 
 
 
-
-# 107 "libopencm3/include/libopencm3/stm32/common/pwr_common_v1.h"
 void pwr_disable_backup_domain_write_protect(void);
 void pwr_enable_backup_domain_write_protect(void);
 void pwr_enable_power_voltage_detect(uint32_t pvd_level);
@@ -2170,7 +2191,7 @@ void rcc_set_usart2_sel(uint32_t usart2_sel);
 
 
 # 37 "libopencm3/include/libopencm3/stm32/rcc.h" 2
-# 2 "sensor/src/tmp112.c" 2
+# 18 "common/src/log.c" 2
 # 1 "libopencm3/include/libopencm3/stm32/gpio.h" 1
 # 36 "libopencm3/include/libopencm3/stm32/gpio.h"
 # 1 "libopencm3/include/libopencm3/stm32/l0/gpio.h" 1
@@ -2533,1087 +2554,7 @@ void gpio_set_af(uint32_t gpioport, uint8_t alt_func_num, uint16_t gpios);
 
 
 # 37 "libopencm3/include/libopencm3/stm32/gpio.h" 2
-# 3 "sensor/src/tmp112.c" 2
-# 1 "libopencm3/include/libopencm3/stm32/i2c.h" 1
-# 36 "libopencm3/include/libopencm3/stm32/i2c.h"
-# 1 "libopencm3/include/libopencm3/stm32/l0/i2c.h" 1
-# 32 "libopencm3/include/libopencm3/stm32/l0/i2c.h"
-#define LIBOPENCM3_I2C_H 
-
-# 1 "libopencm3/include/libopencm3/stm32/common/i2c_common_v2.h" 1
-# 32 "libopencm3/include/libopencm3/stm32/common/i2c_common_v2.h"
-#define LIBOPENCM3_I2C_COMMON_V2_H 
-
-# 1 "/usr/local/Cellar/arm-gcc-bin/9-2020-q2-update/lib/gcc/arm-none-eabi/9.3.1/include/stddef.h" 1 3 4
-# 39 "/usr/local/Cellar/arm-gcc-bin/9-2020-q2-update/lib/gcc/arm-none-eabi/9.3.1/include/stddef.h" 3 4
-#define _STDDEF_H 
-#define _STDDEF_H_ 
-
-#define _ANSI_STDDEF_H 
-# 131 "/usr/local/Cellar/arm-gcc-bin/9-2020-q2-update/lib/gcc/arm-none-eabi/9.3.1/include/stddef.h" 3 4
-#define _PTRDIFF_T 
-#define _T_PTRDIFF_ 
-#define _T_PTRDIFF 
-#define __PTRDIFF_T 
-#define _PTRDIFF_T_ 
-#define _BSD_PTRDIFF_T_ 
-#define ___int_ptrdiff_t_h 
-#define _GCC_PTRDIFF_T 
-#define _PTRDIFF_T_DECLARED 
-
-
-
-
-# 143 "/usr/local/Cellar/arm-gcc-bin/9-2020-q2-update/lib/gcc/arm-none-eabi/9.3.1/include/stddef.h" 3 4
-typedef int ptrdiff_t;
-# 155 "/usr/local/Cellar/arm-gcc-bin/9-2020-q2-update/lib/gcc/arm-none-eabi/9.3.1/include/stddef.h" 3 4
-#undef __need_ptrdiff_t
-# 181 "/usr/local/Cellar/arm-gcc-bin/9-2020-q2-update/lib/gcc/arm-none-eabi/9.3.1/include/stddef.h" 3 4
-#define __size_t__ 
-#define __SIZE_T__ 
-#define _SIZE_T 
-#define _SYS_SIZE_T_H 
-#define _T_SIZE_ 
-#define _T_SIZE 
-#define __SIZE_T 
-#define _SIZE_T_ 
-#define _BSD_SIZE_T_ 
-#define _SIZE_T_DEFINED_ 
-#define _SIZE_T_DEFINED 
-#define _BSD_SIZE_T_DEFINED_ 
-#define _SIZE_T_DECLARED 
-#define ___int_size_t_h 
-#define _GCC_SIZE_T 
-#define _SIZET_ 
-
-
-
-
-
-
-#define __size_t 
-
-
-
-
-
-typedef unsigned int size_t;
-# 231 "/usr/local/Cellar/arm-gcc-bin/9-2020-q2-update/lib/gcc/arm-none-eabi/9.3.1/include/stddef.h" 3 4
-#undef __need_size_t
-# 260 "/usr/local/Cellar/arm-gcc-bin/9-2020-q2-update/lib/gcc/arm-none-eabi/9.3.1/include/stddef.h" 3 4
-#define __wchar_t__ 
-#define __WCHAR_T__ 
-#define _WCHAR_T 
-#define _T_WCHAR_ 
-#define _T_WCHAR 
-#define __WCHAR_T 
-#define _WCHAR_T_ 
-#define _BSD_WCHAR_T_ 
-#define _WCHAR_T_DEFINED_ 
-#define _WCHAR_T_DEFINED 
-#define _WCHAR_T_H 
-#define ___int_wchar_t_h 
-#define __INT_WCHAR_T_H 
-#define _GCC_WCHAR_T 
-#define _WCHAR_T_DECLARED 
-# 287 "/usr/local/Cellar/arm-gcc-bin/9-2020-q2-update/lib/gcc/arm-none-eabi/9.3.1/include/stddef.h" 3 4
-#undef _BSD_WCHAR_T_
-# 321 "/usr/local/Cellar/arm-gcc-bin/9-2020-q2-update/lib/gcc/arm-none-eabi/9.3.1/include/stddef.h" 3 4
-typedef unsigned int wchar_t;
-# 340 "/usr/local/Cellar/arm-gcc-bin/9-2020-q2-update/lib/gcc/arm-none-eabi/9.3.1/include/stddef.h" 3 4
-#undef __need_wchar_t
-# 390 "/usr/local/Cellar/arm-gcc-bin/9-2020-q2-update/lib/gcc/arm-none-eabi/9.3.1/include/stddef.h" 3 4
-#undef NULL
-
-
-
-
-#define NULL ((void *)0)
-
-
-
-
-
-#undef __need_NULL
-
-
-
-
-#define offsetof(TYPE,MEMBER) __builtin_offsetof (TYPE, MEMBER)
-# 35 "libopencm3/include/libopencm3/stm32/common/i2c_common_v2.h" 2
-# 44 "libopencm3/include/libopencm3/stm32/common/i2c_common_v2.h"
-#define I2C1 I2C1_BASE
-#define I2C2 I2C2_BASE
-
-#define I2C3 I2C3_BASE
-# 57 "libopencm3/include/libopencm3/stm32/common/i2c_common_v2.h"
-#define I2C_CR1(i2c_base) MMIO32((i2c_base) + 0x00)
-#define I2C1_CR1 I2C_CR1(I2C1)
-#define I2C2_CR1 I2C_CR1(I2C2)
-
-
-#define I2C_CR2(i2c_base) MMIO32((i2c_base) + 0x04)
-#define I2C1_CR2 I2C_CR2(I2C1)
-#define I2C2_CR2 I2C_CR2(I2C2)
-
-
-#define I2C_OAR1(i2c_base) MMIO32((i2c_base) + 0x08)
-#define I2C1_OAR1 I2C_OAR1(I2C1)
-#define I2C2_OAR1 I2C_OAR1(I2C2)
-
-
-#define I2C_OAR2(i2c_base) MMIO32((i2c_base) + 0x0c)
-#define I2C1_OAR2 I2C_OAR2(I2C1)
-#define I2C2_OAR2 I2C_OAR2(I2C2)
-
-
-#define I2C_TIMINGR(i2c_base) MMIO32((i2c_base) + 0x10)
-#define I2C1_TIMINGR I2C_TIMINGR(I2C1)
-#define I2C2_TIMINGR I2C_TIMINGR(I2C2)
-
-
-#define I2C_TIMEOUTR(i2c_base) MMIO32((i2c_base) + 0x14)
-#define I2C1_TIMEOUTR I2C_TIMEOUTR(I2C1)
-#define I2C2_TIMEOUTR I2C_TIMEOUTR(I2C2)
-
-
-#define I2C_ISR(i2c_base) MMIO32((i2c_base) + 0x18)
-#define I2C1_ISR I2C_ISR(I2C1)
-#define I2C2_ISR I2C_ISR(I2C2)
-
-
-#define I2C_ICR(i2c_base) MMIO32((i2c_base) + 0x1C)
-#define I2C1_ICR I2C_ICR(I2C1)
-#define I2C2_ICR I2C_ICR(I2C2)
-
-
-#define I2C_PECR(i2c_base) MMIO32((i2c_base) + 0x20)
-#define I2C1_PECR I2C_PECR(I2C1)
-#define I2C2_PECR I2C_PECR(I2C2)
-
-
-#define I2C_RXDR(i2c_base) MMIO32((i2c_base) + 0x24)
-#define I2C1_RXDR I2C_RXDR(I2C1)
-#define I2C2_RXDR I2C_RXDR(I2C2)
-
-
-#define I2C_TXDR(i2c_base) MMIO32((i2c_base) + 0x28)
-#define I2C1_TXDR I2C_TXDR(I2C1)
-#define I2C2_TXDR I2C_TXDR(I2C2)
-
-
-
-#define I2C3_CR1 I2C_CR1(I2C3)
-#define I2C3_CR2 I2C_CR2(I2C3)
-#define I2C3_OAR1 I2C_OAR1(I2C3)
-#define I2C3_OAR2 I2C_OAR2(I2C3)
-#define I2C3_DR I2C_DR(I2C3)
-#define I2C3_SR1 I2C_SR1(I2C3)
-#define I2C3_SR2 I2C_SR2(I2C3)
-#define I2C3_CCR I2C_CCR(I2C3)
-#define I2C3_TRISE I2C_TRISE(I2C3)
-
-
-
-
-
-#define I2C_CR1_PECEN (1 << 23)
-
-
-#define I2C_CR1_ALERTEN (1 << 22)
-
-
-#define I2C_CR1_SMBDEN (1 << 21)
-
-
-#define I2C_CR1_SMBHEN (1 << 20)
-
-
-#define I2C_CR1_GCEN (1 << 19)
-
-
-#define I2C_CR1_WUPEN (1 << 18)
-
-
-#define I2C_CR1_NOSTRETCH (1 << 17)
-
-
-#define I2C_CR1_SBC (1 << 16)
-
-
-#define I2C_CR1_RXDMAEN (1 << 15)
-
-
-#define I2C_CR1_TXDMAEN (1 << 14)
-
-
-#define I2C_CR1_ANFOFF (1 << 12)
-
-
-#define I2C_CR1_DNF_MASK 0xF
-#define I2C_CR1_DNF_SHIFT 8
-
-
-#define I2C_CR1_ERRIE (1 << 7)
-
-
-#define I2C_CR1_TCIE (1 << 6)
-
-
-#define I2C_CR1_STOPIE (1 << 5)
-
-
-#define I2C_CR1_NACKIE (1 << 4)
-
-
-#define I2C_CR1_ADDRIE (1 << 3)
-
-
-#define I2C_CR1_RXIE (1 << 2)
-
-
-#define I2C_CR1_TXIE (1 << 1)
-
-
-#define I2C_CR1_PE (1 << 0)
-
-
-
-
-#define I2C_CR2_PECBYTE (1 << 26)
-
-
-#define I2C_CR2_AUTOEND (1 << 25)
-
-
-#define I2C_CR2_RELOAD (1 << 24)
-
-
-#define I2C_CR2_NBYTES_SHIFT 16
-#define I2C_CR2_NBYTES_MASK (0xFF << I2C_CR2_NBYTES_SHIFT)
-
-
-#define I2C_CR2_NACK (1 << 15)
-
-
-#define I2C_CR2_STOP (1 << 14)
-
-
-#define I2C_CR2_START (1 << 13)
-
-
-#define I2C_CR2_HEAD10R (1 << 12)
-
-
-#define I2C_CR2_ADD10 (1 << 11)
-
-
-#define I2C_CR2_RD_WRN (1 << 10)
-
-#define I2C_CR2_SADD_7BIT_SHIFT 1
-#define I2C_CR2_SADD_10BIT_SHIFT 0
-#define I2C_CR2_SADD_7BIT_MASK (0x7F << I2C_CR2_SADD_7BIT_SHIFT)
-#define I2C_CR2_SADD_10BIT_MASK 0x3FF
-
-
-
-
-#define I2C_OAR1_OA1EN_DISABLE (0x0 << 15)
-#define I2C_OAR1_OA1EN_ENABLE (0x1 << 15)
-
-
-#define I2C_OAR1_OA1MODE (1 << 10)
-#define I2C_OAR1_OA1MODE_7BIT 0
-#define I2C_OAR1_OA1MODE_10BIT 1
-
-
-
-
-
-
-#define I2C_OAR1_OA1 (1 << 10)
-#define I2C_OAR1_OA1_7BIT 0
-#define I2C_OAR1_OA1_10BIT 1
-
-
-
-
-#define I2C_OAR2_OA2EN (1 << 15)
-
-
-#define I2C_OAR2_OA2MSK_NO_MASK (0x0 << 8)
-#define I2C_OAR2_OA2MSK_OA2_7_OA2_2 (0x1 << 8)
-#define I2C_OAR2_OA2MSK_OA2_7_OA2_3 (0x2 << 8)
-#define I2C_OAR2_OA2MSK_OA2_7_OA2_4 (0x3 << 8)
-#define I2C_OAR2_OA2MSK_OA2_7_OA2_5 (0x4 << 8)
-#define I2C_OAR2_OA2MSK_OA2_7_OA2_6 (0x5 << 8)
-#define I2C_OAR2_OA2MSK_OA2_7 (0x6 << 8)
-#define I2C_OAR2_OA2MSK_NO_CMP (0x7 << 8)
-
-
-
-
-
-
-#define I2C_TIMINGR_PRESC_SHIFT 28
-#define I2C_TIMINGR_PRESC_MASK (0xF << 28)
-
-
-#define I2C_TIMINGR_SCLDEL_SHIFT 20
-#define I2C_TIMINGR_SCLDEL_MASK (0xF << I2C_TIMINGR_SCLDEL_SHIFT)
-
-
-#define I2C_TIMINGR_SDADEL_SHIFT 16
-#define I2C_TIMINGR_SDADEL_MASK (0xF << I2C_TIMINGR_SDADEL_SHIFT)
-
-
-#define I2C_TIMINGR_SCLH_SHIFT 8
-#define I2C_TIMINGR_SCLH_MASK (0xFF << I2C_TIMINGR_SCLH_SHIFT)
-
-
-#define I2C_TIMINGR_SCLL_SHIFT 0
-#define I2C_TIMINGR_SCLL_MASK (0xFF << I2C_TIMINGR_SCLL_SHIFT)
-
-
-
-
-#define I2C_TIEMOUTR_TEXTEN (1 << 31)
-
-
-
-
-
-#define I2C_TIEMOUTR_TIMOUTEN (1 << 15)
-
-
-#define I2C_TIEMOUTR_TIDLE_SCL_LOW (0x0 << 12)
-#define I2C_TIEMOUTR_TIDLE_SCL_SDA_HIGH (0x1 << 12)
-# 310 "libopencm3/include/libopencm3/stm32/common/i2c_common_v2.h"
-#define I2C_ISR_DIR_READ (0x1 << 16)
-#define I2C_ISR_DIR_WRITE (0x0 << 16)
-
-
-#define I2C_ISR_BUSY (1 << 15)
-
-
-#define I2C_ISR_ALERT (1 << 13)
-
-
-#define I2C_ISR_TIMEOUT (1 << 12)
-
-
-#define I2C_ISR_PECERR (1 << 11)
-
-
-#define I2C_ISR_OVR (1 << 10)
-
-
-#define I2C_ISR_ARLO (1 << 9)
-
-
-#define I2C_ISR_BERR (1 << 8)
-
-
-#define I2C_ISR_TCR (1 << 7)
-
-
-#define I2C_ISR_TC (1 << 6)
-
-
-#define I2C_ISR_STOPF (1 << 5)
-
-
-#define I2C_ISR_NACKF (1 << 4)
-
-
-#define I2C_ISR_ADDR (1 << 3)
-
-
-#define I2C_ISR_RXNE (1 << 2)
-
-
-#define I2C_ISR_TXIS (1 << 1)
-
-
-#define I2C_ISR_TXE (1 << 0)
-
-
-
-
-#define I2C_ICR_ALERTCF (1 << 13)
-
-
-#define I2C_ICR_TIMOUTCF (1 << 12)
-
-
-#define I2C_ICR_PECCF (1 << 11)
-
-
-#define I2C_ICR_OVRCF (1 << 10)
-
-
-#define I2C_ICR_ARLOCF (1 << 9)
-
-
-#define I2C_ICR_BERRCF (1 << 8)
-
-
-#define I2C_ICR_STOPCF (1 << 5)
-
-
-#define I2C_ICR_NACKCF (1 << 4)
-
-
-#define I2C_ICR_ADDRCF (1 << 3)
-# 396 "libopencm3/include/libopencm3/stm32/common/i2c_common_v2.h"
-
-# 396 "libopencm3/include/libopencm3/stm32/common/i2c_common_v2.h"
-enum i2c_speeds {
- i2c_speed_sm_100k,
- i2c_speed_fm_400k,
- i2c_speed_fmp_1m,
- i2c_speed_unknown
-};
-
-
-
-void i2c_reset(uint32_t i2c);
-void i2c_peripheral_enable(uint32_t i2c);
-void i2c_peripheral_disable(uint32_t i2c);
-void i2c_send_start(uint32_t i2c);
-void i2c_send_stop(uint32_t i2c);
-void i2c_clear_stop(uint32_t i2c);
-void i2c_set_own_7bit_slave_address(uint32_t i2c, uint8_t slave);
-void i2c_set_own_10bit_slave_address(uint32_t i2c, uint16_t slave);
-void i2c_send_data(uint32_t i2c, uint8_t data);
-uint8_t i2c_get_data(uint32_t i2c);
-
-void i2c_enable_analog_filter(uint32_t i2c);
-void i2c_disable_analog_filter(uint32_t i2c);
-void i2c_set_digital_filter(uint32_t i2c, uint8_t dnf_setting);
-void i2c_set_prescaler(uint32_t i2c, uint8_t presc);
-void i2c_set_data_setup_time(uint32_t i2c, uint8_t s_time);
-void i2c_set_data_hold_time(uint32_t i2c, uint8_t h_time);
-void i2c_set_scl_high_period(uint32_t i2c, uint8_t period);
-void i2c_set_scl_low_period(uint32_t i2c, uint8_t period);
-void i2c_enable_stretching(uint32_t i2c);
-void i2c_disable_stretching(uint32_t i2c);
-void i2c_set_7bit_addr_mode(uint32_t i2c);
-void i2c_set_10bit_addr_mode(uint32_t i2c);
-void i2c_set_7bit_address(uint32_t i2c, uint8_t addr);
-void i2c_set_10bit_address(uint32_t i2c, uint16_t addr);
-void i2c_set_write_transfer_dir(uint32_t i2c);
-void i2c_set_read_transfer_dir(uint32_t i2c);
-void i2c_set_bytes_to_transfer(uint32_t i2c, uint32_t n_bytes);
-
-# 433 "libopencm3/include/libopencm3/stm32/common/i2c_common_v2.h" 3 4
-_Bool 
-# 433 "libopencm3/include/libopencm3/stm32/common/i2c_common_v2.h"
-    i2c_is_start(uint32_t i2c);
-void i2c_enable_autoend(uint32_t i2c);
-void i2c_disable_autoend(uint32_t i2c);
-
-# 436 "libopencm3/include/libopencm3/stm32/common/i2c_common_v2.h" 3 4
-_Bool 
-# 436 "libopencm3/include/libopencm3/stm32/common/i2c_common_v2.h"
-    i2c_nack(uint32_t i2c);
-
-# 437 "libopencm3/include/libopencm3/stm32/common/i2c_common_v2.h" 3 4
-_Bool 
-# 437 "libopencm3/include/libopencm3/stm32/common/i2c_common_v2.h"
-    i2c_busy(uint32_t i2c);
-
-# 438 "libopencm3/include/libopencm3/stm32/common/i2c_common_v2.h" 3 4
-_Bool 
-# 438 "libopencm3/include/libopencm3/stm32/common/i2c_common_v2.h"
-    i2c_transmit_int_status(uint32_t i2c);
-
-# 439 "libopencm3/include/libopencm3/stm32/common/i2c_common_v2.h" 3 4
-_Bool 
-# 439 "libopencm3/include/libopencm3/stm32/common/i2c_common_v2.h"
-    i2c_transfer_complete(uint32_t i2c);
-
-# 440 "libopencm3/include/libopencm3/stm32/common/i2c_common_v2.h" 3 4
-_Bool 
-# 440 "libopencm3/include/libopencm3/stm32/common/i2c_common_v2.h"
-    i2c_received_data(uint32_t i2c);
-void i2c_enable_interrupt(uint32_t i2c, uint32_t interrupt);
-void i2c_disable_interrupt(uint32_t i2c, uint32_t interrupt);
-void i2c_enable_rxdma(uint32_t i2c);
-void i2c_disable_rxdma(uint32_t i2c);
-void i2c_enable_txdma(uint32_t i2c);
-void i2c_disable_txdma(uint32_t i2c);
-void i2c_transfer7(uint32_t i2c, uint8_t addr, uint8_t *w, size_t wn, uint8_t *r, size_t rn);
-void i2c_set_speed(uint32_t i2c, enum i2c_speeds speed, uint32_t clock_megahz);
-
-
-# 35 "libopencm3/include/libopencm3/stm32/l0/i2c.h" 2
-# 37 "libopencm3/include/libopencm3/stm32/i2c.h" 2
-# 4 "sensor/src/tmp112.c" 2
-# 1 "libopencm3/include/libopencm3/stm32/flash.h" 1
-# 36 "libopencm3/include/libopencm3/stm32/flash.h"
-# 1 "libopencm3/include/libopencm3/stm32/l0/flash.h" 1
-# 31 "libopencm3/include/libopencm3/stm32/l0/flash.h"
-#define LIBOPENCM3_FLASH_H 
-
-
-# 1 "libopencm3/include/libopencm3/stm32/common/flash_common_all.h" 1
-# 21 "libopencm3/include/libopencm3/stm32/common/flash_common_all.h"
-       
-
-
-
-
-# 37 "libopencm3/include/libopencm3/stm32/common/flash_common_all.h"
-void flash_prefetch_enable(void);
-
-
-
-
-
-void flash_prefetch_disable(void);
-# 55 "libopencm3/include/libopencm3/stm32/common/flash_common_all.h"
-void flash_set_ws(uint32_t ws);
-
-
-
-
-void flash_lock(void);
-
-
-
-
-
-void flash_unlock(void);
-
-
-
-
-
-void flash_unlock_option_bytes(void);
-
-
-# 35 "libopencm3/include/libopencm3/stm32/l0/flash.h" 2
-# 1 "libopencm3/include/libopencm3/stm32/common/flash_common_l01.h" 1
-# 29 "libopencm3/include/libopencm3/stm32/common/flash_common_l01.h"
-#define LIBOPENCM3_FLASH_COMMON_L01_H 
-
-
-
-
-
-
-#define FLASH_ACR MMIO32(FLASH_MEM_INTERFACE_BASE + 0x00)
-#define FLASH_PECR MMIO32(FLASH_MEM_INTERFACE_BASE + 0x04)
-#define FLASH_PDKEYR MMIO32(FLASH_MEM_INTERFACE_BASE + 0x08)
-#define FLASH_PEKEYR MMIO32(FLASH_MEM_INTERFACE_BASE + 0x0C)
-#define FLASH_PRGKEYR MMIO32(FLASH_MEM_INTERFACE_BASE + 0x10)
-#define FLASH_OPTKEYR MMIO32(FLASH_MEM_INTERFACE_BASE + 0x14)
-#define FLASH_SR MMIO32(FLASH_MEM_INTERFACE_BASE + 0x18)
-#define FLASH_OBR MMIO32(FLASH_MEM_INTERFACE_BASE + 0x1c)
-#define FLASH_WRPR1 MMIO32(FLASH_MEM_INTERFACE_BASE + 0x20)
-#define FLASH_WRPR2 MMIO32(FLASH_MEM_INTERFACE_BASE + 0x80)
-
-
-#define FLASH_ACR_RUNPD (1 << 4)
-#define FLASH_ACR_SLEEPPD (1 << 3)
-#define FLASH_ACR_PRFTEN (1 << 1)
-#define FLASH_ACR_LATENCY_SHIFT 0
-#define FLASH_ACR_LATENCY_MASK 1
-
-
-
-#define FLASH_ACR_LATENCY_0WS 0x00
-#define FLASH_ACR_LATENCY_1WS 0x01
-
-
-
-#define FLASH_PECR_OBL_LAUNCH (1 << 18)
-#define FLASH_PECR_ERRIE (1 << 17)
-#define FLASH_PECR_EOPIE (1 << 16)
-#define FLASH_PECR_PARALLBANK (1 << 15)
-#define FLASH_PECR_FPRG (1 << 10)
-#define FLASH_PECR_ERASE (1 << 9)
-#define FLASH_PECR_FTDW (1 << 8)
-#define FLASH_PECR_DATA (1 << 4)
-#define FLASH_PECR_PROG (1 << 3)
-#define FLASH_PECR_OPTLOCK (1 << 2)
-#define FLASH_PECR_PRGLOCK (1 << 1)
-#define FLASH_PECR_PELOCK (1 << 0)
-
-
-#define FLASH_PDKEYR_PDKEY1 ((uint32_t)0x04152637)
-#define FLASH_PDKEYR_PDKEY2 ((uint32_t)0xFAFBFCFD)
-
-
-#define FLASH_PEKEYR_PEKEY1 ((uint32_t)0x89ABCDEF)
-#define FLASH_PEKEYR_PEKEY2 ((uint32_t)0x02030405)
-
-
-#define FLASH_PRGKEYR_PRGKEY1 ((uint32_t)0x8C9DAEBF)
-#define FLASH_PRGKEYR_PRGKEY2 ((uint32_t)0x13141516)
-
-
-#define FLASH_OPTKEYR_KEY1 ((uint32_t)0xFBEAD9C8)
-#define FLASH_OPTKEYR_KEY2 ((uint32_t)0x24252627)
-
-
-#define FLASH_SR_OPTVERR (1 << 11)
-#define FLASH_SR_SIZEERR (1 << 10)
-#define FLASH_SR_PGAERR (1 << 9)
-#define FLASH_SR_WRPERR (1 << 8)
-#define FLASH_SR_READY (1 << 3)
-#define FLASH_SR_ENDHV (1 << 2)
-#define FLASH_SR_EOP (1 << 1)
-#define FLASH_SR_BSY (1 << 0)
-
-
-#define FLASH_OBR_BFB2 (1 << 23)
-#define FLASH_OBR_NRST_STDBY (1 << 22)
-#define FLASH_OBR_NRST_STOP (1 << 21)
-#define FLASH_OBR_IWDG_SW (1 << 20)
-#define FLASH_OBR_BOR_OFF (0x0 << 16)
-#define FLASH_OBR_BOR_LEVEL_1 (0x8 << 16)
-#define FLASH_OBR_BOR_LEVEL_2 (0x9 << 16)
-#define FLASH_OBR_BOR_LEVEL_3 (0xa << 16)
-#define FLASH_OBR_BOR_LEVEL_4 (0xb << 16)
-#define FLASH_OBR_BOR_LEVEL_5 (0xc << 16)
-#define FLASH_OBR_RDPRT_LEVEL_0 (0xaa)
-#define FLASH_OBR_RDPRT_LEVEL_1 (0x00)
-#define FLASH_OBR_RDPRT_LEVEL_2 (0xcc)
-
-
-
-void flash_unlock_pecr(void);
-void flash_lock_pecr(void);
-void flash_unlock_progmem(void);
-void flash_lock_progmem(void);
-void flash_lock_option_bytes(void);
-void flash_unlock_acr(void);
-
-void eeprom_program_word(uint32_t address, uint32_t data);
-void eeprom_program_words(uint32_t address, uint32_t *data, int length_in_words);
-
-
-# 36 "libopencm3/include/libopencm3/stm32/l0/flash.h" 2
-
-
-
-#define FLASH_OPTR FLASH_OBR
-#define FLASH_WRPROT1 FLASH_WRPR1
-#define FLASH_WRPROT2 FLASH_WRPR2
-
-
-#define FLASH_ACR_PRE_READ (1 << 6)
-#define FLASH_ACR_DISAB_BUF (1 << 5)
-
-
-#define FLASH_PECR_NZDISABLE (1 << 23)
-
-
-#define FLASH_SR_RDERR (1 << 13)
-#define FLASH_SR_NOTZEROERR (1 << 16)
-#define FLASH_SR_FWWERR (1 << 17)
-
-
-#define FLASH_OPTR_NBOOT1 (1 << 31)
-
-
-
-
-# 37 "libopencm3/include/libopencm3/stm32/flash.h" 2
-# 5 "sensor/src/tmp112.c" 2
-
-# 1 "common/include/common/board_defs.h" 1
-
-#define BOARD_DEFS_H 
-
-# 1 "libopencm3/include/libopencm3/stm32/gpio.h" 1
-# 5 "common/include/common/board_defs.h" 2
-# 1 "libopencm3/include/libopencm3/stm32/rcc.h" 1
-# 6 "common/include/common/board_defs.h" 2
-# 1 "libopencm3/include/libopencm3/stm32/spi.h" 1
-# 36 "libopencm3/include/libopencm3/stm32/spi.h"
-# 1 "libopencm3/include/libopencm3/stm32/l0/spi.h" 1
-# 32 "libopencm3/include/libopencm3/stm32/l0/spi.h"
-#define LIBOPENCM3_SPI_H 
-
-# 1 "libopencm3/include/libopencm3/stm32/common/spi_common_v1_frf.h" 1
-# 32 "libopencm3/include/libopencm3/stm32/common/spi_common_v1_frf.h"
-       
-
-
-
-# 1 "libopencm3/include/libopencm3/stm32/common/spi_common_v1.h" 1
-# 32 "libopencm3/include/libopencm3/stm32/common/spi_common_v1.h"
-       
-
-
-
-# 1 "libopencm3/include/libopencm3/stm32/common/spi_common_all.h" 1
-# 33 "libopencm3/include/libopencm3/stm32/common/spi_common_all.h"
-#define LIBOPENCM3_SPI_COMMON_ALL_H 
-# 46 "libopencm3/include/libopencm3/stm32/common/spi_common_all.h"
-#define SPI1 SPI1_BASE
-#define SPI2 SPI2_BASE
-#define SPI3 SPI3_BASE
-#define SPI4 SPI4_BASE
-#define SPI5 SPI5_BASE
-#define SPI6 SPI6_BASE
-
-
-
-
-
-
-#define SPI_CR1(spi_base) MMIO32((spi_base) + 0x00)
-#define SPI1_CR1 SPI_CR1(SPI1_BASE)
-#define SPI2_CR1 SPI_CR1(SPI2_BASE)
-#define SPI3_CR1 SPI_CR1(SPI3_BASE)
-
-
-#define SPI_CR2(spi_base) MMIO32((spi_base) + 0x04)
-#define SPI1_CR2 SPI_CR2(SPI1_BASE)
-#define SPI2_CR2 SPI_CR2(SPI2_BASE)
-#define SPI3_CR2 SPI_CR2(SPI3_BASE)
-
-
-#define SPI_SR(spi_base) MMIO32((spi_base) + 0x08)
-#define SPI1_SR SPI_SR(SPI1_BASE)
-#define SPI2_SR SPI_SR(SPI2_BASE)
-#define SPI3_SR SPI_SR(SPI3_BASE)
-
-
-#define SPI_DR(spi_base) MMIO32((spi_base) + 0x0c)
-#define SPI1_DR SPI_DR(SPI1_BASE)
-#define SPI2_DR SPI_DR(SPI2_BASE)
-#define SPI3_DR SPI_DR(SPI3_BASE)
-
-
-
-#define SPI_CRCPR(spi_base) MMIO32((spi_base) + 0x10)
-#define SPI1_CRCPR SPI_CRCPR(SPI1_BASE)
-#define SPI2_CRCPR SPI_CRCPR(SPI2_BASE)
-#define SPI3_CRCPR SPI_CRCPR(SPI3_BASE)
-
-
-
-#define SPI_RXCRCR(spi_base) MMIO32((spi_base) + 0x14)
-#define SPI1_RXCRCR SPI_RXCRCR(SPI1_BASE)
-#define SPI2_RXCRCR SPI_RXCRCR(SPI2_BASE)
-#define SPI3_RXCRCR SPI_RXCRCR(SPI3_BASE)
-
-
-
-#define SPI_TXCRCR(spi_base) MMIO32((spi_base) + 0x18)
-#define SPI1_TXCRCR SPI_TXCRCR(SPI1_BASE)
-#define SPI2_TXCRCR SPI_TXCRCR(SPI2_BASE)
-#define SPI3_TXCRCR SPI_TXCRCR(SPI3_BASE)
-
-
-#define SPI_I2SCFGR(spi_base) MMIO32((spi_base) + 0x1c)
-#define SPI1_I2SCFGR SPI_I2SCFGR(SPI1_BASE)
-#define SPI2_I2SCFGR SPI_I2SCFGR(SPI2_BASE)
-#define SPI3_I2SCFGR SPI_I2SCFGR(SPI3_BASE)
-
-
-#define SPI_I2SPR(spi_base) MMIO32((spi_base) + 0x20)
-#define SPI1_I2SPR SPI_I2SPR(SPI1_BASE)
-#define SPI2_I2SPR SPI_I2SPR(SPI2_BASE)
-#define SPI3_I2SPR SPI_I2SPR(SPI3_BASE)
-
-
-
-
-
-
-#define SPI_CR1_BIDIMODE_2LINE_UNIDIR (0 << 15)
-#define SPI_CR1_BIDIMODE_1LINE_BIDIR (1 << 15)
-#define SPI_CR1_BIDIMODE (1 << 15)
-
-
-#define SPI_CR1_BIDIOE (1 << 14)
-
-
-#define SPI_CR1_CRCEN (1 << 13)
-
-
-#define SPI_CR1_CRCNEXT (1 << 12)
-
-
-#define SPI_CR1_RXONLY (1 << 10)
-
-
-#define SPI_CR1_SSM (1 << 9)
-
-
-#define SPI_CR1_SSI (1 << 8)
-
-
-
-
-
-
-
-#define SPI_CR1_MSBFIRST (0 << 7)
-#define SPI_CR1_LSBFIRST (1 << 7)
-
-
-
-#define SPI_CR1_SPE (1 << 6)
-
-
-
-
-
-
-
-#define SPI_CR1_BAUDRATE_FPCLK_DIV_2 (0x00 << 3)
-#define SPI_CR1_BAUDRATE_FPCLK_DIV_4 (0x01 << 3)
-#define SPI_CR1_BAUDRATE_FPCLK_DIV_8 (0x02 << 3)
-#define SPI_CR1_BAUDRATE_FPCLK_DIV_16 (0x03 << 3)
-#define SPI_CR1_BAUDRATE_FPCLK_DIV_32 (0x04 << 3)
-#define SPI_CR1_BAUDRATE_FPCLK_DIV_64 (0x05 << 3)
-#define SPI_CR1_BAUDRATE_FPCLK_DIV_128 (0x06 << 3)
-#define SPI_CR1_BAUDRATE_FPCLK_DIV_256 (0x07 << 3)
-
-
-
-
-
-
-#define SPI_CR1_BR_FPCLK_DIV_2 0x0
-#define SPI_CR1_BR_FPCLK_DIV_4 0x1
-#define SPI_CR1_BR_FPCLK_DIV_8 0x2
-#define SPI_CR1_BR_FPCLK_DIV_16 0x3
-#define SPI_CR1_BR_FPCLK_DIV_32 0x4
-#define SPI_CR1_BR_FPCLK_DIV_64 0x5
-#define SPI_CR1_BR_FPCLK_DIV_128 0x6
-#define SPI_CR1_BR_FPCLK_DIV_256 0x7
-
-
-
-#define SPI_CR1_MSTR (1 << 2)
-
-
-
-
-
-
-
-#define SPI_CR1_CPOL_CLK_TO_0_WHEN_IDLE (0 << 1)
-#define SPI_CR1_CPOL_CLK_TO_1_WHEN_IDLE (1 << 1)
-
-#define SPI_CR1_CPOL (1 << 1)
-
-
-
-
-
-
-
-#define SPI_CR1_CPHA_CLK_TRANSITION_1 (0 << 0)
-#define SPI_CR1_CPHA_CLK_TRANSITION_2 (1 << 0)
-
-#define SPI_CR1_CPHA (1 << 0)
-
-
-
-
-
-
-#define SPI_CR2_TXEIE (1 << 7)
-
-
-#define SPI_CR2_RXNEIE (1 << 6)
-
-
-#define SPI_CR2_ERRIE (1 << 5)
-
-
-
-
-
-#define SPI_CR2_SSOE (1 << 2)
-
-
-#define SPI_CR2_TXDMAEN (1 << 1)
-
-
-#define SPI_CR2_RXDMAEN (1 << 0)
-
-
-
-
-
-
-#define SPI_SR_BSY (1 << 7)
-
-
-#define SPI_SR_OVR (1 << 6)
-
-
-
-#define SPI_SR_MODF (1 << 5)
-
-
-
-#define SPI_SR_CRCERR (1 << 4)
-
-
-
-#define SPI_SR_UDR (1 << 3)
-
-
-
-#define SPI_SR_CHSIDE (1 << 2)
-
-
-#define SPI_SR_TXE (1 << 1)
-
-
-#define SPI_SR_RXNE (1 << 0)
-# 292 "libopencm3/include/libopencm3/stm32/common/spi_common_all.h"
-#define SPI_I2SCFGR_I2SMOD (1 << 11)
-
-
-#define SPI_I2SCFGR_I2SE (1 << 10)
-
-
-#define SPI_I2SCFGR_I2SCFG_LSB 8
-#define SPI_I2SCFGR_I2SCFG_SLAVE_TRANSMIT 0x0
-#define SPI_I2SCFGR_I2SCFG_SLAVE_RECEIVE 0x1
-#define SPI_I2SCFGR_I2SCFG_MASTER_TRANSMIT 0x2
-#define SPI_I2SCFGR_I2SCFG_MASTER_RECEIVE 0x3
-
-
-#define SPI_I2SCFGR_PCMSYNC (1 << 7)
-
-
-
-
-#define SPI_I2SCFGR_I2SSTD_LSB 4
-#define SPI_I2SCFGR_I2SSTD_I2S_PHILIPS 0x0
-#define SPI_I2SCFGR_I2SSTD_MSB_JUSTIFIED 0x1
-#define SPI_I2SCFGR_I2SSTD_LSB_JUSTIFIED 0x2
-#define SPI_I2SCFGR_I2SSTD_PCM 0x3
-
-
-#define SPI_I2SCFGR_CKPOL (1 << 3)
-
-
-#define SPI_I2SCFGR_DATLEN_LSB 1
-#define SPI_I2SCFGR_DATLEN_16BIT 0x0
-#define SPI_I2SCFGR_DATLEN_24BIT 0x1
-#define SPI_I2SCFGR_DATLEN_32BIT 0x2
-
-
-#define SPI_I2SCFGR_CHLEN (1 << 0)
-# 335 "libopencm3/include/libopencm3/stm32/common/spi_common_all.h"
-#define SPI_I2SPR_MCKOE (1 << 9)
-
-
-#define SPI_I2SPR_ODD (1 << 8)
-
-
-
-
-
-
-
-
-void spi_reset(uint32_t spi_peripheral);
-void spi_enable(uint32_t spi);
-void spi_disable(uint32_t spi);
-uint16_t spi_clean_disable(uint32_t spi);
-void spi_write(uint32_t spi, uint16_t data);
-void spi_send(uint32_t spi, uint16_t data);
-uint16_t spi_read(uint32_t spi);
-uint16_t spi_xfer(uint32_t spi, uint16_t data);
-void spi_set_bidirectional_mode(uint32_t spi);
-void spi_set_unidirectional_mode(uint32_t spi);
-void spi_set_bidirectional_receive_only_mode(uint32_t spi);
-void spi_set_bidirectional_transmit_only_mode(uint32_t spi);
-void spi_enable_crc(uint32_t spi);
-void spi_disable_crc(uint32_t spi);
-void spi_set_next_tx_from_buffer(uint32_t spi);
-void spi_set_next_tx_from_crc(uint32_t spi);
-void spi_set_full_duplex_mode(uint32_t spi);
-void spi_set_receive_only_mode(uint32_t spi);
-void spi_disable_software_slave_management(uint32_t spi);
-void spi_enable_software_slave_management(uint32_t spi);
-void spi_set_nss_high(uint32_t spi);
-void spi_set_nss_low(uint32_t spi);
-void spi_send_lsb_first(uint32_t spi);
-void spi_send_msb_first(uint32_t spi);
-void spi_set_baudrate_prescaler(uint32_t spi, uint8_t baudrate);
-void spi_set_master_mode(uint32_t spi);
-void spi_set_slave_mode(uint32_t spi);
-void spi_set_clock_polarity_1(uint32_t spi);
-void spi_set_clock_polarity_0(uint32_t spi);
-void spi_set_clock_phase_1(uint32_t spi);
-void spi_set_clock_phase_0(uint32_t spi);
-void spi_enable_tx_buffer_empty_interrupt(uint32_t spi);
-void spi_disable_tx_buffer_empty_interrupt(uint32_t spi);
-void spi_enable_rx_buffer_not_empty_interrupt(uint32_t spi);
-void spi_disable_rx_buffer_not_empty_interrupt(uint32_t spi);
-void spi_enable_error_interrupt(uint32_t spi);
-void spi_disable_error_interrupt(uint32_t spi);
-void spi_enable_ss_output(uint32_t spi);
-void spi_disable_ss_output(uint32_t spi);
-void spi_enable_tx_dma(uint32_t spi);
-void spi_disable_tx_dma(uint32_t spi);
-void spi_enable_rx_dma(uint32_t spi);
-void spi_disable_rx_dma(uint32_t spi);
-void spi_set_standard_mode(uint32_t spi, uint8_t mode);
-
-
-# 37 "libopencm3/include/libopencm3/stm32/common/spi_common_v1.h" 2
-# 45 "libopencm3/include/libopencm3/stm32/common/spi_common_v1.h"
-#define SPI_CR1_DFF_8BIT (0 << 11)
-#define SPI_CR1_DFF_16BIT (1 << 11)
-
-
-
-#define SPI_CR1_DFF (1 << 11)
-
-
-
-
-
-int spi_init_master(uint32_t spi, uint32_t br, uint32_t cpol, uint32_t cpha,
-  uint32_t dff, uint32_t lsbfirst);
-void spi_set_dff_8bit(uint32_t spi);
-void spi_set_dff_16bit(uint32_t spi);
-
-
-# 37 "libopencm3/include/libopencm3/stm32/common/spi_common_v1_frf.h" 2
-
-
-
-
-
-#define SPI_CR2_FRF (1 << 4)
-#define SPI_CR2_FRF_MOTOROLA_MODE (0 << 4)
-#define SPI_CR2_FRF_TI_MODE (1 << 4)
-
-
-
-
-#define SPI_SR_TIFRFE (1 << 8)
-#define SPI_SR_FRE (1 << 8)
-
-
-
-
-
-void spi_set_frf_ti(uint32_t spi);
-void spi_set_frf_motorola(uint32_t spi);
-
-
-# 35 "libopencm3/include/libopencm3/stm32/l0/spi.h" 2
-# 37 "libopencm3/include/libopencm3/stm32/spi.h" 2
-# 7 "common/include/common/board_defs.h" 2
+# 19 "common/src/log.c" 2
 # 1 "libopencm3/include/libopencm3/stm32/usart.h" 1
 # 36 "libopencm3/include/libopencm3/stm32/usart.h"
 # 1 "libopencm3/include/libopencm3/stm32/l0/usart.h" 1
@@ -4150,20 +3091,589 @@ void usart_disable_rx_timeout_interrupt(uint32_t usart);
 
 
 # 37 "libopencm3/include/libopencm3/stm32/usart.h" 2
+# 20 "common/src/log.c" 2
+# 1 "libopencm3/include/libopencm3/stm32/flash.h" 1
+# 36 "libopencm3/include/libopencm3/stm32/flash.h"
+# 1 "libopencm3/include/libopencm3/stm32/l0/flash.h" 1
+# 31 "libopencm3/include/libopencm3/stm32/l0/flash.h"
+#define LIBOPENCM3_FLASH_H 
+
+
+# 1 "libopencm3/include/libopencm3/stm32/common/flash_common_all.h" 1
+# 21 "libopencm3/include/libopencm3/stm32/common/flash_common_all.h"
+       
+
+
+
+
+# 37 "libopencm3/include/libopencm3/stm32/common/flash_common_all.h"
+void flash_prefetch_enable(void);
+
+
+
+
+
+void flash_prefetch_disable(void);
+# 55 "libopencm3/include/libopencm3/stm32/common/flash_common_all.h"
+void flash_set_ws(uint32_t ws);
+
+
+
+
+void flash_lock(void);
+
+
+
+
+
+void flash_unlock(void);
+
+
+
+
+
+void flash_unlock_option_bytes(void);
+
+
+# 35 "libopencm3/include/libopencm3/stm32/l0/flash.h" 2
+# 1 "libopencm3/include/libopencm3/stm32/common/flash_common_l01.h" 1
+# 29 "libopencm3/include/libopencm3/stm32/common/flash_common_l01.h"
+#define LIBOPENCM3_FLASH_COMMON_L01_H 
+
+
+
+
+
+
+#define FLASH_ACR MMIO32(FLASH_MEM_INTERFACE_BASE + 0x00)
+#define FLASH_PECR MMIO32(FLASH_MEM_INTERFACE_BASE + 0x04)
+#define FLASH_PDKEYR MMIO32(FLASH_MEM_INTERFACE_BASE + 0x08)
+#define FLASH_PEKEYR MMIO32(FLASH_MEM_INTERFACE_BASE + 0x0C)
+#define FLASH_PRGKEYR MMIO32(FLASH_MEM_INTERFACE_BASE + 0x10)
+#define FLASH_OPTKEYR MMIO32(FLASH_MEM_INTERFACE_BASE + 0x14)
+#define FLASH_SR MMIO32(FLASH_MEM_INTERFACE_BASE + 0x18)
+#define FLASH_OBR MMIO32(FLASH_MEM_INTERFACE_BASE + 0x1c)
+#define FLASH_WRPR1 MMIO32(FLASH_MEM_INTERFACE_BASE + 0x20)
+#define FLASH_WRPR2 MMIO32(FLASH_MEM_INTERFACE_BASE + 0x80)
+
+
+#define FLASH_ACR_RUNPD (1 << 4)
+#define FLASH_ACR_SLEEPPD (1 << 3)
+#define FLASH_ACR_PRFTEN (1 << 1)
+#define FLASH_ACR_LATENCY_SHIFT 0
+#define FLASH_ACR_LATENCY_MASK 1
+
+
+
+#define FLASH_ACR_LATENCY_0WS 0x00
+#define FLASH_ACR_LATENCY_1WS 0x01
+
+
+
+#define FLASH_PECR_OBL_LAUNCH (1 << 18)
+#define FLASH_PECR_ERRIE (1 << 17)
+#define FLASH_PECR_EOPIE (1 << 16)
+#define FLASH_PECR_PARALLBANK (1 << 15)
+#define FLASH_PECR_FPRG (1 << 10)
+#define FLASH_PECR_ERASE (1 << 9)
+#define FLASH_PECR_FTDW (1 << 8)
+#define FLASH_PECR_DATA (1 << 4)
+#define FLASH_PECR_PROG (1 << 3)
+#define FLASH_PECR_OPTLOCK (1 << 2)
+#define FLASH_PECR_PRGLOCK (1 << 1)
+#define FLASH_PECR_PELOCK (1 << 0)
+
+
+#define FLASH_PDKEYR_PDKEY1 ((uint32_t)0x04152637)
+#define FLASH_PDKEYR_PDKEY2 ((uint32_t)0xFAFBFCFD)
+
+
+#define FLASH_PEKEYR_PEKEY1 ((uint32_t)0x89ABCDEF)
+#define FLASH_PEKEYR_PEKEY2 ((uint32_t)0x02030405)
+
+
+#define FLASH_PRGKEYR_PRGKEY1 ((uint32_t)0x8C9DAEBF)
+#define FLASH_PRGKEYR_PRGKEY2 ((uint32_t)0x13141516)
+
+
+#define FLASH_OPTKEYR_KEY1 ((uint32_t)0xFBEAD9C8)
+#define FLASH_OPTKEYR_KEY2 ((uint32_t)0x24252627)
+
+
+#define FLASH_SR_OPTVERR (1 << 11)
+#define FLASH_SR_SIZEERR (1 << 10)
+#define FLASH_SR_PGAERR (1 << 9)
+#define FLASH_SR_WRPERR (1 << 8)
+#define FLASH_SR_READY (1 << 3)
+#define FLASH_SR_ENDHV (1 << 2)
+#define FLASH_SR_EOP (1 << 1)
+#define FLASH_SR_BSY (1 << 0)
+
+
+#define FLASH_OBR_BFB2 (1 << 23)
+#define FLASH_OBR_NRST_STDBY (1 << 22)
+#define FLASH_OBR_NRST_STOP (1 << 21)
+#define FLASH_OBR_IWDG_SW (1 << 20)
+#define FLASH_OBR_BOR_OFF (0x0 << 16)
+#define FLASH_OBR_BOR_LEVEL_1 (0x8 << 16)
+#define FLASH_OBR_BOR_LEVEL_2 (0x9 << 16)
+#define FLASH_OBR_BOR_LEVEL_3 (0xa << 16)
+#define FLASH_OBR_BOR_LEVEL_4 (0xb << 16)
+#define FLASH_OBR_BOR_LEVEL_5 (0xc << 16)
+#define FLASH_OBR_RDPRT_LEVEL_0 (0xaa)
+#define FLASH_OBR_RDPRT_LEVEL_1 (0x00)
+#define FLASH_OBR_RDPRT_LEVEL_2 (0xcc)
+
+
+
+void flash_unlock_pecr(void);
+void flash_lock_pecr(void);
+void flash_unlock_progmem(void);
+void flash_lock_progmem(void);
+void flash_lock_option_bytes(void);
+void flash_unlock_acr(void);
+
+void eeprom_program_word(uint32_t address, uint32_t data);
+void eeprom_program_words(uint32_t address, uint32_t *data, int length_in_words);
+
+
+# 36 "libopencm3/include/libopencm3/stm32/l0/flash.h" 2
+
+
+
+#define FLASH_OPTR FLASH_OBR
+#define FLASH_WRPROT1 FLASH_WRPR1
+#define FLASH_WRPROT2 FLASH_WRPR2
+
+
+#define FLASH_ACR_PRE_READ (1 << 6)
+#define FLASH_ACR_DISAB_BUF (1 << 5)
+
+
+#define FLASH_PECR_NZDISABLE (1 << 23)
+
+
+#define FLASH_SR_RDERR (1 << 13)
+#define FLASH_SR_NOTZEROERR (1 << 16)
+#define FLASH_SR_FWWERR (1 << 17)
+
+
+#define FLASH_OPTR_NBOOT1 (1 << 31)
+
+
+
+
+# 37 "libopencm3/include/libopencm3/stm32/flash.h" 2
+# 21 "common/src/log.c" 2
+
+# 1 "common/include/common/board_defs.h" 1
+
+#define BOARD_DEFS_H 
+
+# 1 "libopencm3/include/libopencm3/stm32/gpio.h" 1
+# 5 "common/include/common/board_defs.h" 2
+# 1 "libopencm3/include/libopencm3/stm32/rcc.h" 1
+# 6 "common/include/common/board_defs.h" 2
+# 1 "libopencm3/include/libopencm3/stm32/spi.h" 1
+# 36 "libopencm3/include/libopencm3/stm32/spi.h"
+# 1 "libopencm3/include/libopencm3/stm32/l0/spi.h" 1
+# 32 "libopencm3/include/libopencm3/stm32/l0/spi.h"
+#define LIBOPENCM3_SPI_H 
+
+# 1 "libopencm3/include/libopencm3/stm32/common/spi_common_v1_frf.h" 1
+# 32 "libopencm3/include/libopencm3/stm32/common/spi_common_v1_frf.h"
+       
+
+
+
+# 1 "libopencm3/include/libopencm3/stm32/common/spi_common_v1.h" 1
+# 32 "libopencm3/include/libopencm3/stm32/common/spi_common_v1.h"
+       
+
+
+
+# 1 "libopencm3/include/libopencm3/stm32/common/spi_common_all.h" 1
+# 33 "libopencm3/include/libopencm3/stm32/common/spi_common_all.h"
+#define LIBOPENCM3_SPI_COMMON_ALL_H 
+# 46 "libopencm3/include/libopencm3/stm32/common/spi_common_all.h"
+#define SPI1 SPI1_BASE
+#define SPI2 SPI2_BASE
+#define SPI3 SPI3_BASE
+#define SPI4 SPI4_BASE
+#define SPI5 SPI5_BASE
+#define SPI6 SPI6_BASE
+
+
+
+
+
+
+#define SPI_CR1(spi_base) MMIO32((spi_base) + 0x00)
+#define SPI1_CR1 SPI_CR1(SPI1_BASE)
+#define SPI2_CR1 SPI_CR1(SPI2_BASE)
+#define SPI3_CR1 SPI_CR1(SPI3_BASE)
+
+
+#define SPI_CR2(spi_base) MMIO32((spi_base) + 0x04)
+#define SPI1_CR2 SPI_CR2(SPI1_BASE)
+#define SPI2_CR2 SPI_CR2(SPI2_BASE)
+#define SPI3_CR2 SPI_CR2(SPI3_BASE)
+
+
+#define SPI_SR(spi_base) MMIO32((spi_base) + 0x08)
+#define SPI1_SR SPI_SR(SPI1_BASE)
+#define SPI2_SR SPI_SR(SPI2_BASE)
+#define SPI3_SR SPI_SR(SPI3_BASE)
+
+
+#define SPI_DR(spi_base) MMIO32((spi_base) + 0x0c)
+#define SPI1_DR SPI_DR(SPI1_BASE)
+#define SPI2_DR SPI_DR(SPI2_BASE)
+#define SPI3_DR SPI_DR(SPI3_BASE)
+
+
+
+#define SPI_CRCPR(spi_base) MMIO32((spi_base) + 0x10)
+#define SPI1_CRCPR SPI_CRCPR(SPI1_BASE)
+#define SPI2_CRCPR SPI_CRCPR(SPI2_BASE)
+#define SPI3_CRCPR SPI_CRCPR(SPI3_BASE)
+
+
+
+#define SPI_RXCRCR(spi_base) MMIO32((spi_base) + 0x14)
+#define SPI1_RXCRCR SPI_RXCRCR(SPI1_BASE)
+#define SPI2_RXCRCR SPI_RXCRCR(SPI2_BASE)
+#define SPI3_RXCRCR SPI_RXCRCR(SPI3_BASE)
+
+
+
+#define SPI_TXCRCR(spi_base) MMIO32((spi_base) + 0x18)
+#define SPI1_TXCRCR SPI_TXCRCR(SPI1_BASE)
+#define SPI2_TXCRCR SPI_TXCRCR(SPI2_BASE)
+#define SPI3_TXCRCR SPI_TXCRCR(SPI3_BASE)
+
+
+#define SPI_I2SCFGR(spi_base) MMIO32((spi_base) + 0x1c)
+#define SPI1_I2SCFGR SPI_I2SCFGR(SPI1_BASE)
+#define SPI2_I2SCFGR SPI_I2SCFGR(SPI2_BASE)
+#define SPI3_I2SCFGR SPI_I2SCFGR(SPI3_BASE)
+
+
+#define SPI_I2SPR(spi_base) MMIO32((spi_base) + 0x20)
+#define SPI1_I2SPR SPI_I2SPR(SPI1_BASE)
+#define SPI2_I2SPR SPI_I2SPR(SPI2_BASE)
+#define SPI3_I2SPR SPI_I2SPR(SPI3_BASE)
+
+
+
+
+
+
+#define SPI_CR1_BIDIMODE_2LINE_UNIDIR (0 << 15)
+#define SPI_CR1_BIDIMODE_1LINE_BIDIR (1 << 15)
+#define SPI_CR1_BIDIMODE (1 << 15)
+
+
+#define SPI_CR1_BIDIOE (1 << 14)
+
+
+#define SPI_CR1_CRCEN (1 << 13)
+
+
+#define SPI_CR1_CRCNEXT (1 << 12)
+
+
+#define SPI_CR1_RXONLY (1 << 10)
+
+
+#define SPI_CR1_SSM (1 << 9)
+
+
+#define SPI_CR1_SSI (1 << 8)
+
+
+
+
+
+
+
+#define SPI_CR1_MSBFIRST (0 << 7)
+#define SPI_CR1_LSBFIRST (1 << 7)
+
+
+
+#define SPI_CR1_SPE (1 << 6)
+
+
+
+
+
+
+
+#define SPI_CR1_BAUDRATE_FPCLK_DIV_2 (0x00 << 3)
+#define SPI_CR1_BAUDRATE_FPCLK_DIV_4 (0x01 << 3)
+#define SPI_CR1_BAUDRATE_FPCLK_DIV_8 (0x02 << 3)
+#define SPI_CR1_BAUDRATE_FPCLK_DIV_16 (0x03 << 3)
+#define SPI_CR1_BAUDRATE_FPCLK_DIV_32 (0x04 << 3)
+#define SPI_CR1_BAUDRATE_FPCLK_DIV_64 (0x05 << 3)
+#define SPI_CR1_BAUDRATE_FPCLK_DIV_128 (0x06 << 3)
+#define SPI_CR1_BAUDRATE_FPCLK_DIV_256 (0x07 << 3)
+
+
+
+
+
+
+#define SPI_CR1_BR_FPCLK_DIV_2 0x0
+#define SPI_CR1_BR_FPCLK_DIV_4 0x1
+#define SPI_CR1_BR_FPCLK_DIV_8 0x2
+#define SPI_CR1_BR_FPCLK_DIV_16 0x3
+#define SPI_CR1_BR_FPCLK_DIV_32 0x4
+#define SPI_CR1_BR_FPCLK_DIV_64 0x5
+#define SPI_CR1_BR_FPCLK_DIV_128 0x6
+#define SPI_CR1_BR_FPCLK_DIV_256 0x7
+
+
+
+#define SPI_CR1_MSTR (1 << 2)
+
+
+
+
+
+
+
+#define SPI_CR1_CPOL_CLK_TO_0_WHEN_IDLE (0 << 1)
+#define SPI_CR1_CPOL_CLK_TO_1_WHEN_IDLE (1 << 1)
+
+#define SPI_CR1_CPOL (1 << 1)
+
+
+
+
+
+
+
+#define SPI_CR1_CPHA_CLK_TRANSITION_1 (0 << 0)
+#define SPI_CR1_CPHA_CLK_TRANSITION_2 (1 << 0)
+
+#define SPI_CR1_CPHA (1 << 0)
+
+
+
+
+
+
+#define SPI_CR2_TXEIE (1 << 7)
+
+
+#define SPI_CR2_RXNEIE (1 << 6)
+
+
+#define SPI_CR2_ERRIE (1 << 5)
+
+
+
+
+
+#define SPI_CR2_SSOE (1 << 2)
+
+
+#define SPI_CR2_TXDMAEN (1 << 1)
+
+
+#define SPI_CR2_RXDMAEN (1 << 0)
+
+
+
+
+
+
+#define SPI_SR_BSY (1 << 7)
+
+
+#define SPI_SR_OVR (1 << 6)
+
+
+
+#define SPI_SR_MODF (1 << 5)
+
+
+
+#define SPI_SR_CRCERR (1 << 4)
+
+
+
+#define SPI_SR_UDR (1 << 3)
+
+
+
+#define SPI_SR_CHSIDE (1 << 2)
+
+
+#define SPI_SR_TXE (1 << 1)
+
+
+#define SPI_SR_RXNE (1 << 0)
+# 292 "libopencm3/include/libopencm3/stm32/common/spi_common_all.h"
+#define SPI_I2SCFGR_I2SMOD (1 << 11)
+
+
+#define SPI_I2SCFGR_I2SE (1 << 10)
+
+
+#define SPI_I2SCFGR_I2SCFG_LSB 8
+#define SPI_I2SCFGR_I2SCFG_SLAVE_TRANSMIT 0x0
+#define SPI_I2SCFGR_I2SCFG_SLAVE_RECEIVE 0x1
+#define SPI_I2SCFGR_I2SCFG_MASTER_TRANSMIT 0x2
+#define SPI_I2SCFGR_I2SCFG_MASTER_RECEIVE 0x3
+
+
+#define SPI_I2SCFGR_PCMSYNC (1 << 7)
+
+
+
+
+#define SPI_I2SCFGR_I2SSTD_LSB 4
+#define SPI_I2SCFGR_I2SSTD_I2S_PHILIPS 0x0
+#define SPI_I2SCFGR_I2SSTD_MSB_JUSTIFIED 0x1
+#define SPI_I2SCFGR_I2SSTD_LSB_JUSTIFIED 0x2
+#define SPI_I2SCFGR_I2SSTD_PCM 0x3
+
+
+#define SPI_I2SCFGR_CKPOL (1 << 3)
+
+
+#define SPI_I2SCFGR_DATLEN_LSB 1
+#define SPI_I2SCFGR_DATLEN_16BIT 0x0
+#define SPI_I2SCFGR_DATLEN_24BIT 0x1
+#define SPI_I2SCFGR_DATLEN_32BIT 0x2
+
+
+#define SPI_I2SCFGR_CHLEN (1 << 0)
+# 335 "libopencm3/include/libopencm3/stm32/common/spi_common_all.h"
+#define SPI_I2SPR_MCKOE (1 << 9)
+
+
+#define SPI_I2SPR_ODD (1 << 8)
+
+
+
+
+
+
+
+
+void spi_reset(uint32_t spi_peripheral);
+void spi_enable(uint32_t spi);
+void spi_disable(uint32_t spi);
+uint16_t spi_clean_disable(uint32_t spi);
+void spi_write(uint32_t spi, uint16_t data);
+void spi_send(uint32_t spi, uint16_t data);
+uint16_t spi_read(uint32_t spi);
+uint16_t spi_xfer(uint32_t spi, uint16_t data);
+void spi_set_bidirectional_mode(uint32_t spi);
+void spi_set_unidirectional_mode(uint32_t spi);
+void spi_set_bidirectional_receive_only_mode(uint32_t spi);
+void spi_set_bidirectional_transmit_only_mode(uint32_t spi);
+void spi_enable_crc(uint32_t spi);
+void spi_disable_crc(uint32_t spi);
+void spi_set_next_tx_from_buffer(uint32_t spi);
+void spi_set_next_tx_from_crc(uint32_t spi);
+void spi_set_full_duplex_mode(uint32_t spi);
+void spi_set_receive_only_mode(uint32_t spi);
+void spi_disable_software_slave_management(uint32_t spi);
+void spi_enable_software_slave_management(uint32_t spi);
+void spi_set_nss_high(uint32_t spi);
+void spi_set_nss_low(uint32_t spi);
+void spi_send_lsb_first(uint32_t spi);
+void spi_send_msb_first(uint32_t spi);
+void spi_set_baudrate_prescaler(uint32_t spi, uint8_t baudrate);
+void spi_set_master_mode(uint32_t spi);
+void spi_set_slave_mode(uint32_t spi);
+void spi_set_clock_polarity_1(uint32_t spi);
+void spi_set_clock_polarity_0(uint32_t spi);
+void spi_set_clock_phase_1(uint32_t spi);
+void spi_set_clock_phase_0(uint32_t spi);
+void spi_enable_tx_buffer_empty_interrupt(uint32_t spi);
+void spi_disable_tx_buffer_empty_interrupt(uint32_t spi);
+void spi_enable_rx_buffer_not_empty_interrupt(uint32_t spi);
+void spi_disable_rx_buffer_not_empty_interrupt(uint32_t spi);
+void spi_enable_error_interrupt(uint32_t spi);
+void spi_disable_error_interrupt(uint32_t spi);
+void spi_enable_ss_output(uint32_t spi);
+void spi_disable_ss_output(uint32_t spi);
+void spi_enable_tx_dma(uint32_t spi);
+void spi_disable_tx_dma(uint32_t spi);
+void spi_enable_rx_dma(uint32_t spi);
+void spi_disable_rx_dma(uint32_t spi);
+void spi_set_standard_mode(uint32_t spi, uint8_t mode);
+
+
+# 37 "libopencm3/include/libopencm3/stm32/common/spi_common_v1.h" 2
+# 45 "libopencm3/include/libopencm3/stm32/common/spi_common_v1.h"
+#define SPI_CR1_DFF_8BIT (0 << 11)
+#define SPI_CR1_DFF_16BIT (1 << 11)
+
+
+
+#define SPI_CR1_DFF (1 << 11)
+
+
+
+
+
+int spi_init_master(uint32_t spi, uint32_t br, uint32_t cpol, uint32_t cpha,
+  uint32_t dff, uint32_t lsbfirst);
+void spi_set_dff_8bit(uint32_t spi);
+void spi_set_dff_16bit(uint32_t spi);
+
+
+# 37 "libopencm3/include/libopencm3/stm32/common/spi_common_v1_frf.h" 2
+
+
+
+
+
+#define SPI_CR2_FRF (1 << 4)
+#define SPI_CR2_FRF_MOTOROLA_MODE (0 << 4)
+#define SPI_CR2_FRF_TI_MODE (1 << 4)
+
+
+
+
+#define SPI_SR_TIFRFE (1 << 8)
+#define SPI_SR_FRE (1 << 8)
+
+
+
+
+
+void spi_set_frf_ti(uint32_t spi);
+void spi_set_frf_motorola(uint32_t spi);
+
+
+# 35 "libopencm3/include/libopencm3/stm32/l0/spi.h" 2
+# 37 "libopencm3/include/libopencm3/stm32/spi.h" 2
+# 7 "common/include/common/board_defs.h" 2
+# 1 "libopencm3/include/libopencm3/stm32/usart.h" 1
 # 8 "common/include/common/board_defs.h" 2
-# 147 "common/include/common/board_defs.h"
+
+
+
+
 #define MAX_SENSORS 50
 typedef struct
 {
  
-# 150 "common/include/common/board_defs.h" 3 4
+# 15 "common/include/common/board_defs.h" 3 4
 _Bool 
-# 150 "common/include/common/board_defs.h"
+# 15 "common/include/common/board_defs.h"
        msg_pend;
  
-# 151 "common/include/common/board_defs.h" 3 4
+# 16 "common/include/common/board_defs.h" 3 4
 _Bool 
-# 151 "common/include/common/board_defs.h"
+# 16 "common/include/common/board_defs.h"
        active;
  uint32_t dev_num;
  uint32_t msg_num;
@@ -4177,6 +3687,7 @@ extern uint8_t num_sensors;
 sensor_t *get_sensor(uint32_t dev_num);
 
 
+
 #define FLASH_START 0x08000000
 #define FLASH_END 0x08010000
 #define FLASH_PAGE_SIZE 128
@@ -4184,292 +3695,423 @@ sensor_t *get_sensor(uint32_t dev_num);
 #define EEPROM_END 0x08080800
 
 
+
 #define BATT_SENS_PORT GPIOA
 #define BATT_SENS GPIO0
 
+#define PWR_SENS_PORT GPIOA
+#define PWR_SENS GPIO1
 
 
-#define LED_PORT GPIOA
-#define LED GPIO14
+
+#define LED_PORT GPIOB
+#define LED GPIO8
+
 
 
 #define SPF_USART_BAUD 115200
-#define SPF_USART USART2
+#define SPF_USART USART1
 #define SPF_USART_AF GPIO_AF4
-#define SPF_USART_RCC RCC_USART2
-#define SPF_USART_RCC_RST RST_USART2
-
-
+#define SPF_USART_RCC RCC_USART1
+#define SPF_USART_RCC_RST RST_USART1
 #define SPF_USART_TX_PORT GPIOA
-#define SPF_USART_TX GPIO2
-
+#define SPF_USART_TX GPIO9
 #define SPF_USART_RX_PORT GPIOA
-#define SPF_USART_RX GPIO3
+#define SPF_USART_RX GPIO10
 
 
 
-#define RFM_SPI SPI1
+
+#define RFM_SPI SPI2
 #define RFM_SPI_AF GPIO_AF0
-#define RFM_SPI_RCC RCC_SPI1
-#define RFM_SPI_RST RST_SPI1
+#define RFM_SPI_RCC RCC_SPI2
+#define RFM_SPI_RST RST_SPI2
 
 #define RFM_SPI_NSS_PORT GPIOA
-#define RFM_SPI_NSS GPIO4
+#define RFM_SPI_NSS GPIO6
 
-#define RFM_SPI_SCK_PORT GPIOA
-#define RFM_SPI_SCK GPIO5
+#define RFM_SPI_MISO_PORT GPIOB
+#define RFM_SPI_MISO GPIO14
 
-#define RFM_SPI_MISO_PORT GPIOA
-#define RFM_SPI_MISO GPIO6
+#define RFM_SPI_MOSI_PORT GPIOB
+#define RFM_SPI_MOSI GPIO15
 
-#define RFM_SPI_MOSI_PORT GPIOA
-#define RFM_SPI_MOSI GPIO7
+#define RFM_SPI_SCK_PORT GPIOB
+#define RFM_SPI_SCK GPIO13
 
 
-#define RFM_RESET_PORT GPIOB
-#define RFM_RESET GPIO0
+#define RFM_RESET_PORT GPIOA
+#define RFM_RESET GPIO4
 
 #define RFM_IO_0_PORT GPIOB
-#define RFM_IO_0 GPIO15
-#define RFM_IO_0_EXTI EXTI15
+#define RFM_IO_0 GPIO10
+#define RFM_IO_0_EXTI EXTI10
 #define RFM_IO_0_NVIC NVIC_EXTI4_15_IRQ
 
 #define RFM_IO_1_PORT GPIOB
-#define RFM_IO_1 GPIO12
+#define RFM_IO_1 GPIO11
 
-#define RFM_IO_2_PORT GPIOB
-#define RFM_IO_2 GPIO11
+#define RFM_IO_2_PORT GPIOA
+#define RFM_IO_2 GPIO8
 
 #define RFM_IO_3_PORT GPIOB
-#define RFM_IO_3 GPIO2
+#define RFM_IO_3 GPIO1
 
 #define RFM_IO_4_PORT GPIOB
-#define RFM_IO_4 GPIO10
+#define RFM_IO_4 GPIO2
 
 #define RFM_IO_5_PORT GPIOB
-#define RFM_IO_5 GPIO1
+#define RFM_IO_5 GPIO0
+
+
+
+#define SIM_USART_BAUD 38400
+#define SIM_USART_NVIC NVIC_USART2_IRQ
+#define SIM_USART USART2
+#define SIM_USART_AF GPIO_AF4
+#define SIM_USART_RCC RCC_USART2
+#define SIM_USART_RCC_RST RST_USART2
+
+#define SIM_USART_TX_PORT GPIOA
+#define SIM_USART_TX GPIO2
+
+#define SIM_USART_RX_PORT GPIOA
+#define SIM_USART_RX GPIO3
+
+#define SIM_RESET_PORT GPIOA
+#define SIM_RESET GPIO4
 
 
 
 
-#define TEMP_I2C I2C2
-#define TEMP_I2C_AF GPIO_AF5
-#define TEMP_I2C_RCC RCC_I2C2
-#define TEMP_I2C_RCC_RST RST_I2C2
+#define W25_SPI SPI1
+#define W25_SPI_AF GPIO_AF0
+#define W25_SPI_RCC RCC_SPI1
+#define W25_SPI_RST RST_SPI1
 
-#define TEMP_I2C_SCL_PORT GPIOB
-#define TEMP_I2C_SCL GPIO13
+#define W25_SPI_NSS_PORT GPIOB
+#define W25_SPI_NSS GPIO6
 
-#define TEMP_I2C_SDA_PORT GPIOB
-#define TEMP_I2C_SDA GPIO14
+#define W25_SPI_MISO_PORT GPIOB
+#define W25_SPI_MISO GPIO4
 
+#define W25_SPI_MOSI_PORT GPIOB
+#define W25_SPI_MOSI GPIO5
 
-
+#define W25_SPI_SCK_PORT GPIOB
+#define W25_SPI_SCK GPIO3
+# 252 "common/include/common/board_defs.h"
 void gpio_init(void);
-# 7 "sensor/src/tmp112.c" 2
-# 1 "common/include/common/timers.h" 1
-
-#define TIMERS_H 
-
-
-
-
-
-#define WAIT_US(cond,timeout) { uint16_t start_time = timers_micros(); while(cond){ if((uint16_t)( timers_micros() - start_time ) > timeout){ return false; }}}
-
-
-
-#define WAIT_MS(cond,timeout) { uint32_t time = 0; uint16_t curr_time = timers_micros(); while(cond){ time += (uint16_t)(timers_micros() - curr_time); curr_time = timers_micros(); if(time > timeout * 1000){ return false;}}}
+# 23 "common/src/log.c" 2
+# 1 "common/include/common/memory.h" 1
+# 26 "common/include/common/memory.h"
+#define MEMORY_H 
 
 
 
 
 
 
+# 1 "libopencm3/include/libopencm3/stm32/flash.h" 1
+# 34 "common/include/common/memory.h" 2
+# 1 "libopencm3/include/libopencm3/stm32/rcc.h" 1
+# 35 "common/include/common/memory.h" 2
+# 49 "common/include/common/memory.h"
+#define FLASH_PAGE_SIZE 128
+#define FLASH_NUM_PAGES 512
+#define FLASH_START 0x08000000
+#define FLASH_START_APP 0x08004000
+#define FLASH_END 0x08010000
 
-#define TIMEOUT(time,print_str,print_data,break_condition,if_code,else_code) timeout_init(); while(!timeout(time, print_str, print_data)) { if(break_condition){ if_code break; } else{ else_code }}
+#define EEPROM_PAGE_SIZE 4
+#define EEPROM_NUM_PAGES 512
+#define EEPROM_START 0x08080000
+#define EEPROM_END 0x08080800
 
-
-
-
-
-void timers_rtc_init(uint32_t standby_time_seconds);
-
-
-
-void timers_lptim_init(void);
-
-
-void timers_delay_microseconds(uint32_t delay_microseconds);
-
-
-uint16_t timers_micros(void);
-
-
-
-void timers_tim6_init(void);
+#define LOG_SIZE 1024
+# 73 "common/include/common/memory.h"
+void mem_init(void);
 
 
-void timers_delay_milliseconds(uint32_t delay_milliseconds);
-
-
-uint16_t timers_millis(void);
-
-
-
-void timers_iwdg_init(uint32_t period);
-
-
-void timers_pet_dogs(void);
-
-
-
-void timers_enter_standby(void);
-
-
-void timeout_init(void);
-
-# 61 "common/include/common/timers.h" 3 4
+# 75 "common/include/common/memory.h" 3 4
 _Bool 
-# 61 "common/include/common/timers.h"
-    timeout(uint32_t time_microseconds, char *msg, uint32_t data);
+# 75 "common/include/common/memory.h"
+    mem_eeprom_write_word(uint32_t address, uint32_t data);
 
-void set_gpio_for_standby(void);
-# 8 "sensor/src/tmp112.c" 2
-# 1 "sensor/include/sensor/tmp112.h" 1
+# 76 "common/include/common/memory.h" 3 4
+_Bool 
+# 76 "common/include/common/memory.h"
+    mem_eeprom_write_half_word(uint32_t address, uint16_t data);
 
-#define TMP112_H 
+# 77 "common/include/common/memory.h" 3 4
+_Bool 
+# 77 "common/include/common/memory.h"
+    mem_eeprom_write_byte(uint32_t address, uint8_t data);
+
+
+# 79 "common/include/common/memory.h" 3 4
+_Bool 
+# 79 "common/include/common/memory.h"
+    mem_flash_erase_page(uint32_t address);
+
+# 80 "common/include/common/memory.h" 3 4
+_Bool 
+# 80 "common/include/common/memory.h"
+    mem_flash_write_word(uint32_t address, uint32_t data);
+
+# 81 "common/include/common/memory.h" 3 4
+_Bool 
+# 81 "common/include/common/memory.h"
+    mem_flash_write_half_page(uint32_t address, uint32_t *data);
+
+void mem_save_reading(int16_t reading);
+
+uint32_t mem_get_dev_state(void);
+uint32_t mem_get_dev_num(void);
+uint32_t mem_get_msg_num(void);
+void mem_update_msg_num(uint32_t new);
+uint32_t mem_get_num_readings(void);
+int16_t mem_get_reading(uint32_t reading_num);
+
+void mem_get_log(char log[1024]);
+void mem_wipe_log(void);
+void mem_print_log(void);
+
+void mem_get_aes_key(uint8_t *aes_key);
+void mem_set_aes_key(uint8_t *aes_key);
+void mem_get_aes_key_exp(uint8_t *aes_key_exp);
+void mem_set_aes_key_exp(uint8_t *aes_key_exp);
+
+void mem_wipe_readings(void);
+# 24 "common/src/log.c" 2
+# 1 "common/include/common/printf.h" 1
+# 33 "common/include/common/printf.h"
+#define _PRINTF_H_ 
+
+# 1 "/usr/local/Cellar/arm-gcc-bin/9-2020-q2-update/lib/gcc/arm-none-eabi/9.3.1/include/stdarg.h" 1 3 4
+# 31 "/usr/local/Cellar/arm-gcc-bin/9-2020-q2-update/lib/gcc/arm-none-eabi/9.3.1/include/stdarg.h" 3 4
+#define _STDARG_H 
+#define _ANSI_STDARG_H_ 
+
+#undef __need___va_list
 
 
 
-#define TMP112_I2C_ADDRESS 0x49
 
-#define TMP112_SEL_TEMP_REG 0x00
-#define TMP112_SEL_CONFIG_REG 0x01
+#define __GNUC_VA_LIST 
 
-#define TMP112_CONFIG_OS_MSB 0XE1
-#define TMP112_CONFIG_OS_LSB 0XA0
+# 40 "/usr/local/Cellar/arm-gcc-bin/9-2020-q2-update/lib/gcc/arm-none-eabi/9.3.1/include/stdarg.h" 3 4
+typedef __builtin_va_list __gnuc_va_list;
 
-#define TMP112_CONFIG_CM_MSB 0X60
-#define TMP112_CONFIG_CM_LSB 0XA0
 
-#define TMP112_GEN_CALL_ADDR 0X00
-#define TMP112_RESET_CMD 0X06
 
-void tmp112_init(void);
-void tmp112_end(void);
-void tmp112_reset(void);
-void tmp112_read_temperature(int16_t* readings, uint8_t num_readings);
-# 9 "sensor/src/tmp112.c" 2
-# 1 "common/include/common/log.h" 1
-# 26 "common/include/common/log.h"
-#define LOG_H 
-# 43 "common/include/common/log.h"
-enum log_type
+
+
+
+#define va_start(v,l) __builtin_va_start(v,l)
+#define va_end(v) __builtin_va_end(v)
+#define va_arg(v,l) __builtin_va_arg(v,l)
+
+
+#define va_copy(d,s) __builtin_va_copy(d,s)
+
+#define __va_copy(d,s) __builtin_va_copy(d,s)
+# 99 "/usr/local/Cellar/arm-gcc-bin/9-2020-q2-update/lib/gcc/arm-none-eabi/9.3.1/include/stdarg.h" 3 4
+typedef __gnuc_va_list va_list;
+
+
+
+
+
+#define _VA_LIST_ 
+
+
+#define _VA_LIST 
+
+
+#define _VA_LIST_DEFINED 
+
+
+#define _VA_LIST_T_H 
+
+
+#define __va_list__ 
+# 36 "common/include/common/printf.h" 2
+# 1 "/usr/local/Cellar/arm-gcc-bin/9-2020-q2-update/lib/gcc/arm-none-eabi/9.3.1/include/stddef.h" 1 3 4
+# 39 "/usr/local/Cellar/arm-gcc-bin/9-2020-q2-update/lib/gcc/arm-none-eabi/9.3.1/include/stddef.h" 3 4
+#define _STDDEF_H 
+#define _STDDEF_H_ 
+
+#define _ANSI_STDDEF_H 
+# 131 "/usr/local/Cellar/arm-gcc-bin/9-2020-q2-update/lib/gcc/arm-none-eabi/9.3.1/include/stddef.h" 3 4
+#define _PTRDIFF_T 
+#define _T_PTRDIFF_ 
+#define _T_PTRDIFF 
+#define __PTRDIFF_T 
+#define _PTRDIFF_T_ 
+#define _BSD_PTRDIFF_T_ 
+#define ___int_ptrdiff_t_h 
+#define _GCC_PTRDIFF_T 
+#define _PTRDIFF_T_DECLARED 
+
+
+
+typedef int ptrdiff_t;
+# 155 "/usr/local/Cellar/arm-gcc-bin/9-2020-q2-update/lib/gcc/arm-none-eabi/9.3.1/include/stddef.h" 3 4
+#undef __need_ptrdiff_t
+# 181 "/usr/local/Cellar/arm-gcc-bin/9-2020-q2-update/lib/gcc/arm-none-eabi/9.3.1/include/stddef.h" 3 4
+#define __size_t__ 
+#define __SIZE_T__ 
+#define _SIZE_T 
+#define _SYS_SIZE_T_H 
+#define _T_SIZE_ 
+#define _T_SIZE 
+#define __SIZE_T 
+#define _SIZE_T_ 
+#define _BSD_SIZE_T_ 
+#define _SIZE_T_DEFINED_ 
+#define _SIZE_T_DEFINED 
+#define _BSD_SIZE_T_DEFINED_ 
+#define _SIZE_T_DECLARED 
+#define ___int_size_t_h 
+#define _GCC_SIZE_T 
+#define _SIZET_ 
+
+
+
+
+
+
+#define __size_t 
+
+
+
+
+
+typedef unsigned int size_t;
+# 231 "/usr/local/Cellar/arm-gcc-bin/9-2020-q2-update/lib/gcc/arm-none-eabi/9.3.1/include/stddef.h" 3 4
+#undef __need_size_t
+# 260 "/usr/local/Cellar/arm-gcc-bin/9-2020-q2-update/lib/gcc/arm-none-eabi/9.3.1/include/stddef.h" 3 4
+#define __wchar_t__ 
+#define __WCHAR_T__ 
+#define _WCHAR_T 
+#define _T_WCHAR_ 
+#define _T_WCHAR 
+#define __WCHAR_T 
+#define _WCHAR_T_ 
+#define _BSD_WCHAR_T_ 
+#define _WCHAR_T_DEFINED_ 
+#define _WCHAR_T_DEFINED 
+#define _WCHAR_T_H 
+#define ___int_wchar_t_h 
+#define __INT_WCHAR_T_H 
+#define _GCC_WCHAR_T 
+#define _WCHAR_T_DECLARED 
+# 287 "/usr/local/Cellar/arm-gcc-bin/9-2020-q2-update/lib/gcc/arm-none-eabi/9.3.1/include/stddef.h" 3 4
+#undef _BSD_WCHAR_T_
+# 321 "/usr/local/Cellar/arm-gcc-bin/9-2020-q2-update/lib/gcc/arm-none-eabi/9.3.1/include/stddef.h" 3 4
+typedef unsigned int wchar_t;
+# 340 "/usr/local/Cellar/arm-gcc-bin/9-2020-q2-update/lib/gcc/arm-none-eabi/9.3.1/include/stddef.h" 3 4
+#undef __need_wchar_t
+# 390 "/usr/local/Cellar/arm-gcc-bin/9-2020-q2-update/lib/gcc/arm-none-eabi/9.3.1/include/stddef.h" 3 4
+#undef NULL
+
+
+
+
+#define NULL ((void *)0)
+
+
+
+
+
+#undef __need_NULL
+
+
+
+
+#define offsetof(TYPE,MEMBER) __builtin_offsetof (TYPE, MEMBER)
+# 37 "common/include/common/printf.h" 2
+# 51 "common/include/common/printf.h"
+
+# 51 "common/include/common/printf.h"
+typedef void (*out_fct_type)(char character, void* buffer, size_t idx, size_t maxlen);
+int _vsnprintf(out_fct_type out, char* buffer, const size_t maxlen, const char* format, va_list va);
+# 25 "common/src/log.c" 2
+# 35 "common/src/log.c"
+#define LOG_SIZE 1024
+#define LOG_START EEPROM_END - LOG_SIZE
+
+
+
+
+
+static uint32_t curr_address = 0x08080800 - 1024;
+
+
+
+
+
+static void clock_setup(void);
+static void usart_setup(void);
+static void _putchar(char character, void* buffer, size_t idx, size_t maxlen);
+# 62 "common/src/log.c"
+void log_init(void)
 {
-    MAIN=0,
-    BOOT,
-    RFM,
-    TMP
-};
-# 60 "common/include/common/log.h"
-void log_init(void);
-void log_printf(enum log_type type, const char *format, ...);
-# 10 "sensor/src/tmp112.c" 2
+    curr_address = 0;
 
 
-static void tmp112_clock_setup(void);
-static void tmp112_i2c_setup(void);
-static void i2c_transfer(uint32_t i2c, uint8_t addr, uint8_t *w, size_t wn, uint8_t *r, size_t rn);
+    clock_setup();
+    usart_setup();
 
-void tmp112_init(void)
-{
- tmp112_clock_setup();
- tmp112_i2c_setup();
-
- log_printf(MAIN, "TMP Init Done\n");
 }
 
-void tmp112_end(void)
+void log_printf(enum log_type type, const char *format, ...)
 {
+    char buffer[1];
 
- uint8_t config[3] = {0x01, 0XE1, 0XA0};
+ va_list va;
+ 
+# 77 "common/src/log.c" 3 4
+__builtin_va_start(
+# 77 "common/src/log.c"
+va
+# 77 "common/src/log.c" 3 4
+,
+# 77 "common/src/log.c"
+format
+# 77 "common/src/log.c" 3 4
+)
+# 77 "common/src/log.c"
+                    ;
 
- i2c_transfer((((0x40000000U) + 0x00000) + 0x5800), 0x49, config, 3, 
-# 29 "sensor/src/tmp112.c" 3 4
-                                                      ((void *)0)
-# 29 "sensor/src/tmp112.c"
-                                                          , 0);
+    switch (type)
+    {
+    case MAIN:
+        _vsnprintf(_putchar, buffer, (size_t)-1, format, va);
+        break;
 
+    default:
+        break;
+    }
 
- i2c_send_stop((((0x40000000U) + 0x00000) + 0x5800));
-
-
- i2c_peripheral_disable((((0x40000000U) + 0x00000) + 0x5800));
- rcc_periph_clock_disable(RCC_I2C2);
-
- log_printf(MAIN, "TMP End Done\n");
-}
-
-void tmp112_reset(void)
-{
- uint8_t cmd[1] = {0X06};
- i2c_transfer((((0x40000000U) + 0x00000) + 0x5800), 0X00, cmd, 1, 
-# 44 "sensor/src/tmp112.c" 3 4
-                                                     ((void *)0)
-# 44 "sensor/src/tmp112.c"
-                                                         , 0);
-}
-
-void tmp112_read_temperature(int16_t* readings, uint8_t num_readings)
-{
- for (int i = 0; i < num_readings; i++)
- {
-
-     uint8_t config[3] = {0x01, 0XE1, 0XA0};
-     i2c_transfer((((0x40000000U) + 0x00000) + 0x5800), 0x49, config, 3, 
-# 53 "sensor/src/tmp112.c" 3 4
-                                                          ((void *)0)
-# 53 "sensor/src/tmp112.c"
-                                                              , 0);
-
-
-        timers_delay_microseconds(50000);
-
-
-     uint8_t select_temp[1] = {0x00};
-        i2c_transfer((((0x40000000U) + 0x00000) + 0x5800), 0x49, select_temp, 1, 
-# 60 "sensor/src/tmp112.c" 3 4
-                                                                  ((void *)0)
-# 60 "sensor/src/tmp112.c"
-                                                                      , 0);
-
-
-  uint8_t reading_msb_lsb[2] = {0,0};
-
-
-  i2c_transfer((((0x40000000U) + 0x00000) + 0x5800), 0x49, 
-# 66 "sensor/src/tmp112.c" 3 4
-                                            ((void *)0)
-# 66 "sensor/src/tmp112.c"
-                                                , 0, reading_msb_lsb, 2);
-
-
-  int32_t temp = reading_msb_lsb[0] << 24 | reading_msb_lsb[1] << 16;
-        temp = temp >> 20;
-
-  temp *= 625;
-  temp /= 100;
-  readings[i] = temp;
- }
+   
+# 89 "common/src/log.c" 3 4
+  __builtin_va_end(
+# 89 "common/src/log.c"
+  va
+# 89 "common/src/log.c" 3 4
+  )
+# 89 "common/src/log.c"
+            ;
 
 
 
-
+    while(!usart_get_flag((((0x40000000U) + 0x10000) + 0x3800), (1 << 6))) {__asm__("nop");}
 
 }
-
-static void tmp112_clock_setup(void)
+# 108 "common/src/log.c"
+static void clock_setup(void)
 {
 
  rcc_osc_on(RCC_MSI);
@@ -4492,87 +4134,38 @@ static void tmp112_clock_setup(void)
  rcc_apb2_frequency = 2097000;
 }
 
-static void tmp112_i2c_setup(void)
+static void usart_setup(void)
 {
- rcc_periph_clock_enable(RCC_GPIOA);
+    rcc_periph_clock_enable(RCC_GPIOA);
  rcc_periph_clock_enable(RCC_GPIOB);
-   rcc_periph_clock_enable(RCC_I2C2);
 
- gpio_mode_setup(((0x50000000U) + 0x00400), 0x2, 0x1, (1 << 13));
- gpio_mode_setup(((0x50000000U) + 0x00400), 0x2, 0x1, (1 << 14));
+ gpio_mode_setup(((0x50000000U) + 0x00000), 0x2, 0x0, (1 << 9));
+ gpio_mode_setup(((0x50000000U) + 0x00000), 0x2, 0x0, (1 << 10));
 
- gpio_set_output_options(((0x50000000U) + 0x00400), 0x1, 0x0, (1 << 13));
- gpio_set_output_options(((0x50000000U) + 0x00400), 0x1, 0x0, (1 << 14));
+    gpio_set_output_options(((0x50000000U) + 0x00000), 0x0, 0x0, (1 << 9));
 
- gpio_set_af(((0x50000000U) + 0x00400), 0x5, (1 << 13));
- gpio_set_af(((0x50000000U) + 0x00400), 0x5, (1 << 14));
+    gpio_set_af(((0x50000000U) + 0x00000), 0x4, (1 << 9));
+    gpio_set_af(((0x50000000U) + 0x00000), 0x4, (1 << 10));
 
- rcc_periph_reset_pulse(RST_I2C2);
- i2c_peripheral_disable((((0x40000000U) + 0x00000) + 0x5800));
- i2c_clear_stop((((0x40000000U) + 0x00000) + 0x5800));
-
-
-
-    i2c_set_prescaler((((0x40000000U) + 0x00000) + 0x5800), 0);
-    i2c_set_scl_low_period((((0x40000000U) + 0x00000) + 0x5800), 10-1);
-    i2c_set_scl_high_period((((0x40000000U) + 0x00000) + 0x5800), 8-1);
-    i2c_set_data_hold_time((((0x40000000U) + 0x00000) + 0x5800), 1);
-    i2c_set_data_setup_time((((0x40000000U) + 0x00000) + 0x5800), 2-1);
- i2c_peripheral_enable((((0x40000000U) + 0x00000) + 0x5800));
+ rcc_periph_clock_enable(RCC_USART1);
+    rcc_periph_reset_pulse(RST_USART1);
+ usart_disable((((0x40000000U) + 0x10000) + 0x3800));
+ usart_set_baudrate((((0x40000000U) + 0x10000) + 0x3800), 115200);
+ usart_set_databits((((0x40000000U) + 0x10000) + 0x3800), 8);
+ usart_set_stopbits((((0x40000000U) + 0x10000) + 0x3800),(0x00 << 12));
+ usart_set_mode((((0x40000000U) + 0x10000) + 0x3800), ((1 << 2) | (1 << 3)));
+ usart_set_parity((((0x40000000U) + 0x10000) + 0x3800), 0x00);
+ usart_set_flow_control((((0x40000000U) + 0x10000) + 0x3800), 0x00);
+ usart_enable((((0x40000000U) + 0x10000) + 0x3800));
 }
 
-static void i2c_transfer(uint32_t i2c, uint8_t addr, uint8_t *w, size_t wn, uint8_t *r, size_t rn)
- {
+static void _putchar(char character, void* buffer, size_t idx, size_t maxlen)
+{
+ (void)buffer; (void)idx; (void)maxlen;
 
-    if (wn)
- {
-        i2c_set_7bit_address(i2c, addr);
-        i2c_set_write_transfer_dir(i2c);
-        i2c_set_bytes_to_transfer(i2c, wn);
-
-        if (rn)
-  {
-            i2c_disable_autoend(i2c);
-        }
-  else
-  {
-            i2c_enable_autoend(i2c);
-        }
-
-  i2c_send_start(i2c);
-
-        while (wn--)
-  {
-   timers_delay_microseconds(1);
-   timeout_init(); while(!timeout(100000, "TMP I2C:", ((wn << 16) | *w))) { if(i2c_transmit_int_status(i2c)){ ; break; } else{ ; }};
-# 168 "sensor/src/tmp112.c"
-            i2c_send_data(i2c, *w++);
-        }
+    mem_eeprom_write_byte(curr_address++, character);
 
 
+ usart_send_blocking((((0x40000000U) + 0x10000) + 0x3800), character);
 
-
-        if (rn)
-  {
-            while (!i2c_transfer_complete(i2c));
-        }
-    }
-
-    if (rn)
- {
-
-        i2c_set_7bit_address(i2c, addr);
-        i2c_set_read_transfer_dir(i2c);
-        i2c_set_bytes_to_transfer(i2c, rn);
-
-        i2c_send_start(i2c);
-
-        i2c_enable_autoend(i2c);
-
-        for (size_t i = 0; i < rn; i++)
-  {
-   timeout_init(); while(!timeout(100000, "TMP I2C Recv:", (rn << 16))) { if(i2c_received_data(i2c)){ ; break; } else{ ; }};
-            r[i] = i2c_get_data(i2c);
-        }
-    }
- }
+}

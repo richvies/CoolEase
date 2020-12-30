@@ -22,11 +22,11 @@
 			"coolterm":true,
 			"old": true,
 			"docs": true,
-			"README.md": true,
+			"README.md": false,
 			
 			"**/obj/":false,
 			"**/bin/":false,
-			"**/*.ld/":true,
+			"**/*.ld/":false,
 			"**/*eeprom.bin":true,
 
 		},
