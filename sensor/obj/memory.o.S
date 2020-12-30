@@ -3771,11 +3771,13 @@ void gpio_init(void);
 enum log_type
 {
     MAIN=0,
+    SPF,
+    MEM,
     BOOT,
     RFM,
     TMP
 };
-# 60 "common/include/common/log.h"
+# 62 "common/include/common/log.h"
 void log_init(void);
 void log_printf(enum log_type type, const char *format, ...);
 # 23 "common/src/memory.c" 2
@@ -3977,22 +3979,7 @@ static __attribute__((section (".data#"), noinline))
 void mem_init(void)
 {
     rcc_periph_clock_enable(RCC_MIF);
-
-
-    if(!(*(volatile uint32_t *)(dev_state_add)))
-    {
-        mem_wipe_readings();
-        mem_eeprom_write_word(dev_state_add, 0x11111111);
-    }
-
-
-    msg_num = (*(volatile uint32_t *)(msg_num_add));
-    while((*(volatile uint32_t *)(next_reading_add)) != 0x00000000)
-    {
-
-        msg_num++;
-        next_reading_add += 4;
-    }
+# 100 "common/src/memory.c"
 }
 
 

@@ -35,10 +35,6 @@ LDLIBS += -Wl,--start-group -lc -lgcc -lnosys -Wl,--end-group
 # General Project Files
 #############################################################
 
-ifeq ($(PROJECT), hub)
-TGT_CFLAGS	   	+=	-D_HUB
-endif
-
 # Include Headers
 INCLUDES += -I$(PROJECT)/include -Icommon/include
 
@@ -75,12 +71,14 @@ $(PROJECT)_LDSCRIPT 	= $(PROJECT)/$(PROJECT).ld
 $(BOOTLOADER)_LDSCRIPT 	= $(PROJECT)/$(BOOTLOADER).ld
 LDSCRIPTS				= $($(PROJECT)_LDSCRIPT) $($(BOOTLOADER)_LDSCRIPT)
 
-
 #############################################################
-# Options & Flags
+# Conditional Flags
 #############################################################
 
-CSTD ?= -std=c99
+# Hub or sensor
+ifeq ($(PROJECT), hub)
+TGT_CFLAGS	   	+=	-D_HUB
+endif
 
 # Release or debug version
 ifeq ($(R), 1)
@@ -89,6 +87,25 @@ else
 OPT = -Og -ggdb3
 TGT_CFLAGS += -DDEBUG
 endif
+
+# Be silent per default, but 'make V=1' will show all compiler calls.
+# If you're insane, V=99 will print out all sorts of things.
+V ?= 0
+ifeq ($(V),0)
+Q		:= @
+NULL	:= 2>/dev/null
+endif
+
+# Print sections if verbose
+ifeq ($(V),99)
+TGT_LDFLAGS += -Wl,--print-gc-sections
+endif
+
+#############################################################
+# General Options & Flags
+#############################################################
+
+CSTD ?= -std=c99
 
 TGT_CPPFLAGS += -MD
 TGT_CPPFLAGS += -Wall -Wundef $(INCLUDES)
@@ -108,17 +125,6 @@ TGT_LDFLAGS += $(ARCH_FLAGS)
 TGT_LDFLAGS += -specs=nano.specs
 TGT_LDFLAGS += -Wl,--gc-sections
 TGT_LDFLAGS += -Wl,--nmagic
-
-ifeq ($(V),99)
-TGT_LDFLAGS += -Wl,--print-gc-sections
-endif
-
-# Be silent per default, but 'make V=1' will show all compiler calls.
-# If you're insane, V=99 will print out all sorts of things.
-ifeq ($(V),0)
-Q		:= @
-NULL	:= 2>/dev/null
-endif
 
 #############################################################
 # Top builds routines

@@ -1100,11 +1100,13 @@ typedef __uint_least64_t uint_least64_t;
 enum log_type
 {
     MAIN=0,
+    SPF,
+    MEM,
     BOOT,
     RFM,
     TMP
 };
-# 60 "common/include/common/log.h"
+# 62 "common/include/common/log.h"
 void log_init(void);
 void log_printf(enum log_type type, const char *format, ...);
 # 16 "common/src/log.c" 2
@@ -4002,11 +4004,11 @@ typedef unsigned int wchar_t;
 
 #define offsetof(TYPE,MEMBER) __builtin_offsetof (TYPE, MEMBER)
 # 37 "common/include/common/printf.h" 2
-# 51 "common/include/common/printf.h"
+# 52 "common/include/common/printf.h"
 
-# 51 "common/include/common/printf.h"
-typedef void (*out_fct_type)(char character, void* buffer, size_t idx, size_t maxlen);
-int _vsnprintf(out_fct_type out, char* buffer, const size_t maxlen, const char* format, va_list va);
+# 52 "common/include/common/printf.h"
+typedef void (*out_fct_type)(char character);
+uint32_t fnprintf(out_fct_type out, const char *format, va_list va);
 # 25 "common/src/log.c" 2
 # 35 "common/src/log.c"
 #define LOG_SIZE 1024
@@ -4024,10 +4026,13 @@ static uint32_t curr_address = 0x08080800 - 1024;
 
 static void clock_setup(void);
 static void usart_setup(void);
-static void _putchar(char character, void* buffer, size_t idx, size_t maxlen);
-# 62 "common/src/log.c"
+static void _putchar_main(char character);
+static void _putchar_spf(char character);
+static void _putchar_mem(char character);
+# 64 "common/src/log.c"
 void log_init(void)
 {
+ mem_init();
     curr_address = 0;
 
 
@@ -4038,49 +4043,59 @@ void log_init(void)
 
 void log_printf(enum log_type type, const char *format, ...)
 {
-    char buffer[1];
-
  va_list va;
  
-# 77 "common/src/log.c" 3 4
+# 78 "common/src/log.c" 3 4
 __builtin_va_start(
-# 77 "common/src/log.c"
+# 78 "common/src/log.c"
 va
-# 77 "common/src/log.c" 3 4
+# 78 "common/src/log.c" 3 4
 ,
-# 77 "common/src/log.c"
+# 78 "common/src/log.c"
 format
-# 77 "common/src/log.c" 3 4
+# 78 "common/src/log.c" 3 4
 )
-# 77 "common/src/log.c"
+# 78 "common/src/log.c"
                     ;
 
     switch (type)
     {
     case MAIN:
-        _vsnprintf(_putchar, buffer, (size_t)-1, format, va);
+        fnprintf(_putchar_main, format, va);
         break;
+
+ case SPF:
+        fnprintf(_putchar_spf, format, va);
+  break;
+
+ case MEM:
+        fnprintf(_putchar_mem, format, va);
+  break;
+
+ case RFM:
+        fnprintf(_putchar_main, format, va);
+  break;
 
     default:
         break;
     }
 
    
-# 89 "common/src/log.c" 3 4
+# 102 "common/src/log.c" 3 4
   __builtin_va_end(
-# 89 "common/src/log.c"
+# 102 "common/src/log.c"
   va
-# 89 "common/src/log.c" 3 4
+# 102 "common/src/log.c" 3 4
   )
-# 89 "common/src/log.c"
+# 102 "common/src/log.c"
             ;
 
 
 
-    while(!usart_get_flag((((0x40000000U) + 0x00000) + 0x4400), (1 << 6))) {__asm__("nop");}
+    while(!usart_get_flag((((0x40000000U) + 0x00000) + 0x4400), (1 << 6))) {}
 
 }
-# 108 "common/src/log.c"
+# 121 "common/src/log.c"
 static void clock_setup(void)
 {
 
@@ -4129,13 +4144,25 @@ static void usart_setup(void)
  usart_enable((((0x40000000U) + 0x00000) + 0x4400));
 }
 
-static void _putchar(char character, void* buffer, size_t idx, size_t maxlen)
+static void _putchar_main(char character)
 {
- (void)buffer; (void)idx; (void)maxlen;
+ _putchar_mem(character);
+ _putchar_spf(character);
+}
 
-    mem_eeprom_write_byte(curr_address++, character);
-
+static void _putchar_spf(char character)
+{
 
  usart_send_blocking((((0x40000000U) + 0x00000) + 0x4400), character);
 
+}
+
+static void _putchar_mem(char character)
+{
+ mem_eeprom_write_byte(curr_address++, character);
+
+ if(curr_address == 0x08080800 - 1024 + 1024)
+ {
+  curr_address = 0x08080800 - 1024;
+ }
 }

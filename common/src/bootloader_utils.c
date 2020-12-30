@@ -20,6 +20,7 @@
 #include <libopencm3/stm32/rcc.h>
 
 #include "common/memory.h"
+#include "common/log.h"
 
 /** @addtogroup BOOTLOADER_UTILS_FILE 
  * @{
@@ -103,9 +104,12 @@ void boot_jump_to_application(uint32_t address)
 
 bool boot_program_application(uint32_t *data, uint32_t start_address, uint32_t len)
 {
+    log_printf(BOOT, "Program Application");
+
     // Return if new program is too large
     if(len > (FLASH_START_APP - FLASH_START))
     {
+        log_printf(BOOT, "App size too big");
         return false;
     }
 

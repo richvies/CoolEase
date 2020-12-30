@@ -24,7 +24,7 @@ uint8_t	msg_idx;
 // Static Function Decls
 static void clock_setup(void);
 static void usart_setup(void);
-static void _putchar(char character, void* buffer, size_t idx, size_t maxlen);
+static void _putchar(char character);
 
 
 // Global Function Definitions
@@ -269,7 +269,7 @@ int sim_printf(const char* format, ...)
 
 	va_list va;
 	va_start(va, format);
-  	const int ret = _vsnprintf(_putchar, buffer, (size_t)-1, format, va);
+  	const int ret = fnprintf(_putchar, format, va);
   	va_end(va);
 	
 	while(!usart_get_flag(SIM_USART, USART_ISR_TC)) {__asm__("nop");}
@@ -277,9 +277,8 @@ int sim_printf(const char* format, ...)
 	return ret;
 }
 
-static void _putchar(char character, void* buffer, size_t idx, size_t maxlen)
+static void _putchar(char character)
 {
-	(void)buffer; (void)idx; (void)maxlen;
 	usart_send_blocking(SIM_USART, character);
 	usart_send_blocking(SPF_USART, character);	
 }

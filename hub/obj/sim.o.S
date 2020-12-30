@@ -5248,11 +5248,11 @@ typedef __gnuc_va_list va_list;
 # 36 "common/include/common/printf.h" 2
 # 1 "/usr/local/Cellar/arm-gcc-bin/9-2020-q2-update/lib/gcc/arm-none-eabi/9.3.1/include/stddef.h" 1 3 4
 # 37 "common/include/common/printf.h" 2
-# 51 "common/include/common/printf.h"
+# 52 "common/include/common/printf.h"
 
-# 51 "common/include/common/printf.h"
-typedef void (*out_fct_type)(char character, void* buffer, size_t idx, size_t maxlen);
-int _vsnprintf(out_fct_type out, char* buffer, const size_t maxlen, const char* format, va_list va);
+# 52 "common/include/common/printf.h"
+typedef void (*out_fct_type)(char character);
+uint32_t fnprintf(out_fct_type out, const char *format, va_list va);
 # 14 "hub/src/sim.c" 2
 # 1 "common/include/common/log.h" 1
 # 26 "common/include/common/log.h"
@@ -5261,11 +5261,13 @@ int _vsnprintf(out_fct_type out, char* buffer, const size_t maxlen, const char* 
 enum log_type
 {
     MAIN=0,
+    SPF,
+    MEM,
     BOOT,
     RFM,
     TMP
 };
-# 60 "common/include/common/log.h"
+# 62 "common/include/common/log.h"
 void log_init(void);
 void log_printf(enum log_type type, const char *format, ...);
 # 15 "hub/src/sim.c" 2
@@ -5365,7 +5367,7 @@ uint8_t msg_idx;
 
 static void clock_setup(void);
 static void usart_setup(void);
-static void _putchar(char character, void* buffer, size_t idx, size_t maxlen);
+static void _putchar(char character);
 
 
 
@@ -5569,7 +5571,7 @@ format
 )
 # 271 "hub/src/sim.c"
                     ;
-   const int ret = _vsnprintf(_putchar, buffer, (size_t)-1, format, va);
+   const int ret = fnprintf(_putchar, format, va);
    
 # 273 "hub/src/sim.c" 3 4
   __builtin_va_end(
@@ -5585,9 +5587,8 @@ format
  return ret;
 }
 
-static void _putchar(char character, void* buffer, size_t idx, size_t maxlen)
+static void _putchar(char character)
 {
- (void)buffer; (void)idx; (void)maxlen;
  usart_send_blocking((((0x40000000U) + 0x00000) + 0x4400), character);
  usart_send_blocking((((0x40000000U) + 0x10000) + 0x3800), character);
 }

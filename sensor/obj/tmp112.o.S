@@ -4368,11 +4368,13 @@ void tmp112_read_temperature(int16_t* readings, uint8_t num_readings);
 enum log_type
 {
     MAIN=0,
+    SPF,
+    MEM,
     BOOT,
     RFM,
     TMP
 };
-# 60 "common/include/common/log.h"
+# 62 "common/include/common/log.h"
 void log_init(void);
 void log_printf(enum log_type type, const char *format, ...);
 # 10 "sensor/src/tmp112.c" 2

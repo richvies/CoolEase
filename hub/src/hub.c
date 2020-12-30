@@ -100,7 +100,7 @@ int main(void)
 	// test_analog_watchdog();
 	// test_cusb_poll();
 
-	(void)test_hub2();
+	(void)test_hub2;
 
 
 	for (;;)

@@ -82,21 +82,21 @@ void mem_init(void)
 {
     rcc_periph_clock_enable(RCC_MIF);
 
-    // Wipe readings if first time turning on, and update device state
-    if(!MMIO32(dev_state_add))
-    {
-        mem_wipe_readings();
-        mem_eeprom_write_word(dev_state_add, 0x11111111);
-    }
+    // // Wipe readings if first time turning on, and update device state
+    // if(!MMIO32(dev_state_add))
+    // {
+    //     mem_wipe_readings();
+    //     mem_eeprom_write_word(dev_state_add, 0x11111111);
+    // }
 
-    // Get number of messages and next reading memory location
-    msg_num = MMIO32(msg_num_add);
-    while(MMIO32(next_reading_add) != 0x00000000)
-    {
-        // log_printf(MAIN, "%08x : %08x\n", next_reading_add, MMIO32(next_reading_add));
-        msg_num++;
-        next_reading_add += 4;
-    }
+    // // Get number of messages and next reading memory location
+    // msg_num = MMIO32(msg_num_add);
+    // while(MMIO32(next_reading_add) != 0x00000000)
+    // {
+    //     // log_printf(MAIN, "%08x : %08x\n", next_reading_add, MMIO32(next_reading_add));
+    //     msg_num++;
+    //     next_reading_add += 4;
+    // }
 }
 
 

@@ -5522,11 +5522,13 @@ void gpio_init(void);
 enum log_type
 {
     MAIN=0,
+    SPF,
+    MEM,
     BOOT,
     RFM,
     TMP
 };
-# 60 "common/include/common/log.h"
+# 62 "common/include/common/log.h"
 void log_init(void);
 void log_printf(enum log_type type, const char *format, ...);
 # 23 "hub/src/hub.c" 2
@@ -6493,7 +6495,7 @@ int main(void)
 
  test_mem_write_read();
 # 103 "hub/src/hub.c"
- (void)test_hub2();
+ (void)test_hub2;
 
 
  for (;;)

@@ -1105,11 +1105,13 @@ typedef __uint_least64_t uint_least64_t;
 enum log_type
 {
     MAIN=0,
+    SPF,
+    MEM,
     BOOT,
     RFM,
     TMP
 };
-# 60 "common/include/common/log.h"
+# 62 "common/include/common/log.h"
 void log_init(void);
 void log_printf(enum log_type type, const char *format, ...);
 # 18 "sensor/src/sensor_bootloader.c" 2

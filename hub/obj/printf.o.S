@@ -633,25 +633,6 @@ typedef unsigned int wchar_t;
 
 #define offsetof(TYPE,MEMBER) __builtin_offsetof (TYPE, MEMBER)
 # 37 "common/include/common/printf.h" 2
-# 51 "common/include/common/printf.h"
-
-# 51 "common/include/common/printf.h"
-typedef void (*out_fct_type)(char character, void* buffer, size_t idx, size_t maxlen);
-int _vsnprintf(out_fct_type out, char* buffer, const size_t maxlen, const char* format, va_list va);
-# 34 "common/src/printf.c" 2
-
-# 1 "/usr/local/Cellar/arm-gcc-bin/9-2020-q2-update/lib/gcc/arm-none-eabi/9.3.1/include/stdbool.h" 1 3 4
-# 29 "/usr/local/Cellar/arm-gcc-bin/9-2020-q2-update/lib/gcc/arm-none-eabi/9.3.1/include/stdbool.h" 3 4
-#define _STDBOOL_H 
-
-
-
-#define bool _Bool
-#define true 1
-#define false 0
-# 52 "/usr/local/Cellar/arm-gcc-bin/9-2020-q2-update/lib/gcc/arm-none-eabi/9.3.1/include/stdbool.h" 3 4
-#define __bool_true_false_are_defined 1
-# 36 "common/src/printf.c" 2
 # 1 "/usr/local/Cellar/arm-gcc-bin/9-2020-q2-update/lib/gcc/arm-none-eabi/9.3.1/include/stdint.h" 1 3 4
 # 9 "/usr/local/Cellar/arm-gcc-bin/9-2020-q2-update/lib/gcc/arm-none-eabi/9.3.1/include/stdint.h" 3 4
 # 1 "/usr/local/Cellar/arm-gcc-bin/9-2020-q2-update/arm-none-eabi/include/stdint.h" 1 3 4
@@ -769,8 +750,6 @@ int _vsnprintf(out_fct_type out, char* buffer, const size_t maxlen, const char* 
 
 
 
-
-# 41 "/usr/local/Cellar/arm-gcc-bin/9-2020-q2-update/arm-none-eabi/include/machine/_default_types.h" 3 4
 typedef signed char __int8_t;
 
 typedef unsigned char __uint8_t;
@@ -1241,906 +1220,340 @@ typedef __uint_least64_t uint_least64_t;
 
 
 #define _GCC_WRAP_STDINT_H 
-# 37 "common/src/printf.c" 2
+# 38 "common/include/common/printf.h" 2
+# 52 "common/include/common/printf.h"
 
+# 52 "common/include/common/printf.h"
+typedef void (*out_fct_type)(char character);
+uint32_t fnprintf(out_fct_type out, const char *format, va_list va);
+# 34 "common/src/printf.c" 2
 
-#define PRINTF_DISABLE_SUPPORT_EXPONENTIAL 
-#define PRINTF_DISABLE_SUPPORT_LONG_LONG 
-#define PRINTF_DISABLE_SUPPORT_PTRDIFF_T 
+# 1 "/usr/local/Cellar/arm-gcc-bin/9-2020-q2-update/lib/gcc/arm-none-eabi/9.3.1/include/stdbool.h" 1 3 4
+# 29 "/usr/local/Cellar/arm-gcc-bin/9-2020-q2-update/lib/gcc/arm-none-eabi/9.3.1/include/stdbool.h" 3 4
+#define _STDBOOL_H 
 
 
 
+#define bool _Bool
+#define true 1
+#define false 0
+# 52 "/usr/local/Cellar/arm-gcc-bin/9-2020-q2-update/lib/gcc/arm-none-eabi/9.3.1/include/stdbool.h" 3 4
+#define __bool_true_false_are_defined 1
+# 36 "common/src/printf.c" 2
 
 
 
-#define PRINTF_NTOA_BUFFER_SIZE 32U
 
 
+#define PRINTF_NTOA_BUFFER_SIZE 32
 
+#define PRINTF_MAX_STR_LEN 1024
 
 
 
-#define PRINTF_FTOA_BUFFER_SIZE 32U
 
 
-
-
-
-#define PRINTF_SUPPORT_FLOAT 
-# 73 "common/src/printf.c"
-#define PRINTF_DEFAULT_FLOAT_PRECISION 6U
-
-
-
-
-
-#define PRINTF_MAX_FLOAT 1e9
-# 98 "common/src/printf.c"
-#define FLAGS_ZEROPAD (1U << 0U)
-#define FLAGS_LEFT (1U << 1U)
-#define FLAGS_PLUS (1U << 2U)
-#define FLAGS_SPACE (1U << 3U)
-#define FLAGS_HASH (1U << 4U)
-#define FLAGS_UPPERCASE (1U << 5U)
-#define FLAGS_CHAR (1U << 6U)
-#define FLAGS_SHORT (1U << 7U)
-#define FLAGS_LONG (1U << 8U)
-#define FLAGS_LONG_LONG (1U << 9U)
-#define FLAGS_PRECISION (1U << 10U)
-#define FLAGS_ADAPT_EXP (1U << 11U)
-
-
-
-
-# 1 "/usr/local/Cellar/arm-gcc-bin/9-2020-q2-update/lib/gcc/arm-none-eabi/9.3.1/include/float.h" 1 3 4
-# 29 "/usr/local/Cellar/arm-gcc-bin/9-2020-q2-update/lib/gcc/arm-none-eabi/9.3.1/include/float.h" 3 4
-#define _FLOAT_H___ 
-
-
-#undef FLT_RADIX
-#define FLT_RADIX __FLT_RADIX__
-
-
-#undef FLT_MANT_DIG
-#undef DBL_MANT_DIG
-#undef LDBL_MANT_DIG
-#define FLT_MANT_DIG __FLT_MANT_DIG__
-#define DBL_MANT_DIG __DBL_MANT_DIG__
-#define LDBL_MANT_DIG __LDBL_MANT_DIG__
-# 50 "/usr/local/Cellar/arm-gcc-bin/9-2020-q2-update/lib/gcc/arm-none-eabi/9.3.1/include/float.h" 3 4
-#undef FLT_DIG
-#undef DBL_DIG
-#undef LDBL_DIG
-#define FLT_DIG __FLT_DIG__
-#define DBL_DIG __DBL_DIG__
-#define LDBL_DIG __LDBL_DIG__
-
-
-#undef FLT_MIN_EXP
-#undef DBL_MIN_EXP
-#undef LDBL_MIN_EXP
-#define FLT_MIN_EXP __FLT_MIN_EXP__
-#define DBL_MIN_EXP __DBL_MIN_EXP__
-#define LDBL_MIN_EXP __LDBL_MIN_EXP__
-
-
-
-
-
-
-#undef FLT_MIN_10_EXP
-#undef DBL_MIN_10_EXP
-#undef LDBL_MIN_10_EXP
-#define FLT_MIN_10_EXP __FLT_MIN_10_EXP__
-#define DBL_MIN_10_EXP __DBL_MIN_10_EXP__
-#define LDBL_MIN_10_EXP __LDBL_MIN_10_EXP__
-
-
-#undef FLT_MAX_EXP
-#undef DBL_MAX_EXP
-#undef LDBL_MAX_EXP
-#define FLT_MAX_EXP __FLT_MAX_EXP__
-#define DBL_MAX_EXP __DBL_MAX_EXP__
-#define LDBL_MAX_EXP __LDBL_MAX_EXP__
-
-
-
-
-
-
-#undef FLT_MAX_10_EXP
-#undef DBL_MAX_10_EXP
-#undef LDBL_MAX_10_EXP
-#define FLT_MAX_10_EXP __FLT_MAX_10_EXP__
-#define DBL_MAX_10_EXP __DBL_MAX_10_EXP__
-#define LDBL_MAX_10_EXP __LDBL_MAX_10_EXP__
-
-
-
-
-
-#undef FLT_MAX
-#undef DBL_MAX
-#undef LDBL_MAX
-#define FLT_MAX __FLT_MAX__
-#define DBL_MAX __DBL_MAX__
-#define LDBL_MAX __LDBL_MAX__
-
-
-
-#undef FLT_EPSILON
-#undef DBL_EPSILON
-#undef LDBL_EPSILON
-#define FLT_EPSILON __FLT_EPSILON__
-#define DBL_EPSILON __DBL_EPSILON__
-#define LDBL_EPSILON __LDBL_EPSILON__
-
-
-#undef FLT_MIN
-#undef DBL_MIN
-#undef LDBL_MIN
-#define FLT_MIN __FLT_MIN__
-#define DBL_MIN __DBL_MIN__
-#define LDBL_MIN __LDBL_MIN__
-
-
-
-#undef FLT_ROUNDS
-#define FLT_ROUNDS 1
-# 193 "/usr/local/Cellar/arm-gcc-bin/9-2020-q2-update/lib/gcc/arm-none-eabi/9.3.1/include/float.h" 3 4
-#undef FLT_EVAL_METHOD
-
-
-
-#define FLT_EVAL_METHOD __FLT_EVAL_METHOD__
-# 208 "/usr/local/Cellar/arm-gcc-bin/9-2020-q2-update/lib/gcc/arm-none-eabi/9.3.1/include/float.h" 3 4
-#undef DECIMAL_DIG
-#define DECIMAL_DIG __DECIMAL_DIG__
-# 115 "common/src/printf.c" 2
-
-
-
-
-
-
-# 120 "common/src/printf.c"
-static inline void _out_null(char character, void* buffer, size_t idx, size_t maxlen)
+static inline uint32_t _strnlen_s(const char *str, uint32_t maxsize)
 {
-  (void)character; (void)buffer; (void)idx; (void)maxlen;
+    const char *s;
+    uint32_t len = 0;
+
+    for (s = str; *s && maxsize--; ++s)
+    {
+        len++;
+    };
+    return len;
 }
-
-
-
-
-
-static inline unsigned int _strnlen_s(const char* str, size_t maxsize)
-{
-  const char* s;
-  for (s = str; *s && maxsize--; ++s);
-  return (unsigned int)(s - str);
-}
-
 
 
 
 static inline 
-# 139 "common/src/printf.c" 3 4
+# 63 "common/src/printf.c" 3 4
              _Bool 
-# 139 "common/src/printf.c"
+# 63 "common/src/printf.c"
                   _is_digit(char ch)
 {
-  return (ch >= '0') && (ch <= '9');
+    return (ch >= '0') && (ch <= '9');
 }
 
 
-
-static unsigned int _atoi(const char** str)
+static uint32_t _atoi(const char **str)
 {
-  unsigned int i = 0U;
-  while (_is_digit(**str)) {
-    i = i * 10U + (unsigned int)(*((*str)++) - '0');
-  }
-  return i;
+    uint32_t i = 0U;
+    while (_is_digit(**str))
+    {
+        i = i * 10U + (uint32_t)(*((*str)++) - '0');
+    }
+    return i;
 }
 
 
-
-static size_t _out_rev(out_fct_type out, char* buffer, size_t idx, size_t maxlen, const char* buf, size_t len, unsigned int width, unsigned int flags)
+static uint32_t _ntoa_format(out_fct_type out, int32_t value, uint32_t base, uint32_t width, 
+# 80 "common/src/printf.c" 3 4
+                                                                                            _Bool 
+# 80 "common/src/printf.c"
+                                                                                                 sign)
 {
-  const size_t start_idx = idx;
+    char buf[32];
+    uint32_t len = 0;
+    
+# 84 "common/src/printf.c" 3 4
+   _Bool 
+# 84 "common/src/printf.c"
+        negative = 
+# 84 "common/src/printf.c" 3 4
+                   0
+# 84 "common/src/printf.c"
+                        ;
 
 
-  if (!(flags & (1U << 1U)) && !(flags & (1U << 0U))) {
-    for (size_t i = len; i < width; i++) {
-      out(' ', buffer, idx++, maxlen);
+    if (value)
+    {
+        if(value < 0)
+        {
+            negative = 
+# 91 "common/src/printf.c" 3 4
+                      1
+# 91 "common/src/printf.c"
+                          ;
+            value = 0 - value;
+        }
+
+        do
+        {
+            const char digit = (char)(value % base);
+            buf[len++] = digit < 10 ? '0' + digit : ('A') + digit - 10;
+            value /= base;
+        } while (value && (len < 32));
+
+
+        while ((len < width) && (len < 32))
+        {
+            buf[len++] = '0';
+        }
+
+
+        if ((base == 16U) && (len < 32))
+        {
+            buf[len++] = 'X';
+        }
+        else if ((base == 2U) && (len < 32))
+        {
+            buf[len++] = 'b';
+        }
+        if (((base == 16U) || (base == 2U)) && (len < 32))
+        {
+            buf[len++] = '0';
+        }
+
+
+        if ( sign && negative && (len < 32) )
+        {
+            buf[len++] = '-';
+        }
+
+
+        uint32_t i = len;
+        while (i)
+        {
+            out(buf[--i]);
+        }
     }
-  }
-
-
-  while (len) {
-    out(buf[--len], buffer, idx++, maxlen);
-  }
-
-
-  if (flags & (1U << 1U)) {
-    while (idx - start_idx < width) {
-      out(' ', buffer, idx++, maxlen);
-    }
-  }
-
-  return idx;
+    return len;
 }
 
-
-
-static size_t _ntoa_format(out_fct_type out, char* buffer, size_t idx, size_t maxlen, char* buf, size_t len, 
-# 185 "common/src/printf.c" 3 4
-                                                                                                            _Bool 
-# 185 "common/src/printf.c"
-                                                                                                                 negative, unsigned int base, unsigned int prec, unsigned int width, unsigned int flags)
+uint32_t fnprintf(out_fct_type out, const char *format, va_list va)
 {
+    uint32_t width;
+    uint32_t idx = 0U;
 
-  if (!(flags & (1U << 1U))) {
-    if (width && (flags & (1U << 0U)) && (negative || (flags & ((1U << 2U) | (1U << 3U))))) {
-      width--;
-    }
-    while ((len < prec) && (len < 32U)) {
-      buf[len++] = '0';
-    }
-    while ((flags & (1U << 0U)) && (len < width) && (len < 32U)) {
-      buf[len++] = '0';
-    }
-  }
+    while (*format)
+    {
 
+        if (*format == '%')
+        {
 
-  if (flags & (1U << 4U)) {
-    if (!(flags & (1U << 10U)) && len && ((len == prec) || (len == width))) {
-      len--;
-      if (len && (base == 16U)) {
-        len--;
-      }
-    }
-    if ((base == 16U) && !(flags & (1U << 5U)) && (len < 32U)) {
-      buf[len++] = 'x';
-    }
-    else if ((base == 16U) && (flags & (1U << 5U)) && (len < 32U)) {
-      buf[len++] = 'X';
-    }
-    else if ((base == 2U) && (len < 32U)) {
-      buf[len++] = 'b';
-    }
-    if (len < 32U) {
-      buf[len++] = '0';
-    }
-  }
-
-  if (len < 32U) {
-    if (negative) {
-      buf[len++] = '-';
-    }
-    else if (flags & (1U << 2U)) {
-      buf[len++] = '+';
-    }
-    else if (flags & (1U << 3U)) {
-      buf[len++] = ' ';
-    }
-  }
-
-  return _out_rev(out, buffer, idx, maxlen, buf, len, width, flags);
-}
-
-
-
-static size_t _ntoa_long(out_fct_type out, char* buffer, size_t idx, size_t maxlen, unsigned long value, 
-# 239 "common/src/printf.c" 3 4
-                                                                                                        _Bool 
-# 239 "common/src/printf.c"
-                                                                                                             negative, unsigned long base, unsigned int prec, unsigned int width, unsigned int flags)
-{
-  char buf[32U];
-  size_t len = 0U;
-
-
-  if (!value) {
-    flags &= ~(1U << 4U);
-  }
-
-
-  if (!(flags & (1U << 10U)) || value) {
-    do {
-      const char digit = (char)(value % base);
-      buf[len++] = digit < 10 ? '0' + digit : (flags & (1U << 5U) ? 'A' : 'a') + digit - 10;
-      value /= base;
-    } while (value && (len < 32U));
-  }
-
-  return _ntoa_format(out, buffer, idx, maxlen, buf, len, negative, (unsigned int)base, prec, width, flags);
-}
-# 297 "common/src/printf.c"
-static size_t _ftoa(out_fct_type out, char* buffer, size_t idx, size_t maxlen, double value, unsigned int prec, unsigned int width, unsigned int flags)
-{
-  char buf[32U];
-  size_t len = 0U;
-  double diff = 0.0;
-
-
-  static const double pow10[] = { 1, 10, 100, 1000, 10000, 100000, 1000000, 10000000, 100000000, 1000000000 };
-
-
-  if (value != value)
-    return _out_rev(out, buffer, idx, maxlen, "nan", 3, width, flags);
-  if (value < -((double)1.7976931348623157e+308L))
-    return _out_rev(out, buffer, idx, maxlen, "fni-", 4, width, flags);
-  if (value > ((double)1.7976931348623157e+308L))
-    return _out_rev(out, buffer, idx, maxlen, (flags & (1U << 2U)) ? "fni+" : "fni", (flags & (1U << 2U)) ? 4U : 3U, width, flags);
-
-
-
-  if ((value > 1e9) || (value < -1e9)) {
-
-
-
-    return 0U;
-
-  }
-
-
-  
-# 325 "common/src/printf.c" 3 4
- _Bool 
-# 325 "common/src/printf.c"
-      negative = 
-# 325 "common/src/printf.c" 3 4
-                 0
-# 325 "common/src/printf.c"
-                      ;
-  if (value < 0) {
-    negative = 
-# 327 "common/src/printf.c" 3 4
-              1
-# 327 "common/src/printf.c"
-                  ;
-    value = 0 - value;
-  }
-
-
-  if (!(flags & (1U << 10U))) {
-    prec = 6U;
-  }
-
-  while ((len < 32U) && (prec > 9U)) {
-    buf[len++] = '0';
-    prec--;
-  }
-
-  int whole = (int)value;
-  double tmp = (value - whole) * pow10[prec];
-  unsigned long frac = (unsigned long)tmp;
-  diff = tmp - frac;
-
-  if (diff > 0.5) {
-    ++frac;
-
-    if (frac >= pow10[prec]) {
-      frac = 0;
-      ++whole;
-    }
-  }
-  else if (diff < 0.5) {
-  }
-  else if ((frac == 0U) || (frac & 1U)) {
-
-    ++frac;
-  }
-
-  if (prec == 0U) {
-    diff = value - (double)whole;
-    if ((!(diff < 0.5) || (diff > 0.5)) && (whole & 1)) {
-
-
-      ++whole;
-    }
-  }
-  else {
-    unsigned int count = prec;
-
-    while (len < 32U) {
-      --count;
-      buf[len++] = (char)(48U + (frac % 10U));
-      if (!(frac /= 10U)) {
-        break;
-      }
-    }
-
-    while ((len < 32U) && (count-- > 0U)) {
-      buf[len++] = '0';
-    }
-    if (len < 32U) {
-
-      buf[len++] = '.';
-    }
-  }
-
-
-  while (len < 32U) {
-    buf[len++] = (char)(48 + (whole % 10));
-    if (!(whole /= 10)) {
-      break;
-    }
-  }
-
-
-  if (!(flags & (1U << 1U)) && (flags & (1U << 0U))) {
-    if (width && (negative || (flags & ((1U << 2U) | (1U << 3U))))) {
-      width--;
-    }
-    while ((len < width) && (len < 32U)) {
-      buf[len++] = '0';
-    }
-  }
-
-  if (len < 32U) {
-    if (negative) {
-      buf[len++] = '-';
-    }
-    else if (flags & (1U << 2U)) {
-      buf[len++] = '+';
-    }
-    else if (flags & (1U << 3U)) {
-      buf[len++] = ' ';
-    }
-  }
-
-  return _out_rev(out, buffer, idx, maxlen, buf, len, width, flags);
-}
-# 535 "common/src/printf.c"
-int _vsnprintf(out_fct_type out, char* buffer, const size_t maxlen, const char* format, va_list va)
-{
-  unsigned int flags, width, precision, n;
-  size_t idx = 0U;
-
-  if (!buffer) {
-
-    out = _out_null;
-  }
-
-  while (*format)
-  {
-
-    if (*format != '%') {
-
-      out(*format, buffer, idx++, maxlen);
-      format++;
-      continue;
-    }
-    else {
-
-      format++;
-    }
-
-
-    flags = 0U;
-    do {
-      switch (*format) {
-        case '0': flags |= (1U << 0U); format++; n = 1U; break;
-        case '-': flags |= (1U << 1U); format++; n = 1U; break;
-        case '+': flags |= (1U << 2U); format++; n = 1U; break;
-        case ' ': flags |= (1U << 3U); format++; n = 1U; break;
-        case '#': flags |= (1U << 4U); format++; n = 1U; break;
-        default : n = 0U; break;
-      }
-    } while (n);
-
-
-    width = 0U;
-    if (_is_digit(*format)) {
-      width = _atoi(&format);
-    }
-    else if (*format == '*') {
-      const int w = 
-# 578 "common/src/printf.c" 3 4
-                   __builtin_va_arg(
-# 578 "common/src/printf.c"
-                   va
-# 578 "common/src/printf.c" 3 4
-                   ,
-# 578 "common/src/printf.c"
-                   int
-# 578 "common/src/printf.c" 3 4
-                   )
-# 578 "common/src/printf.c"
-                                  ;
-      if (w < 0) {
-        flags |= (1U << 1U);
-        width = (unsigned int)-w;
-      }
-      else {
-        width = (unsigned int)w;
-      }
-      format++;
-    }
-
-
-    precision = 0U;
-    if (*format == '.') {
-      flags |= (1U << 10U);
-      format++;
-      if (_is_digit(*format)) {
-        precision = _atoi(&format);
-      }
-      else if (*format == '*') {
-        const int prec = (int)
-# 598 "common/src/printf.c" 3 4
-                             __builtin_va_arg(
-# 598 "common/src/printf.c"
-                             va
-# 598 "common/src/printf.c" 3 4
-                             ,
-# 598 "common/src/printf.c"
-                             int
-# 598 "common/src/printf.c" 3 4
-                             )
-# 598 "common/src/printf.c"
-                                            ;
-        precision = prec > 0 ? (unsigned int)prec : 0U;
-        format++;
-      }
-    }
-
-
-    switch (*format) {
-      case 'l' :
-        flags |= (1U << 8U);
-        format++;
-        if (*format == 'l') {
-          flags |= (1U << 9U);
-          format++;
+            format++;
         }
-        break;
-      case 'h' :
-        flags |= (1U << 7U);
-        format++;
-        if (*format == 'h') {
-          flags |= (1U << 6U);
-          format++;
-        }
-        break;
+        else
+        {
 
-
-
-
-
-
-      case 'j' :
-        flags |= (sizeof(intmax_t) == sizeof(long) ? (1U << 8U) : (1U << 9U));
-        format++;
-        break;
-      case 'z' :
-        flags |= (sizeof(size_t) == sizeof(long) ? (1U << 8U) : (1U << 9U));
-        format++;
-        break;
-      default :
-        break;
-    }
-
-
-    switch (*format) {
-      case 'd' :
-      case 'i' :
-      case 'u' :
-      case 'x' :
-      case 'X' :
-      case 'o' :
-      case 'b' : {
-
-        unsigned int base;
-        if (*format == 'x' || *format == 'X') {
-          base = 16U;
-        }
-        else if (*format == 'o') {
-          base = 8U;
-        }
-        else if (*format == 'b') {
-          base = 2U;
-        }
-        else {
-          base = 10U;
-          flags &= ~(1U << 4U);
-        }
-
-        if (*format == 'X') {
-          flags |= (1U << 5U);
+            out(*format);
+            idx++;
+            format++;
+            continue;
         }
 
 
-        if ((*format != 'i') && (*format != 'd')) {
-          flags &= ~((1U << 2U) | (1U << 3U));
+        width = 0U;
+        if (_is_digit(*format))
+        {
+            width = _atoi(&format);
         }
 
 
-        if (flags & (1U << 10U)) {
-          flags &= ~(1U << 0U);
+        switch (*format)
+        {
+        case 'd':
+        case 'i':
+        case 'u':
+        case 'x':
+        case 'X':
+        case 'o':
+        case 'b':
+        {
+
+            uint32_t base;
+            if (*format == 'x' || *format == 'X')
+            {
+                base = 16U;
+            }
+            else if (*format == 'o')
+            {
+                base = 8U;
+            }
+            else if (*format == 'b')
+            {
+                base = 2U;
+            }
+            else
+            {
+                base = 10U;
+            }
+
+
+            if ((*format == 'i') || (*format == 'd'))
+            {
+                idx += _ntoa_format(out, (int32_t)
+# 200 "common/src/printf.c" 3 4
+                                                 __builtin_va_arg(
+# 200 "common/src/printf.c"
+                                                 va
+# 200 "common/src/printf.c" 3 4
+                                                 ,
+# 200 "common/src/printf.c"
+                                                 int
+# 200 "common/src/printf.c" 3 4
+                                                 )
+# 200 "common/src/printf.c"
+                                                                , base, width, 
+# 200 "common/src/printf.c" 3 4
+                                                                               1
+# 200 "common/src/printf.c"
+                                                                                   );
+            }
+            else
+            {
+                idx += _ntoa_format(out, (int32_t)
+# 204 "common/src/printf.c" 3 4
+                                                 __builtin_va_arg(
+# 204 "common/src/printf.c"
+                                                 va
+# 204 "common/src/printf.c" 3 4
+                                                 ,
+# 204 "common/src/printf.c"
+                                                 int
+# 204 "common/src/printf.c" 3 4
+                                                 )
+# 204 "common/src/printf.c"
+                                                                , base, width, 
+# 204 "common/src/printf.c" 3 4
+                                                                               0
+# 204 "common/src/printf.c"
+                                                                                    );
+            }
+            format++;
+            break;
         }
 
-
-        if ((*format == 'i') || (*format == 'd')) {
-
-          if (flags & (1U << 9U)) {
-
-
-
-
-          }
-          else if (flags & (1U << 8U)) {
-            const long value = 
-# 689 "common/src/printf.c" 3 4
-                              __builtin_va_arg(
-# 689 "common/src/printf.c"
-                              va
-# 689 "common/src/printf.c" 3 4
-                              ,
-# 689 "common/src/printf.c"
-                              long
-# 689 "common/src/printf.c" 3 4
-                              )
-# 689 "common/src/printf.c"
-                                              ;
-            idx = _ntoa_long(out, buffer, idx, maxlen, (unsigned long)(value > 0 ? value : 0 - value), value < 0, base, precision, width, flags);
-          }
-          else {
-            const int value = (flags & (1U << 6U)) ? (char)
-# 693 "common/src/printf.c" 3 4
-                                                          __builtin_va_arg(
-# 693 "common/src/printf.c"
-                                                          va
-# 693 "common/src/printf.c" 3 4
-                                                          ,
-# 693 "common/src/printf.c"
-                                                          int
-# 693 "common/src/printf.c" 3 4
-                                                          ) 
-# 693 "common/src/printf.c"
-                                                                          : (flags & (1U << 7U)) ? (short int)
-# 693 "common/src/printf.c" 3 4
-                                                                                                               __builtin_va_arg(
-# 693 "common/src/printf.c"
-                                                                                                               va
-# 693 "common/src/printf.c" 3 4
-                                                                                                               ,
-# 693 "common/src/printf.c"
-                                                                                                               int
-# 693 "common/src/printf.c" 3 4
-                                                                                                               ) 
-# 693 "common/src/printf.c"
-                                                                                                                               : 
-# 693 "common/src/printf.c" 3 4
-                                                                                                                                 __builtin_va_arg(
-# 693 "common/src/printf.c"
-                                                                                                                                 va
-# 693 "common/src/printf.c" 3 4
-                                                                                                                                 ,
-# 693 "common/src/printf.c"
-                                                                                                                                 int
-# 693 "common/src/printf.c" 3 4
-                                                                                                                                 )
-# 693 "common/src/printf.c"
-                                                                                                                                                ;
-            idx = _ntoa_long(out, buffer, idx, maxlen, (unsigned int)(value > 0 ? value : 0 - value), value < 0, base, precision, width, flags);
-          }
-        }
-        else {
-
-          if (flags & (1U << 9U)) {
-
-
-
-          }
-          else if (flags & (1U << 8U)) {
-            idx = _ntoa_long(out, buffer, idx, maxlen, 
-# 705 "common/src/printf.c" 3 4
-                                                      __builtin_va_arg(
-# 705 "common/src/printf.c"
-                                                      va
-# 705 "common/src/printf.c" 3 4
-                                                      ,
-# 705 "common/src/printf.c"
-                                                      unsigned long
-# 705 "common/src/printf.c" 3 4
-                                                      )
-# 705 "common/src/printf.c"
-                                                                               , 
-# 705 "common/src/printf.c" 3 4
-                                                                                 0
-# 705 "common/src/printf.c"
-                                                                                      , base, precision, width, flags);
-          }
-          else {
-            const unsigned int value = (flags & (1U << 6U)) ? (unsigned char)
-# 708 "common/src/printf.c" 3 4
-                                                                            __builtin_va_arg(
-# 708 "common/src/printf.c"
-                                                                            va
-# 708 "common/src/printf.c" 3 4
-                                                                            ,
-# 708 "common/src/printf.c"
-                                                                            unsigned int
-# 708 "common/src/printf.c" 3 4
-                                                                            ) 
-# 708 "common/src/printf.c"
-                                                                                                     : (flags & (1U << 7U)) ? (unsigned short int)
-# 708 "common/src/printf.c" 3 4
-                                                                                                                                                   __builtin_va_arg(
-# 708 "common/src/printf.c"
-                                                                                                                                                   va
-# 708 "common/src/printf.c" 3 4
-                                                                                                                                                   ,
-# 708 "common/src/printf.c"
-                                                                                                                                                   unsigned int
-# 708 "common/src/printf.c" 3 4
-                                                                                                                                                   ) 
-# 708 "common/src/printf.c"
-                                                                                                                                                                            : 
-# 708 "common/src/printf.c" 3 4
-                                                                                                                                                                              __builtin_va_arg(
-# 708 "common/src/printf.c"
-                                                                                                                                                                              va
-# 708 "common/src/printf.c" 3 4
-                                                                                                                                                                              ,
-# 708 "common/src/printf.c"
-                                                                                                                                                                              unsigned int
-# 708 "common/src/printf.c" 3 4
-                                                                                                                                                                              )
-# 708 "common/src/printf.c"
-                                                                                                                                                                                                      ;
-            idx = _ntoa_long(out, buffer, idx, maxlen, value, 
-# 709 "common/src/printf.c" 3 4
-                                                             0
-# 709 "common/src/printf.c"
-                                                                  , base, precision, width, flags);
-          }
-        }
-        format++;
-        break;
-      }
-
-      case 'f' :
-      case 'F' :
-        if (*format == 'F') flags |= (1U << 5U);
-        idx = _ftoa(out, buffer, idx, maxlen, 
-# 719 "common/src/printf.c" 3 4
-                                             __builtin_va_arg(
-# 719 "common/src/printf.c"
-                                             va
-# 719 "common/src/printf.c" 3 4
-                                             ,
-# 719 "common/src/printf.c"
-                                             double
-# 719 "common/src/printf.c" 3 4
-                                             )
-# 719 "common/src/printf.c"
-                                                               , precision, width, flags);
-        format++;
-        break;
-# 734 "common/src/printf.c"
-      case 'c' : {
-        unsigned int l = 1U;
-
-        if (!(flags & (1U << 1U))) {
-          while (l++ < width) {
-            out(' ', buffer, idx++, maxlen);
-          }
+        case 'c':
+        {
+            out((char)
+# 212 "common/src/printf.c" 3 4
+                     __builtin_va_arg(
+# 212 "common/src/printf.c"
+                     va
+# 212 "common/src/printf.c" 3 4
+                     ,
+# 212 "common/src/printf.c"
+                     int
+# 212 "common/src/printf.c" 3 4
+                     )
+# 212 "common/src/printf.c"
+                                    );
+            idx++;
+            format++;
+            break;
         }
 
-        out((char)
-# 743 "common/src/printf.c" 3 4
-                 __builtin_va_arg(
-# 743 "common/src/printf.c"
-                 va
-# 743 "common/src/printf.c" 3 4
-                 ,
-# 743 "common/src/printf.c"
-                 int
-# 743 "common/src/printf.c" 3 4
-                 )
-# 743 "common/src/printf.c"
-                                , buffer, idx++, maxlen);
+        case 's':
+        {
+            const char *p = 
+# 220 "common/src/printf.c" 3 4
+                           __builtin_va_arg(
+# 220 "common/src/printf.c"
+                           va
+# 220 "common/src/printf.c" 3 4
+                           ,
+# 220 "common/src/printf.c"
+                           char *
+# 220 "common/src/printf.c" 3 4
+                           )
+# 220 "common/src/printf.c"
+                                             ;
+            uint32_t l = _strnlen_s(p, 1024);
 
-        if (flags & (1U << 1U)) {
-          while (l++ < width) {
-            out(' ', buffer, idx++, maxlen);
-          }
-        }
-        format++;
-        break;
-      }
 
-      case 's' : {
-        const char* p = 
-# 755 "common/src/printf.c" 3 4
-                       __builtin_va_arg(
-# 755 "common/src/printf.c"
-                       va
-# 755 "common/src/printf.c" 3 4
-                       ,
-# 755 "common/src/printf.c"
-                       char*
-# 755 "common/src/printf.c" 3 4
-                       )
-# 755 "common/src/printf.c"
-                                        ;
-        unsigned int l = _strnlen_s(p, precision ? precision : (size_t)-1);
-
-        if (flags & (1U << 10U)) {
-          l = (l < precision ? l : precision);
-        }
-        if (!(flags & (1U << 1U))) {
-          while (l++ < width) {
-            out(' ', buffer, idx++, maxlen);
-          }
+            while (*p != 0)
+            {
+                out(*(p++));
+                idx++;
+            }
+            format++;
+            break;
         }
 
-        while ((*p != 0) && (!(flags & (1U << 10U)) || precision--)) {
-          out(*(p++), buffer, idx++, maxlen);
+        case 'p':
+        {
+            width = sizeof(void *) * 2U;
+            idx += _ntoa_format(out, (int32_t)((uintptr_t)
+# 236 "common/src/printf.c" 3 4
+                                                         __builtin_va_arg(
+# 236 "common/src/printf.c"
+                                                         va
+# 236 "common/src/printf.c" 3 4
+                                                         ,
+# 236 "common/src/printf.c"
+                                                         void *
+# 236 "common/src/printf.c" 3 4
+                                                         )
+# 236 "common/src/printf.c"
+                                                                           ), 16U, width, 
+# 236 "common/src/printf.c" 3 4
+                                                                                          0
+# 236 "common/src/printf.c"
+                                                                                               );
+            format++;
+            break;
         }
 
-        if (flags & (1U << 1U)) {
-          while (l++ < width) {
-            out(' ', buffer, idx++, maxlen);
-          }
+        case '%':
+        {
+            out('%');
+            idx++;
+            format++;
+            break;
         }
-        format++;
-        break;
-      }
 
-      case 'p' : {
-        width = sizeof(void*) * 2U;
-        flags |= (1U << 0U) | (1U << 5U);
-
-
-
-
-
-
-
-          idx = _ntoa_long(out, buffer, idx, maxlen, (unsigned long)((uintptr_t)
-# 790 "common/src/printf.c" 3 4
-                                                                               __builtin_va_arg(
-# 790 "common/src/printf.c"
-                                                                               va
-# 790 "common/src/printf.c" 3 4
-                                                                               ,
-# 790 "common/src/printf.c"
-                                                                               void*
-# 790 "common/src/printf.c" 3 4
-                                                                               )
-# 790 "common/src/printf.c"
-                                                                                                ), 
-# 790 "common/src/printf.c" 3 4
-                                                                                                   0
-# 790 "common/src/printf.c"
-                                                                                                        , 16U, precision, width, flags);
-
-
-
-        format++;
-        break;
-      }
-
-      case '%' :
-        out('%', buffer, idx++, maxlen);
-        format++;
-        break;
-
-      default :
-        out(*format, buffer, idx++, maxlen);
-        format++;
-        break;
+        default:
+        {
+            out(*format);
+            idx++;
+            format++;
+            break;
+        }
+        }
     }
-  }
 
-
-
-
-
-  return (int)idx;
+    return idx;
 }

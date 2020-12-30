@@ -47,7 +47,9 @@ static uint32_t curr_address =   LOG_START;
 
 static void clock_setup(void);
 static void usart_setup(void);
-static void _putchar(char character, void* buffer, size_t idx, size_t maxlen);
+static void _putchar_main(char character);
+static void _putchar_spf(char character);
+static void _putchar_mem(char character);
 
 /** @} */
 
@@ -61,6 +63,7 @@ static void _putchar(char character, void* buffer, size_t idx, size_t maxlen);
 
 void log_init(void)
 {
+	mem_init();
     curr_address = 0;
 
     #ifdef DEBUG
@@ -71,16 +74,26 @@ void log_init(void)
 
 void log_printf(enum log_type type, const char *format, ...)
 {
-    char buffer[1];
-
 	va_list va;
 	va_start(va, format);
 
     switch (type)
     {
     case MAIN:
-        _vsnprintf(_putchar, buffer, (size_t)-1, format, va);
+        fnprintf(_putchar_main, format, va);
         break;
+
+	case SPF:
+        fnprintf(_putchar_spf, format, va);
+		break;
+
+	case MEM:
+        fnprintf(_putchar_mem, format, va);
+		break;
+    
+	case RFM:
+        fnprintf(_putchar_main, format, va);
+		break;
     
     default:
         break;
@@ -90,7 +103,7 @@ void log_printf(enum log_type type, const char *format, ...)
 
     // Wait for uart to finish if serial print is used
     #ifdef DEBUG
-    while(!usart_get_flag(SPF_USART, USART_ISR_TC)) {__asm__("nop");}
+    while(!usart_get_flag(SPF_USART, USART_ISR_TC)) {}
     #endif
 }
 
@@ -153,16 +166,29 @@ static void usart_setup(void)
 	usart_enable(SPF_USART);
 }
 
-static void _putchar(char character, void* buffer, size_t idx, size_t maxlen)
+static void _putchar_main(char character)
 {
-	(void)buffer; (void)idx; (void)maxlen;
-
-    mem_eeprom_write_byte(curr_address++, character);
-
-    #ifdef DEBUG
-	usart_send_blocking(SPF_USART, character);	
-    #endif		
+	_putchar_mem(character);
+	_putchar_spf(character);			
 }
+
+static void _putchar_spf(char character)
+{
+	#ifdef DEBUG
+	usart_send_blocking(SPF_USART, character);	
+	#endif
+}
+
+static void _putchar_mem(char character)
+{
+	mem_eeprom_write_byte(curr_address++, character);
+	
+	if(curr_address == LOG_START + LOG_SIZE)
+	{
+		curr_address = LOG_START;
+	}
+}
+
 
 /** @} */
 /** @} */

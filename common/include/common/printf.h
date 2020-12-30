@@ -34,6 +34,7 @@
 
 #include <stdarg.h>
 #include <stddef.h>
+#include <stdint.h>
 
 
 #ifdef __cplusplus
@@ -48,9 +49,8 @@ extern "C" {
  */
 
 // output function type
-typedef void (*out_fct_type)(char character, void* buffer, size_t idx, size_t maxlen);
-int _vsnprintf(out_fct_type out, char* buffer, const size_t maxlen, const char* format, va_list va);
-
+typedef void (*out_fct_type)(char character);
+uint32_t fnprintf(out_fct_type out, const char *format, va_list va);
 
 #ifdef __cplusplus
 }

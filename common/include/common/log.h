@@ -43,6 +43,8 @@ extern "C" {
 enum log_type
 {
     MAIN=0,
+    SPF,
+    MEM,
     BOOT,
     RFM,
     TMP

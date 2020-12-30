@@ -2684,7 +2684,24 @@ void mem_set_aes_key_exp(uint8_t *aes_key_exp);
 
 void mem_wipe_readings(void);
 # 23 "common/src/bootloader_utils.c" 2
-# 49 "common/src/bootloader_utils.c"
+# 1 "common/include/common/log.h" 1
+# 26 "common/include/common/log.h"
+#define LOG_H 
+# 43 "common/include/common/log.h"
+enum log_type
+{
+    MAIN=0,
+    SPF,
+    MEM,
+    BOOT,
+    RFM,
+    TMP
+};
+# 62 "common/include/common/log.h"
+void log_init(void);
+void log_printf(enum log_type type, const char *format, ...);
+# 24 "common/src/bootloader_utils.c" 2
+# 50 "common/src/bootloader_utils.c"
 void boot_init(void)
 {
 
@@ -2741,18 +2758,21 @@ void boot_jump_to_application(uint32_t address)
 }
 
 
-# 104 "common/src/bootloader_utils.c" 3 4
+# 105 "common/src/bootloader_utils.c" 3 4
 _Bool 
-# 104 "common/src/bootloader_utils.c"
+# 105 "common/src/bootloader_utils.c"
     boot_program_application(uint32_t *data, uint32_t start_address, uint32_t len)
 {
+    log_printf(BOOT, "Program Application");
+
 
     if(len > (0x08004000 - 0x08000000))
     {
+        log_printf(BOOT, "App size too big");
         return 
-# 109 "common/src/bootloader_utils.c" 3 4
+# 113 "common/src/bootloader_utils.c" 3 4
               0
-# 109 "common/src/bootloader_utils.c"
+# 113 "common/src/bootloader_utils.c"
                    ;
     }
 
@@ -2772,8 +2792,8 @@ _Bool
     }
 
     return 
-# 127 "common/src/bootloader_utils.c" 3 4
+# 131 "common/src/bootloader_utils.c" 3 4
           1
-# 127 "common/src/bootloader_utils.c"
+# 131 "common/src/bootloader_utils.c"
               ;
 }

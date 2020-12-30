@@ -2189,11 +2189,13 @@ void rcc_set_usart2_sel(uint32_t usart2_sel);
 enum log_type
 {
     MAIN=0,
+    SPF,
+    MEM,
     BOOT,
     RFM,
     TMP
 };
-# 60 "common/include/common/log.h"
+# 62 "common/include/common/log.h"
 void log_init(void);
 void log_printf(enum log_type type, const char *format, ...);
 # 7 "common/src/reset.c" 2
