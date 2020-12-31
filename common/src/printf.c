@@ -86,11 +86,18 @@ static uint32_t _ntoa_format(out_fct_type out, int32_t value, uint32_t base, uin
     // write if precision != 0 and value is != 0
     if (value)
     {
-        if(value < 0)
+        // Negative sign
+        if(sign && value < 0)
         {
             negative = true;
             value = 0 - value; 
         } 
+        else
+        {
+            negative = false;
+        }
+        
+
         // Digits to char
         do
         {
@@ -119,8 +126,7 @@ static uint32_t _ntoa_format(out_fct_type out, int32_t value, uint32_t base, uin
             buf[len++] = '0';
         }
 
-        // Negative sign
-        if ( sign && negative && (len < PRINTF_NTOA_BUFFER_SIZE) )
+        if ( negative && (len < PRINTF_NTOA_BUFFER_SIZE) )
         {
             buf[len++] = '-';
         }

@@ -6374,21 +6374,17 @@ void usart_disable_rx_timeout_interrupt(uint32_t usart);
 # 37 "libopencm3/include/libopencm3/stm32/usart.h" 2
 # 8 "common/include/common/board_defs.h" 2
 
-
-
-
-#define MAX_SENSORS 50
 typedef struct
 {
  
-# 15 "common/include/common/board_defs.h" 3 4
+# 11 "common/include/common/board_defs.h" 3 4
 _Bool 
-# 15 "common/include/common/board_defs.h"
+# 11 "common/include/common/board_defs.h"
        msg_pend;
  
-# 16 "common/include/common/board_defs.h" 3 4
+# 12 "common/include/common/board_defs.h" 3 4
 _Bool 
-# 16 "common/include/common/board_defs.h"
+# 12 "common/include/common/board_defs.h"
        active;
  uint32_t dev_num;
  uint32_t msg_num;
@@ -6397,17 +6393,14 @@ _Bool
  uint32_t total_packets;
 }sensor_t;
 
+
+
+
+#define MAX_SENSORS 50
+
 extern sensor_t sensors[50];
 extern uint8_t num_sensors;
 sensor_t *get_sensor(uint32_t dev_num);
-
-
-
-#define FLASH_START 0x08000000
-#define FLASH_END 0x08010000
-#define FLASH_PAGE_SIZE 128
-#define EEPROM_START 0x08080000
-#define EEPROM_END 0x08080800
 
 
 
@@ -6515,7 +6508,7 @@ sensor_t *get_sensor(uint32_t dev_num);
 
 #define W25_SPI_SCK_PORT GPIOB
 #define W25_SPI_SCK GPIO3
-# 252 "common/include/common/board_defs.h"
+# 229 "common/include/common/board_defs.h"
 void gpio_init(void);
 # 32 "hub/src/hub_test.c" 2
 
@@ -6842,19 +6835,19 @@ void rfm_clear_tx_continuous(void);
 # 1 "common/include/common/log.h" 1
 # 26 "common/include/common/log.h"
 #define LOG_H 
-# 43 "common/include/common/log.h"
-enum log_type
-{
-    MAIN=0,
-    SPF,
-    MEM,
-    BOOT,
-    RFM,
-    TMP
-};
-# 62 "common/include/common/log.h"
+# 47 "common/include/common/log.h"
+#define ERR_BOOT_PROG_START_ADDRESS_OUT_OF_BOUNDS 0
+#define ERR_BOOT_PROG_TOO_BIG 1
+#define ERR_BOOT_PROG_BAD_CHECKSUM 2
+#define ERR_BOOT_PROG_FLASH_ERASE 3
+#define ERR_BOOT_PROG_FLASH_WRITE_1 4
+#define ERR_BOOT_PROG_FLASH_WRITE_2 5
+# 65 "common/include/common/log.h"
 void log_init(void);
-void log_printf(enum log_type type, const char *format, ...);
+void log_printf(const char *format, ...);
+void log_error(uint16_t error);
+
+void serial_printf(const char *format, ...);
 # 36 "hub/src/hub_test.c" 2
 # 1 "common/include/common/timers.h" 1
 
@@ -6939,51 +6932,52 @@ void set_gpio_for_standby(void);
 # 1 "libopencm3/include/libopencm3/stm32/rcc.h" 1
 # 35 "common/include/common/memory.h" 2
 # 49 "common/include/common/memory.h"
-#define FLASH_PAGE_SIZE 128
-#define FLASH_NUM_PAGES 512
-#define FLASH_START 0x08000000
-#define FLASH_START_APP 0x08004000
-#define FLASH_END 0x08010000
+#define FLASH_PAGE_SIZE 128U
+#define FLASH_NUM_PAGES 512U
+#define FLASH_START 0x08000000U
+#define FLASH_APP_START 0x08004000U
+#define FLASH_APP_END 0x0800C000U
+#define FLASH_END 0x08010000U
 
-#define EEPROM_PAGE_SIZE 4
-#define EEPROM_NUM_PAGES 512
-#define EEPROM_START 0x08080000
-#define EEPROM_END 0x08080800
+#define EEPROM_PAGE_SIZE 4U
+#define EEPROM_NUM_PAGES 512U
+#define EEPROM_START 0x08080000U
+#define EEPROM_END 0x08080800U
 
 #define LOG_SIZE 1024
-# 73 "common/include/common/memory.h"
+# 74 "common/include/common/memory.h"
 void mem_init(void);
 
-
-# 75 "common/include/common/memory.h" 3 4
-_Bool 
-# 75 "common/include/common/memory.h"
-    mem_eeprom_write_word(uint32_t address, uint32_t data);
 
 # 76 "common/include/common/memory.h" 3 4
 _Bool 
 # 76 "common/include/common/memory.h"
-    mem_eeprom_write_half_word(uint32_t address, uint16_t data);
+    mem_eeprom_write_word(uint32_t address, uint32_t data);
 
 # 77 "common/include/common/memory.h" 3 4
 _Bool 
 # 77 "common/include/common/memory.h"
+    mem_eeprom_write_half_word(uint32_t address, uint16_t data);
+
+# 78 "common/include/common/memory.h" 3 4
+_Bool 
+# 78 "common/include/common/memory.h"
     mem_eeprom_write_byte(uint32_t address, uint8_t data);
 
-
-# 79 "common/include/common/memory.h" 3 4
-_Bool 
-# 79 "common/include/common/memory.h"
-    mem_flash_erase_page(uint32_t address);
 
 # 80 "common/include/common/memory.h" 3 4
 _Bool 
 # 80 "common/include/common/memory.h"
-    mem_flash_write_word(uint32_t address, uint32_t data);
+    mem_flash_erase_page(uint32_t address);
 
 # 81 "common/include/common/memory.h" 3 4
 _Bool 
 # 81 "common/include/common/memory.h"
+    mem_flash_write_word(uint32_t address, uint32_t data);
+
+# 82 "common/include/common/memory.h" 3 4
+_Bool 
+# 82 "common/include/common/memory.h"
     mem_flash_write_half_page(uint32_t address, uint32_t *data);
 
 void mem_save_reading(int16_t reading);
@@ -7033,7 +7027,12 @@ void boot_jump_to_application(uint32_t address);
 # 55 "common/include/common/bootloader_utils.h" 3 4
 _Bool 
 # 55 "common/include/common/bootloader_utils.h"
-    boot_program_application(uint32_t *data, uint32_t start_address, uint32_t len);
+    boot_program_application(uint32_t *data, uint32_t start_address, uint32_t len, uint32_t crc);
+
+# 56 "common/include/common/bootloader_utils.h" 3 4
+_Bool 
+# 56 "common/include/common/bootloader_utils.h"
+    boot_verify_checksum(uint32_t *data, uint32_t len, uint32_t expected);
 # 33 "hub/include/hub/hub_bootloader.h" 2
 # 41 "hub/src/hub_test.c" 2
 # 1 "hub/include/hub/sim.h" 1
@@ -7068,7 +7067,7 @@ void test_cusb_poll(void)
 
 void test_sim(void)
 {
- log_printf(MAIN, "Testing Sim\n");
+ log_printf("Testing Sim\n");
 
 
  uint32_t dev_num = mem_get_dev_num();
@@ -7116,7 +7115,7 @@ void test_sim(void)
 
   sim_send_data(sim_buf, sim_idx);
 
-  log_printf(MAIN, "Sent\n\n");
+  log_printf("Sent\n\n");
 
   sim_end();
 
@@ -7135,7 +7134,7 @@ void test_sim(void)
 
 void test_sim_serial_pass_through(void)
 {
- log_printf(MAIN, "Testing sim serial pass through\n");
+ log_printf("Testing sim serial pass through\n");
  sim_serial_pass_through();
 }
 

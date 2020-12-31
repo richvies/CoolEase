@@ -74,7 +74,7 @@ int main(void)
 	// for(int i = 0; i < 100000; i++){__asm__("nop");};
 
 
-	log_printf(MAIN, "Sensor Start\n");
+	log_printf("Sensor Start\n");
 	// flash_led(100, 5);
 
 	// rfm_init();
@@ -109,7 +109,7 @@ int main(void)
 	for (;;)
 	{
 		// test_sensor(DEV_NUM_CHIP);
-		// log_printf(MAIN, "Loop\n");
+		// log_printf("Loop\n");
 		// timers_delay_milliseconds(1000);
 	}
 

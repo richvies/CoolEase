@@ -72,7 +72,7 @@
 
 void test_si7051(uint8_t num_readings)
 {
-	log_printf(MAIN, "Testing SI7051\n");
+	log_printf("Testing SI7051\n");
 
 	int16_t readings[num_readings];
 
@@ -83,7 +83,7 @@ void test_si7051(uint8_t num_readings)
 		si7051_end();
 
 		for(int i = 0; i < num_readings; i++)
-			log_printf(MAIN, "Temp %i: %i Deg C\n", i+1, readings[i]);
+			log_printf("Temp %i: %i Deg C\n", i+1, readings[i]);
 			
 		timers_delay_milliseconds(1000);
 	}
@@ -91,7 +91,7 @@ void test_si7051(uint8_t num_readings)
 
 void test_tmp112(uint8_t num_readings)
 {
-	log_printf(MAIN, "Testing TMP112\n");
+	log_printf("Testing TMP112\n");
 
 	int16_t readings[num_readings];
 
@@ -102,7 +102,7 @@ void test_tmp112(uint8_t num_readings)
 		tmp112_end();
 
 		for(int i = 0; i < num_readings; i++)
-			log_printf(MAIN, "Temp %i: %i Deg C\n", i+1, readings[i]);
+			log_printf("Temp %i: %i Deg C\n", i+1, readings[i]);
 			
 		timers_delay_milliseconds(1000);
 	}
@@ -110,7 +110,7 @@ void test_tmp112(uint8_t num_readings)
 
 void test_sensor(uint32_t dev_num)
 {
-	log_printf(MAIN, "Testing Sensor\n");
+	log_printf("Testing Sensor\n");
 
 	// uint16_t start = timers_millis();
 
@@ -130,7 +130,7 @@ void test_sensor(uint32_t dev_num)
 		sum += readings[i];
 	int16_t temp_avg = sum/num_readings;
 
-	log_printf(MAIN, "Temp: %i\n", temp_avg);
+	log_printf("Temp: %i\n", temp_avg);
 
 	// Create and send packet
 	rfm_packet_t packet;
@@ -168,7 +168,7 @@ void test_sensor(uint32_t dev_num)
 	// packet.length = RFM_PACKET_LENGTH;
 
 	// Print data
-	log_printf(MAIN, "Sending: "); for(int i = 0; i < 16; i++){log_printf(MAIN, "%02X ", packet.data.buffer[i]);} log_printf(MAIN, "\n");
+	log_printf("Sending: "); for(int i = 0; i < 16; i++){log_printf("%02X ", packet.data.buffer[i]);} log_printf("\n");
 
 	// Encrypt message
 	aes_ecb_encrypt(packet.data.buffer);
@@ -178,7 +178,7 @@ void test_sensor(uint32_t dev_num)
 	rfm_config_for_lora(RFM_BW_125KHZ, RFM_CODING_RATE_4_5, RFM_SPREADING_FACTOR_128CPS, true, 0);
 	// rfm_config_for_lora(RFM_BW_500KHZ, RFM_CODING_RATE_4_5, RFM_SPREADING_FACTOR_64CPS, true, 0);
 	rfm_transmit_packet(packet);
-	log_printf(MAIN, "Packet Sent %u\n", mem_get_msg_num());
+	log_printf("Packet Sent %u\n", mem_get_msg_num());
 
 	// Continuous TX for a couple seconds
 	// rfm_config_for_lora(RFM_BW_125KHZ, RFM_CODING_RATE_4_5, RFM_SPREADING_FACTOR_128CPS, true, -3);
@@ -192,10 +192,10 @@ void test_sensor(uint32_t dev_num)
 	// Save reading and update message num only if transmitted without turning off
 	mem_save_reading(temp_avg);
 
-	log_printf(MAIN, "\n");
+	log_printf("\n");
 
 	// uint16_t end = timers_millis();
-	// log_printf(MAIN, "Time: %u\n",(uint16_t)(end - start));
+	// log_printf("Time: %u\n",(uint16_t)(end - start));
 
 	// Go back to sleep
 	timers_enter_standby();

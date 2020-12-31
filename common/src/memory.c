@@ -93,7 +93,7 @@ void mem_init(void)
     // msg_num = MMIO32(msg_num_add);
     // while(MMIO32(next_reading_add) != 0x00000000)
     // {
-    //     // log_printf(MAIN, "%08x : %08x\n", next_reading_add, MMIO32(next_reading_add));
+    //     // log_printf("%08x : %08x\n", next_reading_add, MMIO32(next_reading_add));
     //     msg_num++;
     //     next_reading_add += 4;
     // }
@@ -196,12 +196,12 @@ bool mem_flash_write_word(uint32_t address, uint32_t data)
     if ((FLASH_SR & FLASH_SR_EOP) != 0)
     {
         FLASH_SR |= FLASH_SR_EOP;
-        log_printf(MAIN, "Write success\n");
+        log_printf("Write success\n");
         return true;
     }
     else
     {
-        log_printf(MAIN, "Write fail\n");
+        log_printf("Write fail\n");
         return false;
     }
     return true; 
@@ -270,12 +270,12 @@ void mem_get_log(char log[LOG_SIZE])
 
 void mem_print_log(void)
 {
-    log_printf(MAIN, "LOG START\n");
+    log_printf("LOG START\n");
     for(uint16_t i = 0; i < LOG_SIZE; i++)
     {
-        log_printf(MAIN, "%c", MMIO8(LOG_START + i));
+        log_printf("%c", MMIO8(LOG_START + i));
     }   
-    log_printf(MAIN, "LOG END\n");
+    log_printf("LOG END\n");
 }
 
 
@@ -345,18 +345,18 @@ void mem_set_aes_key_exp(uint8_t *aes_key_exp)
 
 void mem_wipe_readings(void)
 {
-    log_printf(MAIN, "Mem Wipe Readings\n");
+    log_printf("Mem Wipe Readings\n");
 
     uint32_t page_add = READINGS_START;
 
     while( page_add < FLASH_END )
     {
-        // log_printf(MAIN, "Erasing %08X\n", page_add);
+        // log_printf("Erasing %08X\n", page_add);
         mem_flash_erase_page(page_add);
         page_add += FLASH_PAGE_SIZE;
     }
 
-    log_printf(MAIN, "Done\n", page_add);
+    log_printf("Done\n", page_add);
 }
 
 

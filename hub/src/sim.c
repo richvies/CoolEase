@@ -30,7 +30,7 @@ static void _putchar(char character);
 // Global Function Definitions
 void sim_init(void)
 {
-	log_printf(MAIN, "Sim Init\n");
+	log_printf("Sim Init\n");
 
 	rcc_periph_clock_enable(RCC_GPIOA);
 	rcc_periph_clock_enable(RCC_GPIOB);
@@ -54,7 +54,7 @@ void sim_init(void)
 	sim_printf("ate0\r\n");
 	TIMEOUT(1000000, "SIM: ate0", 0, check_response("OK"), ;, ;);
 
-	log_printf(MAIN, "Sim Init Done\n");
+	log_printf("Sim Init Done\n");
 }
 
 void sim_end(void)
@@ -71,7 +71,7 @@ void sim_end(void)
 	usart_disable(SIM_USART);
 	rcc_periph_clock_disable(SIM_USART_RCC);
 
-	log_printf(MAIN, "Sim End Done\n");
+	log_printf("Sim End Done\n");
 }
 
 
@@ -120,10 +120,10 @@ void sim_send_temp(rfm_packet_t *packets,  uint8_t len)
 	// TIMEOUT(10000000, "SIM: at+httppara=url,www.circuitboardsamurai.com/upload.php?s=", 0, check_response("OK"), ;, ;);
 	
 	// sim_printf("at+sapbr=1,1\r\n");
-	// TIMEOUT(10000000, "SIM: at+sapbr=1,1", 0, check_response("OK"), ;, timers_delay_milliseconds(1000);sim_printf("at+sapbr=1,1\r\n");log_printf(MAIN, "else code\n"););
+	// TIMEOUT(10000000, "SIM: at+sapbr=1,1", 0, check_response("OK"), ;, timers_delay_milliseconds(1000);sim_printf("at+sapbr=1,1\r\n");log_printf("else code\n"););
 	
 	// sim_printf("at+httpaction=0\r\n");
-	// TIMEOUT(20000000, "SIM: at+httpaction=0", 0, check_response("OK"), ;, timers_delay_milliseconds(1000);sim_printf("at+httpaction=0\r\n");log_printf(MAIN, "else code\n"););
+	// TIMEOUT(20000000, "SIM: at+httpaction=0", 0, check_response("OK"), ;, timers_delay_milliseconds(1000);sim_printf("at+httpaction=0\r\n");log_printf("else code\n"););
 	// TIMEOUT(20000000, "SIM: at+httpaction=0", 0, check_response("+HTTPACTION"), ;, ;);
 
 	// sim_printf("at+httpread\r\n");
@@ -235,7 +235,7 @@ bool check_response(char *str)
 		char character = sim_rx_buf[sim_rx_tail++];
 		msg[msg_idx++] = character;
 
-		// log_printf(MAIN, "%c", character);
+		// log_printf("%c", character);
 
 		// End of message
 		if(character == '\n')
@@ -292,7 +292,7 @@ void sim_serial_pass_through(void)
 
     sim_init();
 
-    log_printf(MAIN, "Ready\n");
+    log_printf("Ready\n");
 
     while(1)
     {

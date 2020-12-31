@@ -3459,21 +3459,17 @@ void usart_disable_rx_timeout_interrupt(uint32_t usart);
 # 37 "libopencm3/include/libopencm3/stm32/usart.h" 2
 # 8 "common/include/common/board_defs.h" 2
 
-
-
-
-#define MAX_SENSORS 50
 typedef struct
 {
  
-# 15 "common/include/common/board_defs.h" 3 4
+# 11 "common/include/common/board_defs.h" 3 4
 _Bool 
-# 15 "common/include/common/board_defs.h"
+# 11 "common/include/common/board_defs.h"
        msg_pend;
  
-# 16 "common/include/common/board_defs.h" 3 4
+# 12 "common/include/common/board_defs.h" 3 4
 _Bool 
-# 16 "common/include/common/board_defs.h"
+# 12 "common/include/common/board_defs.h"
        active;
  uint32_t dev_num;
  uint32_t msg_num;
@@ -3482,17 +3478,14 @@ _Bool
  uint32_t total_packets;
 }sensor_t;
 
+
+
+
+#define MAX_SENSORS 50
+
 extern sensor_t sensors[50];
 extern uint8_t num_sensors;
 sensor_t *get_sensor(uint32_t dev_num);
-
-
-
-#define FLASH_START 0x08000000
-#define FLASH_END 0x08010000
-#define FLASH_PAGE_SIZE 128
-#define EEPROM_START 0x08080000
-#define EEPROM_END 0x08080800
 
 
 
@@ -3600,7 +3593,7 @@ sensor_t *get_sensor(uint32_t dev_num);
 
 #define W25_SPI_SCK_PORT GPIOB
 #define W25_SPI_SCK GPIO3
-# 252 "common/include/common/board_defs.h"
+# 229 "common/include/common/board_defs.h"
 void gpio_init(void);
 # 2 "hub/src/board_defs.c" 2
 

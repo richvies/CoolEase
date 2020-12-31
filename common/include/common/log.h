@@ -40,15 +40,18 @@ extern "C" {
  * @{
  */
 
-enum log_type
-{
-    MAIN=0,
-    SPF,
-    MEM,
-    BOOT,
-    RFM,
-    TMP
-};
+/** @addtogroup LOG_ERR Logging Errors
+ * @{
+ */
+
+#define ERR_BOOT_PROG_START_ADDRESS_OUT_OF_BOUNDS   0
+#define ERR_BOOT_PROG_TOO_BIG                       1
+#define ERR_BOOT_PROG_BAD_CHECKSUM                  2
+#define ERR_BOOT_PROG_FLASH_ERASE                   3
+#define ERR_BOOT_PROG_FLASH_WRITE_1                 4
+#define ERR_BOOT_PROG_FLASH_WRITE_2                 5
+
+/** @} */
 
 /*////////////////////////////////////////////////////////////////////////////*/
 // Exported Variables
@@ -60,7 +63,10 @@ enum log_type
 // Exported Function Declarations
 /*////////////////////////////////////////////////////////////////////////////*/
 void log_init(void);
-void log_printf(enum log_type type, const char *format, ...);
+void log_printf(const char *format, ...);
+void log_error(uint16_t error);
+
+void serial_printf(const char *format, ...);
 
 /** @} */
 

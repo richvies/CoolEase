@@ -18,6 +18,7 @@
 #include <libopencm3/cm3/scb.h>
 #include <libopencm3/cm3/common.h>
 #include <libopencm3/stm32/rcc.h>
+#include <libopencm3/stm32/crc.h>
 
 #include "common/memory.h"
 #include "common/log.h"
@@ -102,33 +103,94 @@ void boot_jump_to_application(uint32_t address)
     };
 }
 
-bool boot_program_application(uint32_t *data, uint32_t start_address, uint32_t len)
+bool boot_program_application(uint32_t *data, uint32_t start_address, uint32_t len, uint32_t crc)
 {
-    log_printf(BOOT, "Program Application");
+    log_printf("boot_program_application");
 
-    // Return if new program is too large
-    if(len > (FLASH_START_APP - FLASH_START))
+    bool res = true;
+
+    /** Check for Errors 
+     * Start address &
+     * Size of new program
+     * CRC checksum
+    */
+    if (start_address < FLASH_APP_START || start_address > FLASH_END)
     {
-        log_printf(BOOT, "App size too big");
-        return false;
+        log_error(ERR_BOOT_PROG_START_ADDRESS_OUT_OF_BOUNDS);
+        res = false;
+    }
+    else if (len > FLASH_APP_START - FLASH_APP_END)
+    {
+        log_error(ERR_BOOT_PROG_TOO_BIG);
+        res = false;
+    }
+    else if (!boot_verify_checksum(data, len, crc))
+    {
+        log_error(ERR_BOOT_PROG_BAD_CHECKSUM);
+        res = false;
+    }
+    
+
+    /** Program flash if looks good */
+    else
+    {
+        // Num pages to program
+        uint16_t num_pages = ((len / FLASH_PAGE_SIZE) + 1);
+        log_printf("Prog %i pgs\n", num_pages);
+
+        for (uint32_t address = start_address; address < start_address + len; address += FLASH_PAGE_SIZE)
+        {
+            // Erase page first
+            if (!mem_flash_erase_page(address))
+            {
+                log_error(ERR_BOOT_PROG_FLASH_ERASE);
+                res = false;
+            }
+            // Flash first half page
+            else if (!mem_flash_write_half_page(address, &data[0]))
+            {
+                log_error(ERR_BOOT_PROG_FLASH_WRITE_1);
+                res = false;
+            }
+            // Flash second half page
+            else if (!mem_flash_write_half_page(address, &data[16]))
+            {
+                log_error(ERR_BOOT_PROG_FLASH_WRITE_2);
+                res = false;
+            }
+
+            // Stop programming if flash error
+            if (res == false)
+            {
+                break;
+            }
+        }
     }
 
-    // C truncates integer division so the number of pages is 1 more than result
-    uint16_t num_pages = ((len / FLASH_PAGE_SIZE) + 1);
+    return res;
+}
 
-    for (uint32_t address = start_address; address < start_address + len; address += FLASH_PAGE_SIZE)
-    {   
-        // Erase page first
-        mem_flash_erase_page(address);
+bool boot_verify_checksum(uint32_t *data, uint32_t len, uint32_t expected)
+{
+    log_printf("boot_verify_checksum\n");  
 
-        // Flash first half page
-        mem_flash_write_half_page(address, &data[0]);
+    // Initialize CRC Peripheral
+    rcc_periph_clock_enable(RCC_CRC);
+    crc_reset();
+    crc_reverse_output_enable();
+    crc_set_reverse_input(CRC_CR_REV_IN_WORD);
 
-        // Flash second half page
-        mem_flash_write_half_page(address, &data[16]);
-    }
+    // Calc CRC32
+    uint32_t crc = crc_calculate_block(data, len);
 
-    return true;
+    // Deinit
+    crc_reset();
+    rcc_periph_clock_enable(RCC_CRC);
+
+    serial_printf("Checksum value: %8x\n", crc);
+
+    // Check against expected
+    return (crc == expected ? true : false);
 }
 
 /** @} */

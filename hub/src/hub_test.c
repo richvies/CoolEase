@@ -78,7 +78,7 @@ void test_cusb_poll(void)
 
 void test_sim(void)
 {
-	log_printf(MAIN, "Testing Sim\n");
+	log_printf("Testing Sim\n");
 
 	// Hub device number
 	uint32_t dev_num = mem_get_dev_num();
@@ -122,7 +122,7 @@ void test_sim(void)
 
 		sim_send_data(sim_buf, sim_idx);
 
-		log_printf(MAIN, "Sent\n\n");
+		log_printf("Sent\n\n");
 
 		sim_end();
 
@@ -141,13 +141,13 @@ void test_sim(void)
 
 void test_sim_serial_pass_through(void)
 {
-	log_printf(MAIN, "Testing sim serial pass through\n");
+	log_printf("Testing sim serial pass through\n");
 	sim_serial_pass_through();
 }
 
 void test_hub(void)
 {
-	// log_printf(MAIN, "Testing Hub\n");
+	// log_printf("Testing Hub\n");
 
 	// uint32_t total_packets = 0;
 	// uint32_t ok_packets = 0;
@@ -164,7 +164,7 @@ void test_hub(void)
 	// rfm_start_listening();
 
 	// // Get First message number
-	// log_printf(MAIN, "Waiting for first message\n");
+	// log_printf("Waiting for first message\n");
 	// bool recv = false;
 	// while(!recv)
 	// {
@@ -179,12 +179,12 @@ void test_hub(void)
 	// 		prev_msg_num = recv_msg_num;
 	// 		start_msg_num = recv_msg_num;
 	// 		mem_update_msg_num(prev_msg_num);
-	// 		log_printf(MAIN, "First Message Number: %i, %i, %i\n", recv_msg_num, prev_msg_num, mem_get_msg_num());
+	// 		log_printf("First Message Number: %i, %i, %i\n", recv_msg_num, prev_msg_num, mem_get_msg_num());
 	// 		recv = true;
 	// 	}
 	// }
 
-	// log_printf(MAIN, "Ready\n");
+	// log_printf("Ready\n");
 
 	// for(;;)
 	// {
@@ -195,35 +195,35 @@ void test_hub(void)
 	// 		uint32_t dev_num_rec = received_packet.data[RFM_PACKET_DEV_NUM_0] | received_packet.data[RFM_PACKET_DEV_NUM_1] << 8 | received_packet.data[RFM_PACKET_DEV_NUM_2] << 16 | received_packet.data[RFM_PACKET_DEV_NUM_3] << 24;
 
 	// 		if(dev_num_rec == DEV_NUM_CHIP)
-	// 			log_printf(MAIN, "From Chip Antenna\n");
+	// 			log_printf("From Chip Antenna\n");
 	// 		else if(dev_num_rec == DEV_NUM_PCB)
-	// 			log_printf(MAIN, "From PCB antenna\n");
+	// 			log_printf("From PCB antenna\n");
 	// 		else
 	// 			continue;
 
-	// 		// log_printf(MAIN, "Device ID: %04x\n", dev_num);
+	// 		// log_printf("Device ID: %04x\n", dev_num);
 
-	// 		if(received_packet.crc_ok)log_printf(MAIN, "CRC OK\n");
-	// 		else log_printf(MAIN, "CRC Fail\n");
+	// 		if(received_packet.crc_ok)log_printf("CRC OK\n");
+	// 		else log_printf("CRC Fail\n");
 
-	// 		log_printf(MAIN, "Power: %i\n", received_packet.data[RFM_PACKET_POWER]);
+	// 		log_printf("Power: %i\n", received_packet.data[RFM_PACKET_POWER]);
 			
 	// 		uint16_t battery = ((received_packet.data[RFM_PACKET_BATTERY_1] << 8) | received_packet.data[RFM_PACKET_BATTERY_0]);
-	// 		log_printf(MAIN, "Battery: %uV\n", battery);
+	// 		log_printf("Battery: %uV\n", battery);
 
-	// 		log_printf(MAIN, "Packet RSSI: %i dbm\n", received_packet.rssi);
-	// 		log_printf(MAIN, "Packet SNR: %i dB\n", received_packet.snr);
+	// 		log_printf("Packet RSSI: %i dbm\n", received_packet.rssi);
+	// 		log_printf("Packet SNR: %i dB\n", received_packet.snr);
 
 	// 		recv_msg_num = received_packet.data[RFM_PACKET_MSG_NUM_0] | received_packet.data[RFM_PACKET_MSG_NUM_1] << 8 | received_packet.data[RFM_PACKET_MSG_NUM_2] << 16 | received_packet.data[RFM_PACKET_MSG_NUM_3] << 24;
 	// 		prev_msg_num = mem_get_msg_num();
-	// 		log_printf(MAIN, "Message Number: %i\n", recv_msg_num);
+	// 		log_printf("Message Number: %i\n", recv_msg_num);
 
 	// 		if(recv_msg_num != ++prev_msg_num)
-	// 			log_printf(MAIN, "Missed Message %i\n", prev_msg_num);
+	// 			log_printf("Missed Message %i\n", prev_msg_num);
 				
 
 	// 		int16_t temp = received_packet.data[RFM_PACKET_TEMP_1] << 8 | received_packet.data[RFM_PACKET_TEMP_0];
-	// 		log_printf(MAIN, "Temperature: %i\n", temp);
+	// 		log_printf("Temperature: %i\n", temp);
 
 	// 		total_packets = recv_msg_num - start_msg_num;
 
@@ -237,7 +237,7 @@ void test_hub(void)
 
 	// 		mem_update_msg_num(prev_msg_num);
 
-	// 		log_printf(MAIN, "Accuracy: %i / %i packets\n\n", ok_packets, total_packets);
+	// 		log_printf("Accuracy: %i / %i packets\n\n", ok_packets, total_packets);
 
 	// 		rfm_end();
 
@@ -245,7 +245,7 @@ void test_hub(void)
 	// 		sim_connect();
 	
 	// 		sim_send_temp_and_num(&dev_num_rec, &temp, &battery, &total_packets, &ok_packets, &received_packet.rssi, 1);
-	// 		log_printf(MAIN, "Sent %i\n\n", total_packets);
+	// 		log_printf("Sent %i\n\n", total_packets);
 	
 	// 		sim_end();
 

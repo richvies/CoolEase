@@ -18,7 +18,7 @@ void tmp112_init(void)
 	tmp112_clock_setup();
 	tmp112_i2c_setup();
 
-	log_printf(MAIN, "TMP Init Done\n");
+	log_printf("TMP Init Done\n");
 }
 
 void tmp112_end(void)
@@ -35,7 +35,7 @@ void tmp112_end(void)
 	i2c_peripheral_disable(TEMP_I2C);
 	rcc_periph_clock_disable(TEMP_I2C_RCC);
 
-	log_printf(MAIN, "TMP End Done\n");
+	log_printf("TMP End Done\n");
 }
 
 void tmp112_reset(void)

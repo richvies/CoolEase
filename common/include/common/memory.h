@@ -46,16 +46,17 @@ extern "C" {
 // Flash and EEPROM erase by page (1 word)
 // Flash programmed by word or half page
 // EEPROM programmed by word, half word or byte
-#define FLASH_PAGE_SIZE     128
-#define FLASH_NUM_PAGES     512
-#define FLASH_START         0x08000000           
-#define FLASH_START_APP     0x08004000           
-#define FLASH_END           0x08010000   
+#define FLASH_PAGE_SIZE     128U
+#define FLASH_NUM_PAGES     512U
+#define FLASH_START         0x08000000U           
+#define FLASH_APP_START     0x08004000U  
+#define FLASH_APP_END       0x0800C000U       
+#define FLASH_END           0x08010000U   
 
-#define EEPROM_PAGE_SIZE    4
-#define EEPROM_NUM_PAGES    512
-#define EEPROM_START        0x08080000
-#define EEPROM_END          0x08080800
+#define EEPROM_PAGE_SIZE    4U
+#define EEPROM_NUM_PAGES    512U
+#define EEPROM_START        0x08080000U
+#define EEPROM_END          0x08080800U
 
 #define LOG_SIZE            1024
 

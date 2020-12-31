@@ -1099,26 +1099,26 @@ typedef __uint_least64_t uint_least64_t;
 # 52 "/usr/local/Cellar/arm-gcc-bin/9-2020-q2-update/lib/gcc/arm-none-eabi/9.3.1/include/stdbool.h" 3 4
 #define __bool_true_false_are_defined 1
 # 34 "common/include/common/log.h" 2
-# 43 "common/include/common/log.h"
+# 47 "common/include/common/log.h"
+#define ERR_BOOT_PROG_START_ADDRESS_OUT_OF_BOUNDS 0
+#define ERR_BOOT_PROG_TOO_BIG 1
+#define ERR_BOOT_PROG_BAD_CHECKSUM 2
+#define ERR_BOOT_PROG_FLASH_ERASE 3
+#define ERR_BOOT_PROG_FLASH_WRITE_1 4
+#define ERR_BOOT_PROG_FLASH_WRITE_2 5
+# 65 "common/include/common/log.h"
 
-# 43 "common/include/common/log.h"
-enum log_type
-{
-    MAIN=0,
-    SPF,
-    MEM,
-    BOOT,
-    RFM,
-    TMP
-};
-# 62 "common/include/common/log.h"
+# 65 "common/include/common/log.h"
 void log_init(void);
-void log_printf(enum log_type type, const char *format, ...);
+void log_printf(const char *format, ...);
+void log_error(uint16_t error);
+
+void serial_printf(const char *format, ...);
 # 18 "sensor/src/sensor_bootloader.c" 2
 # 45 "sensor/src/sensor_bootloader.c"
 int main(void)
 {
     log_init();
-    log_printf(MAIN, "Sensor Bootloader Start\n");
+    log_printf("Sensor Bootloader Start\n");
     return 0;
 }

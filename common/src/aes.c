@@ -464,11 +464,11 @@ void aes_generate_random(uint8_t *buf, uint8_t len)
         buf[i] = buf[i] << (8 * i);
 
     /* 
-    log_printf(MAIN, "Before\nFirst: %08x \n", adc_vals[0]);
-    log_printf(MAIN, "Second: %08x \n", adc_vals[1]);
-    log_printf(MAIN, "Third: %08x \n", adc_vals[2]);
-    log_printf(MAIN, "Fourth: %08x \n", adc_vals[3]);
-    log_printf(MAIN, "Seed: %08x\n", seed);
+    log_printf("Before\nFirst: %08x \n", adc_vals[0]);
+    log_printf("Second: %08x \n", adc_vals[1]);
+    log_printf("Third: %08x \n", adc_vals[2]);
+    log_printf("Fourth: %08x \n", adc_vals[3]);
+    log_printf("Seed: %08x\n", seed);
     
 
     rcc_periph_clock_enable(RCC_ADC1);
@@ -515,11 +515,11 @@ void aes_generate_random(uint8_t *buf, uint8_t len)
     for(int i = 0; i < 4; i++)
         seed |= adc_vals[i] << (8 * i);
 
-    log_printf(MAIN, "After\nFirst: %08x \n", adc_vals[0]);
-    log_printf(MAIN, "Second: %08x \n", adc_vals[1]);
-    log_printf(MAIN, "Third: %08x \n", adc_vals[2]);
-    log_printf(MAIN, "Fourth: %08x \n", adc_vals[3]);
-    log_printf(MAIN, "Seed: %08x\n\n", seed);
+    log_printf("After\nFirst: %08x \n", adc_vals[0]);
+    log_printf("Second: %08x \n", adc_vals[1]);
+    log_printf("Third: %08x \n", adc_vals[2]);
+    log_printf("Fourth: %08x \n", adc_vals[3]);
+    log_printf("Seed: %08x\n\n", seed);
 
     srand(seed);
 

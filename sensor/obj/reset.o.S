@@ -2184,19 +2184,19 @@ void rcc_set_usart2_sel(uint32_t usart2_sel);
 # 1 "common/include/common/log.h" 1
 # 26 "common/include/common/log.h"
 #define LOG_H 
-# 43 "common/include/common/log.h"
-enum log_type
-{
-    MAIN=0,
-    SPF,
-    MEM,
-    BOOT,
-    RFM,
-    TMP
-};
-# 62 "common/include/common/log.h"
+# 47 "common/include/common/log.h"
+#define ERR_BOOT_PROG_START_ADDRESS_OUT_OF_BOUNDS 0
+#define ERR_BOOT_PROG_TOO_BIG 1
+#define ERR_BOOT_PROG_BAD_CHECKSUM 2
+#define ERR_BOOT_PROG_FLASH_ERASE 3
+#define ERR_BOOT_PROG_FLASH_WRITE_1 4
+#define ERR_BOOT_PROG_FLASH_WRITE_2 5
+# 65 "common/include/common/log.h"
 void log_init(void);
-void log_printf(enum log_type type, const char *format, ...);
+void log_printf(const char *format, ...);
+void log_error(uint16_t error);
+
+void serial_printf(const char *format, ...);
 # 7 "common/src/reset.c" 2
 
 void reset_print_cause(void)
@@ -2205,44 +2205,44 @@ void reset_print_cause(void)
 
     if(pwr_get_standby_flag())
  {
-  log_printf(MAIN, "Standby flag set\n");
+  log_printf("Standby flag set\n");
   pwr_clear_standby_flag();
  }
 
  if(pwr_get_wakeup_flag())
  {
-  log_printf(MAIN, "Wakeup flag set\n");
+  log_printf("Wakeup flag set\n");
   pwr_clear_wakeup_flag();
  }
 
     if((*(volatile uint32_t *)((((0x40000000U) + 0x20000) + 0x01000) + 0x50)) & (1 << 31))
  {
-  log_printf(MAIN, "Low Power Reset\n");
+  log_printf("Low Power Reset\n");
  }
 
  if((*(volatile uint32_t *)((((0x40000000U) + 0x20000) + 0x01000) + 0x50)) & (1 << 30))
  {
-  log_printf(MAIN, "Window Watchdog Reset\n");
+  log_printf("Window Watchdog Reset\n");
  }
 
  if((*(volatile uint32_t *)((((0x40000000U) + 0x20000) + 0x01000) + 0x50)) & (1 << 29))
  {
-  log_printf(MAIN, "I Watchdog Reset\n");
+  log_printf("I Watchdog Reset\n");
  }
 
  if((*(volatile uint32_t *)((((0x40000000U) + 0x20000) + 0x01000) + 0x50)) & (1 << 28))
  {
-  log_printf(MAIN, "SFTRSTF Reset\n");
+  log_printf("SFTRSTF Reset\n");
  }
 
  if((*(volatile uint32_t *)((((0x40000000U) + 0x20000) + 0x01000) + 0x50)) & (1 << 27))
  {
-  log_printf(MAIN, "PORRSTF Reset\n");
+  log_printf("PORRSTF Reset\n");
  }
 
  if((*(volatile uint32_t *)((((0x40000000U) + 0x20000) + 0x01000) + 0x50)) & (1 << 26))
  {
-  log_printf(MAIN, "PINRSTF Reset\n");
+  log_printf("PINRSTF Reset\n");
  }
 
     (*(volatile uint32_t *)((((0x40000000U) + 0x20000) + 0x01000) + 0x50)) |= (1 << 23);

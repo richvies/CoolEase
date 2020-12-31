@@ -5,11 +5,7 @@
 #include <libopencm3/stm32/rcc.h>
 #include <libopencm3/stm32/spi.h>
 #include <libopencm3/stm32/usart.h>
-  
-#ifdef _HUB  
 
-// Sensor Struct
-#define MAX_SENSORS 50
 typedef struct
 {
 	bool 		msg_pend;
@@ -21,17 +17,14 @@ typedef struct
 	uint32_t 	total_packets;
 }sensor_t;
 
+#ifdef _HUB  
+
+// Sensor Struct
+#define MAX_SENSORS 50
+
 extern sensor_t 	sensors[MAX_SENSORS];
 extern uint8_t 		num_sensors;
 sensor_t 			*get_sensor(uint32_t dev_num);
-
-
-// Memory Map
-#define FLASH_START     0x08000000
-#define FLASH_END       0x08010000
-#define FLASH_PAGE_SIZE 128
-#define EEPROM_START    0x08080000   
-#define EEPROM_END      0x08080800 
 
 
 // Battery Voltage
@@ -145,27 +138,11 @@ sensor_t 			*get_sensor(uint32_t dev_num);
 
 // Sensor Struct
 #define MAX_SENSORS 50
-typedef struct
-{
-	bool 		msg_pend;
-	bool 		active;
-	uint32_t 	dev_num;
-	uint32_t 	msg_num;
-	uint32_t 	msg_num_start;
-	uint32_t 	ok_packets;
-	uint32_t 	total_packets;
-}sensor_t;
+
 
 extern sensor_t 	sensors[MAX_SENSORS];
 extern uint8_t 		num_sensors;
-sensor_t 			*get_sensor(uint32_t dev_num);
-
-// Memory Map
-#define FLASH_START     0x08000000
-#define FLASH_END       0x08010000
-#define FLASH_PAGE_SIZE 128
-#define EEPROM_START    0x08080000   
-#define EEPROM_END      0x08080800   
+sensor_t 			*get_sensor(uint32_t dev_num); 
 
 // Battery Voltage
 #define BATT_SENS_PORT          GPIOA

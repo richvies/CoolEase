@@ -1095,21 +1095,21 @@ typedef __uint_least64_t uint_least64_t;
 # 52 "/usr/local/Cellar/arm-gcc-bin/9-2020-q2-update/lib/gcc/arm-none-eabi/9.3.1/include/stdbool.h" 3 4
 #define __bool_true_false_are_defined 1
 # 34 "common/include/common/log.h" 2
-# 43 "common/include/common/log.h"
+# 47 "common/include/common/log.h"
+#define ERR_BOOT_PROG_START_ADDRESS_OUT_OF_BOUNDS 0
+#define ERR_BOOT_PROG_TOO_BIG 1
+#define ERR_BOOT_PROG_BAD_CHECKSUM 2
+#define ERR_BOOT_PROG_FLASH_ERASE 3
+#define ERR_BOOT_PROG_FLASH_WRITE_1 4
+#define ERR_BOOT_PROG_FLASH_WRITE_2 5
+# 65 "common/include/common/log.h"
 
-# 43 "common/include/common/log.h"
-enum log_type
-{
-    MAIN=0,
-    SPF,
-    MEM,
-    BOOT,
-    RFM,
-    TMP
-};
-# 62 "common/include/common/log.h"
+# 65 "common/include/common/log.h"
 void log_init(void);
-void log_printf(enum log_type type, const char *format, ...);
+void log_printf(const char *format, ...);
+void log_error(uint16_t error);
+
+void serial_printf(const char *format, ...);
 # 16 "common/src/log.c" 2
 
 # 1 "libopencm3/include/libopencm3/stm32/rcc.h" 1
@@ -3661,21 +3661,17 @@ void spi_set_frf_motorola(uint32_t spi);
 # 1 "libopencm3/include/libopencm3/stm32/usart.h" 1
 # 8 "common/include/common/board_defs.h" 2
 
-
-
-
-#define MAX_SENSORS 50
 typedef struct
 {
  
-# 15 "common/include/common/board_defs.h" 3 4
+# 11 "common/include/common/board_defs.h" 3 4
 _Bool 
-# 15 "common/include/common/board_defs.h"
+# 11 "common/include/common/board_defs.h"
        msg_pend;
  
-# 16 "common/include/common/board_defs.h" 3 4
+# 12 "common/include/common/board_defs.h" 3 4
 _Bool 
-# 16 "common/include/common/board_defs.h"
+# 12 "common/include/common/board_defs.h"
        active;
  uint32_t dev_num;
  uint32_t msg_num;
@@ -3684,17 +3680,14 @@ _Bool
  uint32_t total_packets;
 }sensor_t;
 
+
+
+
+#define MAX_SENSORS 50
+
 extern sensor_t sensors[50];
 extern uint8_t num_sensors;
 sensor_t *get_sensor(uint32_t dev_num);
-
-
-
-#define FLASH_START 0x08000000
-#define FLASH_END 0x08010000
-#define FLASH_PAGE_SIZE 128
-#define EEPROM_START 0x08080000
-#define EEPROM_END 0x08080800
 
 
 
@@ -3802,7 +3795,7 @@ sensor_t *get_sensor(uint32_t dev_num);
 
 #define W25_SPI_SCK_PORT GPIOB
 #define W25_SPI_SCK GPIO3
-# 252 "common/include/common/board_defs.h"
+# 229 "common/include/common/board_defs.h"
 void gpio_init(void);
 # 23 "common/src/log.c" 2
 # 1 "common/include/common/memory.h" 1
@@ -3819,51 +3812,52 @@ void gpio_init(void);
 # 1 "libopencm3/include/libopencm3/stm32/rcc.h" 1
 # 35 "common/include/common/memory.h" 2
 # 49 "common/include/common/memory.h"
-#define FLASH_PAGE_SIZE 128
-#define FLASH_NUM_PAGES 512
-#define FLASH_START 0x08000000
-#define FLASH_START_APP 0x08004000
-#define FLASH_END 0x08010000
+#define FLASH_PAGE_SIZE 128U
+#define FLASH_NUM_PAGES 512U
+#define FLASH_START 0x08000000U
+#define FLASH_APP_START 0x08004000U
+#define FLASH_APP_END 0x0800C000U
+#define FLASH_END 0x08010000U
 
-#define EEPROM_PAGE_SIZE 4
-#define EEPROM_NUM_PAGES 512
-#define EEPROM_START 0x08080000
-#define EEPROM_END 0x08080800
+#define EEPROM_PAGE_SIZE 4U
+#define EEPROM_NUM_PAGES 512U
+#define EEPROM_START 0x08080000U
+#define EEPROM_END 0x08080800U
 
 #define LOG_SIZE 1024
-# 73 "common/include/common/memory.h"
+# 74 "common/include/common/memory.h"
 void mem_init(void);
 
-
-# 75 "common/include/common/memory.h" 3 4
-_Bool 
-# 75 "common/include/common/memory.h"
-    mem_eeprom_write_word(uint32_t address, uint32_t data);
 
 # 76 "common/include/common/memory.h" 3 4
 _Bool 
 # 76 "common/include/common/memory.h"
-    mem_eeprom_write_half_word(uint32_t address, uint16_t data);
+    mem_eeprom_write_word(uint32_t address, uint32_t data);
 
 # 77 "common/include/common/memory.h" 3 4
 _Bool 
 # 77 "common/include/common/memory.h"
+    mem_eeprom_write_half_word(uint32_t address, uint16_t data);
+
+# 78 "common/include/common/memory.h" 3 4
+_Bool 
+# 78 "common/include/common/memory.h"
     mem_eeprom_write_byte(uint32_t address, uint8_t data);
 
-
-# 79 "common/include/common/memory.h" 3 4
-_Bool 
-# 79 "common/include/common/memory.h"
-    mem_flash_erase_page(uint32_t address);
 
 # 80 "common/include/common/memory.h" 3 4
 _Bool 
 # 80 "common/include/common/memory.h"
-    mem_flash_write_word(uint32_t address, uint32_t data);
+    mem_flash_erase_page(uint32_t address);
 
 # 81 "common/include/common/memory.h" 3 4
 _Bool 
 # 81 "common/include/common/memory.h"
+    mem_flash_write_word(uint32_t address, uint32_t data);
+
+# 82 "common/include/common/memory.h" 3 4
+_Bool 
+# 82 "common/include/common/memory.h"
     mem_flash_write_half_page(uint32_t address, uint32_t *data);
 
 void mem_save_reading(int16_t reading);
@@ -4048,7 +4042,7 @@ uint32_t fnprintf(out_fct_type out, const char *format, va_list va);
 
 
 
-static uint32_t curr_address = 0x08080800 - 1024;
+static uint32_t curr_address = 0x08080800U - 1024;
 
 
 
@@ -4068,56 +4062,35 @@ void log_init(void)
 
     clock_setup();
     usart_setup();
+ for(int i = 0; i < 100000; i++){__asm__("nop");};
 
 }
 
-void log_printf(enum log_type type, const char *format, ...)
+void log_printf(const char *format, ...)
 {
  va_list va;
  
-# 78 "common/src/log.c" 3 4
+# 79 "common/src/log.c" 3 4
 __builtin_va_start(
-# 78 "common/src/log.c"
+# 79 "common/src/log.c"
 va
-# 78 "common/src/log.c" 3 4
+# 79 "common/src/log.c" 3 4
 ,
-# 78 "common/src/log.c"
+# 79 "common/src/log.c"
 format
-# 78 "common/src/log.c" 3 4
+# 79 "common/src/log.c" 3 4
 )
-# 78 "common/src/log.c"
+# 79 "common/src/log.c"
                     ;
-
-    switch (type)
-    {
-    case MAIN:
-        fnprintf(_putchar_main, format, va);
-        break;
-
- case SPF:
-        fnprintf(_putchar_spf, format, va);
-  break;
-
- case MEM:
-        fnprintf(_putchar_mem, format, va);
-  break;
-
- case RFM:
-        fnprintf(_putchar_main, format, va);
-  break;
-
-    default:
-        break;
-    }
-
+ fnprintf(_putchar_main, format, va);
    
-# 102 "common/src/log.c" 3 4
+# 81 "common/src/log.c" 3 4
   __builtin_va_end(
-# 102 "common/src/log.c"
+# 81 "common/src/log.c"
   va
-# 102 "common/src/log.c" 3 4
+# 81 "common/src/log.c" 3 4
   )
-# 102 "common/src/log.c"
+# 81 "common/src/log.c"
             ;
 
 
@@ -4125,7 +4098,45 @@ format
     while(!usart_get_flag((((0x40000000U) + 0x10000) + 0x3800), (1 << 6))) {}
 
 }
-# 121 "common/src/log.c"
+
+void log_error(uint16_t error)
+{
+ log_printf("Error %i\n", error);
+}
+
+void serial_printf(const char *format, ...)
+{
+ va_list va;
+ 
+# 97 "common/src/log.c" 3 4
+__builtin_va_start(
+# 97 "common/src/log.c"
+va
+# 97 "common/src/log.c" 3 4
+,
+# 97 "common/src/log.c"
+format
+# 97 "common/src/log.c" 3 4
+)
+# 97 "common/src/log.c"
+                    ;
+ fnprintf(_putchar_spf, format, va);
+   
+# 99 "common/src/log.c" 3 4
+  __builtin_va_end(
+# 99 "common/src/log.c"
+  va
+# 99 "common/src/log.c" 3 4
+  )
+# 99 "common/src/log.c"
+            ;
+
+
+
+    while(!usart_get_flag((((0x40000000U) + 0x10000) + 0x3800), (1 << 6))) {}
+
+}
+# 119 "common/src/log.c"
 static void clock_setup(void)
 {
 
@@ -4177,22 +4188,23 @@ static void usart_setup(void)
 static void _putchar_main(char character)
 {
  _putchar_mem(character);
+
+
  _putchar_spf(character);
+
 }
 
 static void _putchar_spf(char character)
 {
-
  usart_send_blocking((((0x40000000U) + 0x10000) + 0x3800), character);
-
 }
 
 static void _putchar_mem(char character)
 {
  mem_eeprom_write_byte(curr_address++, character);
 
- if(curr_address == 0x08080800 - 1024 + 1024)
+ if(curr_address == 0x08080800U - 1024 + 1024)
  {
-  curr_address = 0x08080800 - 1024;
+  curr_address = 0x08080800U - 1024;
  }
 }

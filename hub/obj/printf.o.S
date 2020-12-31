@@ -1309,15 +1309,26 @@ static uint32_t _ntoa_format(out_fct_type out, int32_t value, uint32_t base, uin
 
     if (value)
     {
-        if(value < 0)
+
+        if(sign && value < 0)
         {
             negative = 
-# 91 "common/src/printf.c" 3 4
+# 92 "common/src/printf.c" 3 4
                       1
-# 91 "common/src/printf.c"
+# 92 "common/src/printf.c"
                           ;
             value = 0 - value;
         }
+        else
+        {
+            negative = 
+# 97 "common/src/printf.c" 3 4
+                      0
+# 97 "common/src/printf.c"
+                           ;
+        }
+
+
 
         do
         {
@@ -1346,8 +1357,7 @@ static uint32_t _ntoa_format(out_fct_type out, int32_t value, uint32_t base, uin
             buf[len++] = '0';
         }
 
-
-        if ( sign && negative && (len < 32) )
+        if ( negative && (len < 32) )
         {
             buf[len++] = '-';
         }
@@ -1425,41 +1435,41 @@ uint32_t fnprintf(out_fct_type out, const char *format, va_list va)
             if ((*format == 'i') || (*format == 'd'))
             {
                 idx += _ntoa_format(out, (int32_t)
-# 200 "common/src/printf.c" 3 4
+# 206 "common/src/printf.c" 3 4
                                                  __builtin_va_arg(
-# 200 "common/src/printf.c"
+# 206 "common/src/printf.c"
                                                  va
-# 200 "common/src/printf.c" 3 4
+# 206 "common/src/printf.c" 3 4
                                                  ,
-# 200 "common/src/printf.c"
+# 206 "common/src/printf.c"
                                                  int
-# 200 "common/src/printf.c" 3 4
+# 206 "common/src/printf.c" 3 4
                                                  )
-# 200 "common/src/printf.c"
+# 206 "common/src/printf.c"
                                                                 , base, width, 
-# 200 "common/src/printf.c" 3 4
+# 206 "common/src/printf.c" 3 4
                                                                                1
-# 200 "common/src/printf.c"
+# 206 "common/src/printf.c"
                                                                                    );
             }
             else
             {
                 idx += _ntoa_format(out, (int32_t)
-# 204 "common/src/printf.c" 3 4
+# 210 "common/src/printf.c" 3 4
                                                  __builtin_va_arg(
-# 204 "common/src/printf.c"
+# 210 "common/src/printf.c"
                                                  va
-# 204 "common/src/printf.c" 3 4
+# 210 "common/src/printf.c" 3 4
                                                  ,
-# 204 "common/src/printf.c"
+# 210 "common/src/printf.c"
                                                  int
-# 204 "common/src/printf.c" 3 4
+# 210 "common/src/printf.c" 3 4
                                                  )
-# 204 "common/src/printf.c"
+# 210 "common/src/printf.c"
                                                                 , base, width, 
-# 204 "common/src/printf.c" 3 4
+# 210 "common/src/printf.c" 3 4
                                                                                0
-# 204 "common/src/printf.c"
+# 210 "common/src/printf.c"
                                                                                     );
             }
             format++;
@@ -1469,17 +1479,17 @@ uint32_t fnprintf(out_fct_type out, const char *format, va_list va)
         case 'c':
         {
             out((char)
-# 212 "common/src/printf.c" 3 4
+# 218 "common/src/printf.c" 3 4
                      __builtin_va_arg(
-# 212 "common/src/printf.c"
+# 218 "common/src/printf.c"
                      va
-# 212 "common/src/printf.c" 3 4
+# 218 "common/src/printf.c" 3 4
                      ,
-# 212 "common/src/printf.c"
+# 218 "common/src/printf.c"
                      int
-# 212 "common/src/printf.c" 3 4
+# 218 "common/src/printf.c" 3 4
                      )
-# 212 "common/src/printf.c"
+# 218 "common/src/printf.c"
                                     );
             idx++;
             format++;
@@ -1489,17 +1499,17 @@ uint32_t fnprintf(out_fct_type out, const char *format, va_list va)
         case 's':
         {
             const char *p = 
-# 220 "common/src/printf.c" 3 4
+# 226 "common/src/printf.c" 3 4
                            __builtin_va_arg(
-# 220 "common/src/printf.c"
+# 226 "common/src/printf.c"
                            va
-# 220 "common/src/printf.c" 3 4
+# 226 "common/src/printf.c" 3 4
                            ,
-# 220 "common/src/printf.c"
+# 226 "common/src/printf.c"
                            char *
-# 220 "common/src/printf.c" 3 4
+# 226 "common/src/printf.c" 3 4
                            )
-# 220 "common/src/printf.c"
+# 226 "common/src/printf.c"
                                              ;
             uint32_t l = _strnlen_s(p, 1024);
 
@@ -1517,21 +1527,21 @@ uint32_t fnprintf(out_fct_type out, const char *format, va_list va)
         {
             width = sizeof(void *) * 2U;
             idx += _ntoa_format(out, (int32_t)((uintptr_t)
-# 236 "common/src/printf.c" 3 4
+# 242 "common/src/printf.c" 3 4
                                                          __builtin_va_arg(
-# 236 "common/src/printf.c"
+# 242 "common/src/printf.c"
                                                          va
-# 236 "common/src/printf.c" 3 4
+# 242 "common/src/printf.c" 3 4
                                                          ,
-# 236 "common/src/printf.c"
+# 242 "common/src/printf.c"
                                                          void *
-# 236 "common/src/printf.c" 3 4
+# 242 "common/src/printf.c" 3 4
                                                          )
-# 236 "common/src/printf.c"
+# 242 "common/src/printf.c"
                                                                            ), 16U, width, 
-# 236 "common/src/printf.c" 3 4
+# 242 "common/src/printf.c" 3 4
                                                                                           0
-# 236 "common/src/printf.c"
+# 242 "common/src/printf.c"
                                                                                                );
             format++;
             break;

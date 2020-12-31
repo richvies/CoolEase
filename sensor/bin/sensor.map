@@ -2,6 +2,10 @@ Archive member included to satisfy reference by file (symbol)
 
 libopencm3/lib/libopencm3_stm32l0.a(adc_common_v2.o)
                               sensor/obj/battery.o (adc_eoc)
+libopencm3/lib/libopencm3_stm32l0.a(crc_common_all.o)
+                              sensor/obj/bootloader_utils.o (crc_reset)
+libopencm3/lib/libopencm3_stm32l0.a(crc_v2.o)
+                              sensor/obj/bootloader_utils.o (crc_reverse_output_enable)
 libopencm3/lib/libopencm3_stm32l0.a(dma_common_l1f013.o)
                               sensor/obj/battery.o (dma_channel_reset)
 libopencm3/lib/libopencm3_stm32l0.a(exti_common_all.o)
@@ -48,6 +52,8 @@ libopencm3/lib/libopencm3_stm32l0.a(assert.o)
                               libopencm3/lib/libopencm3_stm32l0.a(rcc.o) (cm3_assert_failed)
 /usr/local/Cellar/arm-gcc-bin/9-2020-q2-update/bin/../lib/gcc/arm-none-eabi/9.3.1/../../../../arm-none-eabi/lib/thumb/v6-m/nofp/libc_nano.a(lib_a-malloc.o)
                               sensor/obj/test.o (malloc)
+/usr/local/Cellar/arm-gcc-bin/9-2020-q2-update/bin/../lib/gcc/arm-none-eabi/9.3.1/../../../../arm-none-eabi/lib/thumb/v6-m/nofp/libc_nano.a(lib_a-memcpy-stub.o)
+                              sensor/obj/test.o (memcpy)
 /usr/local/Cellar/arm-gcc-bin/9-2020-q2-update/bin/../lib/gcc/arm-none-eabi/9.3.1/../../../../arm-none-eabi/lib/thumb/v6-m/nofp/libc_nano.a(lib_a-nano-freer.o)
                               /usr/local/Cellar/arm-gcc-bin/9-2020-q2-update/bin/../lib/gcc/arm-none-eabi/9.3.1/../../../../arm-none-eabi/lib/thumb/v6-m/nofp/libc_nano.a(lib_a-malloc.o) (_free_r)
 /usr/local/Cellar/arm-gcc-bin/9-2020-q2-update/bin/../lib/gcc/arm-none-eabi/9.3.1/../../../../arm-none-eabi/lib/thumb/v6-m/nofp/libc_nano.a(lib_a-nano-mallocr.o)
@@ -164,9 +170,11 @@ Discarded input sections
  .group         0x0000000000000000        0xc sensor/obj/sensor.o
  .group         0x0000000000000000        0xc sensor/obj/sensor.o
  .group         0x0000000000000000        0xc sensor/obj/sensor.o
+ .group         0x0000000000000000        0xc sensor/obj/sensor.o
  .text          0x0000000000000000        0x0 sensor/obj/sensor.o
  .data          0x0000000000000000        0x0 sensor/obj/sensor.o
  .bss           0x0000000000000000        0x0 sensor/obj/sensor.o
+ .group         0x0000000000000000        0xc sensor/obj/sensor_test.o
  .group         0x0000000000000000        0xc sensor/obj/sensor_test.o
  .group         0x0000000000000000        0xc sensor/obj/sensor_test.o
  .group         0x0000000000000000        0xc sensor/obj/sensor_test.o
@@ -224,23 +232,23 @@ Discarded input sections
  .rodata.test_si7051.str1.4
                 0x0000000000000000       0x23 sensor/obj/sensor_test.o
  .text.test_si7051
-                0x0000000000000000       0x60 sensor/obj/sensor_test.o
+                0x0000000000000000       0x5c sensor/obj/sensor_test.o
  .rodata.test_tmp112.str1.4
                 0x0000000000000000       0x10 sensor/obj/sensor_test.o
  .text.test_tmp112
-                0x0000000000000000       0x60 sensor/obj/sensor_test.o
+                0x0000000000000000       0x5c sensor/obj/sensor_test.o
  .rodata.test_sensor.str1.4
                 0x0000000000000000       0x44 sensor/obj/sensor_test.o
  .text.test_sensor
-                0x0000000000000000      0x13c sensor/obj/sensor_test.o
+                0x0000000000000000      0x130 sensor/obj/sensor_test.o
  .rodata        0x0000000000000000        0x8 sensor/obj/sensor_test.o
- .debug_info    0x0000000000000000     0x1149 sensor/obj/sensor_test.o
- .debug_abbrev  0x0000000000000000      0x2f6 sensor/obj/sensor_test.o
+ .debug_info    0x0000000000000000     0x10db sensor/obj/sensor_test.o
+ .debug_abbrev  0x0000000000000000      0x2d8 sensor/obj/sensor_test.o
  .debug_loc     0x0000000000000000      0x1da sensor/obj/sensor_test.o
  .debug_aranges
                 0x0000000000000000       0x30 sensor/obj/sensor_test.o
  .debug_ranges  0x0000000000000000       0x38 sensor/obj/sensor_test.o
- .debug_macro   0x0000000000000000      0x2fb sensor/obj/sensor_test.o
+ .debug_macro   0x0000000000000000      0x2fa sensor/obj/sensor_test.o
  .debug_macro   0x0000000000000000      0xa78 sensor/obj/sensor_test.o
  .debug_macro   0x0000000000000000       0x22 sensor/obj/sensor_test.o
  .debug_macro   0x0000000000000000       0x56 sensor/obj/sensor_test.o
@@ -286,14 +294,15 @@ Discarded input sections
  .debug_macro   0x0000000000000000       0x94 sensor/obj/sensor_test.o
  .debug_macro   0x0000000000000000      0x4cd sensor/obj/sensor_test.o
  .debug_macro   0x0000000000000000       0x22 sensor/obj/sensor_test.o
- .debug_macro   0x0000000000000000      0x185 sensor/obj/sensor_test.o
+ .debug_macro   0x0000000000000000      0x162 sensor/obj/sensor_test.o
  .debug_macro   0x0000000000000000      0x4e6 sensor/obj/sensor_test.o
+ .debug_macro   0x0000000000000000       0x2e sensor/obj/sensor_test.o
  .debug_macro   0x0000000000000000       0x1c sensor/obj/sensor_test.o
- .debug_macro   0x0000000000000000       0x40 sensor/obj/sensor_test.o
+ .debug_macro   0x0000000000000000       0x46 sensor/obj/sensor_test.o
  .debug_macro   0x0000000000000000       0x34 sensor/obj/sensor_test.o
  .debug_macro   0x0000000000000000       0x40 sensor/obj/sensor_test.o
- .debug_line    0x0000000000000000      0x874 sensor/obj/sensor_test.o
- .debug_str     0x0000000000000000    0x16042 sensor/obj/sensor_test.o
+ .debug_line    0x0000000000000000      0x872 sensor/obj/sensor_test.o
+ .debug_str     0x0000000000000000    0x1610b sensor/obj/sensor_test.o
  .comment       0x0000000000000000       0x4d sensor/obj/sensor_test.o
  .debug_frame   0x0000000000000000       0x80 sensor/obj/sensor_test.o
  .ARM.attributes
@@ -387,13 +396,14 @@ Discarded input sections
  .debug_macro   0x0000000000000000       0x94 sensor/obj/si7051.o
  .debug_macro   0x0000000000000000      0x4cd sensor/obj/si7051.o
  .debug_macro   0x0000000000000000       0x22 sensor/obj/si7051.o
- .debug_macro   0x0000000000000000      0x185 sensor/obj/si7051.o
+ .debug_macro   0x0000000000000000      0x162 sensor/obj/si7051.o
  .debug_line    0x0000000000000000      0x677 sensor/obj/si7051.o
- .debug_str     0x0000000000000000     0xea02 sensor/obj/si7051.o
+ .debug_str     0x0000000000000000     0xe994 sensor/obj/si7051.o
  .comment       0x0000000000000000       0x4d sensor/obj/si7051.o
  .debug_frame   0x0000000000000000       0xac sensor/obj/si7051.o
  .ARM.attributes
                 0x0000000000000000       0x2c sensor/obj/si7051.o
+ .group         0x0000000000000000        0xc sensor/obj/tmp112.o
  .group         0x0000000000000000        0xc sensor/obj/tmp112.o
  .group         0x0000000000000000        0xc sensor/obj/tmp112.o
  .group         0x0000000000000000        0xc sensor/obj/tmp112.o
@@ -444,7 +454,7 @@ Discarded input sections
  .rodata.tmp112_end.str1.4
                 0x0000000000000000       0x14 sensor/obj/tmp112.o
  .text.tmp112_end
-                0x0000000000000000       0x54 sensor/obj/tmp112.o
+                0x0000000000000000       0x50 sensor/obj/tmp112.o
  .rodata.tmp112_reset.str1.4
                 0x0000000000000000        0x2 sensor/obj/tmp112.o
  .text.tmp112_reset
@@ -453,13 +463,13 @@ Discarded input sections
                 0x0000000000000000        0x1 sensor/obj/tmp112.o
  .text.tmp112_read_temperature
                 0x0000000000000000       0xa8 sensor/obj/tmp112.o
- .debug_info    0x0000000000000000      0xef2 sensor/obj/tmp112.o
- .debug_abbrev  0x0000000000000000      0x220 sensor/obj/tmp112.o
+ .debug_info    0x0000000000000000      0xeb1 sensor/obj/tmp112.o
+ .debug_abbrev  0x0000000000000000      0x202 sensor/obj/tmp112.o
  .debug_loc     0x0000000000000000      0x213 sensor/obj/tmp112.o
  .debug_aranges
                 0x0000000000000000       0x50 sensor/obj/tmp112.o
  .debug_ranges  0x0000000000000000       0x40 sensor/obj/tmp112.o
- .debug_macro   0x0000000000000000      0x1e1 sensor/obj/tmp112.o
+ .debug_macro   0x0000000000000000      0x1e0 sensor/obj/tmp112.o
  .debug_macro   0x0000000000000000      0xa78 sensor/obj/tmp112.o
  .debug_macro   0x0000000000000000       0x1c sensor/obj/tmp112.o
  .debug_macro   0x0000000000000000       0x22 sensor/obj/tmp112.o
@@ -489,15 +499,17 @@ Discarded input sections
  .debug_macro   0x0000000000000000       0x94 sensor/obj/tmp112.o
  .debug_macro   0x0000000000000000      0x4cd sensor/obj/tmp112.o
  .debug_macro   0x0000000000000000       0x22 sensor/obj/tmp112.o
- .debug_macro   0x0000000000000000      0x185 sensor/obj/tmp112.o
+ .debug_macro   0x0000000000000000      0x162 sensor/obj/tmp112.o
  .debug_macro   0x0000000000000000       0x1c sensor/obj/tmp112.o
  .debug_macro   0x0000000000000000       0x40 sensor/obj/tmp112.o
+ .debug_macro   0x0000000000000000       0x2e sensor/obj/tmp112.o
  .debug_line    0x0000000000000000      0x7bd sensor/obj/tmp112.o
- .debug_str     0x0000000000000000     0xdc04 sensor/obj/tmp112.o
+ .debug_str     0x0000000000000000     0xdc3c sensor/obj/tmp112.o
  .comment       0x0000000000000000       0x4d sensor/obj/tmp112.o
  .debug_frame   0x0000000000000000       0xe0 sensor/obj/tmp112.o
  .ARM.attributes
                 0x0000000000000000       0x2c sensor/obj/tmp112.o
+ .group         0x0000000000000000        0xc sensor/obj/aes.o
  .group         0x0000000000000000        0xc sensor/obj/aes.o
  .group         0x0000000000000000        0xc sensor/obj/aes.o
  .group         0x0000000000000000        0xc sensor/obj/aes.o
@@ -574,7 +586,7 @@ Discarded input sections
  .debug_aranges
                 0x0000000000000000       0x98 sensor/obj/aes.o
  .debug_ranges  0x0000000000000000       0x88 sensor/obj/aes.o
- .debug_macro   0x0000000000000000      0x1fb sensor/obj/aes.o
+ .debug_macro   0x0000000000000000      0x200 sensor/obj/aes.o
  .debug_macro   0x0000000000000000      0xa78 sensor/obj/aes.o
  .debug_macro   0x0000000000000000       0x22 sensor/obj/aes.o
  .debug_macro   0x0000000000000000       0x56 sensor/obj/aes.o
@@ -598,6 +610,7 @@ Discarded input sections
  .debug_macro   0x0000000000000000       0x10 sensor/obj/aes.o
  .debug_macro   0x0000000000000000       0x35 sensor/obj/aes.o
  .debug_macro   0x0000000000000000       0x22 sensor/obj/aes.o
+ .debug_macro   0x0000000000000000       0x28 sensor/obj/aes.o
  .debug_macro   0x0000000000000000      0x100 sensor/obj/aes.o
  .debug_macro   0x0000000000000000       0x52 sensor/obj/aes.o
  .debug_macro   0x0000000000000000      0x14e sensor/obj/aes.o
@@ -606,13 +619,14 @@ Discarded input sections
  .debug_macro   0x0000000000000000       0x8e sensor/obj/aes.o
  .debug_macro   0x0000000000000000       0x58 sensor/obj/aes.o
  .debug_macro   0x0000000000000000      0x91f sensor/obj/aes.o
- .debug_macro   0x0000000000000000       0x40 sensor/obj/aes.o
+ .debug_macro   0x0000000000000000       0x46 sensor/obj/aes.o
  .debug_line    0x0000000000000000      0xe05 sensor/obj/aes.o
- .debug_str     0x0000000000000000     0xaf5d sensor/obj/aes.o
+ .debug_str     0x0000000000000000     0xb039 sensor/obj/aes.o
  .comment       0x0000000000000000       0x4d sensor/obj/aes.o
  .debug_frame   0x0000000000000000      0x1c4 sensor/obj/aes.o
  .ARM.attributes
                 0x0000000000000000       0x2c sensor/obj/aes.o
+ .group         0x0000000000000000        0xc sensor/obj/battery.o
  .group         0x0000000000000000        0xc sensor/obj/battery.o
  .group         0x0000000000000000        0xc sensor/obj/battery.o
  .group         0x0000000000000000        0xc sensor/obj/battery.o
@@ -678,7 +692,7 @@ Discarded input sections
  .debug_aranges
                 0x0000000000000000       0x48 sensor/obj/battery.o
  .debug_ranges  0x0000000000000000       0x50 sensor/obj/battery.o
- .debug_macro   0x0000000000000000      0x253 sensor/obj/battery.o
+ .debug_macro   0x0000000000000000      0x252 sensor/obj/battery.o
  .debug_macro   0x0000000000000000      0xa78 sensor/obj/battery.o
  .debug_macro   0x0000000000000000       0x22 sensor/obj/battery.o
  .debug_macro   0x0000000000000000       0x56 sensor/obj/battery.o
@@ -710,20 +724,24 @@ Discarded input sections
  .debug_macro   0x0000000000000000       0x28 sensor/obj/battery.o
  .debug_macro   0x0000000000000000       0x49 sensor/obj/battery.o
  .debug_macro   0x0000000000000000       0xca sensor/obj/battery.o
+ .debug_macro   0x0000000000000000       0x2e sensor/obj/battery.o
  .debug_macro   0x0000000000000000      0x2eb sensor/obj/battery.o
  .debug_macro   0x0000000000000000       0x16 sensor/obj/battery.o
  .debug_macro   0x0000000000000000       0x22 sensor/obj/battery.o
  .debug_macro   0x0000000000000000       0x94 sensor/obj/battery.o
  .debug_macro   0x0000000000000000      0x4cd sensor/obj/battery.o
  .debug_macro   0x0000000000000000       0x22 sensor/obj/battery.o
- .debug_macro   0x0000000000000000      0x185 sensor/obj/battery.o
+ .debug_macro   0x0000000000000000      0x162 sensor/obj/battery.o
  .debug_macro   0x0000000000000000       0x1c sensor/obj/battery.o
  .debug_line    0x0000000000000000      0x847 sensor/obj/battery.o
- .debug_str     0x0000000000000000    0x10069 sensor/obj/battery.o
+ .debug_str     0x0000000000000000    0x100b4 sensor/obj/battery.o
  .comment       0x0000000000000000       0x4d sensor/obj/battery.o
  .debug_frame   0x0000000000000000       0xa8 sensor/obj/battery.o
  .ARM.attributes
                 0x0000000000000000       0x2c sensor/obj/battery.o
+ .group         0x0000000000000000        0xc sensor/obj/bootloader_utils.o
+ .group         0x0000000000000000        0xc sensor/obj/bootloader_utils.o
+ .group         0x0000000000000000        0xc sensor/obj/bootloader_utils.o
  .group         0x0000000000000000        0xc sensor/obj/bootloader_utils.o
  .group         0x0000000000000000        0xc sensor/obj/bootloader_utils.o
  .group         0x0000000000000000        0xc sensor/obj/bootloader_utils.o
@@ -752,17 +770,21 @@ Discarded input sections
                 0x0000000000000000       0x30 sensor/obj/bootloader_utils.o
  .text.boot_jump_to_application
                 0x0000000000000000       0x20 sensor/obj/bootloader_utils.o
+ .rodata.boot_verify_checksum.str1.4
+                0x0000000000000000       0x2d sensor/obj/bootloader_utils.o
+ .text.boot_verify_checksum
+                0x0000000000000000       0x58 sensor/obj/bootloader_utils.o
  .rodata.boot_program_application.str1.4
-                0x0000000000000000       0x25 sensor/obj/bootloader_utils.o
+                0x0000000000000000       0x29 sensor/obj/bootloader_utils.o
  .text.boot_program_application
-                0x0000000000000000       0x54 sensor/obj/bootloader_utils.o
- .debug_info    0x0000000000000000      0x2a4 sensor/obj/bootloader_utils.o
- .debug_abbrev  0x0000000000000000      0x17c sensor/obj/bootloader_utils.o
- .debug_loc     0x0000000000000000       0xe5 sensor/obj/bootloader_utils.o
+                0x0000000000000000       0xd0 sensor/obj/bootloader_utils.o
+ .debug_info    0x0000000000000000      0x6db sensor/obj/bootloader_utils.o
+ .debug_abbrev  0x0000000000000000      0x17a sensor/obj/bootloader_utils.o
+ .debug_loc     0x0000000000000000      0x309 sensor/obj/bootloader_utils.o
  .debug_aranges
-                0x0000000000000000       0x38 sensor/obj/bootloader_utils.o
- .debug_ranges  0x0000000000000000       0x40 sensor/obj/bootloader_utils.o
- .debug_macro   0x0000000000000000      0x134 sensor/obj/bootloader_utils.o
+                0x0000000000000000       0x40 sensor/obj/bootloader_utils.o
+ .debug_ranges  0x0000000000000000       0x30 sensor/obj/bootloader_utils.o
+ .debug_macro   0x0000000000000000      0x153 sensor/obj/bootloader_utils.o
  .debug_macro   0x0000000000000000      0xa78 sensor/obj/bootloader_utils.o
  .debug_macro   0x0000000000000000       0x22 sensor/obj/bootloader_utils.o
  .debug_macro   0x0000000000000000       0x56 sensor/obj/bootloader_utils.o
@@ -779,15 +801,19 @@ Discarded input sections
  .debug_macro   0x0000000000000000       0x8e sensor/obj/bootloader_utils.o
  .debug_macro   0x0000000000000000       0x58 sensor/obj/bootloader_utils.o
  .debug_macro   0x0000000000000000      0x91f sensor/obj/bootloader_utils.o
+ .debug_macro   0x0000000000000000       0x22 sensor/obj/bootloader_utils.o
+ .debug_macro   0x0000000000000000       0x70 sensor/obj/bootloader_utils.o
  .debug_macro   0x0000000000000000      0x166 sensor/obj/bootloader_utils.o
  .debug_macro   0x0000000000000000       0x40 sensor/obj/bootloader_utils.o
- .debug_macro   0x0000000000000000       0x40 sensor/obj/bootloader_utils.o
- .debug_line    0x0000000000000000      0x50b sensor/obj/bootloader_utils.o
- .debug_str     0x0000000000000000     0x87a1 sensor/obj/bootloader_utils.o
+ .debug_macro   0x0000000000000000       0x46 sensor/obj/bootloader_utils.o
+ .debug_macro   0x0000000000000000       0x2e sensor/obj/bootloader_utils.o
+ .debug_line    0x0000000000000000      0x5f2 sensor/obj/bootloader_utils.o
+ .debug_str     0x0000000000000000     0x8f3e sensor/obj/bootloader_utils.o
  .comment       0x0000000000000000       0x4d sensor/obj/bootloader_utils.o
- .debug_frame   0x0000000000000000       0x68 sensor/obj/bootloader_utils.o
+ .debug_frame   0x0000000000000000       0x90 sensor/obj/bootloader_utils.o
  .ARM.attributes
                 0x0000000000000000       0x2c sensor/obj/bootloader_utils.o
+ .group         0x0000000000000000        0xc sensor/obj/log.o
  .group         0x0000000000000000        0xc sensor/obj/log.o
  .group         0x0000000000000000        0xc sensor/obj/log.o
  .group         0x0000000000000000        0xc sensor/obj/log.o
@@ -821,6 +847,12 @@ Discarded input sections
  .text          0x0000000000000000        0x0 sensor/obj/log.o
  .data          0x0000000000000000        0x0 sensor/obj/log.o
  .bss           0x0000000000000000        0x0 sensor/obj/log.o
+ .rodata.log_error.str1.4
+                0x0000000000000000        0xa sensor/obj/log.o
+ .text.log_error
+                0x0000000000000000       0x10 sensor/obj/log.o
+ .text.serial_printf
+                0x0000000000000000       0x30 sensor/obj/log.o
  .debug_macro   0x0000000000000000      0xa78 sensor/obj/log.o
  .debug_macro   0x0000000000000000       0x22 sensor/obj/log.o
  .debug_macro   0x0000000000000000       0x56 sensor/obj/log.o
@@ -829,6 +861,7 @@ Discarded input sections
  .debug_macro   0x0000000000000000       0x6a sensor/obj/log.o
  .debug_macro   0x0000000000000000      0x1df sensor/obj/log.o
  .debug_macro   0x0000000000000000       0x22 sensor/obj/log.o
+ .debug_macro   0x0000000000000000       0x28 sensor/obj/log.o
  .debug_macro   0x0000000000000000      0x100 sensor/obj/log.o
  .debug_macro   0x0000000000000000       0x52 sensor/obj/log.o
  .debug_macro   0x0000000000000000      0x14e sensor/obj/log.o
@@ -847,9 +880,10 @@ Discarded input sections
  .debug_macro   0x0000000000000000      0x2eb sensor/obj/log.o
  .debug_macro   0x0000000000000000       0x16 sensor/obj/log.o
  .debug_macro   0x0000000000000000       0x22 sensor/obj/log.o
- .debug_macro   0x0000000000000000      0x185 sensor/obj/log.o
- .debug_macro   0x0000000000000000       0x40 sensor/obj/log.o
+ .debug_macro   0x0000000000000000      0x162 sensor/obj/log.o
+ .debug_macro   0x0000000000000000       0x46 sensor/obj/log.o
  .debug_macro   0x0000000000000000      0x16d sensor/obj/log.o
+ .group         0x0000000000000000        0xc sensor/obj/memory.o
  .group         0x0000000000000000        0xc sensor/obj/memory.o
  .group         0x0000000000000000        0xc sensor/obj/memory.o
  .group         0x0000000000000000        0xc sensor/obj/memory.o
@@ -895,7 +929,7 @@ Discarded input sections
  .rodata.mem_flash_write_word.str1.4
                 0x0000000000000000       0x1c sensor/obj/memory.o
  .text.mem_flash_write_word
-                0x0000000000000000       0x50 sensor/obj/memory.o
+                0x0000000000000000       0x4c sensor/obj/memory.o
  .text.mem_get_dev_state
                 0x0000000000000000        0xc sensor/obj/memory.o
  .text.mem_get_dev_num
@@ -915,7 +949,7 @@ Discarded input sections
  .rodata.mem_print_log.str1.4
                 0x0000000000000000       0x19 sensor/obj/memory.o
  .text.mem_print_log
-                0x0000000000000000       0x44 sensor/obj/memory.o
+                0x0000000000000000       0x40 sensor/obj/memory.o
  .text.mem_get_aes_key
                 0x0000000000000000       0x30 sensor/obj/memory.o
  .text.mem_set_aes_key
@@ -927,7 +961,7 @@ Discarded input sections
  .rodata.mem_wipe_readings.str1.4
                 0x0000000000000000       0x1a sensor/obj/memory.o
  .text.mem_wipe_readings
-                0x0000000000000000       0x38 sensor/obj/memory.o
+                0x0000000000000000       0x34 sensor/obj/memory.o
  .text.mem_save_reading
                 0x0000000000000000       0x44 sensor/obj/memory.o
  .bss.msg_num   0x0000000000000000        0x4 sensor/obj/memory.o
@@ -960,9 +994,10 @@ Discarded input sections
  .debug_macro   0x0000000000000000       0x94 sensor/obj/memory.o
  .debug_macro   0x0000000000000000      0x4cd sensor/obj/memory.o
  .debug_macro   0x0000000000000000       0x22 sensor/obj/memory.o
- .debug_macro   0x0000000000000000      0x185 sensor/obj/memory.o
+ .debug_macro   0x0000000000000000      0x162 sensor/obj/memory.o
+ .debug_macro   0x0000000000000000       0x2e sensor/obj/memory.o
  .debug_macro   0x0000000000000000       0x1c sensor/obj/memory.o
- .debug_macro   0x0000000000000000       0x40 sensor/obj/memory.o
+ .debug_macro   0x0000000000000000       0x46 sensor/obj/memory.o
  .group         0x0000000000000000        0xc sensor/obj/printf.o
  .group         0x0000000000000000        0xc sensor/obj/printf.o
  .group         0x0000000000000000        0xc sensor/obj/printf.o
@@ -1001,19 +1036,20 @@ Discarded input sections
  .group         0x0000000000000000        0xc sensor/obj/reset.o
  .group         0x0000000000000000        0xc sensor/obj/reset.o
  .group         0x0000000000000000        0xc sensor/obj/reset.o
+ .group         0x0000000000000000        0xc sensor/obj/reset.o
  .text          0x0000000000000000        0x0 sensor/obj/reset.o
  .data          0x0000000000000000        0x0 sensor/obj/reset.o
  .bss           0x0000000000000000        0x0 sensor/obj/reset.o
  .rodata.reset_print_cause.str1.4
                 0x0000000000000000       0x97 sensor/obj/reset.o
  .text.reset_print_cause
-                0x0000000000000000       0xd8 sensor/obj/reset.o
- .debug_info    0x0000000000000000      0x490 sensor/obj/reset.o
- .debug_abbrev  0x0000000000000000       0xf2 sensor/obj/reset.o
+                0x0000000000000000       0xc8 sensor/obj/reset.o
+ .debug_info    0x0000000000000000      0x431 sensor/obj/reset.o
+ .debug_abbrev  0x0000000000000000       0xcb sensor/obj/reset.o
  .debug_aranges
                 0x0000000000000000       0x20 sensor/obj/reset.o
  .debug_ranges  0x0000000000000000       0x10 sensor/obj/reset.o
- .debug_macro   0x0000000000000000       0xf8 sensor/obj/reset.o
+ .debug_macro   0x0000000000000000       0xf7 sensor/obj/reset.o
  .debug_macro   0x0000000000000000      0xa78 sensor/obj/reset.o
  .debug_macro   0x0000000000000000       0x1c sensor/obj/reset.o
  .debug_macro   0x0000000000000000       0x22 sensor/obj/reset.o
@@ -1029,8 +1065,9 @@ Discarded input sections
  .debug_macro   0x0000000000000000       0x8e sensor/obj/reset.o
  .debug_macro   0x0000000000000000       0x58 sensor/obj/reset.o
  .debug_macro   0x0000000000000000      0x91f sensor/obj/reset.o
+ .debug_macro   0x0000000000000000       0x2e sensor/obj/reset.o
  .debug_line    0x0000000000000000      0x3b3 sensor/obj/reset.o
- .debug_str     0x0000000000000000     0x76ec sensor/obj/reset.o
+ .debug_str     0x0000000000000000     0x7792 sensor/obj/reset.o
  .comment       0x0000000000000000       0x4d sensor/obj/reset.o
  .debug_frame   0x0000000000000000       0x28 sensor/obj/reset.o
  .ARM.attributes
@@ -1050,6 +1087,7 @@ Discarded input sections
  .comment       0x0000000000000000       0x4d sensor/obj/rf_scan.o
  .ARM.attributes
                 0x0000000000000000       0x32 sensor/obj/rf_scan.o
+ .group         0x0000000000000000        0xc sensor/obj/rfm.o
  .group         0x0000000000000000        0xc sensor/obj/rfm.o
  .group         0x0000000000000000        0xc sensor/obj/rfm.o
  .group         0x0000000000000000        0xc sensor/obj/rfm.o
@@ -1110,7 +1148,7 @@ Discarded input sections
  .rodata.rfm_reset.str1.4
                 0x0000000000000000       0x10 sensor/obj/rfm.o
  .text.rfm_reset
-                0x0000000000000000       0x50 sensor/obj/rfm.o
+                0x0000000000000000       0x4c sensor/obj/rfm.o
  .rodata.rfm_init.str1.4
                 0x0000000000000000        0xf sensor/obj/rfm.o
  .text.rfm_init
@@ -1191,8 +1229,12 @@ Discarded input sections
  .debug_macro   0x0000000000000000       0x94 sensor/obj/rfm.o
  .debug_macro   0x0000000000000000      0x4cd sensor/obj/rfm.o
  .debug_macro   0x0000000000000000       0x22 sensor/obj/rfm.o
- .debug_macro   0x0000000000000000      0x185 sensor/obj/rfm.o
+ .debug_macro   0x0000000000000000      0x162 sensor/obj/rfm.o
+ .debug_macro   0x0000000000000000       0x2e sensor/obj/rfm.o
  .debug_macro   0x0000000000000000       0x1c sensor/obj/rfm.o
+ .group         0x0000000000000000        0xc sensor/obj/test.o
+ .group         0x0000000000000000        0xc sensor/obj/test.o
+ .group         0x0000000000000000        0xc sensor/obj/test.o
  .group         0x0000000000000000        0xc sensor/obj/test.o
  .group         0x0000000000000000        0xc sensor/obj/test.o
  .group         0x0000000000000000        0xc sensor/obj/test.o
@@ -1252,66 +1294,76 @@ Discarded input sections
  .rodata.test_mem_write_read.str1.4
                 0x0000000000000000       0xd8 sensor/obj/test.o
  .text.test_mem_write_read
-                0x0000000000000000       0xcc sensor/obj/test.o
- .text.test_boot
-                0x0000000000000000        0x8 sensor/obj/test.o
+                0x0000000000000000       0xbc sensor/obj/test.o
+ .rodata.test_boot_jump_to_application.str1.4
+                0x0000000000000000       0x2e sensor/obj/test.o
+ .text.test_boot_jump_to_application
+                0x0000000000000000       0x24 sensor/obj/test.o
+ .rodata.test_boot_verify_checksum.str1.4
+                0x0000000000000000       0x3a sensor/obj/test.o
+ .text.test_boot_verify_checksum
+                0x0000000000000000       0x48 sensor/obj/test.o
+ .rodata.test_boot_crc.str1.4
+                0x0000000000000000       0x15 sensor/obj/test.o
+ .text.test_boot_crc
+                0x0000000000000000       0x50 sensor/obj/test.o
  .text.flash_led
                 0x0000000000000000       0x60 sensor/obj/test.o
  .rodata.test_wakeup.str1.4
                 0x0000000000000000       0x17 sensor/obj/test.o
  .text.test_wakeup
-                0x0000000000000000       0x30 sensor/obj/test.o
+                0x0000000000000000       0x2c sensor/obj/test.o
  .rodata.test_standby.str1.4
                 0x0000000000000000       0x32 sensor/obj/test.o
  .text.test_standby
-                0x0000000000000000       0x2c sensor/obj/test.o
+                0x0000000000000000       0x28 sensor/obj/test.o
  .rodata.test_rf.str1.4
                 0x0000000000000000       0x3a sensor/obj/test.o
- .text.test_rf  0x0000000000000000       0xc8 sensor/obj/test.o
+ .text.test_rf  0x0000000000000000       0xbc sensor/obj/test.o
  .rodata.test_rf_listen.str1.4
                 0x0000000000000000       0x13 sensor/obj/test.o
  .text.test_rf_listen
-                0x0000000000000000       0x94 sensor/obj/test.o
+                0x0000000000000000       0x8c sensor/obj/test.o
  .rodata.test_receiver.str1.4
                 0x0000000000000000      0x14c sensor/obj/test.o
  .text.test_receiver
-                0x0000000000000000      0x1ec sensor/obj/test.o
+                0x0000000000000000      0x1c8 sensor/obj/test.o
  .rodata.test_voltage_scale.str1.4
                 0x0000000000000000       0x5f sensor/obj/test.o
  .text.test_voltage_scale
-                0x0000000000000000       0x60 sensor/obj/test.o
+                0x0000000000000000       0x58 sensor/obj/test.o
  .rodata.test_low_power_run.str1.4
                 0x0000000000000000       0x27 sensor/obj/test.o
  .text.test_low_power_run
-                0x0000000000000000       0x28 sensor/obj/test.o
+                0x0000000000000000       0x24 sensor/obj/test.o
  .rodata.test_eeprom.str1.4
                 0x0000000000000000       0x2f sensor/obj/test.o
  .text.test_eeprom
-                0x0000000000000000       0x44 sensor/obj/test.o
+                0x0000000000000000       0x40 sensor/obj/test.o
  .rodata.test_eeprom_keys.str1.4
                 0x0000000000000000       0x44 sensor/obj/test.o
  .text.test_eeprom_keys
-                0x0000000000000000       0xa4 sensor/obj/test.o
+                0x0000000000000000       0x94 sensor/obj/test.o
  .rodata.test_eeprom_wipe.str1.4
                 0x0000000000000000       0x2e sensor/obj/test.o
  .text.test_eeprom_wipe
-                0x0000000000000000       0x74 sensor/obj/test.o
+                0x0000000000000000       0x6c sensor/obj/test.o
  .rodata.test_lptim.str1.4
                 0x0000000000000000       0x25 sensor/obj/test.o
  .text.test_lptim
-                0x0000000000000000       0x3c sensor/obj/test.o
+                0x0000000000000000       0x38 sensor/obj/test.o
  .rodata.test_rfm.str1.4
                 0x0000000000000000        0xd sensor/obj/test.o
  .text.test_rfm
-                0x0000000000000000       0x30 sensor/obj/test.o
+                0x0000000000000000       0x2c sensor/obj/test.o
  .rodata.test_reset_eeprom.str1.4
                 0x0000000000000000       0x1b sensor/obj/test.o
  .text.test_reset_eeprom
-                0x0000000000000000       0xa0 sensor/obj/test.o
+                0x0000000000000000       0x94 sensor/obj/test.o
  .rodata.test_encryption.str1.4
                 0x0000000000000000       0x29 sensor/obj/test.o
  .text.test_encryption
-                0x0000000000000000       0x9c sensor/obj/test.o
+                0x0000000000000000       0x90 sensor/obj/test.o
  .rodata.test_timeout.str1.4
                 0x0000000000000000       0x19 sensor/obj/test.o
  .text.test_timeout
@@ -1319,18 +1371,19 @@ Discarded input sections
  .rodata.test_log.str1.4
                 0x0000000000000000       0x1c sensor/obj/test.o
  .text.test_log
-                0x0000000000000000       0x3c sensor/obj/test.o
+                0x0000000000000000       0x38 sensor/obj/test.o
  .rodata.test_analog_watchdog.str1.4
                 0x0000000000000000       0x19 sensor/obj/test.o
  .text.test_analog_watchdog
-                0x0000000000000000       0x18 sensor/obj/test.o
- .debug_info    0x0000000000000000     0x2524 sensor/obj/test.o
- .debug_abbrev  0x0000000000000000      0x3a1 sensor/obj/test.o
- .debug_loc     0x0000000000000000      0x518 sensor/obj/test.o
+                0x0000000000000000       0x14 sensor/obj/test.o
+ .rodata        0x0000000000000000       0x40 sensor/obj/test.o
+ .debug_info    0x0000000000000000     0x2539 sensor/obj/test.o
+ .debug_abbrev  0x0000000000000000      0x3a5 sensor/obj/test.o
+ .debug_loc     0x0000000000000000      0x55d sensor/obj/test.o
  .debug_aranges
-                0x0000000000000000       0xb8 sensor/obj/test.o
- .debug_ranges  0x0000000000000000      0x138 sensor/obj/test.o
- .debug_macro   0x0000000000000000      0x313 sensor/obj/test.o
+                0x0000000000000000       0xc8 sensor/obj/test.o
+ .debug_ranges  0x0000000000000000      0x148 sensor/obj/test.o
+ .debug_macro   0x0000000000000000      0x332 sensor/obj/test.o
  .debug_macro   0x0000000000000000      0xa78 sensor/obj/test.o
  .debug_macro   0x0000000000000000       0x22 sensor/obj/test.o
  .debug_macro   0x0000000000000000       0x56 sensor/obj/test.o
@@ -1372,6 +1425,8 @@ Discarded input sections
  .debug_macro   0x0000000000000000      0xf64 sensor/obj/test.o
  .debug_macro   0x0000000000000000      0x11e sensor/obj/test.o
  .debug_macro   0x0000000000000000      0x28a sensor/obj/test.o
+ .debug_macro   0x0000000000000000       0x22 sensor/obj/test.o
+ .debug_macro   0x0000000000000000       0x70 sensor/obj/test.o
  .debug_macro   0x0000000000000000       0x1c sensor/obj/test.o
  .debug_macro   0x0000000000000000       0x16 sensor/obj/test.o
  .debug_macro   0x0000000000000000      0x2eb sensor/obj/test.o
@@ -1380,16 +1435,18 @@ Discarded input sections
  .debug_macro   0x0000000000000000       0x94 sensor/obj/test.o
  .debug_macro   0x0000000000000000      0x4cd sensor/obj/test.o
  .debug_macro   0x0000000000000000       0x22 sensor/obj/test.o
- .debug_macro   0x0000000000000000      0x185 sensor/obj/test.o
- .debug_macro   0x0000000000000000       0x40 sensor/obj/test.o
+ .debug_macro   0x0000000000000000      0x162 sensor/obj/test.o
+ .debug_macro   0x0000000000000000       0x46 sensor/obj/test.o
+ .debug_macro   0x0000000000000000       0x2e sensor/obj/test.o
  .debug_macro   0x0000000000000000      0x4e6 sensor/obj/test.o
  .debug_macro   0x0000000000000000       0x1c sensor/obj/test.o
- .debug_line    0x0000000000000000      0xf4e sensor/obj/test.o
- .debug_str     0x0000000000000000    0x165b4 sensor/obj/test.o
+ .debug_line    0x0000000000000000     0x1041 sensor/obj/test.o
+ .debug_str     0x0000000000000000    0x16a58 sensor/obj/test.o
  .comment       0x0000000000000000       0x4d sensor/obj/test.o
- .debug_frame   0x0000000000000000      0x228 sensor/obj/test.o
+ .debug_frame   0x0000000000000000      0x25c sensor/obj/test.o
  .ARM.attributes
                 0x0000000000000000       0x2c sensor/obj/test.o
+ .group         0x0000000000000000        0xc sensor/obj/timers.o
  .group         0x0000000000000000        0xc sensor/obj/timers.o
  .group         0x0000000000000000        0xc sensor/obj/timers.o
  .group         0x0000000000000000        0xc sensor/obj/timers.o
@@ -1470,7 +1527,7 @@ Discarded input sections
  .rodata.timers_enter_standby.str1.4
                 0x0000000000000000        0x7 sensor/obj/timers.o
  .text.timers_enter_standby
-                0x0000000000000000       0x4c sensor/obj/timers.o
+                0x0000000000000000       0x48 sensor/obj/timers.o
  .debug_macro   0x0000000000000000      0xa78 sensor/obj/timers.o
  .debug_macro   0x0000000000000000       0x22 sensor/obj/timers.o
  .debug_macro   0x0000000000000000       0x56 sensor/obj/timers.o
@@ -1506,8 +1563,9 @@ Discarded input sections
  .debug_macro   0x0000000000000000       0x94 sensor/obj/timers.o
  .debug_macro   0x0000000000000000      0x4cd sensor/obj/timers.o
  .debug_macro   0x0000000000000000       0x22 sensor/obj/timers.o
- .debug_macro   0x0000000000000000      0x185 sensor/obj/timers.o
+ .debug_macro   0x0000000000000000      0x162 sensor/obj/timers.o
  .debug_macro   0x0000000000000000      0x4e6 sensor/obj/timers.o
+ .debug_macro   0x0000000000000000       0x2e sensor/obj/timers.o
  .debug_macro   0x0000000000000000       0x18 sensor/obj/timers.o
  .debug_macro   0x0000000000000000       0x64 sensor/obj/timers.o
  .debug_macro   0x0000000000000000       0x35 sensor/obj/timers.o
@@ -1636,6 +1694,112 @@ Discarded input sections
  .debug_frame   0x0000000000000000      0x250 libopencm3/lib/libopencm3_stm32l0.a(adc_common_v2.o)
  .ARM.attributes
                 0x0000000000000000       0x2c libopencm3/lib/libopencm3_stm32l0.a(adc_common_v2.o)
+ .group         0x0000000000000000        0xc libopencm3/lib/libopencm3_stm32l0.a(crc_common_all.o)
+ .group         0x0000000000000000        0xc libopencm3/lib/libopencm3_stm32l0.a(crc_common_all.o)
+ .group         0x0000000000000000        0xc libopencm3/lib/libopencm3_stm32l0.a(crc_common_all.o)
+ .group         0x0000000000000000        0xc libopencm3/lib/libopencm3_stm32l0.a(crc_common_all.o)
+ .group         0x0000000000000000        0xc libopencm3/lib/libopencm3_stm32l0.a(crc_common_all.o)
+ .group         0x0000000000000000        0xc libopencm3/lib/libopencm3_stm32l0.a(crc_common_all.o)
+ .group         0x0000000000000000        0xc libopencm3/lib/libopencm3_stm32l0.a(crc_common_all.o)
+ .group         0x0000000000000000        0xc libopencm3/lib/libopencm3_stm32l0.a(crc_common_all.o)
+ .group         0x0000000000000000        0xc libopencm3/lib/libopencm3_stm32l0.a(crc_common_all.o)
+ .group         0x0000000000000000        0xc libopencm3/lib/libopencm3_stm32l0.a(crc_common_all.o)
+ .group         0x0000000000000000        0xc libopencm3/lib/libopencm3_stm32l0.a(crc_common_all.o)
+ .group         0x0000000000000000        0xc libopencm3/lib/libopencm3_stm32l0.a(crc_common_all.o)
+ .group         0x0000000000000000        0xc libopencm3/lib/libopencm3_stm32l0.a(crc_common_all.o)
+ .group         0x0000000000000000        0xc libopencm3/lib/libopencm3_stm32l0.a(crc_common_all.o)
+ .text          0x0000000000000000        0x0 libopencm3/lib/libopencm3_stm32l0.a(crc_common_all.o)
+ .data          0x0000000000000000        0x0 libopencm3/lib/libopencm3_stm32l0.a(crc_common_all.o)
+ .bss           0x0000000000000000        0x0 libopencm3/lib/libopencm3_stm32l0.a(crc_common_all.o)
+ .text.crc_reset
+                0x0000000000000000       0x10 libopencm3/lib/libopencm3_stm32l0.a(crc_common_all.o)
+ .text.crc_calculate
+                0x0000000000000000        0xc libopencm3/lib/libopencm3_stm32l0.a(crc_common_all.o)
+ .text.crc_calculate_block
+                0x0000000000000000       0x1c libopencm3/lib/libopencm3_stm32l0.a(crc_common_all.o)
+ .debug_info    0x0000000000000000      0x11e libopencm3/lib/libopencm3_stm32l0.a(crc_common_all.o)
+ .debug_abbrev  0x0000000000000000       0xb6 libopencm3/lib/libopencm3_stm32l0.a(crc_common_all.o)
+ .debug_loc     0x0000000000000000       0x94 libopencm3/lib/libopencm3_stm32l0.a(crc_common_all.o)
+ .debug_aranges
+                0x0000000000000000       0x30 libopencm3/lib/libopencm3_stm32l0.a(crc_common_all.o)
+ .debug_ranges  0x0000000000000000       0x20 libopencm3/lib/libopencm3_stm32l0.a(crc_common_all.o)
+ .debug_macro   0x0000000000000000       0xbc libopencm3/lib/libopencm3_stm32l0.a(crc_common_all.o)
+ .debug_macro   0x0000000000000000      0xa72 libopencm3/lib/libopencm3_stm32l0.a(crc_common_all.o)
+ .debug_macro   0x0000000000000000       0x1c libopencm3/lib/libopencm3_stm32l0.a(crc_common_all.o)
+ .debug_macro   0x0000000000000000       0x22 libopencm3/lib/libopencm3_stm32l0.a(crc_common_all.o)
+ .debug_macro   0x0000000000000000       0x56 libopencm3/lib/libopencm3_stm32l0.a(crc_common_all.o)
+ .debug_macro   0x0000000000000000       0x51 libopencm3/lib/libopencm3_stm32l0.a(crc_common_all.o)
+ .debug_macro   0x0000000000000000      0x103 libopencm3/lib/libopencm3_stm32l0.a(crc_common_all.o)
+ .debug_macro   0x0000000000000000       0x6a libopencm3/lib/libopencm3_stm32l0.a(crc_common_all.o)
+ .debug_macro   0x0000000000000000      0x1df libopencm3/lib/libopencm3_stm32l0.a(crc_common_all.o)
+ .debug_macro   0x0000000000000000       0x22 libopencm3/lib/libopencm3_stm32l0.a(crc_common_all.o)
+ .debug_macro   0x0000000000000000       0xe8 libopencm3/lib/libopencm3_stm32l0.a(crc_common_all.o)
+ .debug_macro   0x0000000000000000       0x52 libopencm3/lib/libopencm3_stm32l0.a(crc_common_all.o)
+ .debug_macro   0x0000000000000000      0x14e libopencm3/lib/libopencm3_stm32l0.a(crc_common_all.o)
+ .debug_macro   0x0000000000000000       0x22 libopencm3/lib/libopencm3_stm32l0.a(crc_common_all.o)
+ .debug_macro   0x0000000000000000       0x70 libopencm3/lib/libopencm3_stm32l0.a(crc_common_all.o)
+ .debug_line    0x0000000000000000      0x385 libopencm3/lib/libopencm3_stm32l0.a(crc_common_all.o)
+ .debug_str     0x0000000000000000     0x4ccf libopencm3/lib/libopencm3_stm32l0.a(crc_common_all.o)
+ .comment       0x0000000000000000       0x4d libopencm3/lib/libopencm3_stm32l0.a(crc_common_all.o)
+ .debug_frame   0x0000000000000000       0x48 libopencm3/lib/libopencm3_stm32l0.a(crc_common_all.o)
+ .ARM.attributes
+                0x0000000000000000       0x2c libopencm3/lib/libopencm3_stm32l0.a(crc_common_all.o)
+ .group         0x0000000000000000        0xc libopencm3/lib/libopencm3_stm32l0.a(crc_v2.o)
+ .group         0x0000000000000000        0xc libopencm3/lib/libopencm3_stm32l0.a(crc_v2.o)
+ .group         0x0000000000000000        0xc libopencm3/lib/libopencm3_stm32l0.a(crc_v2.o)
+ .group         0x0000000000000000        0xc libopencm3/lib/libopencm3_stm32l0.a(crc_v2.o)
+ .group         0x0000000000000000        0xc libopencm3/lib/libopencm3_stm32l0.a(crc_v2.o)
+ .group         0x0000000000000000        0xc libopencm3/lib/libopencm3_stm32l0.a(crc_v2.o)
+ .group         0x0000000000000000        0xc libopencm3/lib/libopencm3_stm32l0.a(crc_v2.o)
+ .group         0x0000000000000000        0xc libopencm3/lib/libopencm3_stm32l0.a(crc_v2.o)
+ .group         0x0000000000000000        0xc libopencm3/lib/libopencm3_stm32l0.a(crc_v2.o)
+ .group         0x0000000000000000        0xc libopencm3/lib/libopencm3_stm32l0.a(crc_v2.o)
+ .group         0x0000000000000000        0xc libopencm3/lib/libopencm3_stm32l0.a(crc_v2.o)
+ .group         0x0000000000000000        0xc libopencm3/lib/libopencm3_stm32l0.a(crc_v2.o)
+ .group         0x0000000000000000        0xc libopencm3/lib/libopencm3_stm32l0.a(crc_v2.o)
+ .group         0x0000000000000000        0xc libopencm3/lib/libopencm3_stm32l0.a(crc_v2.o)
+ .text          0x0000000000000000        0x0 libopencm3/lib/libopencm3_stm32l0.a(crc_v2.o)
+ .data          0x0000000000000000        0x0 libopencm3/lib/libopencm3_stm32l0.a(crc_v2.o)
+ .bss           0x0000000000000000        0x0 libopencm3/lib/libopencm3_stm32l0.a(crc_v2.o)
+ .text.crc_reverse_output_enable
+                0x0000000000000000       0x10 libopencm3/lib/libopencm3_stm32l0.a(crc_v2.o)
+ .text.crc_reverse_output_disable
+                0x0000000000000000       0x10 libopencm3/lib/libopencm3_stm32l0.a(crc_v2.o)
+ .text.crc_set_reverse_input
+                0x0000000000000000       0x14 libopencm3/lib/libopencm3_stm32l0.a(crc_v2.o)
+ .text.crc_set_polysize
+                0x0000000000000000       0x14 libopencm3/lib/libopencm3_stm32l0.a(crc_v2.o)
+ .text.crc_set_polynomial
+                0x0000000000000000        0xc libopencm3/lib/libopencm3_stm32l0.a(crc_v2.o)
+ .text.crc_set_initial
+                0x0000000000000000        0xc libopencm3/lib/libopencm3_stm32l0.a(crc_v2.o)
+ .debug_info    0x0000000000000000      0x168 libopencm3/lib/libopencm3_stm32l0.a(crc_v2.o)
+ .debug_abbrev  0x0000000000000000       0x97 libopencm3/lib/libopencm3_stm32l0.a(crc_v2.o)
+ .debug_loc     0x0000000000000000       0x44 libopencm3/lib/libopencm3_stm32l0.a(crc_v2.o)
+ .debug_aranges
+                0x0000000000000000       0x48 libopencm3/lib/libopencm3_stm32l0.a(crc_v2.o)
+ .debug_ranges  0x0000000000000000       0x38 libopencm3/lib/libopencm3_stm32l0.a(crc_v2.o)
+ .debug_macro   0x0000000000000000       0xbc libopencm3/lib/libopencm3_stm32l0.a(crc_v2.o)
+ .debug_macro   0x0000000000000000      0xa72 libopencm3/lib/libopencm3_stm32l0.a(crc_v2.o)
+ .debug_macro   0x0000000000000000       0x1c libopencm3/lib/libopencm3_stm32l0.a(crc_v2.o)
+ .debug_macro   0x0000000000000000       0x22 libopencm3/lib/libopencm3_stm32l0.a(crc_v2.o)
+ .debug_macro   0x0000000000000000       0x56 libopencm3/lib/libopencm3_stm32l0.a(crc_v2.o)
+ .debug_macro   0x0000000000000000       0x51 libopencm3/lib/libopencm3_stm32l0.a(crc_v2.o)
+ .debug_macro   0x0000000000000000      0x103 libopencm3/lib/libopencm3_stm32l0.a(crc_v2.o)
+ .debug_macro   0x0000000000000000       0x6a libopencm3/lib/libopencm3_stm32l0.a(crc_v2.o)
+ .debug_macro   0x0000000000000000      0x1df libopencm3/lib/libopencm3_stm32l0.a(crc_v2.o)
+ .debug_macro   0x0000000000000000       0x22 libopencm3/lib/libopencm3_stm32l0.a(crc_v2.o)
+ .debug_macro   0x0000000000000000       0xe8 libopencm3/lib/libopencm3_stm32l0.a(crc_v2.o)
+ .debug_macro   0x0000000000000000       0x52 libopencm3/lib/libopencm3_stm32l0.a(crc_v2.o)
+ .debug_macro   0x0000000000000000      0x14e libopencm3/lib/libopencm3_stm32l0.a(crc_v2.o)
+ .debug_macro   0x0000000000000000       0x22 libopencm3/lib/libopencm3_stm32l0.a(crc_v2.o)
+ .debug_macro   0x0000000000000000       0x70 libopencm3/lib/libopencm3_stm32l0.a(crc_v2.o)
+ .debug_line    0x0000000000000000      0x3c7 libopencm3/lib/libopencm3_stm32l0.a(crc_v2.o)
+ .debug_str     0x0000000000000000     0x4d37 libopencm3/lib/libopencm3_stm32l0.a(crc_v2.o)
+ .comment       0x0000000000000000       0x4d libopencm3/lib/libopencm3_stm32l0.a(crc_v2.o)
+ .debug_frame   0x0000000000000000       0x70 libopencm3/lib/libopencm3_stm32l0.a(crc_v2.o)
+ .ARM.attributes
+                0x0000000000000000       0x2c libopencm3/lib/libopencm3_stm32l0.a(crc_v2.o)
  .group         0x0000000000000000        0xc libopencm3/lib/libopencm3_stm32l0.a(dma_common_l1f013.o)
  .group         0x0000000000000000        0xc libopencm3/lib/libopencm3_stm32l0.a(dma_common_l1f013.o)
  .group         0x0000000000000000        0xc libopencm3/lib/libopencm3_stm32l0.a(dma_common_l1f013.o)
@@ -3111,6 +3275,13 @@ Discarded input sections
  .debug_frame   0x0000000000000000       0x40 /usr/local/Cellar/arm-gcc-bin/9-2020-q2-update/bin/../lib/gcc/arm-none-eabi/9.3.1/../../../../arm-none-eabi/lib/thumb/v6-m/nofp/libc_nano.a(lib_a-malloc.o)
  .ARM.attributes
                 0x0000000000000000       0x2c /usr/local/Cellar/arm-gcc-bin/9-2020-q2-update/bin/../lib/gcc/arm-none-eabi/9.3.1/../../../../arm-none-eabi/lib/thumb/v6-m/nofp/libc_nano.a(lib_a-malloc.o)
+ .text          0x0000000000000000        0x0 /usr/local/Cellar/arm-gcc-bin/9-2020-q2-update/bin/../lib/gcc/arm-none-eabi/9.3.1/../../../../arm-none-eabi/lib/thumb/v6-m/nofp/libc_nano.a(lib_a-memcpy-stub.o)
+ .data          0x0000000000000000        0x0 /usr/local/Cellar/arm-gcc-bin/9-2020-q2-update/bin/../lib/gcc/arm-none-eabi/9.3.1/../../../../arm-none-eabi/lib/thumb/v6-m/nofp/libc_nano.a(lib_a-memcpy-stub.o)
+ .bss           0x0000000000000000        0x0 /usr/local/Cellar/arm-gcc-bin/9-2020-q2-update/bin/../lib/gcc/arm-none-eabi/9.3.1/../../../../arm-none-eabi/lib/thumb/v6-m/nofp/libc_nano.a(lib_a-memcpy-stub.o)
+ .text.memcpy   0x0000000000000000       0x12 /usr/local/Cellar/arm-gcc-bin/9-2020-q2-update/bin/../lib/gcc/arm-none-eabi/9.3.1/../../../../arm-none-eabi/lib/thumb/v6-m/nofp/libc_nano.a(lib_a-memcpy-stub.o)
+ .debug_frame   0x0000000000000000       0x28 /usr/local/Cellar/arm-gcc-bin/9-2020-q2-update/bin/../lib/gcc/arm-none-eabi/9.3.1/../../../../arm-none-eabi/lib/thumb/v6-m/nofp/libc_nano.a(lib_a-memcpy-stub.o)
+ .ARM.attributes
+                0x0000000000000000       0x2c /usr/local/Cellar/arm-gcc-bin/9-2020-q2-update/bin/../lib/gcc/arm-none-eabi/9.3.1/../../../../arm-none-eabi/lib/thumb/v6-m/nofp/libc_nano.a(lib_a-memcpy-stub.o)
  .text          0x0000000000000000        0x0 /usr/local/Cellar/arm-gcc-bin/9-2020-q2-update/bin/../lib/gcc/arm-none-eabi/9.3.1/../../../../arm-none-eabi/lib/thumb/v6-m/nofp/libc_nano.a(lib_a-nano-freer.o)
  .data          0x0000000000000000        0x0 /usr/local/Cellar/arm-gcc-bin/9-2020-q2-update/bin/../lib/gcc/arm-none-eabi/9.3.1/../../../../arm-none-eabi/lib/thumb/v6-m/nofp/libc_nano.a(lib_a-nano-freer.o)
  .bss           0x0000000000000000        0x0 /usr/local/Cellar/arm-gcc-bin/9-2020-q2-update/bin/../lib/gcc/arm-none-eabi/9.3.1/../../../../arm-none-eabi/lib/thumb/v6-m/nofp/libc_nano.a(lib_a-nano-freer.o)
@@ -3318,7 +3489,7 @@ END GROUP
                 0x0000000000000800                _min_heap_size = 0x800
                 0x0000000000000800                _min_stack_size = 0x800
 
-.text           0x0000000008004000      0xfb8
+.text           0x0000000008004000      0xf9c
  *(.vectors)
  .vectors       0x0000000008004000       0xc0 libopencm3/lib/libopencm3_stm32l0.a(vector.o)
                 0x0000000008004000                vector_table
@@ -3336,283 +3507,284 @@ END GROUP
  .text._putchar_main
                 0x000000000800420c       0x10 sensor/obj/log.o
  .text.log_init
-                0x000000000800421c       0x1c sensor/obj/log.o
+                0x000000000800421c       0x2c sensor/obj/log.o
                 0x000000000800421c                log_init
  .text.log_printf
-                0x0000000008004238       0x68 sensor/obj/log.o
-                0x0000000008004238                log_printf
+                0x0000000008004248       0x30 sensor/obj/log.o
+                0x0000000008004248                log_printf
  .text.mem_init
-                0x00000000080042a0        0xc sensor/obj/memory.o
-                0x00000000080042a0                mem_init
+                0x0000000008004278        0xc sensor/obj/memory.o
+                0x0000000008004278                mem_init
  .text.mem_eeprom_write_byte
-                0x00000000080042ac       0x54 sensor/obj/memory.o
-                0x00000000080042ac                mem_eeprom_write_byte
- .text._atoi    0x0000000008004300       0x24 sensor/obj/printf.o
+                0x0000000008004284       0x54 sensor/obj/memory.o
+                0x0000000008004284                mem_eeprom_write_byte
+ .text._atoi    0x00000000080042d8       0x24 sensor/obj/printf.o
  .text._ntoa_format
-                0x0000000008004324       0xd4 sensor/obj/printf.o
+                0x00000000080042fc       0xe6 sensor/obj/printf.o
+ *fill*         0x00000000080043e2        0x2 
  .text.fnprintf
-                0x00000000080043f8      0x140 sensor/obj/printf.o
-                0x00000000080043f8                fnprintf
+                0x00000000080043e4      0x140 sensor/obj/printf.o
+                0x00000000080043e4                fnprintf
  .text.spi_read_single
-                0x0000000008004538       0x40 sensor/obj/rfm.o
+                0x0000000008004524       0x40 sensor/obj/rfm.o
  .text.spi_write_single
-                0x0000000008004578       0x84 sensor/obj/rfm.o
+                0x0000000008004564       0x84 sensor/obj/rfm.o
  .text.exti4_15_isr
-                0x00000000080045fc       0x8c sensor/obj/rfm.o
-                0x00000000080045fc                exti4_15_isr
+                0x00000000080045e8       0x8c sensor/obj/rfm.o
+                0x00000000080045e8                exti4_15_isr
  .text.timers_delay_microseconds
-                0x0000000008004688       0x2c sensor/obj/timers.o
-                0x0000000008004688                timers_delay_microseconds
+                0x0000000008004674       0x2c sensor/obj/timers.o
+                0x0000000008004674                timers_delay_microseconds
  .text.timers_micros
-                0x00000000080046b4       0x10 sensor/obj/timers.o
-                0x00000000080046b4                timers_micros
+                0x00000000080046a0       0x10 sensor/obj/timers.o
+                0x00000000080046a0                timers_micros
  .text.timeout_init
-                0x00000000080046c4       0x1c sensor/obj/timers.o
-                0x00000000080046c4                timeout_init
- .text.timeout  0x00000000080046e0       0x50 sensor/obj/timers.o
-                0x00000000080046e0                timeout
+                0x00000000080046b0       0x1c sensor/obj/timers.o
+                0x00000000080046b0                timeout_init
+ .text.timeout  0x00000000080046cc       0x4c sensor/obj/timers.o
+                0x00000000080046cc                timeout
  .text.set_gpio_for_standby
-                0x0000000008004730       0xf8 sensor/obj/timers.o
-                0x0000000008004730                set_gpio_for_standby
- .text.rtc_isr  0x0000000008004828       0x4c sensor/obj/timers.o
-                0x0000000008004828                rtc_isr
+                0x0000000008004718       0xf8 sensor/obj/timers.o
+                0x0000000008004718                set_gpio_for_standby
+ .text.rtc_isr  0x0000000008004810       0x48 sensor/obj/timers.o
+                0x0000000008004810                rtc_isr
  .text.exti_reset_request
-                0x0000000008004874        0xc libopencm3/lib/libopencm3_stm32l0.a(exti_common_all.o)
-                0x0000000008004874                exti_reset_request
+                0x0000000008004858        0xc libopencm3/lib/libopencm3_stm32l0.a(exti_common_all.o)
+                0x0000000008004858                exti_reset_request
  .text.flash_set_ws
-                0x0000000008004880       0x14 libopencm3/lib/libopencm3_stm32l0.a(flash_common_all.o)
-                0x0000000008004880                flash_set_ws
+                0x0000000008004864       0x14 libopencm3/lib/libopencm3_stm32l0.a(flash_common_all.o)
+                0x0000000008004864                flash_set_ws
  .text.flash_unlock_pecr
-                0x0000000008004894       0x18 libopencm3/lib/libopencm3_stm32l0.a(flash_common_l01.o)
-                0x0000000008004894                flash_unlock_pecr
+                0x0000000008004878       0x18 libopencm3/lib/libopencm3_stm32l0.a(flash_common_l01.o)
+                0x0000000008004878                flash_unlock_pecr
  .text.flash_lock_pecr
-                0x00000000080048ac       0x10 libopencm3/lib/libopencm3_stm32l0.a(flash_common_l01.o)
-                0x00000000080048ac                flash_lock_pecr
+                0x0000000008004890       0x10 libopencm3/lib/libopencm3_stm32l0.a(flash_common_l01.o)
+                0x0000000008004890                flash_lock_pecr
  .text.gpio_set
-                0x00000000080048bc        0x4 libopencm3/lib/libopencm3_stm32l0.a(gpio_common_all.o)
-                0x00000000080048bc                gpio_set
+                0x00000000080048a0        0x4 libopencm3/lib/libopencm3_stm32l0.a(gpio_common_all.o)
+                0x00000000080048a0                gpio_set
  .text.gpio_clear
-                0x00000000080048c0        0x6 libopencm3/lib/libopencm3_stm32l0.a(gpio_common_all.o)
-                0x00000000080048c0                gpio_clear
+                0x00000000080048a4        0x6 libopencm3/lib/libopencm3_stm32l0.a(gpio_common_all.o)
+                0x00000000080048a4                gpio_clear
  .text.gpio_mode_setup
-                0x00000000080048c6       0x40 libopencm3/lib/libopencm3_stm32l0.a(gpio_common_f0234.o)
-                0x00000000080048c6                gpio_mode_setup
+                0x00000000080048aa       0x40 libopencm3/lib/libopencm3_stm32l0.a(gpio_common_f0234.o)
+                0x00000000080048aa                gpio_mode_setup
  .text.gpio_set_output_options
-                0x0000000008004906       0x3c libopencm3/lib/libopencm3_stm32l0.a(gpio_common_f0234.o)
-                0x0000000008004906                gpio_set_output_options
+                0x00000000080048ea       0x3c libopencm3/lib/libopencm3_stm32l0.a(gpio_common_f0234.o)
+                0x00000000080048ea                gpio_set_output_options
  .text.gpio_set_af
-                0x0000000008004942       0x54 libopencm3/lib/libopencm3_stm32l0.a(gpio_common_f0234.o)
-                0x0000000008004942                gpio_set_af
+                0x0000000008004926       0x54 libopencm3/lib/libopencm3_stm32l0.a(gpio_common_f0234.o)
+                0x0000000008004926                gpio_set_af
  .text.lptimer_get_counter
-                0x0000000008004996        0x6 libopencm3/lib/libopencm3_stm32l0.a(lptimer_common_all.o)
-                0x0000000008004996                lptimer_get_counter
+                0x000000000800497a        0x6 libopencm3/lib/libopencm3_stm32l0.a(lptimer_common_all.o)
+                0x000000000800497a                lptimer_get_counter
  .text.pwr_disable_backup_domain_write_protect
-                0x000000000800499c       0x14 libopencm3/lib/libopencm3_stm32l0.a(pwr_common_v1.o)
-                0x000000000800499c                pwr_disable_backup_domain_write_protect
+                0x0000000008004980       0x14 libopencm3/lib/libopencm3_stm32l0.a(pwr_common_v1.o)
+                0x0000000008004980                pwr_disable_backup_domain_write_protect
  .text.pwr_enable_backup_domain_write_protect
-                0x00000000080049b0       0x14 libopencm3/lib/libopencm3_stm32l0.a(pwr_common_v1.o)
-                0x00000000080049b0                pwr_enable_backup_domain_write_protect
+                0x0000000008004994       0x14 libopencm3/lib/libopencm3_stm32l0.a(pwr_common_v1.o)
+                0x0000000008004994                pwr_enable_backup_domain_write_protect
  .text.pwr_clear_standby_flag
-                0x00000000080049c4       0x10 libopencm3/lib/libopencm3_stm32l0.a(pwr_common_v1.o)
-                0x00000000080049c4                pwr_clear_standby_flag
+                0x00000000080049a8       0x10 libopencm3/lib/libopencm3_stm32l0.a(pwr_common_v1.o)
+                0x00000000080049a8                pwr_clear_standby_flag
  .text.pwr_clear_wakeup_flag
-                0x00000000080049d4       0x10 libopencm3/lib/libopencm3_stm32l0.a(pwr_common_v1.o)
-                0x00000000080049d4                pwr_clear_wakeup_flag
+                0x00000000080049b8       0x10 libopencm3/lib/libopencm3_stm32l0.a(pwr_common_v1.o)
+                0x00000000080049b8                pwr_clear_wakeup_flag
  .text.rcc_osc_on
-                0x00000000080049e4       0x54 libopencm3/lib/libopencm3_stm32l0.a(rcc.o)
-                0x00000000080049e4                rcc_osc_on
+                0x00000000080049c8       0x54 libopencm3/lib/libopencm3_stm32l0.a(rcc.o)
+                0x00000000080049c8                rcc_osc_on
  .text.rcc_is_osc_ready
-                0x0000000008004a38       0x58 libopencm3/lib/libopencm3_stm32l0.a(rcc.o)
-                0x0000000008004a38                rcc_is_osc_ready
+                0x0000000008004a1c       0x58 libopencm3/lib/libopencm3_stm32l0.a(rcc.o)
+                0x0000000008004a1c                rcc_is_osc_ready
  .text.rcc_wait_for_osc_ready
-                0x0000000008004a90       0x10 libopencm3/lib/libopencm3_stm32l0.a(rcc.o)
-                0x0000000008004a90                rcc_wait_for_osc_ready
+                0x0000000008004a74       0x10 libopencm3/lib/libopencm3_stm32l0.a(rcc.o)
+                0x0000000008004a74                rcc_wait_for_osc_ready
  .text.rcc_set_ppre1
-                0x0000000008004aa0       0x18 libopencm3/lib/libopencm3_stm32l0.a(rcc.o)
-                0x0000000008004aa0                rcc_set_ppre1
+                0x0000000008004a84       0x18 libopencm3/lib/libopencm3_stm32l0.a(rcc.o)
+                0x0000000008004a84                rcc_set_ppre1
  .text.rcc_set_ppre2
-                0x0000000008004ab8       0x18 libopencm3/lib/libopencm3_stm32l0.a(rcc.o)
-                0x0000000008004ab8                rcc_set_ppre2
+                0x0000000008004a9c       0x18 libopencm3/lib/libopencm3_stm32l0.a(rcc.o)
+                0x0000000008004a9c                rcc_set_ppre2
  .text.rcc_set_hpre
-                0x0000000008004ad0       0x14 libopencm3/lib/libopencm3_stm32l0.a(rcc.o)
-                0x0000000008004ad0                rcc_set_hpre
+                0x0000000008004ab4       0x14 libopencm3/lib/libopencm3_stm32l0.a(rcc.o)
+                0x0000000008004ab4                rcc_set_hpre
  .text.rcc_set_msi_range
-                0x0000000008004ae4       0x18 libopencm3/lib/libopencm3_stm32l0.a(rcc.o)
-                0x0000000008004ae4                rcc_set_msi_range
+                0x0000000008004ac8       0x18 libopencm3/lib/libopencm3_stm32l0.a(rcc.o)
+                0x0000000008004ac8                rcc_set_msi_range
  .text.rcc_periph_clock_enable
-                0x0000000008004afc       0x1c libopencm3/lib/libopencm3_stm32l0.a(rcc_common_all.o)
-                0x0000000008004afc                rcc_periph_clock_enable
+                0x0000000008004ae0       0x1c libopencm3/lib/libopencm3_stm32l0.a(rcc_common_all.o)
+                0x0000000008004ae0                rcc_periph_clock_enable
  .text.rcc_periph_reset_pulse
-                0x0000000008004b18       0x20 libopencm3/lib/libopencm3_stm32l0.a(rcc_common_all.o)
-                0x0000000008004b18                rcc_periph_reset_pulse
+                0x0000000008004afc       0x20 libopencm3/lib/libopencm3_stm32l0.a(rcc_common_all.o)
+                0x0000000008004afc                rcc_periph_reset_pulse
  .text.rtc_unlock
-                0x0000000008004b38       0x10 libopencm3/lib/libopencm3_stm32l0.a(rtc_common_l1f024.o)
-                0x0000000008004b38                rtc_unlock
+                0x0000000008004b1c       0x10 libopencm3/lib/libopencm3_stm32l0.a(rtc_common_l1f024.o)
+                0x0000000008004b1c                rtc_unlock
  .text.rtc_lock
-                0x0000000008004b48        0xc libopencm3/lib/libopencm3_stm32l0.a(rtc_common_l1f024.o)
-                0x0000000008004b48                rtc_lock
+                0x0000000008004b2c        0xc libopencm3/lib/libopencm3_stm32l0.a(rtc_common_l1f024.o)
+                0x0000000008004b2c                rtc_lock
  .text.rtc_clear_wakeup_flag
-                0x0000000008004b54       0x14 libopencm3/lib/libopencm3_stm32l0.a(rtc_common_l1f024.o)
-                0x0000000008004b54                rtc_clear_wakeup_flag
+                0x0000000008004b38       0x14 libopencm3/lib/libopencm3_stm32l0.a(rtc_common_l1f024.o)
+                0x0000000008004b38                rtc_clear_wakeup_flag
  .text.spi_xfer
-                0x0000000008004b68       0x10 libopencm3/lib/libopencm3_stm32l0.a(spi_common_all.o)
-                0x0000000008004b68                spi_xfer
+                0x0000000008004b4c       0x10 libopencm3/lib/libopencm3_stm32l0.a(spi_common_all.o)
+                0x0000000008004b4c                spi_xfer
  .text.usart_set_baudrate
-                0x0000000008004b78       0x58 libopencm3/lib/libopencm3_stm32l0.a(usart_common_all.o)
-                0x0000000008004b78                usart_set_baudrate
+                0x0000000008004b5c       0x58 libopencm3/lib/libopencm3_stm32l0.a(usart_common_all.o)
+                0x0000000008004b5c                usart_set_baudrate
  .text.usart_set_databits
-                0x0000000008004bd0       0x1c libopencm3/lib/libopencm3_stm32l0.a(usart_common_all.o)
-                0x0000000008004bd0                usart_set_databits
+                0x0000000008004bb4       0x1c libopencm3/lib/libopencm3_stm32l0.a(usart_common_all.o)
+                0x0000000008004bb4                usart_set_databits
  .text.usart_set_stopbits
-                0x0000000008004bec       0x10 libopencm3/lib/libopencm3_stm32l0.a(usart_common_all.o)
-                0x0000000008004bec                usart_set_stopbits
+                0x0000000008004bd0       0x10 libopencm3/lib/libopencm3_stm32l0.a(usart_common_all.o)
+                0x0000000008004bd0                usart_set_stopbits
  .text.usart_set_parity
-                0x0000000008004bfc       0x10 libopencm3/lib/libopencm3_stm32l0.a(usart_common_all.o)
-                0x0000000008004bfc                usart_set_parity
+                0x0000000008004be0       0x10 libopencm3/lib/libopencm3_stm32l0.a(usart_common_all.o)
+                0x0000000008004be0                usart_set_parity
  .text.usart_set_mode
-                0x0000000008004c0c        0xc libopencm3/lib/libopencm3_stm32l0.a(usart_common_all.o)
-                0x0000000008004c0c                usart_set_mode
+                0x0000000008004bf0        0xc libopencm3/lib/libopencm3_stm32l0.a(usart_common_all.o)
+                0x0000000008004bf0                usart_set_mode
  .text.usart_set_flow_control
-                0x0000000008004c18       0x10 libopencm3/lib/libopencm3_stm32l0.a(usart_common_all.o)
-                0x0000000008004c18                usart_set_flow_control
+                0x0000000008004bfc       0x10 libopencm3/lib/libopencm3_stm32l0.a(usart_common_all.o)
+                0x0000000008004bfc                usart_set_flow_control
  .text.usart_enable
-                0x0000000008004c28        0xa libopencm3/lib/libopencm3_stm32l0.a(usart_common_all.o)
-                0x0000000008004c28                usart_enable
+                0x0000000008004c0c        0xa libopencm3/lib/libopencm3_stm32l0.a(usart_common_all.o)
+                0x0000000008004c0c                usart_enable
  .text.usart_disable
-                0x0000000008004c32        0xa libopencm3/lib/libopencm3_stm32l0.a(usart_common_all.o)
-                0x0000000008004c32                usart_disable
+                0x0000000008004c16        0xa libopencm3/lib/libopencm3_stm32l0.a(usart_common_all.o)
+                0x0000000008004c16                usart_disable
  .text.usart_send_blocking
-                0x0000000008004c3c       0x14 libopencm3/lib/libopencm3_stm32l0.a(usart_common_all.o)
-                0x0000000008004c3c                usart_send_blocking
+                0x0000000008004c20       0x14 libopencm3/lib/libopencm3_stm32l0.a(usart_common_all.o)
+                0x0000000008004c20                usart_send_blocking
  .text.usart_send
-                0x0000000008004c50        0x8 libopencm3/lib/libopencm3_stm32l0.a(usart_common_v2.o)
-                0x0000000008004c50                usart_send
+                0x0000000008004c34        0x8 libopencm3/lib/libopencm3_stm32l0.a(usart_common_v2.o)
+                0x0000000008004c34                usart_send
  .text.usart_wait_send_ready
-                0x0000000008004c58        0xa libopencm3/lib/libopencm3_stm32l0.a(usart_common_v2.o)
-                0x0000000008004c58                usart_wait_send_ready
+                0x0000000008004c3c        0xa libopencm3/lib/libopencm3_stm32l0.a(usart_common_v2.o)
+                0x0000000008004c3c                usart_wait_send_ready
  .text.usart_get_flag
-                0x0000000008004c62        0xc libopencm3/lib/libopencm3_stm32l0.a(usart_common_v2.o)
-                0x0000000008004c62                usart_get_flag
+                0x0000000008004c46        0xc libopencm3/lib/libopencm3_stm32l0.a(usart_common_v2.o)
+                0x0000000008004c46                usart_get_flag
  .text.blocking_handler
-                0x0000000008004c6e        0x2 libopencm3/lib/libopencm3_stm32l0.a(vector.o)
-                0x0000000008004c6e                exti0_1_isr
-                0x0000000008004c6e                blocking_handler
-                0x0000000008004c6e                tsc_isr
-                0x0000000008004c6e                spi1_isr
-                0x0000000008004c6e                i2c1_isr
-                0x0000000008004c6e                i2c2_isr
-                0x0000000008004c6e                tim21_isr
-                0x0000000008004c6e                usart1_isr
-                0x0000000008004c6e                i2c3_isr
-                0x0000000008004c6e                reserved4_isr
-                0x0000000008004c6e                exti2_3_isr
-                0x0000000008004c6e                lptim1_isr
-                0x0000000008004c6e                pvd_isr
-                0x0000000008004c6e                rcc_isr
-                0x0000000008004c6e                flash_isr
-                0x0000000008004c6e                hard_fault_handler
-                0x0000000008004c6e                spi2_isr
-                0x0000000008004c6e                lpuart1_aes_rng_isr
-                0x0000000008004c6e                usb_isr
-                0x0000000008004c6e                tim3_isr
-                0x0000000008004c6e                usart2_isr
-                0x0000000008004c6e                adc_comp_isr
-                0x0000000008004c6e                dma1_channel1_isr
-                0x0000000008004c6e                tim6_dac_isr
-                0x0000000008004c6e                lcd_isr
-                0x0000000008004c6e                dma1_channel2_3_isr
-                0x0000000008004c6e                tim22_isr
-                0x0000000008004c6e                usart4_5_isr
-                0x0000000008004c6e                wwdg_isr
-                0x0000000008004c6e                tim2_isr
-                0x0000000008004c6e                dma1_channel4_5_isr
-                0x0000000008004c6e                tim7_isr
+                0x0000000008004c52        0x2 libopencm3/lib/libopencm3_stm32l0.a(vector.o)
+                0x0000000008004c52                exti0_1_isr
+                0x0000000008004c52                blocking_handler
+                0x0000000008004c52                tsc_isr
+                0x0000000008004c52                spi1_isr
+                0x0000000008004c52                i2c1_isr
+                0x0000000008004c52                i2c2_isr
+                0x0000000008004c52                tim21_isr
+                0x0000000008004c52                usart1_isr
+                0x0000000008004c52                i2c3_isr
+                0x0000000008004c52                reserved4_isr
+                0x0000000008004c52                exti2_3_isr
+                0x0000000008004c52                lptim1_isr
+                0x0000000008004c52                pvd_isr
+                0x0000000008004c52                rcc_isr
+                0x0000000008004c52                flash_isr
+                0x0000000008004c52                hard_fault_handler
+                0x0000000008004c52                spi2_isr
+                0x0000000008004c52                lpuart1_aes_rng_isr
+                0x0000000008004c52                usb_isr
+                0x0000000008004c52                tim3_isr
+                0x0000000008004c52                usart2_isr
+                0x0000000008004c52                adc_comp_isr
+                0x0000000008004c52                dma1_channel1_isr
+                0x0000000008004c52                tim6_dac_isr
+                0x0000000008004c52                lcd_isr
+                0x0000000008004c52                dma1_channel2_3_isr
+                0x0000000008004c52                tim22_isr
+                0x0000000008004c52                usart4_5_isr
+                0x0000000008004c52                wwdg_isr
+                0x0000000008004c52                tim2_isr
+                0x0000000008004c52                dma1_channel4_5_isr
+                0x0000000008004c52                tim7_isr
  .text.null_handler
-                0x0000000008004c70        0x2 libopencm3/lib/libopencm3_stm32l0.a(vector.o)
-                0x0000000008004c70                null_handler
-                0x0000000008004c70                sv_call_handler
-                0x0000000008004c70                pend_sv_handler
-                0x0000000008004c70                sys_tick_handler
-                0x0000000008004c70                nmi_handler
- *fill*         0x0000000008004c72        0x2 
+                0x0000000008004c54        0x2 libopencm3/lib/libopencm3_stm32l0.a(vector.o)
+                0x0000000008004c54                null_handler
+                0x0000000008004c54                sv_call_handler
+                0x0000000008004c54                pend_sv_handler
+                0x0000000008004c54                sys_tick_handler
+                0x0000000008004c54                nmi_handler
+ *fill*         0x0000000008004c56        0x2 
  .text.reset_handler
-                0x0000000008004c74       0x88 libopencm3/lib/libopencm3_stm32l0.a(vector.o)
-                0x0000000008004c74                reset_handler
- .text          0x0000000008004cfc       0x14 /usr/local/Cellar/arm-gcc-bin/9-2020-q2-update/bin/../lib/gcc/arm-none-eabi/9.3.1/thumb/v6-m/nofp/libgcc.a(_thumb1_case_uqi.o)
-                0x0000000008004cfc                __gnu_thumb1_case_uqi
- .text          0x0000000008004d10      0x114 /usr/local/Cellar/arm-gcc-bin/9-2020-q2-update/bin/../lib/gcc/arm-none-eabi/9.3.1/thumb/v6-m/nofp/libgcc.a(_udivsi3.o)
-                0x0000000008004d10                __udivsi3
-                0x0000000008004d10                __aeabi_uidiv
-                0x0000000008004e1c                __aeabi_uidivmod
- .text          0x0000000008004e24        0x4 /usr/local/Cellar/arm-gcc-bin/9-2020-q2-update/bin/../lib/gcc/arm-none-eabi/9.3.1/thumb/v6-m/nofp/libgcc.a(_dvmd_tls.o)
-                0x0000000008004e24                __aeabi_ldiv0
-                0x0000000008004e24                __aeabi_idiv0
+                0x0000000008004c58       0x88 libopencm3/lib/libopencm3_stm32l0.a(vector.o)
+                0x0000000008004c58                reset_handler
+ .text          0x0000000008004ce0       0x14 /usr/local/Cellar/arm-gcc-bin/9-2020-q2-update/bin/../lib/gcc/arm-none-eabi/9.3.1/thumb/v6-m/nofp/libgcc.a(_thumb1_case_uqi.o)
+                0x0000000008004ce0                __gnu_thumb1_case_uqi
+ .text          0x0000000008004cf4      0x114 /usr/local/Cellar/arm-gcc-bin/9-2020-q2-update/bin/../lib/gcc/arm-none-eabi/9.3.1/thumb/v6-m/nofp/libgcc.a(_udivsi3.o)
+                0x0000000008004cf4                __udivsi3
+                0x0000000008004cf4                __aeabi_uidiv
+                0x0000000008004e00                __aeabi_uidivmod
+ .text          0x0000000008004e08        0x4 /usr/local/Cellar/arm-gcc-bin/9-2020-q2-update/bin/../lib/gcc/arm-none-eabi/9.3.1/thumb/v6-m/nofp/libgcc.a(_dvmd_tls.o)
+                0x0000000008004e08                __aeabi_ldiv0
+                0x0000000008004e08                __aeabi_idiv0
  *(.glue_7)
- .glue_7        0x0000000008004e28        0x0 linker stubs
+ .glue_7        0x0000000008004e0c        0x0 linker stubs
  *(.glue_7t)
- .glue_7t       0x0000000008004e28        0x0 linker stubs
+ .glue_7t       0x0000000008004e0c        0x0 linker stubs
  *(.eh_frame)
-                0x0000000008004e28                . = ALIGN (0x4)
+                0x0000000008004e0c                . = ALIGN (0x4)
  *(.rodata*)
  .rodata.main.str1.4
-                0x0000000008004e28        0xe sensor/obj/sensor.o
- *fill*         0x0000000008004e36        0x2 
+                0x0000000008004e0c        0xe sensor/obj/sensor.o
+ *fill*         0x0000000008004e1a        0x2 
  .rodata.fnprintf
-                0x0000000008004e38      0x150 sensor/obj/printf.o
+                0x0000000008004e1c      0x150 sensor/obj/printf.o
  .rodata.spi_write_single.str1.4
-                0x0000000008004f88        0xe sensor/obj/rfm.o
- *fill*         0x0000000008004f96        0x2 
+                0x0000000008004f6c        0xe sensor/obj/rfm.o
+ *fill*         0x0000000008004f7a        0x2 
  .rodata.timeout.str1.4
-                0x0000000008004f98       0x11 sensor/obj/timers.o
- *fill*         0x0000000008004fa9        0x3 
+                0x0000000008004f7c       0x11 sensor/obj/timers.o
+ *fill*         0x0000000008004f8d        0x3 
  .rodata.rtc_isr.str1.4
-                0x0000000008004fac        0x9 sensor/obj/timers.o
-                0x0000000008004fb8                . = ALIGN (0x4)
- *fill*         0x0000000008004fb5        0x3 
+                0x0000000008004f90        0x9 sensor/obj/timers.o
+                0x0000000008004f9c                . = ALIGN (0x4)
+ *fill*         0x0000000008004f99        0x3 
 
-.vfp11_veneer   0x0000000008004fb8        0x0
- .vfp11_veneer  0x0000000008004fb8        0x0 linker stubs
+.vfp11_veneer   0x0000000008004f9c        0x0
+ .vfp11_veneer  0x0000000008004f9c        0x0 linker stubs
 
-.v4_bx          0x0000000008004fb8        0x0
- .v4_bx         0x0000000008004fb8        0x0 linker stubs
+.v4_bx          0x0000000008004f9c        0x0
+ .v4_bx         0x0000000008004f9c        0x0 linker stubs
 
-.iplt           0x0000000008004fb8        0x0
- .iplt          0x0000000008004fb8        0x0 sensor/obj/sensor.o
+.iplt           0x0000000008004f9c        0x0
+ .iplt          0x0000000008004f9c        0x0 sensor/obj/sensor.o
 
-.rel.dyn        0x0000000008004fb8        0x0
- .rel.iplt      0x0000000008004fb8        0x0 sensor/obj/sensor.o
+.rel.dyn        0x0000000008004f9c        0x0
+ .rel.iplt      0x0000000008004f9c        0x0 sensor/obj/sensor.o
 
-.preinit_array  0x0000000008004fb8        0x0
-                0x0000000008004fb8                . = ALIGN (0x4)
-                0x0000000008004fb8                __preinit_array_start = .
+.preinit_array  0x0000000008004f9c        0x0
+                0x0000000008004f9c                . = ALIGN (0x4)
+                0x0000000008004f9c                __preinit_array_start = .
  *(.preinit_array)
-                0x0000000008004fb8                __preinit_array_end = .
+                0x0000000008004f9c                __preinit_array_end = .
 
-.init_array     0x0000000008004fb8        0x0
-                0x0000000008004fb8                . = ALIGN (0x4)
-                0x0000000008004fb8                __init_array_start = .
+.init_array     0x0000000008004f9c        0x0
+                0x0000000008004f9c                . = ALIGN (0x4)
+                0x0000000008004f9c                __init_array_start = .
  *(SORT_BY_NAME(.init_array.*))
  *(.init_array)
-                0x0000000008004fb8                __init_array_end = .
+                0x0000000008004f9c                __init_array_end = .
 
-.fini_array     0x0000000008004fb8        0x0
-                0x0000000008004fb8                . = ALIGN (0x4)
-                0x0000000008004fb8                __fini_array_start = .
+.fini_array     0x0000000008004f9c        0x0
+                0x0000000008004f9c                . = ALIGN (0x4)
+                0x0000000008004f9c                __fini_array_start = .
  *(.fini_array)
  *(SORT_BY_NAME(.fini_array.*))
-                0x0000000008004fb8                __fini_array_end = .
+                0x0000000008004f9c                __fini_array_end = .
 
 .ARM.extab
  *(.ARM.extab*)
 
-.ARM.exidx      0x0000000008004fb8        0x0
-                0x0000000008004fb8                __exidx_start = .
+.ARM.exidx      0x0000000008004f9c        0x0
+                0x0000000008004f9c                __exidx_start = .
  *(.ARM.exidx*)
-                0x0000000008004fb8                __exidx_end = .
-                0x0000000008004fb8                . = ALIGN (0x4)
-                0x0000000008004fb8                _etext = .
+                0x0000000008004f9c                __exidx_end = .
+                0x0000000008004f9c                . = ALIGN (0x4)
+                0x0000000008004f9c                _etext = .
 
-.data           0x0000000020000000       0x10 load address 0x0000000008004fb8
+.data           0x0000000020000000       0x10 load address 0x0000000008004f9c
                 0x0000000020000000                _data = .
  *(.data*)
  .data.curr_address
@@ -3628,12 +3800,12 @@ END GROUP
                 0x000000002000000c                rcc_apb2_frequency
                 0x0000000020000010                . = ALIGN (0x4)
                 0x0000000020000010                _edata = .
-                0x0000000008004fb8                _data_loadaddr = LOADADDR (.data)
+                0x0000000008004f9c                _data_loadaddr = LOADADDR (.data)
 
-.igot.plt       0x0000000020000010        0x0 load address 0x0000000008004fc8
+.igot.plt       0x0000000020000010        0x0 load address 0x0000000008004fac
  .igot.plt      0x0000000020000010        0x0 sensor/obj/sensor.o
 
-.bss            0x0000000020000010      0x18c load address 0x0000000008004fc8
+.bss            0x0000000020000010      0x18c load address 0x0000000008004fac
  *(.bss*)
  .bss.packets_buf
                 0x0000000020000010      0x180 sensor/obj/rfm.o
@@ -3652,7 +3824,7 @@ END GROUP
                 0x000000002000019c                PROVIDE (end = .)
 
 ._user_heap_stack
-                0x000000002000019c     0x1004 load address 0x0000000008004fc8
+                0x000000002000019c     0x1004 load address 0x0000000008004fac
                 0x00000000200001a0                . = ALIGN (0x8)
  *fill*         0x000000002000019c        0x4 
                 0x00000000200009a0                . = (. + _min_heap_size)
@@ -3723,255 +3895,256 @@ LOAD /usr/local/Cellar/arm-gcc-bin/9-2020-q2-update/bin/../lib/gcc/arm-none-eabi
 LOAD /usr/local/Cellar/arm-gcc-bin/9-2020-q2-update/bin/../lib/gcc/arm-none-eabi/9.3.1/../../../../arm-none-eabi/lib/thumb/v6-m/nofp/libm.a
 LOAD /usr/local/Cellar/arm-gcc-bin/9-2020-q2-update/bin/../lib/gcc/arm-none-eabi/9.3.1/thumb/v6-m/nofp/libgcc.a
 
-.debug_info     0x0000000000000000     0x9a02
- .debug_info    0x0000000000000000      0xad4 sensor/obj/sensor.o
- .debug_info    0x0000000000000ad4      0xadc sensor/obj/log.o
- .debug_info    0x00000000000015b0      0xc16 sensor/obj/memory.o
- .debug_info    0x00000000000021c6      0x481 sensor/obj/printf.o
- .debug_info    0x0000000000002647     0x22bd sensor/obj/rfm.o
- .debug_info    0x0000000000004904     0x17b0 sensor/obj/timers.o
- .debug_info    0x00000000000060b4      0x241 libopencm3/lib/libopencm3_stm32l0.a(exti_common_all.o)
- .debug_info    0x00000000000062f5       0xf6 libopencm3/lib/libopencm3_stm32l0.a(flash_common_all.o)
- .debug_info    0x00000000000063eb      0x232 libopencm3/lib/libopencm3_stm32l0.a(flash_common_l01.o)
- .debug_info    0x000000000000661d      0x266 libopencm3/lib/libopencm3_stm32l0.a(gpio_common_all.o)
- .debug_info    0x0000000000006883      0x257 libopencm3/lib/libopencm3_stm32l0.a(gpio_common_f0234.o)
- .debug_info    0x0000000000006ada      0x47f libopencm3/lib/libopencm3_stm32l0.a(lptimer_common_all.o)
- .debug_info    0x0000000000006f59      0x1c2 libopencm3/lib/libopencm3_stm32l0.a(pwr_common_v1.o)
- .debug_info    0x000000000000711b      0xbbd libopencm3/lib/libopencm3_stm32l0.a(rcc.o)
- .debug_info    0x0000000000007cd8      0x648 libopencm3/lib/libopencm3_stm32l0.a(rcc_common_all.o)
- .debug_info    0x0000000000008320      0x17a libopencm3/lib/libopencm3_stm32l0.a(rtc_common_l1f024.o)
- .debug_info    0x000000000000849a      0x9bf libopencm3/lib/libopencm3_stm32l0.a(spi_common_all.o)
- .debug_info    0x0000000000008e59      0x525 libopencm3/lib/libopencm3_stm32l0.a(usart_common_all.o)
- .debug_info    0x000000000000937e      0x3a8 libopencm3/lib/libopencm3_stm32l0.a(usart_common_v2.o)
- .debug_info    0x0000000000009726      0x2dc libopencm3/lib/libopencm3_stm32l0.a(vector.o)
+.debug_info     0x0000000000000000     0x993a
+ .debug_info    0x0000000000000000      0xa98 sensor/obj/sensor.o
+ .debug_info    0x0000000000000a98      0xb34 sensor/obj/log.o
+ .debug_info    0x00000000000015cc      0xbbc sensor/obj/memory.o
+ .debug_info    0x0000000000002188      0x492 sensor/obj/printf.o
+ .debug_info    0x000000000000261a     0x2268 sensor/obj/rfm.o
+ .debug_info    0x0000000000004882     0x176a sensor/obj/timers.o
+ .debug_info    0x0000000000005fec      0x241 libopencm3/lib/libopencm3_stm32l0.a(exti_common_all.o)
+ .debug_info    0x000000000000622d       0xf6 libopencm3/lib/libopencm3_stm32l0.a(flash_common_all.o)
+ .debug_info    0x0000000000006323      0x232 libopencm3/lib/libopencm3_stm32l0.a(flash_common_l01.o)
+ .debug_info    0x0000000000006555      0x266 libopencm3/lib/libopencm3_stm32l0.a(gpio_common_all.o)
+ .debug_info    0x00000000000067bb      0x257 libopencm3/lib/libopencm3_stm32l0.a(gpio_common_f0234.o)
+ .debug_info    0x0000000000006a12      0x47f libopencm3/lib/libopencm3_stm32l0.a(lptimer_common_all.o)
+ .debug_info    0x0000000000006e91      0x1c2 libopencm3/lib/libopencm3_stm32l0.a(pwr_common_v1.o)
+ .debug_info    0x0000000000007053      0xbbd libopencm3/lib/libopencm3_stm32l0.a(rcc.o)
+ .debug_info    0x0000000000007c10      0x648 libopencm3/lib/libopencm3_stm32l0.a(rcc_common_all.o)
+ .debug_info    0x0000000000008258      0x17a libopencm3/lib/libopencm3_stm32l0.a(rtc_common_l1f024.o)
+ .debug_info    0x00000000000083d2      0x9bf libopencm3/lib/libopencm3_stm32l0.a(spi_common_all.o)
+ .debug_info    0x0000000000008d91      0x525 libopencm3/lib/libopencm3_stm32l0.a(usart_common_all.o)
+ .debug_info    0x00000000000092b6      0x3a8 libopencm3/lib/libopencm3_stm32l0.a(usart_common_v2.o)
+ .debug_info    0x000000000000965e      0x2dc libopencm3/lib/libopencm3_stm32l0.a(vector.o)
 
-.debug_abbrev   0x0000000000000000     0x2088
- .debug_abbrev  0x0000000000000000      0x232 sensor/obj/sensor.o
- .debug_abbrev  0x0000000000000232      0x1e3 sensor/obj/log.o
- .debug_abbrev  0x0000000000000415      0x2ab sensor/obj/memory.o
- .debug_abbrev  0x00000000000006c0      0x245 sensor/obj/printf.o
- .debug_abbrev  0x0000000000000905      0x40c sensor/obj/rfm.o
- .debug_abbrev  0x0000000000000d11      0x31c sensor/obj/timers.o
- .debug_abbrev  0x000000000000102d      0x102 libopencm3/lib/libopencm3_stm32l0.a(exti_common_all.o)
- .debug_abbrev  0x000000000000112f       0x97 libopencm3/lib/libopencm3_stm32l0.a(flash_common_all.o)
- .debug_abbrev  0x00000000000011c6       0xc1 libopencm3/lib/libopencm3_stm32l0.a(flash_common_l01.o)
- .debug_abbrev  0x0000000000001287      0x116 libopencm3/lib/libopencm3_stm32l0.a(gpio_common_all.o)
- .debug_abbrev  0x000000000000139d       0xbf libopencm3/lib/libopencm3_stm32l0.a(gpio_common_f0234.o)
- .debug_abbrev  0x000000000000145c      0x107 libopencm3/lib/libopencm3_stm32l0.a(lptimer_common_all.o)
- .debug_abbrev  0x0000000000001563       0xa2 libopencm3/lib/libopencm3_stm32l0.a(pwr_common_v1.o)
- .debug_abbrev  0x0000000000001605      0x302 libopencm3/lib/libopencm3_stm32l0.a(rcc.o)
- .debug_abbrev  0x0000000000001907      0x14c libopencm3/lib/libopencm3_stm32l0.a(rcc_common_all.o)
- .debug_abbrev  0x0000000000001a53       0xa0 libopencm3/lib/libopencm3_stm32l0.a(rtc_common_l1f024.o)
- .debug_abbrev  0x0000000000001af3      0x1e6 libopencm3/lib/libopencm3_stm32l0.a(spi_common_all.o)
- .debug_abbrev  0x0000000000001cd9      0x142 libopencm3/lib/libopencm3_stm32l0.a(usart_common_all.o)
- .debug_abbrev  0x0000000000001e1b      0x128 libopencm3/lib/libopencm3_stm32l0.a(usart_common_v2.o)
- .debug_abbrev  0x0000000000001f43      0x145 libopencm3/lib/libopencm3_stm32l0.a(vector.o)
+.debug_abbrev   0x0000000000000000     0x2027
+ .debug_abbrev  0x0000000000000000      0x20b sensor/obj/sensor.o
+ .debug_abbrev  0x000000000000020b      0x1e4 sensor/obj/log.o
+ .debug_abbrev  0x00000000000003ef      0x284 sensor/obj/memory.o
+ .debug_abbrev  0x0000000000000673      0x243 sensor/obj/printf.o
+ .debug_abbrev  0x00000000000008b6      0x403 sensor/obj/rfm.o
+ .debug_abbrev  0x0000000000000cb9      0x313 sensor/obj/timers.o
+ .debug_abbrev  0x0000000000000fcc      0x102 libopencm3/lib/libopencm3_stm32l0.a(exti_common_all.o)
+ .debug_abbrev  0x00000000000010ce       0x97 libopencm3/lib/libopencm3_stm32l0.a(flash_common_all.o)
+ .debug_abbrev  0x0000000000001165       0xc1 libopencm3/lib/libopencm3_stm32l0.a(flash_common_l01.o)
+ .debug_abbrev  0x0000000000001226      0x116 libopencm3/lib/libopencm3_stm32l0.a(gpio_common_all.o)
+ .debug_abbrev  0x000000000000133c       0xbf libopencm3/lib/libopencm3_stm32l0.a(gpio_common_f0234.o)
+ .debug_abbrev  0x00000000000013fb      0x107 libopencm3/lib/libopencm3_stm32l0.a(lptimer_common_all.o)
+ .debug_abbrev  0x0000000000001502       0xa2 libopencm3/lib/libopencm3_stm32l0.a(pwr_common_v1.o)
+ .debug_abbrev  0x00000000000015a4      0x302 libopencm3/lib/libopencm3_stm32l0.a(rcc.o)
+ .debug_abbrev  0x00000000000018a6      0x14c libopencm3/lib/libopencm3_stm32l0.a(rcc_common_all.o)
+ .debug_abbrev  0x00000000000019f2       0xa0 libopencm3/lib/libopencm3_stm32l0.a(rtc_common_l1f024.o)
+ .debug_abbrev  0x0000000000001a92      0x1e6 libopencm3/lib/libopencm3_stm32l0.a(spi_common_all.o)
+ .debug_abbrev  0x0000000000001c78      0x142 libopencm3/lib/libopencm3_stm32l0.a(usart_common_all.o)
+ .debug_abbrev  0x0000000000001dba      0x128 libopencm3/lib/libopencm3_stm32l0.a(usart_common_v2.o)
+ .debug_abbrev  0x0000000000001ee2      0x145 libopencm3/lib/libopencm3_stm32l0.a(vector.o)
 
-.debug_aranges  0x0000000000000000      0xa30
+.debug_aranges  0x0000000000000000      0xa40
  .debug_aranges
                 0x0000000000000000       0x20 sensor/obj/sensor.o
  .debug_aranges
-                0x0000000000000020       0x50 sensor/obj/log.o
+                0x0000000000000020       0x60 sensor/obj/log.o
  .debug_aranges
-                0x0000000000000070       0xd8 sensor/obj/memory.o
+                0x0000000000000080       0xd8 sensor/obj/memory.o
  .debug_aranges
-                0x0000000000000148       0x30 sensor/obj/printf.o
+                0x0000000000000158       0x30 sensor/obj/printf.o
  .debug_aranges
-                0x0000000000000178      0x108 sensor/obj/rfm.o
+                0x0000000000000188      0x108 sensor/obj/rfm.o
  .debug_aranges
-                0x0000000000000280       0x88 sensor/obj/timers.o
+                0x0000000000000290       0x88 sensor/obj/timers.o
  .debug_aranges
-                0x0000000000000308       0x48 libopencm3/lib/libopencm3_stm32l0.a(exti_common_all.o)
+                0x0000000000000318       0x48 libopencm3/lib/libopencm3_stm32l0.a(exti_common_all.o)
  .debug_aranges
-                0x0000000000000350       0x38 libopencm3/lib/libopencm3_stm32l0.a(flash_common_all.o)
+                0x0000000000000360       0x38 libopencm3/lib/libopencm3_stm32l0.a(flash_common_all.o)
  .debug_aranges
-                0x0000000000000388       0x68 libopencm3/lib/libopencm3_stm32l0.a(flash_common_l01.o)
+                0x0000000000000398       0x68 libopencm3/lib/libopencm3_stm32l0.a(flash_common_l01.o)
  .debug_aranges
-                0x00000000000003f0       0x50 libopencm3/lib/libopencm3_stm32l0.a(gpio_common_all.o)
+                0x0000000000000400       0x50 libopencm3/lib/libopencm3_stm32l0.a(gpio_common_all.o)
  .debug_aranges
-                0x0000000000000440       0x30 libopencm3/lib/libopencm3_stm32l0.a(gpio_common_f0234.o)
+                0x0000000000000450       0x30 libopencm3/lib/libopencm3_stm32l0.a(gpio_common_f0234.o)
  .debug_aranges
-                0x0000000000000470       0xb8 libopencm3/lib/libopencm3_stm32l0.a(lptimer_common_all.o)
+                0x0000000000000480       0xb8 libopencm3/lib/libopencm3_stm32l0.a(lptimer_common_all.o)
  .debug_aranges
-                0x0000000000000528       0x90 libopencm3/lib/libopencm3_stm32l0.a(pwr_common_v1.o)
+                0x0000000000000538       0x90 libopencm3/lib/libopencm3_stm32l0.a(pwr_common_v1.o)
  .debug_aranges
-                0x00000000000005b8       0xd0 libopencm3/lib/libopencm3_stm32l0.a(rcc.o)
+                0x00000000000005c8       0xd0 libopencm3/lib/libopencm3_stm32l0.a(rcc.o)
  .debug_aranges
-                0x0000000000000688       0x58 libopencm3/lib/libopencm3_stm32l0.a(rcc_common_all.o)
+                0x0000000000000698       0x58 libopencm3/lib/libopencm3_stm32l0.a(rcc_common_all.o)
  .debug_aranges
-                0x00000000000006e0       0x48 libopencm3/lib/libopencm3_stm32l0.a(rtc_common_l1f024.o)
+                0x00000000000006f0       0x48 libopencm3/lib/libopencm3_stm32l0.a(rtc_common_l1f024.o)
  .debug_aranges
-                0x0000000000000728      0x178 libopencm3/lib/libopencm3_stm32l0.a(spi_common_all.o)
+                0x0000000000000738      0x178 libopencm3/lib/libopencm3_stm32l0.a(spi_common_all.o)
  .debug_aranges
-                0x00000000000008a0       0xb8 libopencm3/lib/libopencm3_stm32l0.a(usart_common_all.o)
+                0x00000000000008b0       0xb8 libopencm3/lib/libopencm3_stm32l0.a(usart_common_all.o)
  .debug_aranges
-                0x0000000000000958       0xa8 libopencm3/lib/libopencm3_stm32l0.a(usart_common_v2.o)
+                0x0000000000000968       0xa8 libopencm3/lib/libopencm3_stm32l0.a(usart_common_v2.o)
  .debug_aranges
-                0x0000000000000a00       0x30 libopencm3/lib/libopencm3_stm32l0.a(vector.o)
+                0x0000000000000a10       0x30 libopencm3/lib/libopencm3_stm32l0.a(vector.o)
 
-.debug_ranges   0x0000000000000000      0x9d8
+.debug_ranges   0x0000000000000000      0xa00
  .debug_ranges  0x0000000000000000       0x10 sensor/obj/sensor.o
- .debug_ranges  0x0000000000000010       0x40 sensor/obj/log.o
- .debug_ranges  0x0000000000000050       0xc8 sensor/obj/memory.o
- .debug_ranges  0x0000000000000118       0x40 sensor/obj/printf.o
- .debug_ranges  0x0000000000000158       0xf8 sensor/obj/rfm.o
- .debug_ranges  0x0000000000000250       0x78 sensor/obj/timers.o
- .debug_ranges  0x00000000000002c8       0x60 libopencm3/lib/libopencm3_stm32l0.a(exti_common_all.o)
- .debug_ranges  0x0000000000000328       0x28 libopencm3/lib/libopencm3_stm32l0.a(flash_common_all.o)
- .debug_ranges  0x0000000000000350       0x58 libopencm3/lib/libopencm3_stm32l0.a(flash_common_l01.o)
- .debug_ranges  0x00000000000003a8       0x40 libopencm3/lib/libopencm3_stm32l0.a(gpio_common_all.o)
- .debug_ranges  0x00000000000003e8       0x20 libopencm3/lib/libopencm3_stm32l0.a(gpio_common_f0234.o)
- .debug_ranges  0x0000000000000408       0xa8 libopencm3/lib/libopencm3_stm32l0.a(lptimer_common_all.o)
- .debug_ranges  0x00000000000004b0       0x80 libopencm3/lib/libopencm3_stm32l0.a(pwr_common_v1.o)
- .debug_ranges  0x0000000000000530      0x148 libopencm3/lib/libopencm3_stm32l0.a(rcc.o)
- .debug_ranges  0x0000000000000678       0x48 libopencm3/lib/libopencm3_stm32l0.a(rcc_common_all.o)
- .debug_ranges  0x00000000000006c0       0x38 libopencm3/lib/libopencm3_stm32l0.a(rtc_common_l1f024.o)
- .debug_ranges  0x00000000000006f8      0x180 libopencm3/lib/libopencm3_stm32l0.a(spi_common_all.o)
- .debug_ranges  0x0000000000000878       0xa8 libopencm3/lib/libopencm3_stm32l0.a(usart_common_all.o)
- .debug_ranges  0x0000000000000920       0x98 libopencm3/lib/libopencm3_stm32l0.a(usart_common_v2.o)
- .debug_ranges  0x00000000000009b8       0x20 libopencm3/lib/libopencm3_stm32l0.a(vector.o)
+ .debug_ranges  0x0000000000000010       0x50 sensor/obj/log.o
+ .debug_ranges  0x0000000000000060       0xc8 sensor/obj/memory.o
+ .debug_ranges  0x0000000000000128       0x58 sensor/obj/printf.o
+ .debug_ranges  0x0000000000000180       0xf8 sensor/obj/rfm.o
+ .debug_ranges  0x0000000000000278       0x78 sensor/obj/timers.o
+ .debug_ranges  0x00000000000002f0       0x60 libopencm3/lib/libopencm3_stm32l0.a(exti_common_all.o)
+ .debug_ranges  0x0000000000000350       0x28 libopencm3/lib/libopencm3_stm32l0.a(flash_common_all.o)
+ .debug_ranges  0x0000000000000378       0x58 libopencm3/lib/libopencm3_stm32l0.a(flash_common_l01.o)
+ .debug_ranges  0x00000000000003d0       0x40 libopencm3/lib/libopencm3_stm32l0.a(gpio_common_all.o)
+ .debug_ranges  0x0000000000000410       0x20 libopencm3/lib/libopencm3_stm32l0.a(gpio_common_f0234.o)
+ .debug_ranges  0x0000000000000430       0xa8 libopencm3/lib/libopencm3_stm32l0.a(lptimer_common_all.o)
+ .debug_ranges  0x00000000000004d8       0x80 libopencm3/lib/libopencm3_stm32l0.a(pwr_common_v1.o)
+ .debug_ranges  0x0000000000000558      0x148 libopencm3/lib/libopencm3_stm32l0.a(rcc.o)
+ .debug_ranges  0x00000000000006a0       0x48 libopencm3/lib/libopencm3_stm32l0.a(rcc_common_all.o)
+ .debug_ranges  0x00000000000006e8       0x38 libopencm3/lib/libopencm3_stm32l0.a(rtc_common_l1f024.o)
+ .debug_ranges  0x0000000000000720      0x180 libopencm3/lib/libopencm3_stm32l0.a(spi_common_all.o)
+ .debug_ranges  0x00000000000008a0       0xa8 libopencm3/lib/libopencm3_stm32l0.a(usart_common_all.o)
+ .debug_ranges  0x0000000000000948       0x98 libopencm3/lib/libopencm3_stm32l0.a(usart_common_v2.o)
+ .debug_ranges  0x00000000000009e0       0x20 libopencm3/lib/libopencm3_stm32l0.a(vector.o)
 
-.debug_macro    0x0000000000000000     0x5aaf
- .debug_macro   0x0000000000000000      0x2a4 sensor/obj/sensor.o
- .debug_macro   0x00000000000002a4      0xa78 sensor/obj/sensor.o
- .debug_macro   0x0000000000000d1c       0x22 sensor/obj/sensor.o
- .debug_macro   0x0000000000000d3e       0x56 sensor/obj/sensor.o
- .debug_macro   0x0000000000000d94       0x51 sensor/obj/sensor.o
- .debug_macro   0x0000000000000de5      0x103 sensor/obj/sensor.o
- .debug_macro   0x0000000000000ee8       0x6a sensor/obj/sensor.o
- .debug_macro   0x0000000000000f52      0x1df sensor/obj/sensor.o
- .debug_macro   0x0000000000001131       0x16 sensor/obj/sensor.o
- .debug_macro   0x0000000000001147       0x22 sensor/obj/sensor.o
- .debug_macro   0x0000000000001169       0x10 sensor/obj/sensor.o
- .debug_macro   0x0000000000001179      0x100 sensor/obj/sensor.o
- .debug_macro   0x0000000000001279       0x52 sensor/obj/sensor.o
- .debug_macro   0x00000000000012cb      0x14e sensor/obj/sensor.o
- .debug_macro   0x0000000000001419       0x76 sensor/obj/sensor.o
- .debug_macro   0x000000000000148f      0x2e6 sensor/obj/sensor.o
- .debug_macro   0x0000000000001775      0x14e sensor/obj/sensor.o
- .debug_macro   0x00000000000018c3       0x40 sensor/obj/sensor.o
- .debug_macro   0x0000000000001903       0x8e sensor/obj/sensor.o
- .debug_macro   0x0000000000001991       0x58 sensor/obj/sensor.o
- .debug_macro   0x00000000000019e9      0x91f sensor/obj/sensor.o
- .debug_macro   0x0000000000002308      0x2eb sensor/obj/sensor.o
- .debug_macro   0x00000000000025f3       0x16 sensor/obj/sensor.o
- .debug_macro   0x0000000000002609       0x22 sensor/obj/sensor.o
- .debug_macro   0x000000000000262b       0x94 sensor/obj/sensor.o
- .debug_macro   0x00000000000026bf      0x4cd sensor/obj/sensor.o
- .debug_macro   0x0000000000002b8c       0x22 sensor/obj/sensor.o
- .debug_macro   0x0000000000002bae      0x185 sensor/obj/sensor.o
- .debug_macro   0x0000000000002d33      0x4e6 sensor/obj/sensor.o
- .debug_macro   0x0000000000003219       0x18 sensor/obj/sensor.o
- .debug_macro   0x0000000000003231       0x64 sensor/obj/sensor.o
- .debug_macro   0x0000000000003295       0x35 sensor/obj/sensor.o
- .debug_macro   0x00000000000032ca       0x34 sensor/obj/sensor.o
- .debug_macro   0x00000000000032fe       0x16 sensor/obj/sensor.o
- .debug_macro   0x0000000000003314      0x10e sensor/obj/sensor.o
- .debug_macro   0x0000000000003422       0x86 sensor/obj/sensor.o
- .debug_macro   0x00000000000034a8       0x16 sensor/obj/sensor.o
- .debug_macro   0x00000000000034be       0x43 sensor/obj/sensor.o
- .debug_macro   0x0000000000003501       0x34 sensor/obj/sensor.o
- .debug_macro   0x0000000000003535       0x10 sensor/obj/sensor.o
- .debug_macro   0x0000000000003545       0x58 sensor/obj/sensor.o
- .debug_macro   0x000000000000359d      0x182 sensor/obj/sensor.o
- .debug_macro   0x000000000000371f      0x35c sensor/obj/sensor.o
- .debug_macro   0x0000000000003a7b       0x22 sensor/obj/sensor.o
- .debug_macro   0x0000000000003a9d       0x10 sensor/obj/sensor.o
- .debug_macro   0x0000000000003aad       0x1c sensor/obj/sensor.o
- .debug_macro   0x0000000000003ac9       0x40 sensor/obj/sensor.o
- .debug_macro   0x0000000000003b09       0x34 sensor/obj/sensor.o
- .debug_macro   0x0000000000003b3d      0x1e7 sensor/obj/log.o
- .debug_macro   0x0000000000003d24       0x58 sensor/obj/log.o
- .debug_macro   0x0000000000003d7c      0x1ef sensor/obj/memory.o
- .debug_macro   0x0000000000003f6b       0x94 sensor/obj/printf.o
- .debug_macro   0x0000000000003fff      0x220 sensor/obj/rfm.o
- .debug_macro   0x000000000000421f      0x4e0 sensor/obj/rfm.o
- .debug_macro   0x00000000000046ff      0x371 sensor/obj/timers.o
- .debug_macro   0x0000000000004a70       0x16 sensor/obj/timers.o
- .debug_macro   0x0000000000004a86       0x70 sensor/obj/timers.o
- .debug_macro   0x0000000000004af6       0x10 sensor/obj/timers.o
- .debug_macro   0x0000000000004b06      0x1a5 sensor/obj/timers.o
- .debug_macro   0x0000000000004cab       0x6f sensor/obj/timers.o
- .debug_macro   0x0000000000004d1a       0xaf sensor/obj/timers.o
- .debug_macro   0x0000000000004dc9       0xc4 sensor/obj/timers.o
- .debug_macro   0x0000000000004e8d      0x10f libopencm3/lib/libopencm3_stm32l0.a(exti_common_all.o)
- .debug_macro   0x0000000000004f9c       0xbc libopencm3/lib/libopencm3_stm32l0.a(flash_common_all.o)
- .debug_macro   0x0000000000005058       0xbc libopencm3/lib/libopencm3_stm32l0.a(flash_common_l01.o)
- .debug_macro   0x0000000000005114       0xd6 libopencm3/lib/libopencm3_stm32l0.a(gpio_common_all.o)
- .debug_macro   0x00000000000051ea       0xd6 libopencm3/lib/libopencm3_stm32l0.a(gpio_common_f0234.o)
- .debug_macro   0x00000000000052c0       0xb9 libopencm3/lib/libopencm3_stm32l0.a(lptimer_common_all.o)
- .debug_macro   0x0000000000005379       0xc2 libopencm3/lib/libopencm3_stm32l0.a(pwr_common_v1.o)
- .debug_macro   0x000000000000543b      0x113 libopencm3/lib/libopencm3_stm32l0.a(rcc.o)
- .debug_macro   0x000000000000554e       0x16 libopencm3/lib/libopencm3_stm32l0.a(rcc.o)
- .debug_macro   0x0000000000005564       0xfa libopencm3/lib/libopencm3_stm32l0.a(rcc_common_all.o)
- .debug_macro   0x000000000000565e       0xb3 libopencm3/lib/libopencm3_stm32l0.a(rtc_common_l1f024.o)
- .debug_macro   0x0000000000005711      0x109 libopencm3/lib/libopencm3_stm32l0.a(spi_common_all.o)
- .debug_macro   0x000000000000581a      0x105 libopencm3/lib/libopencm3_stm32l0.a(usart_common_all.o)
- .debug_macro   0x000000000000591f       0xc1 libopencm3/lib/libopencm3_stm32l0.a(usart_common_v2.o)
- .debug_macro   0x00000000000059e0       0xcf libopencm3/lib/libopencm3_stm32l0.a(vector.o)
+.debug_macro    0x0000000000000000     0x5abb
+ .debug_macro   0x0000000000000000      0x2a3 sensor/obj/sensor.o
+ .debug_macro   0x00000000000002a3      0xa78 sensor/obj/sensor.o
+ .debug_macro   0x0000000000000d1b       0x22 sensor/obj/sensor.o
+ .debug_macro   0x0000000000000d3d       0x56 sensor/obj/sensor.o
+ .debug_macro   0x0000000000000d93       0x51 sensor/obj/sensor.o
+ .debug_macro   0x0000000000000de4      0x103 sensor/obj/sensor.o
+ .debug_macro   0x0000000000000ee7       0x6a sensor/obj/sensor.o
+ .debug_macro   0x0000000000000f51      0x1df sensor/obj/sensor.o
+ .debug_macro   0x0000000000001130       0x16 sensor/obj/sensor.o
+ .debug_macro   0x0000000000001146       0x22 sensor/obj/sensor.o
+ .debug_macro   0x0000000000001168       0x10 sensor/obj/sensor.o
+ .debug_macro   0x0000000000001178      0x100 sensor/obj/sensor.o
+ .debug_macro   0x0000000000001278       0x52 sensor/obj/sensor.o
+ .debug_macro   0x00000000000012ca      0x14e sensor/obj/sensor.o
+ .debug_macro   0x0000000000001418       0x76 sensor/obj/sensor.o
+ .debug_macro   0x000000000000148e      0x2e6 sensor/obj/sensor.o
+ .debug_macro   0x0000000000001774      0x14e sensor/obj/sensor.o
+ .debug_macro   0x00000000000018c2       0x40 sensor/obj/sensor.o
+ .debug_macro   0x0000000000001902       0x8e sensor/obj/sensor.o
+ .debug_macro   0x0000000000001990       0x58 sensor/obj/sensor.o
+ .debug_macro   0x00000000000019e8      0x91f sensor/obj/sensor.o
+ .debug_macro   0x0000000000002307      0x2eb sensor/obj/sensor.o
+ .debug_macro   0x00000000000025f2       0x16 sensor/obj/sensor.o
+ .debug_macro   0x0000000000002608       0x22 sensor/obj/sensor.o
+ .debug_macro   0x000000000000262a       0x94 sensor/obj/sensor.o
+ .debug_macro   0x00000000000026be      0x4cd sensor/obj/sensor.o
+ .debug_macro   0x0000000000002b8b       0x22 sensor/obj/sensor.o
+ .debug_macro   0x0000000000002bad      0x162 sensor/obj/sensor.o
+ .debug_macro   0x0000000000002d0f      0x4e6 sensor/obj/sensor.o
+ .debug_macro   0x00000000000031f5       0x2e sensor/obj/sensor.o
+ .debug_macro   0x0000000000003223       0x18 sensor/obj/sensor.o
+ .debug_macro   0x000000000000323b       0x64 sensor/obj/sensor.o
+ .debug_macro   0x000000000000329f       0x35 sensor/obj/sensor.o
+ .debug_macro   0x00000000000032d4       0x34 sensor/obj/sensor.o
+ .debug_macro   0x0000000000003308       0x16 sensor/obj/sensor.o
+ .debug_macro   0x000000000000331e      0x10e sensor/obj/sensor.o
+ .debug_macro   0x000000000000342c       0x86 sensor/obj/sensor.o
+ .debug_macro   0x00000000000034b2       0x16 sensor/obj/sensor.o
+ .debug_macro   0x00000000000034c8       0x43 sensor/obj/sensor.o
+ .debug_macro   0x000000000000350b       0x34 sensor/obj/sensor.o
+ .debug_macro   0x000000000000353f       0x10 sensor/obj/sensor.o
+ .debug_macro   0x000000000000354f       0x58 sensor/obj/sensor.o
+ .debug_macro   0x00000000000035a7      0x182 sensor/obj/sensor.o
+ .debug_macro   0x0000000000003729      0x35c sensor/obj/sensor.o
+ .debug_macro   0x0000000000003a85       0x22 sensor/obj/sensor.o
+ .debug_macro   0x0000000000003aa7       0x10 sensor/obj/sensor.o
+ .debug_macro   0x0000000000003ab7       0x1c sensor/obj/sensor.o
+ .debug_macro   0x0000000000003ad3       0x40 sensor/obj/sensor.o
+ .debug_macro   0x0000000000003b13       0x34 sensor/obj/sensor.o
+ .debug_macro   0x0000000000003b47      0x1ec sensor/obj/log.o
+ .debug_macro   0x0000000000003d33       0x58 sensor/obj/log.o
+ .debug_macro   0x0000000000003d8b      0x1ee sensor/obj/memory.o
+ .debug_macro   0x0000000000003f79       0x94 sensor/obj/printf.o
+ .debug_macro   0x000000000000400d      0x21f sensor/obj/rfm.o
+ .debug_macro   0x000000000000422c      0x4e0 sensor/obj/rfm.o
+ .debug_macro   0x000000000000470c      0x370 sensor/obj/timers.o
+ .debug_macro   0x0000000000004a7c       0x16 sensor/obj/timers.o
+ .debug_macro   0x0000000000004a92       0x70 sensor/obj/timers.o
+ .debug_macro   0x0000000000004b02       0x10 sensor/obj/timers.o
+ .debug_macro   0x0000000000004b12      0x1a5 sensor/obj/timers.o
+ .debug_macro   0x0000000000004cb7       0x6f sensor/obj/timers.o
+ .debug_macro   0x0000000000004d26       0xaf sensor/obj/timers.o
+ .debug_macro   0x0000000000004dd5       0xc4 sensor/obj/timers.o
+ .debug_macro   0x0000000000004e99      0x10f libopencm3/lib/libopencm3_stm32l0.a(exti_common_all.o)
+ .debug_macro   0x0000000000004fa8       0xbc libopencm3/lib/libopencm3_stm32l0.a(flash_common_all.o)
+ .debug_macro   0x0000000000005064       0xbc libopencm3/lib/libopencm3_stm32l0.a(flash_common_l01.o)
+ .debug_macro   0x0000000000005120       0xd6 libopencm3/lib/libopencm3_stm32l0.a(gpio_common_all.o)
+ .debug_macro   0x00000000000051f6       0xd6 libopencm3/lib/libopencm3_stm32l0.a(gpio_common_f0234.o)
+ .debug_macro   0x00000000000052cc       0xb9 libopencm3/lib/libopencm3_stm32l0.a(lptimer_common_all.o)
+ .debug_macro   0x0000000000005385       0xc2 libopencm3/lib/libopencm3_stm32l0.a(pwr_common_v1.o)
+ .debug_macro   0x0000000000005447      0x113 libopencm3/lib/libopencm3_stm32l0.a(rcc.o)
+ .debug_macro   0x000000000000555a       0x16 libopencm3/lib/libopencm3_stm32l0.a(rcc.o)
+ .debug_macro   0x0000000000005570       0xfa libopencm3/lib/libopencm3_stm32l0.a(rcc_common_all.o)
+ .debug_macro   0x000000000000566a       0xb3 libopencm3/lib/libopencm3_stm32l0.a(rtc_common_l1f024.o)
+ .debug_macro   0x000000000000571d      0x109 libopencm3/lib/libopencm3_stm32l0.a(spi_common_all.o)
+ .debug_macro   0x0000000000005826      0x105 libopencm3/lib/libopencm3_stm32l0.a(usart_common_all.o)
+ .debug_macro   0x000000000000592b       0xc1 libopencm3/lib/libopencm3_stm32l0.a(usart_common_v2.o)
+ .debug_macro   0x00000000000059ec       0xcf libopencm3/lib/libopencm3_stm32l0.a(vector.o)
 
-.debug_line     0x0000000000000000     0x865b
+.debug_line     0x0000000000000000     0x86cc
  .debug_line    0x0000000000000000      0x55c sensor/obj/sensor.o
- .debug_line    0x000000000000055c      0x607 sensor/obj/log.o
- .debug_line    0x0000000000000b63      0xd17 sensor/obj/memory.o
- .debug_line    0x000000000000187a      0x582 sensor/obj/printf.o
- .debug_line    0x0000000000001dfc      0xe49 sensor/obj/rfm.o
- .debug_line    0x0000000000002c45      0xa26 sensor/obj/timers.o
- .debug_line    0x000000000000366b      0x502 libopencm3/lib/libopencm3_stm32l0.a(exti_common_all.o)
- .debug_line    0x0000000000003b6d      0x392 libopencm3/lib/libopencm3_stm32l0.a(flash_common_all.o)
- .debug_line    0x0000000000003eff      0x511 libopencm3/lib/libopencm3_stm32l0.a(flash_common_l01.o)
- .debug_line    0x0000000000004410      0x427 libopencm3/lib/libopencm3_stm32l0.a(gpio_common_all.o)
- .debug_line    0x0000000000004837      0x503 libopencm3/lib/libopencm3_stm32l0.a(gpio_common_f0234.o)
- .debug_line    0x0000000000004d3a      0x5a8 libopencm3/lib/libopencm3_stm32l0.a(lptimer_common_all.o)
- .debug_line    0x00000000000052e2      0x4f0 libopencm3/lib/libopencm3_stm32l0.a(pwr_common_v1.o)
- .debug_line    0x00000000000057d2      0xa96 libopencm3/lib/libopencm3_stm32l0.a(rcc.o)
- .debug_line    0x0000000000006268      0x474 libopencm3/lib/libopencm3_stm32l0.a(rcc_common_all.o)
- .debug_line    0x00000000000066dc      0x44f libopencm3/lib/libopencm3_stm32l0.a(rtc_common_l1f024.o)
- .debug_line    0x0000000000006b2b      0xa96 libopencm3/lib/libopencm3_stm32l0.a(spi_common_all.o)
- .debug_line    0x00000000000075c1      0x6a7 libopencm3/lib/libopencm3_stm32l0.a(usart_common_all.o)
- .debug_line    0x0000000000007c68      0x598 libopencm3/lib/libopencm3_stm32l0.a(usart_common_v2.o)
- .debug_line    0x0000000000008200      0x45b libopencm3/lib/libopencm3_stm32l0.a(vector.o)
+ .debug_line    0x000000000000055c      0x665 sensor/obj/log.o
+ .debug_line    0x0000000000000bc1      0xd17 sensor/obj/memory.o
+ .debug_line    0x00000000000018d8      0x595 sensor/obj/printf.o
+ .debug_line    0x0000000000001e6d      0xe49 sensor/obj/rfm.o
+ .debug_line    0x0000000000002cb6      0xa26 sensor/obj/timers.o
+ .debug_line    0x00000000000036dc      0x502 libopencm3/lib/libopencm3_stm32l0.a(exti_common_all.o)
+ .debug_line    0x0000000000003bde      0x392 libopencm3/lib/libopencm3_stm32l0.a(flash_common_all.o)
+ .debug_line    0x0000000000003f70      0x511 libopencm3/lib/libopencm3_stm32l0.a(flash_common_l01.o)
+ .debug_line    0x0000000000004481      0x427 libopencm3/lib/libopencm3_stm32l0.a(gpio_common_all.o)
+ .debug_line    0x00000000000048a8      0x503 libopencm3/lib/libopencm3_stm32l0.a(gpio_common_f0234.o)
+ .debug_line    0x0000000000004dab      0x5a8 libopencm3/lib/libopencm3_stm32l0.a(lptimer_common_all.o)
+ .debug_line    0x0000000000005353      0x4f0 libopencm3/lib/libopencm3_stm32l0.a(pwr_common_v1.o)
+ .debug_line    0x0000000000005843      0xa96 libopencm3/lib/libopencm3_stm32l0.a(rcc.o)
+ .debug_line    0x00000000000062d9      0x474 libopencm3/lib/libopencm3_stm32l0.a(rcc_common_all.o)
+ .debug_line    0x000000000000674d      0x44f libopencm3/lib/libopencm3_stm32l0.a(rtc_common_l1f024.o)
+ .debug_line    0x0000000000006b9c      0xa96 libopencm3/lib/libopencm3_stm32l0.a(spi_common_all.o)
+ .debug_line    0x0000000000007632      0x6a7 libopencm3/lib/libopencm3_stm32l0.a(usart_common_all.o)
+ .debug_line    0x0000000000007cd9      0x598 libopencm3/lib/libopencm3_stm32l0.a(usart_common_v2.o)
+ .debug_line    0x0000000000008271      0x45b libopencm3/lib/libopencm3_stm32l0.a(vector.o)
 
-.debug_str      0x0000000000000000    0x1bf0b
- .debug_str     0x0000000000000000     0xfae0 sensor/obj/sensor.o
-                                       0xfd70 (size before relaxing)
- .debug_str     0x000000000000fae0     0x1119 sensor/obj/log.o
-                                       0xc9ab (size before relaxing)
- .debug_str     0x0000000000010bf9      0x331 sensor/obj/memory.o
-                                       0xc780 (size before relaxing)
- .debug_str     0x0000000000010f2a       0xa0 sensor/obj/printf.o
-                                       0x40ad (size before relaxing)
- .debug_str     0x0000000000010fca     0x1624 sensor/obj/rfm.o
-                                       0xefb8 (size before relaxing)
- .debug_str     0x00000000000125ee     0x8194 sensor/obj/timers.o
-                                      0x18987 (size before relaxing)
- .debug_str     0x000000000001a782      0x1ae libopencm3/lib/libopencm3_stm32l0.a(exti_common_all.o)
+.debug_str      0x0000000000000000    0x1bff5
+ .debug_str     0x0000000000000000     0xfb18 sensor/obj/sensor.o
+                                       0xfda8 (size before relaxing)
+ .debug_str     0x000000000000fb18     0x11c2 sensor/obj/log.o
+                                       0xcaa1 (size before relaxing)
+ .debug_str     0x0000000000010cda      0x331 sensor/obj/memory.o
+                                       0xc849 (size before relaxing)
+ .debug_str     0x000000000001100b       0xa9 sensor/obj/printf.o
+                                       0x40b6 (size before relaxing)
+ .debug_str     0x00000000000110b4     0x1624 sensor/obj/rfm.o
+                                       0xeff0 (size before relaxing)
+ .debug_str     0x00000000000126d8     0x8194 sensor/obj/timers.o
+                                      0x189bf (size before relaxing)
+ .debug_str     0x000000000001a86c      0x1ae libopencm3/lib/libopencm3_stm32l0.a(exti_common_all.o)
                                        0x6aa0 (size before relaxing)
- .debug_str     0x000000000001a930       0x6a libopencm3/lib/libopencm3_stm32l0.a(flash_common_all.o)
+ .debug_str     0x000000000001aa1a       0x6a libopencm3/lib/libopencm3_stm32l0.a(flash_common_all.o)
                                        0x5299 (size before relaxing)
- .debug_str     0x000000000001a99a       0x93 libopencm3/lib/libopencm3_stm32l0.a(flash_common_l01.o)
+ .debug_str     0x000000000001aa84       0x93 libopencm3/lib/libopencm3_stm32l0.a(flash_common_l01.o)
                                        0x532a (size before relaxing)
- .debug_str     0x000000000001aa2d       0x63 libopencm3/lib/libopencm3_stm32l0.a(gpio_common_all.o)
+ .debug_str     0x000000000001ab17       0x63 libopencm3/lib/libopencm3_stm32l0.a(gpio_common_all.o)
                                        0x5e67 (size before relaxing)
- .debug_str     0x000000000001aa90       0x61 libopencm3/lib/libopencm3_stm32l0.a(gpio_common_f0234.o)
+ .debug_str     0x000000000001ab7a       0x61 libopencm3/lib/libopencm3_stm32l0.a(gpio_common_f0234.o)
                                        0x5e89 (size before relaxing)
- .debug_str     0x000000000001aaf1      0x18b libopencm3/lib/libopencm3_stm32l0.a(lptimer_common_all.o)
+ .debug_str     0x000000000001abdb      0x18b libopencm3/lib/libopencm3_stm32l0.a(lptimer_common_all.o)
                                        0x5a6a (size before relaxing)
- .debug_str     0x000000000001ac7c      0x12a libopencm3/lib/libopencm3_stm32l0.a(pwr_common_v1.o)
+ .debug_str     0x000000000001ad66      0x12a libopencm3/lib/libopencm3_stm32l0.a(pwr_common_v1.o)
                                        0x4f52 (size before relaxing)
- .debug_str     0x000000000001ada6      0x2f3 libopencm3/lib/libopencm3_stm32l0.a(rcc.o)
+ .debug_str     0x000000000001ae90      0x2f3 libopencm3/lib/libopencm3_stm32l0.a(rcc.o)
                                        0x83e6 (size before relaxing)
- .debug_str     0x000000000001b099      0x14f libopencm3/lib/libopencm3_stm32l0.a(rcc_common_all.o)
+ .debug_str     0x000000000001b183      0x14f libopencm3/lib/libopencm3_stm32l0.a(rcc_common_all.o)
                                        0x79a4 (size before relaxing)
- .debug_str     0x000000000001b1e8       0x52 libopencm3/lib/libopencm3_stm32l0.a(rtc_common_l1f024.o)
+ .debug_str     0x000000000001b2d2       0x52 libopencm3/lib/libopencm3_stm32l0.a(rtc_common_l1f024.o)
                                        0x5d53 (size before relaxing)
- .debug_str     0x000000000001b23a      0x3f9 libopencm3/lib/libopencm3_stm32l0.a(spi_common_all.o)
+ .debug_str     0x000000000001b324      0x3f9 libopencm3/lib/libopencm3_stm32l0.a(spi_common_all.o)
                                        0x8771 (size before relaxing)
- .debug_str     0x000000000001b633      0x181 libopencm3/lib/libopencm3_stm32l0.a(usart_common_all.o)
+ .debug_str     0x000000000001b71d      0x181 libopencm3/lib/libopencm3_stm32l0.a(usart_common_all.o)
                                        0x8fb9 (size before relaxing)
- .debug_str     0x000000000001b7b4      0x181 libopencm3/lib/libopencm3_stm32l0.a(usart_common_v2.o)
+ .debug_str     0x000000000001b89e      0x181 libopencm3/lib/libopencm3_stm32l0.a(usart_common_v2.o)
                                        0x652b (size before relaxing)
- .debug_str     0x000000000001b935      0x5d6 libopencm3/lib/libopencm3_stm32l0.a(vector.o)
+ .debug_str     0x000000000001ba1f      0x5d6 libopencm3/lib/libopencm3_stm32l0.a(vector.o)
                                        0x52f9 (size before relaxing)
 
 .comment        0x0000000000000000       0x4c
@@ -3997,46 +4170,46 @@ LOAD /usr/local/Cellar/arm-gcc-bin/9-2020-q2-update/bin/../lib/gcc/arm-none-eabi
  .comment       0x000000000000004c       0x4d libopencm3/lib/libopencm3_stm32l0.a(usart_common_v2.o)
  .comment       0x000000000000004c       0x4d libopencm3/lib/libopencm3_stm32l0.a(vector.o)
 
-.debug_frame    0x0000000000000000     0x1618
+.debug_frame    0x0000000000000000     0x164c
  .debug_frame   0x0000000000000000       0x28 sensor/obj/sensor.o
- .debug_frame   0x0000000000000028       0xbc sensor/obj/log.o
- .debug_frame   0x00000000000000e4      0x238 sensor/obj/memory.o
- .debug_frame   0x000000000000031c       0x6c sensor/obj/printf.o
- .debug_frame   0x0000000000000388      0x2ec sensor/obj/rfm.o
- .debug_frame   0x0000000000000674      0x174 sensor/obj/timers.o
- .debug_frame   0x00000000000007e8       0x84 libopencm3/lib/libopencm3_stm32l0.a(exti_common_all.o)
- .debug_frame   0x000000000000086c       0x50 libopencm3/lib/libopencm3_stm32l0.a(flash_common_all.o)
- .debug_frame   0x00000000000008bc       0xdc libopencm3/lib/libopencm3_stm32l0.a(flash_common_l01.o)
- .debug_frame   0x0000000000000998       0x80 libopencm3/lib/libopencm3_stm32l0.a(gpio_common_all.o)
- .debug_frame   0x0000000000000a18       0x78 libopencm3/lib/libopencm3_stm32l0.a(gpio_common_f0234.o)
- .debug_frame   0x0000000000000a90      0x150 libopencm3/lib/libopencm3_stm32l0.a(lptimer_common_all.o)
- .debug_frame   0x0000000000000be0      0x100 libopencm3/lib/libopencm3_stm32l0.a(pwr_common_v1.o)
- .debug_frame   0x0000000000000ce0      0x1f4 libopencm3/lib/libopencm3_stm32l0.a(rcc.o)
- .debug_frame   0x0000000000000ed4       0xe0 libopencm3/lib/libopencm3_stm32l0.a(rcc_common_all.o)
- .debug_frame   0x0000000000000fb4       0x7c libopencm3/lib/libopencm3_stm32l0.a(rtc_common_l1f024.o)
- .debug_frame   0x0000000000001030      0x2e0 libopencm3/lib/libopencm3_stm32l0.a(spi_common_all.o)
- .debug_frame   0x0000000000001310      0x170 libopencm3/lib/libopencm3_stm32l0.a(usart_common_all.o)
- .debug_frame   0x0000000000001480      0x130 libopencm3/lib/libopencm3_stm32l0.a(usart_common_v2.o)
- .debug_frame   0x00000000000015b0       0x48 libopencm3/lib/libopencm3_stm32l0.a(vector.o)
- .debug_frame   0x00000000000015f8       0x20 /usr/local/Cellar/arm-gcc-bin/9-2020-q2-update/bin/../lib/gcc/arm-none-eabi/9.3.1/thumb/v6-m/nofp/libgcc.a(_udivsi3.o)
+ .debug_frame   0x0000000000000028       0xf0 sensor/obj/log.o
+ .debug_frame   0x0000000000000118      0x238 sensor/obj/memory.o
+ .debug_frame   0x0000000000000350       0x6c sensor/obj/printf.o
+ .debug_frame   0x00000000000003bc      0x2ec sensor/obj/rfm.o
+ .debug_frame   0x00000000000006a8      0x174 sensor/obj/timers.o
+ .debug_frame   0x000000000000081c       0x84 libopencm3/lib/libopencm3_stm32l0.a(exti_common_all.o)
+ .debug_frame   0x00000000000008a0       0x50 libopencm3/lib/libopencm3_stm32l0.a(flash_common_all.o)
+ .debug_frame   0x00000000000008f0       0xdc libopencm3/lib/libopencm3_stm32l0.a(flash_common_l01.o)
+ .debug_frame   0x00000000000009cc       0x80 libopencm3/lib/libopencm3_stm32l0.a(gpio_common_all.o)
+ .debug_frame   0x0000000000000a4c       0x78 libopencm3/lib/libopencm3_stm32l0.a(gpio_common_f0234.o)
+ .debug_frame   0x0000000000000ac4      0x150 libopencm3/lib/libopencm3_stm32l0.a(lptimer_common_all.o)
+ .debug_frame   0x0000000000000c14      0x100 libopencm3/lib/libopencm3_stm32l0.a(pwr_common_v1.o)
+ .debug_frame   0x0000000000000d14      0x1f4 libopencm3/lib/libopencm3_stm32l0.a(rcc.o)
+ .debug_frame   0x0000000000000f08       0xe0 libopencm3/lib/libopencm3_stm32l0.a(rcc_common_all.o)
+ .debug_frame   0x0000000000000fe8       0x7c libopencm3/lib/libopencm3_stm32l0.a(rtc_common_l1f024.o)
+ .debug_frame   0x0000000000001064      0x2e0 libopencm3/lib/libopencm3_stm32l0.a(spi_common_all.o)
+ .debug_frame   0x0000000000001344      0x170 libopencm3/lib/libopencm3_stm32l0.a(usart_common_all.o)
+ .debug_frame   0x00000000000014b4      0x130 libopencm3/lib/libopencm3_stm32l0.a(usart_common_v2.o)
+ .debug_frame   0x00000000000015e4       0x48 libopencm3/lib/libopencm3_stm32l0.a(vector.o)
+ .debug_frame   0x000000000000162c       0x20 /usr/local/Cellar/arm-gcc-bin/9-2020-q2-update/bin/../lib/gcc/arm-none-eabi/9.3.1/thumb/v6-m/nofp/libgcc.a(_udivsi3.o)
 
-.debug_loc      0x0000000000000000     0x27bb
- .debug_loc     0x0000000000000000       0xeb sensor/obj/log.o
- .debug_loc     0x00000000000000eb      0x6f7 sensor/obj/memory.o
- .debug_loc     0x00000000000007e2      0x4d7 sensor/obj/printf.o
- .debug_loc     0x0000000000000cb9      0x56e sensor/obj/rfm.o
- .debug_loc     0x0000000000001227      0x19c sensor/obj/timers.o
- .debug_loc     0x00000000000013c3      0x17d libopencm3/lib/libopencm3_stm32l0.a(exti_common_all.o)
- .debug_loc     0x0000000000001540       0x15 libopencm3/lib/libopencm3_stm32l0.a(flash_common_all.o)
- .debug_loc     0x0000000000001555      0x151 libopencm3/lib/libopencm3_stm32l0.a(flash_common_l01.o)
- .debug_loc     0x00000000000016a6       0xbe libopencm3/lib/libopencm3_stm32l0.a(gpio_common_all.o)
- .debug_loc     0x0000000000001764      0x255 libopencm3/lib/libopencm3_stm32l0.a(gpio_common_f0234.o)
- .debug_loc     0x00000000000019b9      0x110 libopencm3/lib/libopencm3_stm32l0.a(lptimer_common_all.o)
- .debug_loc     0x0000000000001ac9       0x25 libopencm3/lib/libopencm3_stm32l0.a(pwr_common_v1.o)
- .debug_loc     0x0000000000001aee      0x65b libopencm3/lib/libopencm3_stm32l0.a(rcc.o)
- .debug_loc     0x0000000000002149       0x94 libopencm3/lib/libopencm3_stm32l0.a(rcc_common_all.o)
- .debug_loc     0x00000000000021dd       0x94 libopencm3/lib/libopencm3_stm32l0.a(rtc_common_l1f024.o)
- .debug_loc     0x0000000000002271      0x188 libopencm3/lib/libopencm3_stm32l0.a(spi_common_all.o)
- .debug_loc     0x00000000000023f9      0x1cc libopencm3/lib/libopencm3_stm32l0.a(usart_common_all.o)
- .debug_loc     0x00000000000025c5       0xdb libopencm3/lib/libopencm3_stm32l0.a(usart_common_v2.o)
- .debug_loc     0x00000000000026a0      0x11b libopencm3/lib/libopencm3_stm32l0.a(vector.o)
+.debug_loc      0x0000000000000000     0x27e1
+ .debug_loc     0x0000000000000000       0xb7 sensor/obj/log.o
+ .debug_loc     0x00000000000000b7      0x6f7 sensor/obj/memory.o
+ .debug_loc     0x00000000000007ae      0x531 sensor/obj/printf.o
+ .debug_loc     0x0000000000000cdf      0x56e sensor/obj/rfm.o
+ .debug_loc     0x000000000000124d      0x19c sensor/obj/timers.o
+ .debug_loc     0x00000000000013e9      0x17d libopencm3/lib/libopencm3_stm32l0.a(exti_common_all.o)
+ .debug_loc     0x0000000000001566       0x15 libopencm3/lib/libopencm3_stm32l0.a(flash_common_all.o)
+ .debug_loc     0x000000000000157b      0x151 libopencm3/lib/libopencm3_stm32l0.a(flash_common_l01.o)
+ .debug_loc     0x00000000000016cc       0xbe libopencm3/lib/libopencm3_stm32l0.a(gpio_common_all.o)
+ .debug_loc     0x000000000000178a      0x255 libopencm3/lib/libopencm3_stm32l0.a(gpio_common_f0234.o)
+ .debug_loc     0x00000000000019df      0x110 libopencm3/lib/libopencm3_stm32l0.a(lptimer_common_all.o)
+ .debug_loc     0x0000000000001aef       0x25 libopencm3/lib/libopencm3_stm32l0.a(pwr_common_v1.o)
+ .debug_loc     0x0000000000001b14      0x65b libopencm3/lib/libopencm3_stm32l0.a(rcc.o)
+ .debug_loc     0x000000000000216f       0x94 libopencm3/lib/libopencm3_stm32l0.a(rcc_common_all.o)
+ .debug_loc     0x0000000000002203       0x94 libopencm3/lib/libopencm3_stm32l0.a(rtc_common_l1f024.o)
+ .debug_loc     0x0000000000002297      0x188 libopencm3/lib/libopencm3_stm32l0.a(spi_common_all.o)
+ .debug_loc     0x000000000000241f      0x1cc libopencm3/lib/libopencm3_stm32l0.a(usart_common_all.o)
+ .debug_loc     0x00000000000025eb       0xdb libopencm3/lib/libopencm3_stm32l0.a(usart_common_v2.o)
+ .debug_loc     0x00000000000026c6      0x11b libopencm3/lib/libopencm3_stm32l0.a(vector.o)

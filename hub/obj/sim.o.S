@@ -5049,21 +5049,17 @@ void spi_set_frf_motorola(uint32_t spi);
 # 1 "libopencm3/include/libopencm3/stm32/usart.h" 1
 # 8 "common/include/common/board_defs.h" 2
 
-
-
-
-#define MAX_SENSORS 50
 typedef struct
 {
  
-# 15 "common/include/common/board_defs.h" 3 4
+# 11 "common/include/common/board_defs.h" 3 4
 _Bool 
-# 15 "common/include/common/board_defs.h"
+# 11 "common/include/common/board_defs.h"
        msg_pend;
  
-# 16 "common/include/common/board_defs.h" 3 4
+# 12 "common/include/common/board_defs.h" 3 4
 _Bool 
-# 16 "common/include/common/board_defs.h"
+# 12 "common/include/common/board_defs.h"
        active;
  uint32_t dev_num;
  uint32_t msg_num;
@@ -5072,17 +5068,14 @@ _Bool
  uint32_t total_packets;
 }sensor_t;
 
+
+
+
+#define MAX_SENSORS 50
+
 extern sensor_t sensors[50];
 extern uint8_t num_sensors;
 sensor_t *get_sensor(uint32_t dev_num);
-
-
-
-#define FLASH_START 0x08000000
-#define FLASH_END 0x08010000
-#define FLASH_PAGE_SIZE 128
-#define EEPROM_START 0x08080000
-#define EEPROM_END 0x08080800
 
 
 
@@ -5190,7 +5183,7 @@ sensor_t *get_sensor(uint32_t dev_num);
 
 #define W25_SPI_SCK_PORT GPIOB
 #define W25_SPI_SCK GPIO3
-# 252 "common/include/common/board_defs.h"
+# 229 "common/include/common/board_defs.h"
 void gpio_init(void);
 # 13 "hub/src/sim.c" 2
 # 1 "common/include/common/printf.h" 1
@@ -5257,19 +5250,19 @@ uint32_t fnprintf(out_fct_type out, const char *format, va_list va);
 # 1 "common/include/common/log.h" 1
 # 26 "common/include/common/log.h"
 #define LOG_H 
-# 43 "common/include/common/log.h"
-enum log_type
-{
-    MAIN=0,
-    SPF,
-    MEM,
-    BOOT,
-    RFM,
-    TMP
-};
-# 62 "common/include/common/log.h"
+# 47 "common/include/common/log.h"
+#define ERR_BOOT_PROG_START_ADDRESS_OUT_OF_BOUNDS 0
+#define ERR_BOOT_PROG_TOO_BIG 1
+#define ERR_BOOT_PROG_BAD_CHECKSUM 2
+#define ERR_BOOT_PROG_FLASH_ERASE 3
+#define ERR_BOOT_PROG_FLASH_WRITE_1 4
+#define ERR_BOOT_PROG_FLASH_WRITE_2 5
+# 65 "common/include/common/log.h"
 void log_init(void);
-void log_printf(enum log_type type, const char *format, ...);
+void log_printf(const char *format, ...);
+void log_error(uint16_t error);
+
+void serial_printf(const char *format, ...);
 # 15 "hub/src/sim.c" 2
 # 1 "common/include/common/timers.h" 1
 
@@ -5373,7 +5366,7 @@ static void _putchar(char character);
 
 void sim_init(void)
 {
- log_printf(MAIN, "Sim Init\n");
+ log_printf("Sim Init\n");
 
  rcc_periph_clock_enable(RCC_GPIOA);
  rcc_periph_clock_enable(RCC_GPIOB);
@@ -5397,7 +5390,7 @@ void sim_init(void)
  sim_printf("ate0\r\n");
  timeout_init(); while(!timeout(1000000, "SIM: ate0", 0)) { if(check_response("OK")){ ; break; } else{ ; }};
 
- log_printf(MAIN, "Sim Init Done\n");
+ log_printf("Sim Init Done\n");
 }
 
 void sim_end(void)
@@ -5414,7 +5407,7 @@ void sim_end(void)
  usart_disable((((0x40000000U) + 0x00000) + 0x4400));
  rcc_periph_clock_disable(RCC_USART2);
 
- log_printf(MAIN, "Sim End Done\n");
+ log_printf("Sim End Done\n");
 }
 
 
@@ -5602,7 +5595,7 @@ void sim_serial_pass_through(void)
 
     sim_init();
 
-    log_printf(MAIN, "Ready\n");
+    log_printf("Ready\n");
 
     while(1)
     {

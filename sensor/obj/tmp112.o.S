@@ -4151,19 +4151,18 @@ void usart_disable_rx_timeout_interrupt(uint32_t usart);
 
 # 37 "libopencm3/include/libopencm3/stm32/usart.h" 2
 # 8 "common/include/common/board_defs.h" 2
-# 147 "common/include/common/board_defs.h"
-#define MAX_SENSORS 50
+
 typedef struct
 {
  
-# 150 "common/include/common/board_defs.h" 3 4
+# 11 "common/include/common/board_defs.h" 3 4
 _Bool 
-# 150 "common/include/common/board_defs.h"
+# 11 "common/include/common/board_defs.h"
        msg_pend;
  
-# 151 "common/include/common/board_defs.h" 3 4
+# 12 "common/include/common/board_defs.h" 3 4
 _Bool 
-# 151 "common/include/common/board_defs.h"
+# 12 "common/include/common/board_defs.h"
        active;
  uint32_t dev_num;
  uint32_t msg_num;
@@ -4171,17 +4170,13 @@ _Bool
  uint32_t ok_packets;
  uint32_t total_packets;
 }sensor_t;
+# 140 "common/include/common/board_defs.h"
+#define MAX_SENSORS 50
+
 
 extern sensor_t sensors[50];
 extern uint8_t num_sensors;
 sensor_t *get_sensor(uint32_t dev_num);
-
-
-#define FLASH_START 0x08000000
-#define FLASH_END 0x08010000
-#define FLASH_PAGE_SIZE 128
-#define EEPROM_START 0x08080000
-#define EEPROM_END 0x08080800
 
 
 #define BATT_SENS_PORT GPIOA
@@ -4364,19 +4359,19 @@ void tmp112_read_temperature(int16_t* readings, uint8_t num_readings);
 # 1 "common/include/common/log.h" 1
 # 26 "common/include/common/log.h"
 #define LOG_H 
-# 43 "common/include/common/log.h"
-enum log_type
-{
-    MAIN=0,
-    SPF,
-    MEM,
-    BOOT,
-    RFM,
-    TMP
-};
-# 62 "common/include/common/log.h"
+# 47 "common/include/common/log.h"
+#define ERR_BOOT_PROG_START_ADDRESS_OUT_OF_BOUNDS 0
+#define ERR_BOOT_PROG_TOO_BIG 1
+#define ERR_BOOT_PROG_BAD_CHECKSUM 2
+#define ERR_BOOT_PROG_FLASH_ERASE 3
+#define ERR_BOOT_PROG_FLASH_WRITE_1 4
+#define ERR_BOOT_PROG_FLASH_WRITE_2 5
+# 65 "common/include/common/log.h"
 void log_init(void);
-void log_printf(enum log_type type, const char *format, ...);
+void log_printf(const char *format, ...);
+void log_error(uint16_t error);
+
+void serial_printf(const char *format, ...);
 # 10 "sensor/src/tmp112.c" 2
 
 
@@ -4389,7 +4384,7 @@ void tmp112_init(void)
  tmp112_clock_setup();
  tmp112_i2c_setup();
 
- log_printf(MAIN, "TMP Init Done\n");
+ log_printf("TMP Init Done\n");
 }
 
 void tmp112_end(void)
@@ -4410,7 +4405,7 @@ void tmp112_end(void)
  i2c_peripheral_disable((((0x40000000U) + 0x00000) + 0x5800));
  rcc_periph_clock_disable(RCC_I2C2);
 
- log_printf(MAIN, "TMP End Done\n");
+ log_printf("TMP End Done\n");
 }
 
 void tmp112_reset(void)

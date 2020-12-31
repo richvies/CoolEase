@@ -203,7 +203,7 @@ void timers_enter_standby(void)
     // Enter standby
     while(1)
     {
-        log_printf(MAIN, "WFI/E\n");
+        log_printf("WFI/E\n");
         set_gpio_for_standby();
         cm_disable_interrupts();
         __asm__("wfi");
@@ -225,11 +225,11 @@ bool timeout(uint32_t time_microseconds, char *msg, uint32_t data)
     timeout_counter    += (uint16_t)(timers_micros() - timeout_timer);
     timeout_timer       = timers_micros();
 
-    // log_printf(MAIN, "%u\n", timeout_counter);
+    // log_printf("%u\n", timeout_counter);
 
     if(timeout_counter > time_microseconds)
     {
-        log_printf(MAIN, "Timeout %s %08X\n", msg, data);
+        log_printf("Timeout %s %08X\n", msg, data);
         return true;
     }
     else    
@@ -288,7 +288,7 @@ void rtc_isr(void)
     // scb_reset_system();
 
     log_init();
-    log_printf(MAIN, "RTC ISR\n");
+    log_printf("RTC ISR\n");
 
     if(RTC_ISR & RTC_ISR_WUTF)
     { 

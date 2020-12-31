@@ -69,36 +69,15 @@ void log_init(void)
     #ifdef DEBUG
     clock_setup();
     usart_setup();
+	for(int i = 0; i < 100000; i++){__asm__("nop");};
     #endif
 }
 
-void log_printf(enum log_type type, const char *format, ...)
+void log_printf(const char *format, ...)
 {
 	va_list va;
 	va_start(va, format);
-
-    switch (type)
-    {
-    case MAIN:
-        fnprintf(_putchar_main, format, va);
-        break;
-
-	case SPF:
-        fnprintf(_putchar_spf, format, va);
-		break;
-
-	case MEM:
-        fnprintf(_putchar_mem, format, va);
-		break;
-    
-	case RFM:
-        fnprintf(_putchar_main, format, va);
-		break;
-    
-    default:
-        break;
-    }
-
+	fnprintf(_putchar_main, format, va);
   	va_end(va);
 
     // Wait for uart to finish if serial print is used
@@ -106,6 +85,25 @@ void log_printf(enum log_type type, const char *format, ...)
     while(!usart_get_flag(SPF_USART, USART_ISR_TC)) {}
     #endif
 }
+
+void log_error(uint16_t error)
+{
+	log_printf("Error %i\n", error);
+}
+
+void serial_printf(const char *format, ...)
+{
+	va_list va;
+	va_start(va, format);
+	fnprintf(_putchar_spf, format, va);
+  	va_end(va);
+
+    // Wait for uart to finish if serial print is used
+    #ifdef DEBUG
+    while(!usart_get_flag(SPF_USART, USART_ISR_TC)) {}
+    #endif
+}
+
 
 /** @} */
 
@@ -169,14 +167,15 @@ static void usart_setup(void)
 static void _putchar_main(char character)
 {
 	_putchar_mem(character);
-	_putchar_spf(character);			
+
+	#ifdef DEBUG
+	_putchar_spf(character);
+	#endif			
 }
 
 static void _putchar_spf(char character)
 {
-	#ifdef DEBUG
-	usart_send_blocking(SPF_USART, character);	
-	#endif
+	usart_send_blocking(SPF_USART, character);		
 }
 
 static void _putchar_mem(char character)

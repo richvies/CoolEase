@@ -3648,19 +3648,18 @@ void usart_disable_rx_timeout_interrupt(uint32_t usart);
 
 # 37 "libopencm3/include/libopencm3/stm32/usart.h" 2
 # 8 "common/include/common/board_defs.h" 2
-# 147 "common/include/common/board_defs.h"
-#define MAX_SENSORS 50
+
 typedef struct
 {
  
-# 150 "common/include/common/board_defs.h" 3 4
+# 11 "common/include/common/board_defs.h" 3 4
 _Bool 
-# 150 "common/include/common/board_defs.h"
+# 11 "common/include/common/board_defs.h"
        msg_pend;
  
-# 151 "common/include/common/board_defs.h" 3 4
+# 12 "common/include/common/board_defs.h" 3 4
 _Bool 
-# 151 "common/include/common/board_defs.h"
+# 12 "common/include/common/board_defs.h"
        active;
  uint32_t dev_num;
  uint32_t msg_num;
@@ -3668,17 +3667,13 @@ _Bool
  uint32_t ok_packets;
  uint32_t total_packets;
 }sensor_t;
+# 140 "common/include/common/board_defs.h"
+#define MAX_SENSORS 50
+
 
 extern sensor_t sensors[50];
 extern uint8_t num_sensors;
 sensor_t *get_sensor(uint32_t dev_num);
-
-
-#define FLASH_START 0x08000000
-#define FLASH_END 0x08010000
-#define FLASH_PAGE_SIZE 128
-#define EEPROM_START 0x08080000
-#define EEPROM_END 0x08080800
 
 
 #define BATT_SENS_PORT GPIOA
@@ -3767,19 +3762,19 @@ void gpio_init(void);
 # 1 "common/include/common/log.h" 1
 # 26 "common/include/common/log.h"
 #define LOG_H 
-# 43 "common/include/common/log.h"
-enum log_type
-{
-    MAIN=0,
-    SPF,
-    MEM,
-    BOOT,
-    RFM,
-    TMP
-};
-# 62 "common/include/common/log.h"
+# 47 "common/include/common/log.h"
+#define ERR_BOOT_PROG_START_ADDRESS_OUT_OF_BOUNDS 0
+#define ERR_BOOT_PROG_TOO_BIG 1
+#define ERR_BOOT_PROG_BAD_CHECKSUM 2
+#define ERR_BOOT_PROG_FLASH_ERASE 3
+#define ERR_BOOT_PROG_FLASH_WRITE_1 4
+#define ERR_BOOT_PROG_FLASH_WRITE_2 5
+# 65 "common/include/common/log.h"
 void log_init(void);
-void log_printf(enum log_type type, const char *format, ...);
+void log_printf(const char *format, ...);
+void log_error(uint16_t error);
+
+void serial_printf(const char *format, ...);
 # 23 "common/src/memory.c" 2
 # 1 "common/include/common/timers.h" 1
 
@@ -3864,51 +3859,52 @@ void set_gpio_for_standby(void);
 # 1 "libopencm3/include/libopencm3/stm32/rcc.h" 1
 # 35 "common/include/common/memory.h" 2
 # 49 "common/include/common/memory.h"
-#define FLASH_PAGE_SIZE 128
-#define FLASH_NUM_PAGES 512
-#define FLASH_START 0x08000000
-#define FLASH_START_APP 0x08004000
-#define FLASH_END 0x08010000
+#define FLASH_PAGE_SIZE 128U
+#define FLASH_NUM_PAGES 512U
+#define FLASH_START 0x08000000U
+#define FLASH_APP_START 0x08004000U
+#define FLASH_APP_END 0x0800C000U
+#define FLASH_END 0x08010000U
 
-#define EEPROM_PAGE_SIZE 4
-#define EEPROM_NUM_PAGES 512
-#define EEPROM_START 0x08080000
-#define EEPROM_END 0x08080800
+#define EEPROM_PAGE_SIZE 4U
+#define EEPROM_NUM_PAGES 512U
+#define EEPROM_START 0x08080000U
+#define EEPROM_END 0x08080800U
 
 #define LOG_SIZE 1024
-# 73 "common/include/common/memory.h"
+# 74 "common/include/common/memory.h"
 void mem_init(void);
 
-
-# 75 "common/include/common/memory.h" 3 4
-_Bool 
-# 75 "common/include/common/memory.h"
-    mem_eeprom_write_word(uint32_t address, uint32_t data);
 
 # 76 "common/include/common/memory.h" 3 4
 _Bool 
 # 76 "common/include/common/memory.h"
-    mem_eeprom_write_half_word(uint32_t address, uint16_t data);
+    mem_eeprom_write_word(uint32_t address, uint32_t data);
 
 # 77 "common/include/common/memory.h" 3 4
 _Bool 
 # 77 "common/include/common/memory.h"
+    mem_eeprom_write_half_word(uint32_t address, uint16_t data);
+
+# 78 "common/include/common/memory.h" 3 4
+_Bool 
+# 78 "common/include/common/memory.h"
     mem_eeprom_write_byte(uint32_t address, uint8_t data);
 
-
-# 79 "common/include/common/memory.h" 3 4
-_Bool 
-# 79 "common/include/common/memory.h"
-    mem_flash_erase_page(uint32_t address);
 
 # 80 "common/include/common/memory.h" 3 4
 _Bool 
 # 80 "common/include/common/memory.h"
-    mem_flash_write_word(uint32_t address, uint32_t data);
+    mem_flash_erase_page(uint32_t address);
 
 # 81 "common/include/common/memory.h" 3 4
 _Bool 
 # 81 "common/include/common/memory.h"
+    mem_flash_write_word(uint32_t address, uint32_t data);
+
+# 82 "common/include/common/memory.h" 3 4
+_Bool 
+# 82 "common/include/common/memory.h"
     mem_flash_write_half_page(uint32_t address, uint32_t *data);
 
 void mem_save_reading(int16_t reading);
@@ -3950,7 +3946,7 @@ void mem_wipe_readings(void);
 #define MAX_READINGS 2048
 # 51 "common/src/memory.c"
 static uint32_t log_add = 0x08080400;
-static uint32_t next_reading_add = ( 0x08010000 - 8192 );
+static uint32_t next_reading_add = ( 0x08010000U - 8192 );
 
 
 static uint32_t dev_state_add = 0x08080000;
@@ -3989,7 +3985,7 @@ _Bool
 # 103 "common/src/memory.c"
     mem_eeprom_write_word(uint32_t address, uint32_t data)
 {
-    if( !(address >= 0x08080000 && address < 0x08080800) )
+    if( !(address >= 0x08080000U && address < 0x08080800U) )
         return 
 # 106 "common/src/memory.c" 3 4
               0
@@ -4020,7 +4016,7 @@ _Bool
 # 122 "common/src/memory.c"
     mem_eeprom_write_half_word(uint32_t address, uint16_t data)
 {
-    if( !(address >= 0x08080000 && address < 0x08080800) )
+    if( !(address >= 0x08080000U && address < 0x08080800U) )
         return 
 # 125 "common/src/memory.c" 3 4
               0
@@ -4051,7 +4047,7 @@ _Bool
 # 141 "common/src/memory.c"
     mem_eeprom_write_byte(uint32_t address, uint8_t data)
 {
-    if( !(address >= 0x08080000 && address < 0x08080800) )
+    if( !(address >= 0x08080000U && address < 0x08080800U) )
         return 
 # 144 "common/src/memory.c" 3 4
               0
@@ -4151,7 +4147,7 @@ _Bool
     if (((*(volatile uint32_t *)((((0x40000000U) + 0x20000) + 0x02000) + 0x18)) & (1 << 1)) != 0)
     {
         (*(volatile uint32_t *)((((0x40000000U) + 0x20000) + 0x02000) + 0x18)) |= (1 << 1);
-        log_printf(MAIN, "Write success\n");
+        log_printf("Write success\n");
         return 
 # 200 "common/src/memory.c" 3 4
               1
@@ -4160,7 +4156,7 @@ _Bool
     }
     else
     {
-        log_printf(MAIN, "Write fail\n");
+        log_printf("Write fail\n");
         return 
 # 205 "common/src/memory.c" 3 4
               0
@@ -4185,7 +4181,7 @@ void mem_save_reading(int16_t reading)
     {
         mem_eeprom_write_word(msg_num_add, msg_num);
         mem_wipe_readings();
-        next_reading_add = ( 0x08010000 - 8192 );
+        next_reading_add = ( 0x08010000U - 8192 );
     }
 }
 
@@ -4218,7 +4214,7 @@ uint32_t mem_get_num_readings(void)
 
 int16_t mem_get_reading(uint32_t reading_num)
 {
-    return (*(volatile uint32_t *)(( 0x08010000 - 8192 ) + (reading_num * 4)));
+    return (*(volatile uint32_t *)(( 0x08010000U - 8192 ) + (reading_num * 4)));
 }
 
 
@@ -4237,12 +4233,12 @@ void mem_get_log(char log[1024])
 
 void mem_print_log(void)
 {
-    log_printf(MAIN, "LOG START\n");
+    log_printf("LOG START\n");
     for(uint16_t i = 0; i < 1024; i++)
     {
-        log_printf(MAIN, "%c", (*(volatile uint8_t *)(0x08080400 + i)));
+        log_printf("%c", (*(volatile uint8_t *)(0x08080400 + i)));
     }
-    log_printf(MAIN, "LOG END\n");
+    log_printf("LOG END\n");
 }
 
 
@@ -4312,18 +4308,18 @@ void mem_set_aes_key_exp(uint8_t *aes_key_exp)
 
 void mem_wipe_readings(void)
 {
-    log_printf(MAIN, "Mem Wipe Readings\n");
+    log_printf("Mem Wipe Readings\n");
 
-    uint32_t page_add = ( 0x08010000 - 8192 );
+    uint32_t page_add = ( 0x08010000U - 8192 );
 
-    while( page_add < 0x08010000 )
+    while( page_add < 0x08010000U )
     {
 
         mem_flash_erase_page(page_add);
-        page_add += 128;
+        page_add += 128U;
     }
 
-    log_printf(MAIN, "Done\n", page_add);
+    log_printf("Done\n", page_add);
 }
 # 378 "common/src/memory.c"
 static __attribute__((section (".data#"), noinline)) 

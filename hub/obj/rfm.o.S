@@ -4293,21 +4293,17 @@ void usart_disable_rx_timeout_interrupt(uint32_t usart);
 # 37 "libopencm3/include/libopencm3/stm32/usart.h" 2
 # 8 "common/include/common/board_defs.h" 2
 
-
-
-
-#define MAX_SENSORS 50
 typedef struct
 {
  
-# 15 "common/include/common/board_defs.h" 3 4
+# 11 "common/include/common/board_defs.h" 3 4
 _Bool 
-# 15 "common/include/common/board_defs.h"
+# 11 "common/include/common/board_defs.h"
        msg_pend;
  
-# 16 "common/include/common/board_defs.h" 3 4
+# 12 "common/include/common/board_defs.h" 3 4
 _Bool 
-# 16 "common/include/common/board_defs.h"
+# 12 "common/include/common/board_defs.h"
        active;
  uint32_t dev_num;
  uint32_t msg_num;
@@ -4316,17 +4312,14 @@ _Bool
  uint32_t total_packets;
 }sensor_t;
 
+
+
+
+#define MAX_SENSORS 50
+
 extern sensor_t sensors[50];
 extern uint8_t num_sensors;
 sensor_t *get_sensor(uint32_t dev_num);
-
-
-
-#define FLASH_START 0x08000000
-#define FLASH_END 0x08010000
-#define FLASH_PAGE_SIZE 128
-#define EEPROM_START 0x08080000
-#define EEPROM_END 0x08080800
 
 
 
@@ -4434,25 +4427,25 @@ sensor_t *get_sensor(uint32_t dev_num);
 
 #define W25_SPI_SCK_PORT GPIOB
 #define W25_SPI_SCK GPIO3
-# 252 "common/include/common/board_defs.h"
+# 229 "common/include/common/board_defs.h"
 void gpio_init(void);
 # 29 "common/src/rfm.c" 2
 # 1 "common/include/common/log.h" 1
 # 26 "common/include/common/log.h"
 #define LOG_H 
-# 43 "common/include/common/log.h"
-enum log_type
-{
-    MAIN=0,
-    SPF,
-    MEM,
-    BOOT,
-    RFM,
-    TMP
-};
-# 62 "common/include/common/log.h"
+# 47 "common/include/common/log.h"
+#define ERR_BOOT_PROG_START_ADDRESS_OUT_OF_BOUNDS 0
+#define ERR_BOOT_PROG_TOO_BIG 1
+#define ERR_BOOT_PROG_BAD_CHECKSUM 2
+#define ERR_BOOT_PROG_FLASH_ERASE 3
+#define ERR_BOOT_PROG_FLASH_WRITE_1 4
+#define ERR_BOOT_PROG_FLASH_WRITE_2 5
+# 65 "common/include/common/log.h"
 void log_init(void);
-void log_printf(enum log_type type, const char *format, ...);
+void log_printf(const char *format, ...);
+void log_error(uint16_t error);
+
+void serial_printf(const char *format, ...);
 # 30 "common/src/rfm.c" 2
 # 1 "common/include/common/timers.h" 1
 
@@ -4604,7 +4597,7 @@ void rfm_init(void)
 
   rfm_reset();
 
-  log_printf(MAIN, "RFM Init Done\n");
+  log_printf("RFM Init Done\n");
 }
 
 void rfm_reset(void)
@@ -4622,7 +4615,7 @@ void rfm_reset(void)
 
   set_sleep_mode();
 
-  log_printf(MAIN, "RFM Reset Done\n");
+  log_printf("RFM Reset Done\n");
 }
 
 void rfm_end(void)
@@ -4633,7 +4626,7 @@ void rfm_end(void)
   spi_disable((((0x40000000U) + 0x00000) + 0x3800));
   rcc_periph_clock_disable(RCC_SPI2);
 
-  log_printf(MAIN, "RFM End Done\n");
+  log_printf("RFM End Done\n");
 }
 
 void rfm_calibrate_crystal(void)
@@ -4788,7 +4781,7 @@ void rfm_get_packets(void)
 
     while(packets_tail != packets_head)
     {
-      log_printf(MAIN, "Get %u %u\n", packets_head, packets_tail);
+      log_printf("Get %u %u\n", packets_head, packets_tail);
 
 
       spi_read_burst(0x00, packets_buf[packets_tail].data.buffer, 16);
@@ -4809,7 +4802,7 @@ rfm_packet_t* rfm_get_next_packet(void)
 {
   rfm_get_packets();
 
-  log_printf(MAIN, "Read %u\n", packets_read);
+  log_printf("Read %u\n", packets_read);
   rfm_packet_t *packet = &packets_buf[packets_read];
 
   packets_read = (packets_read + 1) % 16;
@@ -5063,7 +5056,7 @@ static void print_registers(void)
   uint8_t i;
   for (i = 0; i < sizeof(registers); i++)
   {
-   log_printf(MAIN, "%02x : %02x\n", registers[i], spi_read_single(registers[i]));
+   log_printf("%02x : %02x\n", registers[i], spi_read_single(registers[i]));
   }
 }
 

@@ -45,7 +45,7 @@
 int main(void)
 {
     log_init();
-    log_printf(MAIN, "Sensor Bootloader Start\n");
+    log_printf("Sensor Bootloader Start\n");
     return 0;
 }
 

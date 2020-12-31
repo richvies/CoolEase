@@ -5371,21 +5371,17 @@ void usart_disable_rx_timeout_interrupt(uint32_t usart);
 # 37 "libopencm3/include/libopencm3/stm32/usart.h" 2
 # 8 "common/include/common/board_defs.h" 2
 
-
-
-
-#define MAX_SENSORS 50
 typedef struct
 {
  
-# 15 "common/include/common/board_defs.h" 3 4
+# 11 "common/include/common/board_defs.h" 3 4
 _Bool 
-# 15 "common/include/common/board_defs.h"
+# 11 "common/include/common/board_defs.h"
        msg_pend;
  
-# 16 "common/include/common/board_defs.h" 3 4
+# 12 "common/include/common/board_defs.h" 3 4
 _Bool 
-# 16 "common/include/common/board_defs.h"
+# 12 "common/include/common/board_defs.h"
        active;
  uint32_t dev_num;
  uint32_t msg_num;
@@ -5394,17 +5390,14 @@ _Bool
  uint32_t total_packets;
 }sensor_t;
 
+
+
+
+#define MAX_SENSORS 50
+
 extern sensor_t sensors[50];
 extern uint8_t num_sensors;
 sensor_t *get_sensor(uint32_t dev_num);
-
-
-
-#define FLASH_START 0x08000000
-#define FLASH_END 0x08010000
-#define FLASH_PAGE_SIZE 128
-#define EEPROM_START 0x08080000
-#define EEPROM_END 0x08080800
 
 
 
@@ -5512,25 +5505,25 @@ sensor_t *get_sensor(uint32_t dev_num);
 
 #define W25_SPI_SCK_PORT GPIOB
 #define W25_SPI_SCK GPIO3
-# 252 "common/include/common/board_defs.h"
+# 229 "common/include/common/board_defs.h"
 void gpio_init(void);
 # 22 "hub/src/hub.c" 2
 # 1 "common/include/common/log.h" 1
 # 26 "common/include/common/log.h"
 #define LOG_H 
-# 43 "common/include/common/log.h"
-enum log_type
-{
-    MAIN=0,
-    SPF,
-    MEM,
-    BOOT,
-    RFM,
-    TMP
-};
-# 62 "common/include/common/log.h"
+# 47 "common/include/common/log.h"
+#define ERR_BOOT_PROG_START_ADDRESS_OUT_OF_BOUNDS 0
+#define ERR_BOOT_PROG_TOO_BIG 1
+#define ERR_BOOT_PROG_BAD_CHECKSUM 2
+#define ERR_BOOT_PROG_FLASH_ERASE 3
+#define ERR_BOOT_PROG_FLASH_WRITE_1 4
+#define ERR_BOOT_PROG_FLASH_WRITE_2 5
+# 65 "common/include/common/log.h"
 void log_init(void);
-void log_printf(enum log_type type, const char *format, ...);
+void log_printf(const char *format, ...);
+void log_error(uint16_t error);
+
+void serial_printf(const char *format, ...);
 # 23 "hub/src/hub.c" 2
 # 1 "common/include/common/memory.h" 1
 # 26 "common/include/common/memory.h"
@@ -5717,51 +5710,52 @@ void eeprom_program_words(uint32_t address, uint32_t *data, int length_in_words)
 # 1 "libopencm3/include/libopencm3/stm32/rcc.h" 1
 # 35 "common/include/common/memory.h" 2
 # 49 "common/include/common/memory.h"
-#define FLASH_PAGE_SIZE 128
-#define FLASH_NUM_PAGES 512
-#define FLASH_START 0x08000000
-#define FLASH_START_APP 0x08004000
-#define FLASH_END 0x08010000
+#define FLASH_PAGE_SIZE 128U
+#define FLASH_NUM_PAGES 512U
+#define FLASH_START 0x08000000U
+#define FLASH_APP_START 0x08004000U
+#define FLASH_APP_END 0x0800C000U
+#define FLASH_END 0x08010000U
 
-#define EEPROM_PAGE_SIZE 4
-#define EEPROM_NUM_PAGES 512
-#define EEPROM_START 0x08080000
-#define EEPROM_END 0x08080800
+#define EEPROM_PAGE_SIZE 4U
+#define EEPROM_NUM_PAGES 512U
+#define EEPROM_START 0x08080000U
+#define EEPROM_END 0x08080800U
 
 #define LOG_SIZE 1024
-# 73 "common/include/common/memory.h"
+# 74 "common/include/common/memory.h"
 void mem_init(void);
 
-
-# 75 "common/include/common/memory.h" 3 4
-_Bool 
-# 75 "common/include/common/memory.h"
-    mem_eeprom_write_word(uint32_t address, uint32_t data);
 
 # 76 "common/include/common/memory.h" 3 4
 _Bool 
 # 76 "common/include/common/memory.h"
-    mem_eeprom_write_half_word(uint32_t address, uint16_t data);
+    mem_eeprom_write_word(uint32_t address, uint32_t data);
 
 # 77 "common/include/common/memory.h" 3 4
 _Bool 
 # 77 "common/include/common/memory.h"
+    mem_eeprom_write_half_word(uint32_t address, uint16_t data);
+
+# 78 "common/include/common/memory.h" 3 4
+_Bool 
+# 78 "common/include/common/memory.h"
     mem_eeprom_write_byte(uint32_t address, uint8_t data);
 
-
-# 79 "common/include/common/memory.h" 3 4
-_Bool 
-# 79 "common/include/common/memory.h"
-    mem_flash_erase_page(uint32_t address);
 
 # 80 "common/include/common/memory.h" 3 4
 _Bool 
 # 80 "common/include/common/memory.h"
-    mem_flash_write_word(uint32_t address, uint32_t data);
+    mem_flash_erase_page(uint32_t address);
 
 # 81 "common/include/common/memory.h" 3 4
 _Bool 
 # 81 "common/include/common/memory.h"
+    mem_flash_write_word(uint32_t address, uint32_t data);
+
+# 82 "common/include/common/memory.h" 3 4
+_Bool 
+# 82 "common/include/common/memory.h"
     mem_flash_write_half_page(uint32_t address, uint32_t *data);
 
 void mem_save_reading(int16_t reading);
@@ -6412,33 +6406,66 @@ extern long double strtold (const char *restrict, char **restrict);
 # 47 "common/include/common/test.h"
 #define DEV_NUM_CHIP (uint32_t)0x0000001B
 #define DEV_NUM_PCB (uint32_t)~DEV_NUM_CHIP
-# 64 "common/include/common/test.h"
+# 60 "common/include/common/test.h"
 
-# 64 "common/include/common/test.h"
-void test_mem_write_read(void);
-
-void test_boot(uint32_t address);
+# 60 "common/include/common/test.h"
 void flash_led(uint16_t milliseconds, uint8_t num_flashes);
-void test_wakeup(void);
-void test_standby(uint32_t standby_time);
-void test_rf(void);
-void test_rf_listen(void);
-void test_receiver(uint32_t dev_num);
-void test_voltage_scale(uint8_t scale);
-void test_low_power_run(void);
+
+
+
+
+
+void test_mem_write_read(void);
+void test_log(void);
 void test_eeprom(void);
 void test_eeprom_keys(void);
 void test_eeprom_wipe(void);
-void test_lptim(void);
-void test_rfm(void);
 void test_reset_eeprom(void);
-void test_encryption(void);
 
-# 82 "common/include/common/test.h" 3 4
+
+
+
+
+void test_boot_jump_to_application(uint32_t address);
+void test_boot_verify_checksum(void);
+void test_boot_crc(void);
+
+
+
+
+
+
+void test_rf(void);
+void test_rf_listen(void);
+void test_receiver(uint32_t dev_num);
+void test_rfm(void);
+
+
+
+
+
+
+void test_lptim(void);
+void test_wakeup(void);
+
+# 98 "common/include/common/test.h" 3 4
 _Bool 
-# 82 "common/include/common/test.h"
+# 98 "common/include/common/test.h"
     test_timeout(void);
-void test_log(void);
+
+
+
+
+
+void test_standby(uint32_t standby_time);
+void test_voltage_scale(uint8_t scale);
+void test_low_power_run(void);
+
+
+
+
+
+void test_encryption(void);
 void test_analog_watchdog(void);
 # 29 "hub/src/hub.c" 2
 
@@ -6488,19 +6515,21 @@ int main(void)
 
 
 
+
  for(int i = 0; i < 100000; i++){__asm__("nop");};
 
- log_printf(MAIN, "Hub Start\n");
+
+ log_printf("Hub Start\n");
  flash_led(100, 5);
 
  test_mem_write_read();
-# 103 "hub/src/hub.c"
+# 105 "hub/src/hub.c"
  (void)test_hub2;
 
 
  for (;;)
  {
-  log_printf(MAIN, "Hub Loop\n\n");
+  log_printf("Hub Loop\n\n");
   timers_delay_milliseconds(1000);
  }
 
@@ -6508,10 +6537,10 @@ int main(void)
 
   return 0;
 }
-# 127 "hub/src/hub.c"
+# 129 "hub/src/hub.c"
 static void test_hub2(void)
 {
- log_printf(MAIN, "Testing Hub 2\n");
+ log_printf("Testing Hub 2\n");
 
 
  batt_enable_interrupt();
@@ -6521,9 +6550,9 @@ static void test_hub2(void)
 
 
  sensor_t *sensor = 
-# 138 "hub/src/hub.c" 3 4
+# 140 "hub/src/hub.c" 3 4
                    ((void *)0)
-# 138 "hub/src/hub.c"
+# 140 "hub/src/hub.c"
                        ;
  num_sensors = 3;
  sensors[0].dev_num = (uint32_t)0x0000001B;
@@ -6532,32 +6561,32 @@ static void test_hub2(void)
 
 
  rfm_packet_t *packet = 
-# 145 "hub/src/hub.c" 3 4
+# 147 "hub/src/hub.c" 3 4
                        ((void *)0)
-# 145 "hub/src/hub.c"
+# 147 "hub/src/hub.c"
                            ;
  rfm_init();
  rfm_config_for_lora(0x70, 0x02, 0x70, 
-# 147 "hub/src/hub.c" 3 4
+# 149 "hub/src/hub.c" 3 4
                                                                                      0
-# 147 "hub/src/hub.c"
+# 149 "hub/src/hub.c"
                                                                                           , 0);
  rfm_start_listening();
 
 
  
-# 151 "hub/src/hub.c" 3 4
+# 153 "hub/src/hub.c" 3 4
 _Bool 
-# 151 "hub/src/hub.c"
+# 153 "hub/src/hub.c"
       upload_packets = 
-# 151 "hub/src/hub.c" 3 4
+# 153 "hub/src/hub.c" 3 4
                         0
-# 151 "hub/src/hub.c"
+# 153 "hub/src/hub.c"
                              ;
  uint8_t sim_buf[256];
  uint8_t sim_buf_idx = 0;
 
- log_printf(MAIN, "Ready\n");
+ log_printf("Ready\n");
 
  for(;;)
  {
@@ -6566,12 +6595,12 @@ _Bool
 
   if(rfm_get_num_packets() > 0)
   {
-   log_printf(MAIN, "GetPkts %u\n", rfm_get_num_packets());
+   log_printf("GetPkts %u\n", rfm_get_num_packets());
 
    upload_packets = 
-# 166 "hub/src/hub.c" 3 4
+# 168 "hub/src/hub.c" 3 4
                    0
-# 166 "hub/src/hub.c"
+# 168 "hub/src/hub.c"
                         ;
    sim_buf_idx = 0;
 
@@ -6596,15 +6625,15 @@ _Bool
 
     if( !packet->crc_ok )
     {
-     log_printf(MAIN, "CRC Fail\n");
-     log_printf(MAIN, "!Crc\n");
+     log_printf("CRC Fail\n");
+     log_printf("!Crc\n");
      flash_led(100, 5);
      continue;
     }
     else
     {
-     log_printf(MAIN, "CRC OK\n");
-     log_printf(MAIN, "CrcOk\n");
+     log_printf("CRC OK\n");
+     log_printf("CrcOk\n");
     }
 
 
@@ -6612,13 +6641,13 @@ _Bool
 
 
     if(sensor == 
-# 205 "hub/src/hub.c" 3 4
+# 207 "hub/src/hub.c" 3 4
                 ((void *)0)
-# 205 "hub/src/hub.c"
+# 207 "hub/src/hub.c"
                     )
     {
-     log_printf(MAIN, "Wrong Dev Num: %08X\n", packet->data.device_number);
-     log_printf(MAIN, "WDN%08X\n", packet->data.device_number);
+     log_printf("Wrong Dev Num: %08X\n", packet->data.device_number);
+     log_printf("WDN%08X\n", packet->data.device_number);
      flash_led(100, 3);
      continue;
     }
@@ -6626,12 +6655,12 @@ _Bool
     {
 
      upload_packets = 
-# 215 "hub/src/hub.c" 3 4
+# 217 "hub/src/hub.c" 3 4
                      1
-# 215 "hub/src/hub.c"
+# 217 "hub/src/hub.c"
                          ;
      flash_led(100, 1);
-     log_printf(MAIN, "PktOk\n", packet->data.device_number);
+     log_printf("PktOk\n", packet->data.device_number);
     }
 
 
@@ -6642,16 +6671,16 @@ _Bool
      sensor->total_packets = 0;
      sensor->ok_packets = 0;
      sensor->active = 
-# 227 "hub/src/hub.c" 3 4
+# 229 "hub/src/hub.c" 3 4
                      1
-# 227 "hub/src/hub.c"
+# 229 "hub/src/hub.c"
                          ;
-     log_printf(MAIN, "First message from %u\nNumber: %i\n",sensor->dev_num, sensor->msg_num_start);
+     log_printf("First message from %u\nNumber: %i\n",sensor->dev_num, sensor->msg_num_start);
     }
 
     else if(++sensor->msg_num != packet->data.msg_number)
     {
-     log_printf(MAIN, "Missed Message %i\n", sensor->msg_num);
+     log_printf("Missed Message %i\n", sensor->msg_num);
 
      sensor->msg_num = packet->data.msg_number;
     }
@@ -6661,15 +6690,15 @@ _Bool
     sensor->total_packets = 1 + packet->data.msg_number - sensor->msg_num_start;
 
 
-    log_printf(MAIN, "Device ID: %08x\n", packet->data.device_number);
-    log_printf(MAIN, "Packet RSSI: %i dbm\n", packet->rssi);
-    log_printf(MAIN, "Packet SNR: %i dB\n", packet->snr);
-    log_printf(MAIN, "Power: %i\n", packet->data.power);
-    log_printf(MAIN, "Battery: %uV\n", packet->data.battery);
-    log_printf(MAIN, "Temperature: %i\n", packet->data.temperature);
-    log_printf(MAIN, "Message Number: %i\n", packet->data.msg_number);
-    log_printf(MAIN, "Accuracy: %i / %i packets\n\n", sensor->ok_packets, sensor->total_packets);
-# 263 "hub/src/hub.c"
+    log_printf("Device ID: %08x\n", packet->data.device_number);
+    log_printf("Packet RSSI: %i dbm\n", packet->rssi);
+    log_printf("Packet SNR: %i dB\n", packet->snr);
+    log_printf("Power: %i\n", packet->data.power);
+    log_printf("Battery: %uV\n", packet->data.battery);
+    log_printf("Temperature: %i\n", packet->data.temperature);
+    log_printf("Message Number: %i\n", packet->data.msg_number);
+    log_printf("Accuracy: %i / %i packets\n\n", sensor->ok_packets, sensor->total_packets);
+# 265 "hub/src/hub.c"
     sim_buf[sim_buf_idx++] = packet->data.device_number >> 24; sim_buf[sim_buf_idx++] = packet->data.device_number >> 16; sim_buf[sim_buf_idx++] = packet->data.device_number >> 8; sim_buf[sim_buf_idx++] = packet->data.device_number;
     sim_buf[sim_buf_idx++] = packet->data.temperature >> 8; sim_buf[sim_buf_idx++] = packet->data.temperature;
     sim_buf[sim_buf_idx++] = packet->data.battery >> 8; sim_buf[sim_buf_idx++] = packet->data.battery;
@@ -6682,20 +6711,20 @@ _Bool
 
   if(upload_packets)
   {
-   log_printf(MAIN, "Uploading\n");
-   log_printf(MAIN, "SimUp\n");
+   log_printf("Uploading\n");
+   log_printf("SimUp\n");
    sim_init();
-   log_printf(MAIN, "SimInit\n");
+   log_printf("SimInit\n");
    sim_connect();
-   log_printf(MAIN, "SimCnt\n");
+   log_printf("SimCnt\n");
    sim_send_data(sim_buf, sim_buf_idx);
-   log_printf(MAIN, "SimDone\n\n");
+   log_printf("SimDone\n\n");
    sim_end();
 
    upload_packets = 
-# 285 "hub/src/hub.c" 3 4
+# 287 "hub/src/hub.c" 3 4
                    0
-# 285 "hub/src/hub.c"
+# 287 "hub/src/hub.c"
                         ;
   }
 
@@ -6703,12 +6732,12 @@ _Bool
   if(batt_rst_seq)
   {
    batt_rst_seq = 
-# 291 "hub/src/hub.c" 3 4
+# 293 "hub/src/hub.c" 3 4
                  0
-# 291 "hub/src/hub.c"
+# 293 "hub/src/hub.c"
                       ;
    hub_download_info();
-   log_printf(MAIN, "BattRst\n");
+   log_printf("BattRst\n");
   }
 
   timers_delay_milliseconds(1);
@@ -6717,7 +6746,7 @@ _Bool
 
 static void hub_download_info(void)
 {
- log_printf(MAIN, "Hub Redownload Info\n");
+ log_printf("Hub Redownload Info\n");
 }
 
 
@@ -6728,7 +6757,7 @@ static void hub_download_info(void)
 
 void nmi_handler(void)
 {
-  log_printf(MAIN, "nmi\n");
+  log_printf("nmi\n");
  while(1)
  {
 
@@ -6737,7 +6766,7 @@ void nmi_handler(void)
 
 void hard_fault_handler(void)
 {
-  log_printf(MAIN, "hard fault\n");
+  log_printf("hard fault\n");
  while(1)
  {
 

@@ -31,7 +31,7 @@
 
 // 	rfm_set_tx_pa_table_index(power);
 
-// 	log_printf(MAIN, "%c", 255);
+// 	log_printf("%c", 255);
 
 // 	channel_number = 0;
 // 	test_number = 0;
@@ -66,8 +66,8 @@
 // 		// Get received packet and print info to serial
 // 		if(rfm_get_packet(&packet))
 // 		{
-// 			//log_printf(MAIN, "Received: %i Channel: %i Test: %i ", packet.length, packet.data.buffer[0], packet.data.buffer[1]);
-// 			//log_printf(MAIN, "RSSI: %i LQI: %i\n", packet.rssi, packet.lqi);
+// 			//log_printf("Received: %i Channel: %i Test: %i ", packet.length, packet.data.buffer[0], packet.data.buffer[1]);
+// 			//log_printf("RSSI: %i LQI: %i\n", packet.rssi, packet.lqi);
 
 // 			_putchar(packet.data.buffer[0]);
 // 			_putchar(packet.rssi);
@@ -109,11 +109,11 @@
 // 		rfm_transmit_packet(packet);
 
 // 		// Print test information to serial
-// 		/*log_printf(MAIN, "Sending Channel: %i Test: %i ", packet.data.buffer[0], packet.data.buffer[1]);
+// 		/*log_printf("Sending Channel: %i Test: %i ", packet.data.buffer[0], packet.data.buffer[1]);
 
 // 		if(rfm_transmit_packet(packet))
-// 			log_printf(MAIN, "Success\n");
+// 			log_printf("Success\n");
 // 		else
-// 			log_printf(MAIN, "Failed\n");*/
+// 			log_printf("Failed\n");*/
 // 	}
 // }
