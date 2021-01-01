@@ -2196,6 +2196,7 @@ void rcc_set_usart2_sel(uint32_t usart2_sel);
 void log_init(void);
 void log_printf(const char *format, ...);
 void log_error(uint16_t error);
+uint8_t log_get(uint16_t index);
 
 void serial_printf(const char *format, ...);
 # 7 "common/src/reset.c" 2

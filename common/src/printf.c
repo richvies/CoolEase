@@ -203,11 +203,15 @@ uint32_t fnprintf(out_fct_type out, const char *format, va_list va)
             // convert integer
             if ((*format == 'i') || (*format == 'd'))
             {
-                idx += _ntoa_format(out, (int32_t)va_arg(va, int), base, width, true);
+                int v1 = va_arg(va, int);
+                int32_t v2 = (int32_t)v1;
+                idx += _ntoa_format(out, v2, base, width, true);
             }
             else
             {
-                idx += _ntoa_format(out, (int32_t)va_arg(va, int), base, width, false);
+                int v1 = va_arg(va, int);
+                int32_t v2 = (int32_t)v1;
+                idx += _ntoa_format(out, v2, base, width, false);
             }
             format++;
             break;

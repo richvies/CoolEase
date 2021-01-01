@@ -1,9 +1,9 @@
 EXTERN(vector_table)
 ENTRY(reset_handler)
 
-/* Generate a link error if heap and stack don't fit into RAM */
-_min_heap_size  = 0x800;    /* required amount of heap  */
-_min_stack_size = 0x800;    /* required amount of stack */
+/* Generate a link error if heap and stack don't fit into RAM  */
+_min_heap_size  = 0x800;    /* required amount of heap   */
+_min_stack_size = 0x800;    /* required amount of stack  */
 
 MEMORY
 {
@@ -12,21 +12,21 @@ MEMORY
 }
 SECTIONS
 {
-    /* Flash Data */
-    /* Vector table, code & readonly data */
+    /* Flash Data  */
+    /* Vector table, code & readonly data  */
     .text : 
     {
         *(.vectors)
         *(.text*)
-        *(.glue_7)         /* glue arm to thumb code */
-        *(.glue_7t)        /* glue thumb to arm code */
+        *(.glue_7)         /* glue arm to thumb code  */
+        *(.glue_7t)        /* glue thumb to arm code  */
         *(.eh_frame)
         . = ALIGN(4);
         *(.rodata*)
         . = ALIGN(4);
     } >rom
     
-    /* C/C++ initialization */
+    /* C/C++ initialization  */
     .preinit_array : 
     {
         . = ALIGN(4);
@@ -50,8 +50,8 @@ SECTIONS
         __fini_array_end = .;
     } >rom
 
-    /* Arm frame table and indexs apparently for stack unwinding */
-    /* Can probably get rid of it */
+    /* Arm frame table and indexs apparently for stack unwinding  */
+    /* Can probably get rid of it  */
     .ARM.extab : 
     {
         *(.ARM.extab*)
@@ -65,23 +65,23 @@ SECTIONS
 
     . = ALIGN(4);
 
-    /* End of text */
+    /* End of text  */
     _etext = .;
 
-    /* RAM Data */
-    /* Initialized data cpoied to RAM */
+    /* RAM Data  */
+    /* Initialized data cpoied to RAM  */
     .data : 
     {
-        /* Start address of data in RAM */
+        /* Start address of data in RAM  */
         _data = .;
         *(.data*)
         . = ALIGN(4);
         _edata = .;
     } >ram AT >rom
-    /* Start address in flash */
+    /* Start address in flash  */
     _data_loadaddr = LOADADDR(.data);
     
-    /* Uninitialized data zero'd section of RAM */
+    /* Uninitialized data zero'd section of RAM  */
     .bss : 
     {
         *(.bss*)
@@ -92,10 +92,10 @@ SECTIONS
 
     . = ALIGN(4);
 
-    /* End of data */
+    /* End of data  */
     PROVIDE (end = .);
     
-    /* Check that there is enough RAM left */
+    /* Check that there is enough RAM left  */
     ._user_heap_stack :
     {
         . = ALIGN(8);
@@ -106,7 +106,7 @@ SECTIONS
 
     /DISCARD/ : { *(.eh_frame) }
 
-    /* Remove information from the standard libraries */
+    /* Remove information from the standard libraries  */
     /DISCARD/ :
     {
         libc.a ( * )

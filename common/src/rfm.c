@@ -412,36 +412,36 @@ uint8_t rfm_get_num_packets(void)
  */
 bool rfm_transmit_packet(rfm_packet_t packet)
 {
-  /* Go to standby and clear buffer */
+  // Go to standby and clear buffer 
   set_standby_mode(); 
   clear_buffer();       
   
-  /* Disable MCU interrupt used for receiving data */
+  // Disable MCU interrupt used for receiving data 
   exti_disable_request(RFM_IO_0_EXTI);
 	nvic_disable_irq(RFM_IO_0_NVIC);
 
-  /* Enable TX Done IRQ on RFM (IO0) */ 
+  // Enable TX Done IRQ on RFM (IO0)  
   set_dio_irq(RFM_IO_0_IRQ_TX_DONE | RFM_IO_1_IRQ_RX_TIMEOUT | RFM_IO_2_IRQ_FHSS_CHANGE | RFM_IO_3_IRQ_CRC_ERROR, RFM_IO_4_IRQ_CAD_DETECTED | RFM_IO_5_IRQ_MODE_READY);
   mask_irq(RFM_IRQ_ALL);
   unmask_irq(RFM_TX_DONE_MASK);
   clear_irq(RFM_IRQ_ALL);
 
-  /* Write packet length */
+  // Write packet length 
   // if(packet.length == 0)
   //   	packet.length = 1;
   // spi_write_single(RFM_REG_22_PAYLOAD_LENGTH, packet.length);
 
-  /* Write packet data */
+  // Write packet data 
   spi_write_burst(RFM_REG_00_FIFO, packet.data.buffer, RFM_PACKET_LENGTH);
   // spi_write_burst(RFM_REG_00_FIFO, packet.data, packet.length);
   // log_printf("SPI Pointer: %02x : %02x\n", RFM_REG_0D_FIFO_ADDR_PTR, spi_read_single(RFM_REG_0D_FIFO_ADDR_PTR));
 
-  /* Wait for clear channel */
+  // Wait for clear channel 
    
   // About 50ms to send packet currently
   // uint16_t start = timers_millis();
 
-  /* Enter TX state */
+  // Enter TX state 
   set_tx_mode();
 
   // wait_rf_io_0_high();
@@ -452,14 +452,14 @@ bool rfm_transmit_packet(rfm_packet_t packet)
   bool sent = false;
   TIMEOUT(100000, "RFM TX", 0, gpio_get(RFM_IO_0_PORT, RFM_IO_0), sent = true;, ;);
 
-  /* Clear interrupt */
+  // Clear interrupt 
   mask_irq(RFM_IRQ_ALL);
   clear_irq(RFM_IRQ_ALL);
 
-  /* Clear buffer */
+  // Clear buffer 
   clear_buffer(); 
 
-  /* Go to sleep */
+  // Go to sleep 
   set_sleep_mode(); 
 
   return sent;

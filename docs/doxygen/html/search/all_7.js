@@ -1,27 +1,8 @@
 var searchData=
 [
-  ['hid_5fcontrol_5frequest_44',['hid_control_request',['../group___c_u_s_b___i_n_t.html#ga29b474a495e8084ca9f797e1fcf75eb8',1,'cusb.c']]],
-  ['hid_5fdescriptor_45',['hid_descriptor',['../structhid__function__descriptor.html#a21e8b11a4b3fdf88762491887f5a27fe',1,'hid_function_descriptor::hid_descriptor()'],['../cusb_8c.html#aaac39c31cd472c2b7e766f70f43e97b4',1,'hid_descriptor():&#160;cusb.c']]],
-  ['hid_5ffunction_5fdescriptor_46',['hid_function_descriptor',['../structhid__function__descriptor.html',1,'']]],
-  ['hid_5finterface_47',['hid_interface',['../group___c_u_s_b___c_f_g.html#ga31643a6df5e6d5393f60d14c2528a8a4',1,'cusb.c']]],
-  ['hid_5finterface_5fendpoints_48',['hid_interface_endpoints',['../group___c_u_s_b___c_f_g.html#ga924c026f7b247b10ffd34e57fc9453d4',1,'cusb.c']]],
-  ['hid_5freport_5fbuf_49',['hid_report_buf',['../group___c_u_s_b___i_n_t.html#ga4cfa67ae725c5211ad5ab6e6b5e2c47a',1,'cusb.c']]],
-  ['hid_5freport_5fcallback_50',['hid_report_callback',['../group___c_u_s_b___i_n_t.html#ga1bde282ff924bedfe37a99146df8b251',1,'cusb.c']]],
-  ['hid_5freport_5fdescriptor_51',['hid_report_descriptor',['../group___c_u_s_b___c_f_g.html#ga3150d0aa42aafc82cadbd40100171fae',1,'cusb.c']]],
-  ['hid_5fset_5fconfig_52',['hid_set_config',['../group___c_u_s_b___i_n_t.html#gaa8a5a4bf8f2341314373f98f386d19ee',1,'cusb.c']]],
-  ['hub_2ec_53',['hub.c',['../hub_8c.html',1,'']]],
-  ['hub_2ed_54',['hub.d',['../hub_8d.html',1,'']]],
-  ['hub_2eo_2ed_55',['hub.o.d',['../hub_8o_8d.html',1,'']]],
-  ['hub_20api_56',['Hub API',['../group___h_u_b___a_p_i.html',1,'']]],
-  ['hub_5fbootloader_2ec_57',['hub_bootloader.c',['../hub__bootloader_8c.html',1,'']]],
-  ['hub_5fbootloader_2ed_58',['hub_bootloader.d',['../hub__bootloader_8d.html',1,'']]],
-  ['hub_5fbootloader_2eh_59',['hub_bootloader.h',['../hub__bootloader_8h.html',1,'']]],
-  ['hub_5fbootloader_2eo_2ed_60',['hub_bootloader.o.d',['../hub__bootloader_8o_8d.html',1,'']]],
-  ['hub_61',['Hub',['../group___h_u_b___f_i_l_e.html',1,'']]],
-  ['hub_20internal_62',['Hub Internal',['../group___h_u_b___i_n_t.html',1,'']]],
-  ['hub_5ftest_2ec_63',['hub_test.c',['../hub__test_8c.html',1,'']]],
-  ['hub_5ftest_2eh_64',['hub_test.h',['../hub__test_8h.html',1,'']]],
-  ['hub_5ftest_20api_65',['Hub_test API',['../group___h_u_b___t_e_s_t___a_p_i.html',1,'']]],
-  ['hub_5ftest_66',['Hub_test',['../group___h_u_b___t_e_s_t___f_i_l_e.html',1,'']]],
-  ['hub_5ftest_20internal_67',['Hub_test Internal',['../group___h_u_b___t_e_s_t___i_n_t.html',1,'']]]
+  ['get_5firq_130',['get_irq',['../group___r_f_m___i_n_t.html#ga5333a31f1fd0db02c72466188c0d50fc',1,'rfm.c']]],
+  ['get_5fsensor_131',['get_sensor',['../board__defs_8c.html#a51b0346eb3147c56eb4688e29ead7237',1,'get_sensor(uint32_t dev_num):&#160;board_defs.c'],['../board__defs_8h.html#a51b0346eb3147c56eb4688e29ead7237',1,'get_sensor(uint32_t dev_num):&#160;board_defs.c']]],
+  ['getsboxinvert_132',['getSBoxInvert',['../aes_8c.html#a4223d41bc5587f9c0b6e499004403967',1,'aes.c']]],
+  ['getsboxvalue_133',['getSBoxValue',['../aes_8c.html#a5e1678341a98f95d48365ed9ccaa3586',1,'aes.c']]],
+  ['gpio_5finit_134',['gpio_init',['../board__defs_8c.html#afdbe206b3c49f019757ab09b3cf52b9c',1,'gpio_init(void):&#160;board_defs.c'],['../board__defs_8h.html#afdbe206b3c49f019757ab09b3cf52b9c',1,'gpio_init(void):&#160;board_defs.c']]]
 ];

@@ -60,4 +60,4 @@ void test_sim_serial_pass_through(void);
 }
 #endif
 
-#endif /* HUB_TEST_H */
+#endif // HUB_TEST_H 

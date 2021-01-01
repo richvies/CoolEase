@@ -24,6 +24,12 @@
 #include "common/printf.h"
 #include "common/log.h"
 
+#ifdef DEBUG
+#ifdef _HUB
+#include "hub/cusb.h"
+#endif
+#endif
+
 /** @addtogroup LOG_FILE 
  * @{
  */
@@ -32,24 +38,27 @@
  * @{
  */
 
-#define LOG_SIZE    1024
-#define LOG_START   EEPROM_END - LOG_SIZE
-
 /*////////////////////////////////////////////////////////////////////////////*/
 // Static Variables
 /*////////////////////////////////////////////////////////////////////////////*/
 
-static uint32_t curr_address =   LOG_START;
+static uint32_t write_index =   0;
+static uint32_t read_index  =   0;
 
 /*////////////////////////////////////////////////////////////////////////////*/
 // Static Function Declarations
 /*////////////////////////////////////////////////////////////////////////////*/
 
-static void clock_setup(void);
-static void usart_setup(void);
 static void _putchar_main(char character);
-static void _putchar_spf(char character);
 static void _putchar_mem(char character);
+
+#ifdef DEBUG
+static void usart_setup(void);
+static void _putchar_spf(char character);
+#ifdef _HUB
+static void _putchar_usb(char character);
+#endif
+#endif
 
 /** @} */
 
@@ -64,10 +73,13 @@ static void _putchar_mem(char character);
 void log_init(void)
 {
 	mem_init();
-    curr_address = 0;
+    write_index = 0;
 
     #ifdef DEBUG
-    clock_setup();
+	#ifdef _HUB
+	// Init usb first so that uart has correct clock speed to set baud rate
+	cusb_init();
+	#endif
     usart_setup();
 	for(int i = 0; i < 100000; i++){__asm__("nop");};
     #endif
@@ -93,17 +105,36 @@ void log_error(uint16_t error)
 
 void serial_printf(const char *format, ...)
 {
+	#ifdef DEBUG
 	va_list va;
 	va_start(va, format);
 	fnprintf(_putchar_spf, format, va);
   	va_end(va);
 
     // Wait for uart to finish if serial print is used
-    #ifdef DEBUG
     while(!usart_get_flag(SPF_USART, USART_ISR_TC)) {}
     #endif
 }
 
+uint8_t log_get(uint16_t index)
+{
+	if (index > LOG_SIZE)
+	{
+		return 0;
+	}
+	
+	return MMIO8(LOG_START + index);
+}
+
+void log_read_reset(void)
+{
+	read_index = (write_index + 1)%LOG_SIZE;
+}
+
+uint8_t log_read(void)
+{
+	
+}
 
 /** @} */
 
@@ -115,29 +146,25 @@ void serial_printf(const char *format, ...)
 // Static Function Definitions
 /*////////////////////////////////////////////////////////////////////////////*/
 
-//  Static Function Definitions
-static void clock_setup(void) 
+static void _putchar_main(char character)
 {
-	// Enable MSI Osc 2.097Mhz
-	rcc_osc_on(RCC_MSI);
-	rcc_wait_for_osc_ready(RCC_MSI);
+	_putchar_mem(character);
 
-	// Set MSI to 2.097Mhz
-	rcc_set_msi_range(5);
-
-	// Set prescalers for AHB, APB1, APB2
-	rcc_set_hpre(RCC_CFGR_HPRE_NODIV);				// AHB -> 2.097Mhz
-	rcc_set_ppre1(RCC_CFGR_PPRE1_NODIV);			// APB1 -> 2.097Mhz
-	rcc_set_ppre2(RCC_CFGR_PPRE2_NODIV);			// APB2 -> 2.097Mhz
-
-	// Set flash, 2.097Mhz -> 0 waitstates
-	flash_set_ws(FLASH_ACR_LATENCY_0WS);
-
-	// Set Peripheral Clock Frequencies used
-	rcc_ahb_frequency = 2097000;
-	rcc_apb1_frequency = 2097000;
-	rcc_apb2_frequency = 2097000;
+	#ifdef DEBUG
+	_putchar_spf(character);
+	#ifdef _HUB
+	_putchar_usb(character);
+	#endif
+	#endif			
 }
+
+static void _putchar_mem(char character)
+{
+	mem_eeprom_write_byte(LOG_START + write_index, character);
+	write_index = (write_index + 1)%LOG_SIZE;
+}
+
+#ifdef DEBUG
 
 static void usart_setup(void) 
 {
@@ -164,29 +191,18 @@ static void usart_setup(void)
 	usart_enable(SPF_USART);
 }
 
-static void _putchar_main(char character)
-{
-	_putchar_mem(character);
-
-	#ifdef DEBUG
-	_putchar_spf(character);
-	#endif			
-}
-
 static void _putchar_spf(char character)
 {
-	usart_send_blocking(SPF_USART, character);		
+	usart_send_blocking(SPF_USART, character);	
 }
 
-static void _putchar_mem(char character)
-{
-	mem_eeprom_write_byte(curr_address++, character);
-	
-	if(curr_address == LOG_START + LOG_SIZE)
-	{
-		curr_address = LOG_START;
-	}
+#ifdef _HUB
+static void _putchar_usb(char character)
+{	
 }
+#endif // _HUB
+#endif // DEBUG
+
 
 
 /** @} */

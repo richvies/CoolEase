@@ -39,11 +39,35 @@
 			"cstdlib": "c"
 		},
 		"explorer.autoReveal": false,
-		"python.pythonPath": "/usr/local/anaconda3/bin/python",
+
 		"terminal.integrated.shell.osx": "/bin/bash",
 		"terminal.integrated.inheritEnv": false,
 		"terminal.integrated.shellArgs.osx": [
 			"-l"
-		]
+		],
+
+
+		"C_Cpp.errorSquiggles": "Disabled",
+
+		"python.pythonPath": "/usr/local/anaconda3/bin/python",
+		"python.languageServer": "Microsoft",
+		"python.terminal.activateEnvironment": true,
+		"python.linting.pylintEnabled": true,
+		"python.linting.enabled": true,
+		"python.autoComplete.extraPaths": [
+			"/Users/richarddavies/Desktop/Projects/CoolEase/host",
+			"/usr/local/anaconda3/lib/python3.8/site-packages"
+		],
+		// "python.envFile": "${workspaceFolder}/.env",
+		"python.analysis.extraPaths": [
+			"/Users/richarddavies/Desktop/Projects/CoolEase/host/device",
+			"/usr/local/anaconda3/lib/python3.8/site-packages"
+		],
+
+		"maptz.regionfolder": {
+			"[python]": {        
+				"disableFolding": true
+			}
+		}
 	}
 }

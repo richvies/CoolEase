@@ -115,16 +115,15 @@ void test_boot_verify_checksum(void)
 {
 	log_printf("test_boot_verify_checksum\n");
 
-	uint32_t data[16] = {
+	uint32_t data[] = {
 		0x12345678, 0x24681357, 0x12345678, 0x24681357,
 		0x12345678, 0x24681357, 0x12345678, 0x24681357,
 		0x12345678, 0x24681357, 0x12345678, 0x24681357,
-		0x12345678, 0x24681357, 0x12345678, 0x24681357,
-	};
+		0x12345678, 0x24681357, 0x12345678, 0x24681357,};
 
-	uint32_t expected = 0xB63CFBCD;
+	uint32_t expected = 0x55484138;
 
-	if (boot_verify_checksum(data, 1, expected))
+	if (boot_verify_checksum(data, sizeof(data) / sizeof(uint32_t), expected))
 	{
 		log_printf("Checksum Good\n");
 	}
@@ -134,15 +133,19 @@ void test_boot_verify_checksum(void)
 	}
 }
 
-void test_boot_crc(void)
+void test_crc(void)
 {
+	/** To work with zlib needs byte reversed input and reversed inverse output 
+	 * Also zlib can work on bytes but stm32 only on 32 bits so need to pad zlib 
+	 * data with zeros to keep crc same
+	 */
 	// Initialize CRC Peripheral
     rcc_periph_clock_enable(RCC_CRC);
     crc_reset();
 	CRC_INIT = 0xFFFFFFFF;
 
+    crc_set_reverse_input(CRC_CR_REV_IN_BYTE);
     crc_reverse_output_enable();
-    crc_set_reverse_input(CRC_CR_REV_IN_WORD);
 
 
 	serial_printf("Checksum initial: %8x\n", CRC_DR);
@@ -150,29 +153,27 @@ void test_boot_crc(void)
 	serial_printf("INT: %8x\n", CRC_INIT);
 	serial_printf("POL: %8x\n", CRC_POL);
 
-	// uint8_t data[4] = {'h', 'e', 'l', 'l'};
-	uint32_t data[1] = {'T'};
+	// data = ['0x12', '0x34', '0x56', '0x78'] in Python
+	uint32_t data = 0x12345678;
 
     // Calc CRC32
     int i;
   
     for (i = 0; i < 1; i++) 
 	{
-    	CRC_DR = data[i];
+    	CRC_DR = data;
     }
 
-    uint32_t crc = 0xf0;
-	uint32_t not_crc = (crc ^ 0xFFFFFFFF);
+    uint32_t crc = CRC_DR;
 
-	serial_printf("%i\n", crc); serial_printf("%8x\n", crc); serial_printf("%32b\n", crc);
-	serial_printf("%i\n", not_crc); 
-	serial_printf("%8x\n", not_crc); serial_printf("%32b\n", not_crc);
+	serial_printf("In: %8x\n", data);
+	serial_printf("CRC: %8x\n", crc);
 
     // Deinit
     crc_reset();
     rcc_periph_clock_disable(RCC_CRC);
 
-    serial_printf("Checksum value: %8x %8x %8x %8x\n", crc, not_crc, 0x01, ~0x01);
+    serial_printf("Checksum value: %8x %8x\n", crc, ~crc);
 }
 
 

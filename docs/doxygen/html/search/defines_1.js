@@ -1,4 +1,6 @@
 var searchData=
 [
-  ['rfm_5fpacket_5flength_452',['RFM_PACKET_LENGTH',['../rfm_8h.html#a666eda2cf7405dc9f26e01c59f058409',1,'rfm.h']]]
+  ['batt_5fsens_1206',['BATT_SENS',['../board__defs_8h.html#a44071a5449b0947e4eeb87199f8a6464',1,'board_defs.h']]],
+  ['batt_5fsens_5fport_1207',['BATT_SENS_PORT',['../board__defs_8h.html#affa67a75a0750f4a0f3b745473446ec2',1,'board_defs.h']]],
+  ['batt_5fvoltage_1208',['BATT_VOLTAGE',['../battery_8h.html#afd1d97582ddd87bf66f3a428f1b003db',1,'battery.h']]]
 ];

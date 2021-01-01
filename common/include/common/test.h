@@ -76,7 +76,7 @@ void test_reset_eeprom(void);
 
 void test_boot_jump_to_application(uint32_t address);
 void test_boot_verify_checksum(void);
-void test_boot_crc(void);
+void test_crc(void);
 
 
 /*////////////////////////////////////////////////////////////////////////////*/
@@ -115,4 +115,4 @@ void test_analog_watchdog(void);
 
 /** @} */
 
-#endif /* TEST_H */
+#endif // TEST_H 

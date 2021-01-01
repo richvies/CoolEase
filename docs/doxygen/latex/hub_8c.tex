@@ -5,17 +5,32 @@
 Hub Source File.  
 
 
+{\ttfamily \#include $<$stdio.\+h$>$}\newline
+{\ttfamily \#include \char`\"{}libopencm3/cm3/nvic.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}common/aes.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}common/battery.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}common/board\+\_\+defs.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}common/log.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}common/memory.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}common/reset.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}common/rf\+\_\+scan.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}common/rfm.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}common/timers.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}common/test.\+h\char`\"{}}\newline
 {\ttfamily \#include \char`\"{}hub/hub\+\_\+test.\+h\char`\"{}}\newline
-{\ttfamily \#include \char`\"{}common/testing.\+h\char`\"{}}\newline
-\doxysubsection*{Macros}
-\begin{DoxyCompactItemize}
-\item 
-\#define \mbox{\hyperlink{group___h_u_b___f_i_l_e_gaeeec01180221fc32a831f91982f6311e}{A\+P\+P\+\_\+\+A\+D\+D\+R\+E\+SS}}~0x08002000
-\end{DoxyCompactItemize}
+{\ttfamily \#include \char`\"{}hub/sim.\+h\char`\"{}}\newline
 \doxysubsection*{Functions}
 \begin{DoxyCompactItemize}
 \item 
+static void \mbox{\hyperlink{group___h_u_b___i_n_t_gae52b3dbb766fb0f2419044173e8598c7}{test\+\_\+hub2}} (void)
+\item 
+static void \mbox{\hyperlink{group___h_u_b___i_n_t_ga6cd69dff4c15717d9620957bc1b3958d}{hub\+\_\+download\+\_\+info}} (void)
+\item 
 int \mbox{\hyperlink{group___h_u_b___a_p_i_ga840291bc02cba5474a4cb46a9b9566fe}{main}} (void)
+\item 
+void \mbox{\hyperlink{group___h_u_b___f_i_l_e_gaa2ec4fae88da86b9bd1be360dfa159b8}{nmi\+\_\+handler}} (void)
+\item 
+void \mbox{\hyperlink{group___h_u_b___f_i_l_e_ga80b8e496817c48aab711bab6cb8a148d}{hard\+\_\+fault\+\_\+handler}} (void)
 \end{DoxyCompactItemize}
 
 

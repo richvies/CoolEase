@@ -1108,6 +1108,7 @@ typedef __uint_least64_t uint_least64_t;
 void log_init(void);
 void log_printf(const char *format, ...);
 void log_error(uint16_t error);
+uint8_t log_get(uint16_t index);
 
 void serial_printf(const char *format, ...);
 # 16 "common/src/log.c" 2
@@ -3681,6 +3682,9 @@ _Bool
 }sensor_t;
 
 
+void clock_setup_MSI_2MHZ(void);
+
+
 
 
 #define MAX_SENSORS 50
@@ -3795,7 +3799,7 @@ sensor_t *get_sensor(uint32_t dev_num);
 
 #define W25_SPI_SCK_PORT GPIOB
 #define W25_SPI_SCK GPIO3
-# 229 "common/include/common/board_defs.h"
+# 232 "common/include/common/board_defs.h"
 void gpio_init(void);
 # 23 "common/src/log.c" 2
 # 1 "common/include/common/memory.h" 1
@@ -3825,39 +3829,40 @@ void gpio_init(void);
 #define EEPROM_END 0x08080800U
 
 #define LOG_SIZE 1024
-# 74 "common/include/common/memory.h"
+#define LOG_START EEPROM_END - LOG_SIZE
+# 75 "common/include/common/memory.h"
 void mem_init(void);
 
-
-# 76 "common/include/common/memory.h" 3 4
-_Bool 
-# 76 "common/include/common/memory.h"
-    mem_eeprom_write_word(uint32_t address, uint32_t data);
 
 # 77 "common/include/common/memory.h" 3 4
 _Bool 
 # 77 "common/include/common/memory.h"
-    mem_eeprom_write_half_word(uint32_t address, uint16_t data);
+    mem_eeprom_write_word(uint32_t address, uint32_t data);
 
 # 78 "common/include/common/memory.h" 3 4
 _Bool 
 # 78 "common/include/common/memory.h"
+    mem_eeprom_write_half_word(uint32_t address, uint16_t data);
+
+# 79 "common/include/common/memory.h" 3 4
+_Bool 
+# 79 "common/include/common/memory.h"
     mem_eeprom_write_byte(uint32_t address, uint8_t data);
 
-
-# 80 "common/include/common/memory.h" 3 4
-_Bool 
-# 80 "common/include/common/memory.h"
-    mem_flash_erase_page(uint32_t address);
 
 # 81 "common/include/common/memory.h" 3 4
 _Bool 
 # 81 "common/include/common/memory.h"
-    mem_flash_write_word(uint32_t address, uint32_t data);
+    mem_flash_erase_page(uint32_t address);
 
 # 82 "common/include/common/memory.h" 3 4
 _Bool 
 # 82 "common/include/common/memory.h"
+    mem_flash_write_word(uint32_t address, uint32_t data);
+
+# 83 "common/include/common/memory.h" 3 4
+_Bool 
+# 83 "common/include/common/memory.h"
     mem_flash_write_half_page(uint32_t address, uint32_t *data);
 
 void mem_save_reading(int16_t reading);
@@ -4034,33 +4039,43 @@ typedef unsigned int wchar_t;
 typedef void (*out_fct_type)(char character);
 uint32_t fnprintf(out_fct_type out, const char *format, va_list va);
 # 25 "common/src/log.c" 2
-# 35 "common/src/log.c"
-#define LOG_SIZE 1024
-#define LOG_START EEPROM_END - LOG_SIZE
 
 
 
 
-
+# 1 "hub/include/hub/cusb.h" 1
+# 29 "hub/include/hub/cusb.h"
+#define CUSB_H 
+# 52 "hub/include/hub/cusb.h"
+void cusb_init(void);
+void cusb_test_poll(void);
+# 30 "common/src/log.c" 2
+# 45 "common/src/log.c"
 static uint32_t curr_address = 0x08080800U - 1024;
 
 
 
 
 
-static void clock_setup(void);
-static void usart_setup(void);
 static void _putchar_main(char character);
-static void _putchar_spf(char character);
 static void _putchar_mem(char character);
-# 64 "common/src/log.c"
+
+
+static void usart_setup(void);
+static void _putchar_spf(char character);
+
+static void _putchar_usb(char character);
+# 72 "common/src/log.c"
 void log_init(void)
 {
  mem_init();
     curr_address = 0;
 
 
-    clock_setup();
+
+
+ cusb_init();
+
     usart_setup();
  for(int i = 0; i < 100000; i++){__asm__("nop");};
 
@@ -4070,27 +4085,27 @@ void log_printf(const char *format, ...)
 {
  va_list va;
  
-# 79 "common/src/log.c" 3 4
+# 90 "common/src/log.c" 3 4
 __builtin_va_start(
-# 79 "common/src/log.c"
+# 90 "common/src/log.c"
 va
-# 79 "common/src/log.c" 3 4
+# 90 "common/src/log.c" 3 4
 ,
-# 79 "common/src/log.c"
+# 90 "common/src/log.c"
 format
-# 79 "common/src/log.c" 3 4
+# 90 "common/src/log.c" 3 4
 )
-# 79 "common/src/log.c"
+# 90 "common/src/log.c"
                     ;
  fnprintf(_putchar_main, format, va);
    
-# 81 "common/src/log.c" 3 4
+# 92 "common/src/log.c" 3 4
   __builtin_va_end(
-# 81 "common/src/log.c"
+# 92 "common/src/log.c"
   va
-# 81 "common/src/log.c" 3 4
+# 92 "common/src/log.c" 3 4
   )
-# 81 "common/src/log.c"
+# 92 "common/src/log.c"
             ;
 
 
@@ -4106,59 +4121,70 @@ void log_error(uint16_t error)
 
 void serial_printf(const char *format, ...)
 {
+
  va_list va;
  
-# 97 "common/src/log.c" 3 4
+# 109 "common/src/log.c" 3 4
 __builtin_va_start(
-# 97 "common/src/log.c"
+# 109 "common/src/log.c"
 va
-# 97 "common/src/log.c" 3 4
+# 109 "common/src/log.c" 3 4
 ,
-# 97 "common/src/log.c"
+# 109 "common/src/log.c"
 format
-# 97 "common/src/log.c" 3 4
+# 109 "common/src/log.c" 3 4
 )
-# 97 "common/src/log.c"
+# 109 "common/src/log.c"
                     ;
  fnprintf(_putchar_spf, format, va);
    
-# 99 "common/src/log.c" 3 4
+# 111 "common/src/log.c" 3 4
   __builtin_va_end(
-# 99 "common/src/log.c"
+# 111 "common/src/log.c"
   va
-# 99 "common/src/log.c" 3 4
+# 111 "common/src/log.c" 3 4
   )
-# 99 "common/src/log.c"
+# 111 "common/src/log.c"
             ;
-
 
 
     while(!usart_get_flag((((0x40000000U) + 0x10000) + 0x3800), (1 << 6))) {}
 
 }
-# 119 "common/src/log.c"
-static void clock_setup(void)
+
+uint8_t log_get(uint16_t index)
 {
+ if (index > 1024)
+ {
+  return 0;
+ }
 
- rcc_osc_on(RCC_MSI);
- rcc_wait_for_osc_ready(RCC_MSI);
-
-
- rcc_set_msi_range(5);
-
-
- rcc_set_hpre(0x0);
- rcc_set_ppre1(0x0);
- rcc_set_ppre2(0x0);
-
-
- flash_set_ws(0x00);
-
-
- rcc_ahb_frequency = 2097000;
- rcc_apb1_frequency = 2097000;
- rcc_apb2_frequency = 2097000;
+ return (*(volatile uint8_t *)(0x08080800U - 1024 + index));
 }
+# 138 "common/src/log.c"
+static void _putchar_main(char character)
+{
+ _putchar_mem(character);
+
+
+ _putchar_spf(character);
+
+ _putchar_usb(character);
+
+
+}
+
+static void _putchar_mem(char character)
+{
+ mem_eeprom_write_byte(curr_address++, character);
+
+ if(curr_address == 0x08080800U - 1024 + 1024)
+ {
+  curr_address = 0x08080800U - 1024;
+ }
+}
+
+
 
 static void usart_setup(void)
 {
@@ -4185,26 +4211,12 @@ static void usart_setup(void)
  usart_enable((((0x40000000U) + 0x10000) + 0x3800));
 }
 
-static void _putchar_main(char character)
-{
- _putchar_mem(character);
-
-
- _putchar_spf(character);
-
-}
-
 static void _putchar_spf(char character)
 {
  usart_send_blocking((((0x40000000U) + 0x10000) + 0x3800), character);
 }
 
-static void _putchar_mem(char character)
-{
- mem_eeprom_write_byte(curr_address++, character);
 
- if(curr_address == 0x08080800U - 1024 + 1024)
- {
-  curr_address = 0x08080800U - 1024;
- }
+static void _putchar_usb(char character)
+{
 }

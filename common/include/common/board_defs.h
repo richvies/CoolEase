@@ -17,6 +17,9 @@ typedef struct
 	uint32_t 	total_packets;
 }sensor_t;
 
+/** @brief Default clock configuration for sensor and hub */
+void clock_setup_MSI_2MHZ(void);
+
 #ifdef _HUB  
 
 // Sensor Struct

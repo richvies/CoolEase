@@ -1,0 +1,226 @@
+\hypertarget{timers_8c}{}\doxysection{common/src/timers.c File Reference}
+\label{timers_8c}\index{common/src/timers.c@{common/src/timers.c}}
+{\ttfamily \#include \char`\"{}common/timers.\+h\char`\"{}}\newline
+{\ttfamily \#include $<$libopencm3/stm32/rcc.\+h$>$}\newline
+{\ttfamily \#include $<$libopencm3/stm32/rtc.\+h$>$}\newline
+{\ttfamily \#include $<$libopencm3/stm32/iwdg.\+h$>$}\newline
+{\ttfamily \#include $<$libopencm3/stm32/pwr.\+h$>$}\newline
+{\ttfamily \#include $<$libopencm3/stm32/timer.\+h$>$}\newline
+{\ttfamily \#include $<$libopencm3/stm32/lptimer.\+h$>$}\newline
+{\ttfamily \#include $<$libopencm3/stm32/gpio.\+h$>$}\newline
+{\ttfamily \#include $<$libopencm3/stm32/exti.\+h$>$}\newline
+{\ttfamily \#include $<$libopencm3/cm3/nvic.\+h$>$}\newline
+{\ttfamily \#include $<$libopencm3/cm3/scb.\+h$>$}\newline
+{\ttfamily \#include $<$libopencmsis/core\+\_\+cm3.\+h$>$}\newline
+{\ttfamily \#include \char`\"{}common/aes.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}common/battery.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}common/board\+\_\+defs.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}common/reset.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}common/rf\+\_\+scan.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}common/rfm.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}common/log.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}common/test.\+h\char`\"{}}\newline
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{timers_8c_aeab1aa00540f07b240cb032ae89db095}{timers\+\_\+rtc\+\_\+init}} (uint32\+\_\+t standby\+\_\+time\+\_\+seconds)
+\item 
+void \mbox{\hyperlink{timers_8c_a2895f028adf625347af2779776708c7b}{timers\+\_\+lptim\+\_\+init}} (void)
+\item 
+void \mbox{\hyperlink{timers_8c_a6e9cc03544579f4d7f8c7f987b917308}{timers\+\_\+delay\+\_\+microseconds}} (uint32\+\_\+t delay\+\_\+microseconds)
+\item 
+uint16\+\_\+t \mbox{\hyperlink{timers_8c_a36a6c646c29afb4b1ba0bd456b4d5bb1}{timers\+\_\+micros}} (void)
+\item 
+void \mbox{\hyperlink{timers_8c_ace45123851a9bf5d6918b11f7b27bd27}{timers\+\_\+tim6\+\_\+init}} (void)
+\item 
+void \mbox{\hyperlink{timers_8c_a86c515c63c987ea728d6336e35d0aaa3}{timers\+\_\+delay\+\_\+milliseconds}} (uint32\+\_\+t delay\+\_\+milliseconds)
+\item 
+uint16\+\_\+t \mbox{\hyperlink{timers_8c_aa9742dcf42af0118f4840c7f833c7c61}{timers\+\_\+millis}} (void)
+\item 
+void \mbox{\hyperlink{timers_8c_a70d8c762a26324af6f1e542717bc80ff}{timers\+\_\+iwdg\+\_\+init}} (uint32\+\_\+t period)
+\item 
+void \mbox{\hyperlink{timers_8c_a27ab5dabf9e5a9ee1d25be688f6dff0d}{timers\+\_\+pet\+\_\+dogs}} (void)
+\item 
+void \mbox{\hyperlink{timers_8c_a9fc2049c9b14c9c1129e883e6e83d039}{timers\+\_\+enter\+\_\+standby}} (void)
+\item 
+void \mbox{\hyperlink{timers_8c_aa806d3d6328385a5392011f719c81287}{timeout\+\_\+init}} (void)
+\item 
+bool \mbox{\hyperlink{timers_8c_a078d224494cfa9ffd91c9c35f37655ac}{timeout}} (uint32\+\_\+t time\+\_\+microseconds, char $\ast$\mbox{\hyperlink{sim_8c_a9f4ebc879ff493f64c1ed1cee362dee4}{msg}}, uint32\+\_\+t data)
+\item 
+void \mbox{\hyperlink{timers_8c_a63a4572f5952ee2a550f28890a34ea1a}{set\+\_\+gpio\+\_\+for\+\_\+standby}} (void)
+\item 
+void \mbox{\hyperlink{timers_8c_aa4f18104015de13014524989b16db6c4}{rtc\+\_\+isr}} (void)
+\end{DoxyCompactItemize}
+\doxysubsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+static uint16\+\_\+t \mbox{\hyperlink{timers_8c_a351f4203a51c887391ae83e9fbe517df}{timeout\+\_\+timer}} = 0
+\item 
+static uint32\+\_\+t \mbox{\hyperlink{timers_8c_a364feaf9c3e86f2d4cfbd2d78262fa43}{timeout\+\_\+counter}} = 0
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Function Documentation}
+\mbox{\Hypertarget{timers_8c_aa4f18104015de13014524989b16db6c4}\label{timers_8c_aa4f18104015de13014524989b16db6c4}} 
+\index{timers.c@{timers.c}!rtc\_isr@{rtc\_isr}}
+\index{rtc\_isr@{rtc\_isr}!timers.c@{timers.c}}
+\doxysubsubsection{\texorpdfstring{rtc\_isr()}{rtc\_isr()}}
+{\footnotesize\ttfamily void rtc\+\_\+isr (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})}
+
+
+
+Definition at line 284 of file timers.\+c.
+
+\mbox{\Hypertarget{timers_8c_a63a4572f5952ee2a550f28890a34ea1a}\label{timers_8c_a63a4572f5952ee2a550f28890a34ea1a}} 
+\index{timers.c@{timers.c}!set\_gpio\_for\_standby@{set\_gpio\_for\_standby}}
+\index{set\_gpio\_for\_standby@{set\_gpio\_for\_standby}!timers.c@{timers.c}}
+\doxysubsubsection{\texorpdfstring{set\_gpio\_for\_standby()}{set\_gpio\_for\_standby()}}
+{\footnotesize\ttfamily void set\+\_\+gpio\+\_\+for\+\_\+standby (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})}
+
+
+
+Definition at line 239 of file timers.\+c.
+
+\mbox{\Hypertarget{timers_8c_a078d224494cfa9ffd91c9c35f37655ac}\label{timers_8c_a078d224494cfa9ffd91c9c35f37655ac}} 
+\index{timers.c@{timers.c}!timeout@{timeout}}
+\index{timeout@{timeout}!timers.c@{timers.c}}
+\doxysubsubsection{\texorpdfstring{timeout()}{timeout()}}
+{\footnotesize\ttfamily bool timeout (\begin{DoxyParamCaption}\item[{uint32\+\_\+t}]{time\+\_\+microseconds,  }\item[{char $\ast$}]{msg,  }\item[{uint32\+\_\+t}]{data }\end{DoxyParamCaption})}
+
+
+
+Definition at line 223 of file timers.\+c.
+
+\mbox{\Hypertarget{timers_8c_aa806d3d6328385a5392011f719c81287}\label{timers_8c_aa806d3d6328385a5392011f719c81287}} 
+\index{timers.c@{timers.c}!timeout\_init@{timeout\_init}}
+\index{timeout\_init@{timeout\_init}!timers.c@{timers.c}}
+\doxysubsubsection{\texorpdfstring{timeout\_init()}{timeout\_init()}}
+{\footnotesize\ttfamily void timeout\+\_\+init (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})}
+
+
+
+Definition at line 216 of file timers.\+c.
+
+\mbox{\Hypertarget{timers_8c_a6e9cc03544579f4d7f8c7f987b917308}\label{timers_8c_a6e9cc03544579f4d7f8c7f987b917308}} 
+\index{timers.c@{timers.c}!timers\_delay\_microseconds@{timers\_delay\_microseconds}}
+\index{timers\_delay\_microseconds@{timers\_delay\_microseconds}!timers.c@{timers.c}}
+\doxysubsubsection{\texorpdfstring{timers\_delay\_microseconds()}{timers\_delay\_microseconds()}}
+{\footnotesize\ttfamily void timers\+\_\+delay\+\_\+microseconds (\begin{DoxyParamCaption}\item[{uint32\+\_\+t}]{delay\+\_\+microseconds }\end{DoxyParamCaption})}
+
+
+
+Definition at line 113 of file timers.\+c.
+
+\mbox{\Hypertarget{timers_8c_a86c515c63c987ea728d6336e35d0aaa3}\label{timers_8c_a86c515c63c987ea728d6336e35d0aaa3}} 
+\index{timers.c@{timers.c}!timers\_delay\_milliseconds@{timers\_delay\_milliseconds}}
+\index{timers\_delay\_milliseconds@{timers\_delay\_milliseconds}!timers.c@{timers.c}}
+\doxysubsubsection{\texorpdfstring{timers\_delay\_milliseconds()}{timers\_delay\_milliseconds()}}
+{\footnotesize\ttfamily void timers\+\_\+delay\+\_\+milliseconds (\begin{DoxyParamCaption}\item[{uint32\+\_\+t}]{delay\+\_\+milliseconds }\end{DoxyParamCaption})}
+
+
+
+Definition at line 154 of file timers.\+c.
+
+\mbox{\Hypertarget{timers_8c_a9fc2049c9b14c9c1129e883e6e83d039}\label{timers_8c_a9fc2049c9b14c9c1129e883e6e83d039}} 
+\index{timers.c@{timers.c}!timers\_enter\_standby@{timers\_enter\_standby}}
+\index{timers\_enter\_standby@{timers\_enter\_standby}!timers.c@{timers.c}}
+\doxysubsubsection{\texorpdfstring{timers\_enter\_standby()}{timers\_enter\_standby()}}
+{\footnotesize\ttfamily void timers\+\_\+enter\+\_\+standby (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})}
+
+
+
+Definition at line 189 of file timers.\+c.
+
+\mbox{\Hypertarget{timers_8c_a70d8c762a26324af6f1e542717bc80ff}\label{timers_8c_a70d8c762a26324af6f1e542717bc80ff}} 
+\index{timers.c@{timers.c}!timers\_iwdg\_init@{timers\_iwdg\_init}}
+\index{timers\_iwdg\_init@{timers\_iwdg\_init}!timers.c@{timers.c}}
+\doxysubsubsection{\texorpdfstring{timers\_iwdg\_init()}{timers\_iwdg\_init()}}
+{\footnotesize\ttfamily void timers\+\_\+iwdg\+\_\+init (\begin{DoxyParamCaption}\item[{uint32\+\_\+t}]{period }\end{DoxyParamCaption})}
+
+
+
+Definition at line 173 of file timers.\+c.
+
+\mbox{\Hypertarget{timers_8c_a2895f028adf625347af2779776708c7b}\label{timers_8c_a2895f028adf625347af2779776708c7b}} 
+\index{timers.c@{timers.c}!timers\_lptim\_init@{timers\_lptim\_init}}
+\index{timers\_lptim\_init@{timers\_lptim\_init}!timers.c@{timers.c}}
+\doxysubsubsection{\texorpdfstring{timers\_lptim\_init()}{timers\_lptim\_init()}}
+{\footnotesize\ttfamily void timers\+\_\+lptim\+\_\+init (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})}
+
+
+
+Definition at line 94 of file timers.\+c.
+
+\mbox{\Hypertarget{timers_8c_a36a6c646c29afb4b1ba0bd456b4d5bb1}\label{timers_8c_a36a6c646c29afb4b1ba0bd456b4d5bb1}} 
+\index{timers.c@{timers.c}!timers\_micros@{timers\_micros}}
+\index{timers\_micros@{timers\_micros}!timers.c@{timers.c}}
+\doxysubsubsection{\texorpdfstring{timers\_micros()}{timers\_micros()}}
+{\footnotesize\ttfamily uint16\+\_\+t timers\+\_\+micros (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})}
+
+
+
+Definition at line 138 of file timers.\+c.
+
+\mbox{\Hypertarget{timers_8c_aa9742dcf42af0118f4840c7f833c7c61}\label{timers_8c_aa9742dcf42af0118f4840c7f833c7c61}} 
+\index{timers.c@{timers.c}!timers\_millis@{timers\_millis}}
+\index{timers\_millis@{timers\_millis}!timers.c@{timers.c}}
+\doxysubsubsection{\texorpdfstring{timers\_millis()}{timers\_millis()}}
+{\footnotesize\ttfamily uint16\+\_\+t timers\+\_\+millis (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})}
+
+
+
+Definition at line 166 of file timers.\+c.
+
+\mbox{\Hypertarget{timers_8c_a27ab5dabf9e5a9ee1d25be688f6dff0d}\label{timers_8c_a27ab5dabf9e5a9ee1d25be688f6dff0d}} 
+\index{timers.c@{timers.c}!timers\_pet\_dogs@{timers\_pet\_dogs}}
+\index{timers\_pet\_dogs@{timers\_pet\_dogs}!timers.c@{timers.c}}
+\doxysubsubsection{\texorpdfstring{timers\_pet\_dogs()}{timers\_pet\_dogs()}}
+{\footnotesize\ttfamily void timers\+\_\+pet\+\_\+dogs (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})}
+
+
+
+Definition at line 182 of file timers.\+c.
+
+\mbox{\Hypertarget{timers_8c_aeab1aa00540f07b240cb032ae89db095}\label{timers_8c_aeab1aa00540f07b240cb032ae89db095}} 
+\index{timers.c@{timers.c}!timers\_rtc\_init@{timers\_rtc\_init}}
+\index{timers\_rtc\_init@{timers\_rtc\_init}!timers.c@{timers.c}}
+\doxysubsubsection{\texorpdfstring{timers\_rtc\_init()}{timers\_rtc\_init()}}
+{\footnotesize\ttfamily void timers\+\_\+rtc\+\_\+init (\begin{DoxyParamCaption}\item[{uint32\+\_\+t}]{standby\+\_\+time\+\_\+seconds }\end{DoxyParamCaption})}
+
+
+
+Definition at line 33 of file timers.\+c.
+
+\mbox{\Hypertarget{timers_8c_ace45123851a9bf5d6918b11f7b27bd27}\label{timers_8c_ace45123851a9bf5d6918b11f7b27bd27}} 
+\index{timers.c@{timers.c}!timers\_tim6\_init@{timers\_tim6\_init}}
+\index{timers\_tim6\_init@{timers\_tim6\_init}!timers.c@{timers.c}}
+\doxysubsubsection{\texorpdfstring{timers\_tim6\_init()}{timers\_tim6\_init()}}
+{\footnotesize\ttfamily void timers\+\_\+tim6\+\_\+init (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})}
+
+
+
+Definition at line 145 of file timers.\+c.
+
+
+
+\doxysubsection{Variable Documentation}
+\mbox{\Hypertarget{timers_8c_a364feaf9c3e86f2d4cfbd2d78262fa43}\label{timers_8c_a364feaf9c3e86f2d4cfbd2d78262fa43}} 
+\index{timers.c@{timers.c}!timeout\_counter@{timeout\_counter}}
+\index{timeout\_counter@{timeout\_counter}!timers.c@{timers.c}}
+\doxysubsubsection{\texorpdfstring{timeout\_counter}{timeout\_counter}}
+{\footnotesize\ttfamily uint32\+\_\+t timeout\+\_\+counter = 0\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Definition at line 29 of file timers.\+c.
+
+\mbox{\Hypertarget{timers_8c_a351f4203a51c887391ae83e9fbe517df}\label{timers_8c_a351f4203a51c887391ae83e9fbe517df}} 
+\index{timers.c@{timers.c}!timeout\_timer@{timeout\_timer}}
+\index{timeout\_timer@{timeout\_timer}!timers.c@{timers.c}}
+\doxysubsubsection{\texorpdfstring{timeout\_timer}{timeout\_timer}}
+{\footnotesize\ttfamily uint16\+\_\+t timeout\+\_\+timer = 0\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Definition at line 28 of file timers.\+c.
+

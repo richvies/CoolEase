@@ -65,14 +65,14 @@ enum \mbox{\hyperlink{group___c_u_s_b___c_f_g_ga8e8903d0c7276e7295ce8a9aaea727b4
 \item 
 static const struct \mbox{\hyperlink{structhid__function__descriptor}{hid\+\_\+function\+\_\+descriptor}} \mbox{\hyperlink{group___c_u_s_b___c_f_g_ga257274706fbffd56ad7d5128a11b0096}{\+\_\+\+\_\+attribute\+\_\+\+\_\+}} ((packed))
 \begin{DoxyCompactList}\small\item\em H\+ID Function Definition. \end{DoxyCompactList}\item 
-static enum usbd\+\_\+request\+\_\+return\+\_\+codes \mbox{\hyperlink{group___c_u_s_b___i_n_t_ga29b474a495e8084ca9f797e1fcf75eb8}{hid\+\_\+control\+\_\+request}} (usbd\+\_\+device $\ast$dev, struct usb\+\_\+setup\+\_\+data $\ast$req, uint8\+\_\+t $\ast$$\ast$buf, uint16\+\_\+t $\ast$len, void($\ast$$\ast$complete)(usbd\+\_\+device $\ast$, struct usb\+\_\+setup\+\_\+data $\ast$))
-\begin{DoxyCompactList}\small\item\em H\+ID Control Callback. \end{DoxyCompactList}\item 
-void \mbox{\hyperlink{group___c_u_s_b___i_n_t_ga1bde282ff924bedfe37a99146df8b251}{hid\+\_\+report\+\_\+callback}} (usbd\+\_\+device $\ast$\mbox{\hyperlink{group___c_u_s_b___a_p_i_ga371fec116e56a5c485a09d5dd8cd6c95}{usbd\+\_\+dev}}, uint8\+\_\+t ea)
-\begin{DoxyCompactList}\small\item\em H\+ID Resport Callback. \end{DoxyCompactList}\item 
-static void \mbox{\hyperlink{group___c_u_s_b___i_n_t_gaa8a5a4bf8f2341314373f98f386d19ee}{hid\+\_\+set\+\_\+config}} (usbd\+\_\+device $\ast$dev, uint16\+\_\+t w\+Value)
-\begin{DoxyCompactList}\small\item\em Configuration callback to setup device as H\+ID. \end{DoxyCompactList}\item 
 static void \mbox{\hyperlink{group___c_u_s_b___i_n_t_gac63b9392f307996959131c5a4e047fa4}{cusb\+\_\+clock\+\_\+init}} (void)
 \begin{DoxyCompactList}\small\item\em Setup C\+PU and peripheral clocks for usb. \end{DoxyCompactList}\item 
+static void \mbox{\hyperlink{group___c_u_s_b___i_n_t_gaa8a5a4bf8f2341314373f98f386d19ee}{hid\+\_\+set\+\_\+config}} (usbd\+\_\+device $\ast$dev, uint16\+\_\+t w\+Value)
+\begin{DoxyCompactList}\small\item\em H\+ID configuration init callback. \end{DoxyCompactList}\item 
+static enum usbd\+\_\+request\+\_\+return\+\_\+codes \mbox{\hyperlink{group___c_u_s_b___i_n_t_ga29b474a495e8084ca9f797e1fcf75eb8}{hid\+\_\+control\+\_\+request}} (usbd\+\_\+device $\ast$dev, struct usb\+\_\+setup\+\_\+data $\ast$req, uint8\+\_\+t $\ast$$\ast$buf, uint16\+\_\+t $\ast$len, void($\ast$$\ast$complete)(usbd\+\_\+device $\ast$, struct usb\+\_\+setup\+\_\+data $\ast$))
+\begin{DoxyCompactList}\small\item\em H\+ID Control Callback. \end{DoxyCompactList}\item 
+static void \mbox{\hyperlink{group___c_u_s_b___i_n_t_ga84d1ec0a4c4e5f33556b5f98830bc4cd}{hid\+\_\+report\+\_\+callback}} (usbd\+\_\+device $\ast$dev, uint8\+\_\+t ea)
+\begin{DoxyCompactList}\small\item\em H\+ID Resport Callback. \end{DoxyCompactList}\item 
 void \mbox{\hyperlink{group___c_u_s_b___a_p_i_gab4184b48312c430e82701746df0a97ca}{cusb\+\_\+init}} (void)
 \item 
 void \mbox{\hyperlink{group___c_u_s_b___a_p_i_gac3db1642b64b360258b24bdd9496a390}{cusb\+\_\+test\+\_\+poll}} (void)
@@ -98,9 +98,9 @@ static const struct usb\+\_\+config\+\_\+descriptor \mbox{\hyperlink{group___c_u
 \begin{DoxyCompactList}\small\item\em U\+SB Device Config Descriptor. \end{DoxyCompactList}\item 
 static uint8\+\_\+t \mbox{\hyperlink{group___c_u_s_b___i_n_t_ga4cfa67ae725c5211ad5ab6e6b5e2c47a}{hid\+\_\+report\+\_\+buf}} \mbox{[}64\mbox{]} = \char`\"{}Default Report Buffer\char`\"{}
 \begin{DoxyCompactList}\small\item\em H\+ID Report buffer. \end{DoxyCompactList}\item 
-static usbd\+\_\+device $\ast$ \mbox{\hyperlink{group___c_u_s_b___a_p_i_ga371fec116e56a5c485a09d5dd8cd6c95}{usbd\+\_\+dev}}
+static usbd\+\_\+device $\ast$ \mbox{\hyperlink{group___c_u_s_b___i_n_t_ga371fec116e56a5c485a09d5dd8cd6c95}{usbd\+\_\+dev}}
 \begin{DoxyCompactList}\small\item\em U\+SB device handle. \end{DoxyCompactList}\item 
-static uint8\+\_\+t \mbox{\hyperlink{group___c_u_s_b___a_p_i_ga3f5c5e68ae07d989114524003357a6f7}{usbd\+\_\+control\+\_\+buffer}} \mbox{[}128\mbox{]}
+static uint8\+\_\+t \mbox{\hyperlink{group___c_u_s_b___i_n_t_ga3f5c5e68ae07d989114524003357a6f7}{usbd\+\_\+control\+\_\+buffer}} \mbox{[}128\mbox{]}
 \begin{DoxyCompactList}\small\item\em Buffer to be used for control requests. \end{DoxyCompactList}\end{DoxyCompactItemize}
 
 

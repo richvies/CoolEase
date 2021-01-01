@@ -376,4 +376,4 @@ void rfm_clear_tx_continuous(void);
 }
 #endif
 
-#endif /* RFM_H */
+#endif // RFM_H 

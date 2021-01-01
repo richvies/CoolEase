@@ -1,0 +1,422 @@
+\hypertarget{group___m_e_m_o_r_y___a_p_i}{}\doxysection{Memory A\+PI}
+\label{group___m_e_m_o_r_y___a_p_i}\index{Memory API@{Memory API}}
+
+
+~\newline
+  
+
+
+\doxysubsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define \mbox{\hyperlink{group___m_e_m_o_r_y___a_p_i_ga4cc14e2c99ae7f8e5a8e371d03c8532c}{F\+L\+A\+S\+H\+\_\+\+P\+A\+G\+E\+\_\+\+S\+I\+ZE}}~128U
+\item 
+\#define \mbox{\hyperlink{group___m_e_m_o_r_y___a_p_i_ga4a4ca3956d9a8b699620e715d790221d}{F\+L\+A\+S\+H\+\_\+\+N\+U\+M\+\_\+\+P\+A\+G\+ES}}~512U
+\item 
+\#define \mbox{\hyperlink{group___m_e_m_o_r_y___a_p_i_ga6192bfafd8c4f694643169faeecffd1e}{F\+L\+A\+S\+H\+\_\+\+S\+T\+A\+RT}}~0x08000000U
+\item 
+\#define \mbox{\hyperlink{group___m_e_m_o_r_y___a_p_i_ga2bf58c6756f463adee322409fa8678ec}{F\+L\+A\+S\+H\+\_\+\+A\+P\+P\+\_\+\+S\+T\+A\+RT}}~0x08004000U
+\item 
+\#define \mbox{\hyperlink{group___m_e_m_o_r_y___a_p_i_ga20acc53859fff9a54984967f9d055b2f}{F\+L\+A\+S\+H\+\_\+\+A\+P\+P\+\_\+\+E\+ND}}~0x0800\+C000U
+\item 
+\#define \mbox{\hyperlink{group___m_e_m_o_r_y___a_p_i_ga8be554f354e5aa65370f6db63d4f3ee4}{F\+L\+A\+S\+H\+\_\+\+E\+ND}}~0x08010000U
+\item 
+\#define \mbox{\hyperlink{group___m_e_m_o_r_y___a_p_i_gaddfda15f5f3ec6f8f325f48be50c548a}{E\+E\+P\+R\+O\+M\+\_\+\+P\+A\+G\+E\+\_\+\+S\+I\+ZE}}~4U
+\item 
+\#define \mbox{\hyperlink{group___m_e_m_o_r_y___a_p_i_gacc74e674e6d9a8aa8c5586073acec510}{E\+E\+P\+R\+O\+M\+\_\+\+N\+U\+M\+\_\+\+P\+A\+G\+ES}}~512U
+\item 
+\#define \mbox{\hyperlink{group___m_e_m_o_r_y___a_p_i_ga19220ff77b3f420a71eddcfcb2534a52}{E\+E\+P\+R\+O\+M\+\_\+\+S\+T\+A\+RT}}~0x08080000U
+\item 
+\#define \mbox{\hyperlink{group___m_e_m_o_r_y___a_p_i_gadf9145e295206c9240dd45639b3257d8}{E\+E\+P\+R\+O\+M\+\_\+\+E\+ND}}~0x08080800U
+\item 
+\#define \mbox{\hyperlink{group___m_e_m_o_r_y___a_p_i_ga609a6de2c7ff0a69b55d3b3c5e260cc5}{L\+O\+G\+\_\+\+S\+I\+ZE}}~1024
+\end{DoxyCompactItemize}
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{group___m_e_m_o_r_y___a_p_i_ga44a136e3b70c36abb6f8dc060c778113}{mem\+\_\+init}} (void)
+\item 
+bool \mbox{\hyperlink{group___m_e_m_o_r_y___a_p_i_ga16c923082ee622b07285a6c33146a3fc}{mem\+\_\+eeprom\+\_\+write\+\_\+word}} (uint32\+\_\+t address, uint32\+\_\+t data)
+\item 
+bool \mbox{\hyperlink{group___m_e_m_o_r_y___a_p_i_gac5d72aca43cc46edf3b7d6622c7d8f83}{mem\+\_\+eeprom\+\_\+write\+\_\+half\+\_\+word}} (uint32\+\_\+t address, uint16\+\_\+t data)
+\item 
+bool \mbox{\hyperlink{group___m_e_m_o_r_y___a_p_i_ga4ebbc83ce32824efb16e281ba575fb48}{mem\+\_\+eeprom\+\_\+write\+\_\+byte}} (uint32\+\_\+t address, uint8\+\_\+t data)
+\item 
+bool \mbox{\hyperlink{group___m_e_m_o_r_y___a_p_i_gafc4d03811edaa911ba9ae72569512e07}{mem\+\_\+flash\+\_\+erase\+\_\+page}} (uint32\+\_\+t address)
+\item 
+bool \mbox{\hyperlink{group___m_e_m_o_r_y___a_p_i_ga98a7ead24259ad3e307dfdd7d79feb4b}{mem\+\_\+flash\+\_\+write\+\_\+word}} (uint32\+\_\+t address, uint32\+\_\+t data)
+\item 
+bool \mbox{\hyperlink{group___m_e_m_o_r_y___a_p_i_ga89045d7373ac1ecaba6b33ed4ede58c6}{mem\+\_\+flash\+\_\+write\+\_\+half\+\_\+page}} (uint32\+\_\+t address, uint32\+\_\+t $\ast$data)
+\item 
+void \mbox{\hyperlink{group___m_e_m_o_r_y___a_p_i_ga2bf09ee33673f9723edb18056fdc1dfa}{mem\+\_\+save\+\_\+reading}} (int16\+\_\+t reading)
+\item 
+uint32\+\_\+t \mbox{\hyperlink{group___m_e_m_o_r_y___a_p_i_ga7c52ca7050332c29a4bc7698e8fb7584}{mem\+\_\+get\+\_\+dev\+\_\+state}} (void)
+\item 
+uint32\+\_\+t \mbox{\hyperlink{group___m_e_m_o_r_y___a_p_i_ga28cd894274c6fc9d41dc965629227606}{mem\+\_\+get\+\_\+dev\+\_\+num}} (void)
+\item 
+uint32\+\_\+t \mbox{\hyperlink{group___m_e_m_o_r_y___a_p_i_ga703303645061e96c4b9876bae0a383d3}{mem\+\_\+get\+\_\+msg\+\_\+num}} (void)
+\item 
+void \mbox{\hyperlink{group___m_e_m_o_r_y___a_p_i_gabbb4238ff271c8e34226874f464e4e6d}{mem\+\_\+update\+\_\+msg\+\_\+num}} (uint32\+\_\+t new)
+\item 
+uint32\+\_\+t \mbox{\hyperlink{group___m_e_m_o_r_y___a_p_i_gafccd2b82ea731e3d5436749025ebca7d}{mem\+\_\+get\+\_\+num\+\_\+readings}} (void)
+\item 
+int16\+\_\+t \mbox{\hyperlink{group___m_e_m_o_r_y___a_p_i_ga09c56996bd368d16dff462250e441840}{mem\+\_\+get\+\_\+reading}} (uint32\+\_\+t reading\+\_\+num)
+\item 
+void \mbox{\hyperlink{group___m_e_m_o_r_y___a_p_i_gafd161243801728b1fab67f3db6633877}{mem\+\_\+get\+\_\+log}} (char log\mbox{[}\mbox{\hyperlink{group___l_o_g___i_n_t_ga609a6de2c7ff0a69b55d3b3c5e260cc5}{L\+O\+G\+\_\+\+S\+I\+ZE}}\mbox{]})
+\item 
+void \mbox{\hyperlink{group___m_e_m_o_r_y___a_p_i_ga70af5f77dc31a0f90877bf1102844d0a}{mem\+\_\+wipe\+\_\+log}} (void)
+\item 
+void \mbox{\hyperlink{group___m_e_m_o_r_y___a_p_i_ga802da42f5bc56d08e8df145109a6913e}{mem\+\_\+print\+\_\+log}} (void)
+\item 
+void \mbox{\hyperlink{group___m_e_m_o_r_y___a_p_i_gad98fe7b14d8ca526cc51bb1c2ffd605a}{mem\+\_\+get\+\_\+aes\+\_\+key}} (uint8\+\_\+t $\ast$aes\+\_\+key)
+\item 
+void \mbox{\hyperlink{group___m_e_m_o_r_y___a_p_i_gae351ba63bf858610b7cd3f789f070c68}{mem\+\_\+set\+\_\+aes\+\_\+key}} (uint8\+\_\+t $\ast$aes\+\_\+key)
+\item 
+void \mbox{\hyperlink{group___m_e_m_o_r_y___a_p_i_ga0bb31d9f064706851c73a8ac045a4f71}{mem\+\_\+get\+\_\+aes\+\_\+key\+\_\+exp}} (uint8\+\_\+t $\ast$aes\+\_\+key\+\_\+exp)
+\item 
+void \mbox{\hyperlink{group___m_e_m_o_r_y___a_p_i_ga96e02578abe4de252a64c24c38c35b43}{mem\+\_\+set\+\_\+aes\+\_\+key\+\_\+exp}} (uint8\+\_\+t $\ast$aes\+\_\+key\+\_\+exp)
+\item 
+void \mbox{\hyperlink{group___m_e_m_o_r_y___a_p_i_gae4a09c62aadfb5b457e6ff9022dc657b}{mem\+\_\+wipe\+\_\+readings}} (void)
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+~\newline
+ 
+
+
+
+\doxysubsection{Macro Definition Documentation}
+\mbox{\Hypertarget{group___m_e_m_o_r_y___a_p_i_gadf9145e295206c9240dd45639b3257d8}\label{group___m_e_m_o_r_y___a_p_i_gadf9145e295206c9240dd45639b3257d8}} 
+\index{Memory API@{Memory API}!EEPROM\_END@{EEPROM\_END}}
+\index{EEPROM\_END@{EEPROM\_END}!Memory API@{Memory API}}
+\doxysubsubsection{\texorpdfstring{EEPROM\_END}{EEPROM\_END}}
+{\footnotesize\ttfamily \#define E\+E\+P\+R\+O\+M\+\_\+\+E\+ND~0x08080800U}
+
+
+
+Definition at line 59 of file memory.\+h.
+
+\mbox{\Hypertarget{group___m_e_m_o_r_y___a_p_i_gacc74e674e6d9a8aa8c5586073acec510}\label{group___m_e_m_o_r_y___a_p_i_gacc74e674e6d9a8aa8c5586073acec510}} 
+\index{Memory API@{Memory API}!EEPROM\_NUM\_PAGES@{EEPROM\_NUM\_PAGES}}
+\index{EEPROM\_NUM\_PAGES@{EEPROM\_NUM\_PAGES}!Memory API@{Memory API}}
+\doxysubsubsection{\texorpdfstring{EEPROM\_NUM\_PAGES}{EEPROM\_NUM\_PAGES}}
+{\footnotesize\ttfamily \#define E\+E\+P\+R\+O\+M\+\_\+\+N\+U\+M\+\_\+\+P\+A\+G\+ES~512U}
+
+
+
+Definition at line 57 of file memory.\+h.
+
+\mbox{\Hypertarget{group___m_e_m_o_r_y___a_p_i_gaddfda15f5f3ec6f8f325f48be50c548a}\label{group___m_e_m_o_r_y___a_p_i_gaddfda15f5f3ec6f8f325f48be50c548a}} 
+\index{Memory API@{Memory API}!EEPROM\_PAGE\_SIZE@{EEPROM\_PAGE\_SIZE}}
+\index{EEPROM\_PAGE\_SIZE@{EEPROM\_PAGE\_SIZE}!Memory API@{Memory API}}
+\doxysubsubsection{\texorpdfstring{EEPROM\_PAGE\_SIZE}{EEPROM\_PAGE\_SIZE}}
+{\footnotesize\ttfamily \#define E\+E\+P\+R\+O\+M\+\_\+\+P\+A\+G\+E\+\_\+\+S\+I\+ZE~4U}
+
+
+
+Definition at line 56 of file memory.\+h.
+
+\mbox{\Hypertarget{group___m_e_m_o_r_y___a_p_i_ga19220ff77b3f420a71eddcfcb2534a52}\label{group___m_e_m_o_r_y___a_p_i_ga19220ff77b3f420a71eddcfcb2534a52}} 
+\index{Memory API@{Memory API}!EEPROM\_START@{EEPROM\_START}}
+\index{EEPROM\_START@{EEPROM\_START}!Memory API@{Memory API}}
+\doxysubsubsection{\texorpdfstring{EEPROM\_START}{EEPROM\_START}}
+{\footnotesize\ttfamily \#define E\+E\+P\+R\+O\+M\+\_\+\+S\+T\+A\+RT~0x08080000U}
+
+
+
+Definition at line 58 of file memory.\+h.
+
+\mbox{\Hypertarget{group___m_e_m_o_r_y___a_p_i_ga20acc53859fff9a54984967f9d055b2f}\label{group___m_e_m_o_r_y___a_p_i_ga20acc53859fff9a54984967f9d055b2f}} 
+\index{Memory API@{Memory API}!FLASH\_APP\_END@{FLASH\_APP\_END}}
+\index{FLASH\_APP\_END@{FLASH\_APP\_END}!Memory API@{Memory API}}
+\doxysubsubsection{\texorpdfstring{FLASH\_APP\_END}{FLASH\_APP\_END}}
+{\footnotesize\ttfamily \#define F\+L\+A\+S\+H\+\_\+\+A\+P\+P\+\_\+\+E\+ND~0x0800\+C000U}
+
+
+
+Definition at line 53 of file memory.\+h.
+
+\mbox{\Hypertarget{group___m_e_m_o_r_y___a_p_i_ga2bf58c6756f463adee322409fa8678ec}\label{group___m_e_m_o_r_y___a_p_i_ga2bf58c6756f463adee322409fa8678ec}} 
+\index{Memory API@{Memory API}!FLASH\_APP\_START@{FLASH\_APP\_START}}
+\index{FLASH\_APP\_START@{FLASH\_APP\_START}!Memory API@{Memory API}}
+\doxysubsubsection{\texorpdfstring{FLASH\_APP\_START}{FLASH\_APP\_START}}
+{\footnotesize\ttfamily \#define F\+L\+A\+S\+H\+\_\+\+A\+P\+P\+\_\+\+S\+T\+A\+RT~0x08004000U}
+
+
+
+Definition at line 52 of file memory.\+h.
+
+\mbox{\Hypertarget{group___m_e_m_o_r_y___a_p_i_ga8be554f354e5aa65370f6db63d4f3ee4}\label{group___m_e_m_o_r_y___a_p_i_ga8be554f354e5aa65370f6db63d4f3ee4}} 
+\index{Memory API@{Memory API}!FLASH\_END@{FLASH\_END}}
+\index{FLASH\_END@{FLASH\_END}!Memory API@{Memory API}}
+\doxysubsubsection{\texorpdfstring{FLASH\_END}{FLASH\_END}}
+{\footnotesize\ttfamily \#define F\+L\+A\+S\+H\+\_\+\+E\+ND~0x08010000U}
+
+
+
+Definition at line 54 of file memory.\+h.
+
+\mbox{\Hypertarget{group___m_e_m_o_r_y___a_p_i_ga4a4ca3956d9a8b699620e715d790221d}\label{group___m_e_m_o_r_y___a_p_i_ga4a4ca3956d9a8b699620e715d790221d}} 
+\index{Memory API@{Memory API}!FLASH\_NUM\_PAGES@{FLASH\_NUM\_PAGES}}
+\index{FLASH\_NUM\_PAGES@{FLASH\_NUM\_PAGES}!Memory API@{Memory API}}
+\doxysubsubsection{\texorpdfstring{FLASH\_NUM\_PAGES}{FLASH\_NUM\_PAGES}}
+{\footnotesize\ttfamily \#define F\+L\+A\+S\+H\+\_\+\+N\+U\+M\+\_\+\+P\+A\+G\+ES~512U}
+
+
+
+Definition at line 50 of file memory.\+h.
+
+\mbox{\Hypertarget{group___m_e_m_o_r_y___a_p_i_ga4cc14e2c99ae7f8e5a8e371d03c8532c}\label{group___m_e_m_o_r_y___a_p_i_ga4cc14e2c99ae7f8e5a8e371d03c8532c}} 
+\index{Memory API@{Memory API}!FLASH\_PAGE\_SIZE@{FLASH\_PAGE\_SIZE}}
+\index{FLASH\_PAGE\_SIZE@{FLASH\_PAGE\_SIZE}!Memory API@{Memory API}}
+\doxysubsubsection{\texorpdfstring{FLASH\_PAGE\_SIZE}{FLASH\_PAGE\_SIZE}}
+{\footnotesize\ttfamily \#define F\+L\+A\+S\+H\+\_\+\+P\+A\+G\+E\+\_\+\+S\+I\+ZE~128U}
+
+
+
+Definition at line 49 of file memory.\+h.
+
+\mbox{\Hypertarget{group___m_e_m_o_r_y___a_p_i_ga6192bfafd8c4f694643169faeecffd1e}\label{group___m_e_m_o_r_y___a_p_i_ga6192bfafd8c4f694643169faeecffd1e}} 
+\index{Memory API@{Memory API}!FLASH\_START@{FLASH\_START}}
+\index{FLASH\_START@{FLASH\_START}!Memory API@{Memory API}}
+\doxysubsubsection{\texorpdfstring{FLASH\_START}{FLASH\_START}}
+{\footnotesize\ttfamily \#define F\+L\+A\+S\+H\+\_\+\+S\+T\+A\+RT~0x08000000U}
+
+
+
+Definition at line 51 of file memory.\+h.
+
+\mbox{\Hypertarget{group___m_e_m_o_r_y___a_p_i_ga609a6de2c7ff0a69b55d3b3c5e260cc5}\label{group___m_e_m_o_r_y___a_p_i_ga609a6de2c7ff0a69b55d3b3c5e260cc5}} 
+\index{Memory API@{Memory API}!LOG\_SIZE@{LOG\_SIZE}}
+\index{LOG\_SIZE@{LOG\_SIZE}!Memory API@{Memory API}}
+\doxysubsubsection{\texorpdfstring{LOG\_SIZE}{LOG\_SIZE}}
+{\footnotesize\ttfamily \#define L\+O\+G\+\_\+\+S\+I\+ZE~1024}
+
+
+
+Definition at line 61 of file memory.\+h.
+
+
+
+\doxysubsection{Function Documentation}
+\mbox{\Hypertarget{group___m_e_m_o_r_y___a_p_i_ga4ebbc83ce32824efb16e281ba575fb48}\label{group___m_e_m_o_r_y___a_p_i_ga4ebbc83ce32824efb16e281ba575fb48}} 
+\index{Memory API@{Memory API}!mem\_eeprom\_write\_byte@{mem\_eeprom\_write\_byte}}
+\index{mem\_eeprom\_write\_byte@{mem\_eeprom\_write\_byte}!Memory API@{Memory API}}
+\doxysubsubsection{\texorpdfstring{mem\_eeprom\_write\_byte()}{mem\_eeprom\_write\_byte()}}
+{\footnotesize\ttfamily bool mem\+\_\+eeprom\+\_\+write\+\_\+byte (\begin{DoxyParamCaption}\item[{uint32\+\_\+t}]{address,  }\item[{uint8\+\_\+t}]{data }\end{DoxyParamCaption})}
+
+
+
+Definition at line 141 of file memory.\+c.
+
+\mbox{\Hypertarget{group___m_e_m_o_r_y___a_p_i_gac5d72aca43cc46edf3b7d6622c7d8f83}\label{group___m_e_m_o_r_y___a_p_i_gac5d72aca43cc46edf3b7d6622c7d8f83}} 
+\index{Memory API@{Memory API}!mem\_eeprom\_write\_half\_word@{mem\_eeprom\_write\_half\_word}}
+\index{mem\_eeprom\_write\_half\_word@{mem\_eeprom\_write\_half\_word}!Memory API@{Memory API}}
+\doxysubsubsection{\texorpdfstring{mem\_eeprom\_write\_half\_word()}{mem\_eeprom\_write\_half\_word()}}
+{\footnotesize\ttfamily bool mem\+\_\+eeprom\+\_\+write\+\_\+half\+\_\+word (\begin{DoxyParamCaption}\item[{uint32\+\_\+t}]{address,  }\item[{uint16\+\_\+t}]{data }\end{DoxyParamCaption})}
+
+
+
+Definition at line 122 of file memory.\+c.
+
+\mbox{\Hypertarget{group___m_e_m_o_r_y___a_p_i_ga16c923082ee622b07285a6c33146a3fc}\label{group___m_e_m_o_r_y___a_p_i_ga16c923082ee622b07285a6c33146a3fc}} 
+\index{Memory API@{Memory API}!mem\_eeprom\_write\_word@{mem\_eeprom\_write\_word}}
+\index{mem\_eeprom\_write\_word@{mem\_eeprom\_write\_word}!Memory API@{Memory API}}
+\doxysubsubsection{\texorpdfstring{mem\_eeprom\_write\_word()}{mem\_eeprom\_write\_word()}}
+{\footnotesize\ttfamily bool mem\+\_\+eeprom\+\_\+write\+\_\+word (\begin{DoxyParamCaption}\item[{uint32\+\_\+t}]{address,  }\item[{uint32\+\_\+t}]{data }\end{DoxyParamCaption})}
+
+
+
+Definition at line 103 of file memory.\+c.
+
+\mbox{\Hypertarget{group___m_e_m_o_r_y___a_p_i_gafc4d03811edaa911ba9ae72569512e07}\label{group___m_e_m_o_r_y___a_p_i_gafc4d03811edaa911ba9ae72569512e07}} 
+\index{Memory API@{Memory API}!mem\_flash\_erase\_page@{mem\_flash\_erase\_page}}
+\index{mem\_flash\_erase\_page@{mem\_flash\_erase\_page}!Memory API@{Memory API}}
+\doxysubsubsection{\texorpdfstring{mem\_flash\_erase\_page()}{mem\_flash\_erase\_page()}}
+{\footnotesize\ttfamily bool mem\+\_\+flash\+\_\+erase\+\_\+page (\begin{DoxyParamCaption}\item[{uint32\+\_\+t}]{address }\end{DoxyParamCaption})}
+
+
+
+Definition at line 161 of file memory.\+c.
+
+\mbox{\Hypertarget{group___m_e_m_o_r_y___a_p_i_ga89045d7373ac1ecaba6b33ed4ede58c6}\label{group___m_e_m_o_r_y___a_p_i_ga89045d7373ac1ecaba6b33ed4ede58c6}} 
+\index{Memory API@{Memory API}!mem\_flash\_write\_half\_page@{mem\_flash\_write\_half\_page}}
+\index{mem\_flash\_write\_half\_page@{mem\_flash\_write\_half\_page}!Memory API@{Memory API}}
+\doxysubsubsection{\texorpdfstring{mem\_flash\_write\_half\_page()}{mem\_flash\_write\_half\_page()}}
+{\footnotesize\ttfamily bool mem\+\_\+flash\+\_\+write\+\_\+half\+\_\+page (\begin{DoxyParamCaption}\item[{uint32\+\_\+t}]{address,  }\item[{uint32\+\_\+t $\ast$}]{data }\end{DoxyParamCaption})}
+
+
+
+Definition at line 175 of file memory.\+c.
+
+\mbox{\Hypertarget{group___m_e_m_o_r_y___a_p_i_ga98a7ead24259ad3e307dfdd7d79feb4b}\label{group___m_e_m_o_r_y___a_p_i_ga98a7ead24259ad3e307dfdd7d79feb4b}} 
+\index{Memory API@{Memory API}!mem\_flash\_write\_word@{mem\_flash\_write\_word}}
+\index{mem\_flash\_write\_word@{mem\_flash\_write\_word}!Memory API@{Memory API}}
+\doxysubsubsection{\texorpdfstring{mem\_flash\_write\_word()}{mem\_flash\_write\_word()}}
+{\footnotesize\ttfamily bool mem\+\_\+flash\+\_\+write\+\_\+word (\begin{DoxyParamCaption}\item[{uint32\+\_\+t}]{address,  }\item[{uint32\+\_\+t}]{data }\end{DoxyParamCaption})}
+
+
+
+Definition at line 188 of file memory.\+c.
+
+\mbox{\Hypertarget{group___m_e_m_o_r_y___a_p_i_gad98fe7b14d8ca526cc51bb1c2ffd605a}\label{group___m_e_m_o_r_y___a_p_i_gad98fe7b14d8ca526cc51bb1c2ffd605a}} 
+\index{Memory API@{Memory API}!mem\_get\_aes\_key@{mem\_get\_aes\_key}}
+\index{mem\_get\_aes\_key@{mem\_get\_aes\_key}!Memory API@{Memory API}}
+\doxysubsubsection{\texorpdfstring{mem\_get\_aes\_key()}{mem\_get\_aes\_key()}}
+{\footnotesize\ttfamily void mem\+\_\+get\+\_\+aes\+\_\+key (\begin{DoxyParamCaption}\item[{uint8\+\_\+t $\ast$}]{aes\+\_\+key }\end{DoxyParamCaption})}
+
+
+
+Definition at line 282 of file memory.\+c.
+
+\mbox{\Hypertarget{group___m_e_m_o_r_y___a_p_i_ga0bb31d9f064706851c73a8ac045a4f71}\label{group___m_e_m_o_r_y___a_p_i_ga0bb31d9f064706851c73a8ac045a4f71}} 
+\index{Memory API@{Memory API}!mem\_get\_aes\_key\_exp@{mem\_get\_aes\_key\_exp}}
+\index{mem\_get\_aes\_key\_exp@{mem\_get\_aes\_key\_exp}!Memory API@{Memory API}}
+\doxysubsubsection{\texorpdfstring{mem\_get\_aes\_key\_exp()}{mem\_get\_aes\_key\_exp()}}
+{\footnotesize\ttfamily void mem\+\_\+get\+\_\+aes\+\_\+key\+\_\+exp (\begin{DoxyParamCaption}\item[{uint8\+\_\+t $\ast$}]{aes\+\_\+key\+\_\+exp }\end{DoxyParamCaption})}
+
+
+
+Definition at line 314 of file memory.\+c.
+
+\mbox{\Hypertarget{group___m_e_m_o_r_y___a_p_i_ga28cd894274c6fc9d41dc965629227606}\label{group___m_e_m_o_r_y___a_p_i_ga28cd894274c6fc9d41dc965629227606}} 
+\index{Memory API@{Memory API}!mem\_get\_dev\_num@{mem\_get\_dev\_num}}
+\index{mem\_get\_dev\_num@{mem\_get\_dev\_num}!Memory API@{Memory API}}
+\doxysubsubsection{\texorpdfstring{mem\_get\_dev\_num()}{mem\_get\_dev\_num()}}
+{\footnotesize\ttfamily uint32\+\_\+t mem\+\_\+get\+\_\+dev\+\_\+num (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})}
+
+
+
+Definition at line 231 of file memory.\+c.
+
+\mbox{\Hypertarget{group___m_e_m_o_r_y___a_p_i_ga7c52ca7050332c29a4bc7698e8fb7584}\label{group___m_e_m_o_r_y___a_p_i_ga7c52ca7050332c29a4bc7698e8fb7584}} 
+\index{Memory API@{Memory API}!mem\_get\_dev\_state@{mem\_get\_dev\_state}}
+\index{mem\_get\_dev\_state@{mem\_get\_dev\_state}!Memory API@{Memory API}}
+\doxysubsubsection{\texorpdfstring{mem\_get\_dev\_state()}{mem\_get\_dev\_state()}}
+{\footnotesize\ttfamily uint32\+\_\+t mem\+\_\+get\+\_\+dev\+\_\+state (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})}
+
+
+
+Definition at line 226 of file memory.\+c.
+
+\mbox{\Hypertarget{group___m_e_m_o_r_y___a_p_i_gafd161243801728b1fab67f3db6633877}\label{group___m_e_m_o_r_y___a_p_i_gafd161243801728b1fab67f3db6633877}} 
+\index{Memory API@{Memory API}!mem\_get\_log@{mem\_get\_log}}
+\index{mem\_get\_log@{mem\_get\_log}!Memory API@{Memory API}}
+\doxysubsubsection{\texorpdfstring{mem\_get\_log()}{mem\_get\_log()}}
+{\footnotesize\ttfamily void mem\+\_\+get\+\_\+log (\begin{DoxyParamCaption}\item[{char}]{log\mbox{[}\+L\+O\+G\+\_\+\+S\+I\+Z\+E\mbox{]} }\end{DoxyParamCaption})}
+
+
+
+Definition at line 263 of file memory.\+c.
+
+\mbox{\Hypertarget{group___m_e_m_o_r_y___a_p_i_ga703303645061e96c4b9876bae0a383d3}\label{group___m_e_m_o_r_y___a_p_i_ga703303645061e96c4b9876bae0a383d3}} 
+\index{Memory API@{Memory API}!mem\_get\_msg\_num@{mem\_get\_msg\_num}}
+\index{mem\_get\_msg\_num@{mem\_get\_msg\_num}!Memory API@{Memory API}}
+\doxysubsubsection{\texorpdfstring{mem\_get\_msg\_num()}{mem\_get\_msg\_num()}}
+{\footnotesize\ttfamily uint32\+\_\+t mem\+\_\+get\+\_\+msg\+\_\+num (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})}
+
+
+
+Definition at line 236 of file memory.\+c.
+
+\mbox{\Hypertarget{group___m_e_m_o_r_y___a_p_i_gafccd2b82ea731e3d5436749025ebca7d}\label{group___m_e_m_o_r_y___a_p_i_gafccd2b82ea731e3d5436749025ebca7d}} 
+\index{Memory API@{Memory API}!mem\_get\_num\_readings@{mem\_get\_num\_readings}}
+\index{mem\_get\_num\_readings@{mem\_get\_num\_readings}!Memory API@{Memory API}}
+\doxysubsubsection{\texorpdfstring{mem\_get\_num\_readings()}{mem\_get\_num\_readings()}}
+{\footnotesize\ttfamily uint32\+\_\+t mem\+\_\+get\+\_\+num\+\_\+readings (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})}
+
+
+
+Definition at line 247 of file memory.\+c.
+
+\mbox{\Hypertarget{group___m_e_m_o_r_y___a_p_i_ga09c56996bd368d16dff462250e441840}\label{group___m_e_m_o_r_y___a_p_i_ga09c56996bd368d16dff462250e441840}} 
+\index{Memory API@{Memory API}!mem\_get\_reading@{mem\_get\_reading}}
+\index{mem\_get\_reading@{mem\_get\_reading}!Memory API@{Memory API}}
+\doxysubsubsection{\texorpdfstring{mem\_get\_reading()}{mem\_get\_reading()}}
+{\footnotesize\ttfamily int16\+\_\+t mem\+\_\+get\+\_\+reading (\begin{DoxyParamCaption}\item[{uint32\+\_\+t}]{reading\+\_\+num }\end{DoxyParamCaption})}
+
+
+
+Definition at line 252 of file memory.\+c.
+
+\mbox{\Hypertarget{group___m_e_m_o_r_y___a_p_i_ga44a136e3b70c36abb6f8dc060c778113}\label{group___m_e_m_o_r_y___a_p_i_ga44a136e3b70c36abb6f8dc060c778113}} 
+\index{Memory API@{Memory API}!mem\_init@{mem\_init}}
+\index{mem\_init@{mem\_init}!Memory API@{Memory API}}
+\doxysubsubsection{\texorpdfstring{mem\_init()}{mem\_init()}}
+{\footnotesize\ttfamily void mem\+\_\+init (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})}
+
+
+
+Definition at line 81 of file memory.\+c.
+
+\mbox{\Hypertarget{group___m_e_m_o_r_y___a_p_i_ga802da42f5bc56d08e8df145109a6913e}\label{group___m_e_m_o_r_y___a_p_i_ga802da42f5bc56d08e8df145109a6913e}} 
+\index{Memory API@{Memory API}!mem\_print\_log@{mem\_print\_log}}
+\index{mem\_print\_log@{mem\_print\_log}!Memory API@{Memory API}}
+\doxysubsubsection{\texorpdfstring{mem\_print\_log()}{mem\_print\_log()}}
+{\footnotesize\ttfamily void mem\+\_\+print\+\_\+log (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})}
+
+
+
+Definition at line 271 of file memory.\+c.
+
+\mbox{\Hypertarget{group___m_e_m_o_r_y___a_p_i_ga2bf09ee33673f9723edb18056fdc1dfa}\label{group___m_e_m_o_r_y___a_p_i_ga2bf09ee33673f9723edb18056fdc1dfa}} 
+\index{Memory API@{Memory API}!mem\_save\_reading@{mem\_save\_reading}}
+\index{mem\_save\_reading@{mem\_save\_reading}!Memory API@{Memory API}}
+\doxysubsubsection{\texorpdfstring{mem\_save\_reading()}{mem\_save\_reading()}}
+{\footnotesize\ttfamily void mem\+\_\+save\+\_\+reading (\begin{DoxyParamCaption}\item[{int16\+\_\+t}]{reading }\end{DoxyParamCaption})}
+
+
+
+Definition at line 211 of file memory.\+c.
+
+\mbox{\Hypertarget{group___m_e_m_o_r_y___a_p_i_gae351ba63bf858610b7cd3f789f070c68}\label{group___m_e_m_o_r_y___a_p_i_gae351ba63bf858610b7cd3f789f070c68}} 
+\index{Memory API@{Memory API}!mem\_set\_aes\_key@{mem\_set\_aes\_key}}
+\index{mem\_set\_aes\_key@{mem\_set\_aes\_key}!Memory API@{Memory API}}
+\doxysubsubsection{\texorpdfstring{mem\_set\_aes\_key()}{mem\_set\_aes\_key()}}
+{\footnotesize\ttfamily void mem\+\_\+set\+\_\+aes\+\_\+key (\begin{DoxyParamCaption}\item[{uint8\+\_\+t $\ast$}]{aes\+\_\+key }\end{DoxyParamCaption})}
+
+
+
+Definition at line 297 of file memory.\+c.
+
+\mbox{\Hypertarget{group___m_e_m_o_r_y___a_p_i_ga96e02578abe4de252a64c24c38c35b43}\label{group___m_e_m_o_r_y___a_p_i_ga96e02578abe4de252a64c24c38c35b43}} 
+\index{Memory API@{Memory API}!mem\_set\_aes\_key\_exp@{mem\_set\_aes\_key\_exp}}
+\index{mem\_set\_aes\_key\_exp@{mem\_set\_aes\_key\_exp}!Memory API@{Memory API}}
+\doxysubsubsection{\texorpdfstring{mem\_set\_aes\_key\_exp()}{mem\_set\_aes\_key\_exp()}}
+{\footnotesize\ttfamily void mem\+\_\+set\+\_\+aes\+\_\+key\+\_\+exp (\begin{DoxyParamCaption}\item[{uint8\+\_\+t $\ast$}]{aes\+\_\+key\+\_\+exp }\end{DoxyParamCaption})}
+
+
+
+Definition at line 329 of file memory.\+c.
+
+\mbox{\Hypertarget{group___m_e_m_o_r_y___a_p_i_gabbb4238ff271c8e34226874f464e4e6d}\label{group___m_e_m_o_r_y___a_p_i_gabbb4238ff271c8e34226874f464e4e6d}} 
+\index{Memory API@{Memory API}!mem\_update\_msg\_num@{mem\_update\_msg\_num}}
+\index{mem\_update\_msg\_num@{mem\_update\_msg\_num}!Memory API@{Memory API}}
+\doxysubsubsection{\texorpdfstring{mem\_update\_msg\_num()}{mem\_update\_msg\_num()}}
+{\footnotesize\ttfamily void mem\+\_\+update\+\_\+msg\+\_\+num (\begin{DoxyParamCaption}\item[{uint32\+\_\+t}]{new }\end{DoxyParamCaption})}
+
+
+
+Definition at line 241 of file memory.\+c.
+
+\mbox{\Hypertarget{group___m_e_m_o_r_y___a_p_i_ga70af5f77dc31a0f90877bf1102844d0a}\label{group___m_e_m_o_r_y___a_p_i_ga70af5f77dc31a0f90877bf1102844d0a}} 
+\index{Memory API@{Memory API}!mem\_wipe\_log@{mem\_wipe\_log}}
+\index{mem\_wipe\_log@{mem\_wipe\_log}!Memory API@{Memory API}}
+\doxysubsubsection{\texorpdfstring{mem\_wipe\_log()}{mem\_wipe\_log()}}
+{\footnotesize\ttfamily void mem\+\_\+wipe\+\_\+log (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})}
+
+
+
+Definition at line 258 of file memory.\+c.
+
+\mbox{\Hypertarget{group___m_e_m_o_r_y___a_p_i_gae4a09c62aadfb5b457e6ff9022dc657b}\label{group___m_e_m_o_r_y___a_p_i_gae4a09c62aadfb5b457e6ff9022dc657b}} 
+\index{Memory API@{Memory API}!mem\_wipe\_readings@{mem\_wipe\_readings}}
+\index{mem\_wipe\_readings@{mem\_wipe\_readings}!Memory API@{Memory API}}
+\doxysubsubsection{\texorpdfstring{mem\_wipe\_readings()}{mem\_wipe\_readings()}}
+{\footnotesize\ttfamily void mem\+\_\+wipe\+\_\+readings (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})}
+
+
+
+Definition at line 346 of file memory.\+c.
+

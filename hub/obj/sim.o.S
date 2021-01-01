@@ -5069,6 +5069,9 @@ _Bool
 }sensor_t;
 
 
+void clock_setup_MSI_2MHZ(void);
+
+
 
 
 #define MAX_SENSORS 50
@@ -5183,7 +5186,7 @@ sensor_t *get_sensor(uint32_t dev_num);
 
 #define W25_SPI_SCK_PORT GPIOB
 #define W25_SPI_SCK GPIO3
-# 229 "common/include/common/board_defs.h"
+# 232 "common/include/common/board_defs.h"
 void gpio_init(void);
 # 13 "hub/src/sim.c" 2
 # 1 "common/include/common/printf.h" 1
@@ -5261,6 +5264,7 @@ uint32_t fnprintf(out_fct_type out, const char *format, va_list va);
 void log_init(void);
 void log_printf(const char *format, ...);
 void log_error(uint16_t error);
+uint8_t log_get(uint16_t index);
 
 void serial_printf(const char *format, ...);
 # 15 "hub/src/sim.c" 2

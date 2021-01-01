@@ -65,6 +65,7 @@ extern "C" {
 void log_init(void);
 void log_printf(const char *format, ...);
 void log_error(uint16_t error);
+uint8_t log_get(uint16_t index);
 
 void serial_printf(const char *format, ...);
 
@@ -74,4 +75,4 @@ void serial_printf(const char *format, ...);
 }
 #endif
 
-#endif /* LOG_H */
+#endif // LOG_H 

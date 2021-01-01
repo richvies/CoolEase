@@ -2745,39 +2745,40 @@ void eeprom_program_words(uint32_t address, uint32_t *data, int length_in_words)
 #define EEPROM_END 0x08080800U
 
 #define LOG_SIZE 1024
-# 74 "common/include/common/memory.h"
+#define LOG_START EEPROM_END - LOG_SIZE
+# 75 "common/include/common/memory.h"
 void mem_init(void);
 
-
-# 76 "common/include/common/memory.h" 3 4
-_Bool 
-# 76 "common/include/common/memory.h"
-    mem_eeprom_write_word(uint32_t address, uint32_t data);
 
 # 77 "common/include/common/memory.h" 3 4
 _Bool 
 # 77 "common/include/common/memory.h"
-    mem_eeprom_write_half_word(uint32_t address, uint16_t data);
+    mem_eeprom_write_word(uint32_t address, uint32_t data);
 
 # 78 "common/include/common/memory.h" 3 4
 _Bool 
 # 78 "common/include/common/memory.h"
+    mem_eeprom_write_half_word(uint32_t address, uint16_t data);
+
+# 79 "common/include/common/memory.h" 3 4
+_Bool 
+# 79 "common/include/common/memory.h"
     mem_eeprom_write_byte(uint32_t address, uint8_t data);
 
-
-# 80 "common/include/common/memory.h" 3 4
-_Bool 
-# 80 "common/include/common/memory.h"
-    mem_flash_erase_page(uint32_t address);
 
 # 81 "common/include/common/memory.h" 3 4
 _Bool 
 # 81 "common/include/common/memory.h"
-    mem_flash_write_word(uint32_t address, uint32_t data);
+    mem_flash_erase_page(uint32_t address);
 
 # 82 "common/include/common/memory.h" 3 4
 _Bool 
 # 82 "common/include/common/memory.h"
+    mem_flash_write_word(uint32_t address, uint32_t data);
+
+# 83 "common/include/common/memory.h" 3 4
+_Bool 
+# 83 "common/include/common/memory.h"
     mem_flash_write_half_page(uint32_t address, uint32_t *data);
 
 void mem_save_reading(int16_t reading);
@@ -2814,10 +2815,11 @@ void mem_wipe_readings(void);
 void log_init(void);
 void log_printf(const char *format, ...);
 void log_error(uint16_t error);
+uint8_t log_get(uint16_t index);
 
 void serial_printf(const char *format, ...);
 # 25 "common/src/bootloader_utils.c" 2
-# 51 "common/src/bootloader_utils.c"
+# 52 "common/src/bootloader_utils.c"
 void boot_init(void)
 {
 
@@ -2874,21 +2876,21 @@ void boot_jump_to_application(uint32_t address)
 }
 
 
-# 106 "common/src/bootloader_utils.c" 3 4
+# 107 "common/src/bootloader_utils.c" 3 4
 _Bool 
-# 106 "common/src/bootloader_utils.c"
+# 107 "common/src/bootloader_utils.c"
     boot_program_application(uint32_t *data, uint32_t start_address, uint32_t len, uint32_t crc)
 {
     log_printf("boot_program_application");
 
     
-# 110 "common/src/bootloader_utils.c" 3 4
+# 111 "common/src/bootloader_utils.c" 3 4
    _Bool 
-# 110 "common/src/bootloader_utils.c"
+# 111 "common/src/bootloader_utils.c"
         res = 
-# 110 "common/src/bootloader_utils.c" 3 4
+# 111 "common/src/bootloader_utils.c" 3 4
               1
-# 110 "common/src/bootloader_utils.c"
+# 111 "common/src/bootloader_utils.c"
                   ;
 
 
@@ -2900,27 +2902,27 @@ _Bool
     {
         log_error(0);
         res = 
-# 120 "common/src/bootloader_utils.c" 3 4
+# 121 "common/src/bootloader_utils.c" 3 4
              0
-# 120 "common/src/bootloader_utils.c"
+# 121 "common/src/bootloader_utils.c"
                   ;
     }
     else if (len > 0x08004000U - 0x0800C000U)
     {
         log_error(1);
         res = 
-# 125 "common/src/bootloader_utils.c" 3 4
+# 126 "common/src/bootloader_utils.c" 3 4
              0
-# 125 "common/src/bootloader_utils.c"
+# 126 "common/src/bootloader_utils.c"
                   ;
     }
     else if (!boot_verify_checksum(data, len, crc))
     {
         log_error(2);
         res = 
-# 130 "common/src/bootloader_utils.c" 3 4
+# 131 "common/src/bootloader_utils.c" 3 4
              0
-# 130 "common/src/bootloader_utils.c"
+# 131 "common/src/bootloader_utils.c"
                   ;
     }
 
@@ -2939,9 +2941,9 @@ _Bool
             {
                 log_error(3);
                 res = 
-# 147 "common/src/bootloader_utils.c" 3 4
+# 148 "common/src/bootloader_utils.c" 3 4
                      0
-# 147 "common/src/bootloader_utils.c"
+# 148 "common/src/bootloader_utils.c"
                           ;
             }
 
@@ -2949,9 +2951,9 @@ _Bool
             {
                 log_error(4);
                 res = 
-# 153 "common/src/bootloader_utils.c" 3 4
+# 154 "common/src/bootloader_utils.c" 3 4
                      0
-# 153 "common/src/bootloader_utils.c"
+# 154 "common/src/bootloader_utils.c"
                           ;
             }
 
@@ -2959,17 +2961,17 @@ _Bool
             {
                 log_error(5);
                 res = 
-# 159 "common/src/bootloader_utils.c" 3 4
+# 160 "common/src/bootloader_utils.c" 3 4
                      0
-# 159 "common/src/bootloader_utils.c"
+# 160 "common/src/bootloader_utils.c"
                           ;
             }
 
 
             if (res == 
-# 163 "common/src/bootloader_utils.c" 3 4
+# 164 "common/src/bootloader_utils.c" 3 4
                       0
-# 163 "common/src/bootloader_utils.c"
+# 164 "common/src/bootloader_utils.c"
                            )
             {
                 break;
@@ -2981,9 +2983,9 @@ _Bool
 }
 
 
-# 173 "common/src/bootloader_utils.c" 3 4
+# 174 "common/src/bootloader_utils.c" 3 4
 _Bool 
-# 173 "common/src/bootloader_utils.c"
+# 174 "common/src/bootloader_utils.c"
     boot_verify_checksum(uint32_t *data, uint32_t len, uint32_t expected)
 {
     log_printf("boot_verify_checksum\n");
@@ -2991,11 +2993,11 @@ _Bool
 
     rcc_periph_clock_enable(RCC_CRC);
     crc_reset();
+    crc_set_reverse_input((1 << 5));
     crc_reverse_output_enable();
-    crc_set_reverse_input((3 << 5));
 
 
-    uint32_t crc = crc_calculate_block(data, len);
+    uint32_t crc = ~crc_calculate_block(data, len);
 
 
     crc_reset();
@@ -3005,12 +3007,12 @@ _Bool
 
 
     return (crc == expected ? 
-# 193 "common/src/bootloader_utils.c" 3 4
+# 194 "common/src/bootloader_utils.c" 3 4
                              1 
-# 193 "common/src/bootloader_utils.c"
+# 194 "common/src/bootloader_utils.c"
                                   : 
-# 193 "common/src/bootloader_utils.c" 3 4
+# 194 "common/src/bootloader_utils.c" 3 4
                                     0
-# 193 "common/src/bootloader_utils.c"
+# 194 "common/src/bootloader_utils.c"
                                          );
 }

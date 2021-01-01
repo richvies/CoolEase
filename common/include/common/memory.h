@@ -58,7 +58,8 @@ extern "C" {
 #define EEPROM_START        0x08080000U
 #define EEPROM_END          0x08080800U
 
-#define LOG_SIZE            1024
+#define LOG_SIZE    1024
+#define LOG_START   EEPROM_END - LOG_SIZE
 
 
 /*////////////////////////////////////////////////////////////////////////////*/
@@ -108,4 +109,4 @@ void mem_wipe_readings(void);
 }
 #endif
 
-#endif /* MEMORY_H */
+#endif // MEMORY_H 

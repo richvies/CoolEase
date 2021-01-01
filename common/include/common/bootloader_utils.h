@@ -61,4 +61,4 @@ bool boot_verify_checksum(uint32_t *data, uint32_t len, uint32_t expected);
 }
 #endif
 
-#endif /* BOOTLOADER_UTILS_H */
+#endif // BOOTLOADER_UTILS_H 

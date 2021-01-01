@@ -1,5 +1,6 @@
 var searchData=
 [
-  ['test_5fboot_396',['test_boot',['../group___t_e_s_t_i_n_g___a_p_i.html#ga69ea690611b372034a01fa6c5e492c8b',1,'testing.c']]],
-  ['test_5fcusb_5fpoll_397',['test_cusb_poll',['../group___h_u_b___t_e_s_t___a_p_i.html#ga73f60d76c62bd3848b6b846ae2347803',1,'hub_test.c']]]
+  ['get_5firq_904',['get_irq',['../group___r_f_m___i_n_t.html#ga5333a31f1fd0db02c72466188c0d50fc',1,'rfm.c']]],
+  ['get_5fsensor_905',['get_sensor',['../board__defs_8c.html#a51b0346eb3147c56eb4688e29ead7237',1,'get_sensor(uint32_t dev_num):&#160;board_defs.c'],['../board__defs_8h.html#a51b0346eb3147c56eb4688e29ead7237',1,'get_sensor(uint32_t dev_num):&#160;board_defs.c']]],
+  ['gpio_5finit_906',['gpio_init',['../board__defs_8c.html#afdbe206b3c49f019757ab09b3cf52b9c',1,'gpio_init(void):&#160;board_defs.c'],['../board__defs_8h.html#afdbe206b3c49f019757ab09b3cf52b9c',1,'gpio_init(void):&#160;board_defs.c']]]
 ];

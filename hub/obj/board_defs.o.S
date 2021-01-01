@@ -484,12 +484,8 @@
 #define STM32L0 1
 #define STM32L052C8T6 1
 # 1 "hub/src/board_defs.c"
-# 1 "common/include/common/board_defs.h" 1
-
-#define BOARD_DEFS_H 
-
-# 1 "libopencm3/include/libopencm3/stm32/gpio.h" 1
-# 20 "libopencm3/include/libopencm3/stm32/gpio.h"
+# 1 "libopencm3/include/libopencm3/stm32/rcc.h" 1
+# 20 "libopencm3/include/libopencm3/stm32/rcc.h"
 # 1 "libopencm3/include/libopencm3/cm3/common.h" 1
 # 21 "libopencm3/include/libopencm3/cm3/common.h"
 #define LIBOPENCM3_CM3_COMMON_H 
@@ -1154,7 +1150,7 @@ typedef __uint_least64_t uint_least64_t;
 #define BIT29 (1<<29)
 #define BIT30 (1<<30)
 #define BIT31 (1<<31)
-# 21 "libopencm3/include/libopencm3/stm32/gpio.h" 2
+# 21 "libopencm3/include/libopencm3/stm32/rcc.h" 2
 # 1 "libopencm3/include/libopencm3/stm32/memorymap.h" 1
 # 21 "libopencm3/include/libopencm3/stm32/memorymap.h"
 #define LIBOPENCM3_MEMORYMAP_COMMON_H 
@@ -1274,372 +1270,7 @@ typedef __uint_least64_t uint_least64_t;
 #define ST_TSENSE_CAL1_30C MMIO16((INFO_BASE + 0x7A))
 #define ST_TSENSE_CAL2_110C MMIO16((INFO_BASE + 0x7E))
 # 37 "libopencm3/include/libopencm3/stm32/memorymap.h" 2
-# 22 "libopencm3/include/libopencm3/stm32/gpio.h" 2
-# 36 "libopencm3/include/libopencm3/stm32/gpio.h"
-# 1 "libopencm3/include/libopencm3/stm32/l0/gpio.h" 1
-# 32 "libopencm3/include/libopencm3/stm32/l0/gpio.h"
-#define LIBOPENCM3_GPIO_H 
-
-# 1 "libopencm3/include/libopencm3/stm32/common/gpio_common_f24.h" 1
-# 37 "libopencm3/include/libopencm3/stm32/common/gpio_common_f24.h"
-#define LIBOPENCM3_GPIO_COMMON_F24_H 
-
-
-
-# 1 "libopencm3/include/libopencm3/stm32/common/gpio_common_f234.h" 1
-# 37 "libopencm3/include/libopencm3/stm32/common/gpio_common_f234.h"
-#define LIBOPENCM3_GPIO_COMMON_F234_H 
-
-
-
-# 1 "libopencm3/include/libopencm3/stm32/common/gpio_common_all.h" 1
-# 37 "libopencm3/include/libopencm3/stm32/common/gpio_common_all.h"
-#define LIBOPENCM3_GPIO_COMMON_ALL_H 
-
-
-
-
-
-
-
-#define GPIO_LCKK (1 << 16)
-
-
-
-
-
-
-
-#define GPIO0 (1 << 0)
-#define GPIO1 (1 << 1)
-#define GPIO2 (1 << 2)
-#define GPIO3 (1 << 3)
-#define GPIO4 (1 << 4)
-#define GPIO5 (1 << 5)
-#define GPIO6 (1 << 6)
-#define GPIO7 (1 << 7)
-#define GPIO8 (1 << 8)
-#define GPIO9 (1 << 9)
-#define GPIO10 (1 << 10)
-#define GPIO11 (1 << 11)
-#define GPIO12 (1 << 12)
-#define GPIO13 (1 << 13)
-#define GPIO14 (1 << 14)
-#define GPIO15 (1 << 15)
-#define GPIO_ALL 0xffff
-
-
-
-
-
-# 74 "libopencm3/include/libopencm3/stm32/common/gpio_common_all.h"
-void gpio_set(uint32_t gpioport, uint16_t gpios);
-void gpio_clear(uint32_t gpioport, uint16_t gpios);
-uint16_t gpio_get(uint32_t gpioport, uint16_t gpios);
-void gpio_toggle(uint32_t gpioport, uint16_t gpios);
-uint16_t gpio_port_read(uint32_t gpioport);
-void gpio_port_write(uint32_t gpioport, uint16_t data);
-void gpio_port_config_lock(uint32_t gpioport, uint16_t gpios);
-
-
-# 42 "libopencm3/include/libopencm3/stm32/common/gpio_common_f234.h" 2
-
-
-
-
-
-
-#define GPIOA GPIO_PORT_A_BASE
-#define GPIOB GPIO_PORT_B_BASE
-#define GPIOC GPIO_PORT_C_BASE
-#define GPIOD GPIO_PORT_D_BASE
-#define GPIOE GPIO_PORT_E_BASE
-#define GPIOF GPIO_PORT_F_BASE
-
-
-
-
-
-
-#define GPIO_MODER(port) MMIO32((port) + 0x00)
-#define GPIOA_MODER GPIO_MODER(GPIOA)
-#define GPIOB_MODER GPIO_MODER(GPIOB)
-#define GPIOC_MODER GPIO_MODER(GPIOC)
-#define GPIOD_MODER GPIO_MODER(GPIOD)
-#define GPIOE_MODER GPIO_MODER(GPIOE)
-#define GPIOF_MODER GPIO_MODER(GPIOF)
-
-
-#define GPIO_OTYPER(port) MMIO32((port) + 0x04)
-#define GPIOA_OTYPER GPIO_OTYPER(GPIOA)
-#define GPIOB_OTYPER GPIO_OTYPER(GPIOB)
-#define GPIOC_OTYPER GPIO_OTYPER(GPIOC)
-#define GPIOD_OTYPER GPIO_OTYPER(GPIOD)
-#define GPIOE_OTYPER GPIO_OTYPER(GPIOE)
-#define GPIOF_OTYPER GPIO_OTYPER(GPIOF)
-
-
-#define GPIO_OSPEEDR(port) MMIO32((port) + 0x08)
-#define GPIOA_OSPEEDR GPIO_OSPEEDR(GPIOA)
-#define GPIOB_OSPEEDR GPIO_OSPEEDR(GPIOB)
-#define GPIOC_OSPEEDR GPIO_OSPEEDR(GPIOC)
-#define GPIOD_OSPEEDR GPIO_OSPEEDR(GPIOD)
-#define GPIOE_OSPEEDR GPIO_OSPEEDR(GPIOE)
-#define GPIOF_OSPEEDR GPIO_OSPEEDR(GPIOF)
-
-
-#define GPIO_PUPDR(port) MMIO32((port) + 0x0c)
-#define GPIOA_PUPDR GPIO_PUPDR(GPIOA)
-#define GPIOB_PUPDR GPIO_PUPDR(GPIOB)
-#define GPIOC_PUPDR GPIO_PUPDR(GPIOC)
-#define GPIOD_PUPDR GPIO_PUPDR(GPIOD)
-#define GPIOE_PUPDR GPIO_PUPDR(GPIOE)
-#define GPIOF_PUPDR GPIO_PUPDR(GPIOF)
-
-
-#define GPIO_IDR(port) MMIO32((port) + 0x10)
-#define GPIOA_IDR GPIO_IDR(GPIOA)
-#define GPIOB_IDR GPIO_IDR(GPIOB)
-#define GPIOC_IDR GPIO_IDR(GPIOC)
-#define GPIOD_IDR GPIO_IDR(GPIOD)
-#define GPIOE_IDR GPIO_IDR(GPIOE)
-#define GPIOF_IDR GPIO_IDR(GPIOF)
-
-
-#define GPIO_ODR(port) MMIO32((port) + 0x14)
-#define GPIOA_ODR GPIO_ODR(GPIOA)
-#define GPIOB_ODR GPIO_ODR(GPIOB)
-#define GPIOC_ODR GPIO_ODR(GPIOC)
-#define GPIOD_ODR GPIO_ODR(GPIOD)
-#define GPIOE_ODR GPIO_ODR(GPIOE)
-#define GPIOF_ODR GPIO_ODR(GPIOF)
-
-
-#define GPIO_BSRR(port) MMIO32((port) + 0x18)
-#define GPIOA_BSRR GPIO_BSRR(GPIOA)
-#define GPIOB_BSRR GPIO_BSRR(GPIOB)
-#define GPIOC_BSRR GPIO_BSRR(GPIOC)
-#define GPIOD_BSRR GPIO_BSRR(GPIOD)
-#define GPIOE_BSRR GPIO_BSRR(GPIOE)
-#define GPIOF_BSRR GPIO_BSRR(GPIOF)
-
-
-#define GPIO_LCKR(port) MMIO32((port) + 0x1c)
-#define GPIOA_LCKR GPIO_LCKR(GPIOA)
-#define GPIOB_LCKR GPIO_LCKR(GPIOB)
-#define GPIOC_LCKR GPIO_LCKR(GPIOC)
-#define GPIOD_LCKR GPIO_LCKR(GPIOD)
-#define GPIOE_LCKR GPIO_LCKR(GPIOE)
-#define GPIOF_LCKR GPIO_LCKR(GPIOF)
-
-
-#define GPIO_AFRL(port) MMIO32((port) + 0x20)
-#define GPIOA_AFRL GPIO_AFRL(GPIOA)
-#define GPIOB_AFRL GPIO_AFRL(GPIOB)
-#define GPIOC_AFRL GPIO_AFRL(GPIOC)
-#define GPIOD_AFRL GPIO_AFRL(GPIOD)
-#define GPIOE_AFRL GPIO_AFRL(GPIOE)
-#define GPIOF_AFRL GPIO_AFRL(GPIOF)
-
-
-#define GPIO_AFRH(port) MMIO32((port) + 0x24)
-#define GPIOA_AFRH GPIO_AFRH(GPIOA)
-#define GPIOB_AFRH GPIO_AFRH(GPIOB)
-#define GPIOC_AFRH GPIO_AFRH(GPIOC)
-#define GPIOD_AFRH GPIO_AFRH(GPIOD)
-#define GPIOE_AFRH GPIO_AFRH(GPIOE)
-#define GPIOF_AFRH GPIO_AFRH(GPIOF)
-
-
-
-#define GPIO_MODE(n,mode) ((mode) << (2 * (n)))
-#define GPIO_MODE_MASK(n) (0x3 << (2 * (n)))
-
-
-
-#define GPIO_MODE_INPUT 0x0
-#define GPIO_MODE_OUTPUT 0x1
-#define GPIO_MODE_AF 0x2
-#define GPIO_MODE_ANALOG 0x3
-# 168 "libopencm3/include/libopencm3/stm32/common/gpio_common_f234.h"
-#define GPIO_OTYPE_PP 0x0
-
-#define GPIO_OTYPE_OD 0x1
-
-
-
-
-#define GPIO_OSPEED(n,speed) ((speed) << (2 * (n)))
-#define GPIO_OSPEED_MASK(n) (0x3 << (2 * (n)))
-
-
-
-#define GPIO_OSPEED_2MHZ 0x0
-#define GPIO_OSPEED_25MHZ 0x1
-#define GPIO_OSPEED_50MHZ 0x2
-#define GPIO_OSPEED_100MHZ 0x3
-
-
-
-
-#define GPIO_PUPD(n,pupd) ((pupd) << (2 * (n)))
-#define GPIO_PUPD_MASK(n) (0x3 << (2 * (n)))
-
-
-
-#define GPIO_PUPD_NONE 0x0
-#define GPIO_PUPD_PULLUP 0x1
-#define GPIO_PUPD_PULLDOWN 0x2
-# 213 "libopencm3/include/libopencm3/stm32/common/gpio_common_f234.h"
-#define GPIO_LCKK (1 << 16)
-
-
-
-
-
-
-
-#define GPIO_AFR(n,af) ((af) << ((n) * 4))
-#define GPIO_AFR_MASK(n) (0xf << ((n) * 4))
-
-
-
-#define GPIO_AF0 0x0
-#define GPIO_AF1 0x1
-#define GPIO_AF2 0x2
-#define GPIO_AF3 0x3
-#define GPIO_AF4 0x4
-#define GPIO_AF5 0x5
-#define GPIO_AF6 0x6
-#define GPIO_AF7 0x7
-#define GPIO_AF8 0x8
-#define GPIO_AF9 0x9
-#define GPIO_AF10 0xa
-#define GPIO_AF11 0xb
-#define GPIO_AF12 0xc
-#define GPIO_AF13 0xd
-#define GPIO_AF14 0xe
-#define GPIO_AF15 0xf
-
-
-
-
-
-
-
-# 258 "libopencm3/include/libopencm3/stm32/common/gpio_common_f234.h"
-void gpio_mode_setup(uint32_t gpioport, uint8_t mode, uint8_t pull_up_down,
-       uint16_t gpios);
-void gpio_set_output_options(uint32_t gpioport, uint8_t otype, uint8_t speed,
-        uint16_t gpios);
-void gpio_set_af(uint32_t gpioport, uint8_t alt_func_num, uint16_t gpios);
-
-
-# 42 "libopencm3/include/libopencm3/stm32/common/gpio_common_f24.h" 2
-
-
-
-
-
-
-#define GPIOG GPIO_PORT_G_BASE
-#define GPIOH GPIO_PORT_H_BASE
-#define GPIOI GPIO_PORT_I_BASE
-#define GPIOJ GPIO_PORT_J_BASE
-#define GPIOK GPIO_PORT_K_BASE
-
-
-
-
-
-#define GPIOG_MODER GPIO_MODER(GPIOG)
-#define GPIOH_MODER GPIO_MODER(GPIOH)
-#define GPIOI_MODER GPIO_MODER(GPIOI)
-#define GPIOJ_MODER GPIO_MODER(GPIOJ)
-#define GPIOK_MODER GPIO_MODER(GPIOK)
-
-
-#define GPIOG_OTYPER GPIO_OTYPER(GPIOG)
-#define GPIOH_OTYPER GPIO_OTYPER(GPIOH)
-#define GPIOI_OTYPER GPIO_OTYPER(GPIOI)
-#define GPIOJ_OTYPER GPIO_OTYPER(GPIOJ)
-#define GPIOK_OTYPER GPIO_OTYPER(GPIOK)
-
-
-#define GPIOG_OSPEEDR GPIO_OSPEEDR(GPIOG)
-#define GPIOH_OSPEEDR GPIO_OSPEEDR(GPIOH)
-#define GPIOI_OSPEEDR GPIO_OSPEEDR(GPIOI)
-#define GPIOJ_OSPEEDR GPIO_OSPEEDR(GPIOJ)
-#define GPIOK_OSPEEDR GPIO_OSPEEDR(GPIOK)
-
-
-#define GPIOG_PUPDR GPIO_PUPDR(GPIOG)
-#define GPIOH_PUPDR GPIO_PUPDR(GPIOH)
-#define GPIOI_PUPDR GPIO_PUPDR(GPIOI)
-#define GPIOJ_PUPDR GPIO_PUPDR(GPIOJ)
-#define GPIOK_PUPDR GPIO_PUPDR(GPIOK)
-
-
-#define GPIOG_IDR GPIO_IDR(GPIOG)
-#define GPIOH_IDR GPIO_IDR(GPIOH)
-#define GPIOI_IDR GPIO_IDR(GPIOI)
-#define GPIOJ_IDR GPIO_IDR(GPIOJ)
-#define GPIOK_IDR GPIO_IDR(GPIOK)
-
-
-#define GPIOG_ODR GPIO_ODR(GPIOG)
-#define GPIOH_ODR GPIO_ODR(GPIOH)
-#define GPIOI_ODR GPIO_ODR(GPIOI)
-#define GPIOJ_ODR GPIO_ODR(GPIOJ)
-#define GPIOK_ODR GPIO_ODR(GPIOK)
-
-
-#define GPIOG_BSRR GPIO_BSRR(GPIOG)
-#define GPIOH_BSRR GPIO_BSRR(GPIOH)
-#define GPIOI_BSRR GPIO_BSRR(GPIOI)
-#define GPIOJ_BSRR GPIO_BSRR(GPIOJ)
-#define GPIOK_BSRR GPIO_BSRR(GPIOK)
-
-
-#define GPIOG_LCKR GPIO_LCKR(GPIOG)
-#define GPIOH_LCKR GPIO_LCKR(GPIOH)
-#define GPIOI_LCKR GPIO_LCKR(GPIOI)
-#define GPIOJ_LCKR GPIO_LCKR(GPIOJ)
-#define GPIOK_LCKR GPIO_LCKR(GPIOK)
-
-
-#define GPIOG_AFRL GPIO_AFRL(GPIOG)
-#define GPIOH_AFRL GPIO_AFRL(GPIOH)
-#define GPIOI_AFRL GPIO_AFRL(GPIOI)
-#define GPIOJ_AFRL GPIO_AFRL(GPIOJ)
-#define GPIOK_AFRL GPIO_AFRL(GPIOK)
-
-
-#define GPIOG_AFRH GPIO_AFRH(GPIOG)
-#define GPIOH_AFRH GPIO_AFRH(GPIOH)
-#define GPIOI_AFRH GPIO_AFRH(GPIOI)
-#define GPIOJ_AFRH GPIO_AFRH(GPIOJ)
-#define GPIOK_AFRH GPIO_AFRH(GPIOK)
-# 35 "libopencm3/include/libopencm3/stm32/l0/gpio.h" 2
-# 44 "libopencm3/include/libopencm3/stm32/l0/gpio.h"
-#define GPIO_BRR(port) MMIO32((port) + 0x28)
-#define GPIOA_BRR GPIO_BRR(GPIOA)
-#define GPIOB_BRR GPIO_BRR(GPIOB)
-#define GPIOC_BRR GPIO_BRR(GPIOC)
-#define GPIOD_BRR GPIO_BRR(GPIOD)
-#define GPIOH_BRR GPIO_BRR(GPIOH)
-# 58 "libopencm3/include/libopencm3/stm32/l0/gpio.h"
-#define GPIO_OSPEED_LOW 0x0
-#define GPIO_OSPEED_MED 0x1
-#define GPIO_OSPEED_HIGH 0x2
-#define GPIO_OSPEED_VERYHIGH 0x3
-# 72 "libopencm3/include/libopencm3/stm32/l0/gpio.h"
-
-
-
-# 37 "libopencm3/include/libopencm3/stm32/gpio.h" 2
-# 5 "common/include/common/board_defs.h" 2
-# 1 "libopencm3/include/libopencm3/stm32/rcc.h" 1
+# 22 "libopencm3/include/libopencm3/stm32/rcc.h" 2
 # 36 "libopencm3/include/libopencm3/stm32/rcc.h"
 # 1 "libopencm3/include/libopencm3/stm32/l0/rcc.h" 1
 # 41 "libopencm3/include/libopencm3/stm32/l0/rcc.h"
@@ -1732,6 +1363,8 @@ void gpio_set_af(uint32_t gpioport, uint8_t alt_func_num, uint16_t gpios);
 
 
 
+
+# 107 "libopencm3/include/libopencm3/stm32/common/pwr_common_v1.h"
 void pwr_disable_backup_domain_write_protect(void);
 void pwr_enable_backup_domain_write_protect(void);
 void pwr_enable_power_voltage_detect(uint32_t pvd_level);
@@ -2538,6 +2171,551 @@ void rcc_set_usart2_sel(uint32_t usart2_sel);
 
 
 # 37 "libopencm3/include/libopencm3/stm32/rcc.h" 2
+# 2 "hub/src/board_defs.c" 2
+# 1 "libopencm3/include/libopencm3/stm32/gpio.h" 1
+# 36 "libopencm3/include/libopencm3/stm32/gpio.h"
+# 1 "libopencm3/include/libopencm3/stm32/l0/gpio.h" 1
+# 32 "libopencm3/include/libopencm3/stm32/l0/gpio.h"
+#define LIBOPENCM3_GPIO_H 
+
+# 1 "libopencm3/include/libopencm3/stm32/common/gpio_common_f24.h" 1
+# 37 "libopencm3/include/libopencm3/stm32/common/gpio_common_f24.h"
+#define LIBOPENCM3_GPIO_COMMON_F24_H 
+
+
+
+# 1 "libopencm3/include/libopencm3/stm32/common/gpio_common_f234.h" 1
+# 37 "libopencm3/include/libopencm3/stm32/common/gpio_common_f234.h"
+#define LIBOPENCM3_GPIO_COMMON_F234_H 
+
+
+
+# 1 "libopencm3/include/libopencm3/stm32/common/gpio_common_all.h" 1
+# 37 "libopencm3/include/libopencm3/stm32/common/gpio_common_all.h"
+#define LIBOPENCM3_GPIO_COMMON_ALL_H 
+
+
+
+
+
+
+
+#define GPIO_LCKK (1 << 16)
+
+
+
+
+
+
+
+#define GPIO0 (1 << 0)
+#define GPIO1 (1 << 1)
+#define GPIO2 (1 << 2)
+#define GPIO3 (1 << 3)
+#define GPIO4 (1 << 4)
+#define GPIO5 (1 << 5)
+#define GPIO6 (1 << 6)
+#define GPIO7 (1 << 7)
+#define GPIO8 (1 << 8)
+#define GPIO9 (1 << 9)
+#define GPIO10 (1 << 10)
+#define GPIO11 (1 << 11)
+#define GPIO12 (1 << 12)
+#define GPIO13 (1 << 13)
+#define GPIO14 (1 << 14)
+#define GPIO15 (1 << 15)
+#define GPIO_ALL 0xffff
+
+
+
+
+void gpio_set(uint32_t gpioport, uint16_t gpios);
+void gpio_clear(uint32_t gpioport, uint16_t gpios);
+uint16_t gpio_get(uint32_t gpioport, uint16_t gpios);
+void gpio_toggle(uint32_t gpioport, uint16_t gpios);
+uint16_t gpio_port_read(uint32_t gpioport);
+void gpio_port_write(uint32_t gpioport, uint16_t data);
+void gpio_port_config_lock(uint32_t gpioport, uint16_t gpios);
+
+
+# 42 "libopencm3/include/libopencm3/stm32/common/gpio_common_f234.h" 2
+
+
+
+
+
+
+#define GPIOA GPIO_PORT_A_BASE
+#define GPIOB GPIO_PORT_B_BASE
+#define GPIOC GPIO_PORT_C_BASE
+#define GPIOD GPIO_PORT_D_BASE
+#define GPIOE GPIO_PORT_E_BASE
+#define GPIOF GPIO_PORT_F_BASE
+
+
+
+
+
+
+#define GPIO_MODER(port) MMIO32((port) + 0x00)
+#define GPIOA_MODER GPIO_MODER(GPIOA)
+#define GPIOB_MODER GPIO_MODER(GPIOB)
+#define GPIOC_MODER GPIO_MODER(GPIOC)
+#define GPIOD_MODER GPIO_MODER(GPIOD)
+#define GPIOE_MODER GPIO_MODER(GPIOE)
+#define GPIOF_MODER GPIO_MODER(GPIOF)
+
+
+#define GPIO_OTYPER(port) MMIO32((port) + 0x04)
+#define GPIOA_OTYPER GPIO_OTYPER(GPIOA)
+#define GPIOB_OTYPER GPIO_OTYPER(GPIOB)
+#define GPIOC_OTYPER GPIO_OTYPER(GPIOC)
+#define GPIOD_OTYPER GPIO_OTYPER(GPIOD)
+#define GPIOE_OTYPER GPIO_OTYPER(GPIOE)
+#define GPIOF_OTYPER GPIO_OTYPER(GPIOF)
+
+
+#define GPIO_OSPEEDR(port) MMIO32((port) + 0x08)
+#define GPIOA_OSPEEDR GPIO_OSPEEDR(GPIOA)
+#define GPIOB_OSPEEDR GPIO_OSPEEDR(GPIOB)
+#define GPIOC_OSPEEDR GPIO_OSPEEDR(GPIOC)
+#define GPIOD_OSPEEDR GPIO_OSPEEDR(GPIOD)
+#define GPIOE_OSPEEDR GPIO_OSPEEDR(GPIOE)
+#define GPIOF_OSPEEDR GPIO_OSPEEDR(GPIOF)
+
+
+#define GPIO_PUPDR(port) MMIO32((port) + 0x0c)
+#define GPIOA_PUPDR GPIO_PUPDR(GPIOA)
+#define GPIOB_PUPDR GPIO_PUPDR(GPIOB)
+#define GPIOC_PUPDR GPIO_PUPDR(GPIOC)
+#define GPIOD_PUPDR GPIO_PUPDR(GPIOD)
+#define GPIOE_PUPDR GPIO_PUPDR(GPIOE)
+#define GPIOF_PUPDR GPIO_PUPDR(GPIOF)
+
+
+#define GPIO_IDR(port) MMIO32((port) + 0x10)
+#define GPIOA_IDR GPIO_IDR(GPIOA)
+#define GPIOB_IDR GPIO_IDR(GPIOB)
+#define GPIOC_IDR GPIO_IDR(GPIOC)
+#define GPIOD_IDR GPIO_IDR(GPIOD)
+#define GPIOE_IDR GPIO_IDR(GPIOE)
+#define GPIOF_IDR GPIO_IDR(GPIOF)
+
+
+#define GPIO_ODR(port) MMIO32((port) + 0x14)
+#define GPIOA_ODR GPIO_ODR(GPIOA)
+#define GPIOB_ODR GPIO_ODR(GPIOB)
+#define GPIOC_ODR GPIO_ODR(GPIOC)
+#define GPIOD_ODR GPIO_ODR(GPIOD)
+#define GPIOE_ODR GPIO_ODR(GPIOE)
+#define GPIOF_ODR GPIO_ODR(GPIOF)
+
+
+#define GPIO_BSRR(port) MMIO32((port) + 0x18)
+#define GPIOA_BSRR GPIO_BSRR(GPIOA)
+#define GPIOB_BSRR GPIO_BSRR(GPIOB)
+#define GPIOC_BSRR GPIO_BSRR(GPIOC)
+#define GPIOD_BSRR GPIO_BSRR(GPIOD)
+#define GPIOE_BSRR GPIO_BSRR(GPIOE)
+#define GPIOF_BSRR GPIO_BSRR(GPIOF)
+
+
+#define GPIO_LCKR(port) MMIO32((port) + 0x1c)
+#define GPIOA_LCKR GPIO_LCKR(GPIOA)
+#define GPIOB_LCKR GPIO_LCKR(GPIOB)
+#define GPIOC_LCKR GPIO_LCKR(GPIOC)
+#define GPIOD_LCKR GPIO_LCKR(GPIOD)
+#define GPIOE_LCKR GPIO_LCKR(GPIOE)
+#define GPIOF_LCKR GPIO_LCKR(GPIOF)
+
+
+#define GPIO_AFRL(port) MMIO32((port) + 0x20)
+#define GPIOA_AFRL GPIO_AFRL(GPIOA)
+#define GPIOB_AFRL GPIO_AFRL(GPIOB)
+#define GPIOC_AFRL GPIO_AFRL(GPIOC)
+#define GPIOD_AFRL GPIO_AFRL(GPIOD)
+#define GPIOE_AFRL GPIO_AFRL(GPIOE)
+#define GPIOF_AFRL GPIO_AFRL(GPIOF)
+
+
+#define GPIO_AFRH(port) MMIO32((port) + 0x24)
+#define GPIOA_AFRH GPIO_AFRH(GPIOA)
+#define GPIOB_AFRH GPIO_AFRH(GPIOB)
+#define GPIOC_AFRH GPIO_AFRH(GPIOC)
+#define GPIOD_AFRH GPIO_AFRH(GPIOD)
+#define GPIOE_AFRH GPIO_AFRH(GPIOE)
+#define GPIOF_AFRH GPIO_AFRH(GPIOF)
+
+
+
+#define GPIO_MODE(n,mode) ((mode) << (2 * (n)))
+#define GPIO_MODE_MASK(n) (0x3 << (2 * (n)))
+
+
+
+#define GPIO_MODE_INPUT 0x0
+#define GPIO_MODE_OUTPUT 0x1
+#define GPIO_MODE_AF 0x2
+#define GPIO_MODE_ANALOG 0x3
+# 168 "libopencm3/include/libopencm3/stm32/common/gpio_common_f234.h"
+#define GPIO_OTYPE_PP 0x0
+
+#define GPIO_OTYPE_OD 0x1
+
+
+
+
+#define GPIO_OSPEED(n,speed) ((speed) << (2 * (n)))
+#define GPIO_OSPEED_MASK(n) (0x3 << (2 * (n)))
+
+
+
+#define GPIO_OSPEED_2MHZ 0x0
+#define GPIO_OSPEED_25MHZ 0x1
+#define GPIO_OSPEED_50MHZ 0x2
+#define GPIO_OSPEED_100MHZ 0x3
+
+
+
+
+#define GPIO_PUPD(n,pupd) ((pupd) << (2 * (n)))
+#define GPIO_PUPD_MASK(n) (0x3 << (2 * (n)))
+
+
+
+#define GPIO_PUPD_NONE 0x0
+#define GPIO_PUPD_PULLUP 0x1
+#define GPIO_PUPD_PULLDOWN 0x2
+# 213 "libopencm3/include/libopencm3/stm32/common/gpio_common_f234.h"
+#define GPIO_LCKK (1 << 16)
+
+
+
+
+
+
+
+#define GPIO_AFR(n,af) ((af) << ((n) * 4))
+#define GPIO_AFR_MASK(n) (0xf << ((n) * 4))
+
+
+
+#define GPIO_AF0 0x0
+#define GPIO_AF1 0x1
+#define GPIO_AF2 0x2
+#define GPIO_AF3 0x3
+#define GPIO_AF4 0x4
+#define GPIO_AF5 0x5
+#define GPIO_AF6 0x6
+#define GPIO_AF7 0x7
+#define GPIO_AF8 0x8
+#define GPIO_AF9 0x9
+#define GPIO_AF10 0xa
+#define GPIO_AF11 0xb
+#define GPIO_AF12 0xc
+#define GPIO_AF13 0xd
+#define GPIO_AF14 0xe
+#define GPIO_AF15 0xf
+
+
+
+
+
+
+
+# 258 "libopencm3/include/libopencm3/stm32/common/gpio_common_f234.h"
+void gpio_mode_setup(uint32_t gpioport, uint8_t mode, uint8_t pull_up_down,
+       uint16_t gpios);
+void gpio_set_output_options(uint32_t gpioport, uint8_t otype, uint8_t speed,
+        uint16_t gpios);
+void gpio_set_af(uint32_t gpioport, uint8_t alt_func_num, uint16_t gpios);
+
+
+# 42 "libopencm3/include/libopencm3/stm32/common/gpio_common_f24.h" 2
+
+
+
+
+
+
+#define GPIOG GPIO_PORT_G_BASE
+#define GPIOH GPIO_PORT_H_BASE
+#define GPIOI GPIO_PORT_I_BASE
+#define GPIOJ GPIO_PORT_J_BASE
+#define GPIOK GPIO_PORT_K_BASE
+
+
+
+
+
+#define GPIOG_MODER GPIO_MODER(GPIOG)
+#define GPIOH_MODER GPIO_MODER(GPIOH)
+#define GPIOI_MODER GPIO_MODER(GPIOI)
+#define GPIOJ_MODER GPIO_MODER(GPIOJ)
+#define GPIOK_MODER GPIO_MODER(GPIOK)
+
+
+#define GPIOG_OTYPER GPIO_OTYPER(GPIOG)
+#define GPIOH_OTYPER GPIO_OTYPER(GPIOH)
+#define GPIOI_OTYPER GPIO_OTYPER(GPIOI)
+#define GPIOJ_OTYPER GPIO_OTYPER(GPIOJ)
+#define GPIOK_OTYPER GPIO_OTYPER(GPIOK)
+
+
+#define GPIOG_OSPEEDR GPIO_OSPEEDR(GPIOG)
+#define GPIOH_OSPEEDR GPIO_OSPEEDR(GPIOH)
+#define GPIOI_OSPEEDR GPIO_OSPEEDR(GPIOI)
+#define GPIOJ_OSPEEDR GPIO_OSPEEDR(GPIOJ)
+#define GPIOK_OSPEEDR GPIO_OSPEEDR(GPIOK)
+
+
+#define GPIOG_PUPDR GPIO_PUPDR(GPIOG)
+#define GPIOH_PUPDR GPIO_PUPDR(GPIOH)
+#define GPIOI_PUPDR GPIO_PUPDR(GPIOI)
+#define GPIOJ_PUPDR GPIO_PUPDR(GPIOJ)
+#define GPIOK_PUPDR GPIO_PUPDR(GPIOK)
+
+
+#define GPIOG_IDR GPIO_IDR(GPIOG)
+#define GPIOH_IDR GPIO_IDR(GPIOH)
+#define GPIOI_IDR GPIO_IDR(GPIOI)
+#define GPIOJ_IDR GPIO_IDR(GPIOJ)
+#define GPIOK_IDR GPIO_IDR(GPIOK)
+
+
+#define GPIOG_ODR GPIO_ODR(GPIOG)
+#define GPIOH_ODR GPIO_ODR(GPIOH)
+#define GPIOI_ODR GPIO_ODR(GPIOI)
+#define GPIOJ_ODR GPIO_ODR(GPIOJ)
+#define GPIOK_ODR GPIO_ODR(GPIOK)
+
+
+#define GPIOG_BSRR GPIO_BSRR(GPIOG)
+#define GPIOH_BSRR GPIO_BSRR(GPIOH)
+#define GPIOI_BSRR GPIO_BSRR(GPIOI)
+#define GPIOJ_BSRR GPIO_BSRR(GPIOJ)
+#define GPIOK_BSRR GPIO_BSRR(GPIOK)
+
+
+#define GPIOG_LCKR GPIO_LCKR(GPIOG)
+#define GPIOH_LCKR GPIO_LCKR(GPIOH)
+#define GPIOI_LCKR GPIO_LCKR(GPIOI)
+#define GPIOJ_LCKR GPIO_LCKR(GPIOJ)
+#define GPIOK_LCKR GPIO_LCKR(GPIOK)
+
+
+#define GPIOG_AFRL GPIO_AFRL(GPIOG)
+#define GPIOH_AFRL GPIO_AFRL(GPIOH)
+#define GPIOI_AFRL GPIO_AFRL(GPIOI)
+#define GPIOJ_AFRL GPIO_AFRL(GPIOJ)
+#define GPIOK_AFRL GPIO_AFRL(GPIOK)
+
+
+#define GPIOG_AFRH GPIO_AFRH(GPIOG)
+#define GPIOH_AFRH GPIO_AFRH(GPIOH)
+#define GPIOI_AFRH GPIO_AFRH(GPIOI)
+#define GPIOJ_AFRH GPIO_AFRH(GPIOJ)
+#define GPIOK_AFRH GPIO_AFRH(GPIOK)
+# 35 "libopencm3/include/libopencm3/stm32/l0/gpio.h" 2
+# 44 "libopencm3/include/libopencm3/stm32/l0/gpio.h"
+#define GPIO_BRR(port) MMIO32((port) + 0x28)
+#define GPIOA_BRR GPIO_BRR(GPIOA)
+#define GPIOB_BRR GPIO_BRR(GPIOB)
+#define GPIOC_BRR GPIO_BRR(GPIOC)
+#define GPIOD_BRR GPIO_BRR(GPIOD)
+#define GPIOH_BRR GPIO_BRR(GPIOH)
+# 58 "libopencm3/include/libopencm3/stm32/l0/gpio.h"
+#define GPIO_OSPEED_LOW 0x0
+#define GPIO_OSPEED_MED 0x1
+#define GPIO_OSPEED_HIGH 0x2
+#define GPIO_OSPEED_VERYHIGH 0x3
+# 72 "libopencm3/include/libopencm3/stm32/l0/gpio.h"
+
+
+
+# 37 "libopencm3/include/libopencm3/stm32/gpio.h" 2
+# 3 "hub/src/board_defs.c" 2
+# 1 "libopencm3/include/libopencm3/stm32/flash.h" 1
+# 36 "libopencm3/include/libopencm3/stm32/flash.h"
+# 1 "libopencm3/include/libopencm3/stm32/l0/flash.h" 1
+# 31 "libopencm3/include/libopencm3/stm32/l0/flash.h"
+#define LIBOPENCM3_FLASH_H 
+
+
+# 1 "libopencm3/include/libopencm3/stm32/common/flash_common_all.h" 1
+# 21 "libopencm3/include/libopencm3/stm32/common/flash_common_all.h"
+       
+
+
+
+
+# 37 "libopencm3/include/libopencm3/stm32/common/flash_common_all.h"
+void flash_prefetch_enable(void);
+
+
+
+
+
+void flash_prefetch_disable(void);
+# 55 "libopencm3/include/libopencm3/stm32/common/flash_common_all.h"
+void flash_set_ws(uint32_t ws);
+
+
+
+
+void flash_lock(void);
+
+
+
+
+
+void flash_unlock(void);
+
+
+
+
+
+void flash_unlock_option_bytes(void);
+
+
+# 35 "libopencm3/include/libopencm3/stm32/l0/flash.h" 2
+# 1 "libopencm3/include/libopencm3/stm32/common/flash_common_l01.h" 1
+# 29 "libopencm3/include/libopencm3/stm32/common/flash_common_l01.h"
+#define LIBOPENCM3_FLASH_COMMON_L01_H 
+
+
+
+
+
+
+#define FLASH_ACR MMIO32(FLASH_MEM_INTERFACE_BASE + 0x00)
+#define FLASH_PECR MMIO32(FLASH_MEM_INTERFACE_BASE + 0x04)
+#define FLASH_PDKEYR MMIO32(FLASH_MEM_INTERFACE_BASE + 0x08)
+#define FLASH_PEKEYR MMIO32(FLASH_MEM_INTERFACE_BASE + 0x0C)
+#define FLASH_PRGKEYR MMIO32(FLASH_MEM_INTERFACE_BASE + 0x10)
+#define FLASH_OPTKEYR MMIO32(FLASH_MEM_INTERFACE_BASE + 0x14)
+#define FLASH_SR MMIO32(FLASH_MEM_INTERFACE_BASE + 0x18)
+#define FLASH_OBR MMIO32(FLASH_MEM_INTERFACE_BASE + 0x1c)
+#define FLASH_WRPR1 MMIO32(FLASH_MEM_INTERFACE_BASE + 0x20)
+#define FLASH_WRPR2 MMIO32(FLASH_MEM_INTERFACE_BASE + 0x80)
+
+
+#define FLASH_ACR_RUNPD (1 << 4)
+#define FLASH_ACR_SLEEPPD (1 << 3)
+#define FLASH_ACR_PRFTEN (1 << 1)
+#define FLASH_ACR_LATENCY_SHIFT 0
+#define FLASH_ACR_LATENCY_MASK 1
+
+
+
+#define FLASH_ACR_LATENCY_0WS 0x00
+#define FLASH_ACR_LATENCY_1WS 0x01
+
+
+
+#define FLASH_PECR_OBL_LAUNCH (1 << 18)
+#define FLASH_PECR_ERRIE (1 << 17)
+#define FLASH_PECR_EOPIE (1 << 16)
+#define FLASH_PECR_PARALLBANK (1 << 15)
+#define FLASH_PECR_FPRG (1 << 10)
+#define FLASH_PECR_ERASE (1 << 9)
+#define FLASH_PECR_FTDW (1 << 8)
+#define FLASH_PECR_DATA (1 << 4)
+#define FLASH_PECR_PROG (1 << 3)
+#define FLASH_PECR_OPTLOCK (1 << 2)
+#define FLASH_PECR_PRGLOCK (1 << 1)
+#define FLASH_PECR_PELOCK (1 << 0)
+
+
+#define FLASH_PDKEYR_PDKEY1 ((uint32_t)0x04152637)
+#define FLASH_PDKEYR_PDKEY2 ((uint32_t)0xFAFBFCFD)
+
+
+#define FLASH_PEKEYR_PEKEY1 ((uint32_t)0x89ABCDEF)
+#define FLASH_PEKEYR_PEKEY2 ((uint32_t)0x02030405)
+
+
+#define FLASH_PRGKEYR_PRGKEY1 ((uint32_t)0x8C9DAEBF)
+#define FLASH_PRGKEYR_PRGKEY2 ((uint32_t)0x13141516)
+
+
+#define FLASH_OPTKEYR_KEY1 ((uint32_t)0xFBEAD9C8)
+#define FLASH_OPTKEYR_KEY2 ((uint32_t)0x24252627)
+
+
+#define FLASH_SR_OPTVERR (1 << 11)
+#define FLASH_SR_SIZEERR (1 << 10)
+#define FLASH_SR_PGAERR (1 << 9)
+#define FLASH_SR_WRPERR (1 << 8)
+#define FLASH_SR_READY (1 << 3)
+#define FLASH_SR_ENDHV (1 << 2)
+#define FLASH_SR_EOP (1 << 1)
+#define FLASH_SR_BSY (1 << 0)
+
+
+#define FLASH_OBR_BFB2 (1 << 23)
+#define FLASH_OBR_NRST_STDBY (1 << 22)
+#define FLASH_OBR_NRST_STOP (1 << 21)
+#define FLASH_OBR_IWDG_SW (1 << 20)
+#define FLASH_OBR_BOR_OFF (0x0 << 16)
+#define FLASH_OBR_BOR_LEVEL_1 (0x8 << 16)
+#define FLASH_OBR_BOR_LEVEL_2 (0x9 << 16)
+#define FLASH_OBR_BOR_LEVEL_3 (0xa << 16)
+#define FLASH_OBR_BOR_LEVEL_4 (0xb << 16)
+#define FLASH_OBR_BOR_LEVEL_5 (0xc << 16)
+#define FLASH_OBR_RDPRT_LEVEL_0 (0xaa)
+#define FLASH_OBR_RDPRT_LEVEL_1 (0x00)
+#define FLASH_OBR_RDPRT_LEVEL_2 (0xcc)
+
+
+
+void flash_unlock_pecr(void);
+void flash_lock_pecr(void);
+void flash_unlock_progmem(void);
+void flash_lock_progmem(void);
+void flash_lock_option_bytes(void);
+void flash_unlock_acr(void);
+
+void eeprom_program_word(uint32_t address, uint32_t data);
+void eeprom_program_words(uint32_t address, uint32_t *data, int length_in_words);
+
+
+# 36 "libopencm3/include/libopencm3/stm32/l0/flash.h" 2
+
+
+
+#define FLASH_OPTR FLASH_OBR
+#define FLASH_WRPROT1 FLASH_WRPR1
+#define FLASH_WRPROT2 FLASH_WRPR2
+
+
+#define FLASH_ACR_PRE_READ (1 << 6)
+#define FLASH_ACR_DISAB_BUF (1 << 5)
+
+
+#define FLASH_PECR_NZDISABLE (1 << 23)
+
+
+#define FLASH_SR_RDERR (1 << 13)
+#define FLASH_SR_NOTZEROERR (1 << 16)
+#define FLASH_SR_FWWERR (1 << 17)
+
+
+#define FLASH_OPTR_NBOOT1 (1 << 31)
+
+
+
+
+# 37 "libopencm3/include/libopencm3/stm32/flash.h" 2
+# 4 "hub/src/board_defs.c" 2
+
+# 1 "common/include/common/board_defs.h" 1
+
+#define BOARD_DEFS_H 
+
+# 1 "libopencm3/include/libopencm3/stm32/gpio.h" 1
+# 5 "common/include/common/board_defs.h" 2
+# 1 "libopencm3/include/libopencm3/stm32/rcc.h" 1
 # 6 "common/include/common/board_defs.h" 2
 # 1 "libopencm3/include/libopencm3/stm32/spi.h" 1
 # 36 "libopencm3/include/libopencm3/stm32/spi.h"
@@ -3479,6 +3657,9 @@ _Bool
 }sensor_t;
 
 
+void clock_setup_MSI_2MHZ(void);
+
+
 
 
 #define MAX_SENSORS 50
@@ -3593,9 +3774,9 @@ sensor_t *get_sensor(uint32_t dev_num);
 
 #define W25_SPI_SCK_PORT GPIOB
 #define W25_SPI_SCK GPIO3
-# 229 "common/include/common/board_defs.h"
+# 232 "common/include/common/board_defs.h"
 void gpio_init(void);
-# 2 "hub/src/board_defs.c" 2
+# 6 "hub/src/board_defs.c" 2
 
 
 # 1 "/usr/local/Cellar/arm-gcc-bin/9-2020-q2-update/lib/gcc/arm-none-eabi/9.3.1/include/stddef.h" 1 3 4
@@ -3694,19 +3875,43 @@ typedef unsigned int wchar_t;
 
 
 #define offsetof(TYPE,MEMBER) __builtin_offsetof (TYPE, MEMBER)
-# 5 "hub/src/board_defs.c" 2
+# 9 "hub/src/board_defs.c" 2
 
 
-# 6 "hub/src/board_defs.c"
+# 10 "hub/src/board_defs.c"
+void clock_setup_MSI_2MHZ(void)
+{
+
+ rcc_osc_on(RCC_MSI);
+ rcc_wait_for_osc_ready(RCC_MSI);
+
+
+ rcc_set_msi_range(5);
+
+
+ rcc_set_hpre(0x0);
+ rcc_set_ppre1(0x0);
+ rcc_set_ppre2(0x0);
+
+
+ flash_set_ws(0x00);
+
+
+ rcc_ahb_frequency = 2097000;
+ rcc_apb1_frequency = 2097000;
+ rcc_apb2_frequency = 2097000;
+}
+
+
 sensor_t sensors[50];
 uint8_t num_sensors = 0;
 
 sensor_t *get_sensor(uint32_t dev_num)
 {
  sensor_t *sensor = 
-# 11 "hub/src/board_defs.c" 3 4
+# 39 "hub/src/board_defs.c" 3 4
                    ((void *)0)
-# 11 "hub/src/board_defs.c"
+# 39 "hub/src/board_defs.c"
                        ;
 
  for(uint8_t i = 0; i < num_sensors; i++)
@@ -3729,7 +3934,7 @@ void gpio_init(void)
 
 
  (*(volatile uint32_t *)((((0x50000000U) + 0x00000)) + 0x00)) = 0xFFFFFFFF; (*(volatile uint32_t *)((((0x50000000U) + 0x00400)) + 0x00)) = 0xFFFFFFFF;
-# 41 "hub/src/board_defs.c"
+# 69 "hub/src/board_defs.c"
     (*(volatile uint32_t *)((((0x50000000U) + 0x00000)) + 0x0c)) = 0x00000000; (*(volatile uint32_t *)((((0x50000000U) + 0x00400)) + 0x0c)) = 0x00000000;
 
 

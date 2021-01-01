@@ -1,0 +1,147 @@
+\hypertarget{battery_8c}{}\doxysection{common/src/battery.c File Reference}
+\label{battery_8c}\index{common/src/battery.c@{common/src/battery.c}}
+{\ttfamily \#include \char`\"{}common/battery.\+h\char`\"{}}\newline
+{\ttfamily \#include $<$libopencm3/stm32/adc.\+h$>$}\newline
+{\ttfamily \#include $<$libopencm3/stm32/gpio.\+h$>$}\newline
+{\ttfamily \#include $<$libopencm3/stm32/rcc.\+h$>$}\newline
+{\ttfamily \#include $<$libopencm3/stm32/pwr.\+h$>$}\newline
+{\ttfamily \#include $<$libopencm3/stm32/flash.\+h$>$}\newline
+{\ttfamily \#include $<$libopencm3/stm32/syscfg.\+h$>$}\newline
+{\ttfamily \#include $<$libopencm3/stm32/dma.\+h$>$}\newline
+{\ttfamily \#include $<$libopencm3/stm32/exti.\+h$>$}\newline
+{\ttfamily \#include $<$libopencm3/cm3/nvic.\+h$>$}\newline
+{\ttfamily \#include \char`\"{}common/log.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}common/board\+\_\+defs.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}common/timers.\+h\char`\"{}}\newline
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{battery_8c_a74ef535cae048523c75ec8824e23d901}{batt\+\_\+init}} (void)
+\item 
+void \mbox{\hyperlink{battery_8c_ab70aa864f9333d92f632f4dd59446a5b}{batt\+\_\+set\+\_\+voltage\+\_\+scale}} (uint8\+\_\+t scale)
+\item 
+void \mbox{\hyperlink{battery_8c_af4ac3c31321cf201d797ab82ce0587a3}{batt\+\_\+set\+\_\+low\+\_\+power\+\_\+run}} (void)
+\item 
+void \mbox{\hyperlink{battery_8c_a9b243d544affdb2fc07050868206af24}{batt\+\_\+update\+\_\+voltages}} (void)
+\item 
+void \mbox{\hyperlink{battery_8c_a49184eb31da78a82b862ac5c6bbd8099}{batt\+\_\+enable\+\_\+interrupt}} (void)
+\item 
+void \mbox{\hyperlink{battery_8c_a12c8d49d3ff764c9a6dc06f91fefb1b5}{batt\+\_\+enable\+\_\+comp}} (void)
+\end{DoxyCompactItemize}
+\doxysubsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+uint16\+\_\+t \mbox{\hyperlink{battery_8c_a6ce6d95d1e9ba4ae85466b512f92cfac}{batt\+\_\+voltages}} \mbox{[}\mbox{\hyperlink{battery_8h_af1bc8b24896c36914f52907197a0e87a}{N\+U\+M\+\_\+\+V\+O\+L\+T\+A\+G\+ES}}\mbox{]}
+\item 
+bool \mbox{\hyperlink{battery_8c_a2903b7b8135e93a50cfd287433535655}{batt\+\_\+rst\+\_\+seq}} = false
+\item 
+static uint16\+\_\+t \mbox{\hyperlink{battery_8c_a6d788c2fe189afc53efa449a936574d4}{adc\+\_\+vals}} \mbox{[}3\mbox{]} = \{0,0,0\}
+\item 
+static bool \mbox{\hyperlink{battery_8c_a233963f28d76c96237ef3ba195a8775d}{plugged\+\_\+in}} = true
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Function Documentation}
+\mbox{\Hypertarget{battery_8c_a12c8d49d3ff764c9a6dc06f91fefb1b5}\label{battery_8c_a12c8d49d3ff764c9a6dc06f91fefb1b5}} 
+\index{battery.c@{battery.c}!batt\_enable\_comp@{batt\_enable\_comp}}
+\index{batt\_enable\_comp@{batt\_enable\_comp}!battery.c@{battery.c}}
+\doxysubsubsection{\texorpdfstring{batt\_enable\_comp()}{batt\_enable\_comp()}}
+{\footnotesize\ttfamily void batt\+\_\+enable\+\_\+comp (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})}
+
+
+
+Definition at line 234 of file battery.\+c.
+
+\mbox{\Hypertarget{battery_8c_a49184eb31da78a82b862ac5c6bbd8099}\label{battery_8c_a49184eb31da78a82b862ac5c6bbd8099}} 
+\index{battery.c@{battery.c}!batt\_enable\_interrupt@{batt\_enable\_interrupt}}
+\index{batt\_enable\_interrupt@{batt\_enable\_interrupt}!battery.c@{battery.c}}
+\doxysubsubsection{\texorpdfstring{batt\_enable\_interrupt()}{batt\_enable\_interrupt()}}
+{\footnotesize\ttfamily void batt\+\_\+enable\+\_\+interrupt (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})}
+
+
+
+Definition at line 153 of file battery.\+c.
+
+\mbox{\Hypertarget{battery_8c_a74ef535cae048523c75ec8824e23d901}\label{battery_8c_a74ef535cae048523c75ec8824e23d901}} 
+\index{battery.c@{battery.c}!batt\_init@{batt\_init}}
+\index{batt\_init@{batt\_init}!battery.c@{battery.c}}
+\doxysubsubsection{\texorpdfstring{batt\_init()}{batt\_init()}}
+{\footnotesize\ttfamily void batt\+\_\+init (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})}
+
+
+
+Definition at line 24 of file battery.\+c.
+
+\mbox{\Hypertarget{battery_8c_af4ac3c31321cf201d797ab82ce0587a3}\label{battery_8c_af4ac3c31321cf201d797ab82ce0587a3}} 
+\index{battery.c@{battery.c}!batt\_set\_low\_power\_run@{batt\_set\_low\_power\_run}}
+\index{batt\_set\_low\_power\_run@{batt\_set\_low\_power\_run}!battery.c@{battery.c}}
+\doxysubsubsection{\texorpdfstring{batt\_set\_low\_power\_run()}{batt\_set\_low\_power\_run()}}
+{\footnotesize\ttfamily void batt\+\_\+set\+\_\+low\+\_\+power\+\_\+run (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})}
+
+
+
+Definition at line 50 of file battery.\+c.
+
+\mbox{\Hypertarget{battery_8c_ab70aa864f9333d92f632f4dd59446a5b}\label{battery_8c_ab70aa864f9333d92f632f4dd59446a5b}} 
+\index{battery.c@{battery.c}!batt\_set\_voltage\_scale@{batt\_set\_voltage\_scale}}
+\index{batt\_set\_voltage\_scale@{batt\_set\_voltage\_scale}!battery.c@{battery.c}}
+\doxysubsubsection{\texorpdfstring{batt\_set\_voltage\_scale()}{batt\_set\_voltage\_scale()}}
+{\footnotesize\ttfamily void batt\+\_\+set\+\_\+voltage\+\_\+scale (\begin{DoxyParamCaption}\item[{uint8\+\_\+t}]{scale }\end{DoxyParamCaption})}
+
+
+
+Definition at line 36 of file battery.\+c.
+
+\mbox{\Hypertarget{battery_8c_a9b243d544affdb2fc07050868206af24}\label{battery_8c_a9b243d544affdb2fc07050868206af24}} 
+\index{battery.c@{battery.c}!batt\_update\_voltages@{batt\_update\_voltages}}
+\index{batt\_update\_voltages@{batt\_update\_voltages}!battery.c@{battery.c}}
+\doxysubsubsection{\texorpdfstring{batt\_update\_voltages()}{batt\_update\_voltages()}}
+{\footnotesize\ttfamily void batt\+\_\+update\+\_\+voltages (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})}
+
+
+
+Definition at line 81 of file battery.\+c.
+
+
+
+\doxysubsection{Variable Documentation}
+\mbox{\Hypertarget{battery_8c_a6d788c2fe189afc53efa449a936574d4}\label{battery_8c_a6d788c2fe189afc53efa449a936574d4}} 
+\index{battery.c@{battery.c}!adc\_vals@{adc\_vals}}
+\index{adc\_vals@{adc\_vals}!battery.c@{battery.c}}
+\doxysubsubsection{\texorpdfstring{adc\_vals}{adc\_vals}}
+{\footnotesize\ttfamily uint16\+\_\+t adc\+\_\+vals\mbox{[}3\mbox{]} = \{0,0,0\}\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Definition at line 20 of file battery.\+c.
+
+\mbox{\Hypertarget{battery_8c_a2903b7b8135e93a50cfd287433535655}\label{battery_8c_a2903b7b8135e93a50cfd287433535655}} 
+\index{battery.c@{battery.c}!batt\_rst\_seq@{batt\_rst\_seq}}
+\index{batt\_rst\_seq@{batt\_rst\_seq}!battery.c@{battery.c}}
+\doxysubsubsection{\texorpdfstring{batt\_rst\_seq}{batt\_rst\_seq}}
+{\footnotesize\ttfamily bool batt\+\_\+rst\+\_\+seq = false}
+
+
+
+Definition at line 18 of file battery.\+c.
+
+\mbox{\Hypertarget{battery_8c_a6ce6d95d1e9ba4ae85466b512f92cfac}\label{battery_8c_a6ce6d95d1e9ba4ae85466b512f92cfac}} 
+\index{battery.c@{battery.c}!batt\_voltages@{batt\_voltages}}
+\index{batt\_voltages@{batt\_voltages}!battery.c@{battery.c}}
+\doxysubsubsection{\texorpdfstring{batt\_voltages}{batt\_voltages}}
+{\footnotesize\ttfamily uint16\+\_\+t batt\+\_\+voltages\mbox{[}\mbox{\hyperlink{battery_8h_af1bc8b24896c36914f52907197a0e87a}{N\+U\+M\+\_\+\+V\+O\+L\+T\+A\+G\+ES}}\mbox{]}}
+
+
+
+Definition at line 17 of file battery.\+c.
+
+\mbox{\Hypertarget{battery_8c_a233963f28d76c96237ef3ba195a8775d}\label{battery_8c_a233963f28d76c96237ef3ba195a8775d}} 
+\index{battery.c@{battery.c}!plugged\_in@{plugged\_in}}
+\index{plugged\_in@{plugged\_in}!battery.c@{battery.c}}
+\doxysubsubsection{\texorpdfstring{plugged\_in}{plugged\_in}}
+{\footnotesize\ttfamily bool plugged\+\_\+in = true\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Definition at line 21 of file battery.\+c.
+

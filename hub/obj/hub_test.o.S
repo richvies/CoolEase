@@ -6394,6 +6394,9 @@ _Bool
 }sensor_t;
 
 
+void clock_setup_MSI_2MHZ(void);
+
+
 
 
 #define MAX_SENSORS 50
@@ -6508,7 +6511,7 @@ sensor_t *get_sensor(uint32_t dev_num);
 
 #define W25_SPI_SCK_PORT GPIOB
 #define W25_SPI_SCK GPIO3
-# 229 "common/include/common/board_defs.h"
+# 232 "common/include/common/board_defs.h"
 void gpio_init(void);
 # 32 "hub/src/hub_test.c" 2
 
@@ -6846,6 +6849,7 @@ void rfm_clear_tx_continuous(void);
 void log_init(void);
 void log_printf(const char *format, ...);
 void log_error(uint16_t error);
+uint8_t log_get(uint16_t index);
 
 void serial_printf(const char *format, ...);
 # 36 "hub/src/hub_test.c" 2
@@ -6945,39 +6949,40 @@ void set_gpio_for_standby(void);
 #define EEPROM_END 0x08080800U
 
 #define LOG_SIZE 1024
-# 74 "common/include/common/memory.h"
+#define LOG_START EEPROM_END - LOG_SIZE
+# 75 "common/include/common/memory.h"
 void mem_init(void);
 
-
-# 76 "common/include/common/memory.h" 3 4
-_Bool 
-# 76 "common/include/common/memory.h"
-    mem_eeprom_write_word(uint32_t address, uint32_t data);
 
 # 77 "common/include/common/memory.h" 3 4
 _Bool 
 # 77 "common/include/common/memory.h"
-    mem_eeprom_write_half_word(uint32_t address, uint16_t data);
+    mem_eeprom_write_word(uint32_t address, uint32_t data);
 
 # 78 "common/include/common/memory.h" 3 4
 _Bool 
 # 78 "common/include/common/memory.h"
+    mem_eeprom_write_half_word(uint32_t address, uint16_t data);
+
+# 79 "common/include/common/memory.h" 3 4
+_Bool 
+# 79 "common/include/common/memory.h"
     mem_eeprom_write_byte(uint32_t address, uint8_t data);
 
-
-# 80 "common/include/common/memory.h" 3 4
-_Bool 
-# 80 "common/include/common/memory.h"
-    mem_flash_erase_page(uint32_t address);
 
 # 81 "common/include/common/memory.h" 3 4
 _Bool 
 # 81 "common/include/common/memory.h"
-    mem_flash_write_word(uint32_t address, uint32_t data);
+    mem_flash_erase_page(uint32_t address);
 
 # 82 "common/include/common/memory.h" 3 4
 _Bool 
 # 82 "common/include/common/memory.h"
+    mem_flash_write_word(uint32_t address, uint32_t data);
+
+# 83 "common/include/common/memory.h" 3 4
+_Bool 
+# 83 "common/include/common/memory.h"
     mem_flash_write_half_page(uint32_t address, uint32_t *data);
 
 void mem_save_reading(int16_t reading);

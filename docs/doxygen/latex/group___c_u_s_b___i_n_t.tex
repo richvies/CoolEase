@@ -8,19 +8,23 @@ Static Vars, Functions \& Internal Macros.
 \doxysubsection*{Functions}
 \begin{DoxyCompactItemize}
 \item 
+static void \mbox{\hyperlink{group___c_u_s_b___i_n_t_gac63b9392f307996959131c5a4e047fa4}{cusb\+\_\+clock\+\_\+init}} (void)
+\begin{DoxyCompactList}\small\item\em Setup C\+PU and peripheral clocks for usb. \end{DoxyCompactList}\item 
+static void \mbox{\hyperlink{group___c_u_s_b___i_n_t_gaa8a5a4bf8f2341314373f98f386d19ee}{hid\+\_\+set\+\_\+config}} (usbd\+\_\+device $\ast$dev, uint16\+\_\+t w\+Value)
+\begin{DoxyCompactList}\small\item\em H\+ID configuration init callback. \end{DoxyCompactList}\item 
 static enum usbd\+\_\+request\+\_\+return\+\_\+codes \mbox{\hyperlink{group___c_u_s_b___i_n_t_ga29b474a495e8084ca9f797e1fcf75eb8}{hid\+\_\+control\+\_\+request}} (usbd\+\_\+device $\ast$dev, struct usb\+\_\+setup\+\_\+data $\ast$req, uint8\+\_\+t $\ast$$\ast$buf, uint16\+\_\+t $\ast$len, void($\ast$$\ast$complete)(usbd\+\_\+device $\ast$, struct usb\+\_\+setup\+\_\+data $\ast$))
 \begin{DoxyCompactList}\small\item\em H\+ID Control Callback. \end{DoxyCompactList}\item 
-void \mbox{\hyperlink{group___c_u_s_b___i_n_t_ga1bde282ff924bedfe37a99146df8b251}{hid\+\_\+report\+\_\+callback}} (usbd\+\_\+device $\ast$\mbox{\hyperlink{group___c_u_s_b___a_p_i_ga371fec116e56a5c485a09d5dd8cd6c95}{usbd\+\_\+dev}}, uint8\+\_\+t ea)
-\begin{DoxyCompactList}\small\item\em H\+ID Resport Callback. \end{DoxyCompactList}\item 
-static void \mbox{\hyperlink{group___c_u_s_b___i_n_t_gaa8a5a4bf8f2341314373f98f386d19ee}{hid\+\_\+set\+\_\+config}} (usbd\+\_\+device $\ast$dev, uint16\+\_\+t w\+Value)
-\begin{DoxyCompactList}\small\item\em Configuration callback to setup device as H\+ID. \end{DoxyCompactList}\item 
-static void \mbox{\hyperlink{group___c_u_s_b___i_n_t_gac63b9392f307996959131c5a4e047fa4}{cusb\+\_\+clock\+\_\+init}} (void)
-\begin{DoxyCompactList}\small\item\em Setup C\+PU and peripheral clocks for usb. \end{DoxyCompactList}\end{DoxyCompactItemize}
+static void \mbox{\hyperlink{group___c_u_s_b___i_n_t_ga84d1ec0a4c4e5f33556b5f98830bc4cd}{hid\+\_\+report\+\_\+callback}} (usbd\+\_\+device $\ast$dev, uint8\+\_\+t ea)
+\begin{DoxyCompactList}\small\item\em H\+ID Resport Callback. \end{DoxyCompactList}\end{DoxyCompactItemize}
 \doxysubsection*{Variables}
 \begin{DoxyCompactItemize}
 \item 
 static uint8\+\_\+t \mbox{\hyperlink{group___c_u_s_b___i_n_t_ga4cfa67ae725c5211ad5ab6e6b5e2c47a}{hid\+\_\+report\+\_\+buf}} \mbox{[}64\mbox{]} = \char`\"{}Default Report Buffer\char`\"{}
-\begin{DoxyCompactList}\small\item\em H\+ID Report buffer. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\begin{DoxyCompactList}\small\item\em H\+ID Report buffer. \end{DoxyCompactList}\item 
+static usbd\+\_\+device $\ast$ \mbox{\hyperlink{group___c_u_s_b___i_n_t_ga371fec116e56a5c485a09d5dd8cd6c95}{usbd\+\_\+dev}}
+\begin{DoxyCompactList}\small\item\em U\+SB device handle. \end{DoxyCompactList}\item 
+static uint8\+\_\+t \mbox{\hyperlink{group___c_u_s_b___i_n_t_ga3f5c5e68ae07d989114524003357a6f7}{usbd\+\_\+control\+\_\+buffer}} \mbox{[}128\mbox{]}
+\begin{DoxyCompactList}\small\item\em Buffer to be used for control requests. \end{DoxyCompactList}\end{DoxyCompactItemize}
 
 
 \doxysubsection{Detailed Description}
@@ -41,7 +45,7 @@ Setup C\+PU and peripheral clocks for usb.
 
 
 
-Definition at line 416 of file cusb.\+c.
+Definition at line 393 of file cusb.\+c.
 
 \mbox{\Hypertarget{group___c_u_s_b___i_n_t_ga29b474a495e8084ca9f797e1fcf75eb8}\label{group___c_u_s_b___i_n_t_ga29b474a495e8084ca9f797e1fcf75eb8}} 
 \index{Cusb Internal@{Cusb Internal}!hid\_control\_request@{hid\_control\_request}}
@@ -55,21 +59,21 @@ H\+ID Control Callback.
 
 Sends hid report descriptor to host 
 
-Definition at line 180 of file cusb.\+c.
+Definition at line 448 of file cusb.\+c.
 
-\mbox{\Hypertarget{group___c_u_s_b___i_n_t_ga1bde282ff924bedfe37a99146df8b251}\label{group___c_u_s_b___i_n_t_ga1bde282ff924bedfe37a99146df8b251}} 
+\mbox{\Hypertarget{group___c_u_s_b___i_n_t_ga84d1ec0a4c4e5f33556b5f98830bc4cd}\label{group___c_u_s_b___i_n_t_ga84d1ec0a4c4e5f33556b5f98830bc4cd}} 
 \index{Cusb Internal@{Cusb Internal}!hid\_report\_callback@{hid\_report\_callback}}
 \index{hid\_report\_callback@{hid\_report\_callback}!Cusb Internal@{Cusb Internal}}
 \doxysubsubsection{\texorpdfstring{hid\_report\_callback()}{hid\_report\_callback()}}
-{\footnotesize\ttfamily void hid\+\_\+report\+\_\+callback (\begin{DoxyParamCaption}\item[{usbd\+\_\+device $\ast$}]{usbd\+\_\+dev,  }\item[{uint8\+\_\+t}]{ea }\end{DoxyParamCaption})}
+{\footnotesize\ttfamily static void hid\+\_\+report\+\_\+callback (\begin{DoxyParamCaption}\item[{usbd\+\_\+device $\ast$}]{dev,  }\item[{uint8\+\_\+t}]{ea }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
 
 
 
 H\+ID Resport Callback. 
 
+Called when in or out report received packet received 
 
-
-Definition at line 333 of file cusb.\+c.
+Definition at line 481 of file cusb.\+c.
 
 \mbox{\Hypertarget{group___c_u_s_b___i_n_t_gaa8a5a4bf8f2341314373f98f386d19ee}\label{group___c_u_s_b___i_n_t_gaa8a5a4bf8f2341314373f98f386d19ee}} 
 \index{Cusb Internal@{Cusb Internal}!hid\_set\_config@{hid\_set\_config}}
@@ -79,11 +83,15 @@ Definition at line 333 of file cusb.\+c.
 
 
 
-Configuration callback to setup device as H\+ID. 
+H\+ID configuration init callback. 
 
-Sets up H\+ID endpoints \& registers the \mbox{\hyperlink{group___c_u_s_b___i_n_t_ga29b474a495e8084ca9f797e1fcf75eb8}{hid\+\_\+control\+\_\+request}} callback which 
+Called by libopencm3 -\/ usb\+\_\+standard\+\_\+set\+\_\+configuration() to initialize H\+ID configuration
+\begin{DoxyItemize}
+\item Initializes endpoints, IN (0x01) \& O\+UT (0x81), and sets the transaction callbacks for both endpoints. \mbox{\hyperlink{group___c_u_s_b___i_n_t_ga84d1ec0a4c4e5f33556b5f98830bc4cd}{hid\+\_\+report\+\_\+callback()}}
+\item Sets control request callback \mbox{\hyperlink{group___c_u_s_b___i_n_t_ga29b474a495e8084ca9f797e1fcf75eb8}{hid\+\_\+control\+\_\+request()}} which is called by libopencm3 usb\+\_\+standard\+\_\+set\+\_\+configuration() to configure as H\+ID device 
+\end{DoxyItemize}
 
-Definition at line 343 of file cusb.\+c.
+Definition at line 448 of file cusb.\+c.
 
 
 
@@ -100,5 +108,33 @@ H\+ID Report buffer.
 
 Buffer used for all H\+ID in \& out transactions 
 
-Definition at line 329 of file cusb.\+c.
+Definition at line 305 of file cusb.\+c.
+
+\mbox{\Hypertarget{group___c_u_s_b___i_n_t_ga3f5c5e68ae07d989114524003357a6f7}\label{group___c_u_s_b___i_n_t_ga3f5c5e68ae07d989114524003357a6f7}} 
+\index{Cusb Internal@{Cusb Internal}!usbd\_control\_buffer@{usbd\_control\_buffer}}
+\index{usbd\_control\_buffer@{usbd\_control\_buffer}!Cusb Internal@{Cusb Internal}}
+\doxysubsubsection{\texorpdfstring{usbd\_control\_buffer}{usbd\_control\_buffer}}
+{\footnotesize\ttfamily uint8\+\_\+t usbd\+\_\+control\+\_\+buffer\mbox{[}128\mbox{]}\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Buffer to be used for control requests. 
+
+
+
+Definition at line 311 of file cusb.\+c.
+
+\mbox{\Hypertarget{group___c_u_s_b___i_n_t_ga371fec116e56a5c485a09d5dd8cd6c95}\label{group___c_u_s_b___i_n_t_ga371fec116e56a5c485a09d5dd8cd6c95}} 
+\index{Cusb Internal@{Cusb Internal}!usbd\_dev@{usbd\_dev}}
+\index{usbd\_dev@{usbd\_dev}!Cusb Internal@{Cusb Internal}}
+\doxysubsubsection{\texorpdfstring{usbd\_dev}{usbd\_dev}}
+{\footnotesize\ttfamily usbd\+\_\+device$\ast$ usbd\+\_\+dev\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+U\+SB device handle. 
+
+
+
+Definition at line 308 of file cusb.\+c.
 

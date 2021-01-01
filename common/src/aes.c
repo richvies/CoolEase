@@ -33,7 +33,7 @@ NOTE:   String length must be evenly divisible by 16byte (str_len % 16 == 0)
 
 
 /*****************************************************************************/
-/* Includes:                                                                 */
+// Includes:                                                                 
 /*****************************************************************************/
 #include "common/aes.h"
 
@@ -44,7 +44,7 @@ NOTE:   String length must be evenly divisible by 16byte (str_len % 16 == 0)
 #include "common/memory.h"
 
 /*****************************************************************************/
-/* Defines:                                                                  */
+// Defines:                                                                  
 /*****************************************************************************/
 // The number of columns comprising a state in AES. This is a constant in AES. Value=4
 #define Nb 4
@@ -62,7 +62,7 @@ NOTE:   String length must be evenly divisible by 16byte (str_len % 16 == 0)
 
 
 /*****************************************************************************/
-/* Private variables:                                                        */
+// Private variables:                                                        
 /*****************************************************************************/
 // state - array holding the intermediate results during decryption.
 typedef uint8_t state_t[4][4];
@@ -127,7 +127,7 @@ static const uint8_t Rcon[11] = {
 
 
 /*****************************************************************************/
-/* Private functions:                                                        */
+// Private functions:                                                        
 /*****************************************************************************/
 
 #define getSBoxValue(num) (sbox[(num)])
@@ -288,7 +288,7 @@ static uint8_t Multiply(uint8_t x, uint8_t y)
        ((y>>1 & 1) * xtime(x)) ^
        ((y>>2 & 1) * xtime(xtime(x))) ^
        ((y>>3 & 1) * xtime(xtime(xtime(x)))) ^
-       ((y>>4 & 1) * xtime(xtime(xtime(xtime(x)))))); /* this last call to xtime() can be omitted */
+       ((y>>4 & 1) * xtime(xtime(xtime(xtime(x)))))); // this last call to xtime() can be omitted 
   }
 #else
 #define Multiply(x, y)                                \
@@ -416,7 +416,7 @@ static void InvCipher(state_t* state, const uint8_t* RoundKey)
 }
 
 /*****************************************************************************/
-/* Public functions:                                                         */
+// Public functions:                                                         
 /*****************************************************************************/
 
 void aes_init(void)

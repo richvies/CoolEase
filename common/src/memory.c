@@ -32,9 +32,6 @@
 #define STATE_FIRST_RUN     (1 << 0)
 #define STATE_ATTACHED      (1 << 1)
 
-// Logging
-#define LOG_START           0x08080400 
-
 
 // Temperature readings saved in flash, 8Kb
 #define READINGS_START              ( FLASH_END - 8192 )

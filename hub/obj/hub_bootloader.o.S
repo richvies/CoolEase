@@ -1122,17 +1122,12 @@ _Bool
 # 33 "hub/include/hub/hub_bootloader.h" 2
 # 16 "hub/src/hub_bootloader.c" 2
 
-# 1 "common/include/common/memory.h" 1
-# 26 "common/include/common/memory.h"
-#define MEMORY_H 
+# 1 "common/include/common/board_defs.h" 1
 
+#define BOARD_DEFS_H 
 
-
-
-
-
-# 1 "libopencm3/include/libopencm3/stm32/flash.h" 1
-# 20 "libopencm3/include/libopencm3/stm32/flash.h"
+# 1 "libopencm3/include/libopencm3/stm32/gpio.h" 1
+# 20 "libopencm3/include/libopencm3/stm32/gpio.h"
 # 1 "libopencm3/include/libopencm3/cm3/common.h" 1
 # 21 "libopencm3/include/libopencm3/cm3/common.h"
 #define LIBOPENCM3_CM3_COMMON_H 
@@ -1193,7 +1188,7 @@ _Bool
 #define BIT29 (1<<29)
 #define BIT30 (1<<30)
 #define BIT31 (1<<31)
-# 21 "libopencm3/include/libopencm3/stm32/flash.h" 2
+# 21 "libopencm3/include/libopencm3/stm32/gpio.h" 2
 # 1 "libopencm3/include/libopencm3/stm32/memorymap.h" 1
 # 21 "libopencm3/include/libopencm3/stm32/memorymap.h"
 #define LIBOPENCM3_MEMORYMAP_COMMON_H 
@@ -1313,179 +1308,369 @@ _Bool
 #define ST_TSENSE_CAL1_30C MMIO16((INFO_BASE + 0x7A))
 #define ST_TSENSE_CAL2_110C MMIO16((INFO_BASE + 0x7E))
 # 37 "libopencm3/include/libopencm3/stm32/memorymap.h" 2
-# 22 "libopencm3/include/libopencm3/stm32/flash.h" 2
-# 36 "libopencm3/include/libopencm3/stm32/flash.h"
-# 1 "libopencm3/include/libopencm3/stm32/l0/flash.h" 1
-# 31 "libopencm3/include/libopencm3/stm32/l0/flash.h"
-#define LIBOPENCM3_FLASH_H 
+# 22 "libopencm3/include/libopencm3/stm32/gpio.h" 2
+# 36 "libopencm3/include/libopencm3/stm32/gpio.h"
+# 1 "libopencm3/include/libopencm3/stm32/l0/gpio.h" 1
+# 32 "libopencm3/include/libopencm3/stm32/l0/gpio.h"
+#define LIBOPENCM3_GPIO_H 
 
+# 1 "libopencm3/include/libopencm3/stm32/common/gpio_common_f24.h" 1
+# 37 "libopencm3/include/libopencm3/stm32/common/gpio_common_f24.h"
+#define LIBOPENCM3_GPIO_COMMON_F24_H 
 
-# 1 "libopencm3/include/libopencm3/stm32/common/flash_common_all.h" 1
-# 21 "libopencm3/include/libopencm3/stm32/common/flash_common_all.h"
-       
 
 
+# 1 "libopencm3/include/libopencm3/stm32/common/gpio_common_f234.h" 1
+# 37 "libopencm3/include/libopencm3/stm32/common/gpio_common_f234.h"
+#define LIBOPENCM3_GPIO_COMMON_F234_H 
 
 
-# 37 "libopencm3/include/libopencm3/stm32/common/flash_common_all.h"
-void flash_prefetch_enable(void);
 
+# 1 "libopencm3/include/libopencm3/stm32/common/gpio_common_all.h" 1
+# 37 "libopencm3/include/libopencm3/stm32/common/gpio_common_all.h"
+#define LIBOPENCM3_GPIO_COMMON_ALL_H 
 
 
 
 
-void flash_prefetch_disable(void);
-# 55 "libopencm3/include/libopencm3/stm32/common/flash_common_all.h"
-void flash_set_ws(uint32_t ws);
 
 
 
+#define GPIO_LCKK (1 << 16)
 
-void flash_lock(void);
 
 
 
 
 
-void flash_unlock(void);
 
+#define GPIO0 (1 << 0)
+#define GPIO1 (1 << 1)
+#define GPIO2 (1 << 2)
+#define GPIO3 (1 << 3)
+#define GPIO4 (1 << 4)
+#define GPIO5 (1 << 5)
+#define GPIO6 (1 << 6)
+#define GPIO7 (1 << 7)
+#define GPIO8 (1 << 8)
+#define GPIO9 (1 << 9)
+#define GPIO10 (1 << 10)
+#define GPIO11 (1 << 11)
+#define GPIO12 (1 << 12)
+#define GPIO13 (1 << 13)
+#define GPIO14 (1 << 14)
+#define GPIO15 (1 << 15)
+#define GPIO_ALL 0xffff
 
 
 
 
-void flash_unlock_option_bytes(void);
+void gpio_set(uint32_t gpioport, uint16_t gpios);
+void gpio_clear(uint32_t gpioport, uint16_t gpios);
+uint16_t gpio_get(uint32_t gpioport, uint16_t gpios);
+void gpio_toggle(uint32_t gpioport, uint16_t gpios);
+uint16_t gpio_port_read(uint32_t gpioport);
+void gpio_port_write(uint32_t gpioport, uint16_t data);
+void gpio_port_config_lock(uint32_t gpioport, uint16_t gpios);
 
 
-# 35 "libopencm3/include/libopencm3/stm32/l0/flash.h" 2
-# 1 "libopencm3/include/libopencm3/stm32/common/flash_common_l01.h" 1
-# 29 "libopencm3/include/libopencm3/stm32/common/flash_common_l01.h"
-#define LIBOPENCM3_FLASH_COMMON_L01_H 
+# 42 "libopencm3/include/libopencm3/stm32/common/gpio_common_f234.h" 2
 
 
 
 
 
 
-#define FLASH_ACR MMIO32(FLASH_MEM_INTERFACE_BASE + 0x00)
-#define FLASH_PECR MMIO32(FLASH_MEM_INTERFACE_BASE + 0x04)
-#define FLASH_PDKEYR MMIO32(FLASH_MEM_INTERFACE_BASE + 0x08)
-#define FLASH_PEKEYR MMIO32(FLASH_MEM_INTERFACE_BASE + 0x0C)
-#define FLASH_PRGKEYR MMIO32(FLASH_MEM_INTERFACE_BASE + 0x10)
-#define FLASH_OPTKEYR MMIO32(FLASH_MEM_INTERFACE_BASE + 0x14)
-#define FLASH_SR MMIO32(FLASH_MEM_INTERFACE_BASE + 0x18)
-#define FLASH_OBR MMIO32(FLASH_MEM_INTERFACE_BASE + 0x1c)
-#define FLASH_WRPR1 MMIO32(FLASH_MEM_INTERFACE_BASE + 0x20)
-#define FLASH_WRPR2 MMIO32(FLASH_MEM_INTERFACE_BASE + 0x80)
+#define GPIOA GPIO_PORT_A_BASE
+#define GPIOB GPIO_PORT_B_BASE
+#define GPIOC GPIO_PORT_C_BASE
+#define GPIOD GPIO_PORT_D_BASE
+#define GPIOE GPIO_PORT_E_BASE
+#define GPIOF GPIO_PORT_F_BASE
 
 
-#define FLASH_ACR_RUNPD (1 << 4)
-#define FLASH_ACR_SLEEPPD (1 << 3)
-#define FLASH_ACR_PRFTEN (1 << 1)
-#define FLASH_ACR_LATENCY_SHIFT 0
-#define FLASH_ACR_LATENCY_MASK 1
 
 
 
-#define FLASH_ACR_LATENCY_0WS 0x00
-#define FLASH_ACR_LATENCY_1WS 0x01
 
+#define GPIO_MODER(port) MMIO32((port) + 0x00)
+#define GPIOA_MODER GPIO_MODER(GPIOA)
+#define GPIOB_MODER GPIO_MODER(GPIOB)
+#define GPIOC_MODER GPIO_MODER(GPIOC)
+#define GPIOD_MODER GPIO_MODER(GPIOD)
+#define GPIOE_MODER GPIO_MODER(GPIOE)
+#define GPIOF_MODER GPIO_MODER(GPIOF)
 
 
-#define FLASH_PECR_OBL_LAUNCH (1 << 18)
-#define FLASH_PECR_ERRIE (1 << 17)
-#define FLASH_PECR_EOPIE (1 << 16)
-#define FLASH_PECR_PARALLBANK (1 << 15)
-#define FLASH_PECR_FPRG (1 << 10)
-#define FLASH_PECR_ERASE (1 << 9)
-#define FLASH_PECR_FTDW (1 << 8)
-#define FLASH_PECR_DATA (1 << 4)
-#define FLASH_PECR_PROG (1 << 3)
-#define FLASH_PECR_OPTLOCK (1 << 2)
-#define FLASH_PECR_PRGLOCK (1 << 1)
-#define FLASH_PECR_PELOCK (1 << 0)
+#define GPIO_OTYPER(port) MMIO32((port) + 0x04)
+#define GPIOA_OTYPER GPIO_OTYPER(GPIOA)
+#define GPIOB_OTYPER GPIO_OTYPER(GPIOB)
+#define GPIOC_OTYPER GPIO_OTYPER(GPIOC)
+#define GPIOD_OTYPER GPIO_OTYPER(GPIOD)
+#define GPIOE_OTYPER GPIO_OTYPER(GPIOE)
+#define GPIOF_OTYPER GPIO_OTYPER(GPIOF)
 
 
-#define FLASH_PDKEYR_PDKEY1 ((uint32_t)0x04152637)
-#define FLASH_PDKEYR_PDKEY2 ((uint32_t)0xFAFBFCFD)
+#define GPIO_OSPEEDR(port) MMIO32((port) + 0x08)
+#define GPIOA_OSPEEDR GPIO_OSPEEDR(GPIOA)
+#define GPIOB_OSPEEDR GPIO_OSPEEDR(GPIOB)
+#define GPIOC_OSPEEDR GPIO_OSPEEDR(GPIOC)
+#define GPIOD_OSPEEDR GPIO_OSPEEDR(GPIOD)
+#define GPIOE_OSPEEDR GPIO_OSPEEDR(GPIOE)
+#define GPIOF_OSPEEDR GPIO_OSPEEDR(GPIOF)
 
 
-#define FLASH_PEKEYR_PEKEY1 ((uint32_t)0x89ABCDEF)
-#define FLASH_PEKEYR_PEKEY2 ((uint32_t)0x02030405)
+#define GPIO_PUPDR(port) MMIO32((port) + 0x0c)
+#define GPIOA_PUPDR GPIO_PUPDR(GPIOA)
+#define GPIOB_PUPDR GPIO_PUPDR(GPIOB)
+#define GPIOC_PUPDR GPIO_PUPDR(GPIOC)
+#define GPIOD_PUPDR GPIO_PUPDR(GPIOD)
+#define GPIOE_PUPDR GPIO_PUPDR(GPIOE)
+#define GPIOF_PUPDR GPIO_PUPDR(GPIOF)
 
 
-#define FLASH_PRGKEYR_PRGKEY1 ((uint32_t)0x8C9DAEBF)
-#define FLASH_PRGKEYR_PRGKEY2 ((uint32_t)0x13141516)
+#define GPIO_IDR(port) MMIO32((port) + 0x10)
+#define GPIOA_IDR GPIO_IDR(GPIOA)
+#define GPIOB_IDR GPIO_IDR(GPIOB)
+#define GPIOC_IDR GPIO_IDR(GPIOC)
+#define GPIOD_IDR GPIO_IDR(GPIOD)
+#define GPIOE_IDR GPIO_IDR(GPIOE)
+#define GPIOF_IDR GPIO_IDR(GPIOF)
 
 
-#define FLASH_OPTKEYR_KEY1 ((uint32_t)0xFBEAD9C8)
-#define FLASH_OPTKEYR_KEY2 ((uint32_t)0x24252627)
+#define GPIO_ODR(port) MMIO32((port) + 0x14)
+#define GPIOA_ODR GPIO_ODR(GPIOA)
+#define GPIOB_ODR GPIO_ODR(GPIOB)
+#define GPIOC_ODR GPIO_ODR(GPIOC)
+#define GPIOD_ODR GPIO_ODR(GPIOD)
+#define GPIOE_ODR GPIO_ODR(GPIOE)
+#define GPIOF_ODR GPIO_ODR(GPIOF)
 
 
-#define FLASH_SR_OPTVERR (1 << 11)
-#define FLASH_SR_SIZEERR (1 << 10)
-#define FLASH_SR_PGAERR (1 << 9)
-#define FLASH_SR_WRPERR (1 << 8)
-#define FLASH_SR_READY (1 << 3)
-#define FLASH_SR_ENDHV (1 << 2)
-#define FLASH_SR_EOP (1 << 1)
-#define FLASH_SR_BSY (1 << 0)
+#define GPIO_BSRR(port) MMIO32((port) + 0x18)
+#define GPIOA_BSRR GPIO_BSRR(GPIOA)
+#define GPIOB_BSRR GPIO_BSRR(GPIOB)
+#define GPIOC_BSRR GPIO_BSRR(GPIOC)
+#define GPIOD_BSRR GPIO_BSRR(GPIOD)
+#define GPIOE_BSRR GPIO_BSRR(GPIOE)
+#define GPIOF_BSRR GPIO_BSRR(GPIOF)
 
 
-#define FLASH_OBR_BFB2 (1 << 23)
-#define FLASH_OBR_NRST_STDBY (1 << 22)
-#define FLASH_OBR_NRST_STOP (1 << 21)
-#define FLASH_OBR_IWDG_SW (1 << 20)
-#define FLASH_OBR_BOR_OFF (0x0 << 16)
-#define FLASH_OBR_BOR_LEVEL_1 (0x8 << 16)
-#define FLASH_OBR_BOR_LEVEL_2 (0x9 << 16)
-#define FLASH_OBR_BOR_LEVEL_3 (0xa << 16)
-#define FLASH_OBR_BOR_LEVEL_4 (0xb << 16)
-#define FLASH_OBR_BOR_LEVEL_5 (0xc << 16)
-#define FLASH_OBR_RDPRT_LEVEL_0 (0xaa)
-#define FLASH_OBR_RDPRT_LEVEL_1 (0x00)
-#define FLASH_OBR_RDPRT_LEVEL_2 (0xcc)
+#define GPIO_LCKR(port) MMIO32((port) + 0x1c)
+#define GPIOA_LCKR GPIO_LCKR(GPIOA)
+#define GPIOB_LCKR GPIO_LCKR(GPIOB)
+#define GPIOC_LCKR GPIO_LCKR(GPIOC)
+#define GPIOD_LCKR GPIO_LCKR(GPIOD)
+#define GPIOE_LCKR GPIO_LCKR(GPIOE)
+#define GPIOF_LCKR GPIO_LCKR(GPIOF)
 
 
+#define GPIO_AFRL(port) MMIO32((port) + 0x20)
+#define GPIOA_AFRL GPIO_AFRL(GPIOA)
+#define GPIOB_AFRL GPIO_AFRL(GPIOB)
+#define GPIOC_AFRL GPIO_AFRL(GPIOC)
+#define GPIOD_AFRL GPIO_AFRL(GPIOD)
+#define GPIOE_AFRL GPIO_AFRL(GPIOE)
+#define GPIOF_AFRL GPIO_AFRL(GPIOF)
 
-void flash_unlock_pecr(void);
-void flash_lock_pecr(void);
-void flash_unlock_progmem(void);
-void flash_lock_progmem(void);
-void flash_lock_option_bytes(void);
-void flash_unlock_acr(void);
 
-void eeprom_program_word(uint32_t address, uint32_t data);
-void eeprom_program_words(uint32_t address, uint32_t *data, int length_in_words);
+#define GPIO_AFRH(port) MMIO32((port) + 0x24)
+#define GPIOA_AFRH GPIO_AFRH(GPIOA)
+#define GPIOB_AFRH GPIO_AFRH(GPIOB)
+#define GPIOC_AFRH GPIO_AFRH(GPIOC)
+#define GPIOD_AFRH GPIO_AFRH(GPIOD)
+#define GPIOE_AFRH GPIO_AFRH(GPIOE)
+#define GPIOF_AFRH GPIO_AFRH(GPIOF)
 
 
-# 36 "libopencm3/include/libopencm3/stm32/l0/flash.h" 2
 
+#define GPIO_MODE(n,mode) ((mode) << (2 * (n)))
+#define GPIO_MODE_MASK(n) (0x3 << (2 * (n)))
 
 
-#define FLASH_OPTR FLASH_OBR
-#define FLASH_WRPROT1 FLASH_WRPR1
-#define FLASH_WRPROT2 FLASH_WRPR2
 
+#define GPIO_MODE_INPUT 0x0
+#define GPIO_MODE_OUTPUT 0x1
+#define GPIO_MODE_AF 0x2
+#define GPIO_MODE_ANALOG 0x3
+# 168 "libopencm3/include/libopencm3/stm32/common/gpio_common_f234.h"
+#define GPIO_OTYPE_PP 0x0
 
-#define FLASH_ACR_PRE_READ (1 << 6)
-#define FLASH_ACR_DISAB_BUF (1 << 5)
+#define GPIO_OTYPE_OD 0x1
 
 
-#define FLASH_PECR_NZDISABLE (1 << 23)
 
 
-#define FLASH_SR_RDERR (1 << 13)
-#define FLASH_SR_NOTZEROERR (1 << 16)
-#define FLASH_SR_FWWERR (1 << 17)
+#define GPIO_OSPEED(n,speed) ((speed) << (2 * (n)))
+#define GPIO_OSPEED_MASK(n) (0x3 << (2 * (n)))
 
 
-#define FLASH_OPTR_NBOOT1 (1 << 31)
 
+#define GPIO_OSPEED_2MHZ 0x0
+#define GPIO_OSPEED_25MHZ 0x1
+#define GPIO_OSPEED_50MHZ 0x2
+#define GPIO_OSPEED_100MHZ 0x3
 
 
 
-# 37 "libopencm3/include/libopencm3/stm32/flash.h" 2
-# 34 "common/include/common/memory.h" 2
+
+#define GPIO_PUPD(n,pupd) ((pupd) << (2 * (n)))
+#define GPIO_PUPD_MASK(n) (0x3 << (2 * (n)))
+
+
+
+#define GPIO_PUPD_NONE 0x0
+#define GPIO_PUPD_PULLUP 0x1
+#define GPIO_PUPD_PULLDOWN 0x2
+# 213 "libopencm3/include/libopencm3/stm32/common/gpio_common_f234.h"
+#define GPIO_LCKK (1 << 16)
+
+
+
+
+
+
+
+#define GPIO_AFR(n,af) ((af) << ((n) * 4))
+#define GPIO_AFR_MASK(n) (0xf << ((n) * 4))
+
+
+
+#define GPIO_AF0 0x0
+#define GPIO_AF1 0x1
+#define GPIO_AF2 0x2
+#define GPIO_AF3 0x3
+#define GPIO_AF4 0x4
+#define GPIO_AF5 0x5
+#define GPIO_AF6 0x6
+#define GPIO_AF7 0x7
+#define GPIO_AF8 0x8
+#define GPIO_AF9 0x9
+#define GPIO_AF10 0xa
+#define GPIO_AF11 0xb
+#define GPIO_AF12 0xc
+#define GPIO_AF13 0xd
+#define GPIO_AF14 0xe
+#define GPIO_AF15 0xf
+
+
+
+
+
+
+
+# 258 "libopencm3/include/libopencm3/stm32/common/gpio_common_f234.h"
+void gpio_mode_setup(uint32_t gpioport, uint8_t mode, uint8_t pull_up_down,
+       uint16_t gpios);
+void gpio_set_output_options(uint32_t gpioport, uint8_t otype, uint8_t speed,
+        uint16_t gpios);
+void gpio_set_af(uint32_t gpioport, uint8_t alt_func_num, uint16_t gpios);
+
+
+# 42 "libopencm3/include/libopencm3/stm32/common/gpio_common_f24.h" 2
+
+
+
+
+
+
+#define GPIOG GPIO_PORT_G_BASE
+#define GPIOH GPIO_PORT_H_BASE
+#define GPIOI GPIO_PORT_I_BASE
+#define GPIOJ GPIO_PORT_J_BASE
+#define GPIOK GPIO_PORT_K_BASE
+
+
+
+
+
+#define GPIOG_MODER GPIO_MODER(GPIOG)
+#define GPIOH_MODER GPIO_MODER(GPIOH)
+#define GPIOI_MODER GPIO_MODER(GPIOI)
+#define GPIOJ_MODER GPIO_MODER(GPIOJ)
+#define GPIOK_MODER GPIO_MODER(GPIOK)
+
+
+#define GPIOG_OTYPER GPIO_OTYPER(GPIOG)
+#define GPIOH_OTYPER GPIO_OTYPER(GPIOH)
+#define GPIOI_OTYPER GPIO_OTYPER(GPIOI)
+#define GPIOJ_OTYPER GPIO_OTYPER(GPIOJ)
+#define GPIOK_OTYPER GPIO_OTYPER(GPIOK)
+
+
+#define GPIOG_OSPEEDR GPIO_OSPEEDR(GPIOG)
+#define GPIOH_OSPEEDR GPIO_OSPEEDR(GPIOH)
+#define GPIOI_OSPEEDR GPIO_OSPEEDR(GPIOI)
+#define GPIOJ_OSPEEDR GPIO_OSPEEDR(GPIOJ)
+#define GPIOK_OSPEEDR GPIO_OSPEEDR(GPIOK)
+
+
+#define GPIOG_PUPDR GPIO_PUPDR(GPIOG)
+#define GPIOH_PUPDR GPIO_PUPDR(GPIOH)
+#define GPIOI_PUPDR GPIO_PUPDR(GPIOI)
+#define GPIOJ_PUPDR GPIO_PUPDR(GPIOJ)
+#define GPIOK_PUPDR GPIO_PUPDR(GPIOK)
+
+
+#define GPIOG_IDR GPIO_IDR(GPIOG)
+#define GPIOH_IDR GPIO_IDR(GPIOH)
+#define GPIOI_IDR GPIO_IDR(GPIOI)
+#define GPIOJ_IDR GPIO_IDR(GPIOJ)
+#define GPIOK_IDR GPIO_IDR(GPIOK)
+
+
+#define GPIOG_ODR GPIO_ODR(GPIOG)
+#define GPIOH_ODR GPIO_ODR(GPIOH)
+#define GPIOI_ODR GPIO_ODR(GPIOI)
+#define GPIOJ_ODR GPIO_ODR(GPIOJ)
+#define GPIOK_ODR GPIO_ODR(GPIOK)
+
+
+#define GPIOG_BSRR GPIO_BSRR(GPIOG)
+#define GPIOH_BSRR GPIO_BSRR(GPIOH)
+#define GPIOI_BSRR GPIO_BSRR(GPIOI)
+#define GPIOJ_BSRR GPIO_BSRR(GPIOJ)
+#define GPIOK_BSRR GPIO_BSRR(GPIOK)
+
+
+#define GPIOG_LCKR GPIO_LCKR(GPIOG)
+#define GPIOH_LCKR GPIO_LCKR(GPIOH)
+#define GPIOI_LCKR GPIO_LCKR(GPIOI)
+#define GPIOJ_LCKR GPIO_LCKR(GPIOJ)
+#define GPIOK_LCKR GPIO_LCKR(GPIOK)
+
+
+#define GPIOG_AFRL GPIO_AFRL(GPIOG)
+#define GPIOH_AFRL GPIO_AFRL(GPIOH)
+#define GPIOI_AFRL GPIO_AFRL(GPIOI)
+#define GPIOJ_AFRL GPIO_AFRL(GPIOJ)
+#define GPIOK_AFRL GPIO_AFRL(GPIOK)
+
+
+#define GPIOG_AFRH GPIO_AFRH(GPIOG)
+#define GPIOH_AFRH GPIO_AFRH(GPIOH)
+#define GPIOI_AFRH GPIO_AFRH(GPIOI)
+#define GPIOJ_AFRH GPIO_AFRH(GPIOJ)
+#define GPIOK_AFRH GPIO_AFRH(GPIOK)
+# 35 "libopencm3/include/libopencm3/stm32/l0/gpio.h" 2
+# 44 "libopencm3/include/libopencm3/stm32/l0/gpio.h"
+#define GPIO_BRR(port) MMIO32((port) + 0x28)
+#define GPIOA_BRR GPIO_BRR(GPIOA)
+#define GPIOB_BRR GPIO_BRR(GPIOB)
+#define GPIOC_BRR GPIO_BRR(GPIOC)
+#define GPIOD_BRR GPIO_BRR(GPIOD)
+#define GPIOH_BRR GPIO_BRR(GPIOH)
+# 58 "libopencm3/include/libopencm3/stm32/l0/gpio.h"
+#define GPIO_OSPEED_LOW 0x0
+#define GPIO_OSPEED_MED 0x1
+#define GPIO_OSPEED_HIGH 0x2
+#define GPIO_OSPEED_VERYHIGH 0x3
+# 72 "libopencm3/include/libopencm3/stm32/l0/gpio.h"
+
+
+
+# 37 "libopencm3/include/libopencm3/stm32/gpio.h" 2
+# 5 "common/include/common/board_defs.h" 2
 # 1 "libopencm3/include/libopencm3/stm32/rcc.h" 1
 # 36 "libopencm3/include/libopencm3/stm32/rcc.h"
 # 1 "libopencm3/include/libopencm3/stm32/l0/rcc.h" 1
@@ -2385,6 +2570,1250 @@ void rcc_set_usart2_sel(uint32_t usart2_sel);
 
 
 # 37 "libopencm3/include/libopencm3/stm32/rcc.h" 2
+# 6 "common/include/common/board_defs.h" 2
+# 1 "libopencm3/include/libopencm3/stm32/spi.h" 1
+# 36 "libopencm3/include/libopencm3/stm32/spi.h"
+# 1 "libopencm3/include/libopencm3/stm32/l0/spi.h" 1
+# 32 "libopencm3/include/libopencm3/stm32/l0/spi.h"
+#define LIBOPENCM3_SPI_H 
+
+# 1 "libopencm3/include/libopencm3/stm32/common/spi_common_v1_frf.h" 1
+# 32 "libopencm3/include/libopencm3/stm32/common/spi_common_v1_frf.h"
+       
+
+
+
+# 1 "libopencm3/include/libopencm3/stm32/common/spi_common_v1.h" 1
+# 32 "libopencm3/include/libopencm3/stm32/common/spi_common_v1.h"
+       
+
+
+
+# 1 "libopencm3/include/libopencm3/stm32/common/spi_common_all.h" 1
+# 33 "libopencm3/include/libopencm3/stm32/common/spi_common_all.h"
+#define LIBOPENCM3_SPI_COMMON_ALL_H 
+# 46 "libopencm3/include/libopencm3/stm32/common/spi_common_all.h"
+#define SPI1 SPI1_BASE
+#define SPI2 SPI2_BASE
+#define SPI3 SPI3_BASE
+#define SPI4 SPI4_BASE
+#define SPI5 SPI5_BASE
+#define SPI6 SPI6_BASE
+
+
+
+
+
+
+#define SPI_CR1(spi_base) MMIO32((spi_base) + 0x00)
+#define SPI1_CR1 SPI_CR1(SPI1_BASE)
+#define SPI2_CR1 SPI_CR1(SPI2_BASE)
+#define SPI3_CR1 SPI_CR1(SPI3_BASE)
+
+
+#define SPI_CR2(spi_base) MMIO32((spi_base) + 0x04)
+#define SPI1_CR2 SPI_CR2(SPI1_BASE)
+#define SPI2_CR2 SPI_CR2(SPI2_BASE)
+#define SPI3_CR2 SPI_CR2(SPI3_BASE)
+
+
+#define SPI_SR(spi_base) MMIO32((spi_base) + 0x08)
+#define SPI1_SR SPI_SR(SPI1_BASE)
+#define SPI2_SR SPI_SR(SPI2_BASE)
+#define SPI3_SR SPI_SR(SPI3_BASE)
+
+
+#define SPI_DR(spi_base) MMIO32((spi_base) + 0x0c)
+#define SPI1_DR SPI_DR(SPI1_BASE)
+#define SPI2_DR SPI_DR(SPI2_BASE)
+#define SPI3_DR SPI_DR(SPI3_BASE)
+
+
+
+#define SPI_CRCPR(spi_base) MMIO32((spi_base) + 0x10)
+#define SPI1_CRCPR SPI_CRCPR(SPI1_BASE)
+#define SPI2_CRCPR SPI_CRCPR(SPI2_BASE)
+#define SPI3_CRCPR SPI_CRCPR(SPI3_BASE)
+
+
+
+#define SPI_RXCRCR(spi_base) MMIO32((spi_base) + 0x14)
+#define SPI1_RXCRCR SPI_RXCRCR(SPI1_BASE)
+#define SPI2_RXCRCR SPI_RXCRCR(SPI2_BASE)
+#define SPI3_RXCRCR SPI_RXCRCR(SPI3_BASE)
+
+
+
+#define SPI_TXCRCR(spi_base) MMIO32((spi_base) + 0x18)
+#define SPI1_TXCRCR SPI_TXCRCR(SPI1_BASE)
+#define SPI2_TXCRCR SPI_TXCRCR(SPI2_BASE)
+#define SPI3_TXCRCR SPI_TXCRCR(SPI3_BASE)
+
+
+#define SPI_I2SCFGR(spi_base) MMIO32((spi_base) + 0x1c)
+#define SPI1_I2SCFGR SPI_I2SCFGR(SPI1_BASE)
+#define SPI2_I2SCFGR SPI_I2SCFGR(SPI2_BASE)
+#define SPI3_I2SCFGR SPI_I2SCFGR(SPI3_BASE)
+
+
+#define SPI_I2SPR(spi_base) MMIO32((spi_base) + 0x20)
+#define SPI1_I2SPR SPI_I2SPR(SPI1_BASE)
+#define SPI2_I2SPR SPI_I2SPR(SPI2_BASE)
+#define SPI3_I2SPR SPI_I2SPR(SPI3_BASE)
+
+
+
+
+
+
+#define SPI_CR1_BIDIMODE_2LINE_UNIDIR (0 << 15)
+#define SPI_CR1_BIDIMODE_1LINE_BIDIR (1 << 15)
+#define SPI_CR1_BIDIMODE (1 << 15)
+
+
+#define SPI_CR1_BIDIOE (1 << 14)
+
+
+#define SPI_CR1_CRCEN (1 << 13)
+
+
+#define SPI_CR1_CRCNEXT (1 << 12)
+
+
+#define SPI_CR1_RXONLY (1 << 10)
+
+
+#define SPI_CR1_SSM (1 << 9)
+
+
+#define SPI_CR1_SSI (1 << 8)
+
+
+
+
+
+
+
+#define SPI_CR1_MSBFIRST (0 << 7)
+#define SPI_CR1_LSBFIRST (1 << 7)
+
+
+
+#define SPI_CR1_SPE (1 << 6)
+
+
+
+
+
+
+
+#define SPI_CR1_BAUDRATE_FPCLK_DIV_2 (0x00 << 3)
+#define SPI_CR1_BAUDRATE_FPCLK_DIV_4 (0x01 << 3)
+#define SPI_CR1_BAUDRATE_FPCLK_DIV_8 (0x02 << 3)
+#define SPI_CR1_BAUDRATE_FPCLK_DIV_16 (0x03 << 3)
+#define SPI_CR1_BAUDRATE_FPCLK_DIV_32 (0x04 << 3)
+#define SPI_CR1_BAUDRATE_FPCLK_DIV_64 (0x05 << 3)
+#define SPI_CR1_BAUDRATE_FPCLK_DIV_128 (0x06 << 3)
+#define SPI_CR1_BAUDRATE_FPCLK_DIV_256 (0x07 << 3)
+
+
+
+
+
+
+#define SPI_CR1_BR_FPCLK_DIV_2 0x0
+#define SPI_CR1_BR_FPCLK_DIV_4 0x1
+#define SPI_CR1_BR_FPCLK_DIV_8 0x2
+#define SPI_CR1_BR_FPCLK_DIV_16 0x3
+#define SPI_CR1_BR_FPCLK_DIV_32 0x4
+#define SPI_CR1_BR_FPCLK_DIV_64 0x5
+#define SPI_CR1_BR_FPCLK_DIV_128 0x6
+#define SPI_CR1_BR_FPCLK_DIV_256 0x7
+
+
+
+#define SPI_CR1_MSTR (1 << 2)
+
+
+
+
+
+
+
+#define SPI_CR1_CPOL_CLK_TO_0_WHEN_IDLE (0 << 1)
+#define SPI_CR1_CPOL_CLK_TO_1_WHEN_IDLE (1 << 1)
+
+#define SPI_CR1_CPOL (1 << 1)
+
+
+
+
+
+
+
+#define SPI_CR1_CPHA_CLK_TRANSITION_1 (0 << 0)
+#define SPI_CR1_CPHA_CLK_TRANSITION_2 (1 << 0)
+
+#define SPI_CR1_CPHA (1 << 0)
+
+
+
+
+
+
+#define SPI_CR2_TXEIE (1 << 7)
+
+
+#define SPI_CR2_RXNEIE (1 << 6)
+
+
+#define SPI_CR2_ERRIE (1 << 5)
+
+
+
+
+
+#define SPI_CR2_SSOE (1 << 2)
+
+
+#define SPI_CR2_TXDMAEN (1 << 1)
+
+
+#define SPI_CR2_RXDMAEN (1 << 0)
+
+
+
+
+
+
+#define SPI_SR_BSY (1 << 7)
+
+
+#define SPI_SR_OVR (1 << 6)
+
+
+
+#define SPI_SR_MODF (1 << 5)
+
+
+
+#define SPI_SR_CRCERR (1 << 4)
+
+
+
+#define SPI_SR_UDR (1 << 3)
+
+
+
+#define SPI_SR_CHSIDE (1 << 2)
+
+
+#define SPI_SR_TXE (1 << 1)
+
+
+#define SPI_SR_RXNE (1 << 0)
+# 292 "libopencm3/include/libopencm3/stm32/common/spi_common_all.h"
+#define SPI_I2SCFGR_I2SMOD (1 << 11)
+
+
+#define SPI_I2SCFGR_I2SE (1 << 10)
+
+
+#define SPI_I2SCFGR_I2SCFG_LSB 8
+#define SPI_I2SCFGR_I2SCFG_SLAVE_TRANSMIT 0x0
+#define SPI_I2SCFGR_I2SCFG_SLAVE_RECEIVE 0x1
+#define SPI_I2SCFGR_I2SCFG_MASTER_TRANSMIT 0x2
+#define SPI_I2SCFGR_I2SCFG_MASTER_RECEIVE 0x3
+
+
+#define SPI_I2SCFGR_PCMSYNC (1 << 7)
+
+
+
+
+#define SPI_I2SCFGR_I2SSTD_LSB 4
+#define SPI_I2SCFGR_I2SSTD_I2S_PHILIPS 0x0
+#define SPI_I2SCFGR_I2SSTD_MSB_JUSTIFIED 0x1
+#define SPI_I2SCFGR_I2SSTD_LSB_JUSTIFIED 0x2
+#define SPI_I2SCFGR_I2SSTD_PCM 0x3
+
+
+#define SPI_I2SCFGR_CKPOL (1 << 3)
+
+
+#define SPI_I2SCFGR_DATLEN_LSB 1
+#define SPI_I2SCFGR_DATLEN_16BIT 0x0
+#define SPI_I2SCFGR_DATLEN_24BIT 0x1
+#define SPI_I2SCFGR_DATLEN_32BIT 0x2
+
+
+#define SPI_I2SCFGR_CHLEN (1 << 0)
+# 335 "libopencm3/include/libopencm3/stm32/common/spi_common_all.h"
+#define SPI_I2SPR_MCKOE (1 << 9)
+
+
+#define SPI_I2SPR_ODD (1 << 8)
+
+
+
+
+
+
+
+
+void spi_reset(uint32_t spi_peripheral);
+void spi_enable(uint32_t spi);
+void spi_disable(uint32_t spi);
+uint16_t spi_clean_disable(uint32_t spi);
+void spi_write(uint32_t spi, uint16_t data);
+void spi_send(uint32_t spi, uint16_t data);
+uint16_t spi_read(uint32_t spi);
+uint16_t spi_xfer(uint32_t spi, uint16_t data);
+void spi_set_bidirectional_mode(uint32_t spi);
+void spi_set_unidirectional_mode(uint32_t spi);
+void spi_set_bidirectional_receive_only_mode(uint32_t spi);
+void spi_set_bidirectional_transmit_only_mode(uint32_t spi);
+void spi_enable_crc(uint32_t spi);
+void spi_disable_crc(uint32_t spi);
+void spi_set_next_tx_from_buffer(uint32_t spi);
+void spi_set_next_tx_from_crc(uint32_t spi);
+void spi_set_full_duplex_mode(uint32_t spi);
+void spi_set_receive_only_mode(uint32_t spi);
+void spi_disable_software_slave_management(uint32_t spi);
+void spi_enable_software_slave_management(uint32_t spi);
+void spi_set_nss_high(uint32_t spi);
+void spi_set_nss_low(uint32_t spi);
+void spi_send_lsb_first(uint32_t spi);
+void spi_send_msb_first(uint32_t spi);
+void spi_set_baudrate_prescaler(uint32_t spi, uint8_t baudrate);
+void spi_set_master_mode(uint32_t spi);
+void spi_set_slave_mode(uint32_t spi);
+void spi_set_clock_polarity_1(uint32_t spi);
+void spi_set_clock_polarity_0(uint32_t spi);
+void spi_set_clock_phase_1(uint32_t spi);
+void spi_set_clock_phase_0(uint32_t spi);
+void spi_enable_tx_buffer_empty_interrupt(uint32_t spi);
+void spi_disable_tx_buffer_empty_interrupt(uint32_t spi);
+void spi_enable_rx_buffer_not_empty_interrupt(uint32_t spi);
+void spi_disable_rx_buffer_not_empty_interrupt(uint32_t spi);
+void spi_enable_error_interrupt(uint32_t spi);
+void spi_disable_error_interrupt(uint32_t spi);
+void spi_enable_ss_output(uint32_t spi);
+void spi_disable_ss_output(uint32_t spi);
+void spi_enable_tx_dma(uint32_t spi);
+void spi_disable_tx_dma(uint32_t spi);
+void spi_enable_rx_dma(uint32_t spi);
+void spi_disable_rx_dma(uint32_t spi);
+void spi_set_standard_mode(uint32_t spi, uint8_t mode);
+
+
+# 37 "libopencm3/include/libopencm3/stm32/common/spi_common_v1.h" 2
+# 45 "libopencm3/include/libopencm3/stm32/common/spi_common_v1.h"
+#define SPI_CR1_DFF_8BIT (0 << 11)
+#define SPI_CR1_DFF_16BIT (1 << 11)
+
+
+
+#define SPI_CR1_DFF (1 << 11)
+
+
+
+
+
+int spi_init_master(uint32_t spi, uint32_t br, uint32_t cpol, uint32_t cpha,
+  uint32_t dff, uint32_t lsbfirst);
+void spi_set_dff_8bit(uint32_t spi);
+void spi_set_dff_16bit(uint32_t spi);
+
+
+# 37 "libopencm3/include/libopencm3/stm32/common/spi_common_v1_frf.h" 2
+
+
+
+
+
+#define SPI_CR2_FRF (1 << 4)
+#define SPI_CR2_FRF_MOTOROLA_MODE (0 << 4)
+#define SPI_CR2_FRF_TI_MODE (1 << 4)
+
+
+
+
+#define SPI_SR_TIFRFE (1 << 8)
+#define SPI_SR_FRE (1 << 8)
+
+
+
+
+
+void spi_set_frf_ti(uint32_t spi);
+void spi_set_frf_motorola(uint32_t spi);
+
+
+# 35 "libopencm3/include/libopencm3/stm32/l0/spi.h" 2
+# 37 "libopencm3/include/libopencm3/stm32/spi.h" 2
+# 7 "common/include/common/board_defs.h" 2
+# 1 "libopencm3/include/libopencm3/stm32/usart.h" 1
+# 36 "libopencm3/include/libopencm3/stm32/usart.h"
+# 1 "libopencm3/include/libopencm3/stm32/l0/usart.h" 1
+# 28 "libopencm3/include/libopencm3/stm32/l0/usart.h"
+#define LIBOPENCM3_USART_H 
+
+# 1 "libopencm3/include/libopencm3/stm32/common/usart_common_all.h" 1
+# 35 "libopencm3/include/libopencm3/stm32/common/usart_common_all.h"
+#define LIBOPENCM3_USART_COMMON_ALL_H 
+# 46 "libopencm3/include/libopencm3/stm32/common/usart_common_all.h"
+#define USART_PARITY_NONE 0x00
+#define USART_PARITY_EVEN USART_CR1_PCE
+#define USART_PARITY_ODD (USART_CR1_PS | USART_CR1_PCE)
+
+#define USART_PARITY_MASK (USART_CR1_PS | USART_CR1_PCE)
+
+
+
+
+
+
+
+#define USART_MODE_RX USART_CR1_RE
+#define USART_MODE_TX USART_CR1_TE
+#define USART_MODE_TX_RX (USART_CR1_RE | USART_CR1_TE)
+
+#define USART_MODE_MASK (USART_CR1_RE | USART_CR1_TE)
+
+
+
+
+
+
+#define USART_STOPBITS_1 USART_CR2_STOPBITS_1
+#define USART_STOPBITS_0_5 USART_CR2_STOPBITS_0_5
+#define USART_STOPBITS_2 USART_CR2_STOPBITS_2
+#define USART_STOPBITS_1_5 USART_CR2_STOPBITS_1_5
+
+
+
+#define USART_CR2_STOPBITS_1 (0x00 << 12)
+#define USART_CR2_STOPBITS_0_5 (0x01 << 12)
+#define USART_CR2_STOPBITS_2 (0x02 << 12)
+#define USART_CR2_STOPBITS_1_5 (0x03 << 12)
+#define USART_CR2_STOPBITS_MASK (0x03 << 12)
+#define USART_CR2_STOPBITS_SHIFT 12
+# 90 "libopencm3/include/libopencm3/stm32/common/usart_common_all.h"
+#define USART_FLOWCONTROL_NONE 0x00
+#define USART_FLOWCONTROL_RTS USART_CR3_RTSE
+#define USART_FLOWCONTROL_CTS USART_CR3_CTSE
+#define USART_FLOWCONTROL_RTS_CTS (USART_CR3_RTSE | USART_CR3_CTSE)
+
+#define USART_FLOWCONTROL_MASK (USART_CR3_RTSE | USART_CR3_CTSE)
+
+
+
+
+
+void usart_set_baudrate(uint32_t usart, uint32_t baud);
+void usart_set_databits(uint32_t usart, uint32_t bits);
+void usart_set_stopbits(uint32_t usart, uint32_t stopbits);
+void usart_set_parity(uint32_t usart, uint32_t parity);
+void usart_set_mode(uint32_t usart, uint32_t mode);
+void usart_set_flow_control(uint32_t usart, uint32_t flowcontrol);
+void usart_enable(uint32_t usart);
+void usart_disable(uint32_t usart);
+void usart_send(uint32_t usart, uint16_t data);
+uint16_t usart_recv(uint32_t usart);
+void usart_wait_send_ready(uint32_t usart);
+void usart_wait_recv_ready(uint32_t usart);
+void usart_send_blocking(uint32_t usart, uint16_t data);
+uint16_t usart_recv_blocking(uint32_t usart);
+void usart_enable_rx_dma(uint32_t usart);
+void usart_disable_rx_dma(uint32_t usart);
+void usart_enable_tx_dma(uint32_t usart);
+void usart_disable_tx_dma(uint32_t usart);
+void usart_enable_rx_interrupt(uint32_t usart);
+void usart_disable_rx_interrupt(uint32_t usart);
+void usart_enable_tx_interrupt(uint32_t usart);
+void usart_disable_tx_interrupt(uint32_t usart);
+void usart_enable_error_interrupt(uint32_t usart);
+void usart_disable_error_interrupt(uint32_t usart);
+
+# 125 "libopencm3/include/libopencm3/stm32/common/usart_common_all.h" 3 4
+_Bool 
+# 125 "libopencm3/include/libopencm3/stm32/common/usart_common_all.h"
+    usart_get_flag(uint32_t usart, uint32_t flag);
+
+
+# 31 "libopencm3/include/libopencm3/stm32/l0/usart.h" 2
+# 1 "libopencm3/include/libopencm3/stm32/common/usart_common_v2.h" 1
+# 26 "libopencm3/include/libopencm3/stm32/common/usart_common_v2.h"
+       
+
+
+
+
+
+
+#define USART_CR1(usart_base) MMIO32((usart_base) + 0x00)
+#define USART1_CR1 USART_CR1(USART1_BASE)
+#define USART2_CR1 USART_CR1(USART2_BASE)
+#define USART3_CR1 USART_CR1(USART3_BASE)
+# 48 "libopencm3/include/libopencm3/stm32/common/usart_common_v2.h"
+#define USART_CR2(usart_base) MMIO32((usart_base) + 0x04)
+#define USART1_CR2 USART_CR2(USART1_BASE)
+#define USART2_CR2 USART_CR2(USART2_BASE)
+#define USART3_CR2 USART_CR2(USART3_BASE)
+# 63 "libopencm3/include/libopencm3/stm32/common/usart_common_v2.h"
+#define USART_CR3(usart_base) MMIO32((usart_base) + 0x08)
+#define USART1_CR3 USART_CR3(USART1_BASE)
+#define USART2_CR3 USART_CR3(USART2_BASE)
+#define USART3_CR3 USART_CR3(USART3_BASE)
+# 78 "libopencm3/include/libopencm3/stm32/common/usart_common_v2.h"
+#define USART_BRR(usart_base) MMIO32((usart_base) + 0x0C)
+#define USART1_BRR USART_BRR(USART1_BASE)
+#define USART2_BRR USART_BRR(USART2_BASE)
+#define USART3_BRR USART_BRR(USART3_BASE)
+# 93 "libopencm3/include/libopencm3/stm32/common/usart_common_v2.h"
+#define USART_GTPR(usart_base) MMIO32((usart_base) + 0x10)
+#define USART1_GTPR USART_GTPR(USART1_BASE)
+#define USART2_GTPR USART_GTPR(USART2_BASE)
+#define USART3_GTPR USART_GTPR(USART3_BASE)
+# 108 "libopencm3/include/libopencm3/stm32/common/usart_common_v2.h"
+#define USART_RTOR(usart_base) MMIO32((usart_base) + 0x14)
+#define USART1_RTOR USART_RTOR(USART1_BASE)
+#define USART2_RTOR USART_RTOR(USART2_BASE)
+#define USART3_RTOR USART_RTOR(USART3_BASE)
+# 123 "libopencm3/include/libopencm3/stm32/common/usart_common_v2.h"
+#define USART_RQR(usart_base) MMIO32((usart_base) + 0x18)
+#define USART1_RQR USART_RQR(USART1_BASE)
+#define USART2_RQR USART_RQR(USART2_BASE)
+#define USART3_RQR USART_RQR(USART3_BASE)
+# 138 "libopencm3/include/libopencm3/stm32/common/usart_common_v2.h"
+#define USART_ISR(usart_base) MMIO32((usart_base) + 0x1C)
+#define USART1_ISR USART_ISR(USART1_BASE)
+#define USART2_ISR USART_ISR(USART2_BASE)
+#define USART3_ISR USART_ISR(USART3_BASE)
+# 153 "libopencm3/include/libopencm3/stm32/common/usart_common_v2.h"
+#define USART_ICR(usart_base) MMIO32((usart_base) + 0x20)
+#define USART1_ICR USART_ICR(USART1_BASE)
+#define USART2_ICR USART_ICR(USART2_BASE)
+#define USART3_ICR USART_ICR(USART3_BASE)
+# 168 "libopencm3/include/libopencm3/stm32/common/usart_common_v2.h"
+#define USART_RDR(usart_base) MMIO32((usart_base) + 0x24)
+#define USART1_RDR USART_RDR(USART1_BASE)
+#define USART2_RDR USART_RDR(USART2_BASE)
+#define USART3_RDR USART_RDR(USART3_BASE)
+# 183 "libopencm3/include/libopencm3/stm32/common/usart_common_v2.h"
+#define USART_TDR(usart_base) MMIO32((usart_base) + 0x28)
+#define USART1_TDR USART_TDR(USART1_BASE)
+#define USART2_TDR USART_TDR(USART2_BASE)
+#define USART3_TDR USART_TDR(USART3_BASE)
+# 206 "libopencm3/include/libopencm3/stm32/common/usart_common_v2.h"
+#define USART_FLAG_PE USART_ISR_PE
+#define USART_FLAG_FE USART_ISR_FE
+#define USART_FLAG_NF USART_ISR_NF
+#define USART_FLAG_ORE USART_ISR_ORE
+#define USART_FLAG_IDLE USART_ISR_IDLE
+#define USART_FLAG_RXNE USART_ISR_RXNE
+#define USART_FLAG_TC USART_ISR_TC
+#define USART_FLAG_TXE USART_ISR_TXE
+# 226 "libopencm3/include/libopencm3/stm32/common/usart_common_v2.h"
+#define USART_CR1_M1 (1 << 28)
+
+
+#define USART_CR1_EOBIE (1 << 27)
+
+
+#define USART_CR1_RTOIE (1 << 26)
+
+#define USART_CR1_DEAT_SHIFT 21
+#define USART_CR1_DEAT (0x1F << USART_CR1_DEAT_SHIFT)
+
+#define USART_CR1_DEAT_VAL(x) ((x) << USART_CR1_DEAT_SHIFT)
+
+#define USART_CR1_DEDT_SHIFT 16
+#define USART_CR1_DEDT (0x1F << USART_CR1_DEDT_SHIFT)
+
+#define USART_CR1_DEDT_VAL(x) ((x) << USART_CR1_DEDT_SHIFT)
+
+
+#define USART_CR1_OVER8 (1 << 15)
+
+
+#define USART_CR1_CMIE (1 << 14)
+
+
+#define USART_CR1_MME (1 << 13)
+
+
+#define USART_CR1_M0 (1 << 12)
+
+#define USART_CR1_M USART_CR1_M0
+
+
+#define USART_CR1_WAKE (1 << 11)
+
+
+#define USART_CR1_PCE (1 << 10)
+
+
+#define USART_CR1_PS (1 << 9)
+
+
+#define USART_CR1_PEIE (1 << 8)
+
+
+#define USART_CR1_TXEIE (1 << 7)
+
+
+#define USART_CR1_TCIE (1 << 6)
+
+
+#define USART_CR1_RXNEIE (1 << 5)
+
+
+#define USART_CR1_IDLEIE (1 << 4)
+
+
+#define USART_CR1_TE (1 << 3)
+
+
+#define USART_CR1_RE (1 << 2)
+
+
+#define USART_CR1_UESM (1 << 1)
+
+
+#define USART_CR1_UE (1 << 0)
+# 301 "libopencm3/include/libopencm3/stm32/common/usart_common_v2.h"
+#define USART_CR2_ADD_SHIFT 24
+#define USART_CR2_ADD (0xFF << USART_CR2_ADD_SHIFT)
+#define USART_CR2_ADD_VAL(x) ((x) << USART_CR2_ADD_SHIFT)
+
+#define USART_CR2_ABRMOD_MASK 3
+#define USART_CR2_ABRMOD_SHIFT 21
+
+
+
+
+
+#define USART_CR2_ABRMOD_STARTBIT (0x0 << USART_CR2_ABRMOD_SHIFT)
+#define USART_CR2_ABRMOD_FALL_EDGE (0x1 << USART_CR2_ABRMOD_SHIFT)
+#define USART_CR2_ABRMOD_FRAME_0x7F (0x2 << USART_CR2_ABRMOD_SHIFT)
+#define USART_CR2_ABRMOD_FRAME_0x55 (0x3 << USART_CR2_ABRMOD_SHIFT)
+
+
+
+#define USART_CR2_RTOEN (1 << 23)
+
+
+#define USART_CR2_ABREN (1 << 20)
+
+
+#define USART_CR2_MSBFIRST (1 << 19)
+
+
+#define USART_CR2_DATAINV (1 << 18)
+
+
+#define USART_CR2_TXINV (1 << 17)
+
+
+#define USART_CR2_RXINV (1 << 16)
+
+
+#define USART_CR2_SWAP (1 << 15)
+
+
+#define USART_CR2_LINEN (1 << 14)
+
+
+#define USART_CR2_CLKEN (1 << 11)
+
+
+#define USART_CR2_CPOL (1 << 10)
+
+
+#define USART_CR2_CPHA (1 << 9)
+
+
+#define USART_CR2_LBCL (1 << 8)
+
+
+#define USART_CR2_LBDIE (1 << 6)
+
+
+#define USART_CR2_LBDL (1 << 5)
+
+
+#define USART_CR2_ADDM7 (1 << 4)
+# 370 "libopencm3/include/libopencm3/stm32/common/usart_common_v2.h"
+#define USART_CR3_WUFIE (1 << 22)
+
+
+#define USART_CR3_WUS_ADDRMATCH (0x0 << 20)
+#define USART_CR3_WUS_START_BIT (0x2 << 20)
+#define USART_CR3_WUS_RXNE (0x3 << 20)
+
+#define USART_CR3_SCARCNT_SHIFT 17
+#define USART_CR3_SCARCNT_MASK 0x7
+
+#define USART_CR3_SCARCNT_DISABLE (0 << USART_CR3_SCARCNT_SHIFT)
+#define USART_CR3_SCARCNT_VAL(x) ((x) << USART_CR3_SCARCNT_SHIFT)
+
+
+#define USART_CR3_DEP (1 << 15)
+
+
+#define USART_CR3_DEM (1 << 14)
+
+
+#define USART_CR3_DDRE (1 << 13)
+
+
+#define USART_CR3_OVRDIS (1 << 12)
+
+
+#define USART_CR3_ONEBIT (1 << 11)
+
+
+#define USART_CR3_CTSIE (1 << 10)
+
+
+#define USART_CR3_CTSE (1 << 9)
+
+
+#define USART_CR3_RTSE (1 << 8)
+
+
+#define USART_CR3_DMAT (1 << 7)
+
+
+#define USART_CR3_DMAR (1 << 6)
+
+
+#define USART_CR3_SCEN (1 << 5)
+
+
+#define USART_CR3_NACK (1 << 4)
+
+
+#define USART_CR3_HDSEL (1 << 3)
+
+
+#define USART_CR3_IRLP (1 << 2)
+
+
+#define USART_CR3_IREN (1 << 1)
+
+
+#define USART_CR3_EIE (1 << 0)
+
+
+
+
+
+
+
+#define USART_GTPR_GT_SHIFT 8
+#define USART_GTPR_GT (0xFF << USART_GTPR_GT_SHIFT)
+#define USART_GTPR_GT_VAL(x) ((x) << USART_GTPR_GT_SHIFT)
+
+#define USART_GTPR_PSC_SHIFT 0
+#define USART_GTPR_PSC (0xFF << USART_GTPR_PSC_SHIFT)
+#define USART_GTPR_PSC_VAL(x) ((x) << USART_GTPR_PSC_SHIFT)
+# 452 "libopencm3/include/libopencm3/stm32/common/usart_common_v2.h"
+#define USART_RTOR_BLEN_SHIFT 24
+#define USART_RTOR_BLEN_MASK (0xFF << USART_RTOR_BLEN_SHIFT)
+#define USART_RTOR_BLEN_VAL(x) ((x) << USART_RTOR_BLEN_SHIFT)
+
+
+#define USART_RTOR_RTO_SHIFT 0
+#define USART_RTOR_RTO_MASK (0xFFFFF << USART_RTOR_RTO_SHIFT)
+#define USART_RTOR_RTO_VAL(x) ((x) << USART_RTOR_RTO_SHIFT)
+# 469 "libopencm3/include/libopencm3/stm32/common/usart_common_v2.h"
+#define USART_RQR_TXFRQ (1 << 4)
+
+
+#define USART_RQR_RXFRQ (1 << 3)
+
+
+#define USART_RQR_MMRQ (1 << 2)
+
+
+#define USART_RQR_SBKRQ (1 << 1)
+
+
+#define USART_RQR_ABKRQ (1 << 0)
+# 492 "libopencm3/include/libopencm3/stm32/common/usart_common_v2.h"
+#define USART_ISR_REACK (1 << 22)
+
+
+#define USART_ISR_TEACK (1 << 21)
+
+
+#define USART_ISR_WUF (1 << 20)
+
+
+#define USART_ISR_RWU (1 << 19)
+
+
+#define USART_ISR_SBKF (1 << 18)
+
+
+#define USART_ISR_CMF (1 << 17)
+
+
+#define USART_ISR_BUSY (1 << 16)
+
+
+#define USART_ISR_ABRF (1 << 15)
+
+
+#define USART_ISR_ABRE (1 << 14)
+
+
+#define USART_ISR_EOBF (1 << 12)
+
+
+#define USART_ISR_RTOF (1 << 11)
+
+
+#define USART_ISR_CTS (1 << 10)
+
+
+#define USART_ISR_CTSIF (1 << 9)
+
+
+#define USART_ISR_LBDF (1 << 8)
+
+
+#define USART_ISR_TXE (1 << 7)
+
+
+#define USART_ISR_TC (1 << 6)
+
+
+#define USART_ISR_RXNE (1 << 5)
+
+
+#define USART_ISR_IDLE (1 << 4)
+
+
+#define USART_ISR_ORE (1 << 3)
+
+
+#define USART_ISR_NF (1 << 2)
+
+
+#define USART_ISR_FE (1 << 1)
+
+
+#define USART_ISR_PE (1 << 0)
+# 566 "libopencm3/include/libopencm3/stm32/common/usart_common_v2.h"
+#define USART_ICR_WUCF (1 << 20)
+
+
+#define USART_ICR_CMCF (1 << 17)
+
+
+#define USART_ICR_EOBCF (1 << 12)
+
+
+#define USART_ICR_RTOCF (1 << 11)
+
+
+#define USART_ICR_CTSCF (1 << 9)
+
+
+#define USART_ICR_LBDCF (1 << 8)
+
+
+#define USART_ICR_TCCF (1 << 6)
+
+
+#define USART_ICR_IDLECF (1 << 4)
+
+
+#define USART_ICR_ORECF (1 << 3)
+
+
+#define USART_ICR_NCF (1 << 2)
+
+
+#define USART_ICR_FECF (1 << 1)
+
+
+#define USART_ICR_PECF (1 << 0)
+# 608 "libopencm3/include/libopencm3/stm32/common/usart_common_v2.h"
+#define USART_RDR_MASK (0x1FF << 0)
+
+#define USART_TDR_MASK (0x1FF << 0)
+
+
+
+
+
+
+
+void usart_enable_data_inversion(uint32_t usart);
+void usart_disable_data_inversion(uint32_t usart);
+void usart_enable_tx_inversion(uint32_t usart);
+void usart_disable_tx_inversion(uint32_t usart);
+void usart_enable_rx_inversion(uint32_t usart);
+void usart_disable_rx_inversion(uint32_t usart);
+void usart_enable_halfduplex(uint32_t usart);
+void usart_disable_halfduplex(uint32_t usart);
+
+void usart_set_rx_timeout_value(uint32_t usart, uint32_t value);
+void usart_enable_rx_timeout(uint32_t usart);
+void usart_disable_rx_timeout(uint32_t usart);
+void usart_enable_rx_timeout_interrupt(uint32_t usart);
+void usart_disable_rx_timeout_interrupt(uint32_t usart);
+
+
+# 32 "libopencm3/include/libopencm3/stm32/l0/usart.h" 2
+
+
+
+
+
+
+
+#define USART1 USART1_BASE
+#define USART2 USART2_BASE
+#define USART4 USART4_BASE
+#define USART5 USART5_BASE
+#define LPUART1 LPUART1_BASE
+
+
+
+
+
+# 37 "libopencm3/include/libopencm3/stm32/usart.h" 2
+# 8 "common/include/common/board_defs.h" 2
+
+typedef struct
+{
+ 
+# 11 "common/include/common/board_defs.h" 3 4
+_Bool 
+# 11 "common/include/common/board_defs.h"
+       msg_pend;
+ 
+# 12 "common/include/common/board_defs.h" 3 4
+_Bool 
+# 12 "common/include/common/board_defs.h"
+       active;
+ uint32_t dev_num;
+ uint32_t msg_num;
+ uint32_t msg_num_start;
+ uint32_t ok_packets;
+ uint32_t total_packets;
+}sensor_t;
+
+
+void clock_setup_MSI_2MHZ(void);
+
+
+
+
+#define MAX_SENSORS 50
+
+extern sensor_t sensors[50];
+extern uint8_t num_sensors;
+sensor_t *get_sensor(uint32_t dev_num);
+
+
+
+#define BATT_SENS_PORT GPIOA
+#define BATT_SENS GPIO0
+
+#define PWR_SENS_PORT GPIOA
+#define PWR_SENS GPIO1
+
+
+
+#define LED_PORT GPIOB
+#define LED GPIO8
+
+
+
+#define SPF_USART_BAUD 115200
+#define SPF_USART USART1
+#define SPF_USART_AF GPIO_AF4
+#define SPF_USART_RCC RCC_USART1
+#define SPF_USART_RCC_RST RST_USART1
+#define SPF_USART_TX_PORT GPIOA
+#define SPF_USART_TX GPIO9
+#define SPF_USART_RX_PORT GPIOA
+#define SPF_USART_RX GPIO10
+
+
+
+
+#define RFM_SPI SPI2
+#define RFM_SPI_AF GPIO_AF0
+#define RFM_SPI_RCC RCC_SPI2
+#define RFM_SPI_RST RST_SPI2
+
+#define RFM_SPI_NSS_PORT GPIOA
+#define RFM_SPI_NSS GPIO6
+
+#define RFM_SPI_MISO_PORT GPIOB
+#define RFM_SPI_MISO GPIO14
+
+#define RFM_SPI_MOSI_PORT GPIOB
+#define RFM_SPI_MOSI GPIO15
+
+#define RFM_SPI_SCK_PORT GPIOB
+#define RFM_SPI_SCK GPIO13
+
+
+#define RFM_RESET_PORT GPIOA
+#define RFM_RESET GPIO4
+
+#define RFM_IO_0_PORT GPIOB
+#define RFM_IO_0 GPIO10
+#define RFM_IO_0_EXTI EXTI10
+#define RFM_IO_0_NVIC NVIC_EXTI4_15_IRQ
+
+#define RFM_IO_1_PORT GPIOB
+#define RFM_IO_1 GPIO11
+
+#define RFM_IO_2_PORT GPIOA
+#define RFM_IO_2 GPIO8
+
+#define RFM_IO_3_PORT GPIOB
+#define RFM_IO_3 GPIO1
+
+#define RFM_IO_4_PORT GPIOB
+#define RFM_IO_4 GPIO2
+
+#define RFM_IO_5_PORT GPIOB
+#define RFM_IO_5 GPIO0
+
+
+
+#define SIM_USART_BAUD 38400
+#define SIM_USART_NVIC NVIC_USART2_IRQ
+#define SIM_USART USART2
+#define SIM_USART_AF GPIO_AF4
+#define SIM_USART_RCC RCC_USART2
+#define SIM_USART_RCC_RST RST_USART2
+
+#define SIM_USART_TX_PORT GPIOA
+#define SIM_USART_TX GPIO2
+
+#define SIM_USART_RX_PORT GPIOA
+#define SIM_USART_RX GPIO3
+
+#define SIM_RESET_PORT GPIOA
+#define SIM_RESET GPIO4
+
+
+
+
+#define W25_SPI SPI1
+#define W25_SPI_AF GPIO_AF0
+#define W25_SPI_RCC RCC_SPI1
+#define W25_SPI_RST RST_SPI1
+
+#define W25_SPI_NSS_PORT GPIOB
+#define W25_SPI_NSS GPIO6
+
+#define W25_SPI_MISO_PORT GPIOB
+#define W25_SPI_MISO GPIO4
+
+#define W25_SPI_MOSI_PORT GPIOB
+#define W25_SPI_MOSI GPIO5
+
+#define W25_SPI_SCK_PORT GPIOB
+#define W25_SPI_SCK GPIO3
+# 232 "common/include/common/board_defs.h"
+void gpio_init(void);
+# 18 "hub/src/hub_bootloader.c" 2
+# 1 "common/include/common/memory.h" 1
+# 26 "common/include/common/memory.h"
+#define MEMORY_H 
+
+
+
+
+
+
+# 1 "libopencm3/include/libopencm3/stm32/flash.h" 1
+# 36 "libopencm3/include/libopencm3/stm32/flash.h"
+# 1 "libopencm3/include/libopencm3/stm32/l0/flash.h" 1
+# 31 "libopencm3/include/libopencm3/stm32/l0/flash.h"
+#define LIBOPENCM3_FLASH_H 
+
+
+# 1 "libopencm3/include/libopencm3/stm32/common/flash_common_all.h" 1
+# 21 "libopencm3/include/libopencm3/stm32/common/flash_common_all.h"
+       
+
+
+
+
+# 37 "libopencm3/include/libopencm3/stm32/common/flash_common_all.h"
+void flash_prefetch_enable(void);
+
+
+
+
+
+void flash_prefetch_disable(void);
+# 55 "libopencm3/include/libopencm3/stm32/common/flash_common_all.h"
+void flash_set_ws(uint32_t ws);
+
+
+
+
+void flash_lock(void);
+
+
+
+
+
+void flash_unlock(void);
+
+
+
+
+
+void flash_unlock_option_bytes(void);
+
+
+# 35 "libopencm3/include/libopencm3/stm32/l0/flash.h" 2
+# 1 "libopencm3/include/libopencm3/stm32/common/flash_common_l01.h" 1
+# 29 "libopencm3/include/libopencm3/stm32/common/flash_common_l01.h"
+#define LIBOPENCM3_FLASH_COMMON_L01_H 
+
+
+
+
+
+
+#define FLASH_ACR MMIO32(FLASH_MEM_INTERFACE_BASE + 0x00)
+#define FLASH_PECR MMIO32(FLASH_MEM_INTERFACE_BASE + 0x04)
+#define FLASH_PDKEYR MMIO32(FLASH_MEM_INTERFACE_BASE + 0x08)
+#define FLASH_PEKEYR MMIO32(FLASH_MEM_INTERFACE_BASE + 0x0C)
+#define FLASH_PRGKEYR MMIO32(FLASH_MEM_INTERFACE_BASE + 0x10)
+#define FLASH_OPTKEYR MMIO32(FLASH_MEM_INTERFACE_BASE + 0x14)
+#define FLASH_SR MMIO32(FLASH_MEM_INTERFACE_BASE + 0x18)
+#define FLASH_OBR MMIO32(FLASH_MEM_INTERFACE_BASE + 0x1c)
+#define FLASH_WRPR1 MMIO32(FLASH_MEM_INTERFACE_BASE + 0x20)
+#define FLASH_WRPR2 MMIO32(FLASH_MEM_INTERFACE_BASE + 0x80)
+
+
+#define FLASH_ACR_RUNPD (1 << 4)
+#define FLASH_ACR_SLEEPPD (1 << 3)
+#define FLASH_ACR_PRFTEN (1 << 1)
+#define FLASH_ACR_LATENCY_SHIFT 0
+#define FLASH_ACR_LATENCY_MASK 1
+
+
+
+#define FLASH_ACR_LATENCY_0WS 0x00
+#define FLASH_ACR_LATENCY_1WS 0x01
+
+
+
+#define FLASH_PECR_OBL_LAUNCH (1 << 18)
+#define FLASH_PECR_ERRIE (1 << 17)
+#define FLASH_PECR_EOPIE (1 << 16)
+#define FLASH_PECR_PARALLBANK (1 << 15)
+#define FLASH_PECR_FPRG (1 << 10)
+#define FLASH_PECR_ERASE (1 << 9)
+#define FLASH_PECR_FTDW (1 << 8)
+#define FLASH_PECR_DATA (1 << 4)
+#define FLASH_PECR_PROG (1 << 3)
+#define FLASH_PECR_OPTLOCK (1 << 2)
+#define FLASH_PECR_PRGLOCK (1 << 1)
+#define FLASH_PECR_PELOCK (1 << 0)
+
+
+#define FLASH_PDKEYR_PDKEY1 ((uint32_t)0x04152637)
+#define FLASH_PDKEYR_PDKEY2 ((uint32_t)0xFAFBFCFD)
+
+
+#define FLASH_PEKEYR_PEKEY1 ((uint32_t)0x89ABCDEF)
+#define FLASH_PEKEYR_PEKEY2 ((uint32_t)0x02030405)
+
+
+#define FLASH_PRGKEYR_PRGKEY1 ((uint32_t)0x8C9DAEBF)
+#define FLASH_PRGKEYR_PRGKEY2 ((uint32_t)0x13141516)
+
+
+#define FLASH_OPTKEYR_KEY1 ((uint32_t)0xFBEAD9C8)
+#define FLASH_OPTKEYR_KEY2 ((uint32_t)0x24252627)
+
+
+#define FLASH_SR_OPTVERR (1 << 11)
+#define FLASH_SR_SIZEERR (1 << 10)
+#define FLASH_SR_PGAERR (1 << 9)
+#define FLASH_SR_WRPERR (1 << 8)
+#define FLASH_SR_READY (1 << 3)
+#define FLASH_SR_ENDHV (1 << 2)
+#define FLASH_SR_EOP (1 << 1)
+#define FLASH_SR_BSY (1 << 0)
+
+
+#define FLASH_OBR_BFB2 (1 << 23)
+#define FLASH_OBR_NRST_STDBY (1 << 22)
+#define FLASH_OBR_NRST_STOP (1 << 21)
+#define FLASH_OBR_IWDG_SW (1 << 20)
+#define FLASH_OBR_BOR_OFF (0x0 << 16)
+#define FLASH_OBR_BOR_LEVEL_1 (0x8 << 16)
+#define FLASH_OBR_BOR_LEVEL_2 (0x9 << 16)
+#define FLASH_OBR_BOR_LEVEL_3 (0xa << 16)
+#define FLASH_OBR_BOR_LEVEL_4 (0xb << 16)
+#define FLASH_OBR_BOR_LEVEL_5 (0xc << 16)
+#define FLASH_OBR_RDPRT_LEVEL_0 (0xaa)
+#define FLASH_OBR_RDPRT_LEVEL_1 (0x00)
+#define FLASH_OBR_RDPRT_LEVEL_2 (0xcc)
+
+
+
+void flash_unlock_pecr(void);
+void flash_lock_pecr(void);
+void flash_unlock_progmem(void);
+void flash_lock_progmem(void);
+void flash_lock_option_bytes(void);
+void flash_unlock_acr(void);
+
+void eeprom_program_word(uint32_t address, uint32_t data);
+void eeprom_program_words(uint32_t address, uint32_t *data, int length_in_words);
+
+
+# 36 "libopencm3/include/libopencm3/stm32/l0/flash.h" 2
+
+
+
+#define FLASH_OPTR FLASH_OBR
+#define FLASH_WRPROT1 FLASH_WRPR1
+#define FLASH_WRPROT2 FLASH_WRPR2
+
+
+#define FLASH_ACR_PRE_READ (1 << 6)
+#define FLASH_ACR_DISAB_BUF (1 << 5)
+
+
+#define FLASH_PECR_NZDISABLE (1 << 23)
+
+
+#define FLASH_SR_RDERR (1 << 13)
+#define FLASH_SR_NOTZEROERR (1 << 16)
+#define FLASH_SR_FWWERR (1 << 17)
+
+
+#define FLASH_OPTR_NBOOT1 (1 << 31)
+
+
+
+
+# 37 "libopencm3/include/libopencm3/stm32/flash.h" 2
+# 34 "common/include/common/memory.h" 2
+# 1 "libopencm3/include/libopencm3/stm32/rcc.h" 1
 # 35 "common/include/common/memory.h" 2
 # 49 "common/include/common/memory.h"
 #define FLASH_PAGE_SIZE 128U
@@ -2400,39 +3829,40 @@ void rcc_set_usart2_sel(uint32_t usart2_sel);
 #define EEPROM_END 0x08080800U
 
 #define LOG_SIZE 1024
-# 74 "common/include/common/memory.h"
+#define LOG_START EEPROM_END - LOG_SIZE
+# 75 "common/include/common/memory.h"
 void mem_init(void);
 
-
-# 76 "common/include/common/memory.h" 3 4
-_Bool 
-# 76 "common/include/common/memory.h"
-    mem_eeprom_write_word(uint32_t address, uint32_t data);
 
 # 77 "common/include/common/memory.h" 3 4
 _Bool 
 # 77 "common/include/common/memory.h"
-    mem_eeprom_write_half_word(uint32_t address, uint16_t data);
+    mem_eeprom_write_word(uint32_t address, uint32_t data);
 
 # 78 "common/include/common/memory.h" 3 4
 _Bool 
 # 78 "common/include/common/memory.h"
+    mem_eeprom_write_half_word(uint32_t address, uint16_t data);
+
+# 79 "common/include/common/memory.h" 3 4
+_Bool 
+# 79 "common/include/common/memory.h"
     mem_eeprom_write_byte(uint32_t address, uint8_t data);
 
-
-# 80 "common/include/common/memory.h" 3 4
-_Bool 
-# 80 "common/include/common/memory.h"
-    mem_flash_erase_page(uint32_t address);
 
 # 81 "common/include/common/memory.h" 3 4
 _Bool 
 # 81 "common/include/common/memory.h"
-    mem_flash_write_word(uint32_t address, uint32_t data);
+    mem_flash_erase_page(uint32_t address);
 
 # 82 "common/include/common/memory.h" 3 4
 _Bool 
 # 82 "common/include/common/memory.h"
+    mem_flash_write_word(uint32_t address, uint32_t data);
+
+# 83 "common/include/common/memory.h" 3 4
+_Bool 
+# 83 "common/include/common/memory.h"
     mem_flash_write_half_page(uint32_t address, uint32_t *data);
 
 void mem_save_reading(int16_t reading);
@@ -2454,7 +3884,7 @@ void mem_get_aes_key_exp(uint8_t *aes_key_exp);
 void mem_set_aes_key_exp(uint8_t *aes_key_exp);
 
 void mem_wipe_readings(void);
-# 18 "hub/src/hub_bootloader.c" 2
+# 19 "hub/src/hub_bootloader.c" 2
 # 1 "common/include/common/timers.h" 1
 
 #define TIMERS_H 
@@ -2523,7 +3953,7 @@ _Bool
     timeout(uint32_t time_microseconds, char *msg, uint32_t data);
 
 void set_gpio_for_standby(void);
-# 19 "hub/src/hub_bootloader.c" 2
+# 20 "hub/src/hub_bootloader.c" 2
 # 1 "common/include/common/log.h" 1
 # 26 "common/include/common/log.h"
 #define LOG_H 
@@ -2538,9 +3968,10 @@ void set_gpio_for_standby(void);
 void log_init(void);
 void log_printf(const char *format, ...);
 void log_error(uint16_t error);
+uint8_t log_get(uint16_t index);
 
 void serial_printf(const char *format, ...);
-# 20 "hub/src/hub_bootloader.c" 2
+# 21 "hub/src/hub_bootloader.c" 2
 # 1 "common/include/common/test.h" 1
 # 26 "common/include/common/test.h"
 #define TEST_H 
@@ -3938,7 +5369,7 @@ void test_reset_eeprom(void);
 
 void test_boot_jump_to_application(uint32_t address);
 void test_boot_verify_checksum(void);
-void test_boot_crc(void);
+void test_crc(void);
 
 
 
@@ -3977,16 +5408,26 @@ void test_low_power_run(void);
 
 void test_encryption(void);
 void test_analog_watchdog(void);
-# 21 "hub/src/hub_bootloader.c" 2
+# 22 "hub/src/hub_bootloader.c" 2
+
+# 1 "hub/include/hub/cusb.h" 1
+# 29 "hub/include/hub/cusb.h"
+#define CUSB_H 
+# 52 "hub/include/hub/cusb.h"
+void cusb_init(void);
+void cusb_test_poll(void);
+# 24 "hub/src/hub_bootloader.c" 2
 
 
 
 
 
 #define APP_ADDRESS 0x08004000
-# 51 "hub/src/hub_bootloader.c"
+# 54 "hub/src/hub_bootloader.c"
 int main(void)
 {
+ clock_setup_MSI_2MHZ();
+
     log_init();
  timers_lptim_init();
  timers_tim6_init();
@@ -3996,16 +5437,11 @@ int main(void)
 
 
     log_printf("Hub Bl Start\n");
-
-
- test_boot_crc();
-
-
-
+# 76 "hub/src/hub_bootloader.c"
     for (;;)
  {
-  log_printf("Hub Bootloader Loop\n\n");
-  timers_delay_milliseconds(1000);
+
+
  }
 
     return 0;

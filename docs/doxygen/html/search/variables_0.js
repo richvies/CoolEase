@@ -1,6 +1,8 @@
 var searchData=
 [
-  ['battery_398',['battery',['../structrfm__packet__s.html#aa6b550d91337037ef4ba0837b711ae77',1,'rfm_packet_s']]],
-  ['breportdescriptortype_399',['bReportDescriptorType',['../structhid__function__descriptor.html#ab170f72aaf50751c2950dfaec3863ec4',1,'hid_function_descriptor::bReportDescriptorType()'],['../cusb_8c.html#a96e3f5ba4a7a1c8bb1b8fca4d4ded8e8',1,'bReportDescriptorType():&#160;cusb.c']]],
-  ['buffer_400',['buffer',['../structrfm__packet__s.html#af1a876da67a681b40b75540ae2bc6176',1,'rfm_packet_s']]]
+  ['active_1078',['active',['../structsensor__t.html#acce4c08e7bb20e02b652160ee91b199d',1,'sensor_t']]],
+  ['adc_5fchannels_1079',['adc_channels',['../aes_8c.html#abaad60388015989178adb811dd332349',1,'aes.c']]],
+  ['adc_5fvals_1080',['adc_vals',['../battery_8c.html#a6d788c2fe189afc53efa449a936574d4',1,'battery.c']]],
+  ['aes_5fkey_5fadd_1081',['aes_key_add',['../group___m_e_m_o_r_y___i_n_t.html#gad9d111ff1d30738df3c626c2b315d706',1,'memory.c']]],
+  ['aes_5fkey_5fexp_5fadd_1082',['aes_key_exp_add',['../group___m_e_m_o_r_y___i_n_t.html#gab631ed5f757904bc859fb9e4c74f075d',1,'memory.c']]]
 ];

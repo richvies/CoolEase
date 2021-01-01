@@ -75,15 +75,22 @@ $(function() {
 <p>Bootloader_utils Header File.  
 <a href="#details">More...</a></p>
 <div class="textblock"><code>#include &lt;stdint.h&gt;</code><br />
+<code>#include &lt;stdbool.h&gt;</code><br />
 </div>
 <p><a href="bootloader__utils_8h_source.html">Go to the source code of this file.</a></p>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="func-members"></a>
 Functions</h2></td></tr>
+<tr class="memitem:gab14eb123f642e320218491d114b6418b"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___b_o_o_t_l_o_a_d_e_r___u_t_i_l_s___a_p_i.html#gab14eb123f642e320218491d114b6418b">boot_init</a> (void)</td></tr>
+<tr class="separator:gab14eb123f642e320218491d114b6418b"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ga6252b1935a7b8e2e6c14a969372929a2"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___b_o_o_t_l_o_a_d_e_r___u_t_i_l_s___a_p_i.html#ga6252b1935a7b8e2e6c14a969372929a2">boot_deinit</a> (void)</td></tr>
 <tr class="separator:ga6252b1935a7b8e2e6c14a969372929a2"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:gae9e4d81efbd526a6c67fd8f1f104d5b3"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___b_o_o_t_l_o_a_d_e_r___u_t_i_l_s___a_p_i.html#gae9e4d81efbd526a6c67fd8f1f104d5b3">boot_jump_to_application</a> (uint32_t address)</td></tr>
 <tr class="separator:gae9e4d81efbd526a6c67fd8f1f104d5b3"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga153399560a9486547bc5bb4b7dcf252e"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___b_o_o_t_l_o_a_d_e_r___u_t_i_l_s___a_p_i.html#ga153399560a9486547bc5bb4b7dcf252e">boot_program_application</a> (uint32_t *data, uint32_t start_address, uint32_t len, uint32_t crc)</td></tr>
+<tr class="separator:ga153399560a9486547bc5bb4b7dcf252e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga26bd7e0102d41443ee0aefe24260b86a"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___b_o_o_t_l_o_a_d_e_r___u_t_i_l_s___a_p_i.html#ga26bd7e0102d41443ee0aefe24260b86a">boot_verify_checksum</a> (uint32_t *data, uint32_t len, uint32_t expected)</td></tr>
+<tr class="separator:ga26bd7e0102d41443ee0aefe24260b86a"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>Bootloader_utils Header File. </p>

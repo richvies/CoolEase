@@ -3583,6 +3583,41 @@ _Bool
 # 26 "libopencm3/include/libopencm3/stm32/l0/st_usbfs.h" 2
 # 34 "libopencm3/include/libopencm3/stm32/st_usbfs.h" 2
 # 28 "hub/src/cusb.c" 2
+# 1 "hub/src/../../libopencm3/lib/stm32/common/st_usbfs_core.h" 1
+# 28 "hub/src/../../libopencm3/lib/stm32/common/st_usbfs_core.h"
+#define ST_USBFS_CORE 
+
+
+
+
+#define USBD_PM_TOP 0x40
+
+void st_usbfs_set_address(usbd_device *dev, uint8_t addr);
+uint16_t st_usbfs_set_ep_rx_bufsize(usbd_device *dev, uint8_t ep, uint32_t size);
+
+void st_usbfs_ep_setup(usbd_device *usbd_dev, uint8_t addr,
+  uint8_t type, uint16_t max_size,
+  void (*callback) (usbd_device *usbd_dev,
+  uint8_t ep));
+
+void st_usbfs_endpoints_reset(usbd_device *usbd_dev);
+void st_usbfs_ep_stall_set(usbd_device *usbd_dev, uint8_t addr, uint8_t stall);
+uint8_t st_usbfs_ep_stall_get(usbd_device *usbd_dev, uint8_t addr);
+void st_usbfs_ep_nak_set(usbd_device *usbd_dev, uint8_t addr, uint8_t nak);
+uint16_t st_usbfs_ep_write_packet(usbd_device *usbd_dev, uint8_t addr,
+      const void *buf, uint16_t len);
+uint16_t st_usbfs_ep_read_packet(usbd_device *usbd_dev, uint8_t addr,
+     void *buf, uint16_t len);
+void st_usbfs_poll(usbd_device *usbd_dev);
+# 62 "hub/src/../../libopencm3/lib/stm32/common/st_usbfs_core.h"
+void st_usbfs_copy_from_pm(void *buf, const volatile void *vPM, uint16_t len);
+# 71 "hub/src/../../libopencm3/lib/stm32/common/st_usbfs_core.h"
+void st_usbfs_copy_to_pm(volatile void *vPM, const void *buf, uint16_t len);
+
+extern uint8_t st_usbfs_force_nak[8];
+extern struct _usbd_device st_usbfs_dev;
+# 29 "hub/src/cusb.c" 2
+
 # 1 "libopencm3/include/libopencm3/usb/hid.h" 1
 # 39 "libopencm3/include/libopencm3/usb/hid.h"
 #define __HID_H 
@@ -3633,8 +3668,27 @@ struct usb_hid_descriptor {
  uint8_t bCountryCode;
  uint8_t bNumDescriptors;
 } __attribute__((packed));
-# 29 "hub/src/cusb.c" 2
-# 52 "hub/src/cusb.c"
+# 31 "hub/src/cusb.c" 2
+
+# 1 "common/include/common/log.h" 1
+# 26 "common/include/common/log.h"
+#define LOG_H 
+# 47 "common/include/common/log.h"
+#define ERR_BOOT_PROG_START_ADDRESS_OUT_OF_BOUNDS 0
+#define ERR_BOOT_PROG_TOO_BIG 1
+#define ERR_BOOT_PROG_BAD_CHECKSUM 2
+#define ERR_BOOT_PROG_FLASH_ERASE 3
+#define ERR_BOOT_PROG_FLASH_WRITE_1 4
+#define ERR_BOOT_PROG_FLASH_WRITE_2 5
+# 65 "common/include/common/log.h"
+void log_init(void);
+void log_printf(const char *format, ...);
+void log_error(uint16_t error);
+uint8_t log_get(uint16_t index);
+
+void serial_printf(const char *format, ...);
+# 33 "hub/src/cusb.c" 2
+# 56 "hub/src/cusb.c"
 enum dev_interfaces
 {
     INTERFACE_HID = 0,
@@ -3674,88 +3728,86 @@ enum usb_strings_index
 
 
 static const char *const usb_strings[] =
-{
-    "CoolEase",
-    "CoolEase Hub",
-    "12345",
-    "Custom HID Config"
-    "Custom HID Interface",
+    {
+        "CoolEase",
+        "CoolEase Hub",
+        "12345",
+        "Custom HID Config"
+        "Custom HID Interface",
 };
 
 
 static const struct usb_device_descriptor dev_desc =
-{
-    .bLength = sizeof(struct usb_device_descriptor),
-    .bDescriptorType = 1,
-    .bcdUSB = 0x0200,
-    .bDeviceClass = 0x00,
-    .bDeviceSubClass = 0x00,
-    .bDeviceProtocol = 0x00,
-    .bMaxPacketSize0 = 64,
-    .idVendor = 0x0483,
-    .idProduct = 0x5750,
-    .bcdDevice = 0x0200,
-    .iManufacturer = USB_MANUFACTURER_IDX,
-    .iProduct = USB_PRODUCT_IDX,
-    .iSerialNumber = USB_SERIAL_IDX,
-    .bNumConfigurations = 1
-};
+    {
+        .bLength = sizeof(struct usb_device_descriptor),
+        .bDescriptorType = 1,
+        .bcdUSB = 0x0200,
+        .bDeviceClass = 0x00,
+        .bDeviceSubClass = 0x00,
+        .bDeviceProtocol = 0x00,
+        .bMaxPacketSize0 = 64,
+        .idVendor = 0x0483,
+        .idProduct = 0x5750,
+        .bcdDevice = 0x0200,
+        .iManufacturer = USB_MANUFACTURER_IDX,
+        .iProduct = USB_PRODUCT_IDX,
+        .iSerialNumber = USB_SERIAL_IDX,
+        .bNumConfigurations = 1};
 
 
 static const struct usb_endpoint_descriptor hid_interface_endpoints[] =
-{
     {
+        {
 
-        .bLength = 7,
+            .bLength = 7,
 
-        .bDescriptorType = 5,
-
-
-
-
-        .bEndpointAddress = ENDPOINT_HID_IN,
-# 139 "hub/src/cusb.c"
-        .bmAttributes = 0x03,
-
-        .wMaxPacketSize = 64,
-
-
-        .bInterval = 1,
-    },
-    {
-
-        .bLength = 7,
-
-        .bDescriptorType = 5,
+            .bDescriptorType = 5,
 
 
 
 
-        .bEndpointAddress = ENDPOINT_HID_OUT,
-# 164 "hub/src/cusb.c"
-        .bmAttributes = 0x03,
+            .bEndpointAddress = ENDPOINT_HID_IN,
+# 142 "hub/src/cusb.c"
+            .bmAttributes = 0x03,
 
-        .wMaxPacketSize = 64,
+            .wMaxPacketSize = 64,
 
 
-        .bInterval = 1,
-    }
-};
-# 180 "hub/src/cusb.c"
+            .bInterval = 1,
+        },
+        {
+
+            .bLength = 7,
+
+            .bDescriptorType = 5,
+
+
+
+
+            .bEndpointAddress = ENDPOINT_HID_OUT,
+# 167 "hub/src/cusb.c"
+            .bmAttributes = 0x03,
+
+            .wMaxPacketSize = 64,
+
+
+            .bInterval = 1,
+        }};
+# 182 "hub/src/cusb.c"
 static const uint8_t hid_report_descriptor[] =
-{
-    0x06, 0x00, 0xff,
-    0x09, 0x01,
-    0xa1, 0x01,
-    0x09, 0x01,
-    0x15, 0x00,
-    0x26, 0xff, 0x00,
-    0x75, 0x08,
-    0x95, 0x40,
-    0x81, 0x02,
-    0x09, 0x01,
-    0x91, 0x02,
-    0xc0
+    {
+        0x06, 0x00, 0xff,
+        0x09, 0x01,
+        0xa1, 0x01,
+        0x09, 0x01,
+        0x15, 0x00,
+        0x26, 0xff, 0x00,
+        0x75, 0x08,
+        0x95, 0x40,
+        0x81, 0x02,
+        0x09, 0x01,
+        0x91, 0x02,
+        0xc0
 };
 
 
@@ -3769,144 +3821,89 @@ static const struct hid_function_descriptor
     } __attribute__((packed)) hid_report;
 } __attribute__((packed)) hid_function =
 
-{
-    .hid_descriptor =
     {
+        .hid_descriptor =
+            {
 
-        .bLength = sizeof(hid_function),
+                .bLength = sizeof(hid_function),
 
-        .bDescriptorType = 0x21,
-
-
-        .bcdHID = 0x0111,
-
-
-        .bCountryCode = 0,
+                .bDescriptorType = 0x21,
 
 
-        .bNumDescriptors = 1,
-    },
+                .bcdHID = 0x0111,
 
-    .hid_report =
-    {
 
-        .bReportDescriptorType = 0x22,
+                .bCountryCode = 0,
 
-        .wDescriptorLength = sizeof(hid_report_descriptor),
-    },
+
+                .bNumDescriptors = 1,
+            },
+
+        .hid_report =
+            {
+
+                .bReportDescriptorType = 0x22,
+
+                .wDescriptorLength = sizeof(hid_report_descriptor),
+            },
 };
 
 
 static const struct usb_interface_descriptor hid_interface =
-{
+    {
 
-    .bLength = 9,
+        .bLength = 9,
 
-    .bDescriptorType = 4,
+        .bDescriptorType = 4,
 
-    .bInterfaceNumber = INTERFACE_HID,
+        .bInterfaceNumber = INTERFACE_HID,
 
-    .bAlternateSetting = 0,
+        .bAlternateSetting = 0,
 
-    .bNumEndpoints = 2,
+        .bNumEndpoints = 2,
 
-    .bInterfaceClass = 3,
-
-
-    .bInterfaceSubClass = 0,
-    .bInterfaceProtocol = 0,
-
-    .iInterface = USB_INTERFACE_IDX,
+        .bInterfaceClass = 3,
 
 
+        .bInterfaceSubClass = 0,
+        .bInterfaceProtocol = 0,
 
-    .endpoint = hid_interface_endpoints,
+        .iInterface = USB_INTERFACE_IDX,
 
 
 
+        .endpoint = hid_interface_endpoints,
 
-    .extra = &hid_function,
 
-    .extralen = sizeof(hid_function),
+
+
+        .extra = &hid_function,
+
+        .extralen = sizeof(hid_function),
 };
 
 
 static const struct usb_interface interfaces[] =
-{
     {
-        .num_altsetting = 1,
-        .altsetting = &hid_interface,
-    }
-};
+        {
+            .num_altsetting = 1,
+            .altsetting = &hid_interface,
+        }};
 
 
 static const struct usb_config_descriptor cfg_desc =
-{
-    .bLength = 9,
-    .bDescriptorType = 2,
-    .wTotalLength = 0,
-    .bNumInterfaces = INTERFACE_COUNT,
-    .bConfigurationValue = 1,
-    .iConfiguration = USB_CONFIGURATION_IDX,
-    .bmAttributes = 0b10000000,
-    .bMaxPower = 200,
-    .interface = interfaces,
+    {
+        .bLength = 9,
+        .bDescriptorType = 2,
+        .wTotalLength = 0,
+        .bNumInterfaces = INTERFACE_COUNT,
+        .bConfigurationValue = 1,
+        .iConfiguration = USB_CONFIGURATION_IDX,
+        .bmAttributes = 0b10000000,
+        .bMaxPower = 200,
+        .interface = interfaces,
 };
-# 305 "hub/src/cusb.c"
-static uint8_t hid_report_buf[64] = "Default Report Buffer";
-
-
-
-
-
-static enum usbd_request_return_codes hid_control_request(usbd_device *dev, struct usb_setup_data *req, uint8_t **buf, uint16_t *len,
-                                                          void (**complete)(usbd_device *, struct usb_setup_data *))
-{
-    (void)complete;
-    (void)dev;
-
-    if ((req->bmRequestType != 0x81) ||
-        (req->bRequest != 6) ||
-        (req->wValue != 0x2200))
-        return USBD_REQ_NOTSUPP;
-
-
-    *buf = (uint8_t *)hid_report_descriptor;
-    *len = sizeof(hid_report_descriptor);
-
-    return USBD_REQ_HANDLED;
-}
-
-
-
-
-void hid_report_callback(usbd_device *usbd_dev, uint8_t ea);
-void hid_report_callback(usbd_device *usbd_dev, uint8_t ea)
-{
-    usbd_ep_write_packet(usbd_dev, ea, hid_report_buf, sizeof(hid_report_buf) / sizeof(uint8_t));
-}
-
-
-
-
-
-
-static void hid_set_config(usbd_device *dev, uint16_t wValue)
-{
-    (void)wValue;
-    (void)dev;
-
-    usbd_ep_setup(dev, ENDPOINT_HID_IN, 0x03, 64, hid_report_callback);
-    usbd_ep_setup(dev, ENDPOINT_HID_OUT, 0x03, 64, hid_report_callback);
-
-    usbd_register_control_callback(
-        dev,
-        0x00 | 0x01,
-        0x60 | 0x1F,
-        hid_control_request);
-}
-
-
+# 303 "hub/src/cusb.c"
 static usbd_device *usbd_dev;
 
 
@@ -3916,8 +3913,47 @@ static uint8_t usbd_control_buffer[128];
 
 
 
+static uint8_t hid_report_buf[64] = "Default Report Buffer";
+
+
+
+
+
+
 static void cusb_clock_init(void);
-# 380 "hub/src/cusb.c"
+
+
+
+
+
+static void cusb_reset_callback(void)
+{
+
+}
+# 339 "hub/src/cusb.c"
+static void hid_set_config(usbd_device *dev, uint16_t wValue);
+
+
+
+
+
+static enum usbd_request_return_codes hid_control_request(usbd_device *dev, struct usb_setup_data *req, uint8_t **buf, uint16_t *len,
+                                                          void (**complete)(usbd_device *, struct usb_setup_data *));
+
+
+
+
+
+
+static void hid_out_report_callback(usbd_device *dev, uint8_t ea);
+
+
+
+
+
+
+static void hid_in_report_callback(usbd_device *dev, uint8_t ea);
+# 373 "hub/src/cusb.c"
 void cusb_init(void)
 {
 
@@ -3933,16 +3969,21 @@ void cusb_init(void)
 
 
     usbd_register_set_config_callback(usbd_dev, hid_set_config);
+
+
+    nvic_enable_irq(31);
+    nvic_set_priority(31, 0);
 }
 
 void cusb_test_poll(void)
 {
     while (1)
     {
+
         usbd_poll(usbd_dev);
     }
 }
-# 416 "hub/src/cusb.c"
+# 413 "hub/src/cusb.c"
 static void cusb_clock_init(void)
 {
 
@@ -3991,4 +4032,124 @@ static void cusb_clock_init(void)
 
 
     rcc_osc_off(RCC_MSI);
+}
+
+
+
+
+
+static void hid_set_config(usbd_device *dev, uint16_t wValue)
+{
+    (void)wValue;
+    (void)dev;
+
+    usbd_ep_setup(dev, ENDPOINT_HID_IN, 0x03, 64, hid_in_report_callback);
+    usbd_ep_setup(dev, ENDPOINT_HID_OUT, 0x03, 64, hid_out_report_callback);
+
+    usbd_register_control_callback(
+        dev,
+        0x00 | 0x01,
+        0x60 | 0x1F,
+        hid_control_request);
+}
+
+static enum usbd_request_return_codes hid_control_request(usbd_device *dev, struct usb_setup_data *req, uint8_t **buf, uint16_t *len,
+                                                          void (**complete)(usbd_device *, struct usb_setup_data *))
+{
+    (void)complete;
+    (void)dev;
+
+    if ((req->bmRequestType != 0x81) ||
+        (req->bRequest != 6) ||
+        (req->wValue != 0x2200))
+        return USBD_REQ_NOTSUPP;
+
+
+    *buf = (uint8_t *)hid_report_descriptor;
+    *len = sizeof(hid_report_descriptor);
+
+    return USBD_REQ_HANDLED;
+}
+
+static void hid_in_report_callback(usbd_device *dev, uint8_t ea)
+{
+
+}
+
+static void hid_out_report_callback(usbd_device *dev, uint8_t ea)
+{
+    usbd_ep_read_packet(dev, ea, hid_report_buf, sizeof(hid_report_buf) / sizeof(uint8_t));
+
+    uint8_t command = hid_report_buf[0];
+
+    serial_printf("Out Resport command: %i data: %s\n",command, &hid_report_buf[4]);
+
+
+}
+
+
+
+
+
+void usb_isr(void)
+{
+ uint16_t istr = *(&(*(volatile uint32_t *)((((0x40000000U) + 0x00000) + 0x5c00) + 0x44)));
+
+ if (istr & 0x0400) {
+  (*(((&(*(volatile uint32_t *)((((0x40000000U) + 0x00000) + 0x5c00) + 0x44))))) = (uint16_t)((~(0x0400))));
+  usbd_dev->pm_top = 0x40;
+  _usbd_reset(usbd_dev);
+  return;
+ }
+
+ if (istr & 0x8000) {
+  uint8_t ep = istr & 0x000F;
+  uint8_t type;
+
+  if (istr & 0x0010) {
+
+   if (*(&(*(volatile uint32_t *)((((0x40000000U) + 0x00000) + 0x5c00))) + (ep)) & 0x0800) {
+    type = USB_TRANSACTION_SETUP;
+    st_usbfs_ep_read_packet(usbd_dev, ep, &usbd_dev->control_state.req, 8);
+   } else {
+    type = USB_TRANSACTION_OUT;
+   }
+  } else {
+   type = USB_TRANSACTION_IN;
+   (*(((&(*(volatile uint32_t *)((((0x40000000U) + 0x00000) + 0x5c00))) + (ep)))) = (uint16_t)((((uint16_t) *(((&(*(volatile uint32_t *)((((0x40000000U) + 0x00000) + 0x5c00))) + (ep))))) & ((0x8000 | 0x0800 | 0x0600 | 0x0100 | 0x0080 | 0x000F)) & (~(0x0080))) | (0x8000)));
+  }
+
+  if (usbd_dev->user_callback_ctr[ep][type]) {
+   usbd_dev->user_callback_ctr[ep][type] (usbd_dev, ep);
+  } else {
+   (*(((&(*(volatile uint32_t *)((((0x40000000U) + 0x00000) + 0x5c00))) + (ep)))) = (uint16_t)((((uint16_t) *(((&(*(volatile uint32_t *)((((0x40000000U) + 0x00000) + 0x5c00))) + (ep))))) & ((0x8000 | 0x0800 | 0x0600 | 0x0100 | 0x0080 | 0x000F)) & (~(0x8000))) | (0x0080)));
+  }
+ }
+
+ if (istr & 0x0800) {
+  (*(((&(*(volatile uint32_t *)((((0x40000000U) + 0x00000) + 0x5c00) + 0x44))))) = (uint16_t)((~(0x0800))));
+  if (usbd_dev->user_callback_suspend) {
+   usbd_dev->user_callback_suspend();
+  }
+ }
+
+ if (istr & 0x1000) {
+  (*(((&(*(volatile uint32_t *)((((0x40000000U) + 0x00000) + 0x5c00) + 0x44))))) = (uint16_t)((~(0x1000))));
+  if (usbd_dev->user_callback_resume) {
+   usbd_dev->user_callback_resume();
+  }
+ }
+
+ if (istr & 0x0200) {
+  (*(((&(*(volatile uint32_t *)((((0x40000000U) + 0x00000) + 0x5c00) + 0x44))))) = (uint16_t)((~(0x0200))));
+  if (usbd_dev->user_callback_sof) {
+   usbd_dev->user_callback_sof();
+  }
+ }
+
+ if (usbd_dev->user_callback_sof) {
+  *(&(*(volatile uint32_t *)((((0x40000000U) + 0x00000) + 0x5c00) + 0x40))) |= 0x0200;
+ } else {
+  *(&(*(volatile uint32_t *)((((0x40000000U) + 0x00000) + 0x5c00) + 0x40))) &= ~0x0200;
+ }
 }

@@ -9,12 +9,22 @@ Bootloader\+\_\+utils Source File.
 {\ttfamily \#include $<$libopencm3/cm3/cortex.\+h$>$}\newline
 {\ttfamily \#include $<$libopencm3/cm3/scb.\+h$>$}\newline
 {\ttfamily \#include $<$libopencm3/cm3/common.\+h$>$}\newline
+{\ttfamily \#include $<$libopencm3/stm32/rcc.\+h$>$}\newline
+{\ttfamily \#include $<$libopencm3/stm32/crc.\+h$>$}\newline
+{\ttfamily \#include \char`\"{}common/memory.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}common/log.\+h\char`\"{}}\newline
 \doxysubsection*{Functions}
 \begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{group___b_o_o_t_l_o_a_d_e_r___u_t_i_l_s___a_p_i_gab14eb123f642e320218491d114b6418b}{boot\+\_\+init}} (void)
 \item 
 void \mbox{\hyperlink{group___b_o_o_t_l_o_a_d_e_r___u_t_i_l_s___a_p_i_ga6252b1935a7b8e2e6c14a969372929a2}{boot\+\_\+deinit}} (void)
 \item 
 void \mbox{\hyperlink{group___b_o_o_t_l_o_a_d_e_r___u_t_i_l_s___a_p_i_gae9e4d81efbd526a6c67fd8f1f104d5b3}{boot\+\_\+jump\+\_\+to\+\_\+application}} (uint32\+\_\+t address)
+\item 
+bool \mbox{\hyperlink{group___b_o_o_t_l_o_a_d_e_r___u_t_i_l_s___a_p_i_ga153399560a9486547bc5bb4b7dcf252e}{boot\+\_\+program\+\_\+application}} (uint32\+\_\+t $\ast$data, uint32\+\_\+t start\+\_\+address, uint32\+\_\+t len, uint32\+\_\+t crc)
+\item 
+bool \mbox{\hyperlink{group___b_o_o_t_l_o_a_d_e_r___u_t_i_l_s___a_p_i_ga26bd7e0102d41443ee0aefe24260b86a}{boot\+\_\+verify\+\_\+checksum}} (uint32\+\_\+t $\ast$data, uint32\+\_\+t len, uint32\+\_\+t expected)
 \end{DoxyCompactItemize}
 
 

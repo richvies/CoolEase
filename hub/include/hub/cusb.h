@@ -58,4 +58,4 @@ void cusb_test_poll(void);
 }
 #endif
 
-#endif /* CUSB_H */
+#endif // CUSB_H 

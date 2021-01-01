@@ -48,6 +48,7 @@
 /*////////////////////////////////////////////////////////////////////////////*/
 // Exported Function Definitions
 /*////////////////////////////////////////////////////////////////////////////*/
+
 void boot_init(void)
 {
     // Reset all peripherals
@@ -177,11 +178,11 @@ bool boot_verify_checksum(uint32_t *data, uint32_t len, uint32_t expected)
     // Initialize CRC Peripheral
     rcc_periph_clock_enable(RCC_CRC);
     crc_reset();
+    crc_set_reverse_input(CRC_CR_REV_IN_BYTE);
     crc_reverse_output_enable();
-    crc_set_reverse_input(CRC_CR_REV_IN_WORD);
 
     // Calc CRC32
-    uint32_t crc = crc_calculate_block(data, len);
+    uint32_t crc = ~crc_calculate_block(data, len);
 
     // Deinit
     crc_reset();

@@ -1,0 +1,128 @@
+\hypertarget{group___l_o_g___i_n_t}{}\doxysection{Log Internal}
+\label{group___l_o_g___i_n_t}\index{Log Internal@{Log Internal}}
+
+
+~\newline
+  
+
+
+\doxysubsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define \mbox{\hyperlink{group___l_o_g___i_n_t_ga609a6de2c7ff0a69b55d3b3c5e260cc5}{L\+O\+G\+\_\+\+S\+I\+ZE}}~1024
+\item 
+\#define \mbox{\hyperlink{group___l_o_g___i_n_t_ga4c5da377aedf46d6e87f65e8cbcef12a}{L\+O\+G\+\_\+\+S\+T\+A\+RT}}~\mbox{\hyperlink{group___m_e_m_o_r_y___a_p_i_gadf9145e295206c9240dd45639b3257d8}{E\+E\+P\+R\+O\+M\+\_\+\+E\+ND}} -\/ \mbox{\hyperlink{group___l_o_g___i_n_t_ga609a6de2c7ff0a69b55d3b3c5e260cc5}{L\+O\+G\+\_\+\+S\+I\+ZE}}
+\end{DoxyCompactItemize}
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+static void \mbox{\hyperlink{group___l_o_g___i_n_t_ga1172bdb0b37a8539e8d87a316d5583ff}{clock\+\_\+setup}} (void)
+\item 
+static void \mbox{\hyperlink{group___l_o_g___i_n_t_gaed614ed9ea0277bd3376f4535a2a0ff8}{usart\+\_\+setup}} (void)
+\item 
+static void \mbox{\hyperlink{group___l_o_g___i_n_t_ga0ee8f139fc3909730ae8e81b2f004795}{\+\_\+putchar\+\_\+main}} (char character)
+\item 
+static void \mbox{\hyperlink{group___l_o_g___i_n_t_ga34aefe2fc47d48e4b806bf3c7a6c36ab}{\+\_\+putchar\+\_\+spf}} (char character)
+\item 
+static void \mbox{\hyperlink{group___l_o_g___i_n_t_gafc7309ae2fd7c9730d75900828664468}{\+\_\+putchar\+\_\+mem}} (char character)
+\end{DoxyCompactItemize}
+\doxysubsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+static uint32\+\_\+t \mbox{\hyperlink{group___l_o_g___i_n_t_ga89cc258345eab379180d515b6def1d23}{curr\+\_\+address}} = \mbox{\hyperlink{group___m_e_m_o_r_y___f_i_l_e_ga4c5da377aedf46d6e87f65e8cbcef12a}{L\+O\+G\+\_\+\+S\+T\+A\+RT}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+~\newline
+ 
+
+
+
+\doxysubsection{Macro Definition Documentation}
+\mbox{\Hypertarget{group___l_o_g___i_n_t_ga609a6de2c7ff0a69b55d3b3c5e260cc5}\label{group___l_o_g___i_n_t_ga609a6de2c7ff0a69b55d3b3c5e260cc5}} 
+\index{Log Internal@{Log Internal}!LOG\_SIZE@{LOG\_SIZE}}
+\index{LOG\_SIZE@{LOG\_SIZE}!Log Internal@{Log Internal}}
+\doxysubsubsection{\texorpdfstring{LOG\_SIZE}{LOG\_SIZE}}
+{\footnotesize\ttfamily \#define L\+O\+G\+\_\+\+S\+I\+ZE~1024}
+
+
+
+Definition at line 35 of file log.\+c.
+
+\mbox{\Hypertarget{group___l_o_g___i_n_t_ga4c5da377aedf46d6e87f65e8cbcef12a}\label{group___l_o_g___i_n_t_ga4c5da377aedf46d6e87f65e8cbcef12a}} 
+\index{Log Internal@{Log Internal}!LOG\_START@{LOG\_START}}
+\index{LOG\_START@{LOG\_START}!Log Internal@{Log Internal}}
+\doxysubsubsection{\texorpdfstring{LOG\_START}{LOG\_START}}
+{\footnotesize\ttfamily \#define L\+O\+G\+\_\+\+S\+T\+A\+RT~\mbox{\hyperlink{group___m_e_m_o_r_y___a_p_i_gadf9145e295206c9240dd45639b3257d8}{E\+E\+P\+R\+O\+M\+\_\+\+E\+ND}} -\/ \mbox{\hyperlink{group___l_o_g___i_n_t_ga609a6de2c7ff0a69b55d3b3c5e260cc5}{L\+O\+G\+\_\+\+S\+I\+ZE}}}
+
+
+
+Definition at line 36 of file log.\+c.
+
+
+
+\doxysubsection{Function Documentation}
+\mbox{\Hypertarget{group___l_o_g___i_n_t_ga0ee8f139fc3909730ae8e81b2f004795}\label{group___l_o_g___i_n_t_ga0ee8f139fc3909730ae8e81b2f004795}} 
+\index{Log Internal@{Log Internal}!\_putchar\_main@{\_putchar\_main}}
+\index{\_putchar\_main@{\_putchar\_main}!Log Internal@{Log Internal}}
+\doxysubsubsection{\texorpdfstring{\_putchar\_main()}{\_putchar\_main()}}
+{\footnotesize\ttfamily static void \+\_\+putchar\+\_\+main (\begin{DoxyParamCaption}\item[{char}]{character }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Definition at line 167 of file log.\+c.
+
+\mbox{\Hypertarget{group___l_o_g___i_n_t_gafc7309ae2fd7c9730d75900828664468}\label{group___l_o_g___i_n_t_gafc7309ae2fd7c9730d75900828664468}} 
+\index{Log Internal@{Log Internal}!\_putchar\_mem@{\_putchar\_mem}}
+\index{\_putchar\_mem@{\_putchar\_mem}!Log Internal@{Log Internal}}
+\doxysubsubsection{\texorpdfstring{\_putchar\_mem()}{\_putchar\_mem()}}
+{\footnotesize\ttfamily static void \+\_\+putchar\+\_\+mem (\begin{DoxyParamCaption}\item[{char}]{character }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Definition at line 181 of file log.\+c.
+
+\mbox{\Hypertarget{group___l_o_g___i_n_t_ga34aefe2fc47d48e4b806bf3c7a6c36ab}\label{group___l_o_g___i_n_t_ga34aefe2fc47d48e4b806bf3c7a6c36ab}} 
+\index{Log Internal@{Log Internal}!\_putchar\_spf@{\_putchar\_spf}}
+\index{\_putchar\_spf@{\_putchar\_spf}!Log Internal@{Log Internal}}
+\doxysubsubsection{\texorpdfstring{\_putchar\_spf()}{\_putchar\_spf()}}
+{\footnotesize\ttfamily static void \+\_\+putchar\+\_\+spf (\begin{DoxyParamCaption}\item[{char}]{character }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Definition at line 176 of file log.\+c.
+
+\mbox{\Hypertarget{group___l_o_g___i_n_t_ga1172bdb0b37a8539e8d87a316d5583ff}\label{group___l_o_g___i_n_t_ga1172bdb0b37a8539e8d87a316d5583ff}} 
+\index{Log Internal@{Log Internal}!clock\_setup@{clock\_setup}}
+\index{clock\_setup@{clock\_setup}!Log Internal@{Log Internal}}
+\doxysubsubsection{\texorpdfstring{clock\_setup()}{clock\_setup()}}
+{\footnotesize\ttfamily static void clock\+\_\+setup (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Definition at line 119 of file log.\+c.
+
+\mbox{\Hypertarget{group___l_o_g___i_n_t_gaed614ed9ea0277bd3376f4535a2a0ff8}\label{group___l_o_g___i_n_t_gaed614ed9ea0277bd3376f4535a2a0ff8}} 
+\index{Log Internal@{Log Internal}!usart\_setup@{usart\_setup}}
+\index{usart\_setup@{usart\_setup}!Log Internal@{Log Internal}}
+\doxysubsubsection{\texorpdfstring{usart\_setup()}{usart\_setup()}}
+{\footnotesize\ttfamily static void usart\+\_\+setup (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Definition at line 142 of file log.\+c.
+
+
+
+\doxysubsection{Variable Documentation}
+\mbox{\Hypertarget{group___l_o_g___i_n_t_ga89cc258345eab379180d515b6def1d23}\label{group___l_o_g___i_n_t_ga89cc258345eab379180d515b6def1d23}} 
+\index{Log Internal@{Log Internal}!curr\_address@{curr\_address}}
+\index{curr\_address@{curr\_address}!Log Internal@{Log Internal}}
+\doxysubsubsection{\texorpdfstring{curr\_address}{curr\_address}}
+{\footnotesize\ttfamily uint32\+\_\+t curr\+\_\+address = \mbox{\hyperlink{group___m_e_m_o_r_y___f_i_l_e_ga4c5da377aedf46d6e87f65e8cbcef12a}{L\+O\+G\+\_\+\+S\+T\+A\+RT}}\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Definition at line 42 of file log.\+c.
+

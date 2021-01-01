@@ -14,10 +14,13 @@
 
 #include "hub/hub_bootloader.h"
 
+#include "common/board_defs.h"
 #include "common/memory.h"
 #include "common/timers.h"
 #include "common/log.h"
 #include "common/test.h"
+
+#include "hub/cusb.h"
 
 /** @addtogroup HUB_BOOTLOADER_FILE 
  * @{
@@ -50,6 +53,8 @@
 
 int main(void)
 {
+	clock_setup_MSI_2MHZ();
+
     log_init();
 	timers_lptim_init();
 	timers_tim6_init();
@@ -60,15 +65,18 @@ int main(void)
 	
     log_printf("Hub Bl Start\n");
 
+	// cusb_init();
+	// cusb_test_poll();
+
 	// test_boot_verify_checksum();
-	test_boot_crc();
+	// test_crc();
 
     // boot_jump_to_application(APP_ADDRESS);
 
     for (;;)
 	{
-		log_printf("Hub Bootloader Loop\n\n");
-		timers_delay_milliseconds(1000);
+		// log_printf("Hub Bootloader Loop\n\n");
+		// timers_delay_milliseconds(1000);
 	}
 
     return 0;

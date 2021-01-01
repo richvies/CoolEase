@@ -3670,6 +3670,9 @@ _Bool
 }sensor_t;
 
 
+void clock_setup_MSI_2MHZ(void);
+
+
 
 
 #define MAX_SENSORS 50
@@ -3784,7 +3787,7 @@ sensor_t *get_sensor(uint32_t dev_num);
 
 #define W25_SPI_SCK_PORT GPIOB
 #define W25_SPI_SCK GPIO3
-# 229 "common/include/common/board_defs.h"
+# 232 "common/include/common/board_defs.h"
 void gpio_init(void);
 # 22 "common/src/memory.c" 2
 # 1 "common/include/common/log.h" 1
@@ -3801,6 +3804,7 @@ void gpio_init(void);
 void log_init(void);
 void log_printf(const char *format, ...);
 void log_error(uint16_t error);
+uint8_t log_get(uint16_t index);
 
 void serial_printf(const char *format, ...);
 # 23 "common/src/memory.c" 2
@@ -3900,39 +3904,40 @@ void set_gpio_for_standby(void);
 #define EEPROM_END 0x08080800U
 
 #define LOG_SIZE 1024
-# 74 "common/include/common/memory.h"
+#define LOG_START EEPROM_END - LOG_SIZE
+# 75 "common/include/common/memory.h"
 void mem_init(void);
 
-
-# 76 "common/include/common/memory.h" 3 4
-_Bool 
-# 76 "common/include/common/memory.h"
-    mem_eeprom_write_word(uint32_t address, uint32_t data);
 
 # 77 "common/include/common/memory.h" 3 4
 _Bool 
 # 77 "common/include/common/memory.h"
-    mem_eeprom_write_half_word(uint32_t address, uint16_t data);
+    mem_eeprom_write_word(uint32_t address, uint32_t data);
 
 # 78 "common/include/common/memory.h" 3 4
 _Bool 
 # 78 "common/include/common/memory.h"
+    mem_eeprom_write_half_word(uint32_t address, uint16_t data);
+
+# 79 "common/include/common/memory.h" 3 4
+_Bool 
+# 79 "common/include/common/memory.h"
     mem_eeprom_write_byte(uint32_t address, uint8_t data);
 
-
-# 80 "common/include/common/memory.h" 3 4
-_Bool 
-# 80 "common/include/common/memory.h"
-    mem_flash_erase_page(uint32_t address);
 
 # 81 "common/include/common/memory.h" 3 4
 _Bool 
 # 81 "common/include/common/memory.h"
-    mem_flash_write_word(uint32_t address, uint32_t data);
+    mem_flash_erase_page(uint32_t address);
 
 # 82 "common/include/common/memory.h" 3 4
 _Bool 
 # 82 "common/include/common/memory.h"
+    mem_flash_write_word(uint32_t address, uint32_t data);
+
+# 83 "common/include/common/memory.h" 3 4
+_Bool 
+# 83 "common/include/common/memory.h"
     mem_flash_write_half_page(uint32_t address, uint32_t *data);
 
 void mem_save_reading(int16_t reading);
@@ -3966,14 +3971,11 @@ void mem_wipe_readings(void);
 #define STATE_ATTACHED (1 << 1)
 
 
-#define LOG_START 0x08080400
-
-
 
 #define READINGS_START ( FLASH_END - 8192 )
 #define MAX_READINGS 2048
-# 51 "common/src/memory.c"
-static uint32_t log_add = 0x08080400;
+# 48 "common/src/memory.c"
+static uint32_t log_add = 0x08080800U - 1024;
 static uint32_t next_reading_add = ( 0x08010000U - 8192 );
 
 
@@ -3990,34 +3992,34 @@ static uint32_t msg_num = 0;
 
 
 static __attribute__((section (".data#"), noinline)) 
-# 67 "common/src/memory.c" 3 4
+# 64 "common/src/memory.c" 3 4
            _Bool 
-# 67 "common/src/memory.c"
+# 64 "common/src/memory.c"
                 mem_flash_do_page_erase(uint32_t address);
 static __attribute__((section (".data#"), noinline)) 
-# 68 "common/src/memory.c" 3 4
+# 65 "common/src/memory.c" 3 4
            _Bool 
-# 68 "common/src/memory.c"
+# 65 "common/src/memory.c"
                 mem_flash_do_write_half_page(uint32_t address, uint32_t *data);
-# 81 "common/src/memory.c"
+# 78 "common/src/memory.c"
 void mem_init(void)
 {
     rcc_periph_clock_enable(RCC_MIF);
-# 100 "common/src/memory.c"
+# 97 "common/src/memory.c"
 }
 
 
 
-# 103 "common/src/memory.c" 3 4
+# 100 "common/src/memory.c" 3 4
 _Bool 
-# 103 "common/src/memory.c"
+# 100 "common/src/memory.c"
     mem_eeprom_write_word(uint32_t address, uint32_t data)
 {
     if( !(address >= 0x08080000U && address < 0x08080800U) )
         return 
-# 106 "common/src/memory.c" 3 4
+# 103 "common/src/memory.c" 3 4
               0
-# 106 "common/src/memory.c"
+# 103 "common/src/memory.c"
                    ;
 
     flash_unlock_pecr();
@@ -4032,23 +4034,23 @@ _Bool
     flash_lock_pecr();
 
     return 
-# 119 "common/src/memory.c" 3 4
+# 116 "common/src/memory.c" 3 4
           1
-# 119 "common/src/memory.c"
+# 116 "common/src/memory.c"
               ;
 }
 
 
-# 122 "common/src/memory.c" 3 4
+# 119 "common/src/memory.c" 3 4
 _Bool 
-# 122 "common/src/memory.c"
+# 119 "common/src/memory.c"
     mem_eeprom_write_half_word(uint32_t address, uint16_t data)
 {
     if( !(address >= 0x08080000U && address < 0x08080800U) )
         return 
-# 125 "common/src/memory.c" 3 4
+# 122 "common/src/memory.c" 3 4
               0
-# 125 "common/src/memory.c"
+# 122 "common/src/memory.c"
                    ;
 
     flash_unlock_pecr();
@@ -4063,23 +4065,23 @@ _Bool
     flash_lock_pecr();
 
     return 
-# 138 "common/src/memory.c" 3 4
+# 135 "common/src/memory.c" 3 4
           1
-# 138 "common/src/memory.c"
+# 135 "common/src/memory.c"
               ;
 }
 
 
-# 141 "common/src/memory.c" 3 4
+# 138 "common/src/memory.c" 3 4
 _Bool 
-# 141 "common/src/memory.c"
+# 138 "common/src/memory.c"
     mem_eeprom_write_byte(uint32_t address, uint8_t data)
 {
     if( !(address >= 0x08080000U && address < 0x08080800U) )
         return 
-# 144 "common/src/memory.c" 3 4
+# 141 "common/src/memory.c" 3 4
               0
-# 144 "common/src/memory.c"
+# 141 "common/src/memory.c"
                    ;
 
     flash_unlock_pecr();
@@ -4094,35 +4096,35 @@ _Bool
     flash_lock_pecr();
 
     return 
-# 157 "common/src/memory.c" 3 4
+# 154 "common/src/memory.c" 3 4
           1
-# 157 "common/src/memory.c"
+# 154 "common/src/memory.c"
               ;
 }
 
 
 
-# 161 "common/src/memory.c" 3 4
+# 158 "common/src/memory.c" 3 4
 _Bool 
-# 161 "common/src/memory.c"
+# 158 "common/src/memory.c"
     mem_flash_erase_page(uint32_t address)
 {
     
-# 163 "common/src/memory.c" 3 4
+# 160 "common/src/memory.c" 3 4
    _Bool 
-# 163 "common/src/memory.c"
+# 160 "common/src/memory.c"
         result = 
-# 163 "common/src/memory.c" 3 4
+# 160 "common/src/memory.c" 3 4
                  0
-# 163 "common/src/memory.c"
+# 160 "common/src/memory.c"
                       ;
 
 
     if (address & 0x7F)
         return 
-# 167 "common/src/memory.c" 3 4
+# 164 "common/src/memory.c" 3 4
               0
-# 167 "common/src/memory.c"
+# 164 "common/src/memory.c"
                    ;
 
     flash_unlock();
@@ -4132,26 +4134,26 @@ _Bool
 }
 
 
-# 175 "common/src/memory.c" 3 4
+# 172 "common/src/memory.c" 3 4
 _Bool 
-# 175 "common/src/memory.c"
+# 172 "common/src/memory.c"
     mem_flash_write_half_page(uint32_t address, uint32_t *data)
 {
     
-# 177 "common/src/memory.c" 3 4
+# 174 "common/src/memory.c" 3 4
    _Bool 
-# 177 "common/src/memory.c"
+# 174 "common/src/memory.c"
         result = 
-# 177 "common/src/memory.c" 3 4
+# 174 "common/src/memory.c" 3 4
                  0
-# 177 "common/src/memory.c"
+# 174 "common/src/memory.c"
                       ;
 
     if ((uint32_t)address & 0x3F)
         return 
-# 180 "common/src/memory.c" 3 4
+# 177 "common/src/memory.c" 3 4
               0
-# 180 "common/src/memory.c"
+# 177 "common/src/memory.c"
                    ;
 
     flash_unlock();
@@ -4161,9 +4163,9 @@ _Bool
 }
 
 
-# 188 "common/src/memory.c" 3 4
+# 185 "common/src/memory.c" 3 4
 _Bool 
-# 188 "common/src/memory.c"
+# 185 "common/src/memory.c"
     mem_flash_write_word(uint32_t address, uint32_t data)
 {
     flash_unlock();
@@ -4177,24 +4179,24 @@ _Bool
         (*(volatile uint32_t *)((((0x40000000U) + 0x20000) + 0x02000) + 0x18)) |= (1 << 1);
         log_printf("Write success\n");
         return 
-# 200 "common/src/memory.c" 3 4
+# 197 "common/src/memory.c" 3 4
               1
-# 200 "common/src/memory.c"
+# 197 "common/src/memory.c"
                   ;
     }
     else
     {
         log_printf("Write fail\n");
         return 
-# 205 "common/src/memory.c" 3 4
+# 202 "common/src/memory.c" 3 4
               0
-# 205 "common/src/memory.c"
+# 202 "common/src/memory.c"
                    ;
     }
     return 
-# 207 "common/src/memory.c" 3 4
+# 204 "common/src/memory.c" 3 4
           1
-# 207 "common/src/memory.c"
+# 204 "common/src/memory.c"
               ;
 }
 
@@ -4255,7 +4257,7 @@ void mem_get_log(char log[1024])
 {
     for(uint16_t i = 0; i < 1024; i++)
     {
-        log[i] = (*(volatile uint32_t *)(0x08080400 + i));
+        log[i] = (*(volatile uint32_t *)(0x08080800U - 1024 + i));
     }
 }
 
@@ -4264,7 +4266,7 @@ void mem_print_log(void)
     log_printf("LOG START\n");
     for(uint16_t i = 0; i < 1024; i++)
     {
-        log_printf("%c", (*(volatile uint8_t *)(0x08080400 + i)));
+        log_printf("%c", (*(volatile uint8_t *)(0x08080800U - 1024 + i)));
     }
     log_printf("LOG END\n");
 }
@@ -4349,11 +4351,11 @@ void mem_wipe_readings(void)
 
     log_printf("Done\n", page_add);
 }
-# 378 "common/src/memory.c"
+# 375 "common/src/memory.c"
 static __attribute__((section (".data#"), noinline)) 
-# 378 "common/src/memory.c" 3 4
+# 375 "common/src/memory.c" 3 4
            _Bool 
-# 378 "common/src/memory.c"
+# 375 "common/src/memory.c"
                 mem_flash_do_page_erase(uint32_t address)
 {
 
@@ -4366,9 +4368,9 @@ static __attribute__((section (".data#"), noinline))
 
         (*(volatile uint32_t *)((((0x40000000U) + 0x20000) + 0x02000) + 0x18)) = (1 << 1);
         return 
-# 389 "common/src/memory.c" 3 4
+# 386 "common/src/memory.c" 3 4
               1
-# 389 "common/src/memory.c"
+# 386 "common/src/memory.c"
                   ;
     }
     else
@@ -4376,17 +4378,17 @@ static __attribute__((section (".data#"), noinline))
 
         (*(volatile uint32_t *)((((0x40000000U) + 0x20000) + 0x02000) + 0x18)) = (1 << 17) | (1 << 9) | (1 << 8);
         return 
-# 395 "common/src/memory.c" 3 4
+# 392 "common/src/memory.c" 3 4
               0
-# 395 "common/src/memory.c"
+# 392 "common/src/memory.c"
                    ;
     }
 }
-# 406 "common/src/memory.c"
+# 403 "common/src/memory.c"
 static __attribute__((section (".data#"), noinline)) 
-# 406 "common/src/memory.c" 3 4
+# 403 "common/src/memory.c" 3 4
            _Bool 
-# 406 "common/src/memory.c"
+# 403 "common/src/memory.c"
                 mem_flash_do_write_half_page(uint32_t address, uint32_t *data)
 {
     uint8_t i;
@@ -4404,9 +4406,9 @@ static __attribute__((section (".data#"), noinline))
 
         (*(volatile uint32_t *)((((0x40000000U) + 0x20000) + 0x02000) + 0x18)) = (1 << 1);
         return 
-# 422 "common/src/memory.c" 3 4
+# 419 "common/src/memory.c" 3 4
               1
-# 422 "common/src/memory.c"
+# 419 "common/src/memory.c"
                   ;
     }
     else
@@ -4414,9 +4416,9 @@ static __attribute__((section (".data#"), noinline))
 
         (*(volatile uint32_t *)((((0x40000000U) + 0x20000) + 0x02000) + 0x18)) = (1 << 17) | (1 << 16) | (1 << 9) | (1 << 8);
         return 
-# 428 "common/src/memory.c" 3 4
+# 425 "common/src/memory.c" 3 4
               0
-# 428 "common/src/memory.c"
+# 425 "common/src/memory.c"
                    ;
 
     }

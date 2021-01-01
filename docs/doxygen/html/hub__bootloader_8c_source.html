@@ -76,30 +76,69 @@ $(function() {
 <div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160; </div>
 <div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="hub__bootloader_8h.html">hub/hub_bootloader.h</a>&quot;</span></div>
 <div class="line"><a name="l00016"></a><span class="lineno">   16</span>&#160; </div>
-<div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160;<span class="comment">/*////////////////////////////////////////////////////////////////////////////*/</span></div>
-<div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;<span class="comment">// Static Variables</span></div>
-<div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;<span class="comment">/*////////////////////////////////////////////////////////////////////////////*/</span></div>
-<div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160; </div>
-<div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;<span class="comment">/*////////////////////////////////////////////////////////////////////////////*/</span></div>
-<div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;<span class="comment">// Static Function Declarations</span></div>
-<div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160;<span class="comment">/*////////////////////////////////////////////////////////////////////////////*/</span></div>
-<div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160; </div>
+<div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="memory_8h.html">common/memory.h</a>&quot;</span></div>
+<div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="timers_8h.html">common/timers.h</a>&quot;</span></div>
+<div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="log_8h.html">common/log.h</a>&quot;</span></div>
+<div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="test_8h.html">common/test.h</a>&quot;</span></div>
+<div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160; </div>
+<div class="line"><a name="l00026"></a><span class="lineno"><a class="line" href="group___h_u_b___b_o_o_t_l_o_a_d_e_r___f_i_l_e.html#gaeeec01180221fc32a831f91982f6311e">   26</a></span>&#160;<span class="preprocessor">#define APP_ADDRESS 0x08004000</span></div>
+<div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160; </div>
+<div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160;<span class="comment">/*////////////////////////////////////////////////////////////////////////////*/</span></div>
+<div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160;<span class="comment">// Static Variables</span></div>
+<div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160;<span class="comment">/*////////////////////////////////////////////////////////////////////////////*/</span></div>
+<div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160; </div>
+<div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160; </div>
+<div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160;<span class="comment">/*////////////////////////////////////////////////////////////////////////////*/</span></div>
+<div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160;<span class="comment">// Static Function Declarations</span></div>
 <div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160;<span class="comment">/*////////////////////////////////////////////////////////////////////////////*/</span></div>
-<div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160;<span class="comment">// Exported Function Definitions</span></div>
-<div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160;<span class="comment">/*////////////////////////////////////////////////////////////////////////////*/</span></div>
-<div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160; </div>
-<div class="line"><a name="l00043"></a><span class="lineno"><a class="line" href="group___h_u_b___b_o_o_t_l_o_a_d_e_r___a_p_i.html#ga840291bc02cba5474a4cb46a9b9566fe">   43</a></span>&#160;<span class="keywordtype">int</span> <a class="code" href="group___h_u_b___b_o_o_t_l_o_a_d_e_r___a_p_i.html#ga840291bc02cba5474a4cb46a9b9566fe">main</a>(<span class="keywordtype">void</span>)</div>
-<div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160;{</div>
-<div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160;    <span class="keywordflow">return</span> 0;</div>
-<div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160;}</div>
-<div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160; </div>
-<div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160;<span class="comment">/*////////////////////////////////////////////////////////////////////////////*/</span></div>
-<div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160;<span class="comment">// Static Function Definitions</span></div>
-<div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160;<span class="comment">/*////////////////////////////////////////////////////////////////////////////*/</span></div>
-<div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160; </div>
+<div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160; </div>
+<div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160;<span class="comment">/*////////////////////////////////////////////////////////////////////////////*/</span></div>
+<div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160;<span class="comment">// Exported Function Definitions</span></div>
+<div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160;<span class="comment">/*////////////////////////////////////////////////////////////////////////////*/</span></div>
+<div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160; </div>
+<div class="line"><a name="l00051"></a><span class="lineno"><a class="line" href="group___h_u_b___b_o_o_t_l_o_a_d_e_r___a_p_i.html#ga840291bc02cba5474a4cb46a9b9566fe">   51</a></span>&#160;<span class="keywordtype">int</span> <a class="code" href="group___h_u_b___b_o_o_t_l_o_a_d_e_r___a_p_i.html#ga840291bc02cba5474a4cb46a9b9566fe">main</a>(<span class="keywordtype">void</span>)</div>
+<div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160;{</div>
+<div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160;    <a class="code" href="group___l_o_g___a_p_i.html#ga2508fad025e49f9746b6c178dce6917e">log_init</a>();</div>
+<div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160;    <a class="code" href="timers_8h.html#a2895f028adf625347af2779776708c7b">timers_lptim_init</a>();</div>
+<div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160;    <a class="code" href="timers_8h.html#ace45123851a9bf5d6918b11f7b27bd27">timers_tim6_init</a>();</div>
+<div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160; </div>
+<div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160;<span class="preprocessor">    #ifdef DEBUG</span></div>
+<div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160;    <span class="keywordflow">for</span>(<span class="keywordtype">int</span> i = 0; i &lt; 100000; i++){__asm__(<span class="stringliteral">&quot;nop&quot;</span>);};</div>
+<div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160;<span class="preprocessor">    #endif </span></div>
+<div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160;    </div>
+<div class="line"><a name="l00061"></a><span class="lineno">   61</span>&#160;    <a class="code" href="group___l_o_g___a_p_i.html#ga4fff2f266fd439fbb104ddb5d7f61533">log_printf</a>(<span class="stringliteral">&quot;Hub Bl Start\n&quot;</span>);</div>
+<div class="line"><a name="l00062"></a><span class="lineno">   62</span>&#160; </div>
+<div class="line"><a name="l00063"></a><span class="lineno">   63</span>&#160;    <a class="code" href="group___t_e_s_t___a_p_i.html#ga130789ed356c0454dae9bd042d5428cf">test_boot_verify_checksum</a>();</div>
+<div class="line"><a name="l00064"></a><span class="lineno">   64</span>&#160;    <span class="comment">// test_crc();</span></div>
+<div class="line"><a name="l00065"></a><span class="lineno">   65</span>&#160; </div>
+<div class="line"><a name="l00066"></a><span class="lineno">   66</span>&#160;    <span class="comment">// boot_jump_to_application(APP_ADDRESS);</span></div>
+<div class="line"><a name="l00067"></a><span class="lineno">   67</span>&#160; </div>
+<div class="line"><a name="l00068"></a><span class="lineno">   68</span>&#160;    <span class="keywordflow">for</span> (;;)</div>
+<div class="line"><a name="l00069"></a><span class="lineno">   69</span>&#160;    {</div>
+<div class="line"><a name="l00070"></a><span class="lineno">   70</span>&#160;        <a class="code" href="group___l_o_g___a_p_i.html#ga4fff2f266fd439fbb104ddb5d7f61533">log_printf</a>(<span class="stringliteral">&quot;Hub Bootloader Loop\n\n&quot;</span>);</div>
+<div class="line"><a name="l00071"></a><span class="lineno">   71</span>&#160;        <a class="code" href="timers_8h.html#a86c515c63c987ea728d6336e35d0aaa3">timers_delay_milliseconds</a>(1000);</div>
+<div class="line"><a name="l00072"></a><span class="lineno">   72</span>&#160;    }</div>
+<div class="line"><a name="l00073"></a><span class="lineno">   73</span>&#160; </div>
+<div class="line"><a name="l00074"></a><span class="lineno">   74</span>&#160;    <span class="keywordflow">return</span> 0;</div>
+<div class="line"><a name="l00075"></a><span class="lineno">   75</span>&#160;}</div>
+<div class="line"><a name="l00076"></a><span class="lineno">   76</span>&#160; </div>
+<div class="line"><a name="l00083"></a><span class="lineno">   83</span>&#160;<span class="comment">/*////////////////////////////////////////////////////////////////////////////*/</span></div>
+<div class="line"><a name="l00084"></a><span class="lineno">   84</span>&#160;<span class="comment">// Static Function Definitions</span></div>
+<div class="line"><a name="l00085"></a><span class="lineno">   85</span>&#160;<span class="comment">/*////////////////////////////////////////////////////////////////////////////*/</span></div>
+<div class="line"><a name="l00086"></a><span class="lineno">   86</span>&#160; </div>
 </div><!-- fragment --></div><!-- contents -->
+<div class="ttc" id="atimers_8h_html_ace45123851a9bf5d6918b11f7b27bd27"><div class="ttname"><a href="timers_8h.html#ace45123851a9bf5d6918b11f7b27bd27">timers_tim6_init</a></div><div class="ttdeci">void timers_tim6_init(void)</div><div class="ttdef"><b>Definition:</b> <a href="timers_8c_source.html#l00145">timers.c:145</a></div></div>
+<div class="ttc" id="agroup___l_o_g___a_p_i_html_ga4fff2f266fd439fbb104ddb5d7f61533"><div class="ttname"><a href="group___l_o_g___a_p_i.html#ga4fff2f266fd439fbb104ddb5d7f61533">log_printf</a></div><div class="ttdeci">void log_printf(const char *format,...)</div><div class="ttdef"><b>Definition:</b> <a href="log_8c_source.html#l00076">log.c:76</a></div></div>
+<div class="ttc" id="atimers_8h_html_a86c515c63c987ea728d6336e35d0aaa3"><div class="ttname"><a href="timers_8h.html#a86c515c63c987ea728d6336e35d0aaa3">timers_delay_milliseconds</a></div><div class="ttdeci">void timers_delay_milliseconds(uint32_t delay_milliseconds)</div><div class="ttdef"><b>Definition:</b> <a href="timers_8c_source.html#l00154">timers.c:154</a></div></div>
+<div class="ttc" id="agroup___l_o_g___a_p_i_html_ga2508fad025e49f9746b6c178dce6917e"><div class="ttname"><a href="group___l_o_g___a_p_i.html#ga2508fad025e49f9746b6c178dce6917e">log_init</a></div><div class="ttdeci">void log_init(void)</div><div class="ttdef"><b>Definition:</b> <a href="log_8c_source.html#l00064">log.c:64</a></div></div>
 <div class="ttc" id="ahub__bootloader_8h_html"><div class="ttname"><a href="hub__bootloader_8h.html">hub_bootloader.h</a></div><div class="ttdoc">Hub Bootloader Header File.</div></div>
-<div class="ttc" id="agroup___h_u_b___b_o_o_t_l_o_a_d_e_r___a_p_i_html_ga840291bc02cba5474a4cb46a9b9566fe"><div class="ttname"><a href="group___h_u_b___b_o_o_t_l_o_a_d_e_r___a_p_i.html#ga840291bc02cba5474a4cb46a9b9566fe">main</a></div><div class="ttdeci">int main(void)</div><div class="ttdef"><b>Definition:</b> <a href="hub__bootloader_8c_source.html#l00043">hub_bootloader.c:43</a></div></div>
+<div class="ttc" id="agroup___h_u_b___b_o_o_t_l_o_a_d_e_r___a_p_i_html_ga840291bc02cba5474a4cb46a9b9566fe"><div class="ttname"><a href="group___h_u_b___b_o_o_t_l_o_a_d_e_r___a_p_i.html#ga840291bc02cba5474a4cb46a9b9566fe">main</a></div><div class="ttdeci">int main(void)</div><div class="ttdef"><b>Definition:</b> <a href="hub__bootloader_8c_source.html#l00051">hub_bootloader.c:51</a></div></div>
+<div class="ttc" id="atimers_8h_html_a2895f028adf625347af2779776708c7b"><div class="ttname"><a href="timers_8h.html#a2895f028adf625347af2779776708c7b">timers_lptim_init</a></div><div class="ttdeci">void timers_lptim_init(void)</div><div class="ttdef"><b>Definition:</b> <a href="timers_8c_source.html#l00094">timers.c:94</a></div></div>
+<div class="ttc" id="atest_8h_html"><div class="ttname"><a href="test_8h.html">test.h</a></div><div class="ttdoc">Testing Header File.</div></div>
+<div class="ttc" id="alog_8h_html"><div class="ttname"><a href="log_8h.html">log.h</a></div><div class="ttdoc">Log Header File.</div></div>
+<div class="ttc" id="atimers_8h_html"><div class="ttname"><a href="timers_8h.html">timers.h</a></div></div>
+<div class="ttc" id="agroup___t_e_s_t___a_p_i_html_ga130789ed356c0454dae9bd042d5428cf"><div class="ttname"><a href="group___t_e_s_t___a_p_i.html#ga130789ed356c0454dae9bd042d5428cf">test_boot_verify_checksum</a></div><div class="ttdeci">void test_boot_verify_checksum(void)</div><div class="ttdef"><b>Definition:</b> <a href="test_8c_source.html#l00114">test.c:114</a></div></div>
+<div class="ttc" id="amemory_8h_html"><div class="ttname"><a href="memory_8h.html">memory.h</a></div><div class="ttdoc">Memory Header File.</div></div>
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
 Generated by&#160;<a href="http://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.8.20

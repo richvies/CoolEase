@@ -54,4 +54,4 @@ extern "C" {
 }
 #endif
 
-#endif /* HUB_BOOTLOADER_H */
+#endif // HUB_BOOTLOADER_H 

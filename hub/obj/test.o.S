@@ -2480,7 +2480,7 @@ void test_reset_eeprom(void);
 
 void test_boot_jump_to_application(uint32_t address);
 void test_boot_verify_checksum(void);
-void test_boot_crc(void);
+void test_crc(void);
 
 
 
@@ -6791,6 +6791,9 @@ _Bool
 }sensor_t;
 
 
+void clock_setup_MSI_2MHZ(void);
+
+
 
 
 #define MAX_SENSORS 50
@@ -6905,7 +6908,7 @@ sensor_t *get_sensor(uint32_t dev_num);
 
 #define W25_SPI_SCK_PORT GPIOB
 #define W25_SPI_SCK GPIO3
-# 229 "common/include/common/board_defs.h"
+# 232 "common/include/common/board_defs.h"
 void gpio_init(void);
 # 32 "common/src/test.c" 2
 # 1 "common/include/common/bootloader_utils.h" 1
@@ -6953,39 +6956,40 @@ _Bool
 #define EEPROM_END 0x08080800U
 
 #define LOG_SIZE 1024
-# 74 "common/include/common/memory.h"
+#define LOG_START EEPROM_END - LOG_SIZE
+# 75 "common/include/common/memory.h"
 void mem_init(void);
 
-
-# 76 "common/include/common/memory.h" 3 4
-_Bool 
-# 76 "common/include/common/memory.h"
-    mem_eeprom_write_word(uint32_t address, uint32_t data);
 
 # 77 "common/include/common/memory.h" 3 4
 _Bool 
 # 77 "common/include/common/memory.h"
-    mem_eeprom_write_half_word(uint32_t address, uint16_t data);
+    mem_eeprom_write_word(uint32_t address, uint32_t data);
 
 # 78 "common/include/common/memory.h" 3 4
 _Bool 
 # 78 "common/include/common/memory.h"
+    mem_eeprom_write_half_word(uint32_t address, uint16_t data);
+
+# 79 "common/include/common/memory.h" 3 4
+_Bool 
+# 79 "common/include/common/memory.h"
     mem_eeprom_write_byte(uint32_t address, uint8_t data);
 
-
-# 80 "common/include/common/memory.h" 3 4
-_Bool 
-# 80 "common/include/common/memory.h"
-    mem_flash_erase_page(uint32_t address);
 
 # 81 "common/include/common/memory.h" 3 4
 _Bool 
 # 81 "common/include/common/memory.h"
-    mem_flash_write_word(uint32_t address, uint32_t data);
+    mem_flash_erase_page(uint32_t address);
 
 # 82 "common/include/common/memory.h" 3 4
 _Bool 
 # 82 "common/include/common/memory.h"
+    mem_flash_write_word(uint32_t address, uint32_t data);
+
+# 83 "common/include/common/memory.h" 3 4
+_Bool 
+# 83 "common/include/common/memory.h"
     mem_flash_write_half_page(uint32_t address, uint32_t *data);
 
 void mem_save_reading(int16_t reading);
@@ -7022,6 +7026,7 @@ void mem_wipe_readings(void);
 void log_init(void);
 void log_printf(const char *format, ...);
 void log_error(uint16_t error);
+uint8_t log_get(uint16_t index);
 
 void serial_printf(const char *format, ...);
 # 35 "common/src/test.c" 2
@@ -7450,16 +7455,15 @@ void test_boot_verify_checksum(void)
 {
  log_printf("test_boot_verify_checksum\n");
 
- uint32_t data[16] = {
+ uint32_t data[] = {
   0x12345678, 0x24681357, 0x12345678, 0x24681357,
   0x12345678, 0x24681357, 0x12345678, 0x24681357,
   0x12345678, 0x24681357, 0x12345678, 0x24681357,
-  0x12345678, 0x24681357, 0x12345678, 0x24681357,
- };
+  0x12345678, 0x24681357, 0x12345678, 0x24681357,};
 
- uint32_t expected = 0xB63CFBCD;
+ uint32_t expected = 0x55484138;
 
- if (boot_verify_checksum(data, 1, expected))
+ if (boot_verify_checksum(data, sizeof(data) / sizeof(uint32_t), expected))
  {
   log_printf("Checksum Good\n");
  }
@@ -7469,15 +7473,19 @@ void test_boot_verify_checksum(void)
  }
 }
 
-void test_boot_crc(void)
+void test_crc(void)
 {
+
+
+
+
 
     rcc_periph_clock_enable(RCC_CRC);
     crc_reset();
  (*(volatile uint32_t *)((((0x40000000U) + 0x20000) + 0x03000) + 0x10)) = 0xFFFFFFFF;
 
+    crc_set_reverse_input((1 << 5));
     crc_reverse_output_enable();
-    crc_set_reverse_input((3 << 5));
 
 
  serial_printf("Checksum initial: %8x\n", (*(volatile uint32_t *)((((0x40000000U) + 0x20000) + 0x03000) + 0x00)));
@@ -7486,28 +7494,26 @@ void test_boot_crc(void)
  serial_printf("POL: %8x\n", (*(volatile uint32_t *)((((0x40000000U) + 0x20000) + 0x03000) + 0x14)));
 
 
- uint32_t data[1] = {'T'};
+ uint32_t data = 0x12345678;
 
 
     int i;
 
     for (i = 0; i < 1; i++)
  {
-     (*(volatile uint32_t *)((((0x40000000U) + 0x20000) + 0x03000) + 0x00)) = data[i];
+     (*(volatile uint32_t *)((((0x40000000U) + 0x20000) + 0x03000) + 0x00)) = data;
     }
 
-    uint32_t crc = 0xf0;
- uint32_t not_crc = (crc ^ 0xFFFFFFFF);
+    uint32_t crc = (*(volatile uint32_t *)((((0x40000000U) + 0x20000) + 0x03000) + 0x00));
 
- serial_printf("%i\n", crc); serial_printf("%8x\n", crc); serial_printf("%32b\n", crc);
- serial_printf("%i\n", not_crc);
- serial_printf("%8x\n", not_crc); serial_printf("%32b\n", not_crc);
+ serial_printf("In: %8x\n", data);
+ serial_printf("CRC: %8x\n", crc);
 
 
     crc_reset();
     rcc_periph_clock_disable(RCC_CRC);
 
-    serial_printf("Checksum value: %8x %8x %8x %8x\n", crc, not_crc, 0x01, ~0x01);
+    serial_printf("Checksum value: %8x %8x\n", crc, ~crc);
 }
 
 
@@ -7543,7 +7549,7 @@ void test_standby(uint32_t standby_time)
  log_printf("Testing Standby for %i seconds\n", standby_time);
 
  timers_rtc_init(standby_time);
-# 227 "common/src/test.c"
+# 228 "common/src/test.c"
  log_printf("Entering Standby\n");
  timers_enter_standby();
 }
@@ -7554,9 +7560,9 @@ void test_rf(void)
 
  rfm_init();
  rfm_config_for_lora(0x70, 0x02, 0x70, 
-# 236 "common/src/test.c" 3 4
+# 237 "common/src/test.c" 3 4
                                                                                      1
-# 236 "common/src/test.c"
+# 237 "common/src/test.c"
                                                                                          , 0);
 
     rfm_packet_t *packet_received;
@@ -7598,9 +7604,9 @@ void test_rf_listen(void)
 
  rfm_init();
  rfm_config_for_lora(0x70, 0x02, 0x70, 
-# 276 "common/src/test.c" 3 4
+# 277 "common/src/test.c" 3 4
                                                                                      1
-# 276 "common/src/test.c"
+# 277 "common/src/test.c"
                                                                                          , 0);
  rfm_start_listening();
 
@@ -7638,35 +7644,35 @@ void test_receiver(uint32_t dev_num)
  sensors[2].dev_num = 0x87654321;
 
  sensor_t *sensor = 
-# 312 "common/src/test.c" 3 4
+# 313 "common/src/test.c" 3 4
                    ((void *)0)
-# 312 "common/src/test.c"
+# 313 "common/src/test.c"
                        ;
 
 
  rfm_packet_t *packet = 
-# 315 "common/src/test.c" 3 4
+# 316 "common/src/test.c" 3 4
                        ((void *)0)
-# 315 "common/src/test.c"
+# 316 "common/src/test.c"
                            ;
  rfm_init();
  rfm_config_for_lora(0x70, 0x02, 0x70, 
-# 317 "common/src/test.c" 3 4
+# 318 "common/src/test.c" 3 4
                                                                                      1
-# 317 "common/src/test.c"
+# 318 "common/src/test.c"
                                                                                          , 0);
  rfm_start_listening();
 
 
  log_printf("Waiting for first message\n");
  
-# 322 "common/src/test.c" 3 4
+# 323 "common/src/test.c" 3 4
 _Bool 
-# 322 "common/src/test.c"
+# 323 "common/src/test.c"
      recv = 
-# 322 "common/src/test.c" 3 4
+# 323 "common/src/test.c" 3 4
             0
-# 322 "common/src/test.c"
+# 323 "common/src/test.c"
                  ;
  while(!recv)
  {
@@ -7684,9 +7690,9 @@ _Bool
 
   sensor = get_sensor(packet->data.device_number);
   if(sensor == 
-# 338 "common/src/test.c" 3 4
+# 339 "common/src/test.c" 3 4
               ((void *)0)
-# 338 "common/src/test.c"
+# 339 "common/src/test.c"
                   )
   {
    log_printf("Wrong Dev Num: %08X\n", packet->data.device_number);
@@ -7698,9 +7704,9 @@ _Bool
    sensor->msg_num_start = packet->data.msg_number;
    log_printf("First Message Number: %i %i\n", packet->data.msg_number, sensor->msg_num);
    recv = 
-# 348 "common/src/test.c" 3 4
+# 349 "common/src/test.c" 3 4
          1
-# 348 "common/src/test.c"
+# 349 "common/src/test.c"
              ;
   }
  }
@@ -7735,9 +7741,9 @@ _Bool
 
 
     if(sensor == 
-# 381 "common/src/test.c" 3 4
+# 382 "common/src/test.c" 3 4
                 ((void *)0)
-# 381 "common/src/test.c"
+# 382 "common/src/test.c"
                     )
     {
      log_printf("Wrong Dev Num: %08X\n", packet->data.device_number);
@@ -7777,7 +7783,7 @@ void test_voltage_scale(uint8_t scale)
 
  rfm_init();
  rfm_end();
-# 431 "common/src/test.c"
+# 432 "common/src/test.c"
  log_printf("Testing Voltage Scaling\n");
  log_printf("Current Scaling: %08x\n", (*(volatile uint32_t *)((((0x40000000U) + 0x00000) + 0x7000) + 0x00)));
 
@@ -7797,7 +7803,7 @@ void test_low_power_run(void)
 
  rfm_init();
  rfm_end();
-# 460 "common/src/test.c"
+# 461 "common/src/test.c"
  log_printf("Testing Low Power Run\n");
 
 
@@ -7910,9 +7916,9 @@ void test_rfm(void)
 
  rfm_init();
  rfm_config_for_lora(0x70, 0x02, 0x70, 
-# 571 "common/src/test.c" 3 4
+# 572 "common/src/test.c" 3 4
                                                                                      1
-# 571 "common/src/test.c"
+# 572 "common/src/test.c"
                                                                                          , -5);
  rfm_set_tx_continuous();
 }
@@ -7955,9 +7961,9 @@ void test_encryption(void)
 }
 
 
-# 612 "common/src/test.c" 3 4
+# 613 "common/src/test.c" 3 4
 _Bool 
-# 612 "common/src/test.c"
+# 613 "common/src/test.c"
     test_timeout(void)
 {
  log_printf("Testing Timeout\n");
@@ -7974,9 +7980,9 @@ _Bool
  }
 
  return 
-# 627 "common/src/test.c" 3 4
+# 628 "common/src/test.c" 3 4
        1
-# 627 "common/src/test.c"
+# 628 "common/src/test.c"
            ;
 }
 

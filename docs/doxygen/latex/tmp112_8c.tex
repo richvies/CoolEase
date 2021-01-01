@@ -1,0 +1,100 @@
+\hypertarget{tmp112_8c}{}\doxysection{sensor/src/tmp112.c File Reference}
+\label{tmp112_8c}\index{sensor/src/tmp112.c@{sensor/src/tmp112.c}}
+{\ttfamily \#include $<$libopencm3/stm32/rcc.\+h$>$}\newline
+{\ttfamily \#include $<$libopencm3/stm32/gpio.\+h$>$}\newline
+{\ttfamily \#include $<$libopencm3/stm32/i2c.\+h$>$}\newline
+{\ttfamily \#include $<$libopencm3/stm32/flash.\+h$>$}\newline
+{\ttfamily \#include \char`\"{}common/board\+\_\+defs.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}common/timers.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}sensor/tmp112.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}common/log.\+h\char`\"{}}\newline
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+static void \mbox{\hyperlink{tmp112_8c_a2d9ef31766055a1de107dfe0d46c0bf4}{tmp112\+\_\+clock\+\_\+setup}} (void)
+\item 
+static void \mbox{\hyperlink{tmp112_8c_ab3480f84f660740dacff3fa5abbddfc7}{tmp112\+\_\+i2c\+\_\+setup}} (void)
+\item 
+static void \mbox{\hyperlink{tmp112_8c_a113e3e0faea11771a41d963e2fa92b4f}{i2c\+\_\+transfer}} (uint32\+\_\+t i2c, uint8\+\_\+t addr, uint8\+\_\+t $\ast$w, size\+\_\+t wn, uint8\+\_\+t $\ast$r, size\+\_\+t rn)
+\item 
+void \mbox{\hyperlink{tmp112_8c_a5931f5b3204ec45e73d23ca558657c08}{tmp112\+\_\+init}} (void)
+\item 
+void \mbox{\hyperlink{tmp112_8c_aad3c5f9aa9739d1383c62c4f2f5f80d6}{tmp112\+\_\+end}} (void)
+\item 
+void \mbox{\hyperlink{tmp112_8c_ad0e06b101f04ed0c699ffc93385cdf82}{tmp112\+\_\+reset}} (void)
+\item 
+void \mbox{\hyperlink{tmp112_8c_a41ef1d275de1f1ff9da68c8f3d8551e0}{tmp112\+\_\+read\+\_\+temperature}} (int16\+\_\+t $\ast$readings, uint8\+\_\+t num\+\_\+readings)
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Function Documentation}
+\mbox{\Hypertarget{tmp112_8c_a113e3e0faea11771a41d963e2fa92b4f}\label{tmp112_8c_a113e3e0faea11771a41d963e2fa92b4f}} 
+\index{tmp112.c@{tmp112.c}!i2c\_transfer@{i2c\_transfer}}
+\index{i2c\_transfer@{i2c\_transfer}!tmp112.c@{tmp112.c}}
+\doxysubsubsection{\texorpdfstring{i2c\_transfer()}{i2c\_transfer()}}
+{\footnotesize\ttfamily static void i2c\+\_\+transfer (\begin{DoxyParamCaption}\item[{uint32\+\_\+t}]{i2c,  }\item[{uint8\+\_\+t}]{addr,  }\item[{uint8\+\_\+t $\ast$}]{w,  }\item[{size\+\_\+t}]{wn,  }\item[{uint8\+\_\+t $\ast$}]{r,  }\item[{size\+\_\+t}]{rn }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Definition at line 135 of file tmp112.\+c.
+
+\mbox{\Hypertarget{tmp112_8c_a2d9ef31766055a1de107dfe0d46c0bf4}\label{tmp112_8c_a2d9ef31766055a1de107dfe0d46c0bf4}} 
+\index{tmp112.c@{tmp112.c}!tmp112\_clock\_setup@{tmp112\_clock\_setup}}
+\index{tmp112\_clock\_setup@{tmp112\_clock\_setup}!tmp112.c@{tmp112.c}}
+\doxysubsubsection{\texorpdfstring{tmp112\_clock\_setup()}{tmp112\_clock\_setup()}}
+{\footnotesize\ttfamily static void tmp112\+\_\+clock\+\_\+setup (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Definition at line 83 of file tmp112.\+c.
+
+\mbox{\Hypertarget{tmp112_8c_aad3c5f9aa9739d1383c62c4f2f5f80d6}\label{tmp112_8c_aad3c5f9aa9739d1383c62c4f2f5f80d6}} 
+\index{tmp112.c@{tmp112.c}!tmp112\_end@{tmp112\_end}}
+\index{tmp112\_end@{tmp112\_end}!tmp112.c@{tmp112.c}}
+\doxysubsubsection{\texorpdfstring{tmp112\_end()}{tmp112\_end()}}
+{\footnotesize\ttfamily void tmp112\+\_\+end (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})}
+
+
+
+Definition at line 24 of file tmp112.\+c.
+
+\mbox{\Hypertarget{tmp112_8c_ab3480f84f660740dacff3fa5abbddfc7}\label{tmp112_8c_ab3480f84f660740dacff3fa5abbddfc7}} 
+\index{tmp112.c@{tmp112.c}!tmp112\_i2c\_setup@{tmp112\_i2c\_setup}}
+\index{tmp112\_i2c\_setup@{tmp112\_i2c\_setup}!tmp112.c@{tmp112.c}}
+\doxysubsubsection{\texorpdfstring{tmp112\_i2c\_setup()}{tmp112\_i2c\_setup()}}
+{\footnotesize\ttfamily static void tmp112\+\_\+i2c\+\_\+setup (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Definition at line 106 of file tmp112.\+c.
+
+\mbox{\Hypertarget{tmp112_8c_a5931f5b3204ec45e73d23ca558657c08}\label{tmp112_8c_a5931f5b3204ec45e73d23ca558657c08}} 
+\index{tmp112.c@{tmp112.c}!tmp112\_init@{tmp112\_init}}
+\index{tmp112\_init@{tmp112\_init}!tmp112.c@{tmp112.c}}
+\doxysubsubsection{\texorpdfstring{tmp112\_init()}{tmp112\_init()}}
+{\footnotesize\ttfamily void tmp112\+\_\+init (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})}
+
+
+
+Definition at line 16 of file tmp112.\+c.
+
+\mbox{\Hypertarget{tmp112_8c_a41ef1d275de1f1ff9da68c8f3d8551e0}\label{tmp112_8c_a41ef1d275de1f1ff9da68c8f3d8551e0}} 
+\index{tmp112.c@{tmp112.c}!tmp112\_read\_temperature@{tmp112\_read\_temperature}}
+\index{tmp112\_read\_temperature@{tmp112\_read\_temperature}!tmp112.c@{tmp112.c}}
+\doxysubsubsection{\texorpdfstring{tmp112\_read\_temperature()}{tmp112\_read\_temperature()}}
+{\footnotesize\ttfamily void tmp112\+\_\+read\+\_\+temperature (\begin{DoxyParamCaption}\item[{int16\+\_\+t $\ast$}]{readings,  }\item[{uint8\+\_\+t}]{num\+\_\+readings }\end{DoxyParamCaption})}
+
+
+
+Definition at line 47 of file tmp112.\+c.
+
+\mbox{\Hypertarget{tmp112_8c_ad0e06b101f04ed0c699ffc93385cdf82}\label{tmp112_8c_ad0e06b101f04ed0c699ffc93385cdf82}} 
+\index{tmp112.c@{tmp112.c}!tmp112\_reset@{tmp112\_reset}}
+\index{tmp112\_reset@{tmp112\_reset}!tmp112.c@{tmp112.c}}
+\doxysubsubsection{\texorpdfstring{tmp112\_reset()}{tmp112\_reset()}}
+{\footnotesize\ttfamily void tmp112\+\_\+reset (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})}
+
+
+
+Definition at line 41 of file tmp112.\+c.
+
