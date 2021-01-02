@@ -48,7 +48,7 @@
 // Static Variables
 /*////////////////////////////////////////////////////////////////////////////*/
 
-static uint32_t log_add =   EEPROM_LOG_START;
+static uint32_t log_add =   EEPROM_LOG_BASE;
 static uint32_t next_reading_add =  READINGS_START;
 
 // Other device information saved in EEPROM
@@ -267,7 +267,7 @@ void mem_get_log(char log[EEPROM_LOG_SIZE])
 {
     for(uint16_t i = 0; i < EEPROM_LOG_SIZE; i++)
     {
-        log[i] = MMIO32(EEPROM_LOG_START + i);
+        log[i] = MMIO32(EEPROM_LOG_BASE + i);
     }
 }
 
@@ -276,7 +276,7 @@ void mem_print_log(void)
     log_printf("LOG START\n");
     for(uint16_t i = 0; i < EEPROM_LOG_SIZE; i++)
     {
-        log_printf("%c", MMIO8(EEPROM_LOG_START + i));
+        log_printf("%c", MMIO8(EEPROM_LOG_BASE + i));
     }   
     log_printf("LOG END\n");
 }

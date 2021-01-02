@@ -6858,30 +6858,14 @@ void rfm_clear_tx_continuous(void);
 #define ERR_BOOT_PROG_FLASH_ERASE 3
 #define ERR_BOOT_PROG_FLASH_WRITE_1 4
 #define ERR_BOOT_PROG_FLASH_WRITE_2 5
-
-
-
-
-
-
-
-typedef struct
-{
- uint16_t size;
- uint16_t write_index;
- uint16_t read_index ;
-}log_t;
-extern log_t logger;
-
-
-
-
+# 65 "common/include/common/log.h"
 void log_init(void);
 void log_printf(const char *format, ...);
 void log_error(uint16_t error);
 uint8_t log_get(uint16_t index);
 void log_read_reset(void);
 uint8_t log_read(void);
+uint16_t log_size(void);
 
 void serial_printf(const char *format, ...);
 # 36 "hub/src/hub_test.c" 2
@@ -7004,8 +6988,8 @@ void set_gpio_for_standby(void);
 #define EEPROM_DEV_END EEPROM_START + EEPROM_BOOTLOADER_SIZE
 
 
-#define EEPROM_LOG_START EEPROM_DEV_END
-#define EEPROM_LOG_END EEPROM_LOG_START + EEPROM_LOG_SIZE
+#define EEPROM_LOG_BASE EEPROM_DEV_END
+#define EEPROM_LOG_END EEPROM_LOG_BASE + EEPROM_LOG_SIZE
 # 102 "common/include/common/memory.h"
 void mem_init(void);
 
@@ -7076,6 +7060,14 @@ void cusb_send(char character);
 _Bool 
 # 68 "hub/include/hub/cusb.h"
     cusb_connected(void);
+
+
+
+
+
+void cusb_hook_reset(void);
+void cusb_hook_hid_out_report(void);
+void cusb_hook_hid_in_report(void);
 # 40 "hub/src/hub_test.c" 2
 # 1 "hub/include/hub/hub_bootloader.h" 1
 # 26 "hub/include/hub/hub_bootloader.h"

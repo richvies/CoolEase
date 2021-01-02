@@ -2357,32 +2357,16 @@ char *strsignal (int __signo);
 #define ERR_BOOT_PROG_FLASH_ERASE 3
 #define ERR_BOOT_PROG_FLASH_WRITE_1 4
 #define ERR_BOOT_PROG_FLASH_WRITE_2 5
+# 65 "common/include/common/log.h"
 
-
-
-
-
-
-
-
-# 60 "common/include/common/log.h"
-typedef struct
-{
- uint16_t size;
- uint16_t write_index;
- uint16_t read_index ;
-}log_t;
-extern log_t logger;
-
-
-
-
+# 65 "common/include/common/log.h"
 void log_init(void);
 void log_printf(const char *format, ...);
 void log_error(uint16_t error);
 uint8_t log_get(uint16_t index);
 void log_read_reset(void);
 uint8_t log_read(void);
+uint16_t log_size(void);
 
 void serial_printf(const char *format, ...);
 # 44 "common/src/aes.c" 2
@@ -3687,8 +3671,8 @@ void rcc_set_usart2_sel(uint32_t usart2_sel);
 #define EEPROM_DEV_END EEPROM_START + EEPROM_BOOTLOADER_SIZE
 
 
-#define EEPROM_LOG_START EEPROM_DEV_END
-#define EEPROM_LOG_END EEPROM_LOG_START + EEPROM_LOG_SIZE
+#define EEPROM_LOG_BASE EEPROM_DEV_END
+#define EEPROM_LOG_END EEPROM_LOG_BASE + EEPROM_LOG_SIZE
 # 102 "common/include/common/memory.h"
 void mem_init(void);
 

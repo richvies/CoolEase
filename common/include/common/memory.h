@@ -87,8 +87,8 @@ extern "C" {
 #define EEPROM_DEV_END              EEPROM_START + EEPROM_BOOTLOADER_SIZE 
 
 // Logging
-#define EEPROM_LOG_START            EEPROM_DEV_END
-#define EEPROM_LOG_END              EEPROM_LOG_START + EEPROM_LOG_SIZE
+#define EEPROM_LOG_BASE             EEPROM_DEV_END
+#define EEPROM_LOG_END              EEPROM_LOG_BASE + EEPROM_LOG_SIZE
 
 
 /*////////////////////////////////////////////////////////////////////////////*/

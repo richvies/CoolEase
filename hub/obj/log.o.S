@@ -1102,32 +1102,16 @@ typedef __uint_least64_t uint_least64_t;
 #define ERR_BOOT_PROG_FLASH_ERASE 3
 #define ERR_BOOT_PROG_FLASH_WRITE_1 4
 #define ERR_BOOT_PROG_FLASH_WRITE_2 5
+# 65 "common/include/common/log.h"
 
-
-
-
-
-
-
-
-# 60 "common/include/common/log.h"
-typedef struct
-{
- uint16_t size;
- uint16_t write_index;
- uint16_t read_index ;
-}log_t;
-extern log_t logger;
-
-
-
-
+# 65 "common/include/common/log.h"
 void log_init(void);
 void log_printf(const char *format, ...);
 void log_error(uint16_t error);
 uint8_t log_get(uint16_t index);
 void log_read_reset(void);
 uint8_t log_read(void);
+uint16_t log_size(void);
 
 void serial_printf(const char *format, ...);
 # 16 "common/src/log.c" 2
@@ -3884,8 +3868,8 @@ void gpio_init(void);
 #define EEPROM_DEV_END EEPROM_START + EEPROM_BOOTLOADER_SIZE
 
 
-#define EEPROM_LOG_START EEPROM_DEV_END
-#define EEPROM_LOG_END EEPROM_LOG_START + EEPROM_LOG_SIZE
+#define EEPROM_LOG_BASE EEPROM_DEV_END
+#define EEPROM_LOG_END EEPROM_LOG_BASE + EEPROM_LOG_SIZE
 # 102 "common/include/common/memory.h"
 void mem_init(void);
 
@@ -4113,16 +4097,31 @@ void cusb_send(char character);
 _Bool 
 # 68 "hub/include/hub/cusb.h"
     cusb_connected(void);
+
+
+
+
+
+void cusb_hook_reset(void);
+void cusb_hook_hid_out_report(void);
+void cusb_hook_hid_in_report(void);
 # 30 "common/src/log.c" 2
+# 45 "common/src/log.c"
+typedef struct
+{
+ uint16_t size;
+ uint16_t write_index;
+ uint16_t read_index;
+ uint8_t *log;
+}log_t;
+
+static log_t logger;
 
 
 
 
 
 
-
-log_t logger;
-# 53 "common/src/log.c"
 static void _putchar_main(char character);
 static void _putchar_mem(char character);
 
@@ -4131,12 +4130,13 @@ static void usart_setup(void);
 static void _putchar_spf(char character);
 
 static void _putchar_usb(char character);
-# 74 "common/src/log.c"
+# 81 "common/src/log.c"
 void log_init(void)
 {
  logger.size = 1024U;
  logger.write_index = 0;
  logger.read_index = 0;
+
 
  log_printf("\n\nLog Init\n----------------\n");
 
@@ -4154,27 +4154,27 @@ void log_printf(const char *format, ...)
 {
  va_list va;
  
-# 95 "common/src/log.c" 3 4
+# 103 "common/src/log.c" 3 4
 __builtin_va_start(
-# 95 "common/src/log.c"
+# 103 "common/src/log.c"
 va
-# 95 "common/src/log.c" 3 4
+# 103 "common/src/log.c" 3 4
 ,
-# 95 "common/src/log.c"
+# 103 "common/src/log.c"
 format
-# 95 "common/src/log.c" 3 4
+# 103 "common/src/log.c" 3 4
 )
-# 95 "common/src/log.c"
+# 103 "common/src/log.c"
                     ;
  fnprintf(_putchar_main, format, va);
    
-# 97 "common/src/log.c" 3 4
+# 105 "common/src/log.c" 3 4
   __builtin_va_end(
-# 97 "common/src/log.c"
+# 105 "common/src/log.c"
   va
-# 97 "common/src/log.c" 3 4
+# 105 "common/src/log.c" 3 4
   )
-# 97 "common/src/log.c"
+# 105 "common/src/log.c"
             ;
 
 
@@ -4193,27 +4193,27 @@ void serial_printf(const char *format, ...)
 
  va_list va;
  
-# 114 "common/src/log.c" 3 4
+# 122 "common/src/log.c" 3 4
 __builtin_va_start(
-# 114 "common/src/log.c"
+# 122 "common/src/log.c"
 va
-# 114 "common/src/log.c" 3 4
+# 122 "common/src/log.c" 3 4
 ,
-# 114 "common/src/log.c"
+# 122 "common/src/log.c"
 format
-# 114 "common/src/log.c" 3 4
+# 122 "common/src/log.c" 3 4
 )
-# 114 "common/src/log.c"
+# 122 "common/src/log.c"
                     ;
  fnprintf(_putchar_spf, format, va);
    
-# 116 "common/src/log.c" 3 4
+# 124 "common/src/log.c" 3 4
   __builtin_va_end(
-# 116 "common/src/log.c"
+# 124 "common/src/log.c"
   va
-# 116 "common/src/log.c" 3 4
+# 124 "common/src/log.c" 3 4
   )
-# 116 "common/src/log.c"
+# 124 "common/src/log.c"
             ;
 
 
@@ -4254,7 +4254,12 @@ uint8_t log_read(void)
 
  return byte;
 }
-# 168 "common/src/log.c"
+
+uint16_t log_size(void)
+{
+ return logger.size;
+}
+# 180 "common/src/log.c"
 static void _putchar_main(char character)
 {
  _putchar_mem(character);

@@ -490,6 +490,7 @@ static void cusb_clock_init(void)
 static void cusb_reset_callback(void)
 {
     usb_state = RESET;
+    cusb_hook_reset();
 }
 
 static void hid_set_config(usbd_device *dev, uint16_t wValue)
@@ -544,7 +545,7 @@ static void hid_in_report_callback(usbd_device *dev, uint8_t ea)
 
         usbd_ep_write_packet(dev, ea, hid_report_buf, HID_REPORT_SIZE);
 
-        if(bytes_sent >= logger.size)
+        if(bytes_sent >= log_size())
         {
             usb_state = RESET;
             bytes_sent = 0;
@@ -572,6 +573,14 @@ static void hid_out_report_callback(usbd_device *dev, uint8_t ea)
         log_read_reset();
     }
 }
+
+/*////////////////////////////////////////////////////////////////////////////*/
+// Hook Function Weak Definitions
+/*////////////////////////////////////////////////////////////////////////////*/
+
+void __attribute__ ((weak)) cusb_hook_reset(void) {}
+void __attribute__ ((weak)) cusb_hook_hid_out_report(void) {}
+void __attribute__ ((weak)) cusb_hook_hid_in_report(void) {}
 
 /*////////////////////////////////////////////////////////////////////////////*/
 // USB Interrupt

@@ -67,6 +67,13 @@ void cusb_send(char character);
  */
 bool cusb_connected(void);
 
+/*////////////////////////////////////////////////////////////////////////////*/
+// Hook Functions
+/*////////////////////////////////////////////////////////////////////////////*/
+
+void cusb_hook_reset(void);
+void cusb_hook_hid_out_report(void);
+void cusb_hook_hid_in_report(void);
 
 /** @} */
 

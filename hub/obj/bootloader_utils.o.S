@@ -2770,8 +2770,8 @@ void eeprom_program_words(uint32_t address, uint32_t *data, int length_in_words)
 #define EEPROM_DEV_END EEPROM_START + EEPROM_BOOTLOADER_SIZE
 
 
-#define EEPROM_LOG_START EEPROM_DEV_END
-#define EEPROM_LOG_END EEPROM_LOG_START + EEPROM_LOG_SIZE
+#define EEPROM_LOG_BASE EEPROM_DEV_END
+#define EEPROM_LOG_END EEPROM_LOG_BASE + EEPROM_LOG_SIZE
 # 102 "common/include/common/memory.h"
 void mem_init(void);
 
@@ -2837,30 +2837,14 @@ void mem_wipe_readings(void);
 #define ERR_BOOT_PROG_FLASH_ERASE 3
 #define ERR_BOOT_PROG_FLASH_WRITE_1 4
 #define ERR_BOOT_PROG_FLASH_WRITE_2 5
-
-
-
-
-
-
-
-typedef struct
-{
- uint16_t size;
- uint16_t write_index;
- uint16_t read_index ;
-}log_t;
-extern log_t logger;
-
-
-
-
+# 65 "common/include/common/log.h"
 void log_init(void);
 void log_printf(const char *format, ...);
 void log_error(uint16_t error);
 uint8_t log_get(uint16_t index);
 void log_read_reset(void);
 uint8_t log_read(void);
+uint16_t log_size(void);
 
 void serial_printf(const char *format, ...);
 # 27 "common/src/bootloader_utils.c" 2
