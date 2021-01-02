@@ -1,4 +1,5 @@
 var searchData=
 [
-  ['rfm_5fpacket_5fs_773',['rfm_packet_s',['../structrfm__packet__s.html',1,'']]]
+  ['hid_5ffunction_5fdescriptor_802',['hid_function_descriptor',['../structhid__function__descriptor.html',1,'']]],
+  ['hub_5ft_803',['hub_t',['../structhub__t.html',1,'']]]
 ];

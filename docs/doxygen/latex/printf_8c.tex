@@ -19,7 +19,7 @@ static bool \mbox{\hyperlink{printf_8c_a3b3255e97ad723d1af56cc336b9ba0ff}{\+\_\+
 \item 
 static uint32\+\_\+t \mbox{\hyperlink{printf_8c_aa59508146b43edd4fc97852eb13bf20e}{\+\_\+atoi}} (const char $\ast$$\ast$str)
 \item 
-static uint32\+\_\+t \mbox{\hyperlink{printf_8c_ad47107c35174f0ecf8917a153d8f6e37}{\+\_\+ntoa\+\_\+format}} (\mbox{\hyperlink{printf_8h_a0f103da436a675bb6f53565c5144dc65}{out\+\_\+fct\+\_\+type}} out, int32\+\_\+t value, uint32\+\_\+t base, uint32\+\_\+t width, bool sign)
+static uint32\+\_\+t \mbox{\hyperlink{printf_8c_af35948cc587f96f5a3cd0a169b96c379}{\+\_\+ntoa\+\_\+format}} (\mbox{\hyperlink{printf_8h_a0f103da436a675bb6f53565c5144dc65}{out\+\_\+fct\+\_\+type}} out, uint32\+\_\+t value, uint32\+\_\+t base, uint32\+\_\+t width, bool negative)
 \item 
 uint32\+\_\+t \mbox{\hyperlink{printf_8c_a7929c46dcdbb8a4807f26525cda33a9d}{fnprintf}} (\mbox{\hyperlink{printf_8h_a0f103da436a675bb6f53565c5144dc65}{out\+\_\+fct\+\_\+type}} out, const char $\ast$format, va\+\_\+list va)
 \end{DoxyCompactItemize}
@@ -69,11 +69,11 @@ Definition at line 69 of file printf.\+c.
 
 Definition at line 63 of file printf.\+c.
 
-\mbox{\Hypertarget{printf_8c_ad47107c35174f0ecf8917a153d8f6e37}\label{printf_8c_ad47107c35174f0ecf8917a153d8f6e37}} 
+\mbox{\Hypertarget{printf_8c_af35948cc587f96f5a3cd0a169b96c379}\label{printf_8c_af35948cc587f96f5a3cd0a169b96c379}} 
 \index{printf.c@{printf.c}!\_ntoa\_format@{\_ntoa\_format}}
 \index{\_ntoa\_format@{\_ntoa\_format}!printf.c@{printf.c}}
 \doxysubsubsection{\texorpdfstring{\_ntoa\_format()}{\_ntoa\_format()}}
-{\footnotesize\ttfamily static uint32\+\_\+t \+\_\+ntoa\+\_\+format (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{printf_8h_a0f103da436a675bb6f53565c5144dc65}{out\+\_\+fct\+\_\+type}}}]{out,  }\item[{int32\+\_\+t}]{value,  }\item[{uint32\+\_\+t}]{base,  }\item[{uint32\+\_\+t}]{width,  }\item[{bool}]{sign }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+{\footnotesize\ttfamily static uint32\+\_\+t \+\_\+ntoa\+\_\+format (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{printf_8h_a0f103da436a675bb6f53565c5144dc65}{out\+\_\+fct\+\_\+type}}}]{out,  }\item[{uint32\+\_\+t}]{value,  }\item[{uint32\+\_\+t}]{base,  }\item[{uint32\+\_\+t}]{width,  }\item[{bool}]{negative }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
 
 
 
@@ -97,5 +97,5 @@ Definition at line 49 of file printf.\+c.
 
 
 
-Definition at line 144 of file printf.\+c.
+Definition at line 127 of file printf.\+c.
 

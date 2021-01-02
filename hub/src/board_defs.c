@@ -7,7 +7,7 @@
 #include <stdint.h>
 #include <stddef.h>
 
-void clock_setup_MSI_2MHZ(void) 
+void clock_setup_msi_2mhz(void) 
 {
 	// Enable MSI Osc 2.097Mhz
 	rcc_osc_on(RCC_MSI);

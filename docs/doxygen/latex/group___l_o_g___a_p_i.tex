@@ -11,6 +11,11 @@
 \item 
 \mbox{\hyperlink{group___l_o_g___e_r_r}{Logging Errors}}
 \end{DoxyCompactItemize}
+\doxysubsection*{Data Structures}
+\begin{DoxyCompactItemize}
+\item 
+struct \mbox{\hyperlink{structlog__t}{log\+\_\+t}}
+\end{DoxyCompactItemize}
 \doxysubsection*{Functions}
 \begin{DoxyCompactItemize}
 \item 
@@ -20,7 +25,18 @@ void \mbox{\hyperlink{group___l_o_g___a_p_i_ga4fff2f266fd439fbb104ddb5d7f61533}{
 \item 
 void \mbox{\hyperlink{group___l_o_g___a_p_i_ga8dbb405ae2b1df5bbbdd580e3fe9a332}{log\+\_\+error}} (uint16\+\_\+t error)
 \item 
+uint8\+\_\+t \mbox{\hyperlink{group___l_o_g___a_p_i_gaf766aa26c1e0c09c246a130e379e5f8a}{log\+\_\+get}} (uint16\+\_\+t index)
+\item 
+void \mbox{\hyperlink{group___l_o_g___a_p_i_ga3f0dbc11d59511e585b423e394cc982b}{log\+\_\+read\+\_\+reset}} (void)
+\item 
+uint8\+\_\+t \mbox{\hyperlink{group___l_o_g___a_p_i_ga234d30521858d65e55e7389976902a60}{log\+\_\+read}} (void)
+\item 
 void \mbox{\hyperlink{group___l_o_g___a_p_i_gae4f545d29e1faa30e5b27be12d4286d0}{serial\+\_\+printf}} (const char $\ast$format,...)
+\end{DoxyCompactItemize}
+\doxysubsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{structlog__t}{log\+\_\+t}} \mbox{\hyperlink{group___l_o_g___a_p_i_ga56444742f0aa74085c5d2b6bc4751e39}{logger}}
 \end{DoxyCompactItemize}
 
 
@@ -39,7 +55,17 @@ void \mbox{\hyperlink{group___l_o_g___a_p_i_gae4f545d29e1faa30e5b27be12d4286d0}{
 
 
 
-Definition at line 89 of file log.\+c.
+Definition at line 105 of file log.\+c.
+
+\mbox{\Hypertarget{group___l_o_g___a_p_i_gaf766aa26c1e0c09c246a130e379e5f8a}\label{group___l_o_g___a_p_i_gaf766aa26c1e0c09c246a130e379e5f8a}} 
+\index{Log API@{Log API}!log\_get@{log\_get}}
+\index{log\_get@{log\_get}!Log API@{Log API}}
+\doxysubsubsection{\texorpdfstring{log\_get()}{log\_get()}}
+{\footnotesize\ttfamily uint8\+\_\+t log\+\_\+get (\begin{DoxyParamCaption}\item[{uint16\+\_\+t}]{index }\end{DoxyParamCaption})}
+
+
+
+Definition at line 123 of file log.\+c.
 
 \mbox{\Hypertarget{group___l_o_g___a_p_i_ga2508fad025e49f9746b6c178dce6917e}\label{group___l_o_g___a_p_i_ga2508fad025e49f9746b6c178dce6917e}} 
 \index{Log API@{Log API}!log\_init@{log\_init}}
@@ -49,7 +75,7 @@ Definition at line 89 of file log.\+c.
 
 
 
-Definition at line 64 of file log.\+c.
+Definition at line 74 of file log.\+c.
 
 \mbox{\Hypertarget{group___l_o_g___a_p_i_ga4fff2f266fd439fbb104ddb5d7f61533}\label{group___l_o_g___a_p_i_ga4fff2f266fd439fbb104ddb5d7f61533}} 
 \index{Log API@{Log API}!log\_printf@{log\_printf}}
@@ -59,7 +85,27 @@ Definition at line 64 of file log.\+c.
 
 
 
-Definition at line 76 of file log.\+c.
+Definition at line 92 of file log.\+c.
+
+\mbox{\Hypertarget{group___l_o_g___a_p_i_ga234d30521858d65e55e7389976902a60}\label{group___l_o_g___a_p_i_ga234d30521858d65e55e7389976902a60}} 
+\index{Log API@{Log API}!log\_read@{log\_read}}
+\index{log\_read@{log\_read}!Log API@{Log API}}
+\doxysubsubsection{\texorpdfstring{log\_read()}{log\_read()}}
+{\footnotesize\ttfamily uint8\+\_\+t log\+\_\+read (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})}
+
+
+
+Definition at line 138 of file log.\+c.
+
+\mbox{\Hypertarget{group___l_o_g___a_p_i_ga3f0dbc11d59511e585b423e394cc982b}\label{group___l_o_g___a_p_i_ga3f0dbc11d59511e585b423e394cc982b}} 
+\index{Log API@{Log API}!log\_read\_reset@{log\_read\_reset}}
+\index{log\_read\_reset@{log\_read\_reset}!Log API@{Log API}}
+\doxysubsubsection{\texorpdfstring{log\_read\_reset()}{log\_read\_reset()}}
+{\footnotesize\ttfamily void log\+\_\+read\+\_\+reset (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})}
+
+
+
+Definition at line 133 of file log.\+c.
 
 \mbox{\Hypertarget{group___l_o_g___a_p_i_gae4f545d29e1faa30e5b27be12d4286d0}\label{group___l_o_g___a_p_i_gae4f545d29e1faa30e5b27be12d4286d0}} 
 \index{Log API@{Log API}!serial\_printf@{serial\_printf}}
@@ -69,5 +115,18 @@ Definition at line 76 of file log.\+c.
 
 
 
-Definition at line 94 of file log.\+c.
+Definition at line 110 of file log.\+c.
+
+
+
+\doxysubsection{Variable Documentation}
+\mbox{\Hypertarget{group___l_o_g___a_p_i_ga56444742f0aa74085c5d2b6bc4751e39}\label{group___l_o_g___a_p_i_ga56444742f0aa74085c5d2b6bc4751e39}} 
+\index{Log API@{Log API}!logger@{logger}}
+\index{logger@{logger}!Log API@{Log API}}
+\doxysubsubsection{\texorpdfstring{logger}{logger}}
+{\footnotesize\ttfamily \mbox{\hyperlink{structlog__t}{log\+\_\+t}} logger\hspace{0.3cm}{\ttfamily [extern]}}
+
+
+
+Definition at line 37 of file log.\+c.
 

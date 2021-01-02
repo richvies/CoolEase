@@ -3497,21 +3497,40 @@ typedef struct
 # 11 "common/include/common/board_defs.h" 3 4
 _Bool 
 # 11 "common/include/common/board_defs.h"
-       msg_pend;
+     msg_pend;
  
 # 12 "common/include/common/board_defs.h" 3 4
 _Bool 
 # 12 "common/include/common/board_defs.h"
-       active;
+     active;
  uint32_t dev_num;
  uint32_t msg_num;
  uint32_t msg_num_start;
  uint32_t ok_packets;
  uint32_t total_packets;
-}sensor_t;
+} sensor_t;
+
+typedef struct
+{
+ 
+# 22 "common/include/common/board_defs.h" 3 4
+_Bool 
+# 22 "common/include/common/board_defs.h"
+     msg_pend;
+ 
+# 23 "common/include/common/board_defs.h" 3 4
+_Bool 
+# 23 "common/include/common/board_defs.h"
+     active;
+ uint32_t dev_num;
+ uint32_t msg_num;
+ uint32_t msg_num_start;
+ uint32_t ok_packets;
+ uint32_t total_packets;
+} hub_t;
 
 
-void clock_setup_MSI_2MHZ(void);
+void clock_setup_msi_2mhz(void);
 
 
 
@@ -3523,7 +3542,6 @@ extern uint8_t num_sensors;
 sensor_t *get_sensor(uint32_t dev_num);
 
 
-
 #define BATT_SENS_PORT GPIOA
 #define BATT_SENS GPIO0
 
@@ -3531,10 +3549,8 @@ sensor_t *get_sensor(uint32_t dev_num);
 #define PWR_SENS GPIO1
 
 
-
 #define LED_PORT GPIOB
 #define LED GPIO8
-
 
 
 #define SPF_USART_BAUD 115200
@@ -3546,7 +3562,6 @@ sensor_t *get_sensor(uint32_t dev_num);
 #define SPF_USART_TX GPIO9
 #define SPF_USART_RX_PORT GPIOA
 #define SPF_USART_RX GPIO10
-
 
 
 
@@ -3592,7 +3607,6 @@ sensor_t *get_sensor(uint32_t dev_num);
 #define RFM_IO_5 GPIO0
 
 
-
 #define SIM_USART_BAUD 38400
 #define SIM_USART_NVIC NVIC_USART2_IRQ
 #define SIM_USART USART2
@@ -3608,7 +3622,6 @@ sensor_t *get_sensor(uint32_t dev_num);
 
 #define SIM_RESET_PORT GPIOA
 #define SIM_RESET GPIO4
-
 
 
 
@@ -3628,7 +3641,7 @@ sensor_t *get_sensor(uint32_t dev_num);
 
 #define W25_SPI_SCK_PORT GPIOB
 #define W25_SPI_SCK GPIO3
-# 232 "common/include/common/board_defs.h"
+# 233 "common/include/common/board_defs.h"
 void gpio_init(void);
 # 18 "hub/src/hub_bootloader.c" 2
 # 1 "common/include/common/memory.h" 1
@@ -3815,7 +3828,7 @@ void eeprom_program_words(uint32_t address, uint32_t *data, int length_in_words)
 # 34 "common/include/common/memory.h" 2
 # 1 "libopencm3/include/libopencm3/stm32/rcc.h" 1
 # 35 "common/include/common/memory.h" 2
-# 49 "common/include/common/memory.h"
+# 54 "common/include/common/memory.h"
 #define FLASH_PAGE_SIZE 128U
 #define FLASH_NUM_PAGES 512U
 #define FLASH_START 0x08000000U
@@ -3823,46 +3836,70 @@ void eeprom_program_words(uint32_t address, uint32_t *data, int length_in_words)
 #define FLASH_APP_END 0x0800C000U
 #define FLASH_END 0x08010000U
 
+
+
+
+
 #define EEPROM_PAGE_SIZE 4U
 #define EEPROM_NUM_PAGES 512U
 #define EEPROM_START 0x08080000U
-#define EEPROM_END 0x08080800U
+#define EEPROM_SIZE 2048U
+#define EEPROM_END EEPROM_START + EEPROM_SIZE
 
-#define LOG_SIZE 1024
-#define LOG_START EEPROM_END - LOG_SIZE
-# 75 "common/include/common/memory.h"
+
+
+#define EEPROM_BOOTLOADER_SIZE 256U
+#define EEPROM_DEV_SIZE 256U
+#define EEPROM_LOG_SIZE 1024U
+
+
+
+
+
+
+#define EEPROM_BOOTLOADER_BASE EEPROM_START
+#define EEPROM_BOOTLOADER_END EEPROM_BOOTLOADER_BASE + EEPROM_BOOTLOADER_SIZE
+
+
+#define EEPROM_DEV_BASE EEPROM_BOOTLOADER_END
+#define EEPROM_DEV_END EEPROM_START + EEPROM_BOOTLOADER_SIZE
+
+
+#define EEPROM_LOG_START EEPROM_DEV_END
+#define EEPROM_LOG_END EEPROM_LOG_START + EEPROM_LOG_SIZE
+# 102 "common/include/common/memory.h"
 void mem_init(void);
 
 
-# 77 "common/include/common/memory.h" 3 4
+# 104 "common/include/common/memory.h" 3 4
 _Bool 
-# 77 "common/include/common/memory.h"
+# 104 "common/include/common/memory.h"
     mem_eeprom_write_word(uint32_t address, uint32_t data);
 
-# 78 "common/include/common/memory.h" 3 4
+# 105 "common/include/common/memory.h" 3 4
 _Bool 
-# 78 "common/include/common/memory.h"
+# 105 "common/include/common/memory.h"
     mem_eeprom_write_half_word(uint32_t address, uint16_t data);
 
-# 79 "common/include/common/memory.h" 3 4
+# 106 "common/include/common/memory.h" 3 4
 _Bool 
-# 79 "common/include/common/memory.h"
+# 106 "common/include/common/memory.h"
     mem_eeprom_write_byte(uint32_t address, uint8_t data);
 
 
-# 81 "common/include/common/memory.h" 3 4
+# 108 "common/include/common/memory.h" 3 4
 _Bool 
-# 81 "common/include/common/memory.h"
+# 108 "common/include/common/memory.h"
     mem_flash_erase_page(uint32_t address);
 
-# 82 "common/include/common/memory.h" 3 4
+# 109 "common/include/common/memory.h" 3 4
 _Bool 
-# 82 "common/include/common/memory.h"
+# 109 "common/include/common/memory.h"
     mem_flash_write_word(uint32_t address, uint32_t data);
 
-# 83 "common/include/common/memory.h" 3 4
+# 110 "common/include/common/memory.h" 3 4
 _Bool 
-# 83 "common/include/common/memory.h"
+# 110 "common/include/common/memory.h"
     mem_flash_write_half_page(uint32_t address, uint32_t *data);
 
 void mem_save_reading(int16_t reading);
@@ -3874,7 +3911,7 @@ void mem_update_msg_num(uint32_t new);
 uint32_t mem_get_num_readings(void);
 int16_t mem_get_reading(uint32_t reading_num);
 
-void mem_get_log(char log[1024]);
+void mem_get_log(char log[1024U]);
 void mem_wipe_log(void);
 void mem_print_log(void);
 
@@ -3964,11 +4001,30 @@ void set_gpio_for_standby(void);
 #define ERR_BOOT_PROG_FLASH_ERASE 3
 #define ERR_BOOT_PROG_FLASH_WRITE_1 4
 #define ERR_BOOT_PROG_FLASH_WRITE_2 5
-# 65 "common/include/common/log.h"
+
+
+
+
+
+
+
+typedef struct
+{
+ uint16_t size;
+ uint16_t write_index;
+ uint16_t read_index ;
+}log_t;
+extern log_t logger;
+
+
+
+
 void log_init(void);
 void log_printf(const char *format, ...);
 void log_error(uint16_t error);
 uint8_t log_get(uint16_t index);
+void log_read_reset(void);
+uint8_t log_read(void);
 
 void serial_printf(const char *format, ...);
 # 21 "hub/src/hub_bootloader.c" 2
@@ -5413,9 +5469,17 @@ void test_analog_watchdog(void);
 # 1 "hub/include/hub/cusb.h" 1
 # 29 "hub/include/hub/cusb.h"
 #define CUSB_H 
-# 52 "hub/include/hub/cusb.h"
+# 55 "hub/include/hub/cusb.h"
 void cusb_init(void);
+
 void cusb_test_poll(void);
+void cusb_send(char character);
+# 68 "hub/include/hub/cusb.h"
+
+# 68 "hub/include/hub/cusb.h" 3 4
+_Bool 
+# 68 "hub/include/hub/cusb.h"
+    cusb_connected(void);
 # 24 "hub/src/hub_bootloader.c" 2
 
 
@@ -5423,25 +5487,36 @@ void cusb_test_poll(void);
 
 
 #define APP_ADDRESS 0x08004000
-# 54 "hub/src/hub_bootloader.c"
+# 53 "hub/src/hub_bootloader.c"
 int main(void)
 {
- clock_setup_MSI_2MHZ();
-
+ clock_setup_msi_2mhz();
     log_init();
  timers_lptim_init();
  timers_tim6_init();
 
-
- for(int i = 0; i < 100000; i++){__asm__("nop");};
-
-
     log_printf("Hub Bl Start\n");
-# 76 "hub/src/hub_bootloader.c"
+
+ for (uint16_t i = 0; i < 10; i++)
+ {
+  log_printf("Test %i\n", i);
+ }
+
+ serial_printf("Hub Bootloader Ready");
+
+ cusb_init();
+
+
+
+
+
+
+
     for (;;)
  {
 
 
+  __asm__("nop");
  }
 
     return 0;

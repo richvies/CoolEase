@@ -1,9 +1,8 @@
 var searchData=
 [
-  ['usb_5fconfiguration_5fidx_1187',['USB_CONFIGURATION_IDX',['../group___c_u_s_b___c_f_g.html#gga8e8903d0c7276e7295ce8a9aaea727b4a4424c4941324bf6b1d66433316169a9e',1,'cusb.c']]],
-  ['usb_5finterface_5fidx_1188',['USB_INTERFACE_IDX',['../group___c_u_s_b___c_f_g.html#gga8e8903d0c7276e7295ce8a9aaea727b4a3b345bc3edfee8aa2613f949a2db88f5',1,'cusb.c']]],
-  ['usb_5flangid_5fidx_1189',['USB_LANGID_IDX',['../group___c_u_s_b___c_f_g.html#gga8e8903d0c7276e7295ce8a9aaea727b4adc3ba5b9e0450cfc1586c5e96138e8fc',1,'cusb.c']]],
-  ['usb_5fmanufacturer_5fidx_1190',['USB_MANUFACTURER_IDX',['../group___c_u_s_b___c_f_g.html#gga8e8903d0c7276e7295ce8a9aaea727b4a896869157e00662b55740010582e3bae',1,'cusb.c']]],
-  ['usb_5fproduct_5fidx_1191',['USB_PRODUCT_IDX',['../group___c_u_s_b___c_f_g.html#gga8e8903d0c7276e7295ce8a9aaea727b4a28c69675cc67c534eb4ee5fcad847220',1,'cusb.c']]],
-  ['usb_5fserial_5fidx_1192',['USB_SERIAL_IDX',['../group___c_u_s_b___c_f_g.html#gga8e8903d0c7276e7295ce8a9aaea727b4ac8955a3859ce8b787eed5575ad8417c4',1,'cusb.c']]]
+  ['interface_5fcdc_5fcomm_1218',['INTERFACE_CDC_COMM',['../group___c_u_s_b___c_f_g.html#ggade943db11170b477241c1a88478ad911ae06ae546abc0d38b7996d28d7b81afc0',1,'cusb.c']]],
+  ['interface_5fcdc_5fdata_1219',['INTERFACE_CDC_DATA',['../group___c_u_s_b___c_f_g.html#ggade943db11170b477241c1a88478ad911a6cd1255b80eacfa5017757c3cba61be0',1,'cusb.c']]],
+  ['interface_5fcount_1220',['INTERFACE_COUNT',['../group___c_u_s_b___c_f_g.html#ggade943db11170b477241c1a88478ad911a6c498f5b0c6a28de865172df9f4028b6',1,'cusb.c']]],
+  ['interface_5fhid_1221',['INTERFACE_HID',['../group___c_u_s_b___c_f_g.html#ggade943db11170b477241c1a88478ad911a204042907dfd3f14df88d44ca34c9bf5',1,'cusb.c']]],
+  ['interface_5fkeyboard_5fhid_1222',['INTERFACE_KEYBOARD_HID',['../group___c_u_s_b___c_f_g.html#ggade943db11170b477241c1a88478ad911ae38d5030fdcdb4a30b5a7c225f738de2',1,'cusb.c']]]
 ];

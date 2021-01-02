@@ -1,11 +1,16 @@
 \hypertarget{board__defs_8c}{}\doxysection{hub/src/board\+\_\+defs.c File Reference}
 \label{board__defs_8c}\index{hub/src/board\_defs.c@{hub/src/board\_defs.c}}
+{\ttfamily \#include $<$libopencm3/stm32/rcc.\+h$>$}\newline
+{\ttfamily \#include $<$libopencm3/stm32/gpio.\+h$>$}\newline
+{\ttfamily \#include $<$libopencm3/stm32/flash.\+h$>$}\newline
 {\ttfamily \#include \char`\"{}common/board\+\_\+defs.\+h\char`\"{}}\newline
 {\ttfamily \#include $<$stdint.\+h$>$}\newline
 {\ttfamily \#include $<$stddef.\+h$>$}\newline
 \doxysubsection*{Functions}
 \begin{DoxyCompactItemize}
 \item 
+void \mbox{\hyperlink{board__defs_8c_a66a88af4e0a6b6a465856317b3f2f272}{clock\+\_\+setup\+\_\+msi\+\_\+2mhz}} (void)
+\begin{DoxyCompactList}\small\item\em Default clock configuration for sensor and hub. \end{DoxyCompactList}\item 
 \mbox{\hyperlink{structsensor__t}{sensor\+\_\+t}} $\ast$ \mbox{\hyperlink{board__defs_8c_a51b0346eb3147c56eb4688e29ead7237}{get\+\_\+sensor}} (uint32\+\_\+t dev\+\_\+num)
 \item 
 void \mbox{\hyperlink{board__defs_8c_afdbe206b3c49f019757ab09b3cf52b9c}{gpio\+\_\+init}} (void)
@@ -20,6 +25,20 @@ uint8\+\_\+t \mbox{\hyperlink{board__defs_8c_aed328bcd9e1159e203f461f58961e8a3}{
 
 
 \doxysubsection{Function Documentation}
+\mbox{\Hypertarget{board__defs_8c_a66a88af4e0a6b6a465856317b3f2f272}\label{board__defs_8c_a66a88af4e0a6b6a465856317b3f2f272}} 
+\index{board\_defs.c@{board\_defs.c}!clock\_setup\_msi\_2mhz@{clock\_setup\_msi\_2mhz}}
+\index{clock\_setup\_msi\_2mhz@{clock\_setup\_msi\_2mhz}!board\_defs.c@{board\_defs.c}}
+\doxysubsubsection{\texorpdfstring{clock\_setup\_msi\_2mhz()}{clock\_setup\_msi\_2mhz()}}
+{\footnotesize\ttfamily void clock\+\_\+setup\+\_\+msi\+\_\+2mhz (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})}
+
+
+
+Default clock configuration for sensor and hub. 
+
+
+
+Definition at line 10 of file board\+\_\+defs.\+c.
+
 \mbox{\Hypertarget{board__defs_8c_a51b0346eb3147c56eb4688e29ead7237}\label{board__defs_8c_a51b0346eb3147c56eb4688e29ead7237}} 
 \index{board\_defs.c@{board\_defs.c}!get\_sensor@{get\_sensor}}
 \index{get\_sensor@{get\_sensor}!board\_defs.c@{board\_defs.c}}
@@ -28,7 +47,7 @@ uint8\+\_\+t \mbox{\hyperlink{board__defs_8c_aed328bcd9e1159e203f461f58961e8a3}{
 
 
 
-Definition at line 9 of file board\+\_\+defs.\+c.
+Definition at line 37 of file board\+\_\+defs.\+c.
 
 \mbox{\Hypertarget{board__defs_8c_afdbe206b3c49f019757ab09b3cf52b9c}\label{board__defs_8c_afdbe206b3c49f019757ab09b3cf52b9c}} 
 \index{board\_defs.c@{board\_defs.c}!gpio\_init@{gpio\_init}}
@@ -38,7 +57,7 @@ Definition at line 9 of file board\+\_\+defs.\+c.
 
 
 
-Definition at line 21 of file board\+\_\+defs.\+c.
+Definition at line 49 of file board\+\_\+defs.\+c.
 
 
 
@@ -51,7 +70,7 @@ Definition at line 21 of file board\+\_\+defs.\+c.
 
 
 
-Definition at line 7 of file board\+\_\+defs.\+c.
+Definition at line 35 of file board\+\_\+defs.\+c.
 
 \mbox{\Hypertarget{board__defs_8c_a9501e1f7a8f0e093d2fdd905434e6eb4}\label{board__defs_8c_a9501e1f7a8f0e093d2fdd905434e6eb4}} 
 \index{board\_defs.c@{board\_defs.c}!sensors@{sensors}}
@@ -61,5 +80,5 @@ Definition at line 7 of file board\+\_\+defs.\+c.
 
 
 
-Definition at line 6 of file board\+\_\+defs.\+c.
+Definition at line 34 of file board\+\_\+defs.\+c.
 

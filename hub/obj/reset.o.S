@@ -2192,11 +2192,30 @@ void rcc_set_usart2_sel(uint32_t usart2_sel);
 #define ERR_BOOT_PROG_FLASH_ERASE 3
 #define ERR_BOOT_PROG_FLASH_WRITE_1 4
 #define ERR_BOOT_PROG_FLASH_WRITE_2 5
-# 65 "common/include/common/log.h"
+
+
+
+
+
+
+
+typedef struct
+{
+ uint16_t size;
+ uint16_t write_index;
+ uint16_t read_index ;
+}log_t;
+extern log_t logger;
+
+
+
+
 void log_init(void);
 void log_printf(const char *format, ...);
 void log_error(uint16_t error);
 uint8_t log_get(uint16_t index);
+void log_read_reset(void);
+uint8_t log_read(void);
 
 void serial_printf(const char *format, ...);
 # 7 "common/src/reset.c" 2

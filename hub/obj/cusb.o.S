@@ -488,9 +488,34 @@
 # 1 "hub/include/hub/cusb.h" 1
 # 29 "hub/include/hub/cusb.h"
 #define CUSB_H 
-# 52 "hub/include/hub/cusb.h"
+
+
+
+
+
+# 1 "/usr/local/Cellar/arm-gcc-bin/9-2020-q2-update/lib/gcc/arm-none-eabi/9.3.1/include/stdbool.h" 1 3 4
+# 29 "/usr/local/Cellar/arm-gcc-bin/9-2020-q2-update/lib/gcc/arm-none-eabi/9.3.1/include/stdbool.h" 3 4
+#define _STDBOOL_H 
+
+
+
+#define bool _Bool
+#define true 1
+#define false 0
+# 52 "/usr/local/Cellar/arm-gcc-bin/9-2020-q2-update/lib/gcc/arm-none-eabi/9.3.1/include/stdbool.h" 3 4
+#define __bool_true_false_are_defined 1
+# 36 "hub/include/hub/cusb.h" 2
+# 55 "hub/include/hub/cusb.h"
 void cusb_init(void);
+
 void cusb_test_poll(void);
+void cusb_send(char character);
+# 68 "hub/include/hub/cusb.h"
+
+# 68 "hub/include/hub/cusb.h" 3 4
+_Bool 
+# 68 "hub/include/hub/cusb.h"
+    cusb_connected(void);
 # 16 "hub/src/cusb.c" 2
 
 # 1 "/usr/local/Cellar/arm-gcc-bin/9-2020-q2-update/lib/gcc/arm-none-eabi/9.3.1/include/stddef.h" 1 3 4
@@ -590,6 +615,7 @@ typedef unsigned int wchar_t;
 
 #define offsetof(TYPE,MEMBER) __builtin_offsetof (TYPE, MEMBER)
 # 18 "hub/src/cusb.c" 2
+
 
 # 1 "libopencm3/include/libopencm3/stm32/syscfg.h" 1
 # 20 "libopencm3/include/libopencm3/stm32/syscfg.h"
@@ -1195,18 +1221,7 @@ typedef __uint_least64_t uint_least64_t;
 
 #define _GCC_WRAP_STDINT_H 
 # 64 "libopencm3/include/libopencm3/cm3/common.h" 2
-# 1 "/usr/local/Cellar/arm-gcc-bin/9-2020-q2-update/lib/gcc/arm-none-eabi/9.3.1/include/stdbool.h" 1 3 4
-# 29 "/usr/local/Cellar/arm-gcc-bin/9-2020-q2-update/lib/gcc/arm-none-eabi/9.3.1/include/stdbool.h" 3 4
-#define _STDBOOL_H 
 
-
-
-#define bool _Bool
-#define true 1
-#define false 0
-# 52 "/usr/local/Cellar/arm-gcc-bin/9-2020-q2-update/lib/gcc/arm-none-eabi/9.3.1/include/stdbool.h" 3 4
-#define __bool_true_false_are_defined 1
-# 65 "libopencm3/include/libopencm3/cm3/common.h" 2
 
 
 #define MMIO8(addr) (*(volatile uint8_t *)(addr))
@@ -1460,7 +1475,7 @@ typedef __uint_least64_t uint_least64_t;
 
 
 # 35 "libopencm3/include/libopencm3/stm32/syscfg.h" 2
-# 20 "hub/src/cusb.c" 2
+# 21 "hub/src/cusb.c" 2
 # 1 "libopencm3/include/libopencm3/stm32/rcc.h" 1
 # 36 "libopencm3/include/libopencm3/stm32/rcc.h"
 # 1 "libopencm3/include/libopencm3/stm32/l0/rcc.h" 1
@@ -2362,7 +2377,7 @@ void rcc_set_usart2_sel(uint32_t usart2_sel);
 
 
 # 37 "libopencm3/include/libopencm3/stm32/rcc.h" 2
-# 21 "hub/src/cusb.c" 2
+# 22 "hub/src/cusb.c" 2
 # 1 "libopencm3/include/libopencm3/stm32/flash.h" 1
 # 36 "libopencm3/include/libopencm3/stm32/flash.h"
 # 1 "libopencm3/include/libopencm3/stm32/l0/flash.h" 1
@@ -2535,7 +2550,7 @@ void eeprom_program_words(uint32_t address, uint32_t *data, int length_in_words)
 
 
 # 37 "libopencm3/include/libopencm3/stm32/flash.h" 2
-# 22 "hub/src/cusb.c" 2
+# 23 "hub/src/cusb.c" 2
 # 1 "libopencm3/include/libopencm3/stm32/crs.h" 1
 # 26 "libopencm3/include/libopencm3/stm32/crs.h"
 # 1 "libopencm3/include/libopencm3/stm32/common/crs_common_all.h" 1
@@ -2631,7 +2646,7 @@ void crs_autotrim_usb_enable(void);
 
 
 # 27 "libopencm3/include/libopencm3/stm32/crs.h" 2
-# 23 "hub/src/cusb.c" 2
+# 24 "hub/src/cusb.c" 2
 # 1 "libopencm3/include/libopencm3/cm3/nvic.h" 1
 # 38 "libopencm3/include/libopencm3/cm3/nvic.h"
 #define LIBOPENCM3_NVIC_H 
@@ -2784,7 +2799,7 @@ void pend_sv_handler(void);
 void sys_tick_handler(void);
 # 182 "libopencm3/include/libopencm3/cm3/nvic.h"
 
-# 24 "hub/src/cusb.c" 2
+# 25 "hub/src/cusb.c" 2
 
 # 1 "libopencm3/include/libopencm3/usb/usbd.h" 1
 # 39 "libopencm3/include/libopencm3/usb/usbd.h"
@@ -3126,7 +3141,7 @@ extern uint8_t usbd_ep_stall_get(usbd_device *usbd_dev, uint8_t addr);
 extern void usbd_ep_nak_set(usbd_device *usbd_dev, uint8_t addr, uint8_t nak);
 
 
-# 26 "hub/src/cusb.c" 2
+# 27 "hub/src/cusb.c" 2
 # 1 "hub/src/../../libopencm3/lib/usb/usb_private.h" 1
 # 39 "hub/src/../../libopencm3/lib/usb/usb_private.h"
 #define __USB_PRIVATE_H 
@@ -3263,7 +3278,7 @@ _Bool
      set_address_before_status;
  uint16_t rx_fifo_size;
 };
-# 27 "hub/src/cusb.c" 2
+# 28 "hub/src/cusb.c" 2
 # 1 "libopencm3/include/libopencm3/stm32/st_usbfs.h" 1
 # 21 "libopencm3/include/libopencm3/stm32/st_usbfs.h"
 #define LIBOPENCM3_ST_USBFS_H 
@@ -3582,7 +3597,7 @@ _Bool
 #define USB_GET_EP_RX_BUFF(ep) (USB_PMA_BASE + (uint8_t *)(USB_GET_EP_RX_ADDR(ep) * 1))
 # 26 "libopencm3/include/libopencm3/stm32/l0/st_usbfs.h" 2
 # 34 "libopencm3/include/libopencm3/stm32/st_usbfs.h" 2
-# 28 "hub/src/cusb.c" 2
+# 29 "hub/src/cusb.c" 2
 # 1 "hub/src/../../libopencm3/lib/stm32/common/st_usbfs_core.h" 1
 # 28 "hub/src/../../libopencm3/lib/stm32/common/st_usbfs_core.h"
 #define ST_USBFS_CORE 
@@ -3616,7 +3631,7 @@ void st_usbfs_copy_to_pm(volatile void *vPM, const void *buf, uint16_t len);
 
 extern uint8_t st_usbfs_force_nak[8];
 extern struct _usbd_device st_usbfs_dev;
-# 29 "hub/src/cusb.c" 2
+# 30 "hub/src/cusb.c" 2
 
 # 1 "libopencm3/include/libopencm3/usb/hid.h" 1
 # 39 "libopencm3/include/libopencm3/usb/hid.h"
@@ -3668,7 +3683,7 @@ struct usb_hid_descriptor {
  uint8_t bCountryCode;
  uint8_t bNumDescriptors;
 } __attribute__((packed));
-# 31 "hub/src/cusb.c" 2
+# 32 "hub/src/cusb.c" 2
 
 # 1 "common/include/common/log.h" 1
 # 26 "common/include/common/log.h"
@@ -3680,15 +3695,141 @@ struct usb_hid_descriptor {
 #define ERR_BOOT_PROG_FLASH_ERASE 3
 #define ERR_BOOT_PROG_FLASH_WRITE_1 4
 #define ERR_BOOT_PROG_FLASH_WRITE_2 5
-# 65 "common/include/common/log.h"
+
+
+
+
+
+
+
+typedef struct
+{
+ uint16_t size;
+ uint16_t write_index;
+ uint16_t read_index ;
+}log_t;
+extern log_t logger;
+
+
+
+
 void log_init(void);
 void log_printf(const char *format, ...);
 void log_error(uint16_t error);
 uint8_t log_get(uint16_t index);
+void log_read_reset(void);
+uint8_t log_read(void);
 
 void serial_printf(const char *format, ...);
-# 33 "hub/src/cusb.c" 2
-# 56 "hub/src/cusb.c"
+# 34 "hub/src/cusb.c" 2
+# 1 "common/include/common/memory.h" 1
+# 26 "common/include/common/memory.h"
+#define MEMORY_H 
+
+
+
+
+
+
+# 1 "libopencm3/include/libopencm3/stm32/flash.h" 1
+# 34 "common/include/common/memory.h" 2
+# 1 "libopencm3/include/libopencm3/stm32/rcc.h" 1
+# 35 "common/include/common/memory.h" 2
+# 54 "common/include/common/memory.h"
+#define FLASH_PAGE_SIZE 128U
+#define FLASH_NUM_PAGES 512U
+#define FLASH_START 0x08000000U
+#define FLASH_APP_START 0x08004000U
+#define FLASH_APP_END 0x0800C000U
+#define FLASH_END 0x08010000U
+
+
+
+
+
+#define EEPROM_PAGE_SIZE 4U
+#define EEPROM_NUM_PAGES 512U
+#define EEPROM_START 0x08080000U
+#define EEPROM_SIZE 2048U
+#define EEPROM_END EEPROM_START + EEPROM_SIZE
+
+
+
+#define EEPROM_BOOTLOADER_SIZE 256U
+#define EEPROM_DEV_SIZE 256U
+#define EEPROM_LOG_SIZE 1024U
+
+
+
+
+
+
+#define EEPROM_BOOTLOADER_BASE EEPROM_START
+#define EEPROM_BOOTLOADER_END EEPROM_BOOTLOADER_BASE + EEPROM_BOOTLOADER_SIZE
+
+
+#define EEPROM_DEV_BASE EEPROM_BOOTLOADER_END
+#define EEPROM_DEV_END EEPROM_START + EEPROM_BOOTLOADER_SIZE
+
+
+#define EEPROM_LOG_START EEPROM_DEV_END
+#define EEPROM_LOG_END EEPROM_LOG_START + EEPROM_LOG_SIZE
+# 102 "common/include/common/memory.h"
+void mem_init(void);
+
+
+# 104 "common/include/common/memory.h" 3 4
+_Bool 
+# 104 "common/include/common/memory.h"
+    mem_eeprom_write_word(uint32_t address, uint32_t data);
+
+# 105 "common/include/common/memory.h" 3 4
+_Bool 
+# 105 "common/include/common/memory.h"
+    mem_eeprom_write_half_word(uint32_t address, uint16_t data);
+
+# 106 "common/include/common/memory.h" 3 4
+_Bool 
+# 106 "common/include/common/memory.h"
+    mem_eeprom_write_byte(uint32_t address, uint8_t data);
+
+
+# 108 "common/include/common/memory.h" 3 4
+_Bool 
+# 108 "common/include/common/memory.h"
+    mem_flash_erase_page(uint32_t address);
+
+# 109 "common/include/common/memory.h" 3 4
+_Bool 
+# 109 "common/include/common/memory.h"
+    mem_flash_write_word(uint32_t address, uint32_t data);
+
+# 110 "common/include/common/memory.h" 3 4
+_Bool 
+# 110 "common/include/common/memory.h"
+    mem_flash_write_half_page(uint32_t address, uint32_t *data);
+
+void mem_save_reading(int16_t reading);
+
+uint32_t mem_get_dev_state(void);
+uint32_t mem_get_dev_num(void);
+uint32_t mem_get_msg_num(void);
+void mem_update_msg_num(uint32_t new);
+uint32_t mem_get_num_readings(void);
+int16_t mem_get_reading(uint32_t reading_num);
+
+void mem_get_log(char log[1024U]);
+void mem_wipe_log(void);
+void mem_print_log(void);
+
+void mem_get_aes_key(uint8_t *aes_key);
+void mem_set_aes_key(uint8_t *aes_key);
+void mem_get_aes_key_exp(uint8_t *aes_key_exp);
+void mem_set_aes_key_exp(uint8_t *aes_key_exp);
+
+void mem_wipe_readings(void);
+# 35 "hub/src/cusb.c" 2
+# 58 "hub/src/cusb.c"
 enum dev_interfaces
 {
     INTERFACE_HID = 0,
@@ -3714,6 +3855,9 @@ enum dev_endpoints
 
 #define USB_VID 0x0483
 #define USB_PID 0x5750
+
+
+
 
 
 enum usb_strings_index
@@ -3767,7 +3911,7 @@ static const struct usb_endpoint_descriptor hid_interface_endpoints[] =
 
 
             .bEndpointAddress = ENDPOINT_HID_IN,
-# 142 "hub/src/cusb.c"
+# 147 "hub/src/cusb.c"
             .bmAttributes = 0x03,
 
             .wMaxPacketSize = 64,
@@ -3785,7 +3929,7 @@ static const struct usb_endpoint_descriptor hid_interface_endpoints[] =
 
 
             .bEndpointAddress = ENDPOINT_HID_OUT,
-# 167 "hub/src/cusb.c"
+# 172 "hub/src/cusb.c"
             .bmAttributes = 0x03,
 
             .wMaxPacketSize = 64,
@@ -3793,7 +3937,7 @@ static const struct usb_endpoint_descriptor hid_interface_endpoints[] =
 
             .bInterval = 1,
         }};
-# 182 "hub/src/cusb.c"
+# 187 "hub/src/cusb.c"
 static const uint8_t hid_report_descriptor[] =
     {
         0x06, 0x00, 0xff,
@@ -3903,17 +4047,27 @@ static const struct usb_config_descriptor cfg_desc =
         .bMaxPower = 200,
         .interface = interfaces,
 };
-# 303 "hub/src/cusb.c"
+# 308 "hub/src/cusb.c"
 static usbd_device *usbd_dev;
+
+typedef enum
+{
+    RESET = 0,
+    CONNECTED,
+    GET_LOG
+} usb_state_t;
+
+static usb_state_t usb_state;
 
 
 static uint8_t usbd_control_buffer[128];
 
+#define HID_REPORT_SIZE 64U
 
 
 
 
-static uint8_t hid_report_buf[64] = "Default Report Buffer";
+static uint8_t hid_report_buf[64U] = "Default Report Buffer";
 
 
 
@@ -3926,11 +4080,8 @@ static void cusb_clock_init(void);
 
 
 
-static void cusb_reset_callback(void)
-{
-
-}
-# 339 "hub/src/cusb.c"
+static void cusb_reset_callback(void);
+# 350 "hub/src/cusb.c"
 static void hid_set_config(usbd_device *dev, uint16_t wValue);
 
 
@@ -3953,19 +4104,23 @@ static void hid_out_report_callback(usbd_device *dev, uint8_t ea);
 
 
 static void hid_in_report_callback(usbd_device *dev, uint8_t ea);
-# 373 "hub/src/cusb.c"
+# 383 "hub/src/cusb.c"
 void cusb_init(void)
 {
 
     cusb_clock_init();
 
 
+    usb_state = RESET;
     (*((&(*(volatile uint32_t *)((((0x40000000U) + 0x00000) + 0x5c00) + 0x40)))) = (uint16_t)(0x0001));
     (*((&(*(volatile uint32_t *)((((0x40000000U) + 0x00000) + 0x5c00) + 0x40)))) = (uint16_t)(0));
     (*((&(*(volatile uint32_t *)((((0x40000000U) + 0x00000) + 0x5c00) + 0x44)))) = (uint16_t)(0));
 
 
     usbd_dev = usbd_init(&st_usbfs_v2_usb_driver, &dev_desc, &cfg_desc, usb_strings, sizeof(usb_strings) / sizeof(const char *), usbd_control_buffer, sizeof(usbd_control_buffer));
+
+
+    usbd_register_reset_callback(usbd_dev, cusb_reset_callback);
 
 
     usbd_register_set_config_callback(usbd_dev, hid_set_config);
@@ -3979,11 +4134,32 @@ void cusb_test_poll(void)
 {
     while (1)
     {
-
         usbd_poll(usbd_dev);
     }
 }
-# 413 "hub/src/cusb.c"
+
+void cusb_send(char character)
+{
+    usbd_ep_write_packet(usbd_dev, ENDPOINT_HID_IN, (const void *)&character, 1);
+}
+
+
+# 421 "hub/src/cusb.c" 3 4
+_Bool 
+# 421 "hub/src/cusb.c"
+    cusb_connected(void)
+{
+    return ((usb_state == CONNECTED) ? 
+# 423 "hub/src/cusb.c" 3 4
+                                      1 
+# 423 "hub/src/cusb.c"
+                                           : 
+# 423 "hub/src/cusb.c" 3 4
+                                             0
+# 423 "hub/src/cusb.c"
+                                                  );
+}
+# 436 "hub/src/cusb.c"
 static void cusb_clock_init(void)
 {
 
@@ -4038,6 +4214,11 @@ static void cusb_clock_init(void)
 
 
 
+static void cusb_reset_callback(void)
+{
+    usb_state = RESET;
+}
+
 static void hid_set_config(usbd_device *dev, uint16_t wValue)
 {
     (void)wValue;
@@ -4051,6 +4232,8 @@ static void hid_set_config(usbd_device *dev, uint16_t wValue)
         0x00 | 0x01,
         0x60 | 0x1F,
         hid_control_request);
+
+    usb_state = CONNECTED;
 }
 
 static enum usbd_request_return_codes hid_control_request(usbd_device *dev, struct usb_setup_data *req, uint8_t **buf, uint16_t *len,
@@ -4074,17 +4257,47 @@ static enum usbd_request_return_codes hid_control_request(usbd_device *dev, stru
 static void hid_in_report_callback(usbd_device *dev, uint8_t ea)
 {
 
+
+    if (usb_state == GET_LOG)
+    {
+        static uint16_t bytes_sent = 0;
+
+
+        for (uint16_t i = 0; i < 64U; i++)
+        {
+            hid_report_buf[i] = log_read();
+        }
+        bytes_sent += 64U;
+
+        usbd_ep_write_packet(dev, ea, hid_report_buf, 64U);
+
+        if(bytes_sent >= logger.size)
+        {
+            usb_state = RESET;
+            bytes_sent = 0;
+        }
+    }
 }
 
 static void hid_out_report_callback(usbd_device *dev, uint8_t ea)
 {
-    usbd_ep_read_packet(dev, ea, hid_report_buf, sizeof(hid_report_buf) / sizeof(uint8_t));
 
+
+
+    uint8_t buf[] = "Out Report Callback\n";
+    usbd_ep_write_packet(dev, ea, buf, 64U);
+
+    usbd_ep_read_packet(dev, ea, hid_report_buf, 64U);
     uint8_t command = hid_report_buf[0];
 
-    serial_printf("Out Resport command: %i data: %s\n",command, &hid_report_buf[4]);
 
 
+
+    if (command == 1)
+    {
+        usb_state = GET_LOG;
+        log_read_reset();
+    }
 }
 
 
@@ -4093,63 +4306,86 @@ static void hid_out_report_callback(usbd_device *dev, uint8_t ea)
 
 void usb_isr(void)
 {
- uint16_t istr = *(&(*(volatile uint32_t *)((((0x40000000U) + 0x00000) + 0x5c00) + 0x44)));
 
- if (istr & 0x0400) {
-  (*(((&(*(volatile uint32_t *)((((0x40000000U) + 0x00000) + 0x5c00) + 0x44))))) = (uint16_t)((~(0x0400))));
-  usbd_dev->pm_top = 0x40;
-  _usbd_reset(usbd_dev);
-  return;
- }
+    serial_printf("I");
 
- if (istr & 0x8000) {
-  uint8_t ep = istr & 0x000F;
-  uint8_t type;
+    uint16_t istr = *(&(*(volatile uint32_t *)((((0x40000000U) + 0x00000) + 0x5c00) + 0x44)));
 
-  if (istr & 0x0010) {
+    if (istr & 0x0400)
+    {
+        (*(((&(*(volatile uint32_t *)((((0x40000000U) + 0x00000) + 0x5c00) + 0x44))))) = (uint16_t)((~(0x0400))));
+        usbd_dev->pm_top = 0x40;
+        _usbd_reset(usbd_dev);
+        return;
+    }
 
-   if (*(&(*(volatile uint32_t *)((((0x40000000U) + 0x00000) + 0x5c00))) + (ep)) & 0x0800) {
-    type = USB_TRANSACTION_SETUP;
-    st_usbfs_ep_read_packet(usbd_dev, ep, &usbd_dev->control_state.req, 8);
-   } else {
-    type = USB_TRANSACTION_OUT;
-   }
-  } else {
-   type = USB_TRANSACTION_IN;
-   (*(((&(*(volatile uint32_t *)((((0x40000000U) + 0x00000) + 0x5c00))) + (ep)))) = (uint16_t)((((uint16_t) *(((&(*(volatile uint32_t *)((((0x40000000U) + 0x00000) + 0x5c00))) + (ep))))) & ((0x8000 | 0x0800 | 0x0600 | 0x0100 | 0x0080 | 0x000F)) & (~(0x0080))) | (0x8000)));
-  }
+    if (istr & 0x8000)
+    {
+        uint8_t ep = istr & 0x000F;
+        uint8_t type;
 
-  if (usbd_dev->user_callback_ctr[ep][type]) {
-   usbd_dev->user_callback_ctr[ep][type] (usbd_dev, ep);
-  } else {
-   (*(((&(*(volatile uint32_t *)((((0x40000000U) + 0x00000) + 0x5c00))) + (ep)))) = (uint16_t)((((uint16_t) *(((&(*(volatile uint32_t *)((((0x40000000U) + 0x00000) + 0x5c00))) + (ep))))) & ((0x8000 | 0x0800 | 0x0600 | 0x0100 | 0x0080 | 0x000F)) & (~(0x8000))) | (0x0080)));
-  }
- }
+        if (istr & 0x0010)
+        {
 
- if (istr & 0x0800) {
-  (*(((&(*(volatile uint32_t *)((((0x40000000U) + 0x00000) + 0x5c00) + 0x44))))) = (uint16_t)((~(0x0800))));
-  if (usbd_dev->user_callback_suspend) {
-   usbd_dev->user_callback_suspend();
-  }
- }
+            if (*(&(*(volatile uint32_t *)((((0x40000000U) + 0x00000) + 0x5c00))) + (ep)) & 0x0800)
+            {
+                type = USB_TRANSACTION_SETUP;
+                st_usbfs_ep_read_packet(usbd_dev, ep, &usbd_dev->control_state.req, 8);
+            }
+            else
+            {
+                type = USB_TRANSACTION_OUT;
+            }
+        }
+        else
+        {
+            type = USB_TRANSACTION_IN;
+            (*(((&(*(volatile uint32_t *)((((0x40000000U) + 0x00000) + 0x5c00))) + (ep)))) = (uint16_t)((((uint16_t) *(((&(*(volatile uint32_t *)((((0x40000000U) + 0x00000) + 0x5c00))) + (ep))))) & ((0x8000 | 0x0800 | 0x0600 | 0x0100 | 0x0080 | 0x000F)) & (~(0x0080))) | (0x8000)));
+        }
 
- if (istr & 0x1000) {
-  (*(((&(*(volatile uint32_t *)((((0x40000000U) + 0x00000) + 0x5c00) + 0x44))))) = (uint16_t)((~(0x1000))));
-  if (usbd_dev->user_callback_resume) {
-   usbd_dev->user_callback_resume();
-  }
- }
+        if (usbd_dev->user_callback_ctr[ep][type])
+        {
+            usbd_dev->user_callback_ctr[ep][type](usbd_dev, ep);
+        }
+        else
+        {
+            (*(((&(*(volatile uint32_t *)((((0x40000000U) + 0x00000) + 0x5c00))) + (ep)))) = (uint16_t)((((uint16_t) *(((&(*(volatile uint32_t *)((((0x40000000U) + 0x00000) + 0x5c00))) + (ep))))) & ((0x8000 | 0x0800 | 0x0600 | 0x0100 | 0x0080 | 0x000F)) & (~(0x8000))) | (0x0080)));
+        }
+    }
 
- if (istr & 0x0200) {
-  (*(((&(*(volatile uint32_t *)((((0x40000000U) + 0x00000) + 0x5c00) + 0x44))))) = (uint16_t)((~(0x0200))));
-  if (usbd_dev->user_callback_sof) {
-   usbd_dev->user_callback_sof();
-  }
- }
+    if (istr & 0x0800)
+    {
+        (*(((&(*(volatile uint32_t *)((((0x40000000U) + 0x00000) + 0x5c00) + 0x44))))) = (uint16_t)((~(0x0800))));
+        if (usbd_dev->user_callback_suspend)
+        {
+            usbd_dev->user_callback_suspend();
+        }
+    }
 
- if (usbd_dev->user_callback_sof) {
-  *(&(*(volatile uint32_t *)((((0x40000000U) + 0x00000) + 0x5c00) + 0x40))) |= 0x0200;
- } else {
-  *(&(*(volatile uint32_t *)((((0x40000000U) + 0x00000) + 0x5c00) + 0x40))) &= ~0x0200;
- }
+    if (istr & 0x1000)
+    {
+        (*(((&(*(volatile uint32_t *)((((0x40000000U) + 0x00000) + 0x5c00) + 0x44))))) = (uint16_t)((~(0x1000))));
+        if (usbd_dev->user_callback_resume)
+        {
+            usbd_dev->user_callback_resume();
+        }
+    }
+
+    if (istr & 0x0200)
+    {
+        (*(((&(*(volatile uint32_t *)((((0x40000000U) + 0x00000) + 0x5c00) + 0x44))))) = (uint16_t)((~(0x0200))));
+        if (usbd_dev->user_callback_sof)
+        {
+            usbd_dev->user_callback_sof();
+        }
+    }
+
+    if (usbd_dev->user_callback_sof)
+    {
+        *(&(*(volatile uint32_t *)((((0x40000000U) + 0x00000) + 0x5c00) + 0x40))) |= 0x0200;
+    }
+    else
+    {
+        *(&(*(volatile uint32_t *)((((0x40000000U) + 0x00000) + 0x5c00) + 0x40))) &= ~0x0200;
+    }
 }

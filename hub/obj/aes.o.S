@@ -2357,13 +2357,32 @@ char *strsignal (int __signo);
 #define ERR_BOOT_PROG_FLASH_ERASE 3
 #define ERR_BOOT_PROG_FLASH_WRITE_1 4
 #define ERR_BOOT_PROG_FLASH_WRITE_2 5
-# 65 "common/include/common/log.h"
 
-# 65 "common/include/common/log.h"
+
+
+
+
+
+
+
+# 60 "common/include/common/log.h"
+typedef struct
+{
+ uint16_t size;
+ uint16_t write_index;
+ uint16_t read_index ;
+}log_t;
+extern log_t logger;
+
+
+
+
 void log_init(void);
 void log_printf(const char *format, ...);
 void log_error(uint16_t error);
 uint8_t log_get(uint16_t index);
+void log_read_reset(void);
+uint8_t log_read(void);
 
 void serial_printf(const char *format, ...);
 # 44 "common/src/aes.c" 2
@@ -3631,7 +3650,7 @@ void rcc_set_usart2_sel(uint32_t usart2_sel);
 
 # 37 "libopencm3/include/libopencm3/stm32/rcc.h" 2
 # 35 "common/include/common/memory.h" 2
-# 49 "common/include/common/memory.h"
+# 54 "common/include/common/memory.h"
 #define FLASH_PAGE_SIZE 128U
 #define FLASH_NUM_PAGES 512U
 #define FLASH_START 0x08000000U
@@ -3639,46 +3658,70 @@ void rcc_set_usart2_sel(uint32_t usart2_sel);
 #define FLASH_APP_END 0x0800C000U
 #define FLASH_END 0x08010000U
 
+
+
+
+
 #define EEPROM_PAGE_SIZE 4U
 #define EEPROM_NUM_PAGES 512U
 #define EEPROM_START 0x08080000U
-#define EEPROM_END 0x08080800U
+#define EEPROM_SIZE 2048U
+#define EEPROM_END EEPROM_START + EEPROM_SIZE
 
-#define LOG_SIZE 1024
-#define LOG_START EEPROM_END - LOG_SIZE
-# 75 "common/include/common/memory.h"
+
+
+#define EEPROM_BOOTLOADER_SIZE 256U
+#define EEPROM_DEV_SIZE 256U
+#define EEPROM_LOG_SIZE 1024U
+
+
+
+
+
+
+#define EEPROM_BOOTLOADER_BASE EEPROM_START
+#define EEPROM_BOOTLOADER_END EEPROM_BOOTLOADER_BASE + EEPROM_BOOTLOADER_SIZE
+
+
+#define EEPROM_DEV_BASE EEPROM_BOOTLOADER_END
+#define EEPROM_DEV_END EEPROM_START + EEPROM_BOOTLOADER_SIZE
+
+
+#define EEPROM_LOG_START EEPROM_DEV_END
+#define EEPROM_LOG_END EEPROM_LOG_START + EEPROM_LOG_SIZE
+# 102 "common/include/common/memory.h"
 void mem_init(void);
 
 
-# 77 "common/include/common/memory.h" 3 4
+# 104 "common/include/common/memory.h" 3 4
 _Bool 
-# 77 "common/include/common/memory.h"
+# 104 "common/include/common/memory.h"
     mem_eeprom_write_word(uint32_t address, uint32_t data);
 
-# 78 "common/include/common/memory.h" 3 4
+# 105 "common/include/common/memory.h" 3 4
 _Bool 
-# 78 "common/include/common/memory.h"
+# 105 "common/include/common/memory.h"
     mem_eeprom_write_half_word(uint32_t address, uint16_t data);
 
-# 79 "common/include/common/memory.h" 3 4
+# 106 "common/include/common/memory.h" 3 4
 _Bool 
-# 79 "common/include/common/memory.h"
+# 106 "common/include/common/memory.h"
     mem_eeprom_write_byte(uint32_t address, uint8_t data);
 
 
-# 81 "common/include/common/memory.h" 3 4
+# 108 "common/include/common/memory.h" 3 4
 _Bool 
-# 81 "common/include/common/memory.h"
+# 108 "common/include/common/memory.h"
     mem_flash_erase_page(uint32_t address);
 
-# 82 "common/include/common/memory.h" 3 4
+# 109 "common/include/common/memory.h" 3 4
 _Bool 
-# 82 "common/include/common/memory.h"
+# 109 "common/include/common/memory.h"
     mem_flash_write_word(uint32_t address, uint32_t data);
 
-# 83 "common/include/common/memory.h" 3 4
+# 110 "common/include/common/memory.h" 3 4
 _Bool 
-# 83 "common/include/common/memory.h"
+# 110 "common/include/common/memory.h"
     mem_flash_write_half_page(uint32_t address, uint32_t *data);
 
 void mem_save_reading(int16_t reading);
@@ -3690,7 +3733,7 @@ void mem_update_msg_num(uint32_t new);
 uint32_t mem_get_num_readings(void);
 int16_t mem_get_reading(uint32_t reading_num);
 
-void mem_get_log(char log[1024]);
+void mem_get_log(char log[1024U]);
 void mem_wipe_log(void);
 void mem_print_log(void);
 

@@ -32,6 +32,8 @@
 // Includes
 /*////////////////////////////////////////////////////////////////////////////*/
 
+#include <stdbool.h>
+
 #ifdef __cplusplus
 extern "C" {
 #endif
@@ -49,8 +51,22 @@ extern "C" {
 // Exported Function Declarations
 /*////////////////////////////////////////////////////////////////////////////*/
 
+/** @brief Initialize clock and interrupts */
 void cusb_init(void);
+
 void cusb_test_poll(void);
+void cusb_send(char character);
+
+/** @brief True if usb state is CONNECTED
+ * 
+ * Set by hid config callback after 
+ * host has requested HID configuration
+ * 
+ * @ref usb_state \n
+ * @ref hid_set_config()
+ */
+bool cusb_connected(void);
+
 
 /** @} */
 

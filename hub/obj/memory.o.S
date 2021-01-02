@@ -485,9 +485,13 @@
 #define STM32L052C8T6 1
 # 1 "common/src/memory.c"
 # 15 "common/src/memory.c"
-# 1 "common/include/common/aes.h" 1
+# 1 "common/include/common/memory.h" 1
+# 26 "common/include/common/memory.h"
+#define MEMORY_H 
 
-#define AES_H 
+
+
+
 
 # 1 "/usr/local/Cellar/arm-gcc-bin/9-2020-q2-update/lib/gcc/arm-none-eabi/9.3.1/include/stdint.h" 1 3 4
 # 9 "/usr/local/Cellar/arm-gcc-bin/9-2020-q2-update/lib/gcc/arm-none-eabi/9.3.1/include/stdint.h" 3 4
@@ -1078,35 +1082,7 @@ typedef __uint_least64_t uint_least64_t;
 
 
 #define _GCC_WRAP_STDINT_H 
-# 5 "common/include/common/aes.h" 2
-
-#define AES_BLOCKLEN 16
-
-#define AES_KEY_LEN 16
-#define AES_KEY_EXP_SIZE 176
-
-
-# 11 "common/include/common/aes.h"
-void aes_init(void);
-void aes_expand_key(void);
-void aes_ecb_encrypt(uint8_t* buf);
-void aes_ecb_decrypt(uint8_t* buf);
-void aes_generate_random(uint8_t *buf, uint8_t len);
-# 16 "common/src/memory.c" 2
-
-# 1 "/usr/local/Cellar/arm-gcc-bin/9-2020-q2-update/lib/gcc/arm-none-eabi/9.3.1/include/stdbool.h" 1 3 4
-# 29 "/usr/local/Cellar/arm-gcc-bin/9-2020-q2-update/lib/gcc/arm-none-eabi/9.3.1/include/stdbool.h" 3 4
-#define _STDBOOL_H 
-
-
-
-#define bool _Bool
-#define true 1
-#define false 0
-# 52 "/usr/local/Cellar/arm-gcc-bin/9-2020-q2-update/lib/gcc/arm-none-eabi/9.3.1/include/stdbool.h" 3 4
-#define __bool_true_false_are_defined 1
-# 18 "common/src/memory.c" 2
-
+# 33 "common/include/common/memory.h" 2
 # 1 "libopencm3/include/libopencm3/stm32/flash.h" 1
 # 20 "libopencm3/include/libopencm3/stm32/flash.h"
 # 1 "libopencm3/include/libopencm3/cm3/common.h" 1
@@ -1122,7 +1098,21 @@ void aes_generate_random(uint8_t *buf, uint8_t len);
 
 
 #define LIBOPENCM3_DEPRECATED(x) __attribute__((deprecated(x)))
-# 67 "libopencm3/include/libopencm3/cm3/common.h"
+# 64 "libopencm3/include/libopencm3/cm3/common.h"
+# 1 "/usr/local/Cellar/arm-gcc-bin/9-2020-q2-update/lib/gcc/arm-none-eabi/9.3.1/include/stdbool.h" 1 3 4
+# 29 "/usr/local/Cellar/arm-gcc-bin/9-2020-q2-update/lib/gcc/arm-none-eabi/9.3.1/include/stdbool.h" 3 4
+#define _STDBOOL_H 
+
+
+
+#define bool _Bool
+#define true 1
+#define false 0
+# 52 "/usr/local/Cellar/arm-gcc-bin/9-2020-q2-update/lib/gcc/arm-none-eabi/9.3.1/include/stdbool.h" 3 4
+#define __bool_true_false_are_defined 1
+# 65 "libopencm3/include/libopencm3/cm3/common.h" 2
+
+
 #define MMIO8(addr) (*(volatile uint8_t *)(addr))
 #define MMIO16(addr) (*(volatile uint16_t *)(addr))
 #define MMIO32(addr) (*(volatile uint32_t *)(addr))
@@ -1304,6 +1294,8 @@ void aes_generate_random(uint8_t *buf, uint8_t len);
 
 
 # 37 "libopencm3/include/libopencm3/stm32/common/flash_common_all.h"
+
+# 37 "libopencm3/include/libopencm3/stm32/common/flash_common_all.h"
 void flash_prefetch_enable(void);
 
 
@@ -1461,375 +1453,7 @@ void eeprom_program_words(uint32_t address, uint32_t *data, int length_in_words)
 
 
 # 37 "libopencm3/include/libopencm3/stm32/flash.h" 2
-# 20 "common/src/memory.c" 2
-
-# 1 "common/include/common/board_defs.h" 1
-
-#define BOARD_DEFS_H 
-
-# 1 "libopencm3/include/libopencm3/stm32/gpio.h" 1
-# 36 "libopencm3/include/libopencm3/stm32/gpio.h"
-# 1 "libopencm3/include/libopencm3/stm32/l0/gpio.h" 1
-# 32 "libopencm3/include/libopencm3/stm32/l0/gpio.h"
-#define LIBOPENCM3_GPIO_H 
-
-# 1 "libopencm3/include/libopencm3/stm32/common/gpio_common_f24.h" 1
-# 37 "libopencm3/include/libopencm3/stm32/common/gpio_common_f24.h"
-#define LIBOPENCM3_GPIO_COMMON_F24_H 
-
-
-
-# 1 "libopencm3/include/libopencm3/stm32/common/gpio_common_f234.h" 1
-# 37 "libopencm3/include/libopencm3/stm32/common/gpio_common_f234.h"
-#define LIBOPENCM3_GPIO_COMMON_F234_H 
-
-
-
-# 1 "libopencm3/include/libopencm3/stm32/common/gpio_common_all.h" 1
-# 37 "libopencm3/include/libopencm3/stm32/common/gpio_common_all.h"
-#define LIBOPENCM3_GPIO_COMMON_ALL_H 
-
-
-
-
-
-
-
-#define GPIO_LCKK (1 << 16)
-
-
-
-
-
-
-
-#define GPIO0 (1 << 0)
-#define GPIO1 (1 << 1)
-#define GPIO2 (1 << 2)
-#define GPIO3 (1 << 3)
-#define GPIO4 (1 << 4)
-#define GPIO5 (1 << 5)
-#define GPIO6 (1 << 6)
-#define GPIO7 (1 << 7)
-#define GPIO8 (1 << 8)
-#define GPIO9 (1 << 9)
-#define GPIO10 (1 << 10)
-#define GPIO11 (1 << 11)
-#define GPIO12 (1 << 12)
-#define GPIO13 (1 << 13)
-#define GPIO14 (1 << 14)
-#define GPIO15 (1 << 15)
-#define GPIO_ALL 0xffff
-
-
-
-
-void gpio_set(uint32_t gpioport, uint16_t gpios);
-void gpio_clear(uint32_t gpioport, uint16_t gpios);
-uint16_t gpio_get(uint32_t gpioport, uint16_t gpios);
-void gpio_toggle(uint32_t gpioport, uint16_t gpios);
-uint16_t gpio_port_read(uint32_t gpioport);
-void gpio_port_write(uint32_t gpioport, uint16_t data);
-void gpio_port_config_lock(uint32_t gpioport, uint16_t gpios);
-
-
-# 42 "libopencm3/include/libopencm3/stm32/common/gpio_common_f234.h" 2
-
-
-
-
-
-
-#define GPIOA GPIO_PORT_A_BASE
-#define GPIOB GPIO_PORT_B_BASE
-#define GPIOC GPIO_PORT_C_BASE
-#define GPIOD GPIO_PORT_D_BASE
-#define GPIOE GPIO_PORT_E_BASE
-#define GPIOF GPIO_PORT_F_BASE
-
-
-
-
-
-
-#define GPIO_MODER(port) MMIO32((port) + 0x00)
-#define GPIOA_MODER GPIO_MODER(GPIOA)
-#define GPIOB_MODER GPIO_MODER(GPIOB)
-#define GPIOC_MODER GPIO_MODER(GPIOC)
-#define GPIOD_MODER GPIO_MODER(GPIOD)
-#define GPIOE_MODER GPIO_MODER(GPIOE)
-#define GPIOF_MODER GPIO_MODER(GPIOF)
-
-
-#define GPIO_OTYPER(port) MMIO32((port) + 0x04)
-#define GPIOA_OTYPER GPIO_OTYPER(GPIOA)
-#define GPIOB_OTYPER GPIO_OTYPER(GPIOB)
-#define GPIOC_OTYPER GPIO_OTYPER(GPIOC)
-#define GPIOD_OTYPER GPIO_OTYPER(GPIOD)
-#define GPIOE_OTYPER GPIO_OTYPER(GPIOE)
-#define GPIOF_OTYPER GPIO_OTYPER(GPIOF)
-
-
-#define GPIO_OSPEEDR(port) MMIO32((port) + 0x08)
-#define GPIOA_OSPEEDR GPIO_OSPEEDR(GPIOA)
-#define GPIOB_OSPEEDR GPIO_OSPEEDR(GPIOB)
-#define GPIOC_OSPEEDR GPIO_OSPEEDR(GPIOC)
-#define GPIOD_OSPEEDR GPIO_OSPEEDR(GPIOD)
-#define GPIOE_OSPEEDR GPIO_OSPEEDR(GPIOE)
-#define GPIOF_OSPEEDR GPIO_OSPEEDR(GPIOF)
-
-
-#define GPIO_PUPDR(port) MMIO32((port) + 0x0c)
-#define GPIOA_PUPDR GPIO_PUPDR(GPIOA)
-#define GPIOB_PUPDR GPIO_PUPDR(GPIOB)
-#define GPIOC_PUPDR GPIO_PUPDR(GPIOC)
-#define GPIOD_PUPDR GPIO_PUPDR(GPIOD)
-#define GPIOE_PUPDR GPIO_PUPDR(GPIOE)
-#define GPIOF_PUPDR GPIO_PUPDR(GPIOF)
-
-
-#define GPIO_IDR(port) MMIO32((port) + 0x10)
-#define GPIOA_IDR GPIO_IDR(GPIOA)
-#define GPIOB_IDR GPIO_IDR(GPIOB)
-#define GPIOC_IDR GPIO_IDR(GPIOC)
-#define GPIOD_IDR GPIO_IDR(GPIOD)
-#define GPIOE_IDR GPIO_IDR(GPIOE)
-#define GPIOF_IDR GPIO_IDR(GPIOF)
-
-
-#define GPIO_ODR(port) MMIO32((port) + 0x14)
-#define GPIOA_ODR GPIO_ODR(GPIOA)
-#define GPIOB_ODR GPIO_ODR(GPIOB)
-#define GPIOC_ODR GPIO_ODR(GPIOC)
-#define GPIOD_ODR GPIO_ODR(GPIOD)
-#define GPIOE_ODR GPIO_ODR(GPIOE)
-#define GPIOF_ODR GPIO_ODR(GPIOF)
-
-
-#define GPIO_BSRR(port) MMIO32((port) + 0x18)
-#define GPIOA_BSRR GPIO_BSRR(GPIOA)
-#define GPIOB_BSRR GPIO_BSRR(GPIOB)
-#define GPIOC_BSRR GPIO_BSRR(GPIOC)
-#define GPIOD_BSRR GPIO_BSRR(GPIOD)
-#define GPIOE_BSRR GPIO_BSRR(GPIOE)
-#define GPIOF_BSRR GPIO_BSRR(GPIOF)
-
-
-#define GPIO_LCKR(port) MMIO32((port) + 0x1c)
-#define GPIOA_LCKR GPIO_LCKR(GPIOA)
-#define GPIOB_LCKR GPIO_LCKR(GPIOB)
-#define GPIOC_LCKR GPIO_LCKR(GPIOC)
-#define GPIOD_LCKR GPIO_LCKR(GPIOD)
-#define GPIOE_LCKR GPIO_LCKR(GPIOE)
-#define GPIOF_LCKR GPIO_LCKR(GPIOF)
-
-
-#define GPIO_AFRL(port) MMIO32((port) + 0x20)
-#define GPIOA_AFRL GPIO_AFRL(GPIOA)
-#define GPIOB_AFRL GPIO_AFRL(GPIOB)
-#define GPIOC_AFRL GPIO_AFRL(GPIOC)
-#define GPIOD_AFRL GPIO_AFRL(GPIOD)
-#define GPIOE_AFRL GPIO_AFRL(GPIOE)
-#define GPIOF_AFRL GPIO_AFRL(GPIOF)
-
-
-#define GPIO_AFRH(port) MMIO32((port) + 0x24)
-#define GPIOA_AFRH GPIO_AFRH(GPIOA)
-#define GPIOB_AFRH GPIO_AFRH(GPIOB)
-#define GPIOC_AFRH GPIO_AFRH(GPIOC)
-#define GPIOD_AFRH GPIO_AFRH(GPIOD)
-#define GPIOE_AFRH GPIO_AFRH(GPIOE)
-#define GPIOF_AFRH GPIO_AFRH(GPIOF)
-
-
-
-#define GPIO_MODE(n,mode) ((mode) << (2 * (n)))
-#define GPIO_MODE_MASK(n) (0x3 << (2 * (n)))
-
-
-
-#define GPIO_MODE_INPUT 0x0
-#define GPIO_MODE_OUTPUT 0x1
-#define GPIO_MODE_AF 0x2
-#define GPIO_MODE_ANALOG 0x3
-# 168 "libopencm3/include/libopencm3/stm32/common/gpio_common_f234.h"
-#define GPIO_OTYPE_PP 0x0
-
-#define GPIO_OTYPE_OD 0x1
-
-
-
-
-#define GPIO_OSPEED(n,speed) ((speed) << (2 * (n)))
-#define GPIO_OSPEED_MASK(n) (0x3 << (2 * (n)))
-
-
-
-#define GPIO_OSPEED_2MHZ 0x0
-#define GPIO_OSPEED_25MHZ 0x1
-#define GPIO_OSPEED_50MHZ 0x2
-#define GPIO_OSPEED_100MHZ 0x3
-
-
-
-
-#define GPIO_PUPD(n,pupd) ((pupd) << (2 * (n)))
-#define GPIO_PUPD_MASK(n) (0x3 << (2 * (n)))
-
-
-
-#define GPIO_PUPD_NONE 0x0
-#define GPIO_PUPD_PULLUP 0x1
-#define GPIO_PUPD_PULLDOWN 0x2
-# 213 "libopencm3/include/libopencm3/stm32/common/gpio_common_f234.h"
-#define GPIO_LCKK (1 << 16)
-
-
-
-
-
-
-
-#define GPIO_AFR(n,af) ((af) << ((n) * 4))
-#define GPIO_AFR_MASK(n) (0xf << ((n) * 4))
-
-
-
-#define GPIO_AF0 0x0
-#define GPIO_AF1 0x1
-#define GPIO_AF2 0x2
-#define GPIO_AF3 0x3
-#define GPIO_AF4 0x4
-#define GPIO_AF5 0x5
-#define GPIO_AF6 0x6
-#define GPIO_AF7 0x7
-#define GPIO_AF8 0x8
-#define GPIO_AF9 0x9
-#define GPIO_AF10 0xa
-#define GPIO_AF11 0xb
-#define GPIO_AF12 0xc
-#define GPIO_AF13 0xd
-#define GPIO_AF14 0xe
-#define GPIO_AF15 0xf
-
-
-
-
-
-
-
-# 258 "libopencm3/include/libopencm3/stm32/common/gpio_common_f234.h"
-void gpio_mode_setup(uint32_t gpioport, uint8_t mode, uint8_t pull_up_down,
-       uint16_t gpios);
-void gpio_set_output_options(uint32_t gpioport, uint8_t otype, uint8_t speed,
-        uint16_t gpios);
-void gpio_set_af(uint32_t gpioport, uint8_t alt_func_num, uint16_t gpios);
-
-
-# 42 "libopencm3/include/libopencm3/stm32/common/gpio_common_f24.h" 2
-
-
-
-
-
-
-#define GPIOG GPIO_PORT_G_BASE
-#define GPIOH GPIO_PORT_H_BASE
-#define GPIOI GPIO_PORT_I_BASE
-#define GPIOJ GPIO_PORT_J_BASE
-#define GPIOK GPIO_PORT_K_BASE
-
-
-
-
-
-#define GPIOG_MODER GPIO_MODER(GPIOG)
-#define GPIOH_MODER GPIO_MODER(GPIOH)
-#define GPIOI_MODER GPIO_MODER(GPIOI)
-#define GPIOJ_MODER GPIO_MODER(GPIOJ)
-#define GPIOK_MODER GPIO_MODER(GPIOK)
-
-
-#define GPIOG_OTYPER GPIO_OTYPER(GPIOG)
-#define GPIOH_OTYPER GPIO_OTYPER(GPIOH)
-#define GPIOI_OTYPER GPIO_OTYPER(GPIOI)
-#define GPIOJ_OTYPER GPIO_OTYPER(GPIOJ)
-#define GPIOK_OTYPER GPIO_OTYPER(GPIOK)
-
-
-#define GPIOG_OSPEEDR GPIO_OSPEEDR(GPIOG)
-#define GPIOH_OSPEEDR GPIO_OSPEEDR(GPIOH)
-#define GPIOI_OSPEEDR GPIO_OSPEEDR(GPIOI)
-#define GPIOJ_OSPEEDR GPIO_OSPEEDR(GPIOJ)
-#define GPIOK_OSPEEDR GPIO_OSPEEDR(GPIOK)
-
-
-#define GPIOG_PUPDR GPIO_PUPDR(GPIOG)
-#define GPIOH_PUPDR GPIO_PUPDR(GPIOH)
-#define GPIOI_PUPDR GPIO_PUPDR(GPIOI)
-#define GPIOJ_PUPDR GPIO_PUPDR(GPIOJ)
-#define GPIOK_PUPDR GPIO_PUPDR(GPIOK)
-
-
-#define GPIOG_IDR GPIO_IDR(GPIOG)
-#define GPIOH_IDR GPIO_IDR(GPIOH)
-#define GPIOI_IDR GPIO_IDR(GPIOI)
-#define GPIOJ_IDR GPIO_IDR(GPIOJ)
-#define GPIOK_IDR GPIO_IDR(GPIOK)
-
-
-#define GPIOG_ODR GPIO_ODR(GPIOG)
-#define GPIOH_ODR GPIO_ODR(GPIOH)
-#define GPIOI_ODR GPIO_ODR(GPIOI)
-#define GPIOJ_ODR GPIO_ODR(GPIOJ)
-#define GPIOK_ODR GPIO_ODR(GPIOK)
-
-
-#define GPIOG_BSRR GPIO_BSRR(GPIOG)
-#define GPIOH_BSRR GPIO_BSRR(GPIOH)
-#define GPIOI_BSRR GPIO_BSRR(GPIOI)
-#define GPIOJ_BSRR GPIO_BSRR(GPIOJ)
-#define GPIOK_BSRR GPIO_BSRR(GPIOK)
-
-
-#define GPIOG_LCKR GPIO_LCKR(GPIOG)
-#define GPIOH_LCKR GPIO_LCKR(GPIOH)
-#define GPIOI_LCKR GPIO_LCKR(GPIOI)
-#define GPIOJ_LCKR GPIO_LCKR(GPIOJ)
-#define GPIOK_LCKR GPIO_LCKR(GPIOK)
-
-
-#define GPIOG_AFRL GPIO_AFRL(GPIOG)
-#define GPIOH_AFRL GPIO_AFRL(GPIOH)
-#define GPIOI_AFRL GPIO_AFRL(GPIOI)
-#define GPIOJ_AFRL GPIO_AFRL(GPIOJ)
-#define GPIOK_AFRL GPIO_AFRL(GPIOK)
-
-
-#define GPIOG_AFRH GPIO_AFRH(GPIOG)
-#define GPIOH_AFRH GPIO_AFRH(GPIOH)
-#define GPIOI_AFRH GPIO_AFRH(GPIOI)
-#define GPIOJ_AFRH GPIO_AFRH(GPIOJ)
-#define GPIOK_AFRH GPIO_AFRH(GPIOK)
-# 35 "libopencm3/include/libopencm3/stm32/l0/gpio.h" 2
-# 44 "libopencm3/include/libopencm3/stm32/l0/gpio.h"
-#define GPIO_BRR(port) MMIO32((port) + 0x28)
-#define GPIOA_BRR GPIO_BRR(GPIOA)
-#define GPIOB_BRR GPIO_BRR(GPIOB)
-#define GPIOC_BRR GPIO_BRR(GPIOC)
-#define GPIOD_BRR GPIO_BRR(GPIOD)
-#define GPIOH_BRR GPIO_BRR(GPIOH)
-# 58 "libopencm3/include/libopencm3/stm32/l0/gpio.h"
-#define GPIO_OSPEED_LOW 0x0
-#define GPIO_OSPEED_MED 0x1
-#define GPIO_OSPEED_HIGH 0x2
-#define GPIO_OSPEED_VERYHIGH 0x3
-# 72 "libopencm3/include/libopencm3/stm32/l0/gpio.h"
-
-
-
-# 37 "libopencm3/include/libopencm3/stm32/gpio.h" 2
-# 5 "common/include/common/board_defs.h" 2
+# 34 "common/include/common/memory.h" 2
 # 1 "libopencm3/include/libopencm3/stm32/rcc.h" 1
 # 36 "libopencm3/include/libopencm3/stm32/rcc.h"
 # 1 "libopencm3/include/libopencm3/stm32/l0/rcc.h" 1
@@ -2729,6 +2353,493 @@ void rcc_set_usart2_sel(uint32_t usart2_sel);
 
 
 # 37 "libopencm3/include/libopencm3/stm32/rcc.h" 2
+# 35 "common/include/common/memory.h" 2
+# 54 "common/include/common/memory.h"
+#define FLASH_PAGE_SIZE 128U
+#define FLASH_NUM_PAGES 512U
+#define FLASH_START 0x08000000U
+#define FLASH_APP_START 0x08004000U
+#define FLASH_APP_END 0x0800C000U
+#define FLASH_END 0x08010000U
+
+
+
+
+
+#define EEPROM_PAGE_SIZE 4U
+#define EEPROM_NUM_PAGES 512U
+#define EEPROM_START 0x08080000U
+#define EEPROM_SIZE 2048U
+#define EEPROM_END EEPROM_START + EEPROM_SIZE
+
+
+
+#define EEPROM_BOOTLOADER_SIZE 256U
+#define EEPROM_DEV_SIZE 256U
+#define EEPROM_LOG_SIZE 1024U
+
+
+
+
+
+
+#define EEPROM_BOOTLOADER_BASE EEPROM_START
+#define EEPROM_BOOTLOADER_END EEPROM_BOOTLOADER_BASE + EEPROM_BOOTLOADER_SIZE
+
+
+#define EEPROM_DEV_BASE EEPROM_BOOTLOADER_END
+#define EEPROM_DEV_END EEPROM_START + EEPROM_BOOTLOADER_SIZE
+
+
+#define EEPROM_LOG_START EEPROM_DEV_END
+#define EEPROM_LOG_END EEPROM_LOG_START + EEPROM_LOG_SIZE
+# 102 "common/include/common/memory.h"
+void mem_init(void);
+
+
+# 104 "common/include/common/memory.h" 3 4
+_Bool 
+# 104 "common/include/common/memory.h"
+    mem_eeprom_write_word(uint32_t address, uint32_t data);
+
+# 105 "common/include/common/memory.h" 3 4
+_Bool 
+# 105 "common/include/common/memory.h"
+    mem_eeprom_write_half_word(uint32_t address, uint16_t data);
+
+# 106 "common/include/common/memory.h" 3 4
+_Bool 
+# 106 "common/include/common/memory.h"
+    mem_eeprom_write_byte(uint32_t address, uint8_t data);
+
+
+# 108 "common/include/common/memory.h" 3 4
+_Bool 
+# 108 "common/include/common/memory.h"
+    mem_flash_erase_page(uint32_t address);
+
+# 109 "common/include/common/memory.h" 3 4
+_Bool 
+# 109 "common/include/common/memory.h"
+    mem_flash_write_word(uint32_t address, uint32_t data);
+
+# 110 "common/include/common/memory.h" 3 4
+_Bool 
+# 110 "common/include/common/memory.h"
+    mem_flash_write_half_page(uint32_t address, uint32_t *data);
+
+void mem_save_reading(int16_t reading);
+
+uint32_t mem_get_dev_state(void);
+uint32_t mem_get_dev_num(void);
+uint32_t mem_get_msg_num(void);
+void mem_update_msg_num(uint32_t new);
+uint32_t mem_get_num_readings(void);
+int16_t mem_get_reading(uint32_t reading_num);
+
+void mem_get_log(char log[1024U]);
+void mem_wipe_log(void);
+void mem_print_log(void);
+
+void mem_get_aes_key(uint8_t *aes_key);
+void mem_set_aes_key(uint8_t *aes_key);
+void mem_get_aes_key_exp(uint8_t *aes_key_exp);
+void mem_set_aes_key_exp(uint8_t *aes_key_exp);
+
+void mem_wipe_readings(void);
+# 16 "common/src/memory.c" 2
+
+
+
+
+# 1 "libopencm3/include/libopencm3/stm32/flash.h" 1
+# 21 "common/src/memory.c" 2
+
+# 1 "common/include/common/aes.h" 1
+
+#define AES_H 
+
+
+
+#define AES_BLOCKLEN 16
+
+#define AES_KEY_LEN 16
+#define AES_KEY_EXP_SIZE 176
+
+void aes_init(void);
+void aes_expand_key(void);
+void aes_ecb_encrypt(uint8_t* buf);
+void aes_ecb_decrypt(uint8_t* buf);
+void aes_generate_random(uint8_t *buf, uint8_t len);
+# 23 "common/src/memory.c" 2
+# 1 "common/include/common/board_defs.h" 1
+
+#define BOARD_DEFS_H 
+
+# 1 "libopencm3/include/libopencm3/stm32/gpio.h" 1
+# 36 "libopencm3/include/libopencm3/stm32/gpio.h"
+# 1 "libopencm3/include/libopencm3/stm32/l0/gpio.h" 1
+# 32 "libopencm3/include/libopencm3/stm32/l0/gpio.h"
+#define LIBOPENCM3_GPIO_H 
+
+# 1 "libopencm3/include/libopencm3/stm32/common/gpio_common_f24.h" 1
+# 37 "libopencm3/include/libopencm3/stm32/common/gpio_common_f24.h"
+#define LIBOPENCM3_GPIO_COMMON_F24_H 
+
+
+
+# 1 "libopencm3/include/libopencm3/stm32/common/gpio_common_f234.h" 1
+# 37 "libopencm3/include/libopencm3/stm32/common/gpio_common_f234.h"
+#define LIBOPENCM3_GPIO_COMMON_F234_H 
+
+
+
+# 1 "libopencm3/include/libopencm3/stm32/common/gpio_common_all.h" 1
+# 37 "libopencm3/include/libopencm3/stm32/common/gpio_common_all.h"
+#define LIBOPENCM3_GPIO_COMMON_ALL_H 
+
+
+
+
+
+
+
+#define GPIO_LCKK (1 << 16)
+
+
+
+
+
+
+
+#define GPIO0 (1 << 0)
+#define GPIO1 (1 << 1)
+#define GPIO2 (1 << 2)
+#define GPIO3 (1 << 3)
+#define GPIO4 (1 << 4)
+#define GPIO5 (1 << 5)
+#define GPIO6 (1 << 6)
+#define GPIO7 (1 << 7)
+#define GPIO8 (1 << 8)
+#define GPIO9 (1 << 9)
+#define GPIO10 (1 << 10)
+#define GPIO11 (1 << 11)
+#define GPIO12 (1 << 12)
+#define GPIO13 (1 << 13)
+#define GPIO14 (1 << 14)
+#define GPIO15 (1 << 15)
+#define GPIO_ALL 0xffff
+
+
+
+
+void gpio_set(uint32_t gpioport, uint16_t gpios);
+void gpio_clear(uint32_t gpioport, uint16_t gpios);
+uint16_t gpio_get(uint32_t gpioport, uint16_t gpios);
+void gpio_toggle(uint32_t gpioport, uint16_t gpios);
+uint16_t gpio_port_read(uint32_t gpioport);
+void gpio_port_write(uint32_t gpioport, uint16_t data);
+void gpio_port_config_lock(uint32_t gpioport, uint16_t gpios);
+
+
+# 42 "libopencm3/include/libopencm3/stm32/common/gpio_common_f234.h" 2
+
+
+
+
+
+
+#define GPIOA GPIO_PORT_A_BASE
+#define GPIOB GPIO_PORT_B_BASE
+#define GPIOC GPIO_PORT_C_BASE
+#define GPIOD GPIO_PORT_D_BASE
+#define GPIOE GPIO_PORT_E_BASE
+#define GPIOF GPIO_PORT_F_BASE
+
+
+
+
+
+
+#define GPIO_MODER(port) MMIO32((port) + 0x00)
+#define GPIOA_MODER GPIO_MODER(GPIOA)
+#define GPIOB_MODER GPIO_MODER(GPIOB)
+#define GPIOC_MODER GPIO_MODER(GPIOC)
+#define GPIOD_MODER GPIO_MODER(GPIOD)
+#define GPIOE_MODER GPIO_MODER(GPIOE)
+#define GPIOF_MODER GPIO_MODER(GPIOF)
+
+
+#define GPIO_OTYPER(port) MMIO32((port) + 0x04)
+#define GPIOA_OTYPER GPIO_OTYPER(GPIOA)
+#define GPIOB_OTYPER GPIO_OTYPER(GPIOB)
+#define GPIOC_OTYPER GPIO_OTYPER(GPIOC)
+#define GPIOD_OTYPER GPIO_OTYPER(GPIOD)
+#define GPIOE_OTYPER GPIO_OTYPER(GPIOE)
+#define GPIOF_OTYPER GPIO_OTYPER(GPIOF)
+
+
+#define GPIO_OSPEEDR(port) MMIO32((port) + 0x08)
+#define GPIOA_OSPEEDR GPIO_OSPEEDR(GPIOA)
+#define GPIOB_OSPEEDR GPIO_OSPEEDR(GPIOB)
+#define GPIOC_OSPEEDR GPIO_OSPEEDR(GPIOC)
+#define GPIOD_OSPEEDR GPIO_OSPEEDR(GPIOD)
+#define GPIOE_OSPEEDR GPIO_OSPEEDR(GPIOE)
+#define GPIOF_OSPEEDR GPIO_OSPEEDR(GPIOF)
+
+
+#define GPIO_PUPDR(port) MMIO32((port) + 0x0c)
+#define GPIOA_PUPDR GPIO_PUPDR(GPIOA)
+#define GPIOB_PUPDR GPIO_PUPDR(GPIOB)
+#define GPIOC_PUPDR GPIO_PUPDR(GPIOC)
+#define GPIOD_PUPDR GPIO_PUPDR(GPIOD)
+#define GPIOE_PUPDR GPIO_PUPDR(GPIOE)
+#define GPIOF_PUPDR GPIO_PUPDR(GPIOF)
+
+
+#define GPIO_IDR(port) MMIO32((port) + 0x10)
+#define GPIOA_IDR GPIO_IDR(GPIOA)
+#define GPIOB_IDR GPIO_IDR(GPIOB)
+#define GPIOC_IDR GPIO_IDR(GPIOC)
+#define GPIOD_IDR GPIO_IDR(GPIOD)
+#define GPIOE_IDR GPIO_IDR(GPIOE)
+#define GPIOF_IDR GPIO_IDR(GPIOF)
+
+
+#define GPIO_ODR(port) MMIO32((port) + 0x14)
+#define GPIOA_ODR GPIO_ODR(GPIOA)
+#define GPIOB_ODR GPIO_ODR(GPIOB)
+#define GPIOC_ODR GPIO_ODR(GPIOC)
+#define GPIOD_ODR GPIO_ODR(GPIOD)
+#define GPIOE_ODR GPIO_ODR(GPIOE)
+#define GPIOF_ODR GPIO_ODR(GPIOF)
+
+
+#define GPIO_BSRR(port) MMIO32((port) + 0x18)
+#define GPIOA_BSRR GPIO_BSRR(GPIOA)
+#define GPIOB_BSRR GPIO_BSRR(GPIOB)
+#define GPIOC_BSRR GPIO_BSRR(GPIOC)
+#define GPIOD_BSRR GPIO_BSRR(GPIOD)
+#define GPIOE_BSRR GPIO_BSRR(GPIOE)
+#define GPIOF_BSRR GPIO_BSRR(GPIOF)
+
+
+#define GPIO_LCKR(port) MMIO32((port) + 0x1c)
+#define GPIOA_LCKR GPIO_LCKR(GPIOA)
+#define GPIOB_LCKR GPIO_LCKR(GPIOB)
+#define GPIOC_LCKR GPIO_LCKR(GPIOC)
+#define GPIOD_LCKR GPIO_LCKR(GPIOD)
+#define GPIOE_LCKR GPIO_LCKR(GPIOE)
+#define GPIOF_LCKR GPIO_LCKR(GPIOF)
+
+
+#define GPIO_AFRL(port) MMIO32((port) + 0x20)
+#define GPIOA_AFRL GPIO_AFRL(GPIOA)
+#define GPIOB_AFRL GPIO_AFRL(GPIOB)
+#define GPIOC_AFRL GPIO_AFRL(GPIOC)
+#define GPIOD_AFRL GPIO_AFRL(GPIOD)
+#define GPIOE_AFRL GPIO_AFRL(GPIOE)
+#define GPIOF_AFRL GPIO_AFRL(GPIOF)
+
+
+#define GPIO_AFRH(port) MMIO32((port) + 0x24)
+#define GPIOA_AFRH GPIO_AFRH(GPIOA)
+#define GPIOB_AFRH GPIO_AFRH(GPIOB)
+#define GPIOC_AFRH GPIO_AFRH(GPIOC)
+#define GPIOD_AFRH GPIO_AFRH(GPIOD)
+#define GPIOE_AFRH GPIO_AFRH(GPIOE)
+#define GPIOF_AFRH GPIO_AFRH(GPIOF)
+
+
+
+#define GPIO_MODE(n,mode) ((mode) << (2 * (n)))
+#define GPIO_MODE_MASK(n) (0x3 << (2 * (n)))
+
+
+
+#define GPIO_MODE_INPUT 0x0
+#define GPIO_MODE_OUTPUT 0x1
+#define GPIO_MODE_AF 0x2
+#define GPIO_MODE_ANALOG 0x3
+# 168 "libopencm3/include/libopencm3/stm32/common/gpio_common_f234.h"
+#define GPIO_OTYPE_PP 0x0
+
+#define GPIO_OTYPE_OD 0x1
+
+
+
+
+#define GPIO_OSPEED(n,speed) ((speed) << (2 * (n)))
+#define GPIO_OSPEED_MASK(n) (0x3 << (2 * (n)))
+
+
+
+#define GPIO_OSPEED_2MHZ 0x0
+#define GPIO_OSPEED_25MHZ 0x1
+#define GPIO_OSPEED_50MHZ 0x2
+#define GPIO_OSPEED_100MHZ 0x3
+
+
+
+
+#define GPIO_PUPD(n,pupd) ((pupd) << (2 * (n)))
+#define GPIO_PUPD_MASK(n) (0x3 << (2 * (n)))
+
+
+
+#define GPIO_PUPD_NONE 0x0
+#define GPIO_PUPD_PULLUP 0x1
+#define GPIO_PUPD_PULLDOWN 0x2
+# 213 "libopencm3/include/libopencm3/stm32/common/gpio_common_f234.h"
+#define GPIO_LCKK (1 << 16)
+
+
+
+
+
+
+
+#define GPIO_AFR(n,af) ((af) << ((n) * 4))
+#define GPIO_AFR_MASK(n) (0xf << ((n) * 4))
+
+
+
+#define GPIO_AF0 0x0
+#define GPIO_AF1 0x1
+#define GPIO_AF2 0x2
+#define GPIO_AF3 0x3
+#define GPIO_AF4 0x4
+#define GPIO_AF5 0x5
+#define GPIO_AF6 0x6
+#define GPIO_AF7 0x7
+#define GPIO_AF8 0x8
+#define GPIO_AF9 0x9
+#define GPIO_AF10 0xa
+#define GPIO_AF11 0xb
+#define GPIO_AF12 0xc
+#define GPIO_AF13 0xd
+#define GPIO_AF14 0xe
+#define GPIO_AF15 0xf
+
+
+
+
+
+
+
+# 258 "libopencm3/include/libopencm3/stm32/common/gpio_common_f234.h"
+void gpio_mode_setup(uint32_t gpioport, uint8_t mode, uint8_t pull_up_down,
+       uint16_t gpios);
+void gpio_set_output_options(uint32_t gpioport, uint8_t otype, uint8_t speed,
+        uint16_t gpios);
+void gpio_set_af(uint32_t gpioport, uint8_t alt_func_num, uint16_t gpios);
+
+
+# 42 "libopencm3/include/libopencm3/stm32/common/gpio_common_f24.h" 2
+
+
+
+
+
+
+#define GPIOG GPIO_PORT_G_BASE
+#define GPIOH GPIO_PORT_H_BASE
+#define GPIOI GPIO_PORT_I_BASE
+#define GPIOJ GPIO_PORT_J_BASE
+#define GPIOK GPIO_PORT_K_BASE
+
+
+
+
+
+#define GPIOG_MODER GPIO_MODER(GPIOG)
+#define GPIOH_MODER GPIO_MODER(GPIOH)
+#define GPIOI_MODER GPIO_MODER(GPIOI)
+#define GPIOJ_MODER GPIO_MODER(GPIOJ)
+#define GPIOK_MODER GPIO_MODER(GPIOK)
+
+
+#define GPIOG_OTYPER GPIO_OTYPER(GPIOG)
+#define GPIOH_OTYPER GPIO_OTYPER(GPIOH)
+#define GPIOI_OTYPER GPIO_OTYPER(GPIOI)
+#define GPIOJ_OTYPER GPIO_OTYPER(GPIOJ)
+#define GPIOK_OTYPER GPIO_OTYPER(GPIOK)
+
+
+#define GPIOG_OSPEEDR GPIO_OSPEEDR(GPIOG)
+#define GPIOH_OSPEEDR GPIO_OSPEEDR(GPIOH)
+#define GPIOI_OSPEEDR GPIO_OSPEEDR(GPIOI)
+#define GPIOJ_OSPEEDR GPIO_OSPEEDR(GPIOJ)
+#define GPIOK_OSPEEDR GPIO_OSPEEDR(GPIOK)
+
+
+#define GPIOG_PUPDR GPIO_PUPDR(GPIOG)
+#define GPIOH_PUPDR GPIO_PUPDR(GPIOH)
+#define GPIOI_PUPDR GPIO_PUPDR(GPIOI)
+#define GPIOJ_PUPDR GPIO_PUPDR(GPIOJ)
+#define GPIOK_PUPDR GPIO_PUPDR(GPIOK)
+
+
+#define GPIOG_IDR GPIO_IDR(GPIOG)
+#define GPIOH_IDR GPIO_IDR(GPIOH)
+#define GPIOI_IDR GPIO_IDR(GPIOI)
+#define GPIOJ_IDR GPIO_IDR(GPIOJ)
+#define GPIOK_IDR GPIO_IDR(GPIOK)
+
+
+#define GPIOG_ODR GPIO_ODR(GPIOG)
+#define GPIOH_ODR GPIO_ODR(GPIOH)
+#define GPIOI_ODR GPIO_ODR(GPIOI)
+#define GPIOJ_ODR GPIO_ODR(GPIOJ)
+#define GPIOK_ODR GPIO_ODR(GPIOK)
+
+
+#define GPIOG_BSRR GPIO_BSRR(GPIOG)
+#define GPIOH_BSRR GPIO_BSRR(GPIOH)
+#define GPIOI_BSRR GPIO_BSRR(GPIOI)
+#define GPIOJ_BSRR GPIO_BSRR(GPIOJ)
+#define GPIOK_BSRR GPIO_BSRR(GPIOK)
+
+
+#define GPIOG_LCKR GPIO_LCKR(GPIOG)
+#define GPIOH_LCKR GPIO_LCKR(GPIOH)
+#define GPIOI_LCKR GPIO_LCKR(GPIOI)
+#define GPIOJ_LCKR GPIO_LCKR(GPIOJ)
+#define GPIOK_LCKR GPIO_LCKR(GPIOK)
+
+
+#define GPIOG_AFRL GPIO_AFRL(GPIOG)
+#define GPIOH_AFRL GPIO_AFRL(GPIOH)
+#define GPIOI_AFRL GPIO_AFRL(GPIOI)
+#define GPIOJ_AFRL GPIO_AFRL(GPIOJ)
+#define GPIOK_AFRL GPIO_AFRL(GPIOK)
+
+
+#define GPIOG_AFRH GPIO_AFRH(GPIOG)
+#define GPIOH_AFRH GPIO_AFRH(GPIOH)
+#define GPIOI_AFRH GPIO_AFRH(GPIOI)
+#define GPIOJ_AFRH GPIO_AFRH(GPIOJ)
+#define GPIOK_AFRH GPIO_AFRH(GPIOK)
+# 35 "libopencm3/include/libopencm3/stm32/l0/gpio.h" 2
+# 44 "libopencm3/include/libopencm3/stm32/l0/gpio.h"
+#define GPIO_BRR(port) MMIO32((port) + 0x28)
+#define GPIOA_BRR GPIO_BRR(GPIOA)
+#define GPIOB_BRR GPIO_BRR(GPIOB)
+#define GPIOC_BRR GPIO_BRR(GPIOC)
+#define GPIOD_BRR GPIO_BRR(GPIOD)
+#define GPIOH_BRR GPIO_BRR(GPIOH)
+# 58 "libopencm3/include/libopencm3/stm32/l0/gpio.h"
+#define GPIO_OSPEED_LOW 0x0
+#define GPIO_OSPEED_MED 0x1
+#define GPIO_OSPEED_HIGH 0x2
+#define GPIO_OSPEED_VERYHIGH 0x3
+# 72 "libopencm3/include/libopencm3/stm32/l0/gpio.h"
+
+
+
+# 37 "libopencm3/include/libopencm3/stm32/gpio.h" 2
+# 5 "common/include/common/board_defs.h" 2
+# 1 "libopencm3/include/libopencm3/stm32/rcc.h" 1
 # 6 "common/include/common/board_defs.h" 2
 # 1 "libopencm3/include/libopencm3/stm32/spi.h" 1
 # 36 "libopencm3/include/libopencm3/stm32/spi.h"
@@ -3656,21 +3767,40 @@ typedef struct
 # 11 "common/include/common/board_defs.h" 3 4
 _Bool 
 # 11 "common/include/common/board_defs.h"
-       msg_pend;
+     msg_pend;
  
 # 12 "common/include/common/board_defs.h" 3 4
 _Bool 
 # 12 "common/include/common/board_defs.h"
-       active;
+     active;
  uint32_t dev_num;
  uint32_t msg_num;
  uint32_t msg_num_start;
  uint32_t ok_packets;
  uint32_t total_packets;
-}sensor_t;
+} sensor_t;
+
+typedef struct
+{
+ 
+# 22 "common/include/common/board_defs.h" 3 4
+_Bool 
+# 22 "common/include/common/board_defs.h"
+     msg_pend;
+ 
+# 23 "common/include/common/board_defs.h" 3 4
+_Bool 
+# 23 "common/include/common/board_defs.h"
+     active;
+ uint32_t dev_num;
+ uint32_t msg_num;
+ uint32_t msg_num_start;
+ uint32_t ok_packets;
+ uint32_t total_packets;
+} hub_t;
 
 
-void clock_setup_MSI_2MHZ(void);
+void clock_setup_msi_2mhz(void);
 
 
 
@@ -3682,7 +3812,6 @@ extern uint8_t num_sensors;
 sensor_t *get_sensor(uint32_t dev_num);
 
 
-
 #define BATT_SENS_PORT GPIOA
 #define BATT_SENS GPIO0
 
@@ -3690,10 +3819,8 @@ sensor_t *get_sensor(uint32_t dev_num);
 #define PWR_SENS GPIO1
 
 
-
 #define LED_PORT GPIOB
 #define LED GPIO8
-
 
 
 #define SPF_USART_BAUD 115200
@@ -3705,7 +3832,6 @@ sensor_t *get_sensor(uint32_t dev_num);
 #define SPF_USART_TX GPIO9
 #define SPF_USART_RX_PORT GPIOA
 #define SPF_USART_RX GPIO10
-
 
 
 
@@ -3751,7 +3877,6 @@ sensor_t *get_sensor(uint32_t dev_num);
 #define RFM_IO_5 GPIO0
 
 
-
 #define SIM_USART_BAUD 38400
 #define SIM_USART_NVIC NVIC_USART2_IRQ
 #define SIM_USART USART2
@@ -3767,7 +3892,6 @@ sensor_t *get_sensor(uint32_t dev_num);
 
 #define SIM_RESET_PORT GPIOA
 #define SIM_RESET GPIO4
-
 
 
 
@@ -3787,9 +3911,9 @@ sensor_t *get_sensor(uint32_t dev_num);
 
 #define W25_SPI_SCK_PORT GPIOB
 #define W25_SPI_SCK GPIO3
-# 232 "common/include/common/board_defs.h"
+# 233 "common/include/common/board_defs.h"
 void gpio_init(void);
-# 22 "common/src/memory.c" 2
+# 24 "common/src/memory.c" 2
 # 1 "common/include/common/log.h" 1
 # 26 "common/include/common/log.h"
 #define LOG_H 
@@ -3800,14 +3924,33 @@ void gpio_init(void);
 #define ERR_BOOT_PROG_FLASH_ERASE 3
 #define ERR_BOOT_PROG_FLASH_WRITE_1 4
 #define ERR_BOOT_PROG_FLASH_WRITE_2 5
-# 65 "common/include/common/log.h"
+
+
+
+
+
+
+
+typedef struct
+{
+ uint16_t size;
+ uint16_t write_index;
+ uint16_t read_index ;
+}log_t;
+extern log_t logger;
+
+
+
+
 void log_init(void);
 void log_printf(const char *format, ...);
 void log_error(uint16_t error);
 uint8_t log_get(uint16_t index);
+void log_read_reset(void);
+uint8_t log_read(void);
 
 void serial_printf(const char *format, ...);
-# 23 "common/src/memory.c" 2
+# 25 "common/src/memory.c" 2
 # 1 "common/include/common/timers.h" 1
 
 #define TIMERS_H 
@@ -3876,90 +4019,7 @@ _Bool
     timeout(uint32_t time_microseconds, char *msg, uint32_t data);
 
 void set_gpio_for_standby(void);
-# 24 "common/src/memory.c" 2
-# 1 "common/include/common/memory.h" 1
-# 26 "common/include/common/memory.h"
-#define MEMORY_H 
-
-
-
-
-
-
-# 1 "libopencm3/include/libopencm3/stm32/flash.h" 1
-# 34 "common/include/common/memory.h" 2
-# 1 "libopencm3/include/libopencm3/stm32/rcc.h" 1
-# 35 "common/include/common/memory.h" 2
-# 49 "common/include/common/memory.h"
-#define FLASH_PAGE_SIZE 128U
-#define FLASH_NUM_PAGES 512U
-#define FLASH_START 0x08000000U
-#define FLASH_APP_START 0x08004000U
-#define FLASH_APP_END 0x0800C000U
-#define FLASH_END 0x08010000U
-
-#define EEPROM_PAGE_SIZE 4U
-#define EEPROM_NUM_PAGES 512U
-#define EEPROM_START 0x08080000U
-#define EEPROM_END 0x08080800U
-
-#define LOG_SIZE 1024
-#define LOG_START EEPROM_END - LOG_SIZE
-# 75 "common/include/common/memory.h"
-void mem_init(void);
-
-
-# 77 "common/include/common/memory.h" 3 4
-_Bool 
-# 77 "common/include/common/memory.h"
-    mem_eeprom_write_word(uint32_t address, uint32_t data);
-
-# 78 "common/include/common/memory.h" 3 4
-_Bool 
-# 78 "common/include/common/memory.h"
-    mem_eeprom_write_half_word(uint32_t address, uint16_t data);
-
-# 79 "common/include/common/memory.h" 3 4
-_Bool 
-# 79 "common/include/common/memory.h"
-    mem_eeprom_write_byte(uint32_t address, uint8_t data);
-
-
-# 81 "common/include/common/memory.h" 3 4
-_Bool 
-# 81 "common/include/common/memory.h"
-    mem_flash_erase_page(uint32_t address);
-
-# 82 "common/include/common/memory.h" 3 4
-_Bool 
-# 82 "common/include/common/memory.h"
-    mem_flash_write_word(uint32_t address, uint32_t data);
-
-# 83 "common/include/common/memory.h" 3 4
-_Bool 
-# 83 "common/include/common/memory.h"
-    mem_flash_write_half_page(uint32_t address, uint32_t *data);
-
-void mem_save_reading(int16_t reading);
-
-uint32_t mem_get_dev_state(void);
-uint32_t mem_get_dev_num(void);
-uint32_t mem_get_msg_num(void);
-void mem_update_msg_num(uint32_t new);
-uint32_t mem_get_num_readings(void);
-int16_t mem_get_reading(uint32_t reading_num);
-
-void mem_get_log(char log[1024]);
-void mem_wipe_log(void);
-void mem_print_log(void);
-
-void mem_get_aes_key(uint8_t *aes_key);
-void mem_set_aes_key(uint8_t *aes_key);
-void mem_get_aes_key_exp(uint8_t *aes_key_exp);
-void mem_set_aes_key_exp(uint8_t *aes_key_exp);
-
-void mem_wipe_readings(void);
-# 25 "common/src/memory.c" 2
+# 26 "common/src/memory.c" 2
 
 
 
@@ -3974,8 +4034,8 @@ void mem_wipe_readings(void);
 
 #define READINGS_START ( FLASH_END - 8192 )
 #define MAX_READINGS 2048
-# 48 "common/src/memory.c"
-static uint32_t log_add = 0x08080800U - 1024;
+# 51 "common/src/memory.c"
+static uint32_t log_add = 0x08080000U + 256U;
 static uint32_t next_reading_add = ( 0x08010000U - 8192 );
 
 
@@ -3992,34 +4052,34 @@ static uint32_t msg_num = 0;
 
 
 static __attribute__((section (".data#"), noinline)) 
-# 64 "common/src/memory.c" 3 4
+# 67 "common/src/memory.c" 3 4
            _Bool 
-# 64 "common/src/memory.c"
+# 67 "common/src/memory.c"
                 mem_flash_do_page_erase(uint32_t address);
 static __attribute__((section (".data#"), noinline)) 
-# 65 "common/src/memory.c" 3 4
+# 68 "common/src/memory.c" 3 4
            _Bool 
-# 65 "common/src/memory.c"
+# 68 "common/src/memory.c"
                 mem_flash_do_write_half_page(uint32_t address, uint32_t *data);
-# 78 "common/src/memory.c"
+# 81 "common/src/memory.c"
 void mem_init(void)
 {
     rcc_periph_clock_enable(RCC_MIF);
-# 97 "common/src/memory.c"
+# 100 "common/src/memory.c"
 }
 
 
 
-# 100 "common/src/memory.c" 3 4
+# 103 "common/src/memory.c" 3 4
 _Bool 
-# 100 "common/src/memory.c"
+# 103 "common/src/memory.c"
     mem_eeprom_write_word(uint32_t address, uint32_t data)
 {
-    if( !(address >= 0x08080000U && address < 0x08080800U) )
+    if( !(address >= 0x08080000U && address < 0x08080000U + 2048U) )
         return 
-# 103 "common/src/memory.c" 3 4
+# 106 "common/src/memory.c" 3 4
               0
-# 103 "common/src/memory.c"
+# 106 "common/src/memory.c"
                    ;
 
     flash_unlock_pecr();
@@ -4034,23 +4094,23 @@ _Bool
     flash_lock_pecr();
 
     return 
-# 116 "common/src/memory.c" 3 4
+# 119 "common/src/memory.c" 3 4
           1
-# 116 "common/src/memory.c"
+# 119 "common/src/memory.c"
               ;
 }
 
 
-# 119 "common/src/memory.c" 3 4
+# 122 "common/src/memory.c" 3 4
 _Bool 
-# 119 "common/src/memory.c"
+# 122 "common/src/memory.c"
     mem_eeprom_write_half_word(uint32_t address, uint16_t data)
 {
-    if( !(address >= 0x08080000U && address < 0x08080800U) )
+    if( !(address >= 0x08080000U && address < 0x08080000U + 2048U) )
         return 
-# 122 "common/src/memory.c" 3 4
+# 125 "common/src/memory.c" 3 4
               0
-# 122 "common/src/memory.c"
+# 125 "common/src/memory.c"
                    ;
 
     flash_unlock_pecr();
@@ -4065,24 +4125,27 @@ _Bool
     flash_lock_pecr();
 
     return 
-# 135 "common/src/memory.c" 3 4
+# 138 "common/src/memory.c" 3 4
           1
-# 135 "common/src/memory.c"
+# 138 "common/src/memory.c"
               ;
 }
 
 
-# 138 "common/src/memory.c" 3 4
+# 141 "common/src/memory.c" 3 4
 _Bool 
-# 138 "common/src/memory.c"
+# 141 "common/src/memory.c"
     mem_eeprom_write_byte(uint32_t address, uint8_t data)
 {
-    if( !(address >= 0x08080000U && address < 0x08080800U) )
+    if( !(address >= 0x08080000U && address < 0x08080000U + 2048U) )
+    {
+        serial_printf("Mem Log EEPROM Address out of bounds\n");
         return 
-# 141 "common/src/memory.c" 3 4
+# 146 "common/src/memory.c" 3 4
               0
-# 141 "common/src/memory.c"
+# 146 "common/src/memory.c"
                    ;
+    }
 
     flash_unlock_pecr();
     (*(volatile uint32_t *)((((0x40000000U) + 0x20000) + 0x02000) + 0x04)) &= ~(1 << 8);
@@ -4096,35 +4159,35 @@ _Bool
     flash_lock_pecr();
 
     return 
-# 154 "common/src/memory.c" 3 4
+# 160 "common/src/memory.c" 3 4
           1
-# 154 "common/src/memory.c"
+# 160 "common/src/memory.c"
               ;
 }
 
 
 
-# 158 "common/src/memory.c" 3 4
+# 164 "common/src/memory.c" 3 4
 _Bool 
-# 158 "common/src/memory.c"
+# 164 "common/src/memory.c"
     mem_flash_erase_page(uint32_t address)
 {
     
-# 160 "common/src/memory.c" 3 4
+# 166 "common/src/memory.c" 3 4
    _Bool 
-# 160 "common/src/memory.c"
+# 166 "common/src/memory.c"
         result = 
-# 160 "common/src/memory.c" 3 4
+# 166 "common/src/memory.c" 3 4
                  0
-# 160 "common/src/memory.c"
+# 166 "common/src/memory.c"
                       ;
 
 
     if (address & 0x7F)
         return 
-# 164 "common/src/memory.c" 3 4
+# 170 "common/src/memory.c" 3 4
               0
-# 164 "common/src/memory.c"
+# 170 "common/src/memory.c"
                    ;
 
     flash_unlock();
@@ -4134,26 +4197,26 @@ _Bool
 }
 
 
-# 172 "common/src/memory.c" 3 4
+# 178 "common/src/memory.c" 3 4
 _Bool 
-# 172 "common/src/memory.c"
+# 178 "common/src/memory.c"
     mem_flash_write_half_page(uint32_t address, uint32_t *data)
 {
     
-# 174 "common/src/memory.c" 3 4
+# 180 "common/src/memory.c" 3 4
    _Bool 
-# 174 "common/src/memory.c"
+# 180 "common/src/memory.c"
         result = 
-# 174 "common/src/memory.c" 3 4
+# 180 "common/src/memory.c" 3 4
                  0
-# 174 "common/src/memory.c"
+# 180 "common/src/memory.c"
                       ;
 
     if ((uint32_t)address & 0x3F)
         return 
-# 177 "common/src/memory.c" 3 4
+# 183 "common/src/memory.c" 3 4
               0
-# 177 "common/src/memory.c"
+# 183 "common/src/memory.c"
                    ;
 
     flash_unlock();
@@ -4163,9 +4226,9 @@ _Bool
 }
 
 
-# 185 "common/src/memory.c" 3 4
+# 191 "common/src/memory.c" 3 4
 _Bool 
-# 185 "common/src/memory.c"
+# 191 "common/src/memory.c"
     mem_flash_write_word(uint32_t address, uint32_t data)
 {
     flash_unlock();
@@ -4179,24 +4242,24 @@ _Bool
         (*(volatile uint32_t *)((((0x40000000U) + 0x20000) + 0x02000) + 0x18)) |= (1 << 1);
         log_printf("Write success\n");
         return 
-# 197 "common/src/memory.c" 3 4
+# 203 "common/src/memory.c" 3 4
               1
-# 197 "common/src/memory.c"
+# 203 "common/src/memory.c"
                   ;
     }
     else
     {
         log_printf("Write fail\n");
         return 
-# 202 "common/src/memory.c" 3 4
+# 208 "common/src/memory.c" 3 4
               0
-# 202 "common/src/memory.c"
+# 208 "common/src/memory.c"
                    ;
     }
     return 
-# 204 "common/src/memory.c" 3 4
+# 210 "common/src/memory.c" 3 4
           1
-# 204 "common/src/memory.c"
+# 210 "common/src/memory.c"
               ;
 }
 
@@ -4253,20 +4316,20 @@ void mem_wipe_log(void)
 
 }
 
-void mem_get_log(char log[1024])
+void mem_get_log(char log[1024U])
 {
-    for(uint16_t i = 0; i < 1024; i++)
+    for(uint16_t i = 0; i < 1024U; i++)
     {
-        log[i] = (*(volatile uint32_t *)(0x08080800U - 1024 + i));
+        log[i] = (*(volatile uint32_t *)(0x08080000U + 256U + i));
     }
 }
 
 void mem_print_log(void)
 {
     log_printf("LOG START\n");
-    for(uint16_t i = 0; i < 1024; i++)
+    for(uint16_t i = 0; i < 1024U; i++)
     {
-        log_printf("%c", (*(volatile uint8_t *)(0x08080800U - 1024 + i)));
+        log_printf("%c", (*(volatile uint8_t *)(0x08080000U + 256U + i)));
     }
     log_printf("LOG END\n");
 }
@@ -4351,11 +4414,11 @@ void mem_wipe_readings(void)
 
     log_printf("Done\n", page_add);
 }
-# 375 "common/src/memory.c"
+# 381 "common/src/memory.c"
 static __attribute__((section (".data#"), noinline)) 
-# 375 "common/src/memory.c" 3 4
+# 381 "common/src/memory.c" 3 4
            _Bool 
-# 375 "common/src/memory.c"
+# 381 "common/src/memory.c"
                 mem_flash_do_page_erase(uint32_t address)
 {
 
@@ -4368,9 +4431,9 @@ static __attribute__((section (".data#"), noinline))
 
         (*(volatile uint32_t *)((((0x40000000U) + 0x20000) + 0x02000) + 0x18)) = (1 << 1);
         return 
-# 386 "common/src/memory.c" 3 4
+# 392 "common/src/memory.c" 3 4
               1
-# 386 "common/src/memory.c"
+# 392 "common/src/memory.c"
                   ;
     }
     else
@@ -4378,17 +4441,17 @@ static __attribute__((section (".data#"), noinline))
 
         (*(volatile uint32_t *)((((0x40000000U) + 0x20000) + 0x02000) + 0x18)) = (1 << 17) | (1 << 9) | (1 << 8);
         return 
-# 392 "common/src/memory.c" 3 4
+# 398 "common/src/memory.c" 3 4
               0
-# 392 "common/src/memory.c"
+# 398 "common/src/memory.c"
                    ;
     }
 }
-# 403 "common/src/memory.c"
+# 409 "common/src/memory.c"
 static __attribute__((section (".data#"), noinline)) 
-# 403 "common/src/memory.c" 3 4
+# 409 "common/src/memory.c" 3 4
            _Bool 
-# 403 "common/src/memory.c"
+# 409 "common/src/memory.c"
                 mem_flash_do_write_half_page(uint32_t address, uint32_t *data)
 {
     uint8_t i;
@@ -4406,9 +4469,9 @@ static __attribute__((section (".data#"), noinline))
 
         (*(volatile uint32_t *)((((0x40000000U) + 0x20000) + 0x02000) + 0x18)) = (1 << 1);
         return 
-# 419 "common/src/memory.c" 3 4
+# 425 "common/src/memory.c" 3 4
               1
-# 419 "common/src/memory.c"
+# 425 "common/src/memory.c"
                   ;
     }
     else
@@ -4416,9 +4479,9 @@ static __attribute__((section (".data#"), noinline))
 
         (*(volatile uint32_t *)((((0x40000000U) + 0x20000) + 0x02000) + 0x18)) = (1 << 17) | (1 << 16) | (1 << 9) | (1 << 8);
         return 
-# 425 "common/src/memory.c" 3 4
+# 431 "common/src/memory.c" 3 4
               0
-# 425 "common/src/memory.c"
+# 431 "common/src/memory.c"
                    ;
 
     }

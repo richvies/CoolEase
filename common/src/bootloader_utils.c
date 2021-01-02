@@ -12,6 +12,8 @@
 // Includes
 /*////////////////////////////////////////////////////////////////////////////*/
 
+#include <stdint.h>
+
 #include "common/bootloader_utils.h"
 
 #include <libopencm3/cm3/cortex.h>
@@ -34,6 +36,23 @@
 /*////////////////////////////////////////////////////////////////////////////*/
 // Static Variables
 /*////////////////////////////////////////////////////////////////////////////*/
+
+typedef enum
+{
+    RESET = 0,
+    CONNECTED,
+    GET_LOG
+} bootloader_state_t;
+
+typedef struct
+{
+    bootloader_state_t state;
+    uint32_t vtor;
+    uint8_t  num_reset;
+
+}bootloader_t;
+
+static bootloader_t *bootloader = ((bootloader_t *)(EEPROM_BOOTLOADER_BASE));
 
 /*////////////////////////////////////////////////////////////////////////////*/
 // Static Function Declarations

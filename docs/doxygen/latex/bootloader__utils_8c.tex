@@ -5,6 +5,7 @@
 Bootloader\+\_\+utils Source File.  
 
 
+{\ttfamily \#include $<$stdint.\+h$>$}\newline
 {\ttfamily \#include \char`\"{}common/bootloader\+\_\+utils.\+h\char`\"{}}\newline
 {\ttfamily \#include $<$libopencm3/cm3/cortex.\+h$>$}\newline
 {\ttfamily \#include $<$libopencm3/cm3/scb.\+h$>$}\newline
@@ -13,6 +14,19 @@ Bootloader\+\_\+utils Source File.
 {\ttfamily \#include $<$libopencm3/stm32/crc.\+h$>$}\newline
 {\ttfamily \#include \char`\"{}common/memory.\+h\char`\"{}}\newline
 {\ttfamily \#include \char`\"{}common/log.\+h\char`\"{}}\newline
+\doxysubsection*{Data Structures}
+\begin{DoxyCompactItemize}
+\item 
+struct \mbox{\hyperlink{structbootloader__t}{bootloader\+\_\+t}}
+\end{DoxyCompactItemize}
+\doxysubsection*{Enumerations}
+\begin{DoxyCompactItemize}
+\item 
+enum \mbox{\hyperlink{group___b_o_o_t_l_o_a_d_e_r___u_t_i_l_s___i_n_t_gabc7eca86fbaca60c07a1cb93f5e63974}{bootloader\+\_\+state\+\_\+t}} \{ \mbox{\hyperlink{group___b_o_o_t_l_o_a_d_e_r___u_t_i_l_s___i_n_t_ggabc7eca86fbaca60c07a1cb93f5e63974a589b7d94a3d91d145720e2fed0eb3a05}{R\+E\+S\+ET}} = 0, 
+\mbox{\hyperlink{group___b_o_o_t_l_o_a_d_e_r___u_t_i_l_s___i_n_t_ggabc7eca86fbaca60c07a1cb93f5e63974a7a691a2430ec26878897b5fbc9c22a4c}{C\+O\+N\+N\+E\+C\+T\+ED}}, 
+\mbox{\hyperlink{group___b_o_o_t_l_o_a_d_e_r___u_t_i_l_s___i_n_t_ggabc7eca86fbaca60c07a1cb93f5e63974a00bd4a32df841a2ce24d2a8dbf83179c}{G\+E\+T\+\_\+\+L\+OG}}
+ \}
+\end{DoxyCompactItemize}
 \doxysubsection*{Functions}
 \begin{DoxyCompactItemize}
 \item 
@@ -25,6 +39,11 @@ void \mbox{\hyperlink{group___b_o_o_t_l_o_a_d_e_r___u_t_i_l_s___a_p_i_gae9e4d81e
 bool \mbox{\hyperlink{group___b_o_o_t_l_o_a_d_e_r___u_t_i_l_s___a_p_i_ga153399560a9486547bc5bb4b7dcf252e}{boot\+\_\+program\+\_\+application}} (uint32\+\_\+t $\ast$data, uint32\+\_\+t start\+\_\+address, uint32\+\_\+t len, uint32\+\_\+t crc)
 \item 
 bool \mbox{\hyperlink{group___b_o_o_t_l_o_a_d_e_r___u_t_i_l_s___a_p_i_ga26bd7e0102d41443ee0aefe24260b86a}{boot\+\_\+verify\+\_\+checksum}} (uint32\+\_\+t $\ast$data, uint32\+\_\+t len, uint32\+\_\+t expected)
+\end{DoxyCompactItemize}
+\doxysubsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+static \mbox{\hyperlink{structbootloader__t}{bootloader\+\_\+t}} $\ast$ \mbox{\hyperlink{group___b_o_o_t_l_o_a_d_e_r___u_t_i_l_s___i_n_t_ga5e8eb5ce0e51cdd322dacc71bd8fddd0}{bootloader}} = ((\mbox{\hyperlink{structbootloader__t}{bootloader\+\_\+t}} $\ast$)(\mbox{\hyperlink{group___m_e_m_o_r_y___a_p_i_gae8e76c43011452ed4d52266bce7f62dd}{E\+E\+P\+R\+O\+M\+\_\+\+B\+O\+O\+T\+L\+O\+A\+D\+E\+R\+\_\+\+B\+A\+SE}}))
 \end{DoxyCompactItemize}
 
 

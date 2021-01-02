@@ -5,13 +5,14 @@
 Memory Source File.  
 
 
-{\ttfamily \#include \char`\"{}common/aes.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}common/memory.\+h\char`\"{}}\newline
 {\ttfamily \#include $<$stdbool.\+h$>$}\newline
+{\ttfamily \#include $<$stdint.\+h$>$}\newline
 {\ttfamily \#include $<$libopencm3/stm32/flash.\+h$>$}\newline
+{\ttfamily \#include \char`\"{}common/aes.\+h\char`\"{}}\newline
 {\ttfamily \#include \char`\"{}common/board\+\_\+defs.\+h\char`\"{}}\newline
 {\ttfamily \#include \char`\"{}common/log.\+h\char`\"{}}\newline
 {\ttfamily \#include \char`\"{}common/timers.\+h\char`\"{}}\newline
-{\ttfamily \#include \char`\"{}common/memory.\+h\char`\"{}}\newline
 \doxysubsection*{Macros}
 \begin{DoxyCompactItemize}
 \item 
@@ -20,8 +21,6 @@ Memory Source File.
 \#define \mbox{\hyperlink{group___m_e_m_o_r_y___f_i_l_e_ga97e023179b94640fcc163ac8de1e3c0b}{S\+T\+A\+T\+E\+\_\+\+F\+I\+R\+S\+T\+\_\+\+R\+UN}}~(1 $<$$<$ 0)
 \item 
 \#define \mbox{\hyperlink{group___m_e_m_o_r_y___f_i_l_e_ga91aea8f18583a4f39018d2a6a552f5ff}{S\+T\+A\+T\+E\+\_\+\+A\+T\+T\+A\+C\+H\+ED}}~(1 $<$$<$ 1)
-\item 
-\#define \mbox{\hyperlink{group___m_e_m_o_r_y___f_i_l_e_ga4c5da377aedf46d6e87f65e8cbcef12a}{L\+O\+G\+\_\+\+S\+T\+A\+RT}}~0x08080400
 \item 
 \#define \mbox{\hyperlink{group___m_e_m_o_r_y___f_i_l_e_ga71b90aabbc44fbe2e87075f3236ddd7f}{R\+E\+A\+D\+I\+N\+G\+S\+\_\+\+S\+T\+A\+RT}}~( \mbox{\hyperlink{group___m_e_m_o_r_y___a_p_i_ga8be554f354e5aa65370f6db63d4f3ee4}{F\+L\+A\+S\+H\+\_\+\+E\+ND}} -\/ 8192 )
 \item 
@@ -64,7 +63,7 @@ int16\+\_\+t \mbox{\hyperlink{group___m_e_m_o_r_y___a_p_i_ga09c56996bd368d16dff4
 \item 
 void \mbox{\hyperlink{group___m_e_m_o_r_y___a_p_i_ga70af5f77dc31a0f90877bf1102844d0a}{mem\+\_\+wipe\+\_\+log}} (void)
 \item 
-void \mbox{\hyperlink{group___m_e_m_o_r_y___a_p_i_gafd161243801728b1fab67f3db6633877}{mem\+\_\+get\+\_\+log}} (char log\mbox{[}\mbox{\hyperlink{group___l_o_g___i_n_t_ga609a6de2c7ff0a69b55d3b3c5e260cc5}{L\+O\+G\+\_\+\+S\+I\+ZE}}\mbox{]})
+void \mbox{\hyperlink{group___m_e_m_o_r_y___a_p_i_ga11301062cb4e798edf705ab205d61810}{mem\+\_\+get\+\_\+log}} (char log\mbox{[}\mbox{\hyperlink{group___m_e_m_o_r_y___a_p_i_ga54f3a82b412207ba842446d157f297e3}{E\+E\+P\+R\+O\+M\+\_\+\+L\+O\+G\+\_\+\+S\+I\+ZE}}\mbox{]})
 \item 
 void \mbox{\hyperlink{group___m_e_m_o_r_y___a_p_i_ga802da42f5bc56d08e8df145109a6913e}{mem\+\_\+print\+\_\+log}} (void)
 \item 
@@ -81,7 +80,7 @@ void \mbox{\hyperlink{group___m_e_m_o_r_y___a_p_i_gae4a09c62aadfb5b457e6ff9022dc
 \doxysubsection*{Variables}
 \begin{DoxyCompactItemize}
 \item 
-static uint32\+\_\+t \mbox{\hyperlink{group___m_e_m_o_r_y___i_n_t_ga071bf68f41fd07f4963c02503c718c56}{log\+\_\+add}} = \mbox{\hyperlink{group___m_e_m_o_r_y___f_i_l_e_ga4c5da377aedf46d6e87f65e8cbcef12a}{L\+O\+G\+\_\+\+S\+T\+A\+RT}}
+static uint32\+\_\+t \mbox{\hyperlink{group___m_e_m_o_r_y___i_n_t_ga071bf68f41fd07f4963c02503c718c56}{log\+\_\+add}} = \mbox{\hyperlink{group___m_e_m_o_r_y___a_p_i_ga01ef03f525c2b00f179bb24d8562b7fd}{E\+E\+P\+R\+O\+M\+\_\+\+L\+O\+G\+\_\+\+S\+T\+A\+RT}}
 \item 
 static uint32\+\_\+t \mbox{\hyperlink{group___m_e_m_o_r_y___i_n_t_ga407057c105825070ba7d8e53df26897c}{next\+\_\+reading\+\_\+add}} = \mbox{\hyperlink{group___m_e_m_o_r_y___f_i_l_e_ga71b90aabbc44fbe2e87075f3236ddd7f}{R\+E\+A\+D\+I\+N\+G\+S\+\_\+\+S\+T\+A\+RT}}
 \item 

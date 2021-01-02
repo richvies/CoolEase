@@ -485,14 +485,6 @@
 #define STM32L052C8T6 1
 # 1 "common/src/bootloader_utils.c"
 # 15 "common/src/bootloader_utils.c"
-# 1 "common/include/common/bootloader_utils.h" 1
-# 26 "common/include/common/bootloader_utils.h"
-#define BOOTLOADER_UTILS_H 
-
-
-
-
-
 # 1 "/usr/local/Cellar/arm-gcc-bin/9-2020-q2-update/lib/gcc/arm-none-eabi/9.3.1/include/stdint.h" 1 3 4
 # 9 "/usr/local/Cellar/arm-gcc-bin/9-2020-q2-update/lib/gcc/arm-none-eabi/9.3.1/include/stdint.h" 3 4
 # 1 "/usr/local/Cellar/arm-gcc-bin/9-2020-q2-update/arm-none-eabi/include/stdint.h" 1 3 4
@@ -1082,7 +1074,17 @@ typedef __uint_least64_t uint_least64_t;
 
 
 #define _GCC_WRAP_STDINT_H 
-# 33 "common/include/common/bootloader_utils.h" 2
+# 16 "common/src/bootloader_utils.c" 2
+
+# 1 "common/include/common/bootloader_utils.h" 1
+# 26 "common/include/common/bootloader_utils.h"
+#define BOOTLOADER_UTILS_H 
+
+
+
+
+
+
 # 1 "/usr/local/Cellar/arm-gcc-bin/9-2020-q2-update/lib/gcc/arm-none-eabi/9.3.1/include/stdbool.h" 1 3 4
 # 29 "/usr/local/Cellar/arm-gcc-bin/9-2020-q2-update/lib/gcc/arm-none-eabi/9.3.1/include/stdbool.h" 3 4
 #define _STDBOOL_H 
@@ -1111,7 +1113,7 @@ _Bool
 _Bool 
 # 56 "common/include/common/bootloader_utils.h"
     boot_verify_checksum(uint32_t *data, uint32_t len, uint32_t expected);
-# 16 "common/src/bootloader_utils.c" 2
+# 18 "common/src/bootloader_utils.c" 2
 
 # 1 "libopencm3/include/libopencm3/cm3/cortex.h" 1
 # 32 "libopencm3/include/libopencm3/cm3/cortex.h"
@@ -1184,7 +1186,7 @@ static inline uint32_t __cm_atomic_set(uint32_t *val)
 #define CM_ATOMIC_BLOCK() for (uint32_t __CM_SAVER(true), __my = true; __my; __my = false)
 # 278 "libopencm3/include/libopencm3/cm3/cortex.h"
 #define CM_ATOMIC_CONTEXT() uint32_t __CM_SAVER(true)
-# 18 "common/src/bootloader_utils.c" 2
+# 20 "common/src/bootloader_utils.c" 2
 # 1 "libopencm3/include/libopencm3/cm3/scb.h" 1
 # 22 "libopencm3/include/libopencm3/cm3/scb.h"
 #define LIBOPENCM3_SCB_H 
@@ -1450,7 +1452,7 @@ void scb_reset_system(void) __attribute__((noreturn));
 
 
 
-# 19 "common/src/bootloader_utils.c" 2
+# 21 "common/src/bootloader_utils.c" 2
 
 # 1 "libopencm3/include/libopencm3/stm32/rcc.h" 1
 # 21 "libopencm3/include/libopencm3/stm32/rcc.h"
@@ -2436,7 +2438,7 @@ void rcc_set_usart2_sel(uint32_t usart2_sel);
 
 
 # 37 "libopencm3/include/libopencm3/stm32/rcc.h" 2
-# 21 "common/src/bootloader_utils.c" 2
+# 23 "common/src/bootloader_utils.c" 2
 # 1 "libopencm3/include/libopencm3/stm32/crc.h" 1
 # 36 "libopencm3/include/libopencm3/stm32/crc.h"
 # 1 "libopencm3/include/libopencm3/stm32/l0/crc.h" 1
@@ -2545,7 +2547,7 @@ void crc_set_initial(uint32_t initial);
 
 # 32 "libopencm3/include/libopencm3/stm32/l0/crc.h" 2
 # 37 "libopencm3/include/libopencm3/stm32/crc.h" 2
-# 22 "common/src/bootloader_utils.c" 2
+# 24 "common/src/bootloader_utils.c" 2
 
 # 1 "common/include/common/memory.h" 1
 # 26 "common/include/common/memory.h"
@@ -2731,7 +2733,7 @@ void eeprom_program_words(uint32_t address, uint32_t *data, int length_in_words)
 # 34 "common/include/common/memory.h" 2
 # 1 "libopencm3/include/libopencm3/stm32/rcc.h" 1
 # 35 "common/include/common/memory.h" 2
-# 49 "common/include/common/memory.h"
+# 54 "common/include/common/memory.h"
 #define FLASH_PAGE_SIZE 128U
 #define FLASH_NUM_PAGES 512U
 #define FLASH_START 0x08000000U
@@ -2739,46 +2741,70 @@ void eeprom_program_words(uint32_t address, uint32_t *data, int length_in_words)
 #define FLASH_APP_END 0x0800C000U
 #define FLASH_END 0x08010000U
 
+
+
+
+
 #define EEPROM_PAGE_SIZE 4U
 #define EEPROM_NUM_PAGES 512U
 #define EEPROM_START 0x08080000U
-#define EEPROM_END 0x08080800U
+#define EEPROM_SIZE 2048U
+#define EEPROM_END EEPROM_START + EEPROM_SIZE
 
-#define LOG_SIZE 1024
-#define LOG_START EEPROM_END - LOG_SIZE
-# 75 "common/include/common/memory.h"
+
+
+#define EEPROM_BOOTLOADER_SIZE 256U
+#define EEPROM_DEV_SIZE 256U
+#define EEPROM_LOG_SIZE 1024U
+
+
+
+
+
+
+#define EEPROM_BOOTLOADER_BASE EEPROM_START
+#define EEPROM_BOOTLOADER_END EEPROM_BOOTLOADER_BASE + EEPROM_BOOTLOADER_SIZE
+
+
+#define EEPROM_DEV_BASE EEPROM_BOOTLOADER_END
+#define EEPROM_DEV_END EEPROM_START + EEPROM_BOOTLOADER_SIZE
+
+
+#define EEPROM_LOG_START EEPROM_DEV_END
+#define EEPROM_LOG_END EEPROM_LOG_START + EEPROM_LOG_SIZE
+# 102 "common/include/common/memory.h"
 void mem_init(void);
 
 
-# 77 "common/include/common/memory.h" 3 4
+# 104 "common/include/common/memory.h" 3 4
 _Bool 
-# 77 "common/include/common/memory.h"
+# 104 "common/include/common/memory.h"
     mem_eeprom_write_word(uint32_t address, uint32_t data);
 
-# 78 "common/include/common/memory.h" 3 4
+# 105 "common/include/common/memory.h" 3 4
 _Bool 
-# 78 "common/include/common/memory.h"
+# 105 "common/include/common/memory.h"
     mem_eeprom_write_half_word(uint32_t address, uint16_t data);
 
-# 79 "common/include/common/memory.h" 3 4
+# 106 "common/include/common/memory.h" 3 4
 _Bool 
-# 79 "common/include/common/memory.h"
+# 106 "common/include/common/memory.h"
     mem_eeprom_write_byte(uint32_t address, uint8_t data);
 
 
-# 81 "common/include/common/memory.h" 3 4
+# 108 "common/include/common/memory.h" 3 4
 _Bool 
-# 81 "common/include/common/memory.h"
+# 108 "common/include/common/memory.h"
     mem_flash_erase_page(uint32_t address);
 
-# 82 "common/include/common/memory.h" 3 4
+# 109 "common/include/common/memory.h" 3 4
 _Bool 
-# 82 "common/include/common/memory.h"
+# 109 "common/include/common/memory.h"
     mem_flash_write_word(uint32_t address, uint32_t data);
 
-# 83 "common/include/common/memory.h" 3 4
+# 110 "common/include/common/memory.h" 3 4
 _Bool 
-# 83 "common/include/common/memory.h"
+# 110 "common/include/common/memory.h"
     mem_flash_write_half_page(uint32_t address, uint32_t *data);
 
 void mem_save_reading(int16_t reading);
@@ -2790,7 +2816,7 @@ void mem_update_msg_num(uint32_t new);
 uint32_t mem_get_num_readings(void);
 int16_t mem_get_reading(uint32_t reading_num);
 
-void mem_get_log(char log[1024]);
+void mem_get_log(char log[1024U]);
 void mem_wipe_log(void);
 void mem_print_log(void);
 
@@ -2800,7 +2826,7 @@ void mem_get_aes_key_exp(uint8_t *aes_key_exp);
 void mem_set_aes_key_exp(uint8_t *aes_key_exp);
 
 void mem_wipe_readings(void);
-# 24 "common/src/bootloader_utils.c" 2
+# 26 "common/src/bootloader_utils.c" 2
 # 1 "common/include/common/log.h" 1
 # 26 "common/include/common/log.h"
 #define LOG_H 
@@ -2811,15 +2837,51 @@ void mem_wipe_readings(void);
 #define ERR_BOOT_PROG_FLASH_ERASE 3
 #define ERR_BOOT_PROG_FLASH_WRITE_1 4
 #define ERR_BOOT_PROG_FLASH_WRITE_2 5
-# 65 "common/include/common/log.h"
+
+
+
+
+
+
+
+typedef struct
+{
+ uint16_t size;
+ uint16_t write_index;
+ uint16_t read_index ;
+}log_t;
+extern log_t logger;
+
+
+
+
 void log_init(void);
 void log_printf(const char *format, ...);
 void log_error(uint16_t error);
 uint8_t log_get(uint16_t index);
+void log_read_reset(void);
+uint8_t log_read(void);
 
 void serial_printf(const char *format, ...);
-# 25 "common/src/bootloader_utils.c" 2
-# 52 "common/src/bootloader_utils.c"
+# 27 "common/src/bootloader_utils.c" 2
+# 40 "common/src/bootloader_utils.c"
+typedef enum
+{
+    RESET = 0,
+    CONNECTED,
+    GET_LOG
+} bootloader_state_t;
+
+typedef struct
+{
+    bootloader_state_t state;
+    uint32_t vtor;
+    uint8_t num_reset;
+
+}bootloader_t;
+
+static bootloader_t *bootloader = ((bootloader_t *)(0x08080000U));
+# 71 "common/src/bootloader_utils.c"
 void boot_init(void)
 {
 
@@ -2876,21 +2938,21 @@ void boot_jump_to_application(uint32_t address)
 }
 
 
-# 107 "common/src/bootloader_utils.c" 3 4
+# 126 "common/src/bootloader_utils.c" 3 4
 _Bool 
-# 107 "common/src/bootloader_utils.c"
+# 126 "common/src/bootloader_utils.c"
     boot_program_application(uint32_t *data, uint32_t start_address, uint32_t len, uint32_t crc)
 {
     log_printf("boot_program_application");
 
     
-# 111 "common/src/bootloader_utils.c" 3 4
+# 130 "common/src/bootloader_utils.c" 3 4
    _Bool 
-# 111 "common/src/bootloader_utils.c"
+# 130 "common/src/bootloader_utils.c"
         res = 
-# 111 "common/src/bootloader_utils.c" 3 4
+# 130 "common/src/bootloader_utils.c" 3 4
               1
-# 111 "common/src/bootloader_utils.c"
+# 130 "common/src/bootloader_utils.c"
                   ;
 
 
@@ -2902,27 +2964,27 @@ _Bool
     {
         log_error(0);
         res = 
-# 121 "common/src/bootloader_utils.c" 3 4
+# 140 "common/src/bootloader_utils.c" 3 4
              0
-# 121 "common/src/bootloader_utils.c"
+# 140 "common/src/bootloader_utils.c"
                   ;
     }
     else if (len > 0x08004000U - 0x0800C000U)
     {
         log_error(1);
         res = 
-# 126 "common/src/bootloader_utils.c" 3 4
+# 145 "common/src/bootloader_utils.c" 3 4
              0
-# 126 "common/src/bootloader_utils.c"
+# 145 "common/src/bootloader_utils.c"
                   ;
     }
     else if (!boot_verify_checksum(data, len, crc))
     {
         log_error(2);
         res = 
-# 131 "common/src/bootloader_utils.c" 3 4
+# 150 "common/src/bootloader_utils.c" 3 4
              0
-# 131 "common/src/bootloader_utils.c"
+# 150 "common/src/bootloader_utils.c"
                   ;
     }
 
@@ -2941,9 +3003,9 @@ _Bool
             {
                 log_error(3);
                 res = 
-# 148 "common/src/bootloader_utils.c" 3 4
+# 167 "common/src/bootloader_utils.c" 3 4
                      0
-# 148 "common/src/bootloader_utils.c"
+# 167 "common/src/bootloader_utils.c"
                           ;
             }
 
@@ -2951,9 +3013,9 @@ _Bool
             {
                 log_error(4);
                 res = 
-# 154 "common/src/bootloader_utils.c" 3 4
+# 173 "common/src/bootloader_utils.c" 3 4
                      0
-# 154 "common/src/bootloader_utils.c"
+# 173 "common/src/bootloader_utils.c"
                           ;
             }
 
@@ -2961,17 +3023,17 @@ _Bool
             {
                 log_error(5);
                 res = 
-# 160 "common/src/bootloader_utils.c" 3 4
+# 179 "common/src/bootloader_utils.c" 3 4
                      0
-# 160 "common/src/bootloader_utils.c"
+# 179 "common/src/bootloader_utils.c"
                           ;
             }
 
 
             if (res == 
-# 164 "common/src/bootloader_utils.c" 3 4
+# 183 "common/src/bootloader_utils.c" 3 4
                       0
-# 164 "common/src/bootloader_utils.c"
+# 183 "common/src/bootloader_utils.c"
                            )
             {
                 break;
@@ -2983,9 +3045,9 @@ _Bool
 }
 
 
-# 174 "common/src/bootloader_utils.c" 3 4
+# 193 "common/src/bootloader_utils.c" 3 4
 _Bool 
-# 174 "common/src/bootloader_utils.c"
+# 193 "common/src/bootloader_utils.c"
     boot_verify_checksum(uint32_t *data, uint32_t len, uint32_t expected)
 {
     log_printf("boot_verify_checksum\n");
@@ -3007,12 +3069,12 @@ _Bool
 
 
     return (crc == expected ? 
-# 194 "common/src/bootloader_utils.c" 3 4
+# 213 "common/src/bootloader_utils.c" 3 4
                              1 
-# 194 "common/src/bootloader_utils.c"
+# 213 "common/src/bootloader_utils.c"
                                   : 
-# 194 "common/src/bootloader_utils.c" 3 4
+# 213 "common/src/bootloader_utils.c" 3 4
                                     0
-# 194 "common/src/bootloader_utils.c"
+# 213 "common/src/bootloader_utils.c"
                                          );
 }

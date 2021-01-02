@@ -1,5 +1,4 @@
 var searchData=
 [
-  ['dev_5fendpoints_1159',['dev_endpoints',['../group___c_u_s_b___c_f_g.html#ga8d04a14f4c991504e1ee2df8b5e6f05c',1,'cusb.c']]],
-  ['dev_5finterfaces_1160',['dev_interfaces',['../group___c_u_s_b___c_f_g.html#gade943db11170b477241c1a88478ad911',1,'cusb.c']]]
+  ['bootloader_5fstate_5ft_1204',['bootloader_state_t',['../group___b_o_o_t_l_o_a_d_e_r___u_t_i_l_s___i_n_t.html#gabc7eca86fbaca60c07a1cb93f5e63974',1,'bootloader_utils.c']]]
 ];

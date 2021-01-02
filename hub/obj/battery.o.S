@@ -3767,11 +3767,30 @@ void sys_tick_handler(void);
 #define ERR_BOOT_PROG_FLASH_ERASE 3
 #define ERR_BOOT_PROG_FLASH_WRITE_1 4
 #define ERR_BOOT_PROG_FLASH_WRITE_2 5
-# 65 "common/include/common/log.h"
+
+
+
+
+
+
+
+typedef struct
+{
+ uint16_t size;
+ uint16_t write_index;
+ uint16_t read_index ;
+}log_t;
+extern log_t logger;
+
+
+
+
 void log_init(void);
 void log_printf(const char *format, ...);
 void log_error(uint16_t error);
 uint8_t log_get(uint16_t index);
+void log_read_reset(void);
+uint8_t log_read(void);
 
 void serial_printf(const char *format, ...);
 # 14 "common/src/battery.c" 2
@@ -4709,21 +4728,40 @@ typedef struct
 # 11 "common/include/common/board_defs.h" 3 4
 _Bool 
 # 11 "common/include/common/board_defs.h"
-       msg_pend;
+     msg_pend;
  
 # 12 "common/include/common/board_defs.h" 3 4
 _Bool 
 # 12 "common/include/common/board_defs.h"
-       active;
+     active;
  uint32_t dev_num;
  uint32_t msg_num;
  uint32_t msg_num_start;
  uint32_t ok_packets;
  uint32_t total_packets;
-}sensor_t;
+} sensor_t;
+
+typedef struct
+{
+ 
+# 22 "common/include/common/board_defs.h" 3 4
+_Bool 
+# 22 "common/include/common/board_defs.h"
+     msg_pend;
+ 
+# 23 "common/include/common/board_defs.h" 3 4
+_Bool 
+# 23 "common/include/common/board_defs.h"
+     active;
+ uint32_t dev_num;
+ uint32_t msg_num;
+ uint32_t msg_num_start;
+ uint32_t ok_packets;
+ uint32_t total_packets;
+} hub_t;
 
 
-void clock_setup_MSI_2MHZ(void);
+void clock_setup_msi_2mhz(void);
 
 
 
@@ -4735,7 +4773,6 @@ extern uint8_t num_sensors;
 sensor_t *get_sensor(uint32_t dev_num);
 
 
-
 #define BATT_SENS_PORT GPIOA
 #define BATT_SENS GPIO0
 
@@ -4743,10 +4780,8 @@ sensor_t *get_sensor(uint32_t dev_num);
 #define PWR_SENS GPIO1
 
 
-
 #define LED_PORT GPIOB
 #define LED GPIO8
-
 
 
 #define SPF_USART_BAUD 115200
@@ -4758,7 +4793,6 @@ sensor_t *get_sensor(uint32_t dev_num);
 #define SPF_USART_TX GPIO9
 #define SPF_USART_RX_PORT GPIOA
 #define SPF_USART_RX GPIO10
-
 
 
 
@@ -4804,7 +4838,6 @@ sensor_t *get_sensor(uint32_t dev_num);
 #define RFM_IO_5 GPIO0
 
 
-
 #define SIM_USART_BAUD 38400
 #define SIM_USART_NVIC NVIC_USART2_IRQ
 #define SIM_USART USART2
@@ -4820,7 +4853,6 @@ sensor_t *get_sensor(uint32_t dev_num);
 
 #define SIM_RESET_PORT GPIOA
 #define SIM_RESET GPIO4
-
 
 
 
@@ -4840,7 +4872,7 @@ sensor_t *get_sensor(uint32_t dev_num);
 
 #define W25_SPI_SCK_PORT GPIOB
 #define W25_SPI_SCK GPIO3
-# 232 "common/include/common/board_defs.h"
+# 233 "common/include/common/board_defs.h"
 void gpio_init(void);
 # 15 "common/src/battery.c" 2
 # 1 "common/include/common/timers.h" 1

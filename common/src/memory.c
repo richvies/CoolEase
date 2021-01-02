@@ -12,16 +12,17 @@
 // Includes
 /*////////////////////////////////////////////////////////////////////////////*/
 
-#include "common/aes.h"
+#include "common/memory.h"
 
 #include <stdbool.h>
+#include <stdint.h>
 
 #include <libopencm3/stm32/flash.h>
 
+#include "common/aes.h"
 #include "common/board_defs.h"
 #include "common/log.h"
 #include "common/timers.h"
-#include "common/memory.h"
 
 /** @addtogroup MEMORY_FILE 
  * @{
@@ -37,6 +38,8 @@
 #define READINGS_START              ( FLASH_END - 8192 )
 #define MAX_READINGS                2048
 
+
+
 /** @addtogroup MEMORY_INT 
  * @{
  */
@@ -45,7 +48,7 @@
 // Static Variables
 /*////////////////////////////////////////////////////////////////////////////*/
 
-static uint32_t log_add =   LOG_START;
+static uint32_t log_add =   EEPROM_LOG_START;
 static uint32_t next_reading_add =  READINGS_START;
 
 // Other device information saved in EEPROM
@@ -138,7 +141,10 @@ bool mem_eeprom_write_half_word(uint32_t address, uint16_t data)
 bool mem_eeprom_write_byte(uint32_t address, uint8_t data)
 {
     if( !(address >= EEPROM_START && address < EEPROM_END) )
+    {
+        serial_printf("Mem Log EEPROM Address out of bounds\n");
         return false;
+    }
 
     flash_unlock_pecr();
     FLASH_PECR &= ~FLASH_PECR_FTDW;
@@ -257,20 +263,20 @@ void mem_wipe_log(void)
     
 }
 
-void mem_get_log(char log[LOG_SIZE])
+void mem_get_log(char log[EEPROM_LOG_SIZE])
 {
-    for(uint16_t i = 0; i < LOG_SIZE; i++)
+    for(uint16_t i = 0; i < EEPROM_LOG_SIZE; i++)
     {
-        log[i] = MMIO32(LOG_START + i);
+        log[i] = MMIO32(EEPROM_LOG_START + i);
     }
 }
 
 void mem_print_log(void)
 {
     log_printf("LOG START\n");
-    for(uint16_t i = 0; i < LOG_SIZE; i++)
+    for(uint16_t i = 0; i < EEPROM_LOG_SIZE; i++)
     {
-        log_printf("%c", MMIO8(LOG_START + i));
+        log_printf("%c", MMIO8(EEPROM_LOG_START + i));
     }   
     log_printf("LOG END\n");
 }

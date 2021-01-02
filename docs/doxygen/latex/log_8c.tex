@@ -13,23 +13,10 @@ Log Source File.
 {\ttfamily \#include \char`\"{}common/board\+\_\+defs.\+h\char`\"{}}\newline
 {\ttfamily \#include \char`\"{}common/memory.\+h\char`\"{}}\newline
 {\ttfamily \#include \char`\"{}common/printf.\+h\char`\"{}}\newline
-\doxysubsection*{Macros}
-\begin{DoxyCompactItemize}
-\item 
-\#define \mbox{\hyperlink{group___l_o_g___i_n_t_ga609a6de2c7ff0a69b55d3b3c5e260cc5}{L\+O\+G\+\_\+\+S\+I\+ZE}}~1024
-\item 
-\#define \mbox{\hyperlink{group___l_o_g___i_n_t_ga4c5da377aedf46d6e87f65e8cbcef12a}{L\+O\+G\+\_\+\+S\+T\+A\+RT}}~\mbox{\hyperlink{group___m_e_m_o_r_y___a_p_i_gadf9145e295206c9240dd45639b3257d8}{E\+E\+P\+R\+O\+M\+\_\+\+E\+ND}} -\/ \mbox{\hyperlink{group___l_o_g___i_n_t_ga609a6de2c7ff0a69b55d3b3c5e260cc5}{L\+O\+G\+\_\+\+S\+I\+ZE}}
-\end{DoxyCompactItemize}
 \doxysubsection*{Functions}
 \begin{DoxyCompactItemize}
 \item 
-static void \mbox{\hyperlink{group___l_o_g___i_n_t_ga1172bdb0b37a8539e8d87a316d5583ff}{clock\+\_\+setup}} (void)
-\item 
-static void \mbox{\hyperlink{group___l_o_g___i_n_t_gaed614ed9ea0277bd3376f4535a2a0ff8}{usart\+\_\+setup}} (void)
-\item 
 static void \mbox{\hyperlink{group___l_o_g___i_n_t_ga0ee8f139fc3909730ae8e81b2f004795}{\+\_\+putchar\+\_\+main}} (char character)
-\item 
-static void \mbox{\hyperlink{group___l_o_g___i_n_t_ga34aefe2fc47d48e4b806bf3c7a6c36ab}{\+\_\+putchar\+\_\+spf}} (char character)
 \item 
 static void \mbox{\hyperlink{group___l_o_g___i_n_t_gafc7309ae2fd7c9730d75900828664468}{\+\_\+putchar\+\_\+mem}} (char character)
 \item 
@@ -40,11 +27,17 @@ void \mbox{\hyperlink{group___l_o_g___a_p_i_ga4fff2f266fd439fbb104ddb5d7f61533}{
 void \mbox{\hyperlink{group___l_o_g___a_p_i_ga8dbb405ae2b1df5bbbdd580e3fe9a332}{log\+\_\+error}} (uint16\+\_\+t error)
 \item 
 void \mbox{\hyperlink{group___l_o_g___a_p_i_gae4f545d29e1faa30e5b27be12d4286d0}{serial\+\_\+printf}} (const char $\ast$format,...)
+\item 
+uint8\+\_\+t \mbox{\hyperlink{group___l_o_g___a_p_i_gaf766aa26c1e0c09c246a130e379e5f8a}{log\+\_\+get}} (uint16\+\_\+t index)
+\item 
+void \mbox{\hyperlink{group___l_o_g___a_p_i_ga3f0dbc11d59511e585b423e394cc982b}{log\+\_\+read\+\_\+reset}} (void)
+\item 
+uint8\+\_\+t \mbox{\hyperlink{group___l_o_g___a_p_i_ga234d30521858d65e55e7389976902a60}{log\+\_\+read}} (void)
 \end{DoxyCompactItemize}
 \doxysubsection*{Variables}
 \begin{DoxyCompactItemize}
 \item 
-static uint32\+\_\+t \mbox{\hyperlink{group___l_o_g___i_n_t_ga89cc258345eab379180d515b6def1d23}{curr\+\_\+address}} = \mbox{\hyperlink{group___m_e_m_o_r_y___f_i_l_e_ga4c5da377aedf46d6e87f65e8cbcef12a}{L\+O\+G\+\_\+\+S\+T\+A\+RT}}
+\mbox{\hyperlink{structlog__t}{log\+\_\+t}} \mbox{\hyperlink{group___l_o_g___f_i_l_e_ga56444742f0aa74085c5d2b6bc4751e39}{logger}}
 \end{DoxyCompactItemize}
 
 

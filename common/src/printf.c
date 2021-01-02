@@ -77,66 +77,49 @@ static uint32_t _atoi(const char **str)
 }
 
 // internal itoa format
-static uint32_t _ntoa_format(out_fct_type out, int32_t value, uint32_t base, uint32_t width, bool sign)
+static uint32_t _ntoa_format(out_fct_type out, uint32_t value, uint32_t base, uint32_t width, bool negative)
 {
     char buf[PRINTF_NTOA_BUFFER_SIZE];
     uint32_t len = 0;
-    bool negative = false;
 
-    // write if precision != 0 and value is != 0
-    if (value)
+    // Digits to char
+    do
     {
-        // Negative sign
-        if(sign && value < 0)
-        {
-            negative = true;
-            value = 0 - value; 
-        } 
-        else
-        {
-            negative = false;
-        }
-        
+        const char digit = (char)(value % base);
+        buf[len++] = digit < 10 ? '0' + digit : ('A') + digit - 10;
+        value /= base;
+    } while (value && (len < PRINTF_NTOA_BUFFER_SIZE));
 
-        // Digits to char
-        do
-        {
-            const char digit = (char)(value % base);
-            buf[len++] = digit < 10 ? '0' + digit : ('A') + digit - 10;
-            value /= base;
-        } while (value && (len < PRINTF_NTOA_BUFFER_SIZE));
+    // pad leading zeros
+    while ((len < width) && (len < PRINTF_NTOA_BUFFER_SIZE))
+    {
+        buf[len++] = '0';
+    }
 
-        // pad leading zeros
-        while ((len < width) && (len < PRINTF_NTOA_BUFFER_SIZE))
-        {
-            buf[len++] = '0';
-        }
+    // Base specifier
+    if ((base == 16U) && (len < PRINTF_NTOA_BUFFER_SIZE))
+    {
+        buf[len++] = 'X';
+    }
+    else if ((base == 2U) && (len < PRINTF_NTOA_BUFFER_SIZE))
+    {
+        buf[len++] = 'b';
+    }
+    if (((base == 16U) || (base == 2U)) && (len < PRINTF_NTOA_BUFFER_SIZE))
+    {
+        buf[len++] = '0';
+    }
 
-        // Base specifier
-        if ((base == 16U) && (len < PRINTF_NTOA_BUFFER_SIZE))
-        {
-            buf[len++] = 'X';
-        }
-        else if ((base == 2U) && (len < PRINTF_NTOA_BUFFER_SIZE))
-        {
-            buf[len++] = 'b';
-        }
-        if (((base == 16U) || (base == 2U)) && (len < PRINTF_NTOA_BUFFER_SIZE))
-        {
-            buf[len++] = '0';
-        }
+    if (negative && (len < PRINTF_NTOA_BUFFER_SIZE))
+    {
+        buf[len++] = '-';
+    }
 
-        if ( negative && (len < PRINTF_NTOA_BUFFER_SIZE) )
-        {
-            buf[len++] = '-';
-        }
-
-        // reverse string and write out
-        uint32_t i = len;
-        while (i)
-        {
-            out(buf[--i]);
-        }
+    // reverse string and write out
+    uint32_t i = len;
+    while (i)
+    {
+        out(buf[--i]);
     }
     return len;
 }
@@ -203,15 +186,12 @@ uint32_t fnprintf(out_fct_type out, const char *format, va_list va)
             // convert integer
             if ((*format == 'i') || (*format == 'd'))
             {
-                int v1 = va_arg(va, int);
-                int32_t v2 = (int32_t)v1;
-                idx += _ntoa_format(out, v2, base, width, true);
+                int32_t val = (int32_t)va_arg(va, int);
+                idx += _ntoa_format(out, (val < 0)? (0-val) : val, base, width, (val < 0)? true : false);
             }
             else
             {
-                int v1 = va_arg(va, int);
-                int32_t v2 = (int32_t)v1;
-                idx += _ntoa_format(out, v2, base, width, false);
+                idx += _ntoa_format(out, va_arg(va, int), base, width, false);
             }
             format++;
             break;

@@ -57,7 +57,13 @@ extern "C" {
 // Exported Variables
 /*////////////////////////////////////////////////////////////////////////////*/
 
-
+typedef struct 
+{
+	uint16_t size;
+	uint16_t write_index;
+	uint16_t read_index ;
+}log_t;
+extern log_t logger;
 
 /*////////////////////////////////////////////////////////////////////////////*/
 // Exported Function Declarations
@@ -66,6 +72,8 @@ void log_init(void);
 void log_printf(const char *format, ...);
 void log_error(uint16_t error);
 uint8_t log_get(uint16_t index);
+void log_read_reset(void);
+uint8_t log_read(void);
 
 void serial_printf(const char *format, ...);
 

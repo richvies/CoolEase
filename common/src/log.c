@@ -34,6 +34,8 @@
  * @{
  */
 
+log_t logger;
+
 /** @addtogroup LOG_INT 
  * @{
  */
@@ -42,8 +44,7 @@
 // Static Variables
 /*////////////////////////////////////////////////////////////////////////////*/
 
-static uint32_t write_index =   0;
-static uint32_t read_index  =   0;
+
 
 /*////////////////////////////////////////////////////////////////////////////*/
 // Static Function Declarations
@@ -72,8 +73,11 @@ static void _putchar_usb(char character);
 
 void log_init(void)
 {
-	mem_init();
-    write_index = 0;
+	logger.size = EEPROM_LOG_SIZE;
+	logger.write_index = 0;
+	logger.read_index = 0;
+
+	log_printf("\n\nLog Init\n----------------\n");
 
     #ifdef DEBUG
 	#ifdef _HUB
@@ -118,23 +122,38 @@ void serial_printf(const char *format, ...)
 
 uint8_t log_get(uint16_t index)
 {
-	if (index > LOG_SIZE)
+	if (index > EEPROM_LOG_SIZE)
 	{
 		return 0;
 	}
 	
-	return MMIO8(LOG_START + index);
+	return MMIO8(EEPROM_LOG_START + index);
 }
 
 void log_read_reset(void)
 {
-	read_index = (write_index + 1)%LOG_SIZE;
+	logger.read_index = logger.write_index;
 }
 
 uint8_t log_read(void)
 {
-	
+	uint8_t byte;
+
+	logger.read_index = (logger.read_index + 1) % logger.size;
+
+	if(logger.read_index == logger.write_index)
+	{
+		byte = 0;
+	}
+	else
+	{
+		byte = MMIO8(EEPROM_LOG_START + logger.read_index);
+		// serial_printf("Log Reading %8x %c\n", EEPROM_LOG_START + logger.read_index, byte);
+	}
+
+	return byte;	
 }
+
 
 /** @} */
 
@@ -160,8 +179,10 @@ static void _putchar_main(char character)
 
 static void _putchar_mem(char character)
 {
-	mem_eeprom_write_byte(LOG_START + write_index, character);
-	write_index = (write_index + 1)%LOG_SIZE;
+	// serial_printf("Logging %8x\n", EEPROM_LOG_START+logger.write_index);
+
+	mem_eeprom_write_byte(EEPROM_LOG_START + logger.write_index, character);
+	logger.write_index = (logger.write_index + 1)%EEPROM_LOG_SIZE;
 }
 
 #ifdef DEBUG
@@ -198,7 +219,8 @@ static void _putchar_spf(char character)
 
 #ifdef _HUB
 static void _putchar_usb(char character)
-{	
+{
+	cusb_send(character);
 }
 #endif // _HUB
 #endif // DEBUG

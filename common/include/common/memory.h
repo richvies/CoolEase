@@ -46,6 +46,11 @@ extern "C" {
 // Flash and EEPROM erase by page (1 word)
 // Flash programmed by word or half page
 // EEPROM programmed by word, half word or byte
+
+/*////////////////////////////////////////////////////////////////////////////*/
+// Flash Map
+/*////////////////////////////////////////////////////////////////////////////*/
+
 #define FLASH_PAGE_SIZE     128U
 #define FLASH_NUM_PAGES     512U
 #define FLASH_START         0x08000000U           
@@ -53,20 +58,42 @@ extern "C" {
 #define FLASH_APP_END       0x0800C000U       
 #define FLASH_END           0x08010000U   
 
+/*////////////////////////////////////////////////////////////////////////////*/
+// EEPROM Map
+/*////////////////////////////////////////////////////////////////////////////*/
+
 #define EEPROM_PAGE_SIZE    4U
 #define EEPROM_NUM_PAGES    512U
 #define EEPROM_START        0x08080000U
-#define EEPROM_END          0x08080800U
+#define EEPROM_SIZE         2048U
+#define EEPROM_END          EEPROM_START + EEPROM_SIZE
 
-#define LOG_SIZE    1024
-#define LOG_START   EEPROM_END - LOG_SIZE
+
+// Size of sections within eeprom
+#define EEPROM_BOOTLOADER_SIZE      256U
+#define EEPROM_DEV_SIZE             256U
+#define EEPROM_LOG_SIZE             1024U
+
+#if ((EEPROM_BOOTLOADER_SIZE + EEPROM_DEV_SIZE + EEPROM_LOG_SIZE) > EEPROM_SIZE)
+#warning "EEPROM: Data does not fit"
+#endif
+
+// Bootloader Data
+#define EEPROM_BOOTLOADER_BASE      EEPROM_START
+#define EEPROM_BOOTLOADER_END       EEPROM_BOOTLOADER_BASE + EEPROM_BOOTLOADER_SIZE
+
+// Device information
+#define EEPROM_DEV_BASE             EEPROM_BOOTLOADER_END          
+#define EEPROM_DEV_END              EEPROM_START + EEPROM_BOOTLOADER_SIZE 
+
+// Logging
+#define EEPROM_LOG_START            EEPROM_DEV_END
+#define EEPROM_LOG_END              EEPROM_LOG_START + EEPROM_LOG_SIZE
 
 
 /*////////////////////////////////////////////////////////////////////////////*/
 // Exported Variables
 /*////////////////////////////////////////////////////////////////////////////*/
-
-
 
 /*////////////////////////////////////////////////////////////////////////////*/
 // Exported Function Declarations
@@ -91,7 +118,7 @@ void     mem_update_msg_num(uint32_t new);
 uint32_t mem_get_num_readings(void);
 int16_t  mem_get_reading(uint32_t reading_num);
 
-void mem_get_log(char log[LOG_SIZE]);
+void mem_get_log(char log[EEPROM_LOG_SIZE]);
 void mem_wipe_log(void);
 void mem_print_log(void);
 

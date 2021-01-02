@@ -28,6 +28,17 @@
             },
             "problemMatcher":[]
         },  
+        // Rebuild Hub
+        {
+            "label": "Rebuild hub",
+            "group": "build",
+            "dependsOrder": "sequence",
+            "dependsOn":["Clean hub", "Build hub"],
+            "presentation": {
+                "focus": true
+            },
+            "problemMatcher":[]
+        },
         // Build hub
         {
             "label": "Build hub",

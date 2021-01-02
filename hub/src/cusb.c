@@ -15,6 +15,7 @@
 #include "hub/cusb.h"
 
 #include <stddef.h>
+#include <stdbool.h>
 
 #include <libopencm3/stm32/syscfg.h>
 #include <libopencm3/stm32/rcc.h>
@@ -79,6 +80,9 @@ enum dev_endpoints
 
 #define USB_VID 0x0483 ///< Vendor ID
 #define USB_PID 0x5750 ///< Product ID
+
+// #define USB_VID 0x16c0 ///< Vendor ID
+// #define USB_PID 0x05dc ///< Product ID
 
 /** @brief Location of specific strings within string descriptors stuct */
 enum usb_strings_index
@@ -306,9 +310,11 @@ static usbd_device *usbd_dev;
 typedef enum
 {
     RESET = 0,
+    CONNECTED,
     GET_LOG
-}usb_state_e;
-usb_state_e usb_state = RESET;
+} usb_state_t;
+
+static usb_state_t usb_state;
 
 /** @brief Buffer to be used for control requests. */
 static uint8_t usbd_control_buffer[128];
@@ -331,11 +337,7 @@ static void cusb_clock_init(void);
 // USB Callback Function Declarations
 /*////////////////////////////////////////////////////////////////////////////*/
 
-static void cusb_reset_callback(void)
-{
-    
-}
-
+static void cusb_reset_callback(void);
 
 /** @brief HID configuration init callback
  * 
@@ -368,7 +370,6 @@ static void hid_out_report_callback(usbd_device *dev, uint8_t ea);
  */
 static void hid_in_report_callback(usbd_device *dev, uint8_t ea);
 
-
 /** @} */
 
 /** @addtogroup CUSB_API
@@ -385,12 +386,16 @@ void cusb_init(void)
     cusb_clock_init();
 
     // Reset USB
+    usb_state = RESET;
     SET_REG(USB_CNTR_REG, USB_CNTR_FRES);
     SET_REG(USB_CNTR_REG, 0);
     SET_REG(USB_ISTR_REG, 0);
 
     // Initialize USB Hardware and activate pullup on DP line
     usbd_dev = usbd_init(&st_usbfs_v2_usb_driver, &dev_desc, &cfg_desc, usb_strings, sizeof(usb_strings) / sizeof(const char *), usbd_control_buffer, sizeof(usbd_control_buffer));
+
+    // Register Reset Callback
+    usbd_register_reset_callback(usbd_dev, cusb_reset_callback);
 
     // Register Configuration Callback for HID
     usbd_register_set_config_callback(usbd_dev, hid_set_config);
@@ -404,9 +409,18 @@ void cusb_test_poll(void)
 {
     while (1)
     {
-
         usbd_poll(usbd_dev);
     }
+}
+
+void cusb_send(char character)
+{
+    usbd_ep_write_packet(usbd_dev, ENDPOINT_HID_IN, (const void *)&character, 1);
+}
+
+bool cusb_connected(void)
+{
+    return ((usb_state == CONNECTED) ? true : false);
 }
 
 /** @} */
@@ -473,6 +487,11 @@ static void cusb_clock_init(void)
 // USB Callback Function Definitions
 /*////////////////////////////////////////////////////////////////////////////*/
 
+static void cusb_reset_callback(void)
+{
+    usb_state = RESET;
+}
+
 static void hid_set_config(usbd_device *dev, uint16_t wValue)
 {
     (void)wValue;
@@ -486,6 +505,8 @@ static void hid_set_config(usbd_device *dev, uint16_t wValue)
         USB_REQ_TYPE_STANDARD | USB_REQ_TYPE_INTERFACE,
         USB_REQ_TYPE_TYPE | USB_REQ_TYPE_RECIPIENT,
         hid_control_request);
+    
+    usb_state = CONNECTED;
 }
 
 static enum usbd_request_return_codes hid_control_request(usbd_device *dev, struct usb_setup_data *req, uint8_t **buf, uint16_t *len,
@@ -508,38 +529,48 @@ static enum usbd_request_return_codes hid_control_request(usbd_device *dev, stru
 
 static void hid_in_report_callback(usbd_device *dev, uint8_t ea)
 {
-    if(usb_state == GET_LOG)
+    // serial_printf("H");
+
+    if (usb_state == GET_LOG)
     {
+        static uint16_t bytes_sent = 0;
+
+        // Get next 64 bytes of log
         for (uint16_t i = 0; i < HID_REPORT_SIZE; i++)
         {
-            hid_report_buf[i] = log_get(i + offset)
+            hid_report_buf[i] = log_read();
         }
-        
-        usbd_ep_write_packet(dev, ea, hid_report_buf, sizeof(hid_report_buf)/sizeof(uint8_t));
+        bytes_sent += HID_REPORT_SIZE;
+
+        usbd_ep_write_packet(dev, ea, hid_report_buf, HID_REPORT_SIZE);
+
+        if(bytes_sent >= logger.size)
+        {
+            usb_state = RESET;
+            bytes_sent = 0;
+        }
     }
 }
 
 static void hid_out_report_callback(usbd_device *dev, uint8_t ea)
 {
-    usbd_ep_read_packet(dev, ea, hid_report_buf, HID_REPORT_SIZE);
+    // serial_printf("G");
 
+    // Have to write a packet back here to begin IN transactions
+    uint8_t buf[] = "Out Report Callback\n";
+    usbd_ep_write_packet(dev, ea, buf, HID_REPORT_SIZE);
+
+    usbd_ep_read_packet(dev, ea, hid_report_buf, HID_REPORT_SIZE);
     uint8_t command = hid_report_buf[0];
 
-    serial_printf("Out Resport command: %i data: %s\n",command, &hid_report_buf[4]);
+    // serial_printf("Out Report command: %i data: %s\n", command, &hid_report_buf[4]);
 
     // Get Log
-    if(command == 1)
+    if (command == 1)
     {
         usb_state = GET_LOG;
-        usb_log_position
-        for (uint16_t i = 0; i < LOG_SIZE; i++)
-        {
-            usbd_ep_read_packet
-        }
-        
+        log_read_reset();
     }
-
-    // usbd_ep_write_packet(dev, ea, hid_report_buf, sizeof(hid_report_buf) / sizeof(uint8_t));
 }
 
 /*////////////////////////////////////////////////////////////////////////////*/
@@ -548,67 +579,89 @@ static void hid_out_report_callback(usbd_device *dev, uint8_t ea)
 
 void usb_isr(void)
 {
-	uint16_t istr = *USB_ISTR_REG;
+    // This print is definitley not the problem with hidapi write failing
+    serial_printf("I");
 
-	if (istr & USB_ISTR_RESET) {
-		USB_CLR_ISTR_RESET();
-		usbd_dev->pm_top = USBD_PM_TOP;
-		_usbd_reset(usbd_dev);
-		return;
-	}
+    uint16_t istr = *USB_ISTR_REG;
 
-	if (istr & USB_ISTR_CTR) {
-		uint8_t ep = istr & USB_ISTR_EP_ID;
-		uint8_t type;
+    if (istr & USB_ISTR_RESET)
+    {
+        USB_CLR_ISTR_RESET();
+        usbd_dev->pm_top = USBD_PM_TOP;
+        _usbd_reset(usbd_dev);
+        return;
+    }
 
-		if (istr & USB_ISTR_DIR) {
-			/* OUT or SETUP? */
-			if (*USB_EP_REG(ep) & USB_EP_SETUP) {
-				type = USB_TRANSACTION_SETUP;
-				st_usbfs_ep_read_packet(usbd_dev, ep, &usbd_dev->control_state.req, 8);
-			} else {
-				type = USB_TRANSACTION_OUT;
-			}
-		} else {
-			type = USB_TRANSACTION_IN;
-			USB_CLR_EP_TX_CTR(ep);
-		}
+    if (istr & USB_ISTR_CTR)
+    {
+        uint8_t ep = istr & USB_ISTR_EP_ID;
+        uint8_t type;
 
-		if (usbd_dev->user_callback_ctr[ep][type]) {
-			usbd_dev->user_callback_ctr[ep][type] (usbd_dev, ep);
-		} else {
-			USB_CLR_EP_RX_CTR(ep);
-		}
-	}
+        if (istr & USB_ISTR_DIR)
+        {
+            /* OUT or SETUP? */
+            if (*USB_EP_REG(ep) & USB_EP_SETUP)
+            {
+                type = USB_TRANSACTION_SETUP;
+                st_usbfs_ep_read_packet(usbd_dev, ep, &usbd_dev->control_state.req, 8);
+            }
+            else
+            {
+                type = USB_TRANSACTION_OUT;
+            }
+        }
+        else
+        {
+            type = USB_TRANSACTION_IN;
+            USB_CLR_EP_TX_CTR(ep);
+        }
 
-	if (istr & USB_ISTR_SUSP) {
-		USB_CLR_ISTR_SUSP();
-		if (usbd_dev->user_callback_suspend) {
-			usbd_dev->user_callback_suspend();
-		}
-	}
+        if (usbd_dev->user_callback_ctr[ep][type])
+        {
+            usbd_dev->user_callback_ctr[ep][type](usbd_dev, ep);
+        }
+        else
+        {
+            USB_CLR_EP_RX_CTR(ep);
+        }
+    }
 
-	if (istr & USB_ISTR_WKUP) {
-		USB_CLR_ISTR_WKUP();
-		if (usbd_dev->user_callback_resume) {
-			usbd_dev->user_callback_resume();
-		}
-	}
+    if (istr & USB_ISTR_SUSP)
+    {
+        USB_CLR_ISTR_SUSP();
+        if (usbd_dev->user_callback_suspend)
+        {
+            usbd_dev->user_callback_suspend();
+        }
+    }
 
-	if (istr & USB_ISTR_SOF) {
-		USB_CLR_ISTR_SOF();
-		if (usbd_dev->user_callback_sof) {
-			usbd_dev->user_callback_sof();
-		}
-	}
+    if (istr & USB_ISTR_WKUP)
+    {
+        USB_CLR_ISTR_WKUP();
+        if (usbd_dev->user_callback_resume)
+        {
+            usbd_dev->user_callback_resume();
+        }
+    }
 
-	if (usbd_dev->user_callback_sof) {
-		*USB_CNTR_REG |= USB_CNTR_SOFM;
-	} else {
-		*USB_CNTR_REG &= ~USB_CNTR_SOFM;
-	}
+    if (istr & USB_ISTR_SOF)
+    {
+        USB_CLR_ISTR_SOF();
+        if (usbd_dev->user_callback_sof)
+        {
+            usbd_dev->user_callback_sof();
+        }
+    }
+
+    if (usbd_dev->user_callback_sof)
+    {
+        *USB_CNTR_REG |= USB_CNTR_SOFM;
+    }
+    else
+    {
+        *USB_CNTR_REG &= ~USB_CNTR_SOFM;
+    }
 }
-
 
 /** @} */
 /** @} */

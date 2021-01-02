@@ -62,6 +62,8 @@ $(function() {
 
 <div class="header">
   <div class="summary">
+<a href="#define-members">Macros</a> &#124;
+<a href="#enum-members">Enumerations</a> &#124;
 <a href="#func-members">Functions</a> &#124;
 <a href="#var-members">Variables</a>  </div>
   <div class="headertitle">
@@ -72,35 +74,98 @@ $(function() {
 <p>Static Vars, Functions &amp; Internal Macros.  
 <a href="#details">More...</a></p>
 <table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="define-members"></a>
+Macros</h2></td></tr>
+<tr class="memitem:ga4a19877e4f43bf56e85b1e8bbd8b7be5"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___c_u_s_b___i_n_t.html#ga4a19877e4f43bf56e85b1e8bbd8b7be5">HID_REPORT_SIZE</a>&#160;&#160;&#160;64U</td></tr>
+<tr class="separator:ga4a19877e4f43bf56e85b1e8bbd8b7be5"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="enum-members"></a>
+Enumerations</h2></td></tr>
+<tr class="memitem:gaa536a7f4d58c4e1734efcfb3b19c1be5"><td class="memItemLeft" align="right" valign="top">enum &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___c_u_s_b___i_n_t.html#gaa536a7f4d58c4e1734efcfb3b19c1be5">usb_state_t</a> { <a class="el" href="group___c_u_s_b___i_n_t.html#ggaa536a7f4d58c4e1734efcfb3b19c1be5a589b7d94a3d91d145720e2fed0eb3a05">RESET</a> = 0, 
+<a class="el" href="group___c_u_s_b___i_n_t.html#ggaa536a7f4d58c4e1734efcfb3b19c1be5a7a691a2430ec26878897b5fbc9c22a4c">CONNECTED</a>, 
+<a class="el" href="group___c_u_s_b___i_n_t.html#ggaa536a7f4d58c4e1734efcfb3b19c1be5a00bd4a32df841a2ce24d2a8dbf83179c">GET_LOG</a>
+ }</td></tr>
+<tr class="separator:gaa536a7f4d58c4e1734efcfb3b19c1be5"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="func-members"></a>
 Functions</h2></td></tr>
 <tr class="memitem:gac63b9392f307996959131c5a4e047fa4"><td class="memItemLeft" align="right" valign="top">static void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___c_u_s_b___i_n_t.html#gac63b9392f307996959131c5a4e047fa4">cusb_clock_init</a> (void)</td></tr>
 <tr class="memdesc:gac63b9392f307996959131c5a4e047fa4"><td class="mdescLeft">&#160;</td><td class="mdescRight">Setup CPU and peripheral clocks for usb.  <a href="group___c_u_s_b___i_n_t.html#gac63b9392f307996959131c5a4e047fa4">More...</a><br /></td></tr>
 <tr class="separator:gac63b9392f307996959131c5a4e047fa4"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga42e69e833b0c711393976debc4593906"><td class="memItemLeft" align="right" valign="top">static void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___c_u_s_b___i_n_t.html#ga42e69e833b0c711393976debc4593906">cusb_reset_callback</a> (void)</td></tr>
+<tr class="separator:ga42e69e833b0c711393976debc4593906"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:gaa8a5a4bf8f2341314373f98f386d19ee"><td class="memItemLeft" align="right" valign="top">static void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___c_u_s_b___i_n_t.html#gaa8a5a4bf8f2341314373f98f386d19ee">hid_set_config</a> (usbd_device *dev, uint16_t wValue)</td></tr>
 <tr class="memdesc:gaa8a5a4bf8f2341314373f98f386d19ee"><td class="mdescLeft">&#160;</td><td class="mdescRight">HID configuration init callback.  <a href="group___c_u_s_b___i_n_t.html#gaa8a5a4bf8f2341314373f98f386d19ee">More...</a><br /></td></tr>
 <tr class="separator:gaa8a5a4bf8f2341314373f98f386d19ee"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ga29b474a495e8084ca9f797e1fcf75eb8"><td class="memItemLeft" align="right" valign="top">static enum usbd_request_return_codes&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___c_u_s_b___i_n_t.html#ga29b474a495e8084ca9f797e1fcf75eb8">hid_control_request</a> (usbd_device *dev, struct usb_setup_data *req, uint8_t **buf, uint16_t *len, void(**complete)(usbd_device *, struct usb_setup_data *))</td></tr>
 <tr class="memdesc:ga29b474a495e8084ca9f797e1fcf75eb8"><td class="mdescLeft">&#160;</td><td class="mdescRight">HID Control Callback.  <a href="group___c_u_s_b___i_n_t.html#ga29b474a495e8084ca9f797e1fcf75eb8">More...</a><br /></td></tr>
 <tr class="separator:ga29b474a495e8084ca9f797e1fcf75eb8"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ga84d1ec0a4c4e5f33556b5f98830bc4cd"><td class="memItemLeft" align="right" valign="top">static void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___c_u_s_b___i_n_t.html#ga84d1ec0a4c4e5f33556b5f98830bc4cd">hid_report_callback</a> (usbd_device *dev, uint8_t ea)</td></tr>
-<tr class="memdesc:ga84d1ec0a4c4e5f33556b5f98830bc4cd"><td class="mdescLeft">&#160;</td><td class="mdescRight">HID Resport Callback.  <a href="group___c_u_s_b___i_n_t.html#ga84d1ec0a4c4e5f33556b5f98830bc4cd">More...</a><br /></td></tr>
-<tr class="separator:ga84d1ec0a4c4e5f33556b5f98830bc4cd"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga598f9456a1628aa62a04236cbe363341"><td class="memItemLeft" align="right" valign="top">static void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___c_u_s_b___i_n_t.html#ga598f9456a1628aa62a04236cbe363341">hid_out_report_callback</a> (usbd_device *dev, uint8_t ea)</td></tr>
+<tr class="memdesc:ga598f9456a1628aa62a04236cbe363341"><td class="mdescLeft">&#160;</td><td class="mdescRight">HID Out Resport Callback.  <a href="group___c_u_s_b___i_n_t.html#ga598f9456a1628aa62a04236cbe363341">More...</a><br /></td></tr>
+<tr class="separator:ga598f9456a1628aa62a04236cbe363341"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gafcb560d25a7f9005aad10a8be1af54e7"><td class="memItemLeft" align="right" valign="top">static void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___c_u_s_b___i_n_t.html#gafcb560d25a7f9005aad10a8be1af54e7">hid_in_report_callback</a> (usbd_device *dev, uint8_t ea)</td></tr>
+<tr class="memdesc:gafcb560d25a7f9005aad10a8be1af54e7"><td class="mdescLeft">&#160;</td><td class="mdescRight">HID In Resport Callback.  <a href="group___c_u_s_b___i_n_t.html#gafcb560d25a7f9005aad10a8be1af54e7">More...</a><br /></td></tr>
+<tr class="separator:gafcb560d25a7f9005aad10a8be1af54e7"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga9dd0caa7d41601fb1547f79cdb8c4726"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___c_u_s_b___i_n_t.html#ga9dd0caa7d41601fb1547f79cdb8c4726">usb_isr</a> (void)</td></tr>
+<tr class="separator:ga9dd0caa7d41601fb1547f79cdb8c4726"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="var-members"></a>
 Variables</h2></td></tr>
-<tr class="memitem:ga4cfa67ae725c5211ad5ab6e6b5e2c47a"><td class="memItemLeft" align="right" valign="top">static uint8_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___c_u_s_b___i_n_t.html#ga4cfa67ae725c5211ad5ab6e6b5e2c47a">hid_report_buf</a> [64] = &quot;Default Report Buffer&quot;</td></tr>
-<tr class="memdesc:ga4cfa67ae725c5211ad5ab6e6b5e2c47a"><td class="mdescLeft">&#160;</td><td class="mdescRight">HID Report buffer.  <a href="group___c_u_s_b___i_n_t.html#ga4cfa67ae725c5211ad5ab6e6b5e2c47a">More...</a><br /></td></tr>
-<tr class="separator:ga4cfa67ae725c5211ad5ab6e6b5e2c47a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga915d267a2bbc20bb20ab02b6fdac8628"><td class="memItemLeft" align="right" valign="top">typedef&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___c_u_s_b___i_n_t.html#ga915d267a2bbc20bb20ab02b6fdac8628">__attribute__</a></td></tr>
+<tr class="separator:ga915d267a2bbc20bb20ab02b6fdac8628"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ga371fec116e56a5c485a09d5dd8cd6c95"><td class="memItemLeft" align="right" valign="top">static usbd_device *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___c_u_s_b___i_n_t.html#ga371fec116e56a5c485a09d5dd8cd6c95">usbd_dev</a></td></tr>
 <tr class="memdesc:ga371fec116e56a5c485a09d5dd8cd6c95"><td class="mdescLeft">&#160;</td><td class="mdescRight">USB device handle.  <a href="group___c_u_s_b___i_n_t.html#ga371fec116e56a5c485a09d5dd8cd6c95">More...</a><br /></td></tr>
 <tr class="separator:ga371fec116e56a5c485a09d5dd8cd6c95"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga8aca649ee0d72a13bc76b13e92ffcce2"><td class="memItemLeft" align="right" valign="top">static <a class="el" href="group___c_u_s_b___i_n_t.html#gaa536a7f4d58c4e1734efcfb3b19c1be5">usb_state_t</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___c_u_s_b___i_n_t.html#ga8aca649ee0d72a13bc76b13e92ffcce2">usb_state</a></td></tr>
+<tr class="separator:ga8aca649ee0d72a13bc76b13e92ffcce2"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ga3f5c5e68ae07d989114524003357a6f7"><td class="memItemLeft" align="right" valign="top">static uint8_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___c_u_s_b___i_n_t.html#ga3f5c5e68ae07d989114524003357a6f7">usbd_control_buffer</a> [128]</td></tr>
 <tr class="memdesc:ga3f5c5e68ae07d989114524003357a6f7"><td class="mdescLeft">&#160;</td><td class="mdescRight">Buffer to be used for control requests.  <a href="group___c_u_s_b___i_n_t.html#ga3f5c5e68ae07d989114524003357a6f7">More...</a><br /></td></tr>
 <tr class="separator:ga3f5c5e68ae07d989114524003357a6f7"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga6ee0816f9b6ec93390cdf31d4db6e342"><td class="memItemLeft" align="right" valign="top">static uint8_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___c_u_s_b___i_n_t.html#ga6ee0816f9b6ec93390cdf31d4db6e342">hid_report_buf</a> [<a class="el" href="group___c_u_s_b___i_n_t.html#ga4a19877e4f43bf56e85b1e8bbd8b7be5">HID_REPORT_SIZE</a>] = &quot;Default Report Buffer&quot;</td></tr>
+<tr class="memdesc:ga6ee0816f9b6ec93390cdf31d4db6e342"><td class="mdescLeft">&#160;</td><td class="mdescRight">HID Report buffer.  <a href="group___c_u_s_b___i_n_t.html#ga6ee0816f9b6ec93390cdf31d4db6e342">More...</a><br /></td></tr>
+<tr class="separator:ga6ee0816f9b6ec93390cdf31d4db6e342"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <p>Static Vars, Functions &amp; Internal Macros. </p>
+<h2 class="groupheader">Macro Definition Documentation</h2>
+<a id="ga4a19877e4f43bf56e85b1e8bbd8b7be5"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga4a19877e4f43bf56e85b1e8bbd8b7be5">&#9670;&nbsp;</a></span>HID_REPORT_SIZE</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define HID_REPORT_SIZE&#160;&#160;&#160;64U</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="cusb_8c_source.html#l00322">322</a> of file <a class="el" href="cusb_8c_source.html">cusb.c</a>.</p>
+
+</div>
+</div>
+<h2 class="groupheader">Enumeration Type Documentation</h2>
+<a id="gaa536a7f4d58c4e1734efcfb3b19c1be5"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#gaa536a7f4d58c4e1734efcfb3b19c1be5">&#9670;&nbsp;</a></span>usb_state_t</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">enum <a class="el" href="group___c_u_s_b___i_n_t.html#gaa536a7f4d58c4e1734efcfb3b19c1be5">usb_state_t</a></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<table class="fieldtable">
+<tr><th colspan="2">Enumerator</th></tr><tr><td class="fieldname"><a id="ggaa536a7f4d58c4e1734efcfb3b19c1be5a589b7d94a3d91d145720e2fed0eb3a05"></a>RESET&#160;</td><td class="fielddoc"></td></tr>
+<tr><td class="fieldname"><a id="ggaa536a7f4d58c4e1734efcfb3b19c1be5a7a691a2430ec26878897b5fbc9c22a4c"></a>CONNECTED&#160;</td><td class="fielddoc"></td></tr>
+<tr><td class="fieldname"><a id="ggaa536a7f4d58c4e1734efcfb3b19c1be5a00bd4a32df841a2ce24d2a8dbf83179c"></a>GET_LOG&#160;</td><td class="fielddoc"></td></tr>
+</table>
+
+<p class="definition">Definition at line <a class="el" href="cusb_8c_source.html#l00310">310</a> of file <a class="el" href="cusb_8c_source.html">cusb.c</a>.</p>
+
+</div>
+</div>
 <h2 class="groupheader">Function Documentation</h2>
 <a id="gac63b9392f307996959131c5a4e047fa4"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#gac63b9392f307996959131c5a4e047fa4">&#9670;&nbsp;</a></span>cusb_clock_init()</h2>
@@ -128,7 +193,35 @@ Variables</h2></td></tr>
 
 <p>Setup CPU and peripheral clocks for usb. </p>
 
-<p class="definition">Definition at line <a class="el" href="cusb_8c_source.html#l00393">393</a> of file <a class="el" href="cusb_8c_source.html">cusb.c</a>.</p>
+<p class="definition">Definition at line <a class="el" href="cusb_8c_source.html#l00436">436</a> of file <a class="el" href="cusb_8c_source.html">cusb.c</a>.</p>
+
+</div>
+</div>
+<a id="ga42e69e833b0c711393976debc4593906"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga42e69e833b0c711393976debc4593906">&#9670;&nbsp;</a></span>cusb_reset_callback()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">static void cusb_reset_callback </td>
+          <td>(</td>
+          <td class="paramtype">void&#160;</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="cusb_8c_source.html#l00490">490</a> of file <a class="el" href="cusb_8c_source.html">cusb.c</a>.</p>
 
 </div>
 </div>
@@ -187,12 +280,12 @@ Variables</h2></td></tr>
 <p>HID Control Callback. </p>
 <p>Sends hid report descriptor to host </p>
 
-<p class="definition">Definition at line <a class="el" href="cusb_8c_source.html#l00448">448</a> of file <a class="el" href="cusb_8c_source.html">cusb.c</a>.</p>
+<p class="definition">Definition at line <a class="el" href="cusb_8c_source.html#l00495">495</a> of file <a class="el" href="cusb_8c_source.html">cusb.c</a>.</p>
 
 </div>
 </div>
-<a id="ga84d1ec0a4c4e5f33556b5f98830bc4cd"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ga84d1ec0a4c4e5f33556b5f98830bc4cd">&#9670;&nbsp;</a></span>hid_report_callback()</h2>
+<a id="gafcb560d25a7f9005aad10a8be1af54e7"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#gafcb560d25a7f9005aad10a8be1af54e7">&#9670;&nbsp;</a></span>hid_in_report_callback()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -201,7 +294,7 @@ Variables</h2></td></tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">static void hid_report_callback </td>
+          <td class="memname">static void hid_in_report_callback </td>
           <td>(</td>
           <td class="paramtype">usbd_device *&#160;</td>
           <td class="paramname"><em>dev</em>, </td>
@@ -225,10 +318,51 @@ Variables</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p>HID Resport Callback. </p>
-<p>Called when in or out report received packet received </p>
+<p>HID In Resport Callback. </p>
+<p>Called when in report received packet received i.e. when usb CTR interrupt and transaction type is IN </p>
 
-<p class="definition">Definition at line <a class="el" href="cusb_8c_source.html#l00481">481</a> of file <a class="el" href="cusb_8c_source.html">cusb.c</a>.</p>
+<p class="definition">Definition at line <a class="el" href="cusb_8c_source.html#l00530">530</a> of file <a class="el" href="cusb_8c_source.html">cusb.c</a>.</p>
+
+</div>
+</div>
+<a id="ga598f9456a1628aa62a04236cbe363341"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga598f9456a1628aa62a04236cbe363341">&#9670;&nbsp;</a></span>hid_out_report_callback()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">static void hid_out_report_callback </td>
+          <td>(</td>
+          <td class="paramtype">usbd_device *&#160;</td>
+          <td class="paramname"><em>dev</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">uint8_t&#160;</td>
+          <td class="paramname"><em>ea</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>HID Out Resport Callback. </p>
+<p>Called when out report received packet received i.e. when usb CTR interrupt received and transaction type is OUT </p>
+
+<p class="definition">Definition at line <a class="el" href="cusb_8c_source.html#l00555">555</a> of file <a class="el" href="cusb_8c_source.html">cusb.c</a>.</p>
 
 </div>
 </div>
@@ -268,17 +402,51 @@ Variables</h2></td></tr>
 
 <p>HID configuration init callback. </p>
 <p>Called by libopencm3 - usb_standard_set_configuration() to initialize HID configuration</p><ul>
-<li>Initializes endpoints, IN (0x01) &amp; OUT (0x81), and sets the transaction callbacks for both endpoints. <a class="el" href="group___c_u_s_b___i_n_t.html#ga84d1ec0a4c4e5f33556b5f98830bc4cd">hid_report_callback()</a></li>
-<li>Sets control request callback <a class="el" href="group___c_u_s_b___i_n_t.html#ga29b474a495e8084ca9f797e1fcf75eb8">hid_control_request()</a> which is called by libopencm3 usb_standard_set_configuration() to configure as HID device </li>
+<li>Initializes endpoints, IN (0x01) &amp; OUT (0x81), and sets the IN &amp; OUT transaction callbacks hid_report_callback()</li>
+<li>Sets control request callback <a class="el" href="group___c_u_s_b___i_n_t.html#ga29b474a495e8084ca9f797e1fcf75eb8">hid_control_request()</a> which is called by libopencm3 usb_control.c functions </li>
 </ul>
 
-<p class="definition">Definition at line <a class="el" href="cusb_8c_source.html#l00448">448</a> of file <a class="el" href="cusb_8c_source.html">cusb.c</a>.</p>
+<p class="definition">Definition at line <a class="el" href="cusb_8c_source.html#l00495">495</a> of file <a class="el" href="cusb_8c_source.html">cusb.c</a>.</p>
+
+</div>
+</div>
+<a id="ga9dd0caa7d41601fb1547f79cdb8c4726"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga9dd0caa7d41601fb1547f79cdb8c4726">&#9670;&nbsp;</a></span>usb_isr()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void usb_isr </td>
+          <td>(</td>
+          <td class="paramtype">void&#160;</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="cusb_8c_source.html#l00580">580</a> of file <a class="el" href="cusb_8c_source.html">cusb.c</a>.</p>
 
 </div>
 </div>
 <h2 class="groupheader">Variable Documentation</h2>
-<a id="ga4cfa67ae725c5211ad5ab6e6b5e2c47a"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ga4cfa67ae725c5211ad5ab6e6b5e2c47a">&#9670;&nbsp;</a></span>hid_report_buf</h2>
+<a id="ga915d267a2bbc20bb20ab02b6fdac8628"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga915d267a2bbc20bb20ab02b6fdac8628">&#9670;&nbsp;</a></span>__attribute__</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">typedef __attribute__</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="ga6ee0816f9b6ec93390cdf31d4db6e342"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga6ee0816f9b6ec93390cdf31d4db6e342">&#9670;&nbsp;</a></span>hid_report_buf</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -287,7 +455,7 @@ Variables</h2></td></tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">uint8_t hid_report_buf[64] = &quot;Default Report Buffer&quot;</td>
+          <td class="memname">uint8_t hid_report_buf[<a class="el" href="group___c_u_s_b___i_n_t.html#ga4a19877e4f43bf56e85b1e8bbd8b7be5">HID_REPORT_SIZE</a>] = &quot;Default Report Buffer&quot;</td>
         </tr>
       </table>
   </td>
@@ -300,7 +468,31 @@ Variables</h2></td></tr>
 <p>HID Report buffer. </p>
 <p>Buffer used for all HID in &amp; out transactions </p>
 
-<p class="definition">Definition at line <a class="el" href="cusb_8c_source.html#l00305">305</a> of file <a class="el" href="cusb_8c_source.html">cusb.c</a>.</p>
+<p class="definition">Definition at line <a class="el" href="cusb_8c_source.html#l00327">327</a> of file <a class="el" href="cusb_8c_source.html">cusb.c</a>.</p>
+
+</div>
+</div>
+<a id="ga8aca649ee0d72a13bc76b13e92ffcce2"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga8aca649ee0d72a13bc76b13e92ffcce2">&#9670;&nbsp;</a></span>usb_state</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="group___c_u_s_b___i_n_t.html#gaa536a7f4d58c4e1734efcfb3b19c1be5">usb_state_t</a> usb_state</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="cusb_8c_source.html#l00317">317</a> of file <a class="el" href="cusb_8c_source.html">cusb.c</a>.</p>
 
 </div>
 </div>
@@ -326,7 +518,7 @@ Variables</h2></td></tr>
 
 <p>Buffer to be used for control requests. </p>
 
-<p class="definition">Definition at line <a class="el" href="cusb_8c_source.html#l00311">311</a> of file <a class="el" href="cusb_8c_source.html">cusb.c</a>.</p>
+<p class="definition">Definition at line <a class="el" href="cusb_8c_source.html#l00320">320</a> of file <a class="el" href="cusb_8c_source.html">cusb.c</a>.</p>
 
 </div>
 </div>

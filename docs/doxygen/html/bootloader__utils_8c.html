@@ -66,7 +66,10 @@ $(function() {
 </div><!-- top -->
 <div class="header">
   <div class="summary">
-<a href="#func-members">Functions</a>  </div>
+<a href="#nested-classes">Data Structures</a> &#124;
+<a href="#enum-members">Enumerations</a> &#124;
+<a href="#func-members">Functions</a> &#124;
+<a href="#var-members">Variables</a>  </div>
   <div class="headertitle">
 <div class="title">bootloader_utils.c File Reference</div>  </div>
 </div><!--header-->
@@ -74,7 +77,8 @@ $(function() {
 
 <p>Bootloader_utils Source File.  
 <a href="#details">More...</a></p>
-<div class="textblock"><code>#include &quot;<a class="el" href="bootloader__utils_8h_source.html">common/bootloader_utils.h</a>&quot;</code><br />
+<div class="textblock"><code>#include &lt;stdint.h&gt;</code><br />
+<code>#include &quot;<a class="el" href="bootloader__utils_8h_source.html">common/bootloader_utils.h</a>&quot;</code><br />
 <code>#include &lt;libopencm3/cm3/cortex.h&gt;</code><br />
 <code>#include &lt;libopencm3/cm3/scb.h&gt;</code><br />
 <code>#include &lt;libopencm3/cm3/common.h&gt;</code><br />
@@ -85,6 +89,19 @@ $(function() {
 </div>
 <p><a href="bootloader__utils_8c_source.html">Go to the source code of this file.</a></p>
 <table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="nested-classes"></a>
+Data Structures</h2></td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structbootloader__t.html">bootloader_t</a></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="enum-members"></a>
+Enumerations</h2></td></tr>
+<tr class="memitem:gabc7eca86fbaca60c07a1cb93f5e63974"><td class="memItemLeft" align="right" valign="top">enum &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___b_o_o_t_l_o_a_d_e_r___u_t_i_l_s___i_n_t.html#gabc7eca86fbaca60c07a1cb93f5e63974">bootloader_state_t</a> { <a class="el" href="group___b_o_o_t_l_o_a_d_e_r___u_t_i_l_s___i_n_t.html#ggabc7eca86fbaca60c07a1cb93f5e63974a589b7d94a3d91d145720e2fed0eb3a05">RESET</a> = 0, 
+<a class="el" href="group___b_o_o_t_l_o_a_d_e_r___u_t_i_l_s___i_n_t.html#ggabc7eca86fbaca60c07a1cb93f5e63974a7a691a2430ec26878897b5fbc9c22a4c">CONNECTED</a>, 
+<a class="el" href="group___b_o_o_t_l_o_a_d_e_r___u_t_i_l_s___i_n_t.html#ggabc7eca86fbaca60c07a1cb93f5e63974a00bd4a32df841a2ce24d2a8dbf83179c">GET_LOG</a>
+ }</td></tr>
+<tr class="separator:gabc7eca86fbaca60c07a1cb93f5e63974"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="func-members"></a>
 Functions</h2></td></tr>
 <tr class="memitem:gab14eb123f642e320218491d114b6418b"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___b_o_o_t_l_o_a_d_e_r___u_t_i_l_s___a_p_i.html#gab14eb123f642e320218491d114b6418b">boot_init</a> (void)</td></tr>
@@ -97,6 +114,11 @@ Functions</h2></td></tr>
 <tr class="separator:ga153399560a9486547bc5bb4b7dcf252e"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ga26bd7e0102d41443ee0aefe24260b86a"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___b_o_o_t_l_o_a_d_e_r___u_t_i_l_s___a_p_i.html#ga26bd7e0102d41443ee0aefe24260b86a">boot_verify_checksum</a> (uint32_t *data, uint32_t len, uint32_t expected)</td></tr>
 <tr class="separator:ga26bd7e0102d41443ee0aefe24260b86a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="var-members"></a>
+Variables</h2></td></tr>
+<tr class="memitem:ga5e8eb5ce0e51cdd322dacc71bd8fddd0"><td class="memItemLeft" align="right" valign="top">static <a class="el" href="structbootloader__t.html">bootloader_t</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___b_o_o_t_l_o_a_d_e_r___u_t_i_l_s___i_n_t.html#ga5e8eb5ce0e51cdd322dacc71bd8fddd0">bootloader</a> = ((<a class="el" href="structbootloader__t.html">bootloader_t</a> *)(<a class="el" href="group___m_e_m_o_r_y___a_p_i.html#gae8e76c43011452ed4d52266bce7f62dd">EEPROM_BOOTLOADER_BASE</a>))</td></tr>
+<tr class="separator:ga5e8eb5ce0e51cdd322dacc71bd8fddd0"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>Bootloader_utils Source File. </p>

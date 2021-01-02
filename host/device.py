@@ -14,6 +14,7 @@ class Device(hid.device):
         self.pid = pid
         self.manufacturer = manufacturer
         self.product = product
+        self.log = ""
 
     def __enter__(self):
         print('Searching for ', 'VID: ', self.vid, 'PID: ', self.pid)
@@ -21,6 +22,7 @@ class Device(hid.device):
             exit('Can\'t find automatically')
         else:
             self.open_path(self.path)
+        print()
         return self
 
     def __exit__(self, *args):
@@ -31,12 +33,14 @@ class Device(hid.device):
         self.write_command(cmd)
 
     def get_log(self):
-        print('Getting Log')
-        cmd = GetLogCommand()
-        self.write_command(cmd)
-        self.log = []
-        for _ in range(10):
-            self.log.append(self.read(max_length=64, timeout_ms=10))
+        if self.log == "":
+            print('Getting Log\n' + '-' * 20)
+            cmd = GetLogCommand()
+            self.write_command(cmd)
+            for _ in range(20):
+                ls = self.read(max_length=256, timeout_ms=100)
+                self.log += ("".join([chr(ls[i]) for i in range(len(ls))]))
+
         return self.log
 
     def write_command(self, command):
@@ -64,6 +68,7 @@ class Device(hid.device):
                     print('Device found\nPath Set')
                     return i['path']
             return None
+        print()
 
 
 class Command(object):
@@ -78,12 +83,14 @@ class Command(object):
     def pack(self):
         return struct.pack('<I60s', self.code, self.data_bytes)
 
+
 class TestCommand(Command):
-    COMMAND = 0
+    COMMAND = 60
 
     def __init__(self):
         parts = bytes('Test Command', 'utf-8')
         super().__init__(self.COMMAND, parts)
+
 
 class GetLogCommand(Command):
     COMMAND = 1
@@ -94,9 +101,11 @@ class GetLogCommand(Command):
 
 
 def main():
+    print('\nCoolEase Hub Usb Thing\n')
     with Device() as dev:
-        print(dev.vid)
+        dev.test_command()
         print(dev.get_log())
+        # print(dev.get_log())
         # while True:
         #     print(dev.read(max_length=64, timeout_ms=10))
 

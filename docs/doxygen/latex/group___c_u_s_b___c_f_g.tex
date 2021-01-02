@@ -100,7 +100,7 @@ Product ID.
 
 
 
-Definition at line 76 of file cusb.\+c.
+Definition at line 82 of file cusb.\+c.
 
 \mbox{\Hypertarget{group___c_u_s_b___c_f_g_ga3398c7225386f04c72fd9025fcb44734}\label{group___c_u_s_b___c_f_g_ga3398c7225386f04c72fd9025fcb44734}} 
 \index{Cusb Configuration@{Cusb Configuration}!USB\_VID@{USB\_VID}}
@@ -114,7 +114,7 @@ Vendor ID.
 
 
 
-Definition at line 75 of file cusb.\+c.
+Definition at line 81 of file cusb.\+c.
 
 
 
@@ -157,7 +157,7 @@ E\+N\+D\+P\+O\+I\+N\+T\+\_\+\+K\+E\+Y\+B\+O\+A\+R\+D\+\_\+\+H\+I\+D\+\_\+\+IN&\\
 \end{DoxyEnumFields}
 
 
-Definition at line 65 of file cusb.\+c.
+Definition at line 71 of file cusb.\+c.
 
 \mbox{\Hypertarget{group___c_u_s_b___c_f_g_gade943db11170b477241c1a88478ad911}\label{group___c_u_s_b___c_f_g_gade943db11170b477241c1a88478ad911}} 
 \index{Cusb Configuration@{Cusb Configuration}!dev\_interfaces@{dev\_interfaces}}
@@ -193,7 +193,7 @@ I\+N\+T\+E\+R\+F\+A\+C\+E\+\_\+\+C\+O\+U\+NT&\\
 \end{DoxyEnumFields}
 
 
-Definition at line 52 of file cusb.\+c.
+Definition at line 58 of file cusb.\+c.
 
 \mbox{\Hypertarget{group___c_u_s_b___c_f_g_ga8e8903d0c7276e7295ce8a9aaea727b4}\label{group___c_u_s_b___c_f_g_ga8e8903d0c7276e7295ce8a9aaea727b4}} 
 \index{Cusb Configuration@{Cusb Configuration}!usb\_strings\_index@{usb\_strings\_index}}
@@ -233,7 +233,7 @@ U\+S\+B\+\_\+\+I\+N\+T\+E\+R\+F\+A\+C\+E\+\_\+\+I\+DX&\\
 \end{DoxyEnumFields}
 
 
-Definition at line 79 of file cusb.\+c.
+Definition at line 88 of file cusb.\+c.
 
 
 
@@ -250,7 +250,7 @@ H\+ID Function Definition.
 
 
 
-Definition at line 180 of file cusb.\+c.
+Definition at line 187 of file cusb.\+c.
 
 
 
@@ -264,16 +264,16 @@ Definition at line 180 of file cusb.\+c.
 {\bfseries Initial value\+:}
 \begin{DoxyCode}{0}
 \DoxyCodeLine{=}
-\DoxyCodeLine{\{}
-\DoxyCodeLine{    .bLength = USB\_DT\_CONFIGURATION\_SIZE,}
-\DoxyCodeLine{    .bDescriptorType = USB\_DT\_CONFIGURATION,}
-\DoxyCodeLine{    .wTotalLength = 0, }
-\DoxyCodeLine{    .bNumInterfaces = \mbox{\hyperlink{group___c_u_s_b___c_f_g_ggade943db11170b477241c1a88478ad911a6c498f5b0c6a28de865172df9f4028b6}{INTERFACE\_COUNT}},}
-\DoxyCodeLine{    .bConfigurationValue = 1,}
-\DoxyCodeLine{    .iConfiguration = \mbox{\hyperlink{group___c_u_s_b___c_f_g_gga8e8903d0c7276e7295ce8a9aaea727b4a4424c4941324bf6b1d66433316169a9e}{USB\_CONFIGURATION\_IDX}},}
-\DoxyCodeLine{    .bmAttributes = 0b10000000, }
-\DoxyCodeLine{    .bMaxPower = 200,           }
-\DoxyCodeLine{    .interface = \mbox{\hyperlink{group___c_u_s_b___c_f_g_ga76de0fd52b1f8961911ef2c5f5a51d1b}{interfaces}},}
+\DoxyCodeLine{    \{}
+\DoxyCodeLine{        .bLength = USB\_DT\_CONFIGURATION\_SIZE,}
+\DoxyCodeLine{        .bDescriptorType = USB\_DT\_CONFIGURATION,}
+\DoxyCodeLine{        .wTotalLength = 0, }
+\DoxyCodeLine{        .bNumInterfaces = \mbox{\hyperlink{group___c_u_s_b___c_f_g_ggade943db11170b477241c1a88478ad911a6c498f5b0c6a28de865172df9f4028b6}{INTERFACE\_COUNT}},}
+\DoxyCodeLine{        .bConfigurationValue = 1,}
+\DoxyCodeLine{        .iConfiguration = \mbox{\hyperlink{group___c_u_s_b___c_f_g_gga8e8903d0c7276e7295ce8a9aaea727b4a4424c4941324bf6b1d66433316169a9e}{USB\_CONFIGURATION\_IDX}},}
+\DoxyCodeLine{        .bmAttributes = 0b10000000, }
+\DoxyCodeLine{        .bMaxPower = 200,           }
+\DoxyCodeLine{        .interface = \mbox{\hyperlink{group___c_u_s_b___c_f_g_ga76de0fd52b1f8961911ef2c5f5a51d1b}{interfaces}},}
 \DoxyCodeLine{\}}
 
 \end{DoxyCode}
@@ -283,7 +283,7 @@ U\+SB Device Config Descriptor.
 
 
 
-Definition at line 180 of file cusb.\+c.
+Definition at line 187 of file cusb.\+c.
 
 \mbox{\Hypertarget{group___c_u_s_b___c_f_g_gaa168c0763ac7b2a074fba1297b1733b3}\label{group___c_u_s_b___c_f_g_gaa168c0763ac7b2a074fba1297b1733b3}} 
 \index{Cusb Configuration@{Cusb Configuration}!dev\_desc@{dev\_desc}}
@@ -294,22 +294,21 @@ Definition at line 180 of file cusb.\+c.
 {\bfseries Initial value\+:}
 \begin{DoxyCode}{0}
 \DoxyCodeLine{=}
-\DoxyCodeLine{\{}
-\DoxyCodeLine{    .bLength = USB\_DT\_DEVICE\_SIZE,}
-\DoxyCodeLine{    .bDescriptorType = USB\_DT\_DEVICE,}
-\DoxyCodeLine{    .bcdUSB = 0x0200,}
-\DoxyCodeLine{    .bDeviceClass = 0x00,}
-\DoxyCodeLine{    .bDeviceSubClass = 0x00,}
-\DoxyCodeLine{    .bDeviceProtocol = 0x00,}
-\DoxyCodeLine{    .bMaxPacketSize0 = 64,}
-\DoxyCodeLine{    .idVendor = \mbox{\hyperlink{group___c_u_s_b___c_f_g_ga3398c7225386f04c72fd9025fcb44734}{USB\_VID}},}
-\DoxyCodeLine{    .idProduct = \mbox{\hyperlink{group___c_u_s_b___c_f_g_ga989c980e0b99f803f7ce0ca224cdb733}{USB\_PID}},}
-\DoxyCodeLine{    .bcdDevice = 0x0200,}
-\DoxyCodeLine{    .iManufacturer = \mbox{\hyperlink{group___c_u_s_b___c_f_g_gga8e8903d0c7276e7295ce8a9aaea727b4a896869157e00662b55740010582e3bae}{USB\_MANUFACTURER\_IDX}},}
-\DoxyCodeLine{    .iProduct = \mbox{\hyperlink{group___c_u_s_b___c_f_g_gga8e8903d0c7276e7295ce8a9aaea727b4a28c69675cc67c534eb4ee5fcad847220}{USB\_PRODUCT\_IDX}},}
-\DoxyCodeLine{    .iSerialNumber = \mbox{\hyperlink{group___c_u_s_b___c_f_g_gga8e8903d0c7276e7295ce8a9aaea727b4ac8955a3859ce8b787eed5575ad8417c4}{USB\_SERIAL\_IDX}},}
-\DoxyCodeLine{    .bNumConfigurations = 1}
-\DoxyCodeLine{\}}
+\DoxyCodeLine{    \{}
+\DoxyCodeLine{        .bLength = USB\_DT\_DEVICE\_SIZE,}
+\DoxyCodeLine{        .bDescriptorType = USB\_DT\_DEVICE,}
+\DoxyCodeLine{        .bcdUSB = 0x0200,}
+\DoxyCodeLine{        .bDeviceClass = 0x00,}
+\DoxyCodeLine{        .bDeviceSubClass = 0x00,}
+\DoxyCodeLine{        .bDeviceProtocol = 0x00,}
+\DoxyCodeLine{        .bMaxPacketSize0 = 64,}
+\DoxyCodeLine{        .idVendor = \mbox{\hyperlink{group___c_u_s_b___c_f_g_ga3398c7225386f04c72fd9025fcb44734}{USB\_VID}},}
+\DoxyCodeLine{        .idProduct = \mbox{\hyperlink{group___c_u_s_b___c_f_g_ga989c980e0b99f803f7ce0ca224cdb733}{USB\_PID}},}
+\DoxyCodeLine{        .bcdDevice = 0x0200,}
+\DoxyCodeLine{        .iManufacturer = \mbox{\hyperlink{group___c_u_s_b___c_f_g_gga8e8903d0c7276e7295ce8a9aaea727b4a896869157e00662b55740010582e3bae}{USB\_MANUFACTURER\_IDX}},}
+\DoxyCodeLine{        .iProduct = \mbox{\hyperlink{group___c_u_s_b___c_f_g_gga8e8903d0c7276e7295ce8a9aaea727b4a28c69675cc67c534eb4ee5fcad847220}{USB\_PRODUCT\_IDX}},}
+\DoxyCodeLine{        .iSerialNumber = \mbox{\hyperlink{group___c_u_s_b___c_f_g_gga8e8903d0c7276e7295ce8a9aaea727b4ac8955a3859ce8b787eed5575ad8417c4}{USB\_SERIAL\_IDX}},}
+\DoxyCodeLine{        .bNumConfigurations = 1\}}
 
 \end{DoxyCode}
 
@@ -318,7 +317,7 @@ U\+SB Device Descriptor.
 
 
 
-Definition at line 90 of file cusb.\+c.
+Definition at line 99 of file cusb.\+c.
 
 \mbox{\Hypertarget{group___c_u_s_b___c_f_g_ga31643a6df5e6d5393f60d14c2528a8a4}\label{group___c_u_s_b___c_f_g_ga31643a6df5e6d5393f60d14c2528a8a4}} 
 \index{Cusb Configuration@{Cusb Configuration}!hid\_interface@{hid\_interface}}
@@ -332,7 +331,7 @@ H\+ID Interface Descriptor.
 
 
 
-Definition at line 180 of file cusb.\+c.
+Definition at line 187 of file cusb.\+c.
 
 \mbox{\Hypertarget{group___c_u_s_b___c_f_g_ga924c026f7b247b10ffd34e57fc9453d4}\label{group___c_u_s_b___c_f_g_ga924c026f7b247b10ffd34e57fc9453d4}} 
 \index{Cusb Configuration@{Cusb Configuration}!hid\_interface\_endpoints@{hid\_interface\_endpoints}}
@@ -346,7 +345,7 @@ U\+SB Device H\+ID Endpoint Descriptors.
 
 
 
-Definition at line 90 of file cusb.\+c.
+Definition at line 99 of file cusb.\+c.
 
 \mbox{\Hypertarget{group___c_u_s_b___c_f_g_ga3150d0aa42aafc82cadbd40100171fae}\label{group___c_u_s_b___c_f_g_ga3150d0aa42aafc82cadbd40100171fae}} 
 \index{Cusb Configuration@{Cusb Configuration}!hid\_report\_descriptor@{hid\_report\_descriptor}}
@@ -357,19 +356,19 @@ Definition at line 90 of file cusb.\+c.
 {\bfseries Initial value\+:}
 \begin{DoxyCode}{0}
 \DoxyCodeLine{=}
-\DoxyCodeLine{\{}
-\DoxyCodeLine{    0x06, 0x00, 0xff, }
-\DoxyCodeLine{    0x09, 0x01,       }
-\DoxyCodeLine{    0xa1, 0x01,       }
-\DoxyCodeLine{    0x09, 0x01,       }
-\DoxyCodeLine{    0x15, 0x00,       }
-\DoxyCodeLine{    0x26, 0xff, 0x00, }
-\DoxyCodeLine{    0x75, 0x08,       }
-\DoxyCodeLine{    0x95, 0x40,       }
-\DoxyCodeLine{    0x81, 0x02,       }
-\DoxyCodeLine{    0x09, 0x01,       }
-\DoxyCodeLine{    0x91, 0x02,       }
-\DoxyCodeLine{    0xc0              }
+\DoxyCodeLine{    \{}
+\DoxyCodeLine{        0x06, 0x00, 0xff, }
+\DoxyCodeLine{        0x09, 0x01,       }
+\DoxyCodeLine{        0xa1, 0x01,       }
+\DoxyCodeLine{        0x09, 0x01,       }
+\DoxyCodeLine{        0x15, 0x00,       }
+\DoxyCodeLine{        0x26, 0xff, 0x00, }
+\DoxyCodeLine{        0x75, 0x08,       }
+\DoxyCodeLine{        0x95, 0x40,       }
+\DoxyCodeLine{        0x81, 0x02,       }
+\DoxyCodeLine{        0x09, 0x01,       }
+\DoxyCodeLine{        0x91, 0x02,       }
+\DoxyCodeLine{        0xc0              }
 \DoxyCodeLine{\}}
 
 \end{DoxyCode}
@@ -379,7 +378,7 @@ H\+ID Report Descriptor.
 
 The data below is an H\+ID report descriptor. The first byte in each item indicates the number of bytes that follow in the lower two bits. The next two bits indicate the type of the item. The remaining four bits indicate the tag. Words are stored in little endian. 
 
-Definition at line 180 of file cusb.\+c.
+Definition at line 187 of file cusb.\+c.
 
 \mbox{\Hypertarget{group___c_u_s_b___c_f_g_ga76de0fd52b1f8961911ef2c5f5a51d1b}\label{group___c_u_s_b___c_f_g_ga76de0fd52b1f8961911ef2c5f5a51d1b}} 
 \index{Cusb Configuration@{Cusb Configuration}!interfaces@{interfaces}}
@@ -390,12 +389,11 @@ Definition at line 180 of file cusb.\+c.
 {\bfseries Initial value\+:}
 \begin{DoxyCode}{0}
 \DoxyCodeLine{=}
-\DoxyCodeLine{\{}
 \DoxyCodeLine{    \{}
-\DoxyCodeLine{        .num\_altsetting = 1,}
-\DoxyCodeLine{        .altsetting = \&\mbox{\hyperlink{group___c_u_s_b___c_f_g_ga31643a6df5e6d5393f60d14c2528a8a4}{hid\_interface}},}
-\DoxyCodeLine{    \}}
-\DoxyCodeLine{\}}
+\DoxyCodeLine{        \{}
+\DoxyCodeLine{            .num\_altsetting = 1,}
+\DoxyCodeLine{            .altsetting = \&\mbox{\hyperlink{group___c_u_s_b___c_f_g_ga31643a6df5e6d5393f60d14c2528a8a4}{hid\_interface}},}
+\DoxyCodeLine{        \}\}}
 
 \end{DoxyCode}
 
@@ -404,7 +402,7 @@ Struct containing all used interfaces.
 
 
 
-Definition at line 180 of file cusb.\+c.
+Definition at line 187 of file cusb.\+c.
 
 \mbox{\Hypertarget{group___c_u_s_b___c_f_g_ga2c37a11433a81e9f3e364d952a65ce5a}\label{group___c_u_s_b___c_f_g_ga2c37a11433a81e9f3e364d952a65ce5a}} 
 \index{Cusb Configuration@{Cusb Configuration}!usb\_strings@{usb\_strings}}
@@ -415,12 +413,12 @@ Definition at line 180 of file cusb.\+c.
 {\bfseries Initial value\+:}
 \begin{DoxyCode}{0}
 \DoxyCodeLine{=}
-\DoxyCodeLine{\{}
-\DoxyCodeLine{    \textcolor{stringliteral}{"{}CoolEase"{}},}
-\DoxyCodeLine{    \textcolor{stringliteral}{"{}CoolEase Hub"{}},}
-\DoxyCodeLine{    \textcolor{stringliteral}{"{}12345"{}},}
-\DoxyCodeLine{    \textcolor{stringliteral}{"{}Custom HID Config"{}}}
-\DoxyCodeLine{    \textcolor{stringliteral}{"{}Custom HID Interface"{}},}
+\DoxyCodeLine{    \{}
+\DoxyCodeLine{        \textcolor{stringliteral}{"{}CoolEase"{}},}
+\DoxyCodeLine{        \textcolor{stringliteral}{"{}CoolEase Hub"{}},}
+\DoxyCodeLine{        \textcolor{stringliteral}{"{}12345"{}},}
+\DoxyCodeLine{        \textcolor{stringliteral}{"{}Custom HID Config"{}}}
+\DoxyCodeLine{        \textcolor{stringliteral}{"{}Custom HID Interface"{}},}
 \DoxyCodeLine{\}}
 
 \end{DoxyCode}
@@ -430,5 +428,5 @@ Structure containing all string descriptors, indexed by \mbox{\hyperlink{group__
 
 
 
-Definition at line 90 of file cusb.\+c.
+Definition at line 99 of file cusb.\+c.
 
