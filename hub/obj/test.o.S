@@ -7063,7 +7063,7 @@ void mem_wipe_readings(void);
 void log_init(void);
 void log_printf(const char *format, ...);
 void log_error(uint16_t error);
-uint8_t log_get(uint16_t index);
+uint8_t log_get_byte(uint16_t index);
 void log_read_reset(void);
 uint8_t log_read(void);
 uint16_t log_size(void);

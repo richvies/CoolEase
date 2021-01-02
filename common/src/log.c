@@ -50,9 +50,9 @@ static uint16_t read_index;
 // Persistant data
 typedef struct 
 {
-	uint8_t  *log;
 	uint16_t size;
 	uint16_t write_index;
+	uint8_t  log[];
 }log_t;
 
 static log_t *logger = ((log_t *)(EEPROM_LOG_BASE));
@@ -148,33 +148,33 @@ uint8_t log_get_byte(uint16_t index)
 	return byte;
 }
 
-void log_read_reset(void)
-{
-	logger.read_index = logger.write_index;
-}
-
 uint8_t log_read(void)
 {
 	uint8_t byte;
 
-	logger.read_index = (logger.read_index + 1) % logger.size;
+	read_index = (read_index + 1) % logger->size;
 
-	if(logger.read_index == logger.write_index)
+	if(read_index == logger->write_index)
 	{
 		byte = 0;
 	}
 	else
 	{
-		byte = MMIO8(EEPROM_LOG_BASE + logger.read_index);
-		// serial_printf("Log Reading %8x %c\n", EEPROM_LOG_BASE + logger.read_index, byte);
+		byte = logger->log[read_index];
+		// serial_printf("Log Reading %8x %c\n", EEPROM_LOG_BASE + read_index, byte);
 	}
 
 	return byte;	
 }
 
+void log_read_reset(void)
+{
+	read_index = logger->write_index;
+}
+
 uint16_t log_size(void)
 {
-	return logger.size;
+	return logger->size;
 }
 
 
@@ -203,10 +203,10 @@ static void _putchar_main(char character)
 
 static void _putchar_mem(char character)
 {
-	// serial_printf("Logging %8x\n", EEPROM_LOG_BASE+logger.write_index);
+	// serial_printf("Logging %8x\n", EEPROM_LOG_BASE+logger->write_index);
 
-	mem_eeprom_write_byte(EEPROM_LOG_BASE + logger.write_index, character);
-	logger.write_index = (logger.write_index + 1)%EEPROM_LOG_SIZE;
+	mem_eeprom_write_byte((uint32_t)&(logger->log[write_index]), character);
+	write_index = (write_index + 1)%EEPROM_LOG_SIZE;
 }
 
 #ifdef DEBUG
