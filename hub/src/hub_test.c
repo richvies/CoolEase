@@ -84,7 +84,8 @@ void test_cusb_get_log(void)
 	timers_tim6_init();
 	serial_printf("test_cusb_get_log()\n------------------\n\n");
 	
-	// Initialize log 
+	// Initialize USB and wait for connection before erasing eeprom
+	// Otherwise causes usb config problems
 	cusb_init();
 	serial_printf("USB Initialized\nWaiting for connection\n");
 	while(!cusb_connected()){};
