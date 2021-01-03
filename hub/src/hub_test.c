@@ -76,6 +76,35 @@ void test_cusb_poll(void)
   cusb_test_poll();
 }
 
+void test_cusb_get_log(void)
+{
+	clock_setup_msi_2mhz();
+	log_init();
+	timers_lptim_init();
+	timers_tim6_init();
+	serial_printf("test_cusb_get_log()\n------------------\n\n");
+	
+	// Initialize log 
+	cusb_init();
+	serial_printf("USB Initialized\nWaiting for connection\n");
+	while(!cusb_connected()){};
+	serial_printf("USB Connected\n");
+
+	serial_printf("Wiping Log\n");
+	log_erase();
+	serial_printf("Writing Log\n");
+	for (uint16_t i = 0; i < 10; i++)
+	{
+		log_printf("Test %i\n", i);
+	}
+	log_read_reset();
+	serial_printf("\nPrinting Log\n\n");
+	for (uint16_t i = 0; i < log_size(); i++)
+	{
+		serial_printf("%c", log_read());
+	}
+}
+
 void test_sim(void)
 {
 	log_printf("Testing Sim\n");
