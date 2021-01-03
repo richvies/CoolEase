@@ -1,6 +1,0 @@
-<?xml version='1.0' encoding='UTF-8' standalone='no'?>
-<section xmlns="http://docbook.org/ns/docbook" version="5.0" xmlns:xlink="http://www.w3.org/1999/xlink" xml:id="_rfm_8d_source" xml:lang="en-US">
-<title>rfm.d</title>
-<indexterm><primary>hub/obj/rfm.d</primary></indexterm>
-<programlisting>00001 hub/obj/rfm.o:&#32;common/src/rfm.c
-</programlisting></section>

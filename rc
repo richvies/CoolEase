@@ -1,4 +1,0 @@
-export PATH=vscrc:$PATH
-alias gcc=arm-none-eabi-gcc
-alias size=arm-none-eabi-size
-alias dump=arm-none-eabi-objdump
