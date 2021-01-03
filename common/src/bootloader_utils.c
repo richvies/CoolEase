@@ -92,6 +92,27 @@ void boot_init(void)
     mem_eeprom_write_word((uint32_t)&bootloader->reset_flags, RCC_CSR & RCC_CSR_RESET_FLAGS);
     RCC_CSR |= RCC_CSR_RMVF;
 
+    // If watchdogs keep causing reset then there is problem with app code
+    // Todo, use RTC backup registers instead
+    if(bootloader->reset_flags & (RCC_CSR_WWDGRSTF | RCC_CSR_IWDGRSTF))
+    {
+        if(bootloader->num_reset >= 3)
+        {
+            // panic!!
+            boot_fallback();
+        }
+        else
+        {
+            mem_eeprom_write_byte((uint32_t)&bootloader->num_reset, bootloader->num_reset + 1);
+        }
+    }
+    // Otherwise reset count to 0 if not already
+    else if(bootloader->num_reset)
+    {
+        mem_eeprom_write_byte((uint32_t)&bootloader->num_reset, 0);
+    }
+    
+
     // If the program address is set and there are no entry bits set in the CSR (or the magic code is programmed appropriate), start the user program
     if (bootloader->vtor &&
             (!(bootloader->reset_flags & BOOTLOADER_RCC_CSR_ENTRY_MASK) || bootloader->magic_code == BOOTLOADER_MAGIC_SKIP))
@@ -232,6 +253,11 @@ bool boot_verify_checksum(uint32_t *data, uint32_t len, uint32_t expected)
     return (crc == expected ? true : false);
 }
 
+void boot_fallback(void)
+{
+    // Try to redownload new firmware
+    // If still not working fallback to safe version for the time being
+}
 
 
 /** @} */

@@ -54,6 +54,7 @@ void boot_deinit(void);
 void boot_jump_to_application(uint32_t address);
 bool boot_program_application(uint32_t *data, uint32_t start_address, uint32_t len, uint32_t crc);
 bool boot_verify_checksum(uint32_t *data, uint32_t len, uint32_t expected);
+void boot_fallback(void);
 
 /** @} */
 
