@@ -6776,6 +6776,7 @@ uint8_t log_get_byte(uint16_t index);
 void log_read_reset(void);
 uint8_t log_read(void);
 uint16_t log_size(void);
+void log_erase(void);
 
 void serial_printf(const char *format, ...);
 # 25 "common/src/timers.c" 2
@@ -8164,11 +8165,12 @@ void flash_led(uint16_t milliseconds, uint8_t num_flashes);
 
 
 void test_mem_write_read(void);
-void test_log(void);
 void test_eeprom(void);
 void test_eeprom_keys(void);
 void test_eeprom_wipe(void);
 void test_reset_eeprom(void);
+
+void test_log(void);
 
 
 
@@ -8196,9 +8198,9 @@ void test_rfm(void);
 void test_lptim(void);
 void test_wakeup(void);
 
-# 98 "common/include/common/test.h" 3 4
+# 99 "common/include/common/test.h" 3 4
 _Bool 
-# 98 "common/include/common/test.h"
+# 99 "common/include/common/test.h"
     test_timeout(void);
 
 

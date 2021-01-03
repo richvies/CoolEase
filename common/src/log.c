@@ -43,7 +43,6 @@
 /*////////////////////////////////////////////////////////////////////////////*/
 
 // Vars used during normal operation
-// Prevent wearing down eeprom with lots of writes
 static uint16_t write_index;
 static uint16_t read_index;
 
@@ -51,11 +50,11 @@ static uint16_t read_index;
 typedef struct 
 {
 	uint16_t size;
-	uint16_t write_index;
+	uint16_t idx;
 	uint8_t  log[];
 }log_t;
 
-static log_t *logger = ((log_t *)(EEPROM_LOG_BASE));
+static log_t *log_file = ((log_t *)(EEPROM_LOG_BASE));
 
 
 /*////////////////////////////////////////////////////////////////////////////*/
@@ -84,12 +83,13 @@ static void _putchar_usb(char character);
 /*////////////////////////////////////////////////////////////////////////////*/
 
 void log_init(void)
-{	
-	// Copy persistant to volatile
-	write_index = logger->write_index;
-	read_index 	= write_index;
+{
+	// Will be preloaded into eeprom bin during production
+	mem_eeprom_write_half_word((uint32_t)(&(log_file->size)), EEPROM_LOG_SIZE - sizeof(log_t));
+	mem_eeprom_write_half_word((uint32_t)(&(log_file->idx)), 0);
 
-	log_printf("\n\nLog Init\n----------------\n");
+	write_index = log_file->idx;
+	read_index 	= write_index;
 
     #ifdef DEBUG
 	#ifdef _HUB
@@ -99,6 +99,8 @@ void log_init(void)
     usart_setup();
 	for(int i = 0; i < 100000; i++){__asm__("nop");};
     #endif
+
+	// log_printf("\n\nLog Init\n----------------\n");
 }
 
 void log_printf(const char *format, ...)
@@ -107,6 +109,9 @@ void log_printf(const char *format, ...)
 	va_start(va, format);
 	fnprintf(_putchar_main, format, va);
   	va_end(va);
+
+	// Update write location
+	mem_eeprom_write_byte((uint32_t)&log_file->idx, write_index);
 
     // Wait for uart to finish if serial print is used
     #ifdef DEBUG
@@ -136,13 +141,13 @@ uint8_t log_get_byte(uint16_t index)
 {
 	uint8_t byte;
 
-	if (index > logger->size)
+	if (index > log_file->size)
 	{
 		byte = 0;
 	}
 	else
 	{
-		byte = logger->log[index];
+		byte = log_file->log[index];
 	}
 	
 	return byte;
@@ -152,15 +157,15 @@ uint8_t log_read(void)
 {
 	uint8_t byte;
 
-	read_index = (read_index + 1) % logger->size;
+	read_index = (read_index + 1) % log_file->size;
 
-	if(read_index == logger->write_index)
+	if(read_index == write_index)
 	{
 		byte = 0;
 	}
 	else
 	{
-		byte = logger->log[read_index];
+		byte = log_file->log[read_index];
 		// serial_printf("Log Reading %8x %c\n", EEPROM_LOG_BASE + read_index, byte);
 	}
 
@@ -169,15 +174,22 @@ uint8_t log_read(void)
 
 void log_read_reset(void)
 {
-	read_index = logger->write_index;
+	read_index = write_index;
 }
 
 uint16_t log_size(void)
 {
-	return logger->size;
+	return log_file->size;
 }
 
-
+void log_erase(void)
+{
+	for(write_index = 0; write_index < log_file->size; write_index++)
+	{
+		mem_eeprom_write_byte((uint32_t)(&(log_file->log[write_index])), 0);
+	}
+	write_index = 0;
+}
 
 /** @} */
 
@@ -203,10 +215,13 @@ static void _putchar_main(char character)
 
 static void _putchar_mem(char character)
 {
-	// serial_printf("Logging %8x\n", EEPROM_LOG_BASE+logger->write_index);
+	// serial_printf("Logging %8x\n", EEPROM_LOG_BASE+log_file->write_index);
 
-	mem_eeprom_write_byte((uint32_t)&(logger->log[write_index]), character);
-	write_index = (write_index + 1)%EEPROM_LOG_SIZE;
+	// Write char
+	mem_eeprom_write_byte((uint32_t)&(log_file->log[write_index]), character);
+
+	// Update current log index
+	write_index = (write_index + 1) % log_file->size;
 }
 
 #ifdef DEBUG

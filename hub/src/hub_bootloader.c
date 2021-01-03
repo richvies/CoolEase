@@ -36,6 +36,8 @@
 // Static Variables
 /*////////////////////////////////////////////////////////////////////////////*/
 
+static void init(void);
+
 /*////////////////////////////////////////////////////////////////////////////*/
 // Static Function Declarations
 /*////////////////////////////////////////////////////////////////////////////*/
@@ -52,31 +54,15 @@
 
 int main(void)
 {
-	clock_setup_msi_2mhz();
-    log_init();
-	timers_lptim_init();
-	timers_tim6_init();
-
-    log_printf("Hub Bl Start\n");
-
-	for (uint16_t i = 0; i < 10; i++)
-	{
-		log_printf("Test %i\n", i);
-	}
+	init();
 
 	serial_printf("Hub Bootloader Ready");
-
-	cusb_init();
-	// cusb_test_poll();
-
-	// test_boot_verify_checksum();
-	// test_crc();
 
     // boot_jump_to_application(APP_ADDRESS);
 
     for (;;)
 	{
-		// log_printf("Hub Bootloader Loop\n\n");
+		// serial_printf("Hub Bootloader Loop\n\n");
 		// timers_delay_milliseconds(1000);
 		__asm__("nop");
 	}
@@ -95,6 +81,15 @@ int main(void)
 /*////////////////////////////////////////////////////////////////////////////*/
 // Static Function Definitions
 /*////////////////////////////////////////////////////////////////////////////*/
+
+static void init(void)
+{
+	clock_setup_msi_2mhz();
+    log_init();
+	timers_lptim_init();
+	timers_tim6_init();
+    log_printf("Hub Bl Start\n");
+}
 
 /** @} */
 /** @} */

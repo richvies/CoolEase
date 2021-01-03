@@ -3711,6 +3711,7 @@ uint8_t log_get_byte(uint16_t index);
 void log_read_reset(void);
 uint8_t log_read(void);
 uint16_t log_size(void);
+void log_erase(void);
 
 void serial_printf(const char *format, ...);
 # 34 "hub/src/cusb.c" 2
@@ -4132,26 +4133,29 @@ void cusb_test_poll(void)
 
 void cusb_send(char character)
 {
-    usbd_ep_write_packet(usbd_dev, ENDPOINT_HID_IN, (const void *)&character, 1);
+    if(usb_state == CONNECTED)
+    {
+        usbd_ep_write_packet(usbd_dev, ENDPOINT_HID_IN, &character, 1);
+    }
 }
 
 
-# 421 "hub/src/cusb.c" 3 4
+# 424 "hub/src/cusb.c" 3 4
 _Bool 
-# 421 "hub/src/cusb.c"
+# 424 "hub/src/cusb.c"
     cusb_connected(void)
 {
     return ((usb_state == CONNECTED) ? 
-# 423 "hub/src/cusb.c" 3 4
+# 426 "hub/src/cusb.c" 3 4
                                       1 
-# 423 "hub/src/cusb.c"
+# 426 "hub/src/cusb.c"
                                            : 
-# 423 "hub/src/cusb.c" 3 4
+# 426 "hub/src/cusb.c" 3 4
                                              0
-# 423 "hub/src/cusb.c"
+# 426 "hub/src/cusb.c"
                                                   );
 }
-# 436 "hub/src/cusb.c"
+# 439 "hub/src/cusb.c"
 static void cusb_clock_init(void)
 {
 
@@ -4308,7 +4312,7 @@ void __attribute__ ((weak)) cusb_hook_hid_in_report(void) {}
 void usb_isr(void)
 {
 
-    serial_printf("I");
+
 
     uint16_t istr = *(&(*(volatile uint32_t *)((((0x40000000U) + 0x00000) + 0x5c00) + 0x44)));
 

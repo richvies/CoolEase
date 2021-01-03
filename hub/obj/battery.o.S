@@ -3775,6 +3775,7 @@ uint8_t log_get_byte(uint16_t index);
 void log_read_reset(void);
 uint8_t log_read(void);
 uint16_t log_size(void);
+void log_erase(void);
 
 void serial_printf(const char *format, ...);
 # 14 "common/src/battery.c" 2

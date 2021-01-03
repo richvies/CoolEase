@@ -4009,6 +4009,7 @@ uint8_t log_get_byte(uint16_t index);
 void log_read_reset(void);
 uint8_t log_read(void);
 uint16_t log_size(void);
+void log_erase(void);
 
 void serial_printf(const char *format, ...);
 # 21 "hub/src/hub_bootloader.c" 2
@@ -5397,11 +5398,12 @@ void flash_led(uint16_t milliseconds, uint8_t num_flashes);
 
 
 void test_mem_write_read(void);
-void test_log(void);
 void test_eeprom(void);
 void test_eeprom_keys(void);
 void test_eeprom_wipe(void);
 void test_reset_eeprom(void);
+
+void test_log(void);
 
 
 
@@ -5429,9 +5431,9 @@ void test_rfm(void);
 void test_lptim(void);
 void test_wakeup(void);
 
-# 98 "common/include/common/test.h" 3 4
+# 99 "common/include/common/test.h" 3 4
 _Bool 
-# 98 "common/include/common/test.h"
+# 99 "common/include/common/test.h"
     test_timeout(void);
 
 
@@ -5479,28 +5481,14 @@ void cusb_hook_hid_in_report(void);
 
 
 #define APP_ADDRESS 0x08004000
-# 53 "hub/src/hub_bootloader.c"
+# 39 "hub/src/hub_bootloader.c"
+static void init(void);
+# 55 "hub/src/hub_bootloader.c"
 int main(void)
 {
- clock_setup_msi_2mhz();
-    log_init();
- timers_lptim_init();
- timers_tim6_init();
-
-    log_printf("Hub Bl Start\n");
-
- for (uint16_t i = 0; i < 10; i++)
- {
-  log_printf("Test %i\n", i);
- }
+ init();
 
  serial_printf("Hub Bootloader Ready");
-
- cusb_init();
-
-
-
-
 
 
 
@@ -5512,4 +5500,13 @@ int main(void)
  }
 
     return 0;
+}
+# 85 "hub/src/hub_bootloader.c"
+static void init(void)
+{
+ clock_setup_msi_2mhz();
+    log_init();
+ timers_lptim_init();
+ timers_tim6_init();
+    log_printf("Hub Bl Start\n");
 }

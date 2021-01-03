@@ -43,7 +43,7 @@ extern "C" {
  */
 
 // Flash and EEPROM Read by Word, Half Word or byte
-// Flash and EEPROM erase by page (1 word)
+// Flash and EEPROM erase by page (128 bytes / 4 bytes)
 // Flash programmed by word or half page
 // EEPROM programmed by word, half word or byte
 

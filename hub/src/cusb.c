@@ -415,7 +415,10 @@ void cusb_test_poll(void)
 
 void cusb_send(char character)
 {
-    usbd_ep_write_packet(usbd_dev, ENDPOINT_HID_IN, (const void *)&character, 1);
+    if(usb_state == CONNECTED)
+    {
+        usbd_ep_write_packet(usbd_dev, ENDPOINT_HID_IN, &character, 1);
+    }
 }
 
 bool cusb_connected(void)
@@ -589,7 +592,7 @@ void __attribute__ ((weak)) cusb_hook_hid_in_report(void) {}
 void usb_isr(void)
 {
     // This print is definitley not the problem with hidapi write failing
-    serial_printf("I");
+    // serial_printf("I");
 
     uint16_t istr = *USB_ISTR_REG;
 

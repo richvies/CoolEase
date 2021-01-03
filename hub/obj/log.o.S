@@ -1112,6 +1112,7 @@ uint8_t log_get_byte(uint16_t index);
 void log_read_reset(void);
 uint8_t log_read(void);
 uint16_t log_size(void);
+void log_erase(void);
 
 void serial_printf(const char *format, ...);
 # 16 "common/src/log.c" 2
@@ -4106,7 +4107,7 @@ void cusb_hook_reset(void);
 void cusb_hook_hid_out_report(void);
 void cusb_hook_hid_in_report(void);
 # 30 "common/src/log.c" 2
-# 47 "common/src/log.c"
+# 46 "common/src/log.c"
 static uint16_t write_index;
 static uint16_t read_index;
 
@@ -4114,11 +4115,11 @@ static uint16_t read_index;
 typedef struct
 {
  uint16_t size;
- uint16_t write_index;
+ uint16_t idx;
  uint8_t log[];
 }log_t;
 
-static log_t *logger = ((log_t *)(0x08080000U + 256U));
+static log_t *log_file = ((log_t *)(0x08080000U + 256U));
 
 
 
@@ -4133,14 +4134,15 @@ static void usart_setup(void);
 static void _putchar_spf(char character);
 
 static void _putchar_usb(char character);
-# 86 "common/src/log.c"
+# 85 "common/src/log.c"
 void log_init(void)
 {
 
- write_index = logger->write_index;
- read_index = write_index;
+ mem_eeprom_write_half_word((uint32_t)(&(log_file->size)), 1024U - sizeof(log_t));
+ mem_eeprom_write_half_word((uint32_t)(&(log_file->idx)), 0);
 
- log_printf("\n\nLog Init\n----------------\n");
+ write_index = log_file->idx;
+ read_index = write_index;
 
 
 
@@ -4150,34 +4152,39 @@ void log_init(void)
     usart_setup();
  for(int i = 0; i < 100000; i++){__asm__("nop");};
 
+
+
 }
 
 void log_printf(const char *format, ...)
 {
  va_list va;
  
-# 107 "common/src/log.c" 3 4
+# 109 "common/src/log.c" 3 4
 __builtin_va_start(
-# 107 "common/src/log.c"
+# 109 "common/src/log.c"
 va
-# 107 "common/src/log.c" 3 4
+# 109 "common/src/log.c" 3 4
 ,
-# 107 "common/src/log.c"
+# 109 "common/src/log.c"
 format
-# 107 "common/src/log.c" 3 4
+# 109 "common/src/log.c" 3 4
 )
-# 107 "common/src/log.c"
+# 109 "common/src/log.c"
                     ;
  fnprintf(_putchar_main, format, va);
    
-# 109 "common/src/log.c" 3 4
+# 111 "common/src/log.c" 3 4
   __builtin_va_end(
-# 109 "common/src/log.c"
+# 111 "common/src/log.c"
   va
-# 109 "common/src/log.c" 3 4
+# 111 "common/src/log.c" 3 4
   )
-# 109 "common/src/log.c"
+# 111 "common/src/log.c"
             ;
+
+
+ mem_eeprom_write_byte((uint32_t)&log_file->idx, write_index);
 
 
 
@@ -4195,27 +4202,27 @@ void serial_printf(const char *format, ...)
 
  va_list va;
  
-# 126 "common/src/log.c" 3 4
+# 131 "common/src/log.c" 3 4
 __builtin_va_start(
-# 126 "common/src/log.c"
+# 131 "common/src/log.c"
 va
-# 126 "common/src/log.c" 3 4
+# 131 "common/src/log.c" 3 4
 ,
-# 126 "common/src/log.c"
+# 131 "common/src/log.c"
 format
-# 126 "common/src/log.c" 3 4
+# 131 "common/src/log.c" 3 4
 )
-# 126 "common/src/log.c"
+# 131 "common/src/log.c"
                     ;
  fnprintf(_putchar_spf, format, va);
    
-# 128 "common/src/log.c" 3 4
+# 133 "common/src/log.c" 3 4
   __builtin_va_end(
-# 128 "common/src/log.c"
+# 133 "common/src/log.c"
   va
-# 128 "common/src/log.c" 3 4
+# 133 "common/src/log.c" 3 4
   )
-# 128 "common/src/log.c"
+# 133 "common/src/log.c"
             ;
 
 
@@ -4227,13 +4234,13 @@ uint8_t log_get_byte(uint16_t index)
 {
  uint8_t byte;
 
- if (index > logger->size)
+ if (index > log_file->size)
  {
   byte = 0;
  }
  else
  {
-  byte = logger->log[index];
+  byte = log_file->log[index];
  }
 
  return byte;
@@ -4243,15 +4250,15 @@ uint8_t log_read(void)
 {
  uint8_t byte;
 
- read_index = (read_index + 1) % logger->size;
+ read_index = (read_index + 1) % log_file->size;
 
- if(read_index == logger->write_index)
+ if(read_index == write_index)
  {
   byte = 0;
  }
  else
  {
-  byte = logger->log[read_index];
+  byte = log_file->log[read_index];
 
  }
 
@@ -4260,14 +4267,23 @@ uint8_t log_read(void)
 
 void log_read_reset(void)
 {
- read_index = logger->write_index;
+ read_index = write_index;
 }
 
 uint16_t log_size(void)
 {
- return logger->size;
+ return log_file->size;
 }
-# 192 "common/src/log.c"
+
+void log_erase(void)
+{
+ for(write_index = 0; write_index < log_file->size; write_index++)
+ {
+  mem_eeprom_write_byte((uint32_t)(&(log_file->log[write_index])), 0);
+ }
+ write_index = 0;
+}
+# 204 "common/src/log.c"
 static void _putchar_main(char character)
 {
  _putchar_mem(character);
@@ -4284,8 +4300,11 @@ static void _putchar_mem(char character)
 {
 
 
- mem_eeprom_write_byte((uint32_t)&(logger->log[write_index]), character);
- write_index = (write_index + 1)%1024U;
+
+ mem_eeprom_write_byte((uint32_t)&(log_file->log[write_index]), character);
+
+
+ write_index = (write_index + 1) % log_file->size;
 }
 
 
