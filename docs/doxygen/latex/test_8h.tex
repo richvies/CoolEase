@@ -1,0 +1,75 @@
+\hypertarget{test_8h}{}\doxysection{common/include/common/test.h File Reference}
+\label{test_8h}\index{common/include/common/test.h@{common/include/common/test.h}}
+
+
+Testing Header File.  
+
+
+{\ttfamily \#include $<$stdint.\+h$>$}\newline
+{\ttfamily \#include $<$stdbool.\+h$>$}\newline
+{\ttfamily \#include $<$stdlib.\+h$>$}\newline
+\doxysubsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define \mbox{\hyperlink{group___t_e_s_t___a_p_i_ga47f0b6d4a954d20e5e5eea426ba5fd59}{D\+E\+V\+\_\+\+N\+U\+M\+\_\+\+C\+H\+IP}}~(uint32\+\_\+t)0x0000001B
+\item 
+\#define \mbox{\hyperlink{group___t_e_s_t___a_p_i_ga140120a4e9a617437db24baf48b55d96}{D\+E\+V\+\_\+\+N\+U\+M\+\_\+\+P\+CB}}~(uint32\+\_\+t)$\sim$\mbox{\hyperlink{group___t_e_s_t___a_p_i_ga47f0b6d4a954d20e5e5eea426ba5fd59}{D\+E\+V\+\_\+\+N\+U\+M\+\_\+\+C\+H\+IP}}
+\end{DoxyCompactItemize}
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{group___t_e_s_t___a_p_i_gaa36d436356eb01cac7de6dec14e5b939}{flash\+\_\+led}} (uint16\+\_\+t milliseconds, uint8\+\_\+t num\+\_\+flashes)
+\item 
+void \mbox{\hyperlink{group___t_e_s_t___a_p_i_gad4726f154be27abb043f6aa632710e06}{test\+\_\+mem\+\_\+write\+\_\+read}} (void)
+\item 
+void \mbox{\hyperlink{group___t_e_s_t___a_p_i_ga3711cd4cbe97ebea25adef594a7f7924}{test\+\_\+log}} (void)
+\item 
+void \mbox{\hyperlink{group___t_e_s_t___a_p_i_ga7af4d6786a985cd3254335a29680f6a0}{test\+\_\+eeprom}} (void)
+\item 
+void \mbox{\hyperlink{group___t_e_s_t___a_p_i_ga702da09544d5bb8f39d7829f11d48c29}{test\+\_\+eeprom\+\_\+keys}} (void)
+\item 
+void \mbox{\hyperlink{group___t_e_s_t___a_p_i_gafbc8132eb4c5b24f6bec14fc69745de5}{test\+\_\+eeprom\+\_\+wipe}} (void)
+\item 
+void \mbox{\hyperlink{group___t_e_s_t___a_p_i_ga1fe1b22dd47b9c218cf6983fab1a0ab7}{test\+\_\+reset\+\_\+eeprom}} (void)
+\item 
+void \mbox{\hyperlink{group___t_e_s_t___a_p_i_ga01a61acbc64e406f3ac58787588f926b}{test\+\_\+boot\+\_\+jump\+\_\+to\+\_\+application}} (uint32\+\_\+t address)
+\begin{DoxyCompactList}\small\item\em Test jumping to user defined address. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{group___t_e_s_t___a_p_i_ga130789ed356c0454dae9bd042d5428cf}{test\+\_\+boot\+\_\+verify\+\_\+checksum}} (void)
+\item 
+void \mbox{\hyperlink{group___t_e_s_t___a_p_i_gaea984f2750f3735dfb433788ac92c161}{test\+\_\+crc}} (void)
+\item 
+void \mbox{\hyperlink{group___t_e_s_t___a_p_i_ga00807f672f76b759d471a35384d381d4}{test\+\_\+rf}} (void)
+\item 
+void \mbox{\hyperlink{group___t_e_s_t___a_p_i_ga560f36fad7bff9bfe0371068910469bb}{test\+\_\+rf\+\_\+listen}} (void)
+\item 
+void \mbox{\hyperlink{group___t_e_s_t___a_p_i_gaf32d6089a7d79416f068d6cc2999174e}{test\+\_\+receiver}} (uint32\+\_\+t dev\+\_\+num)
+\item 
+void \mbox{\hyperlink{group___t_e_s_t___a_p_i_ga4871cffdb52313dcf91989cc683c549b}{test\+\_\+rfm}} (void)
+\item 
+void \mbox{\hyperlink{group___t_e_s_t___a_p_i_gace64fd287ebfe55ba116d2094409b871}{test\+\_\+lptim}} (void)
+\item 
+void \mbox{\hyperlink{group___t_e_s_t___a_p_i_gaf194400941d88a3b231c4145a9a38767}{test\+\_\+wakeup}} (void)
+\item 
+bool \mbox{\hyperlink{group___t_e_s_t___a_p_i_gafa9a88a68f9b242133d3d55a638cbcdd}{test\+\_\+timeout}} (void)
+\item 
+void \mbox{\hyperlink{group___t_e_s_t___a_p_i_ga117ac62b0ab98f36efbdabdd68feff2e}{test\+\_\+standby}} (uint32\+\_\+t standby\+\_\+time)
+\item 
+void \mbox{\hyperlink{group___t_e_s_t___a_p_i_ga6e8429d5742b9f45c0ebdc01f1da7373}{test\+\_\+voltage\+\_\+scale}} (uint8\+\_\+t scale)
+\item 
+void \mbox{\hyperlink{group___t_e_s_t___a_p_i_ga4ee1fd7568f79d0de6bbbdd42906bf8c}{test\+\_\+low\+\_\+power\+\_\+run}} (void)
+\item 
+void \mbox{\hyperlink{group___t_e_s_t___a_p_i_gabf6be5c2a3213ec31e4cc1d88b9ba604}{test\+\_\+encryption}} (void)
+\item 
+void \mbox{\hyperlink{group___t_e_s_t___a_p_i_gad637ca8b6d46afbebc8d80fdd7ad4a8a}{test\+\_\+analog\+\_\+watchdog}} (void)
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Testing Header File. 
+
+\begin{DoxyAuthor}{Author}
+Richard Davies 
+\end{DoxyAuthor}
+\begin{DoxyDate}{Date}
+26/\+Dec/2020 
+\end{DoxyDate}

@@ -1,0 +1,73 @@
+{
+	"folders": [
+		{
+			"path": "."
+		}
+	],
+	"settings": {
+		"files.exclude": {
+			"**/.git": true,
+			"**/.svn": true,
+			"**/.hg": true,
+			"**/CVS": true,
+			"**/.DS_Store": true,
+			".gitignore": false,
+			".vscode": false,
+			
+			"tools":false,
+			"web":false,
+			"000Webhost":false,
+			"Development Invoices": false, 
+			"hardware": false,
+			"coolterm":false,
+			"old": false,
+			"docs": false,
+			"README.md": false,
+			
+			"**/obj/":false,
+			"**/bin/":false,
+			"**/*.ld/":false,
+			"**/*eeprom.bin":false,
+
+		},
+		"files.associations": {
+			"*.include": "makefile",
+			"*.inc": "makefile",
+			"Doxyfile": "makefile",
+			"*.h": "c",
+			"type_traits": "c",
+			"cstdlib": "c"
+		},
+		"explorer.autoReveal": false,
+
+		"terminal.integrated.shell.osx": "/bin/bash",
+		"terminal.integrated.inheritEnv": false,
+		"terminal.integrated.shellArgs.osx": [
+			"-l"
+		],
+
+
+		"C_Cpp.errorSquiggles": "Disabled",
+
+		"python.pythonPath": "/usr/local/anaconda3/bin/python",
+		"python.languageServer": "Microsoft",
+		"python.terminal.activateEnvironment": true,
+		"python.linting.pylintEnabled": true,
+		"python.linting.enabled": true,
+		"python.autoComplete.extraPaths": [
+			"/Users/richarddavies/Desktop/Projects/CoolEase/host",
+			"/usr/local/anaconda3/lib/python3.8/site-packages"
+		],
+		// "python.envFile": "${workspaceFolder}/.env",
+		"python.analysis.extraPaths": [
+			"/Users/richarddavies/Desktop/Projects/CoolEase/host/device",
+			"/usr/local/anaconda3/lib/python3.8/site-packages"
+		],
+
+		"maptz.regionfolder": {
+			"[python]": {        
+				"disableFolding": true
+			}
+		}
+	}
+}

@@ -1,0 +1,8 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<section xmlns="http://docbook.org/ns/docbook" version="5.0" xmlns:xlink="http://www.w3.org/1999/xlink" xml:id="_test__hub_8d_source" xml:lang="en-US">
+<title>test_hub.d</title>
+<indexterm><primary>hub/obj/test_hub.d</primary></indexterm>
+<programlisting>00001 hub/obj/test_hub.o:&#32;hub/src/test_hub.c&#32;hub/include/hub/test_hub.h&#32;\
+&#32;hub/include/hub/cusb.h&#32;hub/include/hub/bootloader.h
+00002 
+</programlisting></section>

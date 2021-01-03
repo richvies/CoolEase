@@ -1,0 +1,436 @@
+\hypertarget{aes_8c}{}\doxysection{common/src/aes.c File Reference}
+\label{aes_8c}\index{common/src/aes.c@{common/src/aes.c}}
+{\ttfamily \#include \char`\"{}common/aes.\+h\char`\"{}}\newline
+{\ttfamily \#include $<$string.\+h$>$}\newline
+{\ttfamily \#include \char`\"{}common/log.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}common/memory.\+h\char`\"{}}\newline
+\doxysubsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define \mbox{\hyperlink{aes_8c_a1ae104196f1fc7af4751c5b9e07b1610}{Nb}}~4
+\item 
+\#define \mbox{\hyperlink{aes_8c_a7b1938df390b1afe917e8baa663c22af}{Nk}}~4
+\item 
+\#define \mbox{\hyperlink{aes_8c_a9d210afc812225ee0a0bcd51bb984246}{Nr}}~10
+\item 
+\#define \mbox{\hyperlink{aes_8c_a1dd86ce8e7ff32d6456f34c281c7e2a9}{M\+U\+L\+T\+I\+P\+L\+Y\+\_\+\+A\+S\+\_\+\+A\+\_\+\+F\+U\+N\+C\+T\+I\+ON}}~0
+\item 
+\#define \mbox{\hyperlink{aes_8c_a5e1678341a98f95d48365ed9ccaa3586}{get\+S\+Box\+Value}}(num)~(\mbox{\hyperlink{aes_8c_adc15aeb43c81de1162045eedf437f407}{sbox}}\mbox{[}(num)\mbox{]})
+\item 
+\#define \mbox{\hyperlink{aes_8c_a4223d41bc5587f9c0b6e499004403967}{get\+S\+Box\+Invert}}(num)~(\mbox{\hyperlink{aes_8c_a5fb4523234538d83676ef33a45b18fd1}{rsbox}}\mbox{[}(num)\mbox{]})
+\item 
+\#define \mbox{\hyperlink{aes_8c_aca7cce176b8cdd27f61d3dcf5910b6bd}{Multiply}}(x,  y)
+\end{DoxyCompactItemize}
+\doxysubsection*{Typedefs}
+\begin{DoxyCompactItemize}
+\item 
+typedef uint8\+\_\+t \mbox{\hyperlink{aes_8c_a35dbb26673d196810a7f6eac0ac632ec}{state\+\_\+t}}\mbox{[}4\mbox{]}\mbox{[}4\mbox{]}
+\end{DoxyCompactItemize}
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+static void \mbox{\hyperlink{aes_8c_aa53b7196594437ebb4f435b04fd254db}{Key\+Expansion}} (uint8\+\_\+t $\ast$Round\+Key, const uint8\+\_\+t $\ast$Key)
+\item 
+static void \mbox{\hyperlink{aes_8c_aec2e2ab202ebb6ef781d984894df6b60}{Add\+Round\+Key}} (uint8\+\_\+t round, \mbox{\hyperlink{aes_8c_a35dbb26673d196810a7f6eac0ac632ec}{state\+\_\+t}} $\ast$state, const uint8\+\_\+t $\ast$Round\+Key)
+\item 
+static void \mbox{\hyperlink{aes_8c_ae12b3155973ad5c484594926a343b184}{Sub\+Bytes}} (\mbox{\hyperlink{aes_8c_a35dbb26673d196810a7f6eac0ac632ec}{state\+\_\+t}} $\ast$state)
+\item 
+static void \mbox{\hyperlink{aes_8c_ae22a5cef2b7a9a885c182c95c4d62f6b}{Shift\+Rows}} (\mbox{\hyperlink{aes_8c_a35dbb26673d196810a7f6eac0ac632ec}{state\+\_\+t}} $\ast$state)
+\item 
+static uint8\+\_\+t \mbox{\hyperlink{aes_8c_a6a04d27e5fba818ef334a77ef130f1b8}{xtime}} (uint8\+\_\+t x)
+\item 
+static void \mbox{\hyperlink{aes_8c_a8f2327d404c64b297125e913449a8c66}{Mix\+Columns}} (\mbox{\hyperlink{aes_8c_a35dbb26673d196810a7f6eac0ac632ec}{state\+\_\+t}} $\ast$state)
+\item 
+static void \mbox{\hyperlink{aes_8c_a2643c586e22197943294eeb877fec242}{Inv\+Mix\+Columns}} (\mbox{\hyperlink{aes_8c_a35dbb26673d196810a7f6eac0ac632ec}{state\+\_\+t}} $\ast$state)
+\item 
+static void \mbox{\hyperlink{aes_8c_acae838b82d6c1f4f04ca0f0ede0a3c3e}{Inv\+Sub\+Bytes}} (\mbox{\hyperlink{aes_8c_a35dbb26673d196810a7f6eac0ac632ec}{state\+\_\+t}} $\ast$state)
+\item 
+static void \mbox{\hyperlink{aes_8c_ac23198b06615bcf66f9b1c23c22bbf68}{Inv\+Shift\+Rows}} (\mbox{\hyperlink{aes_8c_a35dbb26673d196810a7f6eac0ac632ec}{state\+\_\+t}} $\ast$state)
+\item 
+static void \mbox{\hyperlink{aes_8c_a7b0b38e04c73cdcaa4cd9459ac801f3b}{Cipher}} (\mbox{\hyperlink{aes_8c_a35dbb26673d196810a7f6eac0ac632ec}{state\+\_\+t}} $\ast$state, const uint8\+\_\+t $\ast$Round\+Key)
+\item 
+static void \mbox{\hyperlink{aes_8c_af0cd2ffba77fd2b421a4ee9e7beea7bc}{Inv\+Cipher}} (\mbox{\hyperlink{aes_8c_a35dbb26673d196810a7f6eac0ac632ec}{state\+\_\+t}} $\ast$state, const uint8\+\_\+t $\ast$Round\+Key)
+\item 
+void \mbox{\hyperlink{aes_8c_a34ef7fb0993afb643b6887c4d00b29bd}{aes\+\_\+init}} (void)
+\item 
+void \mbox{\hyperlink{aes_8c_a9d907cb1c8f6f6e31d507376c542d63e}{aes\+\_\+expand\+\_\+key}} (void)
+\item 
+void \mbox{\hyperlink{aes_8c_aebc1b17d8257697569a23da4fc136846}{aes\+\_\+ecb\+\_\+encrypt}} (uint8\+\_\+t $\ast$buf)
+\item 
+void \mbox{\hyperlink{aes_8c_a99d253b8fe6560ebd0a7d753d38a9db6}{aes\+\_\+ecb\+\_\+decrypt}} (uint8\+\_\+t $\ast$buf)
+\item 
+void \mbox{\hyperlink{aes_8c_ade8575bdd4aa6c6156068b76047f9811}{aes\+\_\+generate\+\_\+random}} (uint8\+\_\+t $\ast$buf, uint8\+\_\+t len)
+\end{DoxyCompactItemize}
+\doxysubsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+static uint8\+\_\+t \mbox{\hyperlink{aes_8c_abaad60388015989178adb811dd332349}{adc\+\_\+channels}} \mbox{[}4\mbox{]} = \{0, 1, 8, 9\}
+\item 
+static uint8\+\_\+t \mbox{\hyperlink{aes_8c_a82c79aef8dac92dd289011cc400c2cce}{round\+\_\+key}} \mbox{[}\mbox{\hyperlink{aes_8h_a089ff1ad87c1dc8583da9cfdf02d011e}{A\+E\+S\+\_\+\+K\+E\+Y\+\_\+\+E\+X\+P\+\_\+\+S\+I\+ZE}}\mbox{]}
+\item 
+static const uint8\+\_\+t \mbox{\hyperlink{aes_8c_adc15aeb43c81de1162045eedf437f407}{sbox}} \mbox{[}256\mbox{]}
+\item 
+static const uint8\+\_\+t \mbox{\hyperlink{aes_8c_a5fb4523234538d83676ef33a45b18fd1}{rsbox}} \mbox{[}256\mbox{]}
+\item 
+static const uint8\+\_\+t \mbox{\hyperlink{aes_8c_a3df33234825216ec54d6e87859eda5b2}{Rcon}} \mbox{[}11\mbox{]}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Macro Definition Documentation}
+\mbox{\Hypertarget{aes_8c_a4223d41bc5587f9c0b6e499004403967}\label{aes_8c_a4223d41bc5587f9c0b6e499004403967}} 
+\index{aes.c@{aes.c}!getSBoxInvert@{getSBoxInvert}}
+\index{getSBoxInvert@{getSBoxInvert}!aes.c@{aes.c}}
+\doxysubsubsection{\texorpdfstring{getSBoxInvert}{getSBoxInvert}}
+{\footnotesize\ttfamily \#define get\+S\+Box\+Invert(\begin{DoxyParamCaption}\item[{}]{num }\end{DoxyParamCaption})~(\mbox{\hyperlink{aes_8c_a5fb4523234538d83676ef33a45b18fd1}{rsbox}}\mbox{[}(num)\mbox{]})}
+
+
+
+Definition at line 135 of file aes.\+c.
+
+\mbox{\Hypertarget{aes_8c_a5e1678341a98f95d48365ed9ccaa3586}\label{aes_8c_a5e1678341a98f95d48365ed9ccaa3586}} 
+\index{aes.c@{aes.c}!getSBoxValue@{getSBoxValue}}
+\index{getSBoxValue@{getSBoxValue}!aes.c@{aes.c}}
+\doxysubsubsection{\texorpdfstring{getSBoxValue}{getSBoxValue}}
+{\footnotesize\ttfamily \#define get\+S\+Box\+Value(\begin{DoxyParamCaption}\item[{}]{num }\end{DoxyParamCaption})~(\mbox{\hyperlink{aes_8c_adc15aeb43c81de1162045eedf437f407}{sbox}}\mbox{[}(num)\mbox{]})}
+
+
+
+Definition at line 133 of file aes.\+c.
+
+\mbox{\Hypertarget{aes_8c_aca7cce176b8cdd27f61d3dcf5910b6bd}\label{aes_8c_aca7cce176b8cdd27f61d3dcf5910b6bd}} 
+\index{aes.c@{aes.c}!Multiply@{Multiply}}
+\index{Multiply@{Multiply}!aes.c@{aes.c}}
+\doxysubsubsection{\texorpdfstring{Multiply}{Multiply}}
+{\footnotesize\ttfamily \#define Multiply(\begin{DoxyParamCaption}\item[{}]{x,  }\item[{}]{y }\end{DoxyParamCaption})}
+
+{\bfseries Value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{      (  ((y \& 1) * x) \string^                              \(\backslash\)}
+\DoxyCodeLine{      ((y>>1 \& 1) * \mbox{\hyperlink{aes_8c_a6a04d27e5fba818ef334a77ef130f1b8}{xtime}}(x)) \string^                       \(\backslash\)}
+\DoxyCodeLine{      ((y>>2 \& 1) * \mbox{\hyperlink{aes_8c_a6a04d27e5fba818ef334a77ef130f1b8}{xtime}}(\mbox{\hyperlink{aes_8c_a6a04d27e5fba818ef334a77ef130f1b8}{xtime}}(x))) \string^                \(\backslash\)}
+\DoxyCodeLine{      ((y>>3 \& 1) * \mbox{\hyperlink{aes_8c_a6a04d27e5fba818ef334a77ef130f1b8}{xtime}}(\mbox{\hyperlink{aes_8c_a6a04d27e5fba818ef334a77ef130f1b8}{xtime}}(\mbox{\hyperlink{aes_8c_a6a04d27e5fba818ef334a77ef130f1b8}{xtime}}(x)))) \string^         \(\backslash\)}
+\DoxyCodeLine{      ((y>>4 \& 1) * \mbox{\hyperlink{aes_8c_a6a04d27e5fba818ef334a77ef130f1b8}{xtime}}(\mbox{\hyperlink{aes_8c_a6a04d27e5fba818ef334a77ef130f1b8}{xtime}}(\mbox{\hyperlink{aes_8c_a6a04d27e5fba818ef334a77ef130f1b8}{xtime}}(\mbox{\hyperlink{aes_8c_a6a04d27e5fba818ef334a77ef130f1b8}{xtime}}(x))))))   \(\backslash\)}
+
+\end{DoxyCode}
+
+
+Definition at line 294 of file aes.\+c.
+
+\mbox{\Hypertarget{aes_8c_a1dd86ce8e7ff32d6456f34c281c7e2a9}\label{aes_8c_a1dd86ce8e7ff32d6456f34c281c7e2a9}} 
+\index{aes.c@{aes.c}!MULTIPLY\_AS\_A\_FUNCTION@{MULTIPLY\_AS\_A\_FUNCTION}}
+\index{MULTIPLY\_AS\_A\_FUNCTION@{MULTIPLY\_AS\_A\_FUNCTION}!aes.c@{aes.c}}
+\doxysubsubsection{\texorpdfstring{MULTIPLY\_AS\_A\_FUNCTION}{MULTIPLY\_AS\_A\_FUNCTION}}
+{\footnotesize\ttfamily \#define M\+U\+L\+T\+I\+P\+L\+Y\+\_\+\+A\+S\+\_\+\+A\+\_\+\+F\+U\+N\+C\+T\+I\+ON~0}
+
+
+
+Definition at line 60 of file aes.\+c.
+
+\mbox{\Hypertarget{aes_8c_a1ae104196f1fc7af4751c5b9e07b1610}\label{aes_8c_a1ae104196f1fc7af4751c5b9e07b1610}} 
+\index{aes.c@{aes.c}!Nb@{Nb}}
+\index{Nb@{Nb}!aes.c@{aes.c}}
+\doxysubsubsection{\texorpdfstring{Nb}{Nb}}
+{\footnotesize\ttfamily \#define Nb~4}
+
+
+
+Definition at line 50 of file aes.\+c.
+
+\mbox{\Hypertarget{aes_8c_a7b1938df390b1afe917e8baa663c22af}\label{aes_8c_a7b1938df390b1afe917e8baa663c22af}} 
+\index{aes.c@{aes.c}!Nk@{Nk}}
+\index{Nk@{Nk}!aes.c@{aes.c}}
+\doxysubsubsection{\texorpdfstring{Nk}{Nk}}
+{\footnotesize\ttfamily \#define Nk~4}
+
+
+
+Definition at line 52 of file aes.\+c.
+
+\mbox{\Hypertarget{aes_8c_a9d210afc812225ee0a0bcd51bb984246}\label{aes_8c_a9d210afc812225ee0a0bcd51bb984246}} 
+\index{aes.c@{aes.c}!Nr@{Nr}}
+\index{Nr@{Nr}!aes.c@{aes.c}}
+\doxysubsubsection{\texorpdfstring{Nr}{Nr}}
+{\footnotesize\ttfamily \#define Nr~10}
+
+
+
+Definition at line 53 of file aes.\+c.
+
+
+
+\doxysubsection{Typedef Documentation}
+\mbox{\Hypertarget{aes_8c_a35dbb26673d196810a7f6eac0ac632ec}\label{aes_8c_a35dbb26673d196810a7f6eac0ac632ec}} 
+\index{aes.c@{aes.c}!state\_t@{state\_t}}
+\index{state\_t@{state\_t}!aes.c@{aes.c}}
+\doxysubsubsection{\texorpdfstring{state\_t}{state\_t}}
+{\footnotesize\ttfamily typedef uint8\+\_\+t state\+\_\+t\mbox{[}4\mbox{]}\mbox{[}4\mbox{]}}
+
+
+
+Definition at line 68 of file aes.\+c.
+
+
+
+\doxysubsection{Function Documentation}
+\mbox{\Hypertarget{aes_8c_aec2e2ab202ebb6ef781d984894df6b60}\label{aes_8c_aec2e2ab202ebb6ef781d984894df6b60}} 
+\index{aes.c@{aes.c}!AddRoundKey@{AddRoundKey}}
+\index{AddRoundKey@{AddRoundKey}!aes.c@{aes.c}}
+\doxysubsubsection{\texorpdfstring{AddRoundKey()}{AddRoundKey()}}
+{\footnotesize\ttfamily static void Add\+Round\+Key (\begin{DoxyParamCaption}\item[{uint8\+\_\+t}]{round,  }\item[{\mbox{\hyperlink{aes_8c_a35dbb26673d196810a7f6eac0ac632ec}{state\+\_\+t}} $\ast$}]{state,  }\item[{const uint8\+\_\+t $\ast$}]{Round\+Key }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Definition at line 202 of file aes.\+c.
+
+\mbox{\Hypertarget{aes_8c_a99d253b8fe6560ebd0a7d753d38a9db6}\label{aes_8c_a99d253b8fe6560ebd0a7d753d38a9db6}} 
+\index{aes.c@{aes.c}!aes\_ecb\_decrypt@{aes\_ecb\_decrypt}}
+\index{aes\_ecb\_decrypt@{aes\_ecb\_decrypt}!aes.c@{aes.c}}
+\doxysubsubsection{\texorpdfstring{aes\_ecb\_decrypt()}{aes\_ecb\_decrypt()}}
+{\footnotesize\ttfamily void aes\+\_\+ecb\+\_\+decrypt (\begin{DoxyParamCaption}\item[{uint8\+\_\+t $\ast$}]{buf }\end{DoxyParamCaption})}
+
+
+
+Definition at line 455 of file aes.\+c.
+
+\mbox{\Hypertarget{aes_8c_aebc1b17d8257697569a23da4fc136846}\label{aes_8c_aebc1b17d8257697569a23da4fc136846}} 
+\index{aes.c@{aes.c}!aes\_ecb\_encrypt@{aes\_ecb\_encrypt}}
+\index{aes\_ecb\_encrypt@{aes\_ecb\_encrypt}!aes.c@{aes.c}}
+\doxysubsubsection{\texorpdfstring{aes\_ecb\_encrypt()}{aes\_ecb\_encrypt()}}
+{\footnotesize\ttfamily void aes\+\_\+ecb\+\_\+encrypt (\begin{DoxyParamCaption}\item[{uint8\+\_\+t $\ast$}]{buf }\end{DoxyParamCaption})}
+
+
+
+Definition at line 449 of file aes.\+c.
+
+\mbox{\Hypertarget{aes_8c_a9d907cb1c8f6f6e31d507376c542d63e}\label{aes_8c_a9d907cb1c8f6f6e31d507376c542d63e}} 
+\index{aes.c@{aes.c}!aes\_expand\_key@{aes\_expand\_key}}
+\index{aes\_expand\_key@{aes\_expand\_key}!aes.c@{aes.c}}
+\doxysubsubsection{\texorpdfstring{aes\_expand\_key()}{aes\_expand\_key()}}
+{\footnotesize\ttfamily void aes\+\_\+expand\+\_\+key (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})}
+
+
+
+Definition at line 433 of file aes.\+c.
+
+\mbox{\Hypertarget{aes_8c_ade8575bdd4aa6c6156068b76047f9811}\label{aes_8c_ade8575bdd4aa6c6156068b76047f9811}} 
+\index{aes.c@{aes.c}!aes\_generate\_random@{aes\_generate\_random}}
+\index{aes\_generate\_random@{aes\_generate\_random}!aes.c@{aes.c}}
+\doxysubsubsection{\texorpdfstring{aes\_generate\_random()}{aes\_generate\_random()}}
+{\footnotesize\ttfamily void aes\+\_\+generate\+\_\+random (\begin{DoxyParamCaption}\item[{uint8\+\_\+t $\ast$}]{buf,  }\item[{uint8\+\_\+t}]{len }\end{DoxyParamCaption})}
+
+
+
+Definition at line 461 of file aes.\+c.
+
+\mbox{\Hypertarget{aes_8c_a34ef7fb0993afb643b6887c4d00b29bd}\label{aes_8c_a34ef7fb0993afb643b6887c4d00b29bd}} 
+\index{aes.c@{aes.c}!aes\_init@{aes\_init}}
+\index{aes\_init@{aes\_init}!aes.c@{aes.c}}
+\doxysubsubsection{\texorpdfstring{aes\_init()}{aes\_init()}}
+{\footnotesize\ttfamily void aes\+\_\+init (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})}
+
+
+
+Definition at line 422 of file aes.\+c.
+
+\mbox{\Hypertarget{aes_8c_a7b0b38e04c73cdcaa4cd9459ac801f3b}\label{aes_8c_a7b0b38e04c73cdcaa4cd9459ac801f3b}} 
+\index{aes.c@{aes.c}!Cipher@{Cipher}}
+\index{Cipher@{Cipher}!aes.c@{aes.c}}
+\doxysubsubsection{\texorpdfstring{Cipher()}{Cipher()}}
+{\footnotesize\ttfamily static void Cipher (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{aes_8c_a35dbb26673d196810a7f6eac0ac632ec}{state\+\_\+t}} $\ast$}]{state,  }\item[{const uint8\+\_\+t $\ast$}]{Round\+Key }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Definition at line 369 of file aes.\+c.
+
+\mbox{\Hypertarget{aes_8c_af0cd2ffba77fd2b421a4ee9e7beea7bc}\label{aes_8c_af0cd2ffba77fd2b421a4ee9e7beea7bc}} 
+\index{aes.c@{aes.c}!InvCipher@{InvCipher}}
+\index{InvCipher@{InvCipher}!aes.c@{aes.c}}
+\doxysubsubsection{\texorpdfstring{InvCipher()}{InvCipher()}}
+{\footnotesize\ttfamily static void Inv\+Cipher (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{aes_8c_a35dbb26673d196810a7f6eac0ac632ec}{state\+\_\+t}} $\ast$}]{state,  }\item[{const uint8\+\_\+t $\ast$}]{Round\+Key }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Definition at line 394 of file aes.\+c.
+
+\mbox{\Hypertarget{aes_8c_a2643c586e22197943294eeb877fec242}\label{aes_8c_a2643c586e22197943294eeb877fec242}} 
+\index{aes.c@{aes.c}!InvMixColumns@{InvMixColumns}}
+\index{InvMixColumns@{InvMixColumns}!aes.c@{aes.c}}
+\doxysubsubsection{\texorpdfstring{InvMixColumns()}{InvMixColumns()}}
+{\footnotesize\ttfamily static void Inv\+Mix\+Columns (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{aes_8c_a35dbb26673d196810a7f6eac0ac632ec}{state\+\_\+t}} $\ast$}]{state }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Definition at line 306 of file aes.\+c.
+
+\mbox{\Hypertarget{aes_8c_ac23198b06615bcf66f9b1c23c22bbf68}\label{aes_8c_ac23198b06615bcf66f9b1c23c22bbf68}} 
+\index{aes.c@{aes.c}!InvShiftRows@{InvShiftRows}}
+\index{InvShiftRows@{InvShiftRows}!aes.c@{aes.c}}
+\doxysubsubsection{\texorpdfstring{InvShiftRows()}{InvShiftRows()}}
+{\footnotesize\ttfamily static void Inv\+Shift\+Rows (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{aes_8c_a35dbb26673d196810a7f6eac0ac632ec}{state\+\_\+t}} $\ast$}]{state }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Definition at line 339 of file aes.\+c.
+
+\mbox{\Hypertarget{aes_8c_acae838b82d6c1f4f04ca0f0ede0a3c3e}\label{aes_8c_acae838b82d6c1f4f04ca0f0ede0a3c3e}} 
+\index{aes.c@{aes.c}!InvSubBytes@{InvSubBytes}}
+\index{InvSubBytes@{InvSubBytes}!aes.c@{aes.c}}
+\doxysubsubsection{\texorpdfstring{InvSubBytes()}{InvSubBytes()}}
+{\footnotesize\ttfamily static void Inv\+Sub\+Bytes (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{aes_8c_a35dbb26673d196810a7f6eac0ac632ec}{state\+\_\+t}} $\ast$}]{state }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Definition at line 327 of file aes.\+c.
+
+\mbox{\Hypertarget{aes_8c_aa53b7196594437ebb4f435b04fd254db}\label{aes_8c_aa53b7196594437ebb4f435b04fd254db}} 
+\index{aes.c@{aes.c}!KeyExpansion@{KeyExpansion}}
+\index{KeyExpansion@{KeyExpansion}!aes.c@{aes.c}}
+\doxysubsubsection{\texorpdfstring{KeyExpansion()}{KeyExpansion()}}
+{\footnotesize\ttfamily static void Key\+Expansion (\begin{DoxyParamCaption}\item[{uint8\+\_\+t $\ast$}]{Round\+Key,  }\item[{const uint8\+\_\+t $\ast$}]{Key }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Definition at line 138 of file aes.\+c.
+
+\mbox{\Hypertarget{aes_8c_a8f2327d404c64b297125e913449a8c66}\label{aes_8c_a8f2327d404c64b297125e913449a8c66}} 
+\index{aes.c@{aes.c}!MixColumns@{MixColumns}}
+\index{MixColumns@{MixColumns}!aes.c@{aes.c}}
+\doxysubsubsection{\texorpdfstring{MixColumns()}{MixColumns()}}
+{\footnotesize\ttfamily static void Mix\+Columns (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{aes_8c_a35dbb26673d196810a7f6eac0ac632ec}{state\+\_\+t}} $\ast$}]{state }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Definition at line 265 of file aes.\+c.
+
+\mbox{\Hypertarget{aes_8c_ae22a5cef2b7a9a885c182c95c4d62f6b}\label{aes_8c_ae22a5cef2b7a9a885c182c95c4d62f6b}} 
+\index{aes.c@{aes.c}!ShiftRows@{ShiftRows}}
+\index{ShiftRows@{ShiftRows}!aes.c@{aes.c}}
+\doxysubsubsection{\texorpdfstring{ShiftRows()}{ShiftRows()}}
+{\footnotesize\ttfamily static void Shift\+Rows (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{aes_8c_a35dbb26673d196810a7f6eac0ac632ec}{state\+\_\+t}} $\ast$}]{state }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Definition at line 231 of file aes.\+c.
+
+\mbox{\Hypertarget{aes_8c_ae12b3155973ad5c484594926a343b184}\label{aes_8c_ae12b3155973ad5c484594926a343b184}} 
+\index{aes.c@{aes.c}!SubBytes@{SubBytes}}
+\index{SubBytes@{SubBytes}!aes.c@{aes.c}}
+\doxysubsubsection{\texorpdfstring{SubBytes()}{SubBytes()}}
+{\footnotesize\ttfamily static void Sub\+Bytes (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{aes_8c_a35dbb26673d196810a7f6eac0ac632ec}{state\+\_\+t}} $\ast$}]{state }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Definition at line 216 of file aes.\+c.
+
+\mbox{\Hypertarget{aes_8c_a6a04d27e5fba818ef334a77ef130f1b8}\label{aes_8c_a6a04d27e5fba818ef334a77ef130f1b8}} 
+\index{aes.c@{aes.c}!xtime@{xtime}}
+\index{xtime@{xtime}!aes.c@{aes.c}}
+\doxysubsubsection{\texorpdfstring{xtime()}{xtime()}}
+{\footnotesize\ttfamily static uint8\+\_\+t xtime (\begin{DoxyParamCaption}\item[{uint8\+\_\+t}]{x }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Definition at line 259 of file aes.\+c.
+
+
+
+\doxysubsection{Variable Documentation}
+\mbox{\Hypertarget{aes_8c_abaad60388015989178adb811dd332349}\label{aes_8c_abaad60388015989178adb811dd332349}} 
+\index{aes.c@{aes.c}!adc\_channels@{adc\_channels}}
+\index{adc\_channels@{adc\_channels}!aes.c@{aes.c}}
+\doxysubsubsection{\texorpdfstring{adc\_channels}{adc\_channels}}
+{\footnotesize\ttfamily uint8\+\_\+t adc\+\_\+channels\mbox{[}4\mbox{]} = \{0, 1, 8, 9\}\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Definition at line 69 of file aes.\+c.
+
+\mbox{\Hypertarget{aes_8c_a3df33234825216ec54d6e87859eda5b2}\label{aes_8c_a3df33234825216ec54d6e87859eda5b2}} 
+\index{aes.c@{aes.c}!Rcon@{Rcon}}
+\index{Rcon@{Rcon}!aes.c@{aes.c}}
+\doxysubsubsection{\texorpdfstring{Rcon}{Rcon}}
+{\footnotesize\ttfamily const uint8\+\_\+t Rcon\mbox{[}11\mbox{]}\hspace{0.3cm}{\ttfamily [static]}}
+
+{\bfseries Initial value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{= \{}
+\DoxyCodeLine{  0x8d, 0x01, 0x02, 0x04, 0x08, 0x10, 0x20, 0x40, 0x80, 0x1b, 0x36 \}}
+
+\end{DoxyCode}
+
+
+Definition at line 115 of file aes.\+c.
+
+\mbox{\Hypertarget{aes_8c_a82c79aef8dac92dd289011cc400c2cce}\label{aes_8c_a82c79aef8dac92dd289011cc400c2cce}} 
+\index{aes.c@{aes.c}!round\_key@{round\_key}}
+\index{round\_key@{round\_key}!aes.c@{aes.c}}
+\doxysubsubsection{\texorpdfstring{round\_key}{round\_key}}
+{\footnotesize\ttfamily uint8\+\_\+t round\+\_\+key\mbox{[}\mbox{\hyperlink{aes_8h_a089ff1ad87c1dc8583da9cfdf02d011e}{A\+E\+S\+\_\+\+K\+E\+Y\+\_\+\+E\+X\+P\+\_\+\+S\+I\+ZE}}\mbox{]}\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Definition at line 70 of file aes.\+c.
+
+\mbox{\Hypertarget{aes_8c_a5fb4523234538d83676ef33a45b18fd1}\label{aes_8c_a5fb4523234538d83676ef33a45b18fd1}} 
+\index{aes.c@{aes.c}!rsbox@{rsbox}}
+\index{rsbox@{rsbox}!aes.c@{aes.c}}
+\doxysubsubsection{\texorpdfstring{rsbox}{rsbox}}
+{\footnotesize\ttfamily const uint8\+\_\+t rsbox\mbox{[}256\mbox{]}\hspace{0.3cm}{\ttfamily [static]}}
+
+{\bfseries Initial value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{= \{}
+\DoxyCodeLine{  0x52, 0x09, 0x6a, 0xd5, 0x30, 0x36, 0xa5, 0x38, 0xbf, 0x40, 0xa3, 0x9e, 0x81, 0xf3, 0xd7, 0xfb,}
+\DoxyCodeLine{  0x7c, 0xe3, 0x39, 0x82, 0x9b, 0x2f, 0xff, 0x87, 0x34, 0x8e, 0x43, 0x44, 0xc4, 0xde, 0xe9, 0xcb,}
+\DoxyCodeLine{  0x54, 0x7b, 0x94, 0x32, 0xa6, 0xc2, 0x23, 0x3d, 0xee, 0x4c, 0x95, 0x0b, 0x42, 0xfa, 0xc3, 0x4e,}
+\DoxyCodeLine{  0x08, 0x2e, 0xa1, 0x66, 0x28, 0xd9, 0x24, 0xb2, 0x76, 0x5b, 0xa2, 0x49, 0x6d, 0x8b, 0xd1, 0x25,}
+\DoxyCodeLine{  0x72, 0xf8, 0xf6, 0x64, 0x86, 0x68, 0x98, 0x16, 0xd4, 0xa4, 0x5c, 0xcc, 0x5d, 0x65, 0xb6, 0x92,}
+\DoxyCodeLine{  0x6c, 0x70, 0x48, 0x50, 0xfd, 0xed, 0xb9, 0xda, 0x5e, 0x15, 0x46, 0x57, 0xa7, 0x8d, 0x9d, 0x84,}
+\DoxyCodeLine{  0x90, 0xd8, 0xab, 0x00, 0x8c, 0xbc, 0xd3, 0x0a, 0xf7, 0xe4, 0x58, 0x05, 0xb8, 0xb3, 0x45, 0x06,}
+\DoxyCodeLine{  0xd0, 0x2c, 0x1e, 0x8f, 0xca, 0x3f, 0x0f, 0x02, 0xc1, 0xaf, 0xbd, 0x03, 0x01, 0x13, 0x8a, 0x6b,}
+\DoxyCodeLine{  0x3a, 0x91, 0x11, 0x41, 0x4f, 0x67, 0xdc, 0xea, 0x97, 0xf2, 0xcf, 0xce, 0xf0, 0xb4, 0xe6, 0x73,}
+\DoxyCodeLine{  0x96, 0xac, 0x74, 0x22, 0xe7, 0xad, 0x35, 0x85, 0xe2, 0xf9, 0x37, 0xe8, 0x1c, 0x75, 0xdf, 0x6e,}
+\DoxyCodeLine{  0x47, 0xf1, 0x1a, 0x71, 0x1d, 0x29, 0xc5, 0x89, 0x6f, 0xb7, 0x62, 0x0e, 0xaa, 0x18, 0xbe, 0x1b,}
+\DoxyCodeLine{  0xfc, 0x56, 0x3e, 0x4b, 0xc6, 0xd2, 0x79, 0x20, 0x9a, 0xdb, 0xc0, 0xfe, 0x78, 0xcd, 0x5a, 0xf4,}
+\DoxyCodeLine{  0x1f, 0xdd, 0xa8, 0x33, 0x88, 0x07, 0xc7, 0x31, 0xb1, 0x12, 0x10, 0x59, 0x27, 0x80, 0xec, 0x5f,}
+\DoxyCodeLine{  0x60, 0x51, 0x7f, 0xa9, 0x19, 0xb5, 0x4a, 0x0d, 0x2d, 0xe5, 0x7a, 0x9f, 0x93, 0xc9, 0x9c, 0xef,}
+\DoxyCodeLine{  0xa0, 0xe0, 0x3b, 0x4d, 0xae, 0x2a, 0xf5, 0xb0, 0xc8, 0xeb, 0xbb, 0x3c, 0x83, 0x53, 0x99, 0x61,}
+\DoxyCodeLine{  0x17, 0x2b, 0x04, 0x7e, 0xba, 0x77, 0xd6, 0x26, 0xe1, 0x69, 0x14, 0x63, 0x55, 0x21, 0x0c, 0x7d \}}
+
+\end{DoxyCode}
+
+
+Definition at line 95 of file aes.\+c.
+
+\mbox{\Hypertarget{aes_8c_adc15aeb43c81de1162045eedf437f407}\label{aes_8c_adc15aeb43c81de1162045eedf437f407}} 
+\index{aes.c@{aes.c}!sbox@{sbox}}
+\index{sbox@{sbox}!aes.c@{aes.c}}
+\doxysubsubsection{\texorpdfstring{sbox}{sbox}}
+{\footnotesize\ttfamily const uint8\+\_\+t sbox\mbox{[}256\mbox{]}\hspace{0.3cm}{\ttfamily [static]}}
+
+{\bfseries Initial value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{= \{}
+\DoxyCodeLine{  }
+\DoxyCodeLine{  0x63, 0x7c, 0x77, 0x7b, 0xf2, 0x6b, 0x6f, 0xc5, 0x30, 0x01, 0x67, 0x2b, 0xfe, 0xd7, 0xab, 0x76,}
+\DoxyCodeLine{  0xca, 0x82, 0xc9, 0x7d, 0xfa, 0x59, 0x47, 0xf0, 0xad, 0xd4, 0xa2, 0xaf, 0x9c, 0xa4, 0x72, 0xc0,}
+\DoxyCodeLine{  0xb7, 0xfd, 0x93, 0x26, 0x36, 0x3f, 0xf7, 0xcc, 0x34, 0xa5, 0xe5, 0xf1, 0x71, 0xd8, 0x31, 0x15,}
+\DoxyCodeLine{  0x04, 0xc7, 0x23, 0xc3, 0x18, 0x96, 0x05, 0x9a, 0x07, 0x12, 0x80, 0xe2, 0xeb, 0x27, 0xb2, 0x75,}
+\DoxyCodeLine{  0x09, 0x83, 0x2c, 0x1a, 0x1b, 0x6e, 0x5a, 0xa0, 0x52, 0x3b, 0xd6, 0xb3, 0x29, 0xe3, 0x2f, 0x84,}
+\DoxyCodeLine{  0x53, 0xd1, 0x00, 0xed, 0x20, 0xfc, 0xb1, 0x5b, 0x6a, 0xcb, 0xbe, 0x39, 0x4a, 0x4c, 0x58, 0xcf,}
+\DoxyCodeLine{  0xd0, 0xef, 0xaa, 0xfb, 0x43, 0x4d, 0x33, 0x85, 0x45, 0xf9, 0x02, 0x7f, 0x50, 0x3c, 0x9f, 0xa8,}
+\DoxyCodeLine{  0x51, 0xa3, 0x40, 0x8f, 0x92, 0x9d, 0x38, 0xf5, 0xbc, 0xb6, 0xda, 0x21, 0x10, 0xff, 0xf3, 0xd2,}
+\DoxyCodeLine{  0xcd, 0x0c, 0x13, 0xec, 0x5f, 0x97, 0x44, 0x17, 0xc4, 0xa7, 0x7e, 0x3d, 0x64, 0x5d, 0x19, 0x73,}
+\DoxyCodeLine{  0x60, 0x81, 0x4f, 0xdc, 0x22, 0x2a, 0x90, 0x88, 0x46, 0xee, 0xb8, 0x14, 0xde, 0x5e, 0x0b, 0xdb,}
+\DoxyCodeLine{  0xe0, 0x32, 0x3a, 0x0a, 0x49, 0x06, 0x24, 0x5c, 0xc2, 0xd3, 0xac, 0x62, 0x91, 0x95, 0xe4, 0x79,}
+\DoxyCodeLine{  0xe7, 0xc8, 0x37, 0x6d, 0x8d, 0xd5, 0x4e, 0xa9, 0x6c, 0x56, 0xf4, 0xea, 0x65, 0x7a, 0xae, 0x08,}
+\DoxyCodeLine{  0xba, 0x78, 0x25, 0x2e, 0x1c, 0xa6, 0xb4, 0xc6, 0xe8, 0xdd, 0x74, 0x1f, 0x4b, 0xbd, 0x8b, 0x8a,}
+\DoxyCodeLine{  0x70, 0x3e, 0xb5, 0x66, 0x48, 0x03, 0xf6, 0x0e, 0x61, 0x35, 0x57, 0xb9, 0x86, 0xc1, 0x1d, 0x9e,}
+\DoxyCodeLine{  0xe1, 0xf8, 0x98, 0x11, 0x69, 0xd9, 0x8e, 0x94, 0x9b, 0x1e, 0x87, 0xe9, 0xce, 0x55, 0x28, 0xdf,}
+\DoxyCodeLine{  0x8c, 0xa1, 0x89, 0x0d, 0xbf, 0xe6, 0x42, 0x68, 0x41, 0x99, 0x2d, 0x0f, 0xb0, 0x54, 0xbb, 0x16 \}}
+
+\end{DoxyCode}
+
+
+Definition at line 76 of file aes.\+c.
+

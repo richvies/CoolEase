@@ -1,0 +1,52 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<section xmlns="http://docbook.org/ns/docbook" version="5.0" xmlns:xlink="http://www.w3.org/1999/xlink" xml:id="_group___r_f_m___f_i_l_e" xml:lang="en-US">
+<title>Rfm</title>
+<indexterm><primary>Rfm</primary></indexterm>
+<para>
+
+<para>
+<literallayout>&#160;&#xa;</literallayout>
+ </para>
+ 
+</para>
+<simplesect>
+    <title>Modules    </title>
+        <itemizedlist>
+            <listitem><para><link linkend="_group___r_f_m___a_p_i">RFM API</link></para>
+
+<para>Programming interface and key macros. </para>
+</listitem>
+            <listitem><para><link linkend="_group___r_f_m___i_n_t">RFM Internal</link></para>
+
+<para>Static Vars, Functions &amp; Internal Macros. </para>
+</listitem>
+            <listitem><para><link linkend="_group___r_f_m___r_e_g">RFM Registers</link></para>
+
+<para>Register Descriptions. </para>
+</listitem>
+        </itemizedlist>
+</simplesect>
+<section>
+<title>Detailed Description</title>
+
+<para>
+<literallayout>&#160;&#xa;</literallayout>
+ </para>
+
+<para>Manages the Radio Module<itemizedlist>
+<listitem>
+<para>Initializes rfm for LORA</para>
+</listitem><listitem>
+<para>Initialization of SPI peripheral</para>
+</listitem></itemizedlist>
+</para>
+
+<para><note><title>Note</title>
+
+<para>
+<literallayout>&#160;&#xa;</literallayout>
+ </para>
+</note>
+</para>
+</section>
+</section>

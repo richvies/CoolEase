@@ -1,0 +1,58 @@
+--------------------------------------------------------------------------------
+                                   Parts List
+
+                     CADSTAR Design Editor Version 9.0.0.2
+
+Design:     G:\02_Interne_prosjekter\02500_interne_tekniske_prosjekter\02570_CC1110DK\02570_3_Des\CC1110EM IIFA Antenna\Cadstar\CC1110EM_IIFA_0_1.scm
+
+Design Title:
+CC1110EM 0.1
+
+Date:      18. april 2008
+Time:      09:58
+
+--------------------------------------------------------------------------------
+Part Name/Number       Description                      Qty.   Comps.
+----------------       -----------                      ----   ------
+
+BL_31_006U             MPE_Garry_GmbH_Connector_6_pin_female_BL31_006U   1      P3
+BL31_008U              MPE_Garry_GmbH_Connector_8_pin_female_BL31_008U   1      P4
+CC1110                 Single chip transceiver          1      U1
+CC11xx_IIFA_PCB_Antenna   PCB Antenna for 868 MHz          1      A1
+C_0402                 Capacitor 0402, general          2      C2-3
+C_100N_0402_X5R_K_10   Capacitor 0402                   2      C21
+                                                               C291
+C_100P_0402_NP0_J_50   Capacitor 0402                   2      C234-235
+C_10N_0402_X7R_K_25    Capacitor 0402                   2      C191
+                                                               C251
+C_15P_0402_NP0_J_50    Capacitor, 0402                  2      C171
+                                                               C181
+C_1P0_0402_NP0_C_50    Capacitor 0402                   1      C231
+C_1P5_0402_NP0_C_50    Capacitor 0402                   2      C232
+                                                               C241
+C_1U_0402_X5R_K_6P3    Capacitor 0402                   1      C301
+C_220P_0402_NP0_J_50   Capacitor 0402                   1      C261
+C_27P_0402_NP0_J_50    Capacitor 0402                   2      C201
+                                                               C211
+C_2P2_0402_NP0_C_50    Capacitor 0402                   1      C221
+C_2U2_0805_X5R_K_10    Capacitor 0805                   1      C1
+C_3P3_0402_NP0_C_50    Capacitor 0402                   1      C233
+FIDUCIAL_MARK          Fiducial mark                    3      FM1-3
+LED_CL150GCD           LED, green, SMD                  1      D2
+LED_CL150URCD          LED, red, SMD                    1      D1
+L_12N_0402_J           Inductor 0402                    4      L231
+                                                               L233-234
+                                                               L241
+L_18N_0402_J           Inductor 0402                    2      L232
+                                                               L242
+BLM15HG102SN1D         EMI filter bead                  1      L1
+PINROW_1x2             Pinrow, 1x2                      1      P2
+PINROW_2X5             Pinrow, 2x5                      1      P1
+ALPS-SKRKAEE010        Push button, SMD 3.9*2.9*2.0 mm   1      S1
+R_0_0402               Resistor, 0402                   2      R1-2
+R_56K_0402_F           Resistor 0402                    1      R271
+X_26.000/10/10/10/16   Crystal, HC-49/NX5032-SMD        1      X1
+X_32.768/20/50/40/12   Crystal, MC-306 SMD              1      X2
+--------------------------------------------------------------------------------
+                                 End of report
+--------------------------------------------------------------------------------

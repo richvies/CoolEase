@@ -1,0 +1,52 @@
+\hypertarget{log_8c}{}\doxysection{common/src/log.c File Reference}
+\label{log_8c}\index{common/src/log.c@{common/src/log.c}}
+
+
+Log Source File.  
+
+
+{\ttfamily \#include \char`\"{}common/log.\+h\char`\"{}}\newline
+{\ttfamily \#include $<$libopencm3/stm32/rcc.\+h$>$}\newline
+{\ttfamily \#include $<$libopencm3/stm32/gpio.\+h$>$}\newline
+{\ttfamily \#include $<$libopencm3/stm32/usart.\+h$>$}\newline
+{\ttfamily \#include $<$libopencm3/stm32/flash.\+h$>$}\newline
+{\ttfamily \#include \char`\"{}common/board\+\_\+defs.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}common/memory.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}common/printf.\+h\char`\"{}}\newline
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+static void \mbox{\hyperlink{group___l_o_g___i_n_t_ga0ee8f139fc3909730ae8e81b2f004795}{\+\_\+putchar\+\_\+main}} (char character)
+\item 
+static void \mbox{\hyperlink{group___l_o_g___i_n_t_gafc7309ae2fd7c9730d75900828664468}{\+\_\+putchar\+\_\+mem}} (char character)
+\item 
+void \mbox{\hyperlink{group___l_o_g___a_p_i_ga2508fad025e49f9746b6c178dce6917e}{log\+\_\+init}} (void)
+\item 
+void \mbox{\hyperlink{group___l_o_g___a_p_i_ga4fff2f266fd439fbb104ddb5d7f61533}{log\+\_\+printf}} (const char $\ast$format,...)
+\item 
+void \mbox{\hyperlink{group___l_o_g___a_p_i_ga8dbb405ae2b1df5bbbdd580e3fe9a332}{log\+\_\+error}} (uint16\+\_\+t error)
+\item 
+void \mbox{\hyperlink{group___l_o_g___a_p_i_gae4f545d29e1faa30e5b27be12d4286d0}{serial\+\_\+printf}} (const char $\ast$format,...)
+\item 
+uint8\+\_\+t \mbox{\hyperlink{group___l_o_g___a_p_i_gaf766aa26c1e0c09c246a130e379e5f8a}{log\+\_\+get}} (uint16\+\_\+t index)
+\item 
+void \mbox{\hyperlink{group___l_o_g___a_p_i_ga3f0dbc11d59511e585b423e394cc982b}{log\+\_\+read\+\_\+reset}} (void)
+\item 
+uint8\+\_\+t \mbox{\hyperlink{group___l_o_g___a_p_i_ga234d30521858d65e55e7389976902a60}{log\+\_\+read}} (void)
+\end{DoxyCompactItemize}
+\doxysubsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{structlog__t}{log\+\_\+t}} \mbox{\hyperlink{group___l_o_g___f_i_l_e_ga56444742f0aa74085c5d2b6bc4751e39}{logger}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Log Source File. 
+
+\begin{DoxyAuthor}{Author}
+Richard Davies 
+\end{DoxyAuthor}
+\begin{DoxyDate}{Date}
+30/\+Dec/2020 
+\end{DoxyDate}

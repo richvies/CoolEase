@@ -1,0 +1,37 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<section xmlns="http://docbook.org/ns/docbook" version="5.0" xmlns:xlink="http://www.w3.org/1999/xlink" xml:id="_bootloader__utils_8h" xml:lang="en-US">
+<title>common/include/common/bootloader_utils.h File Reference</title>
+<indexterm><primary>common/include/common/bootloader_utils.h</primary></indexterm>
+<para>
+
+<para>Bootloader_utils Header File. </para>
+ 
+</para>
+<programlisting>#include &lt;stdint.h&gt;
+</programlisting><simplesect>
+    <title>Functions    </title>
+        <itemizedlist>
+            <listitem><para>void <link linkend="_group___b_o_o_t_l_o_a_d_e_r___u_t_i_l_s___a_p_i_1ga6252b1935a7b8e2e6c14a969372929a2">boot_deinit</link> (void)</para>
+</listitem>
+            <listitem><para>void <link linkend="_group___b_o_o_t_l_o_a_d_e_r___u_t_i_l_s___a_p_i_1gae9e4d81efbd526a6c67fd8f1f104d5b3">boot_jump_to_application</link> (uint32_t address)</para>
+</listitem>
+        </itemizedlist>
+</simplesect>
+<section>
+<title>Detailed Description</title>
+
+<para>Bootloader_utils Header File. </para>
+
+<para><formalpara><title>Author</title>
+
+<para>Richard Davies </para>
+</formalpara>
+<formalpara><title>Date</title>
+
+<para>25/Dec/2020 </para>
+</formalpara>
+</para>
+<para>
+Definition in file <link linkend="_bootloader__utils_8h_source">bootloader_utils.h</link>.</para>
+</section>
+</section>

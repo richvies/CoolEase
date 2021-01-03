@@ -1,0 +1,77 @@
+\hypertarget{group___c_u_s_b___a_p_i}{}\doxysection{Cusb A\+PI}
+\label{group___c_u_s_b___a_p_i}\index{Cusb API@{Cusb API}}
+
+
+Programming interface and key macros.  
+
+
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{group___c_u_s_b___a_p_i_gab4184b48312c430e82701746df0a97ca}{cusb\+\_\+init}} (void)
+\begin{DoxyCompactList}\small\item\em Initialize clock and interrupts. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{group___c_u_s_b___a_p_i_gac3db1642b64b360258b24bdd9496a390}{cusb\+\_\+test\+\_\+poll}} (void)
+\item 
+void \mbox{\hyperlink{group___c_u_s_b___a_p_i_ga3592abe3841a5d444877d2a4d93b432f}{cusb\+\_\+send}} (char character)
+\item 
+bool \mbox{\hyperlink{group___c_u_s_b___a_p_i_ga8b0ccda7a56309b2f0e08fdb2adff905}{cusb\+\_\+connected}} (void)
+\begin{DoxyCompactList}\small\item\em True if usb state is C\+O\+N\+N\+E\+C\+T\+ED. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Programming interface and key macros. 
+
+
+
+\doxysubsection{Function Documentation}
+\mbox{\Hypertarget{group___c_u_s_b___a_p_i_ga8b0ccda7a56309b2f0e08fdb2adff905}\label{group___c_u_s_b___a_p_i_ga8b0ccda7a56309b2f0e08fdb2adff905}} 
+\index{Cusb API@{Cusb API}!cusb\_connected@{cusb\_connected}}
+\index{cusb\_connected@{cusb\_connected}!Cusb API@{Cusb API}}
+\doxysubsubsection{\texorpdfstring{cusb\_connected()}{cusb\_connected()}}
+{\footnotesize\ttfamily bool cusb\+\_\+connected (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})}
+
+
+
+True if usb state is C\+O\+N\+N\+E\+C\+T\+ED. 
+
+Set by hid config callback after host has requested H\+ID configuration
+
+\mbox{\hyperlink{group___c_u_s_b___i_n_t_ga8aca649ee0d72a13bc76b13e92ffcce2}{usb\+\_\+state}} ~\newline
+\mbox{\hyperlink{group___c_u_s_b___i_n_t_gaa8a5a4bf8f2341314373f98f386d19ee}{hid\+\_\+set\+\_\+config()}} 
+
+Definition at line 421 of file cusb.\+c.
+
+\mbox{\Hypertarget{group___c_u_s_b___a_p_i_gab4184b48312c430e82701746df0a97ca}\label{group___c_u_s_b___a_p_i_gab4184b48312c430e82701746df0a97ca}} 
+\index{Cusb API@{Cusb API}!cusb\_init@{cusb\_init}}
+\index{cusb\_init@{cusb\_init}!Cusb API@{Cusb API}}
+\doxysubsubsection{\texorpdfstring{cusb\_init()}{cusb\_init()}}
+{\footnotesize\ttfamily void cusb\+\_\+init (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})}
+
+
+
+Initialize clock and interrupts. 
+
+
+
+Definition at line 383 of file cusb.\+c.
+
+\mbox{\Hypertarget{group___c_u_s_b___a_p_i_ga3592abe3841a5d444877d2a4d93b432f}\label{group___c_u_s_b___a_p_i_ga3592abe3841a5d444877d2a4d93b432f}} 
+\index{Cusb API@{Cusb API}!cusb\_send@{cusb\_send}}
+\index{cusb\_send@{cusb\_send}!Cusb API@{Cusb API}}
+\doxysubsubsection{\texorpdfstring{cusb\_send()}{cusb\_send()}}
+{\footnotesize\ttfamily void cusb\+\_\+send (\begin{DoxyParamCaption}\item[{char}]{character }\end{DoxyParamCaption})}
+
+
+
+Definition at line 416 of file cusb.\+c.
+
+\mbox{\Hypertarget{group___c_u_s_b___a_p_i_gac3db1642b64b360258b24bdd9496a390}\label{group___c_u_s_b___a_p_i_gac3db1642b64b360258b24bdd9496a390}} 
+\index{Cusb API@{Cusb API}!cusb\_test\_poll@{cusb\_test\_poll}}
+\index{cusb\_test\_poll@{cusb\_test\_poll}!Cusb API@{Cusb API}}
+\doxysubsubsection{\texorpdfstring{cusb\_test\_poll()}{cusb\_test\_poll()}}
+{\footnotesize\ttfamily void cusb\+\_\+test\+\_\+poll (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})}
+
+
+
+Definition at line 408 of file cusb.\+c.
+

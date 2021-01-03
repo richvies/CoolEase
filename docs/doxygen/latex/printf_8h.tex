@@ -1,0 +1,46 @@
+\hypertarget{printf_8h}{}\doxysection{common/include/common/printf.h File Reference}
+\label{printf_8h}\index{common/include/common/printf.h@{common/include/common/printf.h}}
+{\ttfamily \#include $<$stdarg.\+h$>$}\newline
+{\ttfamily \#include $<$stddef.\+h$>$}\newline
+{\ttfamily \#include $<$stdint.\+h$>$}\newline
+\doxysubsection*{Typedefs}
+\begin{DoxyCompactItemize}
+\item 
+typedef void($\ast$ \mbox{\hyperlink{printf_8h_a0f103da436a675bb6f53565c5144dc65}{out\+\_\+fct\+\_\+type}}) (char character)
+\end{DoxyCompactItemize}
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+uint32\+\_\+t \mbox{\hyperlink{printf_8h_a7929c46dcdbb8a4807f26525cda33a9d}{fnprintf}} (\mbox{\hyperlink{printf_8h_a0f103da436a675bb6f53565c5144dc65}{out\+\_\+fct\+\_\+type}} out, const char $\ast$format, va\+\_\+list va)
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Typedef Documentation}
+\mbox{\Hypertarget{printf_8h_a0f103da436a675bb6f53565c5144dc65}\label{printf_8h_a0f103da436a675bb6f53565c5144dc65}} 
+\index{printf.h@{printf.h}!out\_fct\_type@{out\_fct\_type}}
+\index{out\_fct\_type@{out\_fct\_type}!printf.h@{printf.h}}
+\doxysubsubsection{\texorpdfstring{out\_fct\_type}{out\_fct\_type}}
+{\footnotesize\ttfamily typedef void($\ast$ out\+\_\+fct\+\_\+type) (char character)}
+
+Output a character to a custom device like U\+A\+RT, used by the printf() function This function is declared here only. You have to write your custom implementation somewhere 
+\begin{DoxyParams}{Parameters}
+{\em character} & Character to output \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 52 of file printf.\+h.
+
+
+
+\doxysubsection{Function Documentation}
+\mbox{\Hypertarget{printf_8h_a7929c46dcdbb8a4807f26525cda33a9d}\label{printf_8h_a7929c46dcdbb8a4807f26525cda33a9d}} 
+\index{printf.h@{printf.h}!fnprintf@{fnprintf}}
+\index{fnprintf@{fnprintf}!printf.h@{printf.h}}
+\doxysubsubsection{\texorpdfstring{fnprintf()}{fnprintf()}}
+{\footnotesize\ttfamily uint32\+\_\+t fnprintf (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{printf_8h_a0f103da436a675bb6f53565c5144dc65}{out\+\_\+fct\+\_\+type}}}]{out,  }\item[{const char $\ast$}]{format,  }\item[{va\+\_\+list}]{va }\end{DoxyParamCaption})}
+
+
+
+Definition at line 127 of file printf.\+c.
+

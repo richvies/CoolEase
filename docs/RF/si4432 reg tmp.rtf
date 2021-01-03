@@ -1,0 +1,76 @@
+{\rtf1\ansi\ansicpg1252\cocoartf1561\cocoasubrtf600
+{\fonttbl\f0\fnil\fcharset0 Menlo-Regular;}
+{\colortbl;\red255\green255\blue255;\red183\green111\blue179;\red23\green23\blue23;\red70\green137\blue204;
+\red167\green197\blue152;\red202\green202\blue202;}
+{\*\expandedcolortbl;;\cssrgb\c77255\c52549\c75294;\cssrgb\c11765\c11765\c11765;\cssrgb\c33725\c61176\c83922;
+\cssrgb\c70980\c80784\c65882;\cssrgb\c83137\c83137\c83137;}
+\paperw11900\paperh16840\margl1440\margr1440\vieww10800\viewh8400\viewkind0
+\deftab720
+\pard\pardeftab720\sl360\partightenfactor0
+
+\f0\fs24 \cf2 \cb3 \expnd0\expndtw0\kerning0
+\outl0\strokewidth0 \strokec2 #define\cf4 \strokec4  INT_ENABLE_1 \cf5 \strokec5 0x05\cf6 \cb1 \strokec6 \
+\cf2 \cb3 \strokec2 #define\cf4 \strokec4  INT_ENABLE_2 \cf5 \strokec5 0x06\cf6 \cb1 \strokec6 \
+\cf2 \cb3 \strokec2 #define\cf4 \strokec4  OPERATION_CONTROL_1 \cf5 \strokec5 0x07\cf6 \cb1 \strokec6 \
+\cf2 \cb3 \strokec2 #define\cf4 \strokec4  OPERATION_CONTROL_2 \cf5 \strokec5 0x08\cf6 \cb1 \strokec6 \
+\cf2 \cb3 \strokec2 #define\cf4 \strokec4  GPIO_0_CONF \cf5 \strokec5 0x0B\cf6 \cb1 \strokec6 \
+\cf2 \cb3 \strokec2 #define\cf4 \strokec4  GPIO_1_CONF \cf5 \strokec5 0x0C\cf6 \cb1 \strokec6 \
+\cf2 \cb3 \strokec2 #define\cf4 \strokec4  GPIO_2_CONF \cf5 \strokec5 0x0D\cf6 \cb1 \strokec6 \
+\cf2 \cb3 \strokec2 #define\cf4 \strokec4  IOPORT_CONF \cf5 \strokec5 0x0E\cf6 \cb1 \strokec6 \
+\cf2 \cb3 \strokec2 #define\cf4 \strokec4  IF_FILTER_BW \cf5 \strokec5 0x1C\cf6 \cb1 \strokec6 \
+\cf2 \cb3 \strokec2 #define\cf4 \strokec4  AFC_LOOP_GEARSHIFT_OVERRIDE \cf5 \strokec5 0x1D\cf6 \cb1 \strokec6 \
+\cf2 \cb3 \strokec2 #define\cf4 \strokec4  AFC_TIMING_CONTROL \cf5 \strokec5 0x1E\cf6 \cb1 \strokec6 \
+\cf2 \cb3 \strokec2 #define\cf4 \strokec4  CLOCK_RECOVERY_GEARSHIFT \cf5 \strokec5 0x1F\cf6 \cb1 \strokec6 \
+\cf2 \cb3 \strokec2 #define\cf4 \strokec4  CLOCK_RECOVERY_OVERSAMPLING \cf5 \strokec5 0x20\cf6 \cb1 \strokec6 \
+\cf2 \cb3 \strokec2 #define\cf4 \strokec4  CLOCK_RECOVERY_OFFSET_2 \cf5 \strokec5 0x21\cf6 \cb1 \strokec6 \
+\cf2 \cb3 \strokec2 #define\cf4 \strokec4  CLOCK_RECOVERY_OFFSET_1 \cf5 \strokec5 0x22\cf6 \cb1 \strokec6 \
+\cf2 \cb3 \strokec2 #define\cf4 \strokec4  CLOCK_RECOVERY_OFFSET_0 \cf5 \strokec5 0x23\cf6 \cb1 \strokec6 \
+\cf2 \cb3 \strokec2 #define\cf4 \strokec4  CLOCK_RECOVERY_TIMING_GAIN_1 \cf5 \strokec5 0x24\cf6 \cb1 \strokec6 \
+\cf2 \cb3 \strokec2 #define\cf4 \strokec4  CLOCK_RECOVERY_TIMING_GAIN_0 \cf5 \strokec5 0x25\cf6 \cb1 \strokec6 \
+\cf2 \cb3 \strokec2 #define\cf4 \strokec4  RSSI \cf5 \strokec5 0x26\cf6 \cb1 \strokec6 \
+\cf2 \cb3 \strokec2 #define\cf4 \strokec4  RSSI_THRESHOLD \cf5 \strokec5 0x27\cf6 \cb1 \strokec6 \
+\cf2 \cb3 \strokec2 #define\cf4 \strokec4  AFC_LIMITER \cf5 \strokec5 0x2A\cf6 \cb1 \strokec6 \
+\cf2 \cb3 \strokec2 #define\cf4 \strokec4  AFC_CORRECTION_READ \cf5 \strokec5 0x2B\cf6 \cb1 \strokec6 \
+\cf2 \cb3 \strokec2 #define\cf4 \strokec4  DATAACCESS_CONTROL \cf5 \strokec5 0x30\cf6 \cb1 \strokec6 \
+\cf2 \cb3 \strokec2 #define\cf4 \strokec4  EZMAC_STATUS \cf5 \strokec5 0x31\cf6 \cb1 \strokec6 \
+\cf2 \cb3 \strokec2 #define\cf4 \strokec4  HEADER_CONTROL_1 \cf5 \strokec5 0x32\cf6 \cb1 \strokec6 \
+\cf2 \cb3 \strokec2 #define\cf4 \strokec4  HEADER_CONTROL_2 \cf5 \strokec5 0x33\cf6 \cb1 \strokec6 \
+\cf2 \cb3 \strokec2 #define\cf4 \strokec4  PREAMBLE_LENGTH \cf5 \strokec5 0x34\cf6 \cb1 \strokec6 \
+\cf2 \cb3 \strokec2 #define\cf4 \strokec4  PREAMBLE_DETECTION \cf5 \strokec5 0x35\cf6 \cb1 \strokec6 \
+\cf2 \cb3 \strokec2 #define\cf4 \strokec4  SYNC_WORD_3 \cf5 \strokec5 0x36\cf6 \cb1 \strokec6 \
+\cf2 \cb3 \strokec2 #define\cf4 \strokec4  SYNC_WORD_2 \cf5 \strokec5 0x37\cf6 \cb1 \strokec6 \
+\cf2 \cb3 \strokec2 #define\cf4 \strokec4  SYNC_WORD_1 \cf5 \strokec5 0x38\cf6 \cb1 \strokec6 \
+\cf2 \cb3 \strokec2 #define\cf4 \strokec4  SYNC_WORD_0 \cf5 \strokec5 0x39\cf6 \cb1 \strokec6 \
+\cf2 \cb3 \strokec2 #define\cf4 \strokec4  TRANSMIT_HEADER_3 \cf5 \strokec5 0x3A\cf6 \cb1 \strokec6 \
+\cf2 \cb3 \strokec2 #define\cf4 \strokec4  TRANSMIT_HEADER_2 \cf5 \strokec5 0x3B\cf6 \cb1 \strokec6 \
+\cf2 \cb3 \strokec2 #define\cf4 \strokec4  TRANSMIT_HEADER_1 \cf5 \strokec5 0x3C\cf6 \cb1 \strokec6 \
+\cf2 \cb3 \strokec2 #define\cf4 \strokec4  TRANSMIT_HEADER0 \cf5 \strokec5 0x3D\cf6 \cb1 \strokec6 \
+\cf2 \cb3 \strokec2 #define\cf4 \strokec4  TRANSMIT_PK_LEN \cf5 \strokec5 0x3E\cf6 \cb1 \strokec6 \
+\cf2 \cb3 \strokec2 #define\cf4 \strokec4  CHECK_HEADER_3 \cf5 \strokec5 0x3F\cf6 \cb1 \strokec6 \
+\cf2 \cb3 \strokec2 #define\cf4 \strokec4  CHECK_HEADER_2 \cf5 \strokec5 0x40\cf6 \cb1 \strokec6 \
+\cf2 \cb3 \strokec2 #define\cf4 \strokec4  CHECK_HEADER_1 \cf5 \strokec5 0x41\cf6 \cb1 \strokec6 \
+\cf2 \cb3 \strokec2 #define\cf4 \strokec4  CHECK_HEADER_0 \cf5 \strokec5 0x42\cf6 \cb1 \strokec6 \
+\cf2 \cb3 \strokec2 #define\cf4 \strokec4  RECEIVED_HEADER_3 \cf5 \strokec5 0x47\cf6 \cb1 \strokec6 \
+\cf2 \cb3 \strokec2 #define\cf4 \strokec4  RECEIVED_HEADER_2 \cf5 \strokec5 0x48\cf6 \cb1 \strokec6 \
+\cf2 \cb3 \strokec2 #define\cf4 \strokec4  RECEIVED_HEADER_1 \cf5 \strokec5 0x49\cf6 \cb1 \strokec6 \
+\cf2 \cb3 \strokec2 #define\cf4 \strokec4  RECEIVED_HEADER_0 \cf5 \strokec5 0x4A\cf6 \cb1 \strokec6 \
+\cf2 \cb3 \strokec2 #define\cf4 \strokec4  RECEIVED_PK_LEN \cf5 \strokec5 0x4B\cf6 \cb1 \strokec6 \
+\cf2 \cb3 \strokec2 #define\cf4 \strokec4  CHARGEPUMP_OVERRIDE \cf5 \strokec5 0x58\cf6 \cb1 \strokec6 \
+\cf2 \cb3 \strokec2 #define\cf4 \strokec4  DIVIDER_CURRENT_TRIM \cf5 \strokec5 0x59\cf6 \cb1 \strokec6 \
+\cf2 \cb3 \strokec2 #define\cf4 \strokec4  VCO_CURRENT_TRIM \cf5 \strokec5 0x5A\cf6 \cb1 \strokec6 \
+\cf2 \cb3 \strokec2 #define\cf4 \strokec4  AGC_OVERRIDE \cf5 \strokec5 0x69\cf6 \cb1 \strokec6 \
+\cf2 \cb3 \strokec2 #define\cf4 \strokec4  TX_POWER \cf5 \strokec5 0x6D\cf6 \cb1 \strokec6 \
+\cf2 \cb3 \strokec2 #define\cf4 \strokec4  TX_DATARATE_1 \cf5 \strokec5 0x6E\cf6 \cb1 \strokec6 \
+\cf2 \cb3 \strokec2 #define\cf4 \strokec4  TX_DATARATE_0 \cf5 \strokec5 0x6F\cf6 \cb1 \strokec6 \
+\cf2 \cb3 \strokec2 #define\cf4 \strokec4  MODULATION_MODE_1 \cf5 \strokec5 0x70\cf6 \cb1 \strokec6 \
+\cf2 \cb3 \strokec2 #define\cf4 \strokec4  MODULATION_MODE_2 \cf5 \strokec5 0x71\cf6 \cb1 \strokec6 \
+\cf2 \cb3 \strokec2 #define\cf4 \strokec4  FREQ_DEVIATION \cf5 \strokec5 0x72\cf6 \cb1 \strokec6 \
+\cf2 \cb3 \strokec2 #define\cf4 \strokec4  FREQ_OFFSET_1 \cf5 \strokec5 0x73\cf6 \cb1 \strokec6 \
+\cf2 \cb3 \strokec2 #define\cf4 \strokec4  FREQ_OFFSET_2 \cf5 \strokec5 0x74\cf6 \cb1 \strokec6 \
+\cf2 \cb3 \strokec2 #define\cf4 \strokec4  FREQBAND \cf5 \strokec5 0x75\cf6 \cb1 \strokec6 \
+\cf2 \cb3 \strokec2 #define\cf4 \strokec4  FREQCARRIER_H \cf5 \strokec5 0x76\cf6 \cb1 \strokec6 \
+\cf2 \cb3 \strokec2 #define\cf4 \strokec4  FREQCARRIER_L \cf5 \strokec5 0x77\cf6 \cb1 \strokec6 \
+\cf2 \cb3 \strokec2 #define\cf4 \strokec4  FREQCHANNEL \cf5 \strokec5 0x79\cf6 \cb1 \strokec6 \
+\cf2 \cb3 \strokec2 #define\cf4 \strokec4  CHANNEL_STEPSIZE \cf5 \strokec5 0x7A\cf6 \cb1 \strokec6 \
+\cf2 \cb3 \strokec2 #define\cf4 \strokec4  FIFO \cf5 \strokec5 0x7F\cf6 \cb1 \strokec6 \
+}

@@ -1,0 +1,109 @@
+\hypertarget{memory_8c}{}\doxysection{common/src/memory.c File Reference}
+\label{memory_8c}\index{common/src/memory.c@{common/src/memory.c}}
+
+
+Memory Source File.  
+
+
+{\ttfamily \#include \char`\"{}common/memory.\+h\char`\"{}}\newline
+{\ttfamily \#include $<$stdbool.\+h$>$}\newline
+{\ttfamily \#include $<$stdint.\+h$>$}\newline
+{\ttfamily \#include $<$libopencm3/stm32/flash.\+h$>$}\newline
+{\ttfamily \#include \char`\"{}common/aes.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}common/board\+\_\+defs.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}common/log.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}common/timers.\+h\char`\"{}}\newline
+\doxysubsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define \mbox{\hyperlink{group___m_e_m_o_r_y___f_i_l_e_ga835b0195046543ba63b1ca0928077ce6}{\+\_\+\+R\+AM}}~\mbox{\hyperlink{group___c_u_s_b___c_f_g_ga257274706fbffd56ad7d5128a11b0096}{\+\_\+\+\_\+attribute\+\_\+\+\_\+}}((section (\char`\"{}.data\#\char`\"{}), noinline))
+\item 
+\#define \mbox{\hyperlink{group___m_e_m_o_r_y___f_i_l_e_ga97e023179b94640fcc163ac8de1e3c0b}{S\+T\+A\+T\+E\+\_\+\+F\+I\+R\+S\+T\+\_\+\+R\+UN}}~(1 $<$$<$ 0)
+\item 
+\#define \mbox{\hyperlink{group___m_e_m_o_r_y___f_i_l_e_ga91aea8f18583a4f39018d2a6a552f5ff}{S\+T\+A\+T\+E\+\_\+\+A\+T\+T\+A\+C\+H\+ED}}~(1 $<$$<$ 1)
+\item 
+\#define \mbox{\hyperlink{group___m_e_m_o_r_y___f_i_l_e_ga71b90aabbc44fbe2e87075f3236ddd7f}{R\+E\+A\+D\+I\+N\+G\+S\+\_\+\+S\+T\+A\+RT}}~( \mbox{\hyperlink{group___m_e_m_o_r_y___a_p_i_ga8be554f354e5aa65370f6db63d4f3ee4}{F\+L\+A\+S\+H\+\_\+\+E\+ND}} -\/ 8192 )
+\item 
+\#define \mbox{\hyperlink{group___m_e_m_o_r_y___f_i_l_e_ga982953c568e76424021484a001e5c73b}{M\+A\+X\+\_\+\+R\+E\+A\+D\+I\+N\+GS}}~2048
+\end{DoxyCompactItemize}
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+static \mbox{\hyperlink{group___m_e_m_o_r_y___f_i_l_e_ga835b0195046543ba63b1ca0928077ce6}{\+\_\+\+R\+AM}} bool \mbox{\hyperlink{group___m_e_m_o_r_y___i_n_t_ga39d0c5d3dd92f96b79175af55a323505}{mem\+\_\+flash\+\_\+do\+\_\+page\+\_\+erase}} (uint32\+\_\+t address)
+\item 
+static \mbox{\hyperlink{group___m_e_m_o_r_y___f_i_l_e_ga835b0195046543ba63b1ca0928077ce6}{\+\_\+\+R\+AM}} bool \mbox{\hyperlink{group___m_e_m_o_r_y___i_n_t_ga377e94d4c92c642164c67622cb9edf1e}{mem\+\_\+flash\+\_\+do\+\_\+write\+\_\+half\+\_\+page}} (uint32\+\_\+t address, uint32\+\_\+t $\ast$data)
+\item 
+void \mbox{\hyperlink{group___m_e_m_o_r_y___a_p_i_ga44a136e3b70c36abb6f8dc060c778113}{mem\+\_\+init}} (void)
+\item 
+bool \mbox{\hyperlink{group___m_e_m_o_r_y___a_p_i_ga16c923082ee622b07285a6c33146a3fc}{mem\+\_\+eeprom\+\_\+write\+\_\+word}} (uint32\+\_\+t address, uint32\+\_\+t data)
+\item 
+bool \mbox{\hyperlink{group___m_e_m_o_r_y___a_p_i_gac5d72aca43cc46edf3b7d6622c7d8f83}{mem\+\_\+eeprom\+\_\+write\+\_\+half\+\_\+word}} (uint32\+\_\+t address, uint16\+\_\+t data)
+\item 
+bool \mbox{\hyperlink{group___m_e_m_o_r_y___a_p_i_ga4ebbc83ce32824efb16e281ba575fb48}{mem\+\_\+eeprom\+\_\+write\+\_\+byte}} (uint32\+\_\+t address, uint8\+\_\+t data)
+\item 
+bool \mbox{\hyperlink{group___m_e_m_o_r_y___a_p_i_gafc4d03811edaa911ba9ae72569512e07}{mem\+\_\+flash\+\_\+erase\+\_\+page}} (uint32\+\_\+t address)
+\item 
+bool \mbox{\hyperlink{group___m_e_m_o_r_y___a_p_i_ga89045d7373ac1ecaba6b33ed4ede58c6}{mem\+\_\+flash\+\_\+write\+\_\+half\+\_\+page}} (uint32\+\_\+t address, uint32\+\_\+t $\ast$data)
+\item 
+bool \mbox{\hyperlink{group___m_e_m_o_r_y___a_p_i_ga98a7ead24259ad3e307dfdd7d79feb4b}{mem\+\_\+flash\+\_\+write\+\_\+word}} (uint32\+\_\+t address, uint32\+\_\+t data)
+\item 
+void \mbox{\hyperlink{group___m_e_m_o_r_y___a_p_i_ga2bf09ee33673f9723edb18056fdc1dfa}{mem\+\_\+save\+\_\+reading}} (int16\+\_\+t reading)
+\item 
+uint32\+\_\+t \mbox{\hyperlink{group___m_e_m_o_r_y___a_p_i_ga7c52ca7050332c29a4bc7698e8fb7584}{mem\+\_\+get\+\_\+dev\+\_\+state}} (void)
+\item 
+uint32\+\_\+t \mbox{\hyperlink{group___m_e_m_o_r_y___a_p_i_ga28cd894274c6fc9d41dc965629227606}{mem\+\_\+get\+\_\+dev\+\_\+num}} (void)
+\item 
+uint32\+\_\+t \mbox{\hyperlink{group___m_e_m_o_r_y___a_p_i_ga703303645061e96c4b9876bae0a383d3}{mem\+\_\+get\+\_\+msg\+\_\+num}} (void)
+\item 
+void \mbox{\hyperlink{group___m_e_m_o_r_y___a_p_i_gabbb4238ff271c8e34226874f464e4e6d}{mem\+\_\+update\+\_\+msg\+\_\+num}} (uint32\+\_\+t new)
+\item 
+uint32\+\_\+t \mbox{\hyperlink{group___m_e_m_o_r_y___a_p_i_gafccd2b82ea731e3d5436749025ebca7d}{mem\+\_\+get\+\_\+num\+\_\+readings}} (void)
+\item 
+int16\+\_\+t \mbox{\hyperlink{group___m_e_m_o_r_y___a_p_i_ga09c56996bd368d16dff462250e441840}{mem\+\_\+get\+\_\+reading}} (uint32\+\_\+t reading\+\_\+num)
+\item 
+void \mbox{\hyperlink{group___m_e_m_o_r_y___a_p_i_ga70af5f77dc31a0f90877bf1102844d0a}{mem\+\_\+wipe\+\_\+log}} (void)
+\item 
+void \mbox{\hyperlink{group___m_e_m_o_r_y___a_p_i_ga11301062cb4e798edf705ab205d61810}{mem\+\_\+get\+\_\+log}} (char log\mbox{[}\mbox{\hyperlink{group___m_e_m_o_r_y___a_p_i_ga54f3a82b412207ba842446d157f297e3}{E\+E\+P\+R\+O\+M\+\_\+\+L\+O\+G\+\_\+\+S\+I\+ZE}}\mbox{]})
+\item 
+void \mbox{\hyperlink{group___m_e_m_o_r_y___a_p_i_ga802da42f5bc56d08e8df145109a6913e}{mem\+\_\+print\+\_\+log}} (void)
+\item 
+void \mbox{\hyperlink{group___m_e_m_o_r_y___a_p_i_gad98fe7b14d8ca526cc51bb1c2ffd605a}{mem\+\_\+get\+\_\+aes\+\_\+key}} (uint8\+\_\+t $\ast$aes\+\_\+key)
+\item 
+void \mbox{\hyperlink{group___m_e_m_o_r_y___a_p_i_gae351ba63bf858610b7cd3f789f070c68}{mem\+\_\+set\+\_\+aes\+\_\+key}} (uint8\+\_\+t $\ast$aes\+\_\+key)
+\item 
+void \mbox{\hyperlink{group___m_e_m_o_r_y___a_p_i_ga0bb31d9f064706851c73a8ac045a4f71}{mem\+\_\+get\+\_\+aes\+\_\+key\+\_\+exp}} (uint8\+\_\+t $\ast$aes\+\_\+key\+\_\+exp)
+\item 
+void \mbox{\hyperlink{group___m_e_m_o_r_y___a_p_i_ga96e02578abe4de252a64c24c38c35b43}{mem\+\_\+set\+\_\+aes\+\_\+key\+\_\+exp}} (uint8\+\_\+t $\ast$aes\+\_\+key\+\_\+exp)
+\item 
+void \mbox{\hyperlink{group___m_e_m_o_r_y___a_p_i_gae4a09c62aadfb5b457e6ff9022dc657b}{mem\+\_\+wipe\+\_\+readings}} (void)
+\end{DoxyCompactItemize}
+\doxysubsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+static uint32\+\_\+t \mbox{\hyperlink{group___m_e_m_o_r_y___i_n_t_ga071bf68f41fd07f4963c02503c718c56}{log\+\_\+add}} = \mbox{\hyperlink{group___m_e_m_o_r_y___a_p_i_ga01ef03f525c2b00f179bb24d8562b7fd}{E\+E\+P\+R\+O\+M\+\_\+\+L\+O\+G\+\_\+\+S\+T\+A\+RT}}
+\item 
+static uint32\+\_\+t \mbox{\hyperlink{group___m_e_m_o_r_y___i_n_t_ga407057c105825070ba7d8e53df26897c}{next\+\_\+reading\+\_\+add}} = \mbox{\hyperlink{group___m_e_m_o_r_y___f_i_l_e_ga71b90aabbc44fbe2e87075f3236ddd7f}{R\+E\+A\+D\+I\+N\+G\+S\+\_\+\+S\+T\+A\+RT}}
+\item 
+static uint32\+\_\+t \mbox{\hyperlink{group___m_e_m_o_r_y___i_n_t_gaaa63e7c75ad6cc45c0b06f626e6f1270}{dev\+\_\+state\+\_\+add}} = 0x08080000
+\item 
+static uint32\+\_\+t \mbox{\hyperlink{group___m_e_m_o_r_y___i_n_t_gae77bfc99497b0a7bea77202c4da99bd9}{dev\+\_\+num\+\_\+add}} = 0x08080004
+\item 
+static uint32\+\_\+t \mbox{\hyperlink{group___m_e_m_o_r_y___i_n_t_gad9d111ff1d30738df3c626c2b315d706}{aes\+\_\+key\+\_\+add}} = 0x08080100
+\item 
+static uint32\+\_\+t \mbox{\hyperlink{group___m_e_m_o_r_y___i_n_t_gab631ed5f757904bc859fb9e4c74f075d}{aes\+\_\+key\+\_\+exp\+\_\+add}} = 0x08080200
+\item 
+static uint32\+\_\+t \mbox{\hyperlink{group___m_e_m_o_r_y___i_n_t_ga98da1bbf9070d24558529687354523ce}{msg\+\_\+num\+\_\+add}} = 0x08080300
+\item 
+static uint32\+\_\+t \mbox{\hyperlink{group___m_e_m_o_r_y___i_n_t_ga068390377dc20b1fd6d6588b8b1c4713}{msg\+\_\+num}} = 0
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Memory Source File. 
+
+\begin{DoxyAuthor}{Author}
+Richard Davies 
+\end{DoxyAuthor}
+\begin{DoxyDate}{Date}
+29/\+Dec/2020 
+\end{DoxyDate}

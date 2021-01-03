@@ -1,0 +1,62 @@
+\hypertarget{log_8h}{}\doxysection{common/include/common/log.h File Reference}
+\label{log_8h}\index{common/include/common/log.h@{common/include/common/log.h}}
+
+
+Log Header File.  
+
+
+{\ttfamily \#include $<$stdint.\+h$>$}\newline
+{\ttfamily \#include $<$stdbool.\+h$>$}\newline
+\doxysubsection*{Data Structures}
+\begin{DoxyCompactItemize}
+\item 
+struct \mbox{\hyperlink{structlog__t}{log\+\_\+t}}
+\end{DoxyCompactItemize}
+\doxysubsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define \mbox{\hyperlink{group___l_o_g___e_r_r_ga865600ea2c47df77acd480193b765688}{E\+R\+R\+\_\+\+B\+O\+O\+T\+\_\+\+P\+R\+O\+G\+\_\+\+S\+T\+A\+R\+T\+\_\+\+A\+D\+D\+R\+E\+S\+S\+\_\+\+O\+U\+T\+\_\+\+O\+F\+\_\+\+B\+O\+U\+N\+DS}}~0
+\item 
+\#define \mbox{\hyperlink{group___l_o_g___e_r_r_ga3a17465e936d092ce0065a63cb0c7332}{E\+R\+R\+\_\+\+B\+O\+O\+T\+\_\+\+P\+R\+O\+G\+\_\+\+T\+O\+O\+\_\+\+B\+IG}}~1
+\item 
+\#define \mbox{\hyperlink{group___l_o_g___e_r_r_gacc1f6fd20153123ec5e6f878ff8d1b15}{E\+R\+R\+\_\+\+B\+O\+O\+T\+\_\+\+P\+R\+O\+G\+\_\+\+B\+A\+D\+\_\+\+C\+H\+E\+C\+K\+S\+UM}}~2
+\item 
+\#define \mbox{\hyperlink{group___l_o_g___e_r_r_gadfaaa62f2068f48d28cb88dbedb9c4ff}{E\+R\+R\+\_\+\+B\+O\+O\+T\+\_\+\+P\+R\+O\+G\+\_\+\+F\+L\+A\+S\+H\+\_\+\+E\+R\+A\+SE}}~3
+\item 
+\#define \mbox{\hyperlink{group___l_o_g___e_r_r_ga735479aa42e0f3d7c2f03f30d31f114b}{E\+R\+R\+\_\+\+B\+O\+O\+T\+\_\+\+P\+R\+O\+G\+\_\+\+F\+L\+A\+S\+H\+\_\+\+W\+R\+I\+T\+E\+\_\+1}}~4
+\item 
+\#define \mbox{\hyperlink{group___l_o_g___e_r_r_ga41537ee00247903890fc5ac1409d7ef3}{E\+R\+R\+\_\+\+B\+O\+O\+T\+\_\+\+P\+R\+O\+G\+\_\+\+F\+L\+A\+S\+H\+\_\+\+W\+R\+I\+T\+E\+\_\+2}}~5
+\end{DoxyCompactItemize}
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{group___l_o_g___a_p_i_ga2508fad025e49f9746b6c178dce6917e}{log\+\_\+init}} (void)
+\item 
+void \mbox{\hyperlink{group___l_o_g___a_p_i_ga4fff2f266fd439fbb104ddb5d7f61533}{log\+\_\+printf}} (const char $\ast$format,...)
+\item 
+void \mbox{\hyperlink{group___l_o_g___a_p_i_ga8dbb405ae2b1df5bbbdd580e3fe9a332}{log\+\_\+error}} (uint16\+\_\+t error)
+\item 
+uint8\+\_\+t \mbox{\hyperlink{group___l_o_g___a_p_i_gaf766aa26c1e0c09c246a130e379e5f8a}{log\+\_\+get}} (uint16\+\_\+t index)
+\item 
+void \mbox{\hyperlink{group___l_o_g___a_p_i_ga3f0dbc11d59511e585b423e394cc982b}{log\+\_\+read\+\_\+reset}} (void)
+\item 
+uint8\+\_\+t \mbox{\hyperlink{group___l_o_g___a_p_i_ga234d30521858d65e55e7389976902a60}{log\+\_\+read}} (void)
+\item 
+void \mbox{\hyperlink{group___l_o_g___a_p_i_gae4f545d29e1faa30e5b27be12d4286d0}{serial\+\_\+printf}} (const char $\ast$format,...)
+\end{DoxyCompactItemize}
+\doxysubsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{structlog__t}{log\+\_\+t}} \mbox{\hyperlink{group___l_o_g___a_p_i_ga56444742f0aa74085c5d2b6bc4751e39}{logger}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Log Header File. 
+
+\begin{DoxyAuthor}{Author}
+Richard Davies 
+\end{DoxyAuthor}
+\begin{DoxyDate}{Date}
+30/\+Dec/2020 
+\end{DoxyDate}

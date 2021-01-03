@@ -1,0 +1,82 @@
+\hypertarget{group___b_o_o_t_l_o_a_d_e_r___u_t_i_l_s___a_p_i}{}\doxysection{Bootloader\+\_\+utils A\+PI}
+\label{group___b_o_o_t_l_o_a_d_e_r___u_t_i_l_s___a_p_i}\index{Bootloader\_utils API@{Bootloader\_utils API}}
+
+
+~\newline
+  
+
+
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{group___b_o_o_t_l_o_a_d_e_r___u_t_i_l_s___a_p_i_gab14eb123f642e320218491d114b6418b}{boot\+\_\+init}} (void)
+\item 
+void \mbox{\hyperlink{group___b_o_o_t_l_o_a_d_e_r___u_t_i_l_s___a_p_i_ga6252b1935a7b8e2e6c14a969372929a2}{boot\+\_\+deinit}} (void)
+\item 
+void \mbox{\hyperlink{group___b_o_o_t_l_o_a_d_e_r___u_t_i_l_s___a_p_i_gae9e4d81efbd526a6c67fd8f1f104d5b3}{boot\+\_\+jump\+\_\+to\+\_\+application}} (uint32\+\_\+t address)
+\item 
+bool \mbox{\hyperlink{group___b_o_o_t_l_o_a_d_e_r___u_t_i_l_s___a_p_i_ga153399560a9486547bc5bb4b7dcf252e}{boot\+\_\+program\+\_\+application}} (uint32\+\_\+t $\ast$data, uint32\+\_\+t start\+\_\+address, uint32\+\_\+t len, uint32\+\_\+t crc)
+\item 
+bool \mbox{\hyperlink{group___b_o_o_t_l_o_a_d_e_r___u_t_i_l_s___a_p_i_ga26bd7e0102d41443ee0aefe24260b86a}{boot\+\_\+verify\+\_\+checksum}} (uint32\+\_\+t $\ast$data, uint32\+\_\+t len, uint32\+\_\+t expected)
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+~\newline
+ 
+
+
+
+\doxysubsection{Function Documentation}
+\mbox{\Hypertarget{group___b_o_o_t_l_o_a_d_e_r___u_t_i_l_s___a_p_i_ga6252b1935a7b8e2e6c14a969372929a2}\label{group___b_o_o_t_l_o_a_d_e_r___u_t_i_l_s___a_p_i_ga6252b1935a7b8e2e6c14a969372929a2}} 
+\index{Bootloader\_utils API@{Bootloader\_utils API}!boot\_deinit@{boot\_deinit}}
+\index{boot\_deinit@{boot\_deinit}!Bootloader\_utils API@{Bootloader\_utils API}}
+\doxysubsubsection{\texorpdfstring{boot\_deinit()}{boot\_deinit()}}
+{\footnotesize\ttfamily void boot\+\_\+deinit (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})}
+
+
+
+Definition at line 84 of file bootloader\+\_\+utils.\+c.
+
+\mbox{\Hypertarget{group___b_o_o_t_l_o_a_d_e_r___u_t_i_l_s___a_p_i_gab14eb123f642e320218491d114b6418b}\label{group___b_o_o_t_l_o_a_d_e_r___u_t_i_l_s___a_p_i_gab14eb123f642e320218491d114b6418b}} 
+\index{Bootloader\_utils API@{Bootloader\_utils API}!boot\_init@{boot\_init}}
+\index{boot\_init@{boot\_init}!Bootloader\_utils API@{Bootloader\_utils API}}
+\doxysubsubsection{\texorpdfstring{boot\_init()}{boot\_init()}}
+{\footnotesize\ttfamily void boot\+\_\+init (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})}
+
+
+
+Definition at line 71 of file bootloader\+\_\+utils.\+c.
+
+\mbox{\Hypertarget{group___b_o_o_t_l_o_a_d_e_r___u_t_i_l_s___a_p_i_gae9e4d81efbd526a6c67fd8f1f104d5b3}\label{group___b_o_o_t_l_o_a_d_e_r___u_t_i_l_s___a_p_i_gae9e4d81efbd526a6c67fd8f1f104d5b3}} 
+\index{Bootloader\_utils API@{Bootloader\_utils API}!boot\_jump\_to\_application@{boot\_jump\_to\_application}}
+\index{boot\_jump\_to\_application@{boot\_jump\_to\_application}!Bootloader\_utils API@{Bootloader\_utils API}}
+\doxysubsubsection{\texorpdfstring{boot\_jump\_to\_application()}{boot\_jump\_to\_application()}}
+{\footnotesize\ttfamily void boot\+\_\+jump\+\_\+to\+\_\+application (\begin{DoxyParamCaption}\item[{uint32\+\_\+t}]{address }\end{DoxyParamCaption})}
+
+
+
+Definition at line 97 of file bootloader\+\_\+utils.\+c.
+
+\mbox{\Hypertarget{group___b_o_o_t_l_o_a_d_e_r___u_t_i_l_s___a_p_i_ga153399560a9486547bc5bb4b7dcf252e}\label{group___b_o_o_t_l_o_a_d_e_r___u_t_i_l_s___a_p_i_ga153399560a9486547bc5bb4b7dcf252e}} 
+\index{Bootloader\_utils API@{Bootloader\_utils API}!boot\_program\_application@{boot\_program\_application}}
+\index{boot\_program\_application@{boot\_program\_application}!Bootloader\_utils API@{Bootloader\_utils API}}
+\doxysubsubsection{\texorpdfstring{boot\_program\_application()}{boot\_program\_application()}}
+{\footnotesize\ttfamily bool boot\+\_\+program\+\_\+application (\begin{DoxyParamCaption}\item[{uint32\+\_\+t $\ast$}]{data,  }\item[{uint32\+\_\+t}]{start\+\_\+address,  }\item[{uint32\+\_\+t}]{len,  }\item[{uint32\+\_\+t}]{crc }\end{DoxyParamCaption})}
+
+Check for Errors Start address \& Size of new program C\+RC checksum
+
+Program flash if looks good
+
+Definition at line 126 of file bootloader\+\_\+utils.\+c.
+
+\mbox{\Hypertarget{group___b_o_o_t_l_o_a_d_e_r___u_t_i_l_s___a_p_i_ga26bd7e0102d41443ee0aefe24260b86a}\label{group___b_o_o_t_l_o_a_d_e_r___u_t_i_l_s___a_p_i_ga26bd7e0102d41443ee0aefe24260b86a}} 
+\index{Bootloader\_utils API@{Bootloader\_utils API}!boot\_verify\_checksum@{boot\_verify\_checksum}}
+\index{boot\_verify\_checksum@{boot\_verify\_checksum}!Bootloader\_utils API@{Bootloader\_utils API}}
+\doxysubsubsection{\texorpdfstring{boot\_verify\_checksum()}{boot\_verify\_checksum()}}
+{\footnotesize\ttfamily bool boot\+\_\+verify\+\_\+checksum (\begin{DoxyParamCaption}\item[{uint32\+\_\+t $\ast$}]{data,  }\item[{uint32\+\_\+t}]{len,  }\item[{uint32\+\_\+t}]{expected }\end{DoxyParamCaption})}
+
+
+
+Definition at line 193 of file bootloader\+\_\+utils.\+c.
+

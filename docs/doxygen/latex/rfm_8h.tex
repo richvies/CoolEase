@@ -1,0 +1,461 @@
+\hypertarget{rfm_8h}{}\doxysection{common/include/common/rfm.h File Reference}
+\label{rfm_8h}\index{common/include/common/rfm.h@{common/include/common/rfm.h}}
+
+
+Rfm Header File.  
+
+
+{\ttfamily \#include $<$stdint.\+h$>$}\newline
+{\ttfamily \#include $<$stdbool.\+h$>$}\newline
+\doxysubsection*{Data Structures}
+\begin{DoxyCompactItemize}
+\item 
+struct \mbox{\hyperlink{structrfm__packet__s}{rfm\+\_\+packet\+\_\+s}}
+\begin{DoxyCompactList}\small\item\em R\+FM data packet structure. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define \mbox{\hyperlink{group___r_f_m___r_e_g_ga0e7acb562b24ab76d6c4c5b61341245e}{R\+F\+M\+\_\+\+R\+E\+G\+\_\+00\+\_\+\+F\+I\+FO}}~0x00
+\begin{DoxyCompactList}\small\item\em Shared T\+X/\+RX F\+I\+FO Address. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{group___r_f_m___r_e_g_ga9baa0076f0eeabfd5502a2af14ae4a53}{R\+F\+M\+\_\+\+R\+E\+G\+\_\+01\+\_\+\+O\+P\+\_\+\+M\+O\+DE}}~0x01
+\begin{DoxyCompactList}\small\item\em Operating Mode R\+F\+M\+\_\+\+I\+RQ. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{group___r_f_m___r_e_g_ga8b85802bc69d552b61867c498b986237}{R\+F\+M\+\_\+\+R\+E\+G\+\_\+02\+\_\+\+R\+E\+S\+E\+R\+V\+ED}}~0x02
+\item 
+\#define \mbox{\hyperlink{group___r_f_m___r_e_g_ga878c5d807f8d78506c4d063cfc97ede3}{R\+F\+M\+\_\+\+R\+E\+G\+\_\+03\+\_\+\+R\+E\+S\+E\+R\+V\+ED}}~0x03
+\item 
+\#define \mbox{\hyperlink{group___r_f_m___r_e_g_gafb246120c6965da0fc38ebf774e37513}{R\+F\+M\+\_\+\+R\+E\+G\+\_\+04\+\_\+\+R\+E\+S\+E\+R\+V\+ED}}~0x04
+\item 
+\#define \mbox{\hyperlink{group___r_f_m___r_e_g_ga16e5d318e7ff8c38b1c687569dccb992}{R\+F\+M\+\_\+\+R\+E\+G\+\_\+05\+\_\+\+R\+E\+S\+E\+R\+V\+ED}}~0x05
+\item 
+\#define \mbox{\hyperlink{group___r_f_m___r_e_g_ga725effcc1ebcc89fd56028d7ca291aa6}{R\+F\+M\+\_\+\+R\+E\+G\+\_\+06\+\_\+\+F\+R\+F\+\_\+\+M\+SB}}~0x06
+\item 
+\#define \mbox{\hyperlink{group___r_f_m___r_e_g_gaa7c01d8a673baab3c8f558a7a96afa3e}{R\+F\+M\+\_\+\+R\+E\+G\+\_\+07\+\_\+\+F\+R\+F\+\_\+\+M\+ID}}~0x07
+\item 
+\#define \mbox{\hyperlink{group___r_f_m___r_e_g_gae8d067c9a9847b048c722f089a5d3795}{R\+F\+M\+\_\+\+R\+E\+G\+\_\+08\+\_\+\+F\+R\+F\+\_\+\+L\+SB}}~0x08
+\item 
+\#define \mbox{\hyperlink{group___r_f_m___r_e_g_ga7a214a2032cf7006c341c764aae65d4c}{R\+F\+M\+\_\+\+R\+E\+G\+\_\+09\+\_\+\+P\+A\+\_\+\+C\+O\+N\+F\+IG}}~0x09
+\item 
+\#define \mbox{\hyperlink{group___r_f_m___r_e_g_ga2d056e9c4e7e36704c5b838b302fa353}{R\+F\+M\+\_\+\+R\+E\+G\+\_\+0\+A\+\_\+\+P\+A\+\_\+\+R\+A\+MP}}~0x0a
+\item 
+\#define \mbox{\hyperlink{group___r_f_m___r_e_g_ga8f53da922d9f1c8e3dd4b4388dec7825}{R\+F\+M\+\_\+\+R\+E\+G\+\_\+0\+B\+\_\+\+O\+CP}}~0x0b
+\item 
+\#define \mbox{\hyperlink{group___r_f_m___r_e_g_ga46501454a761b6839a3d86d75c5f3176}{R\+F\+M\+\_\+\+R\+E\+G\+\_\+0\+C\+\_\+\+L\+NA}}~0x0c
+\item 
+\#define \mbox{\hyperlink{group___r_f_m___r_e_g_ga397b0f175bcc9dcf9b4cbb9326bb39d7}{R\+F\+M\+\_\+\+R\+E\+G\+\_\+0\+D\+\_\+\+F\+I\+F\+O\+\_\+\+A\+D\+D\+R\+\_\+\+P\+TR}}~0x0d
+\item 
+\#define \mbox{\hyperlink{group___r_f_m___r_e_g_gaf52209910380bdc7ed4bf2b5f9fae8fe}{R\+F\+M\+\_\+\+R\+E\+G\+\_\+0\+E\+\_\+\+F\+I\+F\+O\+\_\+\+T\+X\+\_\+\+B\+A\+S\+E\+\_\+\+A\+D\+DR}}~0x0e
+\item 
+\#define \mbox{\hyperlink{group___r_f_m___r_e_g_gaef013ab9a7aa95cc2746f9a1fedd67fb}{R\+F\+M\+\_\+\+R\+E\+G\+\_\+0\+F\+\_\+\+F\+I\+F\+O\+\_\+\+R\+X\+\_\+\+B\+A\+S\+E\+\_\+\+A\+D\+DR}}~0x0f
+\item 
+\#define \mbox{\hyperlink{group___r_f_m___r_e_g_ga2b2359aedfd00ce0008003eb423792e3}{R\+F\+M\+\_\+\+R\+E\+G\+\_\+10\+\_\+\+F\+I\+F\+O\+\_\+\+R\+X\+\_\+\+C\+U\+R\+R\+E\+N\+T\+\_\+\+A\+D\+DR}}~0x10
+\item 
+\#define \mbox{\hyperlink{group___r_f_m___r_e_g_ga42630a4d594a66f489ef59319d7ad9d5}{R\+F\+M\+\_\+\+R\+E\+G\+\_\+11\+\_\+\+I\+R\+Q\+\_\+\+F\+L\+A\+G\+S\+\_\+\+M\+A\+SK}}~0x11
+\item 
+\#define \mbox{\hyperlink{group___r_f_m___r_e_g_gaa34bab7260f7ecb7dd09233f04876c0a}{R\+F\+M\+\_\+\+R\+E\+G\+\_\+12\+\_\+\+I\+R\+Q\+\_\+\+F\+L\+A\+GS}}~0x12
+\item 
+\#define \mbox{\hyperlink{group___r_f_m___r_e_g_gaf1e5d312d036e83095851f9215d87f67}{R\+F\+M\+\_\+\+R\+E\+G\+\_\+13\+\_\+\+R\+X\+\_\+\+N\+B\+\_\+\+B\+Y\+T\+ES}}~0x13
+\item 
+\#define \mbox{\hyperlink{group___r_f_m___r_e_g_ga366f10853f72fb682f879caee1c7d24c}{R\+F\+M\+\_\+\+R\+E\+G\+\_\+14\+\_\+\+R\+X\+\_\+\+H\+E\+A\+D\+E\+R\+\_\+\+C\+N\+T\+\_\+\+V\+A\+L\+U\+E\+\_\+\+M\+SB}}~0x14
+\item 
+\#define \mbox{\hyperlink{group___r_f_m___r_e_g_gaadfaf098c05c3fe9cba0e896ab7f22cd}{R\+F\+M\+\_\+\+R\+E\+G\+\_\+15\+\_\+\+R\+X\+\_\+\+H\+E\+A\+D\+E\+R\+\_\+\+C\+N\+T\+\_\+\+V\+A\+L\+U\+E\+\_\+\+L\+SB}}~0x15
+\item 
+\#define \mbox{\hyperlink{group___r_f_m___r_e_g_ga163274e602525602166db0cf8f853430}{R\+F\+M\+\_\+\+R\+E\+G\+\_\+16\+\_\+\+R\+X\+\_\+\+P\+A\+C\+K\+E\+T\+\_\+\+C\+N\+T\+\_\+\+V\+A\+L\+U\+E\+\_\+\+M\+SB}}~0x16
+\item 
+\#define \mbox{\hyperlink{group___r_f_m___r_e_g_gab9b9433a65b526a0cec1eea448485d42}{R\+F\+M\+\_\+\+R\+E\+G\+\_\+17\+\_\+\+R\+X\+\_\+\+P\+A\+C\+K\+E\+T\+\_\+\+C\+N\+T\+\_\+\+V\+A\+L\+U\+E\+\_\+\+L\+SB}}~0x17
+\item 
+\#define \mbox{\hyperlink{group___r_f_m___r_e_g_gaa4cc855ab2379e352ddb993c48a8dead}{R\+F\+M\+\_\+\+R\+E\+G\+\_\+18\+\_\+\+M\+O\+D\+E\+M\+\_\+\+S\+T\+AT}}~0x18
+\item 
+\#define \mbox{\hyperlink{group___r_f_m___r_e_g_ga3a0fb65349f600092278bb5bd83dfea5}{R\+F\+M\+\_\+\+R\+E\+G\+\_\+19\+\_\+\+P\+K\+T\+\_\+\+S\+N\+R\+\_\+\+V\+A\+L\+UE}}~0x19
+\item 
+\#define \mbox{\hyperlink{group___r_f_m___r_e_g_gafa5d36547a50b460aa261a70296899d0}{R\+F\+M\+\_\+\+R\+E\+G\+\_\+1\+A\+\_\+\+P\+K\+T\+\_\+\+R\+S\+S\+I\+\_\+\+V\+A\+L\+UE}}~0x1a
+\item 
+\#define \mbox{\hyperlink{group___r_f_m___r_e_g_ga7b1696ee84f56bfb97e30ea25b825ffd}{R\+F\+M\+\_\+\+R\+E\+G\+\_\+1\+B\+\_\+\+R\+S\+S\+I\+\_\+\+V\+A\+L\+UE}}~0x1b
+\item 
+\#define \mbox{\hyperlink{group___r_f_m___r_e_g_ga1550402280c5b437e922adb1e6a5e87a}{R\+F\+M\+\_\+\+R\+E\+G\+\_\+1\+C\+\_\+\+H\+O\+P\+\_\+\+C\+H\+A\+N\+N\+EL}}~0x1c
+\item 
+\#define \mbox{\hyperlink{group___r_f_m___r_e_g_gaa932a9af646d9529da8c45a50dfec766}{R\+F\+M\+\_\+\+R\+E\+G\+\_\+1\+D\+\_\+\+M\+O\+D\+E\+M\+\_\+\+C\+O\+N\+F\+I\+G1}}~0x1d
+\item 
+\#define \mbox{\hyperlink{group___r_f_m___r_e_g_ga6593800a43804946ec83b888f5ab83fe}{R\+F\+M\+\_\+\+R\+E\+G\+\_\+1\+E\+\_\+\+M\+O\+D\+E\+M\+\_\+\+C\+O\+N\+F\+I\+G2}}~0x1e
+\item 
+\#define \mbox{\hyperlink{group___r_f_m___r_e_g_gaf8e677c87d42543f7d2af1a3299bd4b1}{R\+F\+M\+\_\+\+R\+E\+G\+\_\+1\+F\+\_\+\+S\+Y\+M\+B\+\_\+\+T\+I\+M\+E\+O\+U\+T\+\_\+\+L\+SB}}~0x1f
+\item 
+\#define \mbox{\hyperlink{group___r_f_m___r_e_g_ga631528a64c394bc82ee252e30b9a963d}{R\+F\+M\+\_\+\+R\+E\+G\+\_\+20\+\_\+\+P\+R\+E\+A\+M\+B\+L\+E\+\_\+\+M\+SB}}~0x20
+\item 
+\#define \mbox{\hyperlink{group___r_f_m___r_e_g_ga0525c23c9d16cd81ebb26facf62c1574}{R\+F\+M\+\_\+\+R\+E\+G\+\_\+21\+\_\+\+P\+R\+E\+A\+M\+B\+L\+E\+\_\+\+L\+SB}}~0x21
+\item 
+\#define \mbox{\hyperlink{group___r_f_m___r_e_g_ga590c0a497ba4af11ade3e87245c6b94d}{R\+F\+M\+\_\+\+R\+E\+G\+\_\+22\+\_\+\+P\+A\+Y\+L\+O\+A\+D\+\_\+\+L\+E\+N\+G\+TH}}~0x22
+\item 
+\#define \mbox{\hyperlink{group___r_f_m___r_e_g_gaa953b71f48a9e3e0be740ec1a44579eb}{R\+F\+M\+\_\+\+R\+E\+G\+\_\+23\+\_\+\+M\+A\+X\+\_\+\+P\+A\+Y\+L\+O\+A\+D\+\_\+\+L\+E\+N\+G\+TH}}~0x23
+\item 
+\#define \mbox{\hyperlink{group___r_f_m___r_e_g_ga5a9e5926f67415fa18a848107c6a7840}{R\+F\+M\+\_\+\+R\+E\+G\+\_\+24\+\_\+\+H\+O\+P\+\_\+\+P\+E\+R\+I\+OD}}~0x24
+\item 
+\#define \mbox{\hyperlink{group___r_f_m___r_e_g_ga1de6c594f2161cf3a0277a1251dd2a89}{R\+F\+M\+\_\+\+R\+E\+G\+\_\+25\+\_\+\+F\+I\+F\+O\+\_\+\+R\+X\+\_\+\+B\+Y\+T\+E\+\_\+\+A\+D\+DR}}~0x25
+\item 
+\#define \mbox{\hyperlink{group___r_f_m___r_e_g_ga2a12d0ed6ab0f475969f6328c7d4ac6d}{R\+F\+M\+\_\+\+R\+E\+G\+\_\+26\+\_\+\+M\+O\+D\+E\+M\+\_\+\+C\+O\+N\+F\+I\+G3}}~0x26
+\item 
+\#define \mbox{\hyperlink{group___r_f_m___r_e_g_gad74006ba6a135916de0e183cb9fc56c5}{R\+F\+M\+\_\+\+R\+E\+G\+\_\+27\+\_\+\+P\+P\+M\+\_\+\+C\+O\+R\+R\+E\+C\+T\+I\+ON}}~0x27
+\item 
+\#define \mbox{\hyperlink{group___r_f_m___r_e_g_gaa0299b1b1b190eb3d472c16521c00c36}{R\+F\+M\+\_\+\+R\+E\+G\+\_\+28\+\_\+\+F\+E\+I\+\_\+\+M\+SB}}~0x28
+\item 
+\#define \mbox{\hyperlink{group___r_f_m___r_e_g_ga898eb352dc4ce0a9ce1f8e9d2ce90358}{R\+F\+M\+\_\+\+R\+E\+G\+\_\+29\+\_\+\+F\+E\+I\+\_\+\+M\+ID}}~0x29
+\item 
+\#define \mbox{\hyperlink{group___r_f_m___r_e_g_ga83095be89530beccb987394f36cc2adf}{R\+F\+M\+\_\+\+R\+E\+G\+\_\+2\+A\+\_\+\+F\+E\+I\+\_\+\+L\+SB}}~0x2a
+\item 
+\#define \mbox{\hyperlink{group___r_f_m___r_e_g_ga2a59b3abd4150e7090b824939e7d65ed}{R\+F\+M\+\_\+\+R\+E\+G\+\_\+2\+C\+\_\+\+R\+S\+S\+I\+\_\+\+W\+I\+D\+E\+B\+A\+ND}}~0x2c
+\item 
+\#define \mbox{\hyperlink{group___r_f_m___r_e_g_ga664249e022db28bb3614e42ee0aafaae}{R\+F\+M\+\_\+\+R\+E\+G\+\_\+31\+\_\+\+D\+E\+T\+E\+C\+T\+\_\+\+O\+P\+T\+I\+M\+I\+ZE}}~0x31
+\item 
+\#define \mbox{\hyperlink{group___r_f_m___r_e_g_ga3ff2ebf26fdc0cebc32c2b064ee218f0}{R\+F\+M\+\_\+\+R\+E\+G\+\_\+33\+\_\+\+I\+N\+V\+E\+R\+T\+\_\+\+IQ}}~0x33
+\item 
+\#define \mbox{\hyperlink{group___r_f_m___r_e_g_ga0f4ddf7034bb3b5392beae28cf3adde6}{R\+F\+M\+\_\+\+R\+E\+G\+\_\+37\+\_\+\+D\+E\+T\+E\+C\+T\+I\+O\+N\+\_\+\+T\+H\+R\+E\+S\+H\+O\+LD}}~0x37
+\item 
+\#define \mbox{\hyperlink{group___r_f_m___r_e_g_gad4c325c0c16c1ab5e8f78e02d07098da}{R\+F\+M\+\_\+\+R\+E\+G\+\_\+39\+\_\+\+S\+Y\+N\+C\+\_\+\+W\+O\+RD}}~0x39
+\item 
+\#define \mbox{\hyperlink{group___r_f_m___r_e_g_ga6b9638f2b2f191008f8353de8760bfb3}{R\+F\+M\+\_\+\+R\+E\+G\+\_\+40\+\_\+\+D\+I\+O\+\_\+\+M\+A\+P\+P\+I\+N\+G1}}~0x40
+\item 
+\#define \mbox{\hyperlink{group___r_f_m___r_e_g_ga3e1bfc3439158e705617b4574f98a991}{R\+F\+M\+\_\+\+R\+E\+G\+\_\+41\+\_\+\+D\+I\+O\+\_\+\+M\+A\+P\+P\+I\+N\+G2}}~0x41
+\item 
+\#define \mbox{\hyperlink{group___r_f_m___r_e_g_gaffa0e65cbbe21cdbacbbaa90430bbd6c}{R\+F\+M\+\_\+\+R\+E\+G\+\_\+42\+\_\+\+V\+E\+R\+S\+I\+ON}}~0x42
+\item 
+\#define \mbox{\hyperlink{group___r_f_m___r_e_g_ga4fbd56ba97dcb9ff8f7f1851049d768f}{R\+F\+M\+\_\+\+R\+E\+G\+\_\+4\+B\+\_\+\+T\+C\+XO}}~0x4b
+\item 
+\#define \mbox{\hyperlink{group___r_f_m___r_e_g_ga5cc42fb14f55e3e06929614826f3e807}{R\+F\+M\+\_\+\+R\+E\+G\+\_\+4\+D\+\_\+\+P\+A\+\_\+\+D\+AC}}~0x4d
+\item 
+\#define \mbox{\hyperlink{group___r_f_m___r_e_g_gaa0c183302d9f7ad79fef7d1893c72c66}{R\+F\+M\+\_\+\+R\+E\+G\+\_\+5\+B\+\_\+\+F\+O\+R\+M\+E\+R\+\_\+\+T\+E\+MP}}~0x5b
+\item 
+\#define \mbox{\hyperlink{group___r_f_m___r_e_g_gac15b1388d12f594d1fda26fac5bf89c5}{R\+F\+M\+\_\+\+R\+E\+G\+\_\+61\+\_\+\+A\+G\+C\+\_\+\+R\+EF}}~0x61
+\item 
+\#define \mbox{\hyperlink{group___r_f_m___r_e_g_ga35804f846e34bc15e0c13ca058a4039f}{R\+F\+M\+\_\+\+R\+E\+G\+\_\+62\+\_\+\+A\+G\+C\+\_\+\+T\+H\+R\+E\+S\+H1}}~0x62
+\item 
+\#define \mbox{\hyperlink{group___r_f_m___r_e_g_ga8cddd993e8cc063e484d1ec7624e7768}{R\+F\+M\+\_\+\+R\+E\+G\+\_\+63\+\_\+\+A\+G\+C\+\_\+\+T\+H\+R\+E\+S\+H2}}~0x63
+\item 
+\#define \mbox{\hyperlink{group___r_f_m___r_e_g_gaf15a77834e0d293219fd9cd82cb5cb1a}{R\+F\+M\+\_\+\+R\+E\+G\+\_\+64\+\_\+\+A\+G\+C\+\_\+\+T\+H\+R\+E\+S\+H3}}~0x64
+\item 
+\#define \mbox{\hyperlink{group___r_f_m___r_e_g_ga3eb853cc819d5585c6ae00d653e3cb2b}{R\+F\+M\+\_\+\+L\+O\+N\+G\+\_\+\+R\+A\+N\+G\+E\+\_\+\+M\+O\+DE}}~0x80
+\item 
+\#define \mbox{\hyperlink{group___r_f_m___r_e_g_gaea7ee1acf4e5bb89bd057619be163d00}{R\+F\+M\+\_\+\+A\+C\+C\+E\+S\+S\+\_\+\+S\+H\+A\+R\+E\+D\+\_\+\+R\+EG}}~0x40
+\item 
+\#define \mbox{\hyperlink{group___r_f_m___r_e_g_ga0c9fa032ff669aa59bdbb8298ca7b84d}{R\+F\+M\+\_\+\+L\+O\+W\+\_\+\+F\+R\+E\+Q\+U\+E\+N\+C\+Y\+\_\+\+M\+O\+DE}}~0x08
+\item 
+\#define \mbox{\hyperlink{group___r_f_m___r_e_g_gad36327544af17d57a33a135b7454f34c}{R\+F\+M\+\_\+\+M\+O\+DE}}~0x07
+\item 
+\#define \mbox{\hyperlink{group___r_f_m___r_e_g_ga8753b4175be3f74136c3f7a7f8620774}{R\+F\+M\+\_\+\+M\+O\+D\+E\+\_\+\+S\+L\+E\+EP}}~0x00
+\item 
+\#define \mbox{\hyperlink{group___r_f_m___r_e_g_gaff6b46713347c4c3f2fbc4a2033bb958}{R\+F\+M\+\_\+\+M\+O\+D\+E\+\_\+\+S\+T\+D\+BY}}~0x01
+\item 
+\#define \mbox{\hyperlink{group___r_f_m___r_e_g_ga42c6a0498709e6abdcafc3079dd02e7b}{R\+F\+M\+\_\+\+M\+O\+D\+E\+\_\+\+F\+S\+TX}}~0x02
+\item 
+\#define \mbox{\hyperlink{group___r_f_m___r_e_g_gab28486a8c0393dc12ff0dd04325fd84b}{R\+F\+M\+\_\+\+M\+O\+D\+E\+\_\+\+TX}}~0x03
+\item 
+\#define \mbox{\hyperlink{group___r_f_m___r_e_g_ga7465645bef3dd4d7c7b1ba31803d4850}{R\+F\+M\+\_\+\+M\+O\+D\+E\+\_\+\+F\+S\+RX}}~0x04
+\item 
+\#define \mbox{\hyperlink{group___r_f_m___r_e_g_ga8f7860205c9d44d922201a1c6124553c}{R\+F\+M\+\_\+\+M\+O\+D\+E\+\_\+\+R\+X\+C\+O\+N\+T\+I\+N\+U\+O\+US}}~0x05
+\item 
+\#define \mbox{\hyperlink{group___r_f_m___r_e_g_ga68a460c52bae16ef4a404d518256d908}{R\+F\+M\+\_\+\+M\+O\+D\+E\+\_\+\+R\+X\+S\+I\+N\+G\+LE}}~0x06
+\item 
+\#define \mbox{\hyperlink{group___r_f_m___r_e_g_ga879286a499ac6485feca3422d48a8882}{R\+F\+M\+\_\+\+M\+O\+D\+E\+\_\+\+C\+AD}}~0x07
+\item 
+\#define \mbox{\hyperlink{group___r_f_m___r_e_g_ga77caf23af20ce85f5ae37f12d0d806ab}{R\+F\+M\+\_\+\+P\+A\+\_\+\+S\+E\+L\+E\+CT}}~0x80
+\item 
+\#define \mbox{\hyperlink{group___r_f_m___r_e_g_ga501f04fcb8b91bfeab0a904b035d0e20}{R\+F\+M\+\_\+\+M\+A\+X\+\_\+\+P\+O\+W\+ER}}~0x70
+\item 
+\#define \mbox{\hyperlink{group___r_f_m___r_e_g_ga8627ba0d89061e4162112b44a12b85bf}{R\+F\+M\+\_\+\+O\+U\+T\+P\+U\+T\+\_\+\+P\+O\+W\+ER}}~0x0f
+\item 
+\#define \mbox{\hyperlink{group___r_f_m___r_e_g_ga59198253c729f13bfe2dac7190a2c7a8}{R\+F\+M\+\_\+\+L\+O\+W\+\_\+\+P\+N\+\_\+\+T\+X\+\_\+\+P\+L\+L\+\_\+\+O\+FF}}~0x10
+\item 
+\#define \mbox{\hyperlink{group___r_f_m___r_e_g_ga3ae15ddc8efec7c5c00a62b6f1c14d76}{R\+F\+M\+\_\+\+P\+A\+\_\+\+R\+A\+M\+P\+\_\+\+M\+A\+SK}}~0x0f
+\item 
+\#define \mbox{\hyperlink{group___r_f_m___r_e_g_gaa2d1fa9904e8844dde4d6dc5933a5e39}{R\+F\+M\+\_\+\+P\+A\+\_\+\+R\+A\+M\+P\+\_\+3\+\_\+4\+MS}}~0x00
+\item 
+\#define \mbox{\hyperlink{group___r_f_m___r_e_g_ga98333f4c37610682241f8c5c653cdf82}{R\+F\+M\+\_\+\+P\+A\+\_\+\+R\+A\+M\+P\+\_\+2\+MS}}~0x01
+\item 
+\#define \mbox{\hyperlink{group___r_f_m___r_e_g_ga1f5701d073233d97e83777fd502740d8}{R\+F\+M\+\_\+\+P\+A\+\_\+\+R\+A\+M\+P\+\_\+1\+MS}}~0x02
+\item 
+\#define \mbox{\hyperlink{group___r_f_m___r_e_g_gac6646adcdd2b637347d15bcd09904cbf}{R\+F\+M\+\_\+\+P\+A\+\_\+\+R\+A\+M\+P\+\_\+500\+US}}~0x03
+\item 
+\#define \mbox{\hyperlink{group___r_f_m___r_e_g_gad84cd5fba79c9191d0d7b131d98a8a01}{R\+F\+M\+\_\+\+P\+A\+\_\+\+R\+A\+M\+P\+\_\+250\+US}}~0x04
+\item 
+\#define \mbox{\hyperlink{group___r_f_m___r_e_g_ga9690a22faffb0310e1830a77491032ff}{R\+F\+M\+\_\+\+P\+A\+\_\+\+R\+A\+M\+P\+\_\+125\+US}}~0x05
+\item 
+\#define \mbox{\hyperlink{group___r_f_m___r_e_g_gab6940b062ad3eab06b21be0410c4928a}{R\+F\+M\+\_\+\+P\+A\+\_\+\+R\+A\+M\+P\+\_\+100\+US}}~0x06
+\item 
+\#define \mbox{\hyperlink{group___r_f_m___r_e_g_ga7f17258baf8a39b8a8f1f06ff0c3fda5}{R\+F\+M\+\_\+\+P\+A\+\_\+\+R\+A\+M\+P\+\_\+62\+US}}~0x07
+\item 
+\#define \mbox{\hyperlink{group___r_f_m___r_e_g_gac37664710c9dd48c07b54b42202c9c1e}{R\+F\+M\+\_\+\+P\+A\+\_\+\+R\+A\+M\+P\+\_\+50\+US}}~0x08
+\item 
+\#define \mbox{\hyperlink{group___r_f_m___r_e_g_gac711d620c58f13196614f3988de81596}{R\+F\+M\+\_\+\+P\+A\+\_\+\+R\+A\+M\+P\+\_\+40\+US}}~0x09
+\item 
+\#define \mbox{\hyperlink{group___r_f_m___r_e_g_ga997814144a6f371c375a9e5ce5e3fdfd}{R\+F\+M\+\_\+\+P\+A\+\_\+\+R\+A\+M\+P\+\_\+31\+US}}~0x0a
+\item 
+\#define \mbox{\hyperlink{group___r_f_m___r_e_g_ga60cab33376fa3512e515c282f2c61d07}{R\+F\+M\+\_\+\+P\+A\+\_\+\+R\+A\+M\+P\+\_\+25\+US}}~0x0b
+\item 
+\#define \mbox{\hyperlink{group___r_f_m___r_e_g_ga0f2ec984819fa2f84abc5a4375312c6c}{R\+F\+M\+\_\+\+P\+A\+\_\+\+R\+A\+M\+P\+\_\+20\+US}}~0x0c
+\item 
+\#define \mbox{\hyperlink{group___r_f_m___r_e_g_ga7fc9b5a5be832689958dc0b9be88beef}{R\+F\+M\+\_\+\+P\+A\+\_\+\+R\+A\+M\+P\+\_\+15\+US}}~0x0d
+\item 
+\#define \mbox{\hyperlink{group___r_f_m___r_e_g_gab1d1f56fedc61482f4d9677eb77dcc94}{R\+F\+M\+\_\+\+P\+A\+\_\+\+R\+A\+M\+P\+\_\+12\+US}}~0x0e
+\item 
+\#define \mbox{\hyperlink{group___r_f_m___r_e_g_gaacbd16da23855d35071e54fab3d8cbf8}{R\+F\+M\+\_\+\+P\+A\+\_\+\+R\+A\+M\+P\+\_\+10\+US}}~0x0f
+\item 
+\#define \mbox{\hyperlink{group___r_f_m___r_e_g_ga4090553ba4959e33afe1200f39c5ce15}{R\+F\+M\+\_\+\+O\+C\+P\+\_\+\+ON}}~0x20
+\item 
+\#define \mbox{\hyperlink{group___r_f_m___r_e_g_gab44b6dd5983e7ffbcbd88e1c407ad356}{R\+F\+M\+\_\+\+O\+C\+P\+\_\+\+T\+R\+IM}}~0x1f
+\item 
+\#define \mbox{\hyperlink{group___r_f_m___r_e_g_ga24fa88c835e1475ae0bca8c27454ce5b}{R\+F\+M\+\_\+\+L\+N\+A\+\_\+\+G\+A\+IN}}~0xe0
+\item 
+\#define \mbox{\hyperlink{group___r_f_m___r_e_g_gadf5f76aeccc745546d8dc3ef7885ea4b}{R\+F\+M\+\_\+\+L\+N\+A\+\_\+\+G\+A\+I\+N\+\_\+\+G1}}~0x20
+\item 
+\#define \mbox{\hyperlink{group___r_f_m___r_e_g_ga72587a5952d01f8c8466e1e4c2c06dc0}{R\+F\+M\+\_\+\+L\+N\+A\+\_\+\+G\+A\+I\+N\+\_\+\+G2}}~0x40
+\item 
+\#define \mbox{\hyperlink{group___r_f_m___r_e_g_gaeff69fdc30366934b78c078542a07981}{R\+F\+M\+\_\+\+L\+N\+A\+\_\+\+G\+A\+I\+N\+\_\+\+G3}}~0x60
+\item 
+\#define \mbox{\hyperlink{group___r_f_m___r_e_g_ga9bde20197b1f04c608f7f38a1eff6bc6}{R\+F\+M\+\_\+\+L\+N\+A\+\_\+\+G\+A\+I\+N\+\_\+\+G4}}~0x80
+\item 
+\#define \mbox{\hyperlink{group___r_f_m___r_e_g_ga3ddd75f37172d8fbd8eb7d7de42cc685}{R\+F\+M\+\_\+\+L\+N\+A\+\_\+\+G\+A\+I\+N\+\_\+\+G5}}~0xa0
+\item 
+\#define \mbox{\hyperlink{group___r_f_m___r_e_g_ga15c716918dd52948ace26ea6d231bb6d}{R\+F\+M\+\_\+\+L\+N\+A\+\_\+\+G\+A\+I\+N\+\_\+\+G6}}~0xc0
+\item 
+\#define \mbox{\hyperlink{group___r_f_m___r_e_g_ga6040d513a5c1a75294a1c7227ed3b4fc}{R\+F\+M\+\_\+\+L\+N\+A\+\_\+\+B\+O\+O\+S\+T\+\_\+\+LF}}~0x18
+\item 
+\#define \mbox{\hyperlink{group___r_f_m___r_e_g_ga6094f0481dd7968d6aba532a62f430bb}{R\+F\+M\+\_\+\+L\+N\+A\+\_\+\+B\+O\+O\+S\+T\+\_\+\+L\+F\+\_\+\+D\+E\+F\+A\+U\+LT}}~0x00
+\item 
+\#define \mbox{\hyperlink{group___r_f_m___r_e_g_ga4e545b5a92087bb72cc56fe18af84ab1}{R\+F\+M\+\_\+\+L\+N\+A\+\_\+\+B\+O\+O\+S\+T\+\_\+\+HF}}~0x03
+\item 
+\#define \mbox{\hyperlink{group___r_f_m___r_e_g_gae8907553681176d030d17fa7da701d89}{R\+F\+M\+\_\+\+L\+N\+A\+\_\+\+B\+O\+O\+S\+T\+\_\+\+H\+F\+\_\+\+D\+E\+F\+A\+U\+LT}}~0x00
+\item 
+\#define \mbox{\hyperlink{group___r_f_m___r_e_g_gac827c0769313671e247958742ac893b9}{R\+F\+M\+\_\+\+L\+N\+A\+\_\+\+B\+O\+O\+S\+T\+\_\+\+H\+F\+\_\+150\+PC}}~0x03
+\item 
+\#define \mbox{\hyperlink{group___r_f_m___r_e_g_ga46c8d638fd5d677ff00574202749a60d}{R\+F\+M\+\_\+\+R\+X\+\_\+\+T\+I\+M\+E\+O\+U\+T\+\_\+\+M\+A\+SK}}~0x80
+\item 
+\#define \mbox{\hyperlink{group___r_f_m___r_e_g_ga886c9f196a27dceab3c71a2b08d4db2d}{R\+F\+M\+\_\+\+R\+X\+\_\+\+D\+O\+N\+E\+\_\+\+M\+A\+SK}}~0x40
+\item 
+\#define \mbox{\hyperlink{group___r_f_m___r_e_g_ga65a837ca136ec77aad8b73c4ab851e4f}{R\+F\+M\+\_\+\+P\+A\+Y\+L\+O\+A\+D\+\_\+\+C\+R\+C\+\_\+\+E\+R\+R\+O\+R\+\_\+\+M\+A\+SK}}~0x20
+\item 
+\#define \mbox{\hyperlink{group___r_f_m___r_e_g_ga580bb89afbf9b7055f73a2ae358c6a7a}{R\+F\+M\+\_\+\+V\+A\+L\+I\+D\+\_\+\+H\+E\+A\+D\+E\+R\+\_\+\+M\+A\+SK}}~0x10
+\item 
+\#define \mbox{\hyperlink{group___r_f_m___r_e_g_ga4d67743361ea6df5dcb97570afd6f661}{R\+F\+M\+\_\+\+T\+X\+\_\+\+D\+O\+N\+E\+\_\+\+M\+A\+SK}}~0x08
+\item 
+\#define \mbox{\hyperlink{group___r_f_m___r_e_g_gac15beb51b598be10605c31402f942604}{R\+F\+M\+\_\+\+C\+A\+D\+\_\+\+D\+O\+N\+E\+\_\+\+M\+A\+SK}}~0x04
+\item 
+\#define \mbox{\hyperlink{group___r_f_m___r_e_g_ga7160498da85504b4fb1e66eefee148c2}{R\+F\+M\+\_\+\+F\+H\+S\+S\+\_\+\+C\+H\+A\+N\+G\+E\+\_\+\+C\+H\+A\+N\+N\+E\+L\+\_\+\+M\+A\+SK}}~0x02
+\item 
+\#define \mbox{\hyperlink{group___r_f_m___r_e_g_ga11ff04d8a0261ab90e95f7b53a5be732}{R\+F\+M\+\_\+\+C\+A\+D\+\_\+\+D\+E\+T\+E\+C\+T\+E\+D\+\_\+\+M\+A\+SK}}~0x01
+\item 
+\#define \mbox{\hyperlink{group___r_f_m___r_e_g_gac4466525e6cf4716e7be485ec496763d}{R\+F\+M\+\_\+\+I\+R\+Q\+\_\+\+A\+LL}}~0x\+FF
+\item 
+\#define \mbox{\hyperlink{group___r_f_m___r_e_g_gaf6cdf56add76e5f2ece02710cfc6b2ab}{R\+F\+M\+\_\+\+I\+R\+Q\+\_\+\+N\+O\+NE}}~0x00
+\item 
+\#define \mbox{\hyperlink{group___r_f_m___r_e_g_ga9687d1220a0ded952e7119d5219779f4}{R\+F\+M\+\_\+\+I\+R\+Q\+\_\+\+R\+X\+\_\+\+T\+I\+M\+E\+O\+UT}}~0x80
+\item 
+\#define \mbox{\hyperlink{group___r_f_m___r_e_g_ga50b07045d10fe450256900fb0392dcd9}{R\+F\+M\+\_\+\+I\+R\+Q\+\_\+\+R\+X\+\_\+\+D\+O\+NE}}~0x40
+\item 
+\#define \mbox{\hyperlink{group___r_f_m___r_e_g_gafff2997606702b74acf477ce9a1141e0}{R\+F\+M\+\_\+\+I\+R\+Q\+\_\+\+P\+A\+Y\+L\+O\+A\+D\+\_\+\+C\+R\+C\+\_\+\+E\+R\+R\+OR}}~0x20
+\item 
+\#define \mbox{\hyperlink{group___r_f_m___r_e_g_ga20b6294b23c246066a0dd46aaefc2e68}{R\+F\+M\+\_\+\+I\+R\+Q\+\_\+\+V\+A\+L\+I\+D\+\_\+\+H\+E\+A\+D\+ER}}~0x10
+\item 
+\#define \mbox{\hyperlink{group___r_f_m___r_e_g_ga22cfeb678799b2affeb3f2f4084792f8}{R\+F\+M\+\_\+\+I\+R\+Q\+\_\+\+T\+X\+\_\+\+D\+O\+NE}}~0x08
+\item 
+\#define \mbox{\hyperlink{group___r_f_m___r_e_g_gac8d939f752fbb70a12af72db29238ce8}{R\+F\+M\+\_\+\+I\+R\+Q\+\_\+\+C\+A\+D\+\_\+\+D\+O\+NE}}~0x04
+\item 
+\#define \mbox{\hyperlink{group___r_f_m___r_e_g_ga376784fe05633d7b9dc0bda4e84b50a3}{R\+F\+M\+\_\+\+I\+R\+Q\+\_\+\+F\+H\+S\+S\+\_\+\+C\+H\+A\+N\+G\+E\+\_\+\+C\+H\+A\+N\+N\+EL}}~0x02
+\item 
+\#define \mbox{\hyperlink{group___r_f_m___r_e_g_gac1d02291848211f49df1455134b00f7d}{R\+F\+M\+\_\+\+I\+R\+Q\+\_\+\+C\+A\+D\+\_\+\+D\+E\+T\+E\+C\+T\+ED}}~0x01
+\item 
+\#define \mbox{\hyperlink{group___r_f_m___r_e_g_gadb849b331c82e5844141c66fce8b12b8}{R\+F\+M\+\_\+\+R\+X\+\_\+\+C\+O\+D\+I\+N\+G\+\_\+\+R\+A\+TE}}~0xe0
+\item 
+\#define \mbox{\hyperlink{group___r_f_m___r_e_g_gadbd2ff3317eae3c8e95dc584d3ee0ee4}{R\+F\+M\+\_\+\+M\+O\+D\+E\+M\+\_\+\+S\+T\+A\+T\+U\+S\+\_\+\+C\+L\+E\+AR}}~0x10
+\item 
+\#define \mbox{\hyperlink{group___r_f_m___r_e_g_gab00b6e3bab4bad7723c05675a57d777b}{R\+F\+M\+\_\+\+M\+O\+D\+E\+M\+\_\+\+S\+T\+A\+T\+U\+S\+\_\+\+H\+E\+A\+D\+E\+R\+\_\+\+I\+N\+F\+O\+\_\+\+V\+A\+L\+ID}}~0x08
+\item 
+\#define \mbox{\hyperlink{group___r_f_m___r_e_g_ga519236312c124f2a1af51cb2f1c34607}{R\+F\+M\+\_\+\+M\+O\+D\+E\+M\+\_\+\+S\+T\+A\+T\+U\+S\+\_\+\+R\+X\+\_\+\+O\+N\+G\+O\+I\+NG}}~0x04
+\item 
+\#define \mbox{\hyperlink{group___r_f_m___r_e_g_ga68d52effda4f0f9ee941d13b478909c9}{R\+F\+M\+\_\+\+M\+O\+D\+E\+M\+\_\+\+S\+T\+A\+T\+U\+S\+\_\+\+S\+I\+G\+N\+A\+L\+\_\+\+S\+Y\+N\+C\+H\+R\+O\+N\+I\+Z\+ED}}~0x02
+\item 
+\#define \mbox{\hyperlink{group___r_f_m___r_e_g_ga21714004a3b6fc2fd2d7ac2f02d4bdbd}{R\+F\+M\+\_\+\+M\+O\+D\+E\+M\+\_\+\+S\+T\+A\+T\+U\+S\+\_\+\+S\+I\+G\+N\+A\+L\+\_\+\+D\+E\+T\+E\+C\+T\+ED}}~0x01
+\item 
+\#define \mbox{\hyperlink{group___r_f_m___r_e_g_ga6468e74cdb785242a848d53fd35d50b2}{R\+F\+M\+\_\+\+P\+L\+L\+\_\+\+T\+I\+M\+E\+O\+UT}}~0x80
+\item 
+\#define \mbox{\hyperlink{group___r_f_m___r_e_g_ga6f03946c297feb41070e2fe6811e041d}{R\+F\+M\+\_\+\+R\+X\+\_\+\+P\+A\+Y\+L\+O\+A\+D\+\_\+\+C\+R\+C\+\_\+\+I\+S\+\_\+\+ON}}~0x40
+\item 
+\#define \mbox{\hyperlink{group___r_f_m___r_e_g_ga7e3ef623be57b9a5870634bfc21391b2}{R\+F\+M\+\_\+\+F\+H\+S\+S\+\_\+\+P\+R\+E\+S\+E\+N\+T\+\_\+\+C\+H\+A\+N\+N\+EL}}~0x3f
+\item 
+\#define \mbox{\hyperlink{group___r_f_m___r_e_g_ga4366bcf084242030c50978964075dfe6}{R\+F\+M\+\_\+\+BW}}~0xf0
+\item 
+\#define \mbox{\hyperlink{group___r_f_m___r_e_g_gafacb21b9e5da88cb37415af124260250}{R\+F\+M\+\_\+\+B\+W\+\_\+7\+\_\+8\+K\+HZ}}~0x00
+\item 
+\#define \mbox{\hyperlink{group___r_f_m___r_e_g_ga132c4bb79c705333e11240951ec9d245}{R\+F\+M\+\_\+\+B\+W\+\_\+10\+\_\+4\+K\+HZ}}~0x10
+\item 
+\#define \mbox{\hyperlink{group___r_f_m___r_e_g_ga246911e1dfc46b3003d3ab5c0d8cc9f7}{R\+F\+M\+\_\+\+B\+W\+\_\+15\+\_\+6\+K\+HZ}}~0x20
+\item 
+\#define \mbox{\hyperlink{group___r_f_m___r_e_g_ga03e633adab87201b7e15504b1ae17119}{R\+F\+M\+\_\+\+B\+W\+\_\+20\+\_\+8\+K\+HZ}}~0x30
+\item 
+\#define \mbox{\hyperlink{group___r_f_m___r_e_g_ga9f4bd4f132b47c53051635265540cf4b}{R\+F\+M\+\_\+\+B\+W\+\_\+31\+\_\+25\+K\+HZ}}~0x40
+\item 
+\#define \mbox{\hyperlink{group___r_f_m___r_e_g_gac3a326b0b8b85f87724168a20f6a9b5c}{R\+F\+M\+\_\+\+B\+W\+\_\+41\+\_\+7\+K\+HZ}}~0x50
+\item 
+\#define \mbox{\hyperlink{group___r_f_m___r_e_g_gaf296d76f8cd35dfca9b5ac5c33d9ca37}{R\+F\+M\+\_\+\+B\+W\+\_\+62\+\_\+5\+K\+HZ}}~0x60
+\item 
+\#define \mbox{\hyperlink{group___r_f_m___r_e_g_gac10a8b57e3caab32ace83340431ca741}{R\+F\+M\+\_\+\+B\+W\+\_\+125\+K\+HZ}}~0x70
+\item 
+\#define \mbox{\hyperlink{group___r_f_m___r_e_g_gae6aaa8f181faae6f0afe1d4cee7ba3e6}{R\+F\+M\+\_\+\+B\+W\+\_\+250\+K\+HZ}}~0x80
+\item 
+\#define \mbox{\hyperlink{group___r_f_m___r_e_g_ga72cadc5bdfcb5a4871485107f8939cb9}{R\+F\+M\+\_\+\+B\+W\+\_\+500\+K\+HZ}}~0x90
+\item 
+\#define \mbox{\hyperlink{group___r_f_m___r_e_g_gaf01ea0efd19cc76918f34f12bda11043}{R\+F\+M\+\_\+\+C\+O\+D\+I\+N\+G\+\_\+\+R\+A\+TE}}~0x0e
+\item 
+\#define \mbox{\hyperlink{group___r_f_m___r_e_g_ga791e64216981f68b5a7f7dc986f703ed}{R\+F\+M\+\_\+\+C\+O\+D\+I\+N\+G\+\_\+\+R\+A\+T\+E\+\_\+4\+\_\+5}}~0x02
+\item 
+\#define \mbox{\hyperlink{group___r_f_m___r_e_g_ga0edc07f9df69ae638f8f8dea971325dd}{R\+F\+M\+\_\+\+C\+O\+D\+I\+N\+G\+\_\+\+R\+A\+T\+E\+\_\+4\+\_\+6}}~0x04
+\item 
+\#define \mbox{\hyperlink{group___r_f_m___r_e_g_gad05390d421fd3888871ff9b7adce0842}{R\+F\+M\+\_\+\+C\+O\+D\+I\+N\+G\+\_\+\+R\+A\+T\+E\+\_\+4\+\_\+7}}~0x06
+\item 
+\#define \mbox{\hyperlink{group___r_f_m___r_e_g_gafa0465073bb64c9a204d3a2f8bc7667f}{R\+F\+M\+\_\+\+C\+O\+D\+I\+N\+G\+\_\+\+R\+A\+T\+E\+\_\+4\+\_\+8}}~0x08
+\item 
+\#define \mbox{\hyperlink{group___r_f_m___r_e_g_ga2705328bc48a2dabe66953781715a749}{R\+F\+M\+\_\+\+I\+M\+P\+L\+I\+C\+I\+T\+\_\+\+H\+E\+A\+D\+E\+R\+\_\+\+M\+O\+D\+E\+\_\+\+ON}}~0x01
+\item 
+\#define \mbox{\hyperlink{group___r_f_m___r_e_g_gae2231ea56372274b91e7d07dbf2252d0}{R\+F\+M\+\_\+\+S\+P\+R\+E\+A\+D\+I\+N\+G\+\_\+\+F\+A\+C\+T\+OR}}~0xf0
+\item 
+\#define \mbox{\hyperlink{group___r_f_m___r_e_g_ga4badda06bea16f2ab302998e0c2eeb06}{R\+F\+M\+\_\+\+S\+P\+R\+E\+A\+D\+I\+N\+G\+\_\+\+F\+A\+C\+T\+O\+R\+\_\+64\+C\+PS}}~0x60
+\item 
+\#define \mbox{\hyperlink{group___r_f_m___r_e_g_ga91493e17a62f89f8b1950938ac178ae4}{R\+F\+M\+\_\+\+S\+P\+R\+E\+A\+D\+I\+N\+G\+\_\+\+F\+A\+C\+T\+O\+R\+\_\+128\+C\+PS}}~0x70
+\item 
+\#define \mbox{\hyperlink{group___r_f_m___r_e_g_ga303e4100146cca067c82d5ba835f2ae1}{R\+F\+M\+\_\+\+S\+P\+R\+E\+A\+D\+I\+N\+G\+\_\+\+F\+A\+C\+T\+O\+R\+\_\+256\+C\+PS}}~0x80
+\item 
+\#define \mbox{\hyperlink{group___r_f_m___r_e_g_ga75a6a399d21143395ba3b356b068f661}{R\+F\+M\+\_\+\+S\+P\+R\+E\+A\+D\+I\+N\+G\+\_\+\+F\+A\+C\+T\+O\+R\+\_\+512\+C\+PS}}~0x90
+\item 
+\#define \mbox{\hyperlink{group___r_f_m___r_e_g_gaf627d2f43a068f7d914d571442f925f2}{R\+F\+M\+\_\+\+S\+P\+R\+E\+A\+D\+I\+N\+G\+\_\+\+F\+A\+C\+T\+O\+R\+\_\+1024\+C\+PS}}~0xa0
+\item 
+\#define \mbox{\hyperlink{group___r_f_m___r_e_g_ga46a9a7dcffcb60f499f40ae4b0d2349e}{R\+F\+M\+\_\+\+S\+P\+R\+E\+A\+D\+I\+N\+G\+\_\+\+F\+A\+C\+T\+O\+R\+\_\+2048\+C\+PS}}~0xb0
+\item 
+\#define \mbox{\hyperlink{group___r_f_m___r_e_g_gac399f154772e269d43f3c55b12a89711}{R\+F\+M\+\_\+\+S\+P\+R\+E\+A\+D\+I\+N\+G\+\_\+\+F\+A\+C\+T\+O\+R\+\_\+4096\+C\+PS}}~0xc0
+\item 
+\#define \mbox{\hyperlink{group___r_f_m___r_e_g_ga554b5c39acd3776e6af1d38a48b143d0}{R\+F\+M\+\_\+\+T\+X\+\_\+\+C\+O\+N\+T\+I\+N\+U\+O\+U\+S\+\_\+\+M\+O\+DE}}~0x08
+\item 
+\#define \mbox{\hyperlink{group___r_f_m___r_e_g_ga8b45fbec47f488bd4fc4fc6cb4d35135}{R\+F\+M\+\_\+\+P\+A\+Y\+L\+O\+A\+D\+\_\+\+C\+R\+C\+\_\+\+ON}}~0x04
+\item 
+\#define \mbox{\hyperlink{group___r_f_m___r_e_g_ga038b2d99d6fc892ddd65379fa5a35fd2}{R\+F\+M\+\_\+\+S\+Y\+M\+\_\+\+T\+I\+M\+E\+O\+U\+T\+\_\+\+M\+SB}}~0x03
+\item 
+\#define \mbox{\hyperlink{group___r_f_m___r_e_g_ga90c030f1fe44b889d051b36a4ea98b9b}{R\+F\+M\+\_\+\+M\+O\+B\+I\+L\+E\+\_\+\+N\+O\+DE}}~0x08
+\item 
+\#define \mbox{\hyperlink{group___r_f_m___r_e_g_gab21f907ab4aa6b64c09c70e218b773fd}{R\+F\+M\+\_\+\+L\+O\+W\+\_\+\+D\+A\+T\+A\+\_\+\+R\+A\+T\+E\+\_\+\+O\+P\+T\+I\+M\+I\+ZE}}~0x08
+\item 
+\#define \mbox{\hyperlink{group___r_f_m___r_e_g_ga153911044958d9f36626716c73568160}{R\+F\+M\+\_\+\+A\+G\+C\+\_\+\+A\+U\+T\+O\+\_\+\+ON}}~0x04
+\item 
+\#define \mbox{\hyperlink{group___r_f_m___r_e_g_ga657b03a41342dd05dd39f4b54630ffdf}{R\+F\+M\+\_\+\+I\+O\+\_\+0\+\_\+\+I\+R\+Q\+\_\+\+R\+X\+\_\+\+D\+O\+NE}}~(0 $<$$<$ 6)
+\item 
+\#define \mbox{\hyperlink{group___r_f_m___r_e_g_gad71183932b987a24c7d4456690f8e295}{R\+F\+M\+\_\+\+I\+O\+\_\+0\+\_\+\+I\+R\+Q\+\_\+\+T\+X\+\_\+\+D\+O\+NE}}~(1 $<$$<$ 6)
+\item 
+\#define \mbox{\hyperlink{group___r_f_m___r_e_g_gaaf2cf3e03065da977122367604834f08}{R\+F\+M\+\_\+\+I\+O\+\_\+0\+\_\+\+I\+R\+Q\+\_\+\+C\+A\+D\+\_\+\+D\+O\+NE}}~(2 $<$$<$ 6)
+\item 
+\#define \mbox{\hyperlink{group___r_f_m___r_e_g_ga84a2a7d8e3080937f2445362ff5a4b86}{R\+F\+M\+\_\+\+I\+O\+\_\+1\+\_\+\+I\+R\+Q\+\_\+\+R\+X\+\_\+\+T\+I\+M\+E\+O\+UT}}~(0 $<$$<$ 4)
+\item 
+\#define \mbox{\hyperlink{group___r_f_m___r_e_g_gaed4b67063ddca2211606153d2e1daaa2}{R\+F\+M\+\_\+\+I\+O\+\_\+1\+\_\+\+I\+R\+Q\+\_\+\+F\+H\+S\+S\+\_\+\+C\+H\+A\+N\+GE}}~(1 $<$$<$ 4)
+\item 
+\#define \mbox{\hyperlink{group___r_f_m___r_e_g_ga8239da1de069cd6994738f1915c30139}{R\+F\+M\+\_\+\+I\+O\+\_\+1\+\_\+\+I\+R\+Q\+\_\+\+C\+A\+D\+\_\+\+D\+E\+T\+E\+C\+T\+ED}}~(2 $<$$<$ 4)
+\item 
+\#define \mbox{\hyperlink{group___r_f_m___r_e_g_gad61bc2f2221aa7f95086f8311a4c0171}{R\+F\+M\+\_\+\+I\+O\+\_\+2\+\_\+\+I\+R\+Q\+\_\+\+F\+H\+S\+S\+\_\+\+C\+H\+A\+N\+GE}}~(0 $<$$<$ 2)
+\item 
+\#define \mbox{\hyperlink{group___r_f_m___r_e_g_ga809f98918d3c7aa841c737cc1e032abf}{R\+F\+M\+\_\+\+I\+O\+\_\+3\+\_\+\+I\+R\+Q\+\_\+\+C\+A\+D\+\_\+\+D\+O\+NE}}~(0 $<$$<$ 0)
+\item 
+\#define \mbox{\hyperlink{group___r_f_m___r_e_g_ga3431ce3ca9e1003a90317dadcc66bf88}{R\+F\+M\+\_\+\+I\+O\+\_\+3\+\_\+\+I\+R\+Q\+\_\+\+V\+A\+L\+I\+D\+\_\+\+H\+E\+A\+D\+ER}}~(1 $<$$<$ 0)
+\item 
+\#define \mbox{\hyperlink{group___r_f_m___r_e_g_gaf33831a9ac6e59402d50bd72b5065bf3}{R\+F\+M\+\_\+\+I\+O\+\_\+3\+\_\+\+I\+R\+Q\+\_\+\+C\+R\+C\+\_\+\+E\+R\+R\+OR}}~(2 $<$$<$ 0)
+\item 
+\#define \mbox{\hyperlink{group___r_f_m___r_e_g_gab2b235c49c2617216a459c0ecfc65dc6}{R\+F\+M\+\_\+\+I\+O\+\_\+4\+\_\+\+I\+R\+Q\+\_\+\+C\+A\+D\+\_\+\+D\+E\+T\+E\+C\+T\+ED}}~(0 $<$$<$ 6)
+\item 
+\#define \mbox{\hyperlink{group___r_f_m___r_e_g_gadaba45bd5a8d81b95f46716ee717aee0}{R\+F\+M\+\_\+\+I\+O\+\_\+4\+\_\+\+I\+R\+Q\+\_\+\+P\+L\+L\+\_\+\+L\+O\+CK}}~(1 $<$$<$ 6)
+\item 
+\#define \mbox{\hyperlink{group___r_f_m___r_e_g_gaf4aa90f3d7f65979df67af1071dac9cb}{R\+F\+M\+\_\+\+I\+O\+\_\+5\+\_\+\+I\+R\+Q\+\_\+\+M\+O\+D\+E\+\_\+\+R\+E\+A\+DY}}~(0 $<$$<$ 4)
+\item 
+\#define \mbox{\hyperlink{group___r_f_m___r_e_g_ga3f663448938914a099c47fdfe164fb82}{R\+F\+M\+\_\+\+I\+O\+\_\+5\+\_\+\+I\+R\+Q\+\_\+\+C\+L\+K\+O\+UT}}~(1 $<$$<$ 4)
+\item 
+\#define \mbox{\hyperlink{group___r_f_m___r_e_g_gacb8982cb829c8be96dbe6521760111c9}{R\+F\+M\+\_\+\+P\+A\+\_\+\+D\+A\+C\+\_\+\+D\+I\+S\+A\+B\+LE}}~0x04
+\item 
+\#define \mbox{\hyperlink{group___r_f_m___r_e_g_gaca826dad14f024d074ec50bd1b68794d}{R\+F\+M\+\_\+\+P\+A\+\_\+\+D\+A\+C\+\_\+\+E\+N\+A\+B\+LE}}~0x07
+\item 
+\#define \mbox{\hyperlink{group___r_f_m___r_e_g_gafe6c49cce3fff604c567cde3ac5446bd}{R\+F\+M\+\_\+\+P\+A\+\_\+\+D\+A\+C\+\_\+\+M\+A\+SK}}~0x07
+\item 
+\#define \mbox{\hyperlink{group___r_f_m___a_p_i_ga084d18aefa2602f8340422a54d5270ff}{R\+F\+M\+\_\+\+F\+I\+F\+O\+\_\+\+S\+I\+ZE}}~255
+\begin{DoxyCompactList}\small\item\em Max number of octets the L\+O\+RA Rx/\+Tx F\+I\+FO can hold. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{group___r_f_m___a_p_i_ga53cfca3f6735c8909f611f3c315d6a01}{R\+F\+M\+\_\+\+M\+A\+X\+\_\+\+P\+A\+Y\+L\+O\+A\+D\+\_\+\+L\+EN}}~\mbox{\hyperlink{group___r_f_m___a_p_i_ga084d18aefa2602f8340422a54d5270ff}{R\+F\+M\+\_\+\+F\+I\+F\+O\+\_\+\+S\+I\+ZE}}
+\begin{DoxyCompactList}\small\item\em This is the maximum number of bytes that can be carried by the L\+O\+RA. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{group___r_f_m___a_p_i_gaacbfa0b8396ddab9bf2a3bd1044763fa}{R\+F\+M\+\_\+\+H\+E\+A\+D\+E\+R\+\_\+\+L\+EN}}~4
+\begin{DoxyCompactList}\small\item\em The length of the headers we add to to the packet. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{group___r_f_m___a_p_i_ga393212916e081aae2819f67717f30f59}{R\+F\+M\+\_\+\+P\+A\+C\+K\+E\+T\+\_\+\+D\+A\+T\+A\+\_\+\+L\+E\+N\+\_\+\+M\+AX}}~(\mbox{\hyperlink{group___r_f_m___a_p_i_ga53cfca3f6735c8909f611f3c315d6a01}{R\+F\+M\+\_\+\+M\+A\+X\+\_\+\+P\+A\+Y\+L\+O\+A\+D\+\_\+\+L\+EN}} -\/ \mbox{\hyperlink{group___r_f_m___a_p_i_gaacbfa0b8396ddab9bf2a3bd1044763fa}{R\+F\+M\+\_\+\+H\+E\+A\+D\+E\+R\+\_\+\+L\+EN}})
+\begin{DoxyCompactList}\small\item\em This is the maximum message length that can be supported by this driver. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{group___r_f_m___a_p_i_ga253449333540a74cc368187008d56dab}{R\+F\+M\+\_\+\+F\+X\+O\+SC}}~32000000.\+0
+\begin{DoxyCompactList}\small\item\em The crystal oscillator frequency of the module. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{group___r_f_m___a_p_i_ga1ad73259ef43c3d5f9e1a947d2736d1b}{R\+F\+M\+\_\+\+F\+S\+T\+EP}}~(\mbox{\hyperlink{group___r_f_m___a_p_i_ga253449333540a74cc368187008d56dab}{R\+F\+M\+\_\+\+F\+X\+O\+SC}} / 524288)
+\begin{DoxyCompactList}\small\item\em The Frequency Synthesizer step = R\+F\+M\+\_\+\+F\+X\+O\+SC / 2$^\wedge$$^\wedge$19. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{rfm_8h_a666eda2cf7405dc9f26e01c59f058409}{R\+F\+M\+\_\+\+P\+A\+C\+K\+E\+T\+\_\+\+L\+E\+N\+G\+TH}}~16
+\item 
+\#define \mbox{\hyperlink{group___r_f_m___a_p_i_ga9db5dca6ffe64e5fed68586931c956a3}{P\+A\+C\+K\+E\+T\+S\+\_\+\+B\+U\+F\+\_\+\+S\+I\+ZE}}~16
+\begin{DoxyCompactList}\small\item\em Size of buffer that holds R\+FM packets. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Typedefs}
+\begin{DoxyCompactItemize}
+\item 
+typedef struct \mbox{\hyperlink{structrfm__packet__s}{rfm\+\_\+packet\+\_\+s}} \mbox{\hyperlink{group___r_f_m___a_p_i_gafc01238e3835178530cf6f0f8bf57f52}{rfm\+\_\+packet\+\_\+t}}
+\begin{DoxyCompactList}\small\item\em R\+FM data packet structure. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{group___r_f_m___a_p_i_ga87ffd6a21c7cf0faa01991fd044c4276}{rfm\+\_\+init}} (void)
+\begin{DoxyCompactList}\small\item\em Initialize radio module. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{group___r_f_m___a_p_i_ga91b75a04991a4c31cba4957ba4289961}{rfm\+\_\+reset}} (void)
+\item 
+void \mbox{\hyperlink{group___r_f_m___a_p_i_gae0e65347dc7112c646ba18cb1fe04e14}{rfm\+\_\+end}} (void)
+\item 
+void \mbox{\hyperlink{group___r_f_m___a_p_i_gadfb35c9040d9c6f99adcbfe4502cefa7}{rfm\+\_\+calibrate\+\_\+crystal}} (void)
+\item 
+void \mbox{\hyperlink{group___r_f_m___a_p_i_ga37243125120fd0a34edcb3b8856adfec}{rfm\+\_\+config\+\_\+for\+\_\+lora}} (uint8\+\_\+t BW, uint8\+\_\+t CR, uint8\+\_\+t SF, bool crc\+\_\+turn\+\_\+on, int8\+\_\+t power)
+\item 
+void \mbox{\hyperlink{group___r_f_m___a_p_i_ga52c72188a1ffdeb199c5d7991f5c9dc6}{rfm\+\_\+config\+\_\+for\+\_\+gfsk}} (void)
+\item 
+void \mbox{\hyperlink{group___r_f_m___a_p_i_ga5058dfa294d68004eb9a815c7405f826}{rfm\+\_\+set\+\_\+power}} (int8\+\_\+t power, uint8\+\_\+t ramp\+\_\+time)
+\item 
+void \mbox{\hyperlink{group___r_f_m___a_p_i_gab1fb248dbc46f0899ffef38ca68d5ab4}{rfm\+\_\+get\+\_\+stats}} (void)
+\item 
+void \mbox{\hyperlink{group___r_f_m___a_p_i_ga5564693cd8d951c7bcc00873760e1cec}{rfm\+\_\+reset\+\_\+stats}} (void)
+\item 
+uint8\+\_\+t \mbox{\hyperlink{group___r_f_m___a_p_i_ga76decc202958c9640472be156c7b81f3}{rfm\+\_\+get\+\_\+version}} (void)
+\item 
+void \mbox{\hyperlink{group___r_f_m___a_p_i_ga72db678f5aaf52d58a8619c0c02657ff}{rfm\+\_\+start\+\_\+listening}} (void)
+\item 
+void \mbox{\hyperlink{group___r_f_m___a_p_i_ga06f769ee719ce52ceaa5d0ec6e63b1c6}{rfm\+\_\+get\+\_\+packets}} (void)
+\item 
+\mbox{\hyperlink{group___r_f_m___a_p_i_gafc01238e3835178530cf6f0f8bf57f52}{rfm\+\_\+packet\+\_\+t}} $\ast$ \mbox{\hyperlink{group___r_f_m___a_p_i_gacd273aa88f94ce268e26197140cc7e45}{rfm\+\_\+get\+\_\+next\+\_\+packet}} (void)
+\item 
+uint8\+\_\+t \mbox{\hyperlink{group___r_f_m___a_p_i_gace9a6b928f692d8c264f2387baacdddc}{rfm\+\_\+get\+\_\+num\+\_\+packets}} (void)
+\item 
+void \mbox{\hyperlink{group___r_f_m___a_p_i_ga18a5b5ba0eca9bf5ee9732e0a89f1170}{rfm\+\_\+organize\+\_\+packet}} (\mbox{\hyperlink{group___r_f_m___a_p_i_gafc01238e3835178530cf6f0f8bf57f52}{rfm\+\_\+packet\+\_\+t}} $\ast$packet)
+\item 
+bool \mbox{\hyperlink{group___r_f_m___a_p_i_gae92d1597fc479b67c71e1c126cc6b59a}{rfm\+\_\+transmit\+\_\+packet}} (\mbox{\hyperlink{group___r_f_m___a_p_i_gafc01238e3835178530cf6f0f8bf57f52}{rfm\+\_\+packet\+\_\+t}} packet)
+\begin{DoxyCompactList}\small\item\em Transmit packet. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{group___r_f_m___a_p_i_ga2077909a7fda80633cc079a458b31c2f}{rfm\+\_\+set\+\_\+tx\+\_\+continuous}} (void)
+\item 
+void \mbox{\hyperlink{group___r_f_m___a_p_i_gafb671f7a1fc42c09ae058d8edfcd3ddf}{rfm\+\_\+clear\+\_\+tx\+\_\+continuous}} (void)
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Rfm Header File. 
+
+\begin{DoxyAuthor}{Author}
+Richard Davies 
+\end{DoxyAuthor}
+\begin{DoxyDate}{Date}
+25/\+Dec/2020 
+\end{DoxyDate}
+
+
+\doxysubsection{Macro Definition Documentation}
+\mbox{\Hypertarget{rfm_8h_a666eda2cf7405dc9f26e01c59f058409}\label{rfm_8h_a666eda2cf7405dc9f26e01c59f058409}} 
+\index{rfm.h@{rfm.h}!RFM\_PACKET\_LENGTH@{RFM\_PACKET\_LENGTH}}
+\index{RFM\_PACKET\_LENGTH@{RFM\_PACKET\_LENGTH}!rfm.h@{rfm.h}}
+\doxysubsubsection{\texorpdfstring{RFM\_PACKET\_LENGTH}{RFM\_PACKET\_LENGTH}}
+{\footnotesize\ttfamily \#define R\+F\+M\+\_\+\+P\+A\+C\+K\+E\+T\+\_\+\+L\+E\+N\+G\+TH~16}
+
+
+
+Definition at line 305 of file rfm.\+h.
+

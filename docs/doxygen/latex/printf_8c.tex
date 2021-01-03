@@ -1,0 +1,101 @@
+\hypertarget{printf_8c}{}\doxysection{common/src/printf.c File Reference}
+\label{printf_8c}\index{common/src/printf.c@{common/src/printf.c}}
+{\ttfamily \#include \char`\"{}common/printf.\+h\char`\"{}}\newline
+{\ttfamily \#include $<$stdbool.\+h$>$}\newline
+{\ttfamily \#include $<$stdint.\+h$>$}\newline
+\doxysubsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define \mbox{\hyperlink{printf_8c_a4278b980717163a8ef983ce3fbf0b9db}{P\+R\+I\+N\+T\+F\+\_\+\+N\+T\+O\+A\+\_\+\+B\+U\+F\+F\+E\+R\+\_\+\+S\+I\+ZE}}~32
+\item 
+\#define \mbox{\hyperlink{printf_8c_aed09d46fa1c0666626a96be4e50dd032}{P\+R\+I\+N\+T\+F\+\_\+\+M\+A\+X\+\_\+\+S\+T\+R\+\_\+\+L\+EN}}~1024
+\end{DoxyCompactItemize}
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+static uint32\+\_\+t \mbox{\hyperlink{printf_8c_aabf1349d56fc564244bb4f0b296e9505}{\+\_\+strnlen\+\_\+s}} (const char $\ast$str, uint32\+\_\+t maxsize)
+\item 
+static bool \mbox{\hyperlink{printf_8c_a3b3255e97ad723d1af56cc336b9ba0ff}{\+\_\+is\+\_\+digit}} (char ch)
+\item 
+static uint32\+\_\+t \mbox{\hyperlink{printf_8c_aa59508146b43edd4fc97852eb13bf20e}{\+\_\+atoi}} (const char $\ast$$\ast$str)
+\item 
+static uint32\+\_\+t \mbox{\hyperlink{printf_8c_af35948cc587f96f5a3cd0a169b96c379}{\+\_\+ntoa\+\_\+format}} (\mbox{\hyperlink{printf_8h_a0f103da436a675bb6f53565c5144dc65}{out\+\_\+fct\+\_\+type}} out, uint32\+\_\+t value, uint32\+\_\+t base, uint32\+\_\+t width, bool negative)
+\item 
+uint32\+\_\+t \mbox{\hyperlink{printf_8c_a7929c46dcdbb8a4807f26525cda33a9d}{fnprintf}} (\mbox{\hyperlink{printf_8h_a0f103da436a675bb6f53565c5144dc65}{out\+\_\+fct\+\_\+type}} out, const char $\ast$format, va\+\_\+list va)
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Macro Definition Documentation}
+\mbox{\Hypertarget{printf_8c_aed09d46fa1c0666626a96be4e50dd032}\label{printf_8c_aed09d46fa1c0666626a96be4e50dd032}} 
+\index{printf.c@{printf.c}!PRINTF\_MAX\_STR\_LEN@{PRINTF\_MAX\_STR\_LEN}}
+\index{PRINTF\_MAX\_STR\_LEN@{PRINTF\_MAX\_STR\_LEN}!printf.c@{printf.c}}
+\doxysubsubsection{\texorpdfstring{PRINTF\_MAX\_STR\_LEN}{PRINTF\_MAX\_STR\_LEN}}
+{\footnotesize\ttfamily \#define P\+R\+I\+N\+T\+F\+\_\+\+M\+A\+X\+\_\+\+S\+T\+R\+\_\+\+L\+EN~1024}
+
+
+
+Definition at line 43 of file printf.\+c.
+
+\mbox{\Hypertarget{printf_8c_a4278b980717163a8ef983ce3fbf0b9db}\label{printf_8c_a4278b980717163a8ef983ce3fbf0b9db}} 
+\index{printf.c@{printf.c}!PRINTF\_NTOA\_BUFFER\_SIZE@{PRINTF\_NTOA\_BUFFER\_SIZE}}
+\index{PRINTF\_NTOA\_BUFFER\_SIZE@{PRINTF\_NTOA\_BUFFER\_SIZE}!printf.c@{printf.c}}
+\doxysubsubsection{\texorpdfstring{PRINTF\_NTOA\_BUFFER\_SIZE}{PRINTF\_NTOA\_BUFFER\_SIZE}}
+{\footnotesize\ttfamily \#define P\+R\+I\+N\+T\+F\+\_\+\+N\+T\+O\+A\+\_\+\+B\+U\+F\+F\+E\+R\+\_\+\+S\+I\+ZE~32}
+
+
+
+Definition at line 41 of file printf.\+c.
+
+
+
+\doxysubsection{Function Documentation}
+\mbox{\Hypertarget{printf_8c_aa59508146b43edd4fc97852eb13bf20e}\label{printf_8c_aa59508146b43edd4fc97852eb13bf20e}} 
+\index{printf.c@{printf.c}!\_atoi@{\_atoi}}
+\index{\_atoi@{\_atoi}!printf.c@{printf.c}}
+\doxysubsubsection{\texorpdfstring{\_atoi()}{\_atoi()}}
+{\footnotesize\ttfamily static uint32\+\_\+t \+\_\+atoi (\begin{DoxyParamCaption}\item[{const char $\ast$$\ast$}]{str }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Definition at line 69 of file printf.\+c.
+
+\mbox{\Hypertarget{printf_8c_a3b3255e97ad723d1af56cc336b9ba0ff}\label{printf_8c_a3b3255e97ad723d1af56cc336b9ba0ff}} 
+\index{printf.c@{printf.c}!\_is\_digit@{\_is\_digit}}
+\index{\_is\_digit@{\_is\_digit}!printf.c@{printf.c}}
+\doxysubsubsection{\texorpdfstring{\_is\_digit()}{\_is\_digit()}}
+{\footnotesize\ttfamily static bool \+\_\+is\+\_\+digit (\begin{DoxyParamCaption}\item[{char}]{ch }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [static]}}
+
+
+
+Definition at line 63 of file printf.\+c.
+
+\mbox{\Hypertarget{printf_8c_af35948cc587f96f5a3cd0a169b96c379}\label{printf_8c_af35948cc587f96f5a3cd0a169b96c379}} 
+\index{printf.c@{printf.c}!\_ntoa\_format@{\_ntoa\_format}}
+\index{\_ntoa\_format@{\_ntoa\_format}!printf.c@{printf.c}}
+\doxysubsubsection{\texorpdfstring{\_ntoa\_format()}{\_ntoa\_format()}}
+{\footnotesize\ttfamily static uint32\+\_\+t \+\_\+ntoa\+\_\+format (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{printf_8h_a0f103da436a675bb6f53565c5144dc65}{out\+\_\+fct\+\_\+type}}}]{out,  }\item[{uint32\+\_\+t}]{value,  }\item[{uint32\+\_\+t}]{base,  }\item[{uint32\+\_\+t}]{width,  }\item[{bool}]{negative }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Definition at line 80 of file printf.\+c.
+
+\mbox{\Hypertarget{printf_8c_aabf1349d56fc564244bb4f0b296e9505}\label{printf_8c_aabf1349d56fc564244bb4f0b296e9505}} 
+\index{printf.c@{printf.c}!\_strnlen\_s@{\_strnlen\_s}}
+\index{\_strnlen\_s@{\_strnlen\_s}!printf.c@{printf.c}}
+\doxysubsubsection{\texorpdfstring{\_strnlen\_s()}{\_strnlen\_s()}}
+{\footnotesize\ttfamily static uint32\+\_\+t \+\_\+strnlen\+\_\+s (\begin{DoxyParamCaption}\item[{const char $\ast$}]{str,  }\item[{uint32\+\_\+t}]{maxsize }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [static]}}
+
+
+
+Definition at line 49 of file printf.\+c.
+
+\mbox{\Hypertarget{printf_8c_a7929c46dcdbb8a4807f26525cda33a9d}\label{printf_8c_a7929c46dcdbb8a4807f26525cda33a9d}} 
+\index{printf.c@{printf.c}!fnprintf@{fnprintf}}
+\index{fnprintf@{fnprintf}!printf.c@{printf.c}}
+\doxysubsubsection{\texorpdfstring{fnprintf()}{fnprintf()}}
+{\footnotesize\ttfamily uint32\+\_\+t fnprintf (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{printf_8h_a0f103da436a675bb6f53565c5144dc65}{out\+\_\+fct\+\_\+type}}}]{out,  }\item[{const char $\ast$}]{format,  }\item[{va\+\_\+list}]{va }\end{DoxyParamCaption})}
+
+
+
+Definition at line 127 of file printf.\+c.
+

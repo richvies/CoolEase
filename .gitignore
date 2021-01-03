@@ -1,0 +1,14 @@
+.DS_Store
+web/old
+coolterm
+invoices
+**/*nvoice*
+old
+*.d
+*.o
+**/obj
+**/bin
+**/*eeprom.bin
+rc
+.env
+todo.md

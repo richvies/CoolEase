@@ -1,0 +1,46 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<section xmlns="http://docbook.org/ns/docbook" version="5.0" xmlns:xlink="http://www.w3.org/1999/xlink" xml:id="_group___b_o_o_t_l_o_a_d_e_r___u_t_i_l_s___f_i_l_e" xml:lang="en-US">
+<title>Bootloader_utils</title>
+<indexterm><primary>Bootloader_utils</primary></indexterm>
+<para>
+
+<para>
+<literallayout>&#160;&#xa;</literallayout>
+ </para>
+ 
+</para>
+<simplesect>
+    <title>Modules    </title>
+        <itemizedlist>
+            <listitem><para><link linkend="_group___b_o_o_t_l_o_a_d_e_r___u_t_i_l_s___a_p_i">Bootloader_utils API</link></para>
+
+<para>
+<literallayout>&#160;&#xa;</literallayout>
+ </para>
+</listitem>
+            <listitem><para><link linkend="_group___b_o_o_t_l_o_a_d_e_r___u_t_i_l_s___i_n_t">Bootloader_utils Internal</link></para>
+
+<para>
+<literallayout>&#160;&#xa;</literallayout>
+ </para>
+</listitem>
+        </itemizedlist>
+</simplesect>
+<section>
+<title>Detailed Description</title>
+
+<para>
+<literallayout>&#160;&#xa;</literallayout>
+ </para>
+
+<para>Description</para>
+
+<para><note><title>Note</title>
+
+<para>
+<literallayout>&#160;&#xa;</literallayout>
+ </para>
+</note>
+</para>
+</section>
+</section>
