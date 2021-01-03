@@ -44,12 +44,17 @@ extern "C" {
  * @{
  */
 
-#define ERR_BOOT_PROG_START_ADDRESS_OUT_OF_BOUNDS   0
-#define ERR_BOOT_PROG_TOO_BIG                       1
-#define ERR_BOOT_PROG_BAD_CHECKSUM                  2
-#define ERR_BOOT_PROG_FLASH_ERASE                   3
-#define ERR_BOOT_PROG_FLASH_WRITE_1                 4
-#define ERR_BOOT_PROG_FLASH_WRITE_2                 5
+#define ERR_BOOT_PROG_START_ADDRESS_OUT_OF_BOUNDS   0x0000
+#define ERR_BOOT_PROG_TOO_BIG                       0x0001
+#define ERR_BOOT_PROG_BAD_CHECKSUM                  0x0002
+#define ERR_BOOT_PROG_FLASH_ERASE                   0x0003
+#define ERR_BOOT_PROG_FLASH_WRITE_1                 0x0004
+#define ERR_BOOT_PROG_FLASH_WRITE_2                 0x0005
+
+#define ERR_USB_PAGE_CHECKSUM_BAD                   0x0101    
+#define ERR_USB_PAGE_ERASE_FAIL                     0x0102
+#define ERR_USB_PROGRAM_UPPER_HALF_PAGE_FAIL        0x0103
+#define ERR_USB_PROGRAM_LOWER_HALF_PAGE_FAIL        0x0104
 
 /** @} */
 
@@ -80,3 +85,4 @@ void serial_printf(const char *format, ...);
 #endif
 
 #endif // LOG_H 
+

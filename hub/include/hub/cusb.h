@@ -33,6 +33,10 @@
 /*////////////////////////////////////////////////////////////////////////////*/
 
 #include <stdbool.h>
+#include <stdint.h>
+
+#include "common/memory.h"
+#include "common/log.h"
 
 #ifdef __cplusplus
 extern "C" {
@@ -66,6 +70,8 @@ void cusb_send(char character);
  * @ref hid_set_config()
  */
 bool cusb_connected(void);
+
+bool cusb_program_half_page(bool lower, uint32_t crc_expected, uint32_t page_num, uint32_t data[FLASH_PAGE_SIZE/2]);
 
 /*////////////////////////////////////////////////////////////////////////////*/
 // Hook Functions

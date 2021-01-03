@@ -21,12 +21,11 @@
 #include "common/test.h"
 
 #include "hub/cusb.h"
+#include "hub/hub_test.h"
 
 /** @addtogroup HUB_BOOTLOADER_FILE 
  * @{
  */
-
-#define APP_ADDRESS 0x08004000
 
 /** @addtogroup HUB_BOOTLOADER_INT 
  * @{
@@ -54,11 +53,14 @@ static void init(void);
 
 int main(void)
 {
-	init();
-
-	serial_printf("Hub Bootloader Ready");
+	test_cusb_get_log();
+	// cusb_init();
 
     // boot_jump_to_application(APP_ADDRESS);
+
+	(void)init;
+	// serial_printf("Hub Bootloader Ready");
+
 
     for (;;)
 	{

@@ -175,7 +175,7 @@ bool mem_flash_erase_page(uint32_t address)
     return result;
 }
 
-bool mem_flash_write_half_page(uint32_t address, uint32_t *data)
+bool mem_flash_write_half_page(uint32_t address, uint32_t data[FLASH_PAGE_SIZE/2])
 {
     bool result = false;
 
@@ -406,7 +406,7 @@ static _RAM bool mem_flash_do_page_erase(uint32_t address)
  * address: Half-page aligned address to write
  * data: Array to 16 32-bit words to write
  */
-static _RAM bool mem_flash_do_write_half_page(uint32_t address, uint32_t *data)
+static _RAM bool mem_flash_do_write_half_page(uint32_t address, uint32_t data[FLASH_PAGE_SIZE/2])
 {
     uint8_t i;
 

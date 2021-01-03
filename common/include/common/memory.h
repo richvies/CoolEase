@@ -58,6 +58,9 @@ extern "C" {
 #define FLASH_APP_END       0x0800C000U       
 #define FLASH_END           0x08010000U   
 
+#define FLASH_BOOTLOADER_ADDRESS    0x08000000U
+#define FLASH_APP_ADDRESS           0x08004000U
+
 /*////////////////////////////////////////////////////////////////////////////*/
 // EEPROM Map
 /*////////////////////////////////////////////////////////////////////////////*/
@@ -70,21 +73,21 @@ extern "C" {
 
 
 // Size of sections within eeprom
-#define EEPROM_BOOTLOADER_SIZE      256U
-#define EEPROM_DEV_SIZE             256U
+#define EEPROM_BOOTLOADER_INFO_SIZE 256U
+#define EEPROM_DEV_INFO_SIZE        256U
 #define EEPROM_LOG_SIZE             1024U
 
-#if ((EEPROM_BOOTLOADER_SIZE + EEPROM_DEV_SIZE + EEPROM_LOG_SIZE) > EEPROM_SIZE)
+#if ((EEPROM_BOOTLOADER_INFO_SIZE + EEPROM_DEV_INFO_SIZE + EEPROM_LOG_SIZE) > EEPROM_SIZE)
 #warning "EEPROM: Data does not fit"
 #endif
 
 // Bootloader Data
 #define EEPROM_BOOTLOADER_BASE      EEPROM_START
-#define EEPROM_BOOTLOADER_END       EEPROM_BOOTLOADER_BASE + EEPROM_BOOTLOADER_SIZE
+#define EEPROM_BOOTLOADER_END       EEPROM_BOOTLOADER_BASE + EEPROM_BOOTLOADER_INFO_SIZE
 
 // Device information
 #define EEPROM_DEV_BASE             EEPROM_BOOTLOADER_END          
-#define EEPROM_DEV_END              EEPROM_START + EEPROM_BOOTLOADER_SIZE 
+#define EEPROM_DEV_END              EEPROM_START + EEPROM_BOOTLOADER_INFO_SIZE 
 
 // Logging
 #define EEPROM_LOG_BASE             EEPROM_DEV_END
@@ -107,7 +110,7 @@ bool mem_eeprom_write_byte(uint32_t address, uint8_t data);
 
 bool mem_flash_erase_page(uint32_t address);
 bool mem_flash_write_word(uint32_t address, uint32_t data);
-bool mem_flash_write_half_page(uint32_t address, uint32_t *data);
+bool mem_flash_write_half_page(uint32_t address, uint32_t data[FLASH_PAGE_SIZE/2]);
 
 void mem_save_reading(int16_t reading);
 

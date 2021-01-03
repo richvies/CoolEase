@@ -245,7 +245,7 @@ bool boot_verify_checksum(uint32_t *data, uint32_t len, uint32_t expected)
 
     // Deinit
     crc_reset();
-    rcc_periph_clock_enable(RCC_CRC);
+    rcc_periph_clock_disable(RCC_CRC);
 
     serial_printf("Checksum value: %8x\n", crc);
 
