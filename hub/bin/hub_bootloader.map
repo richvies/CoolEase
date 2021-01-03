@@ -982,12 +982,12 @@ Discarded input sections
  .text          0x0000000000000000        0x0 hub/obj/bootloader_utils.o
  .data          0x0000000000000000        0x0 hub/obj/bootloader_utils.o
  .bss           0x0000000000000000        0x0 hub/obj/bootloader_utils.o
- .text.boot_init
-                0x0000000000000000       0x30 hub/obj/bootloader_utils.o
  .text.boot_deinit
                 0x0000000000000000       0x30 hub/obj/bootloader_utils.o
  .text.boot_jump_to_application
                 0x0000000000000000       0x20 hub/obj/bootloader_utils.o
+ .text.boot_init
+                0x0000000000000000       0x68 hub/obj/bootloader_utils.o
  .rodata.boot_verify_checksum.str1.4
                 0x0000000000000000       0x2d hub/obj/bootloader_utils.o
  .text.boot_verify_checksum
@@ -996,13 +996,13 @@ Discarded input sections
                 0x0000000000000000       0x29 hub/obj/bootloader_utils.o
  .text.boot_program_application
                 0x0000000000000000       0xd0 hub/obj/bootloader_utils.o
- .debug_info    0x0000000000000000      0x773 hub/obj/bootloader_utils.o
- .debug_abbrev  0x0000000000000000      0x1c7 hub/obj/bootloader_utils.o
+ .debug_info    0x0000000000000000      0x7d2 hub/obj/bootloader_utils.o
+ .debug_abbrev  0x0000000000000000      0x1c5 hub/obj/bootloader_utils.o
  .debug_loc     0x0000000000000000      0x2fc hub/obj/bootloader_utils.o
  .debug_aranges
                 0x0000000000000000       0x40 hub/obj/bootloader_utils.o
  .debug_ranges  0x0000000000000000       0x30 hub/obj/bootloader_utils.o
- .debug_macro   0x0000000000000000      0x153 hub/obj/bootloader_utils.o
+ .debug_macro   0x0000000000000000      0x15f hub/obj/bootloader_utils.o
  .debug_macro   0x0000000000000000      0xa7e hub/obj/bootloader_utils.o
  .debug_macro   0x0000000000000000       0x22 hub/obj/bootloader_utils.o
  .debug_macro   0x0000000000000000       0x56 hub/obj/bootloader_utils.o
@@ -1025,10 +1025,10 @@ Discarded input sections
  .debug_macro   0x0000000000000000       0x40 hub/obj/bootloader_utils.o
  .debug_macro   0x0000000000000000       0x7c hub/obj/bootloader_utils.o
  .debug_macro   0x0000000000000000       0x2e hub/obj/bootloader_utils.o
- .debug_line    0x0000000000000000      0x5f6 hub/obj/bootloader_utils.o
- .debug_str     0x0000000000000000     0x911e hub/obj/bootloader_utils.o
+ .debug_line    0x0000000000000000      0x601 hub/obj/bootloader_utils.o
+ .debug_str     0x0000000000000000     0x91e5 hub/obj/bootloader_utils.o
  .comment       0x0000000000000000       0x4d hub/obj/bootloader_utils.o
- .debug_frame   0x0000000000000000       0x90 hub/obj/bootloader_utils.o
+ .debug_frame   0x0000000000000000       0x98 hub/obj/bootloader_utils.o
  .ARM.attributes
                 0x0000000000000000       0x2c hub/obj/bootloader_utils.o
  .group         0x0000000000000000        0xc hub/obj/log.o
@@ -1514,10 +1514,28 @@ Discarded input sections
  .text          0x0000000000000000        0x0 hub/obj/test.o
  .data          0x0000000000000000        0x0 hub/obj/test.o
  .bss           0x0000000000000000        0x0 hub/obj/test.o
+ .text.flash_led
+                0x0000000000000000       0x60 hub/obj/test.o
  .rodata.test_mem_write_read.str1.4
                 0x0000000000000000       0xd8 hub/obj/test.o
  .text.test_mem_write_read
                 0x0000000000000000       0xbc hub/obj/test.o
+ .rodata.test_eeprom.str1.4
+                0x0000000000000000       0x2f hub/obj/test.o
+ .text.test_eeprom
+                0x0000000000000000       0x40 hub/obj/test.o
+ .rodata.test_eeprom_keys.str1.4
+                0x0000000000000000       0x44 hub/obj/test.o
+ .text.test_eeprom_keys
+                0x0000000000000000       0x94 hub/obj/test.o
+ .rodata.test_eeprom_wipe.str1.4
+                0x0000000000000000       0x2e hub/obj/test.o
+ .text.test_eeprom_wipe
+                0x0000000000000000       0x6c hub/obj/test.o
+ .rodata.test_reset_eeprom.str1.4
+                0x0000000000000000       0x1b hub/obj/test.o
+ .text.test_reset_eeprom
+                0x0000000000000000       0x94 hub/obj/test.o
  .rodata.test_log.str1.4
                 0x0000000000000000       0x5b hub/obj/test.o
  .text.test_log
@@ -1534,16 +1552,6 @@ Discarded input sections
                 0x0000000000000000       0x95 hub/obj/test.o
  .text.test_crc
                 0x0000000000000000       0xcc hub/obj/test.o
- .text.flash_led
-                0x0000000000000000       0x60 hub/obj/test.o
- .rodata.test_wakeup.str1.4
-                0x0000000000000000       0x25 hub/obj/test.o
- .text.test_wakeup
-                0x0000000000000000       0x38 hub/obj/test.o
- .rodata.test_standby.str1.4
-                0x0000000000000000       0x32 hub/obj/test.o
- .text.test_standby
-                0x0000000000000000       0x28 hub/obj/test.o
  .rodata.test_rf.str1.4
                 0x0000000000000000       0x3a hub/obj/test.o
  .text.test_rf  0x0000000000000000       0xbc hub/obj/test.o
@@ -1551,10 +1559,30 @@ Discarded input sections
                 0x0000000000000000       0x13 hub/obj/test.o
  .text.test_rf_listen
                 0x0000000000000000       0x8c hub/obj/test.o
+ .rodata.test_rfm.str1.4
+                0x0000000000000000        0xd hub/obj/test.o
+ .text.test_rfm
+                0x0000000000000000       0x2c hub/obj/test.o
  .rodata.test_receiver.str1.4
                 0x0000000000000000      0x14c hub/obj/test.o
  .text.test_receiver
                 0x0000000000000000      0x1c8 hub/obj/test.o
+ .rodata.test_lptim.str1.4
+                0x0000000000000000       0x25 hub/obj/test.o
+ .text.test_lptim
+                0x0000000000000000       0x38 hub/obj/test.o
+ .rodata.test_wakeup.str1.4
+                0x0000000000000000       0x25 hub/obj/test.o
+ .text.test_wakeup
+                0x0000000000000000       0x38 hub/obj/test.o
+ .rodata.test_timeout.str1.4
+                0x0000000000000000       0x19 hub/obj/test.o
+ .text.test_timeout
+                0x0000000000000000       0x34 hub/obj/test.o
+ .rodata.test_standby.str1.4
+                0x0000000000000000       0x32 hub/obj/test.o
+ .text.test_standby
+                0x0000000000000000       0x28 hub/obj/test.o
  .rodata.test_voltage_scale.str1.4
                 0x0000000000000000       0x5f hub/obj/test.o
  .text.test_voltage_scale
@@ -1563,45 +1591,17 @@ Discarded input sections
                 0x0000000000000000       0x27 hub/obj/test.o
  .text.test_low_power_run
                 0x0000000000000000       0x24 hub/obj/test.o
- .rodata.test_eeprom.str1.4
-                0x0000000000000000       0x2f hub/obj/test.o
- .text.test_eeprom
-                0x0000000000000000       0x40 hub/obj/test.o
- .rodata.test_eeprom_keys.str1.4
-                0x0000000000000000       0x44 hub/obj/test.o
- .text.test_eeprom_keys
-                0x0000000000000000       0x94 hub/obj/test.o
- .rodata.test_eeprom_wipe.str1.4
-                0x0000000000000000       0x2e hub/obj/test.o
- .text.test_eeprom_wipe
-                0x0000000000000000       0x6c hub/obj/test.o
- .rodata.test_lptim.str1.4
-                0x0000000000000000       0x25 hub/obj/test.o
- .text.test_lptim
-                0x0000000000000000       0x38 hub/obj/test.o
- .rodata.test_rfm.str1.4
-                0x0000000000000000        0xd hub/obj/test.o
- .text.test_rfm
-                0x0000000000000000       0x2c hub/obj/test.o
- .rodata.test_reset_eeprom.str1.4
-                0x0000000000000000       0x1b hub/obj/test.o
- .text.test_reset_eeprom
-                0x0000000000000000       0x94 hub/obj/test.o
  .rodata.test_encryption.str1.4
                 0x0000000000000000       0x29 hub/obj/test.o
  .text.test_encryption
                 0x0000000000000000       0x90 hub/obj/test.o
- .rodata.test_timeout.str1.4
-                0x0000000000000000       0x19 hub/obj/test.o
- .text.test_timeout
-                0x0000000000000000       0x34 hub/obj/test.o
  .rodata.test_analog_watchdog.str1.4
                 0x0000000000000000       0x19 hub/obj/test.o
  .text.test_analog_watchdog
                 0x0000000000000000       0x14 hub/obj/test.o
  .rodata        0x0000000000000000       0x40 hub/obj/test.o
- .debug_info    0x0000000000000000     0x2759 hub/obj/test.o
- .debug_abbrev  0x0000000000000000      0x394 hub/obj/test.o
+ .debug_info    0x0000000000000000     0x2756 hub/obj/test.o
+ .debug_abbrev  0x0000000000000000      0x3a5 hub/obj/test.o
  .debug_loc     0x0000000000000000      0x5a7 hub/obj/test.o
  .debug_aranges
                 0x0000000000000000       0xc8 hub/obj/test.o
@@ -1663,7 +1663,7 @@ Discarded input sections
  .debug_macro   0x0000000000000000       0x2e hub/obj/test.o
  .debug_macro   0x0000000000000000      0x4e6 hub/obj/test.o
  .debug_macro   0x0000000000000000       0x1c hub/obj/test.o
- .debug_line    0x0000000000000000     0x10c5 hub/obj/test.o
+ .debug_line    0x0000000000000000     0x1080 hub/obj/test.o
  .debug_str     0x0000000000000000    0x16ddb hub/obj/test.o
  .comment       0x0000000000000000       0x4d hub/obj/test.o
  .debug_frame   0x0000000000000000      0x258 hub/obj/test.o

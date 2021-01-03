@@ -2455,12 +2455,12 @@ extern long double strtold (const char *restrict, char **restrict);
 # 339 "/usr/local/Cellar/arm-gcc-bin/9-2020-q2-update/arm-none-eabi/include/stdlib.h" 3
 
 # 35 "common/include/common/test.h" 2
-# 47 "common/include/common/test.h"
+# 44 "common/include/common/test.h"
 #define DEV_NUM_CHIP (uint32_t)0x0000001B
 #define DEV_NUM_PCB (uint32_t)~DEV_NUM_CHIP
-# 60 "common/include/common/test.h"
 
-# 60 "common/include/common/test.h"
+
+# 47 "common/include/common/test.h"
 void flash_led(uint16_t milliseconds, uint8_t num_flashes);
 
 
@@ -2501,9 +2501,9 @@ void test_rfm(void);
 void test_lptim(void);
 void test_wakeup(void);
 
-# 99 "common/include/common/test.h" 3 4
+# 86 "common/include/common/test.h" 3 4
 _Bool 
-# 99 "common/include/common/test.h"
+# 86 "common/include/common/test.h"
     test_timeout(void);
 
 
@@ -7462,34 +7462,159 @@ _Bool
 
 void set_gpio_for_standby(void);
 # 39 "common/src/test.c" 2
-# 75 "common/src/test.c"
+# 48 "common/src/test.c"
+void flash_led(uint16_t milliseconds, uint8_t num_flashes)
+{
+ gpio_mode_setup(((0x50000000U) + 0x00400), 0x1, 0x0, (1 << 8));
+ gpio_clear(((0x50000000U) + 0x00400), (1 << 8));
+ for (uint8_t i = 0; i < num_flashes; i++)
+ {
+  gpio_set(((0x50000000U) + 0x00400), (1 << 8));
+  timers_delay_milliseconds(milliseconds / 4);
+  gpio_clear(((0x50000000U) + 0x00400), (1 << 8));
+  timers_delay_milliseconds(3 * milliseconds / 4);
+ }
+}
+
+
+
+
+
 void test_mem_write_read(void)
 {
-    uint32_t eeprom_address = 0x08080000U + 2048U - 4U;
-    uint32_t eeprom_word = 0x12345678;
+ uint32_t eeprom_address = 0x08080000U + 2048U - 4U;
+ uint32_t eeprom_word = 0x12345678;
 
-    uint32_t flash_address = 0x08010000U - 128U;
-    uint32_t *flash_data = (uint32_t*)malloc(64);
-    flash_data[0] = 0x12345678;
-    flash_data[1] = 0x24681234;
+ uint32_t flash_address = 0x08010000U - 128U;
+ uint32_t *flash_data = (uint32_t *)malloc(64);
+ flash_data[0] = 0x12345678;
+ flash_data[1] = 0x24681234;
 
-    log_printf("Test Mem Write Read\n\n");
+ log_printf("Test Mem Write Read\n\n");
 
-    log_printf("EEPROM Start: %08x : %08x\n", eeprom_address, (*(volatile uint32_t *)(eeprom_address)));
-    log_printf("Programming: %08x\n", eeprom_word); mem_eeprom_write_word(eeprom_address, eeprom_word);
-    log_printf("EEPROM End: %08x : %08x\n\n", eeprom_address, (*(volatile uint32_t *)(eeprom_address)));
+ log_printf("EEPROM Start: %08x : %08x\n", eeprom_address, (*(volatile uint32_t *)(eeprom_address)));
+ log_printf("Programming: %08x\n", eeprom_word);
+ mem_eeprom_write_word(eeprom_address, eeprom_word);
+ log_printf("EEPROM End: %08x : %08x\n\n", eeprom_address, (*(volatile uint32_t *)(eeprom_address)));
 
-    log_printf("Flash Erase\n"); mem_flash_erase_page(flash_address);
-    log_printf("Flash Start: %08x : %08x\n%08x : %08x\n", flash_address, (*(volatile uint32_t *)(flash_address)), flash_address+4, (*(volatile uint32_t *)(flash_address+4)));
-    log_printf("Programming %08x %08x\n", flash_data[0], flash_data[1]); mem_flash_write_half_page(flash_address, flash_data);
+ log_printf("Flash Erase\n");
+ mem_flash_erase_page(flash_address);
+ log_printf("Flash Start: %08x : %08x\n%08x : %08x\n", flash_address, (*(volatile uint32_t *)(flash_address)), flash_address + 4, (*(volatile uint32_t *)(flash_address + 4)));
+ log_printf("Programming %08x %08x\n", flash_data[0], flash_data[1]);
+ mem_flash_write_half_page(flash_address, flash_data);
 
-    log_printf("Flash End: %08x : %08x\n%08x : %08x\n", flash_address, (*(volatile uint32_t *)(flash_address)), flash_address+4, (*(volatile uint32_t *)(flash_address+4)));
+ log_printf("Flash End: %08x : %08x\n%08x : %08x\n", flash_address, (*(volatile uint32_t *)(flash_address)), flash_address + 4, (*(volatile uint32_t *)(flash_address + 4)));
+}
+
+void test_eeprom(void)
+{
+ log_printf("Testing EEPROM\n");
+
+ rcc_periph_clock_enable(RCC_MIF);
+
+ for (;;)
+ {
+  log_printf("Device: %04x\n", mem_get_dev_num());
+  log_printf("Message: %04x\n", mem_get_msg_num());
+
+
+
+  timers_delay_milliseconds(500);
+ }
+}
+
+void test_eeprom_keys(void)
+{
+ log_printf("Testing EEPROM Encryption Keys\n");
+
+ mem_init();
+
+ uint8_t aes_key[16];
+ for (int i = 0; i < 16; i++)
+ {
+  aes_key[i] = i;
+ }
+ mem_set_aes_key(aes_key);
+
+ uint8_t aes_key_exp[176];
+ mem_get_aes_key_exp(aes_key_exp);
+
+ log_printf("AES Key: ");
+ for (int i = 0; i < 16; i++)
+ {
+  log_printf("%02x ", aes_key[i]);
+ }
+
+ log_printf("\n\nAES Key Exp: ");
+ for (int i = 0; i < 176; i++)
+ {
+  log_printf("%02x ", aes_key_exp[i]);
+ }
+
+ aes_expand_key();
+ mem_get_aes_key_exp(aes_key_exp);
+
+ log_printf("\n\nAES Key Exp: ");
+ for (int i = 0; i < 176; i++)
+ {
+  log_printf("%02x ", aes_key_exp[i]);
+ }
+}
+
+void test_eeprom_wipe(void)
+{
+ log_printf("Testing EEPROM Wipe\n");
+
+ rcc_periph_clock_enable(RCC_MIF);
+
+ int address = 0x08080000;
+
+ while (address < 0x080807FF)
+ {
+  log_printf("%08x : %08x\n", address, (*(volatile uint32_t *)(address)));
+  address += 4;
+ }
+
+ address = 0x08080000;
+
+ while (address < 0x080807FF)
+ {
+  eeprom_program_word(address, 0x00);
+  address += 4;
+ }
+
+ address = 0x08080000;
+
+ while (address < 0x080807FF)
+ {
+  log_printf("%08x : %08x\n", address, (*(volatile uint32_t *)(address)));
+  address += 4;
+ }
+
+ log_printf("Done\n");
+}
+
+void test_reset_eeprom(void)
+{
+ log_printf("Resetting MEM\n");
+
+ rcc_periph_clock_enable(RCC_MIF);
+ eeprom_program_word(0x08080000, 0);
+ eeprom_program_word(0x08080004, 6);
+ eeprom_program_word(0x08080008, 2);
+ eeprom_program_word(0x0808000C, 0);
+
+ log_printf("%04x : %i\n", 0x08080000, (*(volatile uint32_t *)(0x08080000)));
+ log_printf("%04x : %i\n", 0x08080004, (*(volatile uint32_t *)(0x08080004)));
+ log_printf("%04x : %i\n", 0x08080008, (*(volatile uint32_t *)(0x08080008)));
+ log_printf("%04x : %i\n", 0x0808000C, (*(volatile uint32_t *)(0x0808000C)));
+ log_printf("Done\n");
 }
 
 void test_log(void)
 {
  clock_setup_msi_2mhz();
-    log_init();
+ log_init();
  timers_lptim_init();
  timers_tim6_init();
  serial_printf("test_log()\n------------------\n\n");
@@ -7505,30 +7630,43 @@ void test_log(void)
  serial_printf("\nPrinting Log\n\n");
  for (uint16_t i = 0; i < log_size(); i++)
  {
-  serial_printf("%c",log_read());
+  serial_printf("%c", log_read());
  }
 }
-# 130 "common/src/test.c"
+# 228 "common/src/test.c"
 void test_boot_jump_to_application(uint32_t address)
 {
  log_printf("test_boot_jump_to_application\n");
  log_printf("Address: %8x\n", address);
-    boot_jump_to_application(address);
+ boot_jump_to_application(address);
 }
 
 void test_boot_verify_checksum(void)
 {
  clock_setup_msi_2mhz();
-    log_init();
+ log_init();
  timers_lptim_init();
  timers_tim6_init();
  serial_printf("test_boot_verify_checksum()\n-----------------------\n\n");
 
  uint32_t data[] = {
-  0x12345678, 0x24681357, 0x12345678, 0x24681357,
-  0x12345678, 0x24681357, 0x12345678, 0x24681357,
-  0x12345678, 0x24681357, 0x12345678, 0x24681357,
-  0x12345678, 0x24681357, 0x12345678, 0x24681357,};
+  0x12345678,
+  0x24681357,
+  0x12345678,
+  0x24681357,
+  0x12345678,
+  0x24681357,
+  0x12345678,
+  0x24681357,
+  0x12345678,
+  0x24681357,
+  0x12345678,
+  0x24681357,
+  0x12345678,
+  0x24681357,
+  0x12345678,
+  0x24681357,
+ };
 
  uint32_t expected = 0x55484138;
 
@@ -7545,7 +7683,7 @@ void test_boot_verify_checksum(void)
 void test_crc(void)
 {
  clock_setup_msi_2mhz();
-    log_init();
+ log_init();
  timers_lptim_init();
  timers_tim6_init();
  serial_printf("test_crc()\n-----------------------\n\n");
@@ -7555,13 +7693,12 @@ void test_crc(void)
 
 
 
-    rcc_periph_clock_enable(RCC_CRC);
-    crc_reset();
+ rcc_periph_clock_enable(RCC_CRC);
+ crc_reset();
  (*(volatile uint32_t *)((((0x40000000U) + 0x20000) + 0x03000) + 0x10)) = 0xFFFFFFFF;
 
-    crc_set_reverse_input((1 << 5));
-    crc_reverse_output_enable();
-
+ crc_set_reverse_input((1 << 5));
+ crc_reverse_output_enable();
 
  serial_printf("Checksum initial: %8x\n", (*(volatile uint32_t *)((((0x40000000U) + 0x20000) + 0x03000) + 0x00)));
  serial_printf("CR: %8x\n", (*(volatile uint32_t *)((((0x40000000U) + 0x20000) + 0x03000) + 0x08)));
@@ -7572,62 +7709,28 @@ void test_crc(void)
  uint32_t data = 0x12345678;
 
 
-    int i;
+ int i;
 
-    for (i = 0; i < 1; i++)
+ for (i = 0; i < 1; i++)
  {
-     (*(volatile uint32_t *)((((0x40000000U) + 0x20000) + 0x03000) + 0x00)) = data;
-    }
+  (*(volatile uint32_t *)((((0x40000000U) + 0x20000) + 0x03000) + 0x00)) = data;
+ }
 
-    uint32_t crc = (*(volatile uint32_t *)((((0x40000000U) + 0x20000) + 0x03000) + 0x00));
+ uint32_t crc = (*(volatile uint32_t *)((((0x40000000U) + 0x20000) + 0x03000) + 0x00));
 
  serial_printf("In: %8x\n", data);
  serial_printf("CRC: %8x\n", crc);
 
 
-    crc_reset();
-    rcc_periph_clock_disable(RCC_CRC);
+ crc_reset();
+ rcc_periph_clock_disable(RCC_CRC);
 
-    serial_printf("Checksum value: %8x %8x\n", crc, ~crc);
+ serial_printf("Checksum value: %8x %8x\n", crc, ~crc);
 }
 
 
-void flash_led(uint16_t milliseconds, uint8_t num_flashes)
-{
- gpio_mode_setup(((0x50000000U) + 0x00400), 0x1, 0x0, (1 << 8));
- gpio_clear(((0x50000000U) + 0x00400), (1 << 8));
- for(uint8_t i = 0; i < num_flashes; i++)
- {
-  gpio_set(((0x50000000U) + 0x00400), (1 << 8));
-  timers_delay_milliseconds(milliseconds / 4);
-  gpio_clear(((0x50000000U) + 0x00400), (1 << 8));
-  timers_delay_milliseconds(3 * milliseconds / 4);
- }
-}
 
-void test_wakeup(void)
-{
- log_printf("Reset\n");
- reset_print_cause();
 
- batt_init();
- batt_update_voltages();
-
- log_printf("Battery = %uV\n", batt_voltages[1]);
-
- log_printf("Power = %uV\n", batt_voltages[0]);
-
-}
-
-void test_standby(uint32_t standby_time)
-{
- log_printf("Testing Standby for %i seconds\n", standby_time);
-
- timers_rtc_init(standby_time);
-# 261 "common/src/test.c"
- log_printf("Entering Standby\n");
- timers_enter_standby();
-}
 
 void test_rf(void)
 {
@@ -7635,26 +7738,27 @@ void test_rf(void)
 
  rfm_init();
  rfm_config_for_lora(0x70, 0x02, 0x70, 
-# 270 "common/src/test.c" 3 4
+# 331 "common/src/test.c" 3 4
                                                                                      1
-# 270 "common/src/test.c"
+# 331 "common/src/test.c"
                                                                                          , 0);
 
-    rfm_packet_t *packet_received;
-    rfm_packet_t packet_send;
+ rfm_packet_t *packet_received;
+ rfm_packet_t packet_send;
 
  char msg[16] = {'H', 'E', 'L', 'L', '0', '\n', 0};
 
  packet_send.data.buffer[0] = msg[0];
 
-    for (;;)
+ for (;;)
  {
   rfm_transmit_packet(packet_send);
   log_printf("Sent\n");
 
   rfm_start_listening();
-  for (int i = 0; i < 300000; i++) __asm__("nop");
-  if(rfm_get_num_packets())
+  for (int i = 0; i < 300000; i++)
+   __asm__("nop");
+  if (rfm_get_num_packets())
   {
    uint16_t timer = timers_micros();
    packet_received = rfm_get_next_packet();
@@ -7663,13 +7767,14 @@ void test_rf(void)
 
    log_printf("Packet Received\n");
 
-   for(int i = 0; i < 16; i++)
+   for (int i = 0; i < 16; i++)
     log_printf("%02x, ", packet_received->data.buffer[i]);
 
    log_printf("\n");
   }
 
-  for (int i = 0; i < 300000; i++) __asm__("nop");
+  for (int i = 0; i < 300000; i++)
+   __asm__("nop");
  }
 }
 
@@ -7679,17 +7784,17 @@ void test_rf_listen(void)
 
  rfm_init();
  rfm_config_for_lora(0x70, 0x02, 0x70, 
-# 310 "common/src/test.c" 3 4
+# 373 "common/src/test.c" 3 4
                                                                                      1
-# 310 "common/src/test.c"
+# 373 "common/src/test.c"
                                                                                          , 0);
  rfm_start_listening();
 
-    rfm_packet_t *packet_received;
+ rfm_packet_t *packet_received;
 
-    for (;;)
+ for (;;)
  {
-  if(rfm_get_num_packets())
+  if (rfm_get_num_packets())
   {
    uint16_t timer = timers_micros();
    packet_received = rfm_get_next_packet();
@@ -7698,14 +7803,28 @@ void test_rf_listen(void)
 
    log_printf("Packet Received\n");
 
-   for(int i = 0; i < 16; i++)
+   for (int i = 0; i < 16; i++)
     log_printf("%02x, ", packet_received->data.buffer[i]);
 
    log_printf("\n");
   }
 
-  for (int i = 0; i < 300000; i++) __asm__("nop");
+  for (int i = 0; i < 300000; i++)
+   __asm__("nop");
  }
+}
+
+void test_rfm(void)
+{
+ log_printf("Testing RFM\n");
+
+ rfm_init();
+ rfm_config_for_lora(0x70, 0x02, 0x70, 
+# 405 "common/src/test.c" 3 4
+                                                                                     1
+# 405 "common/src/test.c"
+                                                                                         , -5);
+ rfm_set_tx_continuous();
 }
 
 void test_receiver(uint32_t dev_num)
@@ -7719,40 +7838,41 @@ void test_receiver(uint32_t dev_num)
  sensors[2].dev_num = 0x87654321;
 
  sensor_t *sensor = 
-# 346 "common/src/test.c" 3 4
+# 419 "common/src/test.c" 3 4
                    ((void *)0)
-# 346 "common/src/test.c"
+# 419 "common/src/test.c"
                        ;
 
 
  rfm_packet_t *packet = 
-# 349 "common/src/test.c" 3 4
+# 422 "common/src/test.c" 3 4
                        ((void *)0)
-# 349 "common/src/test.c"
+# 422 "common/src/test.c"
                            ;
  rfm_init();
  rfm_config_for_lora(0x70, 0x02, 0x70, 
-# 351 "common/src/test.c" 3 4
+# 424 "common/src/test.c" 3 4
                                                                                      1
-# 351 "common/src/test.c"
+# 424 "common/src/test.c"
                                                                                          , 0);
  rfm_start_listening();
 
 
  log_printf("Waiting for first message\n");
  
-# 356 "common/src/test.c" 3 4
+# 429 "common/src/test.c" 3 4
 _Bool 
-# 356 "common/src/test.c"
+# 429 "common/src/test.c"
      recv = 
-# 356 "common/src/test.c" 3 4
+# 429 "common/src/test.c" 3 4
             0
-# 356 "common/src/test.c"
+# 429 "common/src/test.c"
                  ;
- while(!recv)
+ while (!recv)
  {
 
-  while(!rfm_get_num_packets());
+  while (!rfm_get_num_packets())
+   ;
 
 
   packet = rfm_get_next_packet();
@@ -7760,15 +7880,20 @@ _Bool
   rfm_organize_packet(packet);
 
 
-  log_printf("Received "); for(int i = 0; i < 16; i++){log_printf("%02X ", packet->data.buffer[i]);} log_printf("\n");
+  log_printf("Received ");
+  for (int i = 0; i < 16; i++)
+  {
+   log_printf("%02X ", packet->data.buffer[i]);
+  }
+  log_printf("\n");
 
 
   sensor = get_sensor(packet->data.device_number);
-  if(sensor == 
-# 372 "common/src/test.c" 3 4
-              ((void *)0)
-# 372 "common/src/test.c"
-                  )
+  if (sensor == 
+# 451 "common/src/test.c" 3 4
+               ((void *)0)
+# 451 "common/src/test.c"
+                   )
   {
    log_printf("Wrong Dev Num: %08X\n", packet->data.device_number);
    continue;
@@ -7779,20 +7904,20 @@ _Bool
    sensor->msg_num_start = packet->data.msg_number;
    log_printf("First Message Number: %i %i\n", packet->data.msg_number, sensor->msg_num);
    recv = 
-# 382 "common/src/test.c" 3 4
+# 461 "common/src/test.c" 3 4
          1
-# 382 "common/src/test.c"
+# 461 "common/src/test.c"
              ;
   }
  }
 
  log_printf("Ready\n");
 
- for(;;)
+ for (;;)
  {
-  if(rfm_get_num_packets())
+  if (rfm_get_num_packets())
   {
-   while(rfm_get_num_packets())
+   while (rfm_get_num_packets())
    {
 
     packet = rfm_get_next_packet();
@@ -7800,7 +7925,7 @@ _Bool
     rfm_organize_packet(packet);
 
 
-    if( !packet->crc_ok )
+    if (!packet->crc_ok)
     {
      log_printf("CRC Fail\n");
      flash_led(100, 5);
@@ -7815,11 +7940,11 @@ _Bool
     sensor = get_sensor(packet->data.device_number);
 
 
-    if(sensor == 
-# 415 "common/src/test.c" 3 4
-                ((void *)0)
-# 415 "common/src/test.c"
-                    )
+    if (sensor == 
+# 494 "common/src/test.c" 3 4
+                 ((void *)0)
+# 494 "common/src/test.c"
+                     )
     {
      log_printf("Wrong Dev Num: %08X\n", packet->data.device_number);
      flash_led(100, 3);
@@ -7831,7 +7956,7 @@ _Bool
     flash_led(100, 1);
 
 
-    if(packet->data.msg_number != ++sensor->msg_num)
+    if (packet->data.msg_number != ++sensor->msg_num)
     {
      log_printf("Missed Message %i\n", sensor->msg_num);
     }
@@ -7852,13 +7977,87 @@ _Bool
  }
 }
 
+
+
+
+
+void test_lptim(void)
+{
+ log_printf("Testing LP Timer\n");
+
+ timers_lptim_init();
+
+ for (;;)
+ {
+  log_printf("LPTim Count: %i\n", lptimer_get_counter((((0x40000000U) + 0x00000) + 0x7c00)));
+  for (int i = 0; i < 1000; i++)
+  {
+   __asm__("nop");
+  }
+ }
+}
+
+void test_wakeup(void)
+{
+ log_printf("Reset\n");
+ reset_print_cause();
+
+ batt_init();
+ batt_update_voltages();
+
+ log_printf("Battery = %uV\n", batt_voltages[1]);
+
+ log_printf("Power = %uV\n", batt_voltages[0]);
+
+}
+
+
+# 561 "common/src/test.c" 3 4
+_Bool 
+# 561 "common/src/test.c"
+    test_timeout(void)
+{
+ log_printf("Testing Timeout\n");
+
+ timeout_init();
+
+
+
+
+
+ while (!timeout(4094967296, "TEST", 0))
+ {
+  timers_delay_microseconds(1);
+ }
+
+ return 
+# 576 "common/src/test.c" 3 4
+       1
+# 576 "common/src/test.c"
+           ;
+}
+
+
+
+
+
+void test_standby(uint32_t standby_time)
+{
+ log_printf("Testing Standby for %i seconds\n", standby_time);
+
+ timers_rtc_init(standby_time);
+# 604 "common/src/test.c"
+ log_printf("Entering Standby\n");
+ timers_enter_standby();
+}
+
 void test_voltage_scale(uint8_t scale)
 {
  log_printf("Testing Voltage Scale\n");
 
  rfm_init();
  rfm_end();
-# 465 "common/src/test.c"
+# 624 "common/src/test.c"
  log_printf("Testing Voltage Scaling\n");
  log_printf("Current Scaling: %08x\n", (*(volatile uint32_t *)((((0x40000000U) + 0x00000) + 0x7000) + 0x00)));
 
@@ -7868,7 +8067,10 @@ void test_voltage_scale(uint8_t scale)
 
  for (;;)
  {
-  for(int i = 0; i < 1000000; i++){__asm__("nop");}
+  for (int i = 0; i < 1000000; i++)
+  {
+   __asm__("nop");
+  }
  }
 }
 
@@ -7878,7 +8080,7 @@ void test_low_power_run(void)
 
  rfm_init();
  rfm_end();
-# 494 "common/src/test.c"
+# 656 "common/src/test.c"
  log_printf("Testing Low Power Run\n");
 
 
@@ -7892,128 +8094,9 @@ void test_low_power_run(void)
  }
 }
 
-void test_eeprom(void)
-{
- log_printf("Testing EEPROM\n");
-
- rcc_periph_clock_enable(RCC_MIF);
-
- for(;;)
- {
-  log_printf("Device: %04x\n", mem_get_dev_num());
-  log_printf("Message: %04x\n", mem_get_msg_num());
 
 
 
-  timers_delay_milliseconds(500);
- }
-}
-
-void test_eeprom_keys(void)
-{
- log_printf("Testing EEPROM Encryption Keys\n");
-
- mem_init();
-
- uint8_t aes_key[16];
- for(int i = 0; i < 16; i++)
- {
-  aes_key[i] = i;
- }
- mem_set_aes_key(aes_key);
-
- uint8_t aes_key_exp[176];
- mem_get_aes_key_exp(aes_key_exp);
-
-
- log_printf("AES Key: ");
- for(int i = 0; i < 16; i++){log_printf("%02x ", aes_key[i]);}
-
- log_printf("\n\nAES Key Exp: ");
- for(int i = 0; i < 176; i++){log_printf("%02x ", aes_key_exp[i]);}
-
- aes_expand_key();
- mem_get_aes_key_exp(aes_key_exp);
-
- log_printf("\n\nAES Key Exp: ");
- for(int i = 0; i < 176; i++){log_printf("%02x ", aes_key_exp[i]);}
-}
-
-void test_eeprom_wipe(void)
-{
- log_printf("Testing EEPROM Wipe\n");
-
- rcc_periph_clock_enable(RCC_MIF);
-
- int address = 0x08080000;
-
- while(address < 0x080807FF)
- {
-  log_printf("%08x : %08x\n", address, (*(volatile uint32_t *)(address)));
-  address += 4;
- }
-
- address = 0x08080000;
-
- while(address < 0x080807FF)
- {
-  eeprom_program_word(address, 0x00);
-  address += 4;
- }
-
- address = 0x08080000;
-
- while(address < 0x080807FF)
- {
-  log_printf("%08x : %08x\n", address, (*(volatile uint32_t *)(address)));
-  address += 4;
- }
-
- log_printf("Done\n");
-}
-
-void test_lptim(void)
-{
- log_printf("Testing LP Timer\n");
-
- timers_lptim_init();
-
- for(;;)
- {
-  log_printf("LPTim Count: %i\n", lptimer_get_counter((((0x40000000U) + 0x00000) + 0x7c00)));
-  for(int i = 0; i < 1000; i++){__asm__("nop");}
- }
-}
-
-void test_rfm(void)
-{
- log_printf("Testing RFM\n");
-
- rfm_init();
- rfm_config_for_lora(0x70, 0x02, 0x70, 
-# 605 "common/src/test.c" 3 4
-                                                                                     1
-# 605 "common/src/test.c"
-                                                                                         , -5);
- rfm_set_tx_continuous();
-}
-
-void test_reset_eeprom(void)
-{
- log_printf("Resetting MEM\n");
-
- rcc_periph_clock_enable(RCC_MIF);
- eeprom_program_word(0x08080000, 0);
- eeprom_program_word(0x08080004, 6);
- eeprom_program_word(0x08080008, 2);
- eeprom_program_word(0x0808000C, 0);
-
- log_printf("%04x : %i\n", 0x08080000, (*(volatile uint32_t *)(0x08080000)));
- log_printf("%04x : %i\n", 0x08080004, (*(volatile uint32_t *)(0x08080004)));
- log_printf("%04x : %i\n", 0x08080008, (*(volatile uint32_t *)(0x08080008)));
- log_printf("%04x : %i\n", 0x0808000C, (*(volatile uint32_t *)(0x0808000C)));
- log_printf("Done\n");
-}
 
 void test_encryption(void)
 {
@@ -8023,42 +8106,25 @@ void test_encryption(void)
  mem_init();
 
  uint8_t data[16] = {'H', 'e', 'l', 'l', 'o', ' ', 't', 'h', 'e', 'r', 'e', '1', '2', '3', '4', '5'};
- for(int i = 0; i < 16; i++){log_printf("%c ", data[i]);}
+ for (int i = 0; i < 16; i++)
+ {
+  log_printf("%c ", data[i]);
+ }
  log_printf("\n");
 
  aes_ecb_encrypt(data);
- for(int i = 0; i < 16; i++){log_printf("%c ", data[i]);}
+ for (int i = 0; i < 16; i++)
+ {
+  log_printf("%c ", data[i]);
+ }
  log_printf("\n");
 
  aes_ecb_decrypt(data);
- for(int i = 0; i < 16; i++){log_printf("%c ", data[i]);}
- log_printf("\n");
-}
-
-
-# 646 "common/src/test.c" 3 4
-_Bool 
-# 646 "common/src/test.c"
-    test_timeout(void)
-{
- log_printf("Testing Timeout\n");
-
- timeout_init();
-
-
-
-
-
- while(!timeout(4094967296, "TEST", 0))
+ for (int i = 0; i < 16; i++)
  {
-  timers_delay_microseconds(1);
+  log_printf("%c ", data[i]);
  }
-
- return 
-# 661 "common/src/test.c" 3 4
-       1
-# 661 "common/src/test.c"
-           ;
+ log_printf("\n");
 }
 
 void test_analog_watchdog(void)
@@ -8067,7 +8133,7 @@ void test_analog_watchdog(void)
  batt_enable_interrupt();
 
 
- for(;;)
+ for (;;)
  {
   __asm__("nop");
  }

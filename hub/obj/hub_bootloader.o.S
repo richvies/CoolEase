@@ -5385,12 +5385,12 @@ extern long double strtold (const char *restrict, char **restrict);
 # 339 "/usr/local/Cellar/arm-gcc-bin/9-2020-q2-update/arm-none-eabi/include/stdlib.h" 3
 
 # 35 "common/include/common/test.h" 2
-# 47 "common/include/common/test.h"
+# 44 "common/include/common/test.h"
 #define DEV_NUM_CHIP (uint32_t)0x0000001B
 #define DEV_NUM_PCB (uint32_t)~DEV_NUM_CHIP
-# 60 "common/include/common/test.h"
 
-# 60 "common/include/common/test.h"
+
+# 47 "common/include/common/test.h"
 void flash_led(uint16_t milliseconds, uint8_t num_flashes);
 
 
@@ -5431,9 +5431,9 @@ void test_rfm(void);
 void test_lptim(void);
 void test_wakeup(void);
 
-# 99 "common/include/common/test.h" 3 4
+# 86 "common/include/common/test.h" 3 4
 _Bool 
-# 99 "common/include/common/test.h"
+# 86 "common/include/common/test.h"
     test_timeout(void);
 
 

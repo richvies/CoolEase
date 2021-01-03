@@ -2849,7 +2849,21 @@ void log_erase(void);
 
 void serial_printf(const char *format, ...);
 # 27 "common/src/bootloader_utils.c" 2
-# 40 "common/src/bootloader_utils.c"
+# 43 "common/src/bootloader_utils.c"
+#define BOOTLOADER_RCC_CSR_ENTRY_MASK (RCC_CSR_WWDGRSTF | RCC_CSR_IWDGRSTF | RCC_CSR_SFTRSTF | RCC_CSR_PINRSTF | RCC_CSR_FWRSTF)
+
+
+
+
+
+
+#define BOOTLOADER_MAGIC_SKIP 0x3C65A95A
+
+
+
+
+
+
 typedef enum
 {
     RESET = 0,
@@ -2859,38 +2873,40 @@ typedef enum
 
 typedef struct
 {
-    bootloader_state_t state;
     uint32_t vtor;
+    uint32_t magic_code;
+    uint32_t reset_flags;
+    bootloader_state_t state;
     uint8_t num_reset;
-
 }bootloader_t;
 
 static bootloader_t *bootloader = ((bootloader_t *)(0x08080000U));
-# 71 "common/src/bootloader_utils.c"
+# 89 "common/src/bootloader_utils.c"
 void boot_init(void)
 {
 
-    (*(volatile uint32_t *)((((0x40000000U) + 0x20000) + 0x01000) + 0x20)) = 0xFFFFFFFF;
-    (*(volatile uint32_t *)((((0x40000000U) + 0x20000) + 0x01000) + 0x20)) = 0x00000000;
-    (*(volatile uint32_t *)((((0x40000000U) + 0x20000) + 0x01000) + 0x24)) = 0xFFFFFFFF;
-    (*(volatile uint32_t *)((((0x40000000U) + 0x20000) + 0x01000) + 0x24)) = 0x00000000;
-    (*(volatile uint32_t *)((((0x40000000U) + 0x20000) + 0x01000) + 0x28)) = 0xFFFFFFFF;
-    (*(volatile uint32_t *)((((0x40000000U) + 0x20000) + 0x01000) + 0x28)) = 0x00000000;
-    (*(volatile uint32_t *)((((0x40000000U) + 0x20000) + 0x01000) + 0x1c)) = 0xFFFFFFFF;
-    (*(volatile uint32_t *)((((0x40000000U) + 0x20000) + 0x01000) + 0x1c)) = 0x00000000;
+    mem_eeprom_write_word((uint32_t)&bootloader->reset_flags, (*(volatile uint32_t *)((((0x40000000U) + 0x20000) + 0x01000) + 0x50)) & ((1 << 31) | (1 << 30) | (1 << 29) | (1 << 28) | (1 << 27) | (1 << 26) | (1 << 25) | (1 << 24)));
+    (*(volatile uint32_t *)((((0x40000000U) + 0x20000) + 0x01000) + 0x50)) |= (1 << 23);
+
+
+    if (bootloader->vtor &&
+            (!(bootloader->reset_flags & ((1 << 30) | (1 << 29) | (1 << 28) | (1 << 26) | (1 << 24))) || bootloader->magic_code == 0x3C65A95A))
+    {
+        if (bootloader->magic_code)
+        {
+            mem_eeprom_write_word((uint32_t)&bootloader->magic_code, 0);
+        }
+        boot_jump_to_application(bootloader->vtor);
+    }
 }
 
 void boot_deinit(void)
 {
 
-    (*(volatile uint32_t *)((((0x40000000U) + 0x20000) + 0x01000) + 0x20)) = 0xFFFFFFFF;
-    (*(volatile uint32_t *)((((0x40000000U) + 0x20000) + 0x01000) + 0x20)) = 0x00000000;
-    (*(volatile uint32_t *)((((0x40000000U) + 0x20000) + 0x01000) + 0x24)) = 0xFFFFFFFF;
-    (*(volatile uint32_t *)((((0x40000000U) + 0x20000) + 0x01000) + 0x24)) = 0x00000000;
-    (*(volatile uint32_t *)((((0x40000000U) + 0x20000) + 0x01000) + 0x28)) = 0xFFFFFFFF;
-    (*(volatile uint32_t *)((((0x40000000U) + 0x20000) + 0x01000) + 0x28)) = 0x00000000;
-    (*(volatile uint32_t *)((((0x40000000U) + 0x20000) + 0x01000) + 0x1c)) = 0xFFFFFFFF;
-    (*(volatile uint32_t *)((((0x40000000U) + 0x20000) + 0x01000) + 0x1c)) = 0x00000000;
+    (*(volatile uint32_t *)((((0x40000000U) + 0x20000) + 0x01000) + 0x20)) = 0xFFFFFFFF; (*(volatile uint32_t *)((((0x40000000U) + 0x20000) + 0x01000) + 0x20)) = 0x00000000;
+    (*(volatile uint32_t *)((((0x40000000U) + 0x20000) + 0x01000) + 0x24)) = 0xFFFFFFFF; (*(volatile uint32_t *)((((0x40000000U) + 0x20000) + 0x01000) + 0x24)) = 0x00000000;
+    (*(volatile uint32_t *)((((0x40000000U) + 0x20000) + 0x01000) + 0x28)) = 0xFFFFFFFF; (*(volatile uint32_t *)((((0x40000000U) + 0x20000) + 0x01000) + 0x28)) = 0x00000000;
+    (*(volatile uint32_t *)((((0x40000000U) + 0x20000) + 0x01000) + 0x1c)) = 0xFFFFFFFF; (*(volatile uint32_t *)((((0x40000000U) + 0x20000) + 0x01000) + 0x1c)) = 0x00000000;
 }
 
 void boot_jump_to_application(uint32_t address)
@@ -2923,21 +2939,21 @@ void boot_jump_to_application(uint32_t address)
 }
 
 
-# 126 "common/src/bootloader_utils.c" 3 4
+# 145 "common/src/bootloader_utils.c" 3 4
 _Bool 
-# 126 "common/src/bootloader_utils.c"
+# 145 "common/src/bootloader_utils.c"
     boot_program_application(uint32_t *data, uint32_t start_address, uint32_t len, uint32_t crc)
 {
     log_printf("boot_program_application");
 
     
-# 130 "common/src/bootloader_utils.c" 3 4
+# 149 "common/src/bootloader_utils.c" 3 4
    _Bool 
-# 130 "common/src/bootloader_utils.c"
+# 149 "common/src/bootloader_utils.c"
         res = 
-# 130 "common/src/bootloader_utils.c" 3 4
+# 149 "common/src/bootloader_utils.c" 3 4
               1
-# 130 "common/src/bootloader_utils.c"
+# 149 "common/src/bootloader_utils.c"
                   ;
 
 
@@ -2949,27 +2965,27 @@ _Bool
     {
         log_error(0);
         res = 
-# 140 "common/src/bootloader_utils.c" 3 4
+# 159 "common/src/bootloader_utils.c" 3 4
              0
-# 140 "common/src/bootloader_utils.c"
+# 159 "common/src/bootloader_utils.c"
                   ;
     }
     else if (len > 0x08004000U - 0x0800C000U)
     {
         log_error(1);
         res = 
-# 145 "common/src/bootloader_utils.c" 3 4
+# 164 "common/src/bootloader_utils.c" 3 4
              0
-# 145 "common/src/bootloader_utils.c"
+# 164 "common/src/bootloader_utils.c"
                   ;
     }
     else if (!boot_verify_checksum(data, len, crc))
     {
         log_error(2);
         res = 
-# 150 "common/src/bootloader_utils.c" 3 4
+# 169 "common/src/bootloader_utils.c" 3 4
              0
-# 150 "common/src/bootloader_utils.c"
+# 169 "common/src/bootloader_utils.c"
                   ;
     }
 
@@ -2988,9 +3004,9 @@ _Bool
             {
                 log_error(3);
                 res = 
-# 167 "common/src/bootloader_utils.c" 3 4
+# 186 "common/src/bootloader_utils.c" 3 4
                      0
-# 167 "common/src/bootloader_utils.c"
+# 186 "common/src/bootloader_utils.c"
                           ;
             }
 
@@ -2998,9 +3014,9 @@ _Bool
             {
                 log_error(4);
                 res = 
-# 173 "common/src/bootloader_utils.c" 3 4
+# 192 "common/src/bootloader_utils.c" 3 4
                      0
-# 173 "common/src/bootloader_utils.c"
+# 192 "common/src/bootloader_utils.c"
                           ;
             }
 
@@ -3008,17 +3024,17 @@ _Bool
             {
                 log_error(5);
                 res = 
-# 179 "common/src/bootloader_utils.c" 3 4
+# 198 "common/src/bootloader_utils.c" 3 4
                      0
-# 179 "common/src/bootloader_utils.c"
+# 198 "common/src/bootloader_utils.c"
                           ;
             }
 
 
             if (res == 
-# 183 "common/src/bootloader_utils.c" 3 4
+# 202 "common/src/bootloader_utils.c" 3 4
                       0
-# 183 "common/src/bootloader_utils.c"
+# 202 "common/src/bootloader_utils.c"
                            )
             {
                 break;
@@ -3030,9 +3046,9 @@ _Bool
 }
 
 
-# 193 "common/src/bootloader_utils.c" 3 4
+# 212 "common/src/bootloader_utils.c" 3 4
 _Bool 
-# 193 "common/src/bootloader_utils.c"
+# 212 "common/src/bootloader_utils.c"
     boot_verify_checksum(uint32_t *data, uint32_t len, uint32_t expected)
 {
     log_printf("boot_verify_checksum\n");
@@ -3054,12 +3070,12 @@ _Bool
 
 
     return (crc == expected ? 
-# 213 "common/src/bootloader_utils.c" 3 4
+# 232 "common/src/bootloader_utils.c" 3 4
                              1 
-# 213 "common/src/bootloader_utils.c"
+# 232 "common/src/bootloader_utils.c"
                                   : 
-# 213 "common/src/bootloader_utils.c" 3 4
+# 232 "common/src/bootloader_utils.c" 3 4
                                     0
-# 213 "common/src/bootloader_utils.c"
+# 232 "common/src/bootloader_utils.c"
                                          );
 }

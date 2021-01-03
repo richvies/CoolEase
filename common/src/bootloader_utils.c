@@ -33,6 +33,23 @@
  * @{
  */
 
+/**
+ * Mask for RCC_CSR defining which bits may trigger an entry into bootloader mode:
+ * - Any watchdog reset
+ * - Any soft reset
+ * - A pin reset (aka manual reset)
+ * - A firewall reset
+ */
+#define BOOTLOADER_RCC_CSR_ENTRY_MASK (RCC_CSR_WWDGRSTF | RCC_CSR_IWDGRSTF | RCC_CSR_SFTRSTF | RCC_CSR_PINRSTF | RCC_CSR_FWRSTF)
+
+/**
+ * Magic code value to make the bootloader ignore any of the entry bits set in
+ * RCC_CSR and skip to the user program anyway, if a valid program start value
+ * has been programmed.
+ */
+#define BOOTLOADER_MAGIC_SKIP 0x3C65A95A
+
+
 /*////////////////////////////////////////////////////////////////////////////*/
 // Static Variables
 /*////////////////////////////////////////////////////////////////////////////*/
@@ -46,10 +63,11 @@ typedef enum
 
 typedef struct
 {
-    bootloader_state_t state;
     uint32_t vtor;
+    uint32_t magic_code;
+    uint32_t reset_flags;
+    bootloader_state_t state;
     uint8_t  num_reset;
-
 }bootloader_t;
 
 static bootloader_t *bootloader = ((bootloader_t *)(EEPROM_BOOTLOADER_BASE));
@@ -70,28 +88,29 @@ static bootloader_t *bootloader = ((bootloader_t *)(EEPROM_BOOTLOADER_BASE));
 
 void boot_init(void)
 {
-    // Reset all peripherals
-    RCC_AHBRSTR = 0xFFFFFFFF;
-    RCC_AHBRSTR = 0x00000000;
-    RCC_APB2RSTR = 0xFFFFFFFF;
-    RCC_APB2RSTR = 0x00000000;
-    RCC_APB1RSTR = 0xFFFFFFFF;
-    RCC_APB1RSTR = 0x00000000;
-    RCC_IOPRSTR = 0xFFFFFFFF;
-    RCC_IOPRSTR = 0x00000000;
+    // Save reset flags and clear register
+    mem_eeprom_write_word((uint32_t)&bootloader->reset_flags, RCC_CSR & RCC_CSR_RESET_FLAGS);
+    RCC_CSR |= RCC_CSR_RMVF;
+
+    // If the program address is set and there are no entry bits set in the CSR (or the magic code is programmed appropriate), start the user program
+    if (bootloader->vtor &&
+            (!(bootloader->reset_flags & BOOTLOADER_RCC_CSR_ENTRY_MASK) || bootloader->magic_code == BOOTLOADER_MAGIC_SKIP))
+    {
+        if (bootloader->magic_code)
+        {
+            mem_eeprom_write_word((uint32_t)&bootloader->magic_code, 0);
+        }
+        boot_jump_to_application(bootloader->vtor);
+    }
 }
 
 void boot_deinit(void)
 {
     // Reset all peripherals
-    RCC_AHBRSTR = 0xFFFFFFFF;
-    RCC_AHBRSTR = 0x00000000;
-    RCC_APB2RSTR = 0xFFFFFFFF;
-    RCC_APB2RSTR = 0x00000000;
-    RCC_APB1RSTR = 0xFFFFFFFF;
-    RCC_APB1RSTR = 0x00000000;
-    RCC_IOPRSTR = 0xFFFFFFFF;
-    RCC_IOPRSTR = 0x00000000;
+    RCC_AHBRSTR  = 0xFFFFFFFF; RCC_AHBRSTR  = 0x00000000;
+    RCC_APB2RSTR = 0xFFFFFFFF; RCC_APB2RSTR = 0x00000000;
+    RCC_APB1RSTR = 0xFFFFFFFF; RCC_APB1RSTR = 0x00000000;
+    RCC_IOPRSTR  = 0xFFFFFFFF; RCC_IOPRSTR  = 0x00000000;
 }
 
 void boot_jump_to_application(uint32_t address)
@@ -212,6 +231,8 @@ bool boot_verify_checksum(uint32_t *data, uint32_t len, uint32_t expected)
     // Check against expected
     return (crc == expected ? true : false);
 }
+
+
 
 /** @} */
 
