@@ -50,7 +50,7 @@
 		"C_Cpp.errorSquiggles": "Disabled",
 
 		"python.pythonPath": "/usr/local/anaconda3/bin/python",
-		"python.languageServer": "Microsoft",
+		"python.languageServer": "Pylance",
 		"python.terminal.activateEnvironment": true,
 		"python.linting.pylintEnabled": true,
 		"python.linting.enabled": true,
