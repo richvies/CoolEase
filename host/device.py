@@ -187,6 +187,7 @@ class HalfPage(object):
         return struct.pack('<64s', self.data)
 
 
+
 class JumpToAppCommand(Command):
     COMMAND = 5
 
