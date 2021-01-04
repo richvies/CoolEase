@@ -33,6 +33,7 @@
 
 #include "common/log.h"
 #include "common/memory.h"
+#include "common/bootloader_utils.h"
 
 /** @addtogroup CUSB_FILE 
  * @{
@@ -338,10 +339,9 @@ union
     struct
     {
         uint32_t command;
-        uint32_t num_bytes;
         uint32_t page_num;
-        uint32_t crc_upper;
         uint32_t crc_lower;
+        uint32_t crc_upper;
     };
 
 } hid_out_report;
@@ -364,7 +364,7 @@ union
 /** @brief Setup CPU and peripheral clocks for usb */
 static void cusb_clock_init(void);
 
-static bool verify_half_page_checksum(uint32_t data[FLASH_PAGE_SIZE / 2], uint32_t expected);
+static bool verify_half_page_checksum(uint32_t data[16], uint32_t expected);
 
 /*////////////////////////////////////////////////////////////////////////////*/
 // USB Callback Function Declarations
@@ -464,7 +464,7 @@ bool cusb_connected(void)
     return ((usb_state == CONNECTED) ? true : false);
 }
 
-bool cusb_program_half_page(bool lower, uint32_t crc_expected, uint32_t page_num, uint32_t data[FLASH_PAGE_SIZE / 2])
+bool cusb_program_half_page(bool lower, uint32_t crc_expected, uint32_t page_num, uint32_t data[16])
 {
     bool success = false;
 
@@ -556,13 +556,23 @@ static void cusb_clock_init(void)
 
 static bool verify_half_page_checksum(uint32_t data[16], uint32_t expected)
 {
-    log_printf("boot_verify_checksum\n");
+    // log_printf("boot_verify_checksum\n");
+
+    // for(uint16_t i = 0; i < 16; i++)
+    // {
+    //     serial_printf("%8x ", hid_out_report.buf[i]);
+    // }
+    // serial_printf("\n%8x", expected);
 
     // Initialize CRC Peripheral
     rcc_periph_clock_enable(RCC_CRC);
     crc_reset();
     crc_set_reverse_input(CRC_CR_REV_IN_BYTE);
     crc_reverse_output_enable();
+    CRC_INIT = 0xFFFFFFFF;
+    
+    // serial_printf("\n%8x\n", CRC_INIT);
+
 
     // Calc CRC32
     uint32_t crc = ~crc_calculate_block(data, 16);
@@ -571,7 +581,7 @@ static bool verify_half_page_checksum(uint32_t data[16], uint32_t expected)
     crc_reset();
     rcc_periph_clock_disable(RCC_CRC);
 
-    serial_printf("Checksum value: %8x\n", crc);
+    // serial_printf("Checksum value: %8x\n", crc);
 
     // Check against expected
     return (crc == expected ? true : false);
@@ -662,12 +672,13 @@ static void hid_out_report_callback(usbd_device *dev, uint8_t ea)
     static bool prog_error;
 
     // Have to write a packet back here to begin IN transactions
-    uint8_t buf[] = "Out Report Callback\n";
+    uint8_t buf[HID_REPORT_SIZE] = "Out Report Callback\n";
     usbd_ep_write_packet(dev, ea, buf, HID_REPORT_SIZE);
 
     usbd_ep_read_packet(dev, ea, hid_out_report.buf, HID_REPORT_SIZE);
     uint32_t command = hid_out_report.command;
 
+    // serial_printf("OR %i %s\n", command, (char *)&hid_out_report.buf[1]);
     // serial_printf("Out Report command: %i data: %s\n", command, &hid_report_buf[4]);
 
     // Get Log
@@ -679,6 +690,7 @@ static void hid_out_report_callback(usbd_device *dev, uint8_t ea)
     // Setup for programming
     else if (command == 2)
     {
+        serial_printf("OR %i %s\n", command, (char *)&hid_out_report.buf[1]);
         usb_state = PROGRAM_START;
         page_num = 0;
         for (uint8_t i = 0; i < 16; i++)
@@ -698,6 +710,8 @@ static void hid_out_report_callback(usbd_device *dev, uint8_t ea)
 
         page_num = hid_out_report.page_num;
 
+        // serial_printf("OR c%i n%i l%8x h%8x \n", command, page_num, hid_out_report.crc_lower, hid_out_report.crc_upper);
+
         // Erase page first
         if (!mem_flash_erase_page(FLASH_APP_ADDRESS + (page_num * FLASH_PAGE_SIZE)))
         {
@@ -711,9 +725,20 @@ static void hid_out_report_callback(usbd_device *dev, uint8_t ea)
     {
         usbd_ep_write_packet(dev, ea, page_written, HID_REPORT_SIZE);
     }
+    // Jump to application
+    else if (command == 5)
+    {
+        boot_jump_to_application(FLASH_APP_ADDRESS);
+    }
     // Report is a half page of data
     else if (usb_state == PROGRAM)
     {
+        // serial_printf("OR %c ", lower ? 'l' : 'u');
+        // for(uint16_t i = 0; i < 16; i++)
+        // {
+        //     serial_printf("%8x ", hid_out_report.buf[i]);
+        // }
+
         if (!prog_error)
         {
             if (cusb_program_half_page(lower, lower ? crc_lower : crc_upper, page_num, hid_out_report.buf))
@@ -721,6 +746,7 @@ static void hid_out_report_callback(usbd_device *dev, uint8_t ea)
                 page_written[page_num / 32] |= (1 << (page_num % 32));
             }
         }
+        lower = !lower;
     }
 }
 

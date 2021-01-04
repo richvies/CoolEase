@@ -48,6 +48,7 @@
 // Static Function Declarations
 /*////////////////////////////////////////////////////////////////////////////*/
 
+static void init(void);
 static void test_hub2(void);
 static void hub_download_info(void);
 
@@ -63,22 +64,13 @@ static void hub_download_info(void);
 
 int main(void)
 {
-	log_init();
-	timers_lptim_init();
-	timers_tim6_init();
+	init();
   	// gpio_init();
 	// mem_init();
 	// aes_init();
 	// batt_init();
 
-	#ifdef DEBUG
-	for(int i = 0; i < 100000; i++){__asm__("nop");};
-	#endif
-
-	log_printf("Hub Start\n");
-	flash_led(100, 5);
-
-	test_mem_write_read();
+	// test_mem_write_read();
 
 	// Read Bootloader ID causes hard fault
 	// log_printf("%08x : %08x\n", 0x1FF00FFE, tst);
@@ -107,8 +99,8 @@ int main(void)
 
 	for (;;)
 	{
-		log_printf("Hub Loop\n\n");
-		timers_delay_milliseconds(1000);
+		// log_printf("Hub Loop\n\n");
+		// timers_delay_milliseconds(1000);
 	}
 
     // test_hub2();
@@ -125,6 +117,17 @@ int main(void)
 /*////////////////////////////////////////////////////////////////////////////*/
 // Static Function Definitions
 /*////////////////////////////////////////////////////////////////////////////*/
+
+static void init(void)
+{
+	clock_setup_msi_2mhz();
+    log_init();
+	timers_lptim_init();
+	timers_tim6_init();
+    log_printf("Hub Start\n");
+    serial_printf("OOHHHHHH YEAH BABY!!!!\n");
+	flash_led(100, 5);
+}
 
 static void test_hub2(void)
 {

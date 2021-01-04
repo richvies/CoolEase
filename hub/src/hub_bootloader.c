@@ -53,12 +53,13 @@ static void init(void);
 
 int main(void)
 {
-	test_cusb_get_log();
+	init();
+	// test_crc();
+	// test_cusb_get_log();
 	// cusb_init();
 
-    // boot_jump_to_application(APP_ADDRESS);
+    // boot_jump_to_application(FLASH_APP_ADDRESS);
 
-	(void)init;
 	// serial_printf("Hub Bootloader Ready");
 
 

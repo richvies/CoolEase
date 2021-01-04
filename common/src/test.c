@@ -275,7 +275,7 @@ void test_crc(void)
 {
 	clock_setup_msi_2mhz();
 	log_init();
-	timers_lptim_init();
+	timers_lptim_init(); 
 	timers_tim6_init();
 	serial_printf("test_crc()\n-----------------------\n\n");
 
@@ -283,40 +283,90 @@ void test_crc(void)
 	 * Also zlib can work on bytes but stm32 only on 32 bits so need to pad zlib 
 	 * data with zeros to keep crc same
 	 */
+	// Init: 0xFFFFFFFF Rev In Byte Out Enable != 0XE9910FAE  //matches zlib normal
+	// Init: 0x00000000 Rev In Byte Out Enable != 0X734C2F38  //matches zlib 0xFFFFFFFF
+
 	// Initialize CRC Peripheral
 	rcc_periph_clock_enable(RCC_CRC);
-	crc_reset();
-	CRC_INIT = 0xFFFFFFFF;
-
-	crc_set_reverse_input(CRC_CR_REV_IN_BYTE);
-	crc_reverse_output_enable();
-
-	serial_printf("Checksum initial: %8x\n", CRC_DR);
-	serial_printf("CR: %8x\n", CRC_CR);
-	serial_printf("INT: %8x\n", CRC_INIT);
-	serial_printf("POL: %8x\n", CRC_POL);
 
 	// data = ['0x12', '0x34', '0x56', '0x78'] in Python
-	uint32_t data = 0x12345678;
-
-	// Calc CRC32
+	uint32_t data[2] = {0x12345678, 0x24681357};
+	uint32_t res;
 	int i;
 
-	for (i = 0; i < 1; i++)
-	{
-		CRC_DR = data;
-	}
+	// uint32_t data2[16] = {0X03020100, 0X07060504};
+	uint32_t data2[16] = {0x03020100, 0x07060504, 0x0B0A0908, 0x0F0E0D0C, 0x13121110, 0x17161514, 0x1B1A1918, 0x1F1E1D1C, 0x23222120, 0x27262524, 0x2B2A2928, 0x2F2E2D2C, 0x33323130, 0x37363534, 0x3B3A3938, 0x3F3E3D3C};
+	crc_reset(); CRC_INIT = 0xFFFFFFFF; crc_set_reverse_input(CRC_CR_REV_IN_BYTE); crc_reverse_output_enable();
+	for (i = 0; i < 16; i++) {CRC_DR = data2[i];}; 			serial_printf("Init: 0xFFFFFFFF Rev In Byte Out Enable = %8x != %8x\n\n\n", CRC_DR, ~CRC_DR);
 
-	uint32_t crc = CRC_DR;
+	// Test 1
+	crc_reset(); CRC_INIT = 0xFFFFFFFF; crc_set_reverse_input(CRC_CR_REV_IN_NONE); crc_reverse_output_disable();
+	for (i = 0; i < 2; i++) {CRC_DR = data[i];}; 			serial_printf("Init: 0xFFFFFFFF Rev In None Out Disable = %8x != %8x\n", CRC_DR, ~CRC_DR);
 
-	serial_printf("In: %8x\n", data);
-	serial_printf("CRC: %8x\n", crc);
+	// Test 2
+	crc_reset(); CRC_INIT = 0x00000000; crc_set_reverse_input(CRC_CR_REV_IN_NONE); crc_reverse_output_disable();
+	for (i = 0; i < 2; i++) {CRC_DR = data[i];}; 			serial_printf("Init: 0x00000000 Rev In None Out Disable = %8x != %8x\n", CRC_DR, ~CRC_DR);
+
+	// Test 3
+	crc_reset(); CRC_INIT = 0xFFFFFFFF; crc_set_reverse_input(CRC_CR_REV_IN_BYTE); crc_reverse_output_disable();
+	for (i = 0; i < 2; i++) {CRC_DR = data[i];}; 			serial_printf("Init: 0xFFFFFFFF Rev In Byte Out Disable = %8x != %8x\n", CRC_DR, ~CRC_DR);
+
+	// Test 4
+	crc_reset(); CRC_INIT = 0x00000000; crc_set_reverse_input(CRC_CR_REV_IN_BYTE); crc_reverse_output_disable();
+	for (i = 0; i < 2; i++) {CRC_DR = data[i];}; 			serial_printf("Init: 0x00000000 Rev In Byte Out Disable = %8x != %8x\n", CRC_DR, ~CRC_DR);
+
+	// Test 5
+	crc_reset(); CRC_INIT = 0xFFFFFFFF; crc_set_reverse_input(CRC_CR_REV_IN_HALF); crc_reverse_output_disable();
+	for (i = 0; i < 2; i++) {CRC_DR = data[i];}; 			serial_printf("Init: 0xFFFFFFFF Rev In Half Out Disable = %8x != %8x\n", CRC_DR, ~CRC_DR);
+
+	// Test 6
+	crc_reset(); CRC_INIT = 0x00000000; crc_set_reverse_input(CRC_CR_REV_IN_HALF); crc_reverse_output_disable();
+	for (i = 0; i < 2; i++) {CRC_DR = data[i];}; 			serial_printf("Init: 0x00000000 Rev In Half Out Disable = %8x != %8x\n", CRC_DR, ~CRC_DR);
+
+	// Test 7
+	crc_reset(); CRC_INIT = 0xFFFFFFFF; crc_set_reverse_input(CRC_CR_REV_IN_WORD); crc_reverse_output_disable();
+	for (i = 0; i < 2; i++) {CRC_DR = data[i];}; 			serial_printf("Init: 0xFFFFFFFF Rev In Word Out Disable = %8x != %8x\n", CRC_DR, ~CRC_DR);
+
+	// Test 8
+	crc_reset(); CRC_INIT = 0x00000000; crc_set_reverse_input(CRC_CR_REV_IN_WORD); crc_reverse_output_disable();
+	for (i = 0; i < 2; i++) {CRC_DR = data[i];}; 			serial_printf("Init: 0x00000000 Rev In Word Out Disable = %8x != %8x\n", CRC_DR, ~CRC_DR);
+
+	// Test 9
+	crc_reset(); CRC_INIT = 0xFFFFFFFF; crc_set_reverse_input(CRC_CR_REV_IN_NONE); crc_reverse_output_enable();
+	for (i = 0; i < 2; i++) {CRC_DR = data[i];}; 			serial_printf("Init: 0xFFFFFFFF Rev In None Out Enable = %8x != %8x\n", CRC_DR, ~CRC_DR);
+
+	// Test 10
+	crc_reset(); CRC_INIT = 0x00000000; crc_set_reverse_input(CRC_CR_REV_IN_NONE); crc_reverse_output_enable();
+	for (i = 0; i < 2; i++) {CRC_DR = data[i];}; 			serial_printf("Init: 0x00000000 Rev In None Out Enable = %8x != %8x\n", CRC_DR, ~CRC_DR);
+
+	// Test 11
+	crc_reset(); CRC_INIT = 0xFFFFFFFF; crc_set_reverse_input(CRC_CR_REV_IN_BYTE); crc_reverse_output_enable();
+	for (i = 0; i < 2; i++) {CRC_DR = data[i];}; 			serial_printf("Init: 0xFFFFFFFF Rev In Byte Out Enable = %8x != %8x\n", CRC_DR, ~CRC_DR);
+
+	// Test 12
+	crc_reset(); CRC_INIT = 0x00000000; crc_set_reverse_input(CRC_CR_REV_IN_BYTE); crc_reverse_output_enable();
+	for (i = 0; i < 2; i++) {CRC_DR = data[i];}; 			serial_printf("Init: 0x00000000 Rev In Byte Out Enable = %8x != %8x\n", CRC_DR, ~CRC_DR);
+
+	// Test 13
+	crc_reset(); CRC_INIT = 0xFFFFFFFF; crc_set_reverse_input(CRC_CR_REV_IN_HALF); crc_reverse_output_enable();
+	for (i = 0; i < 2; i++) {CRC_DR = data[i];}; 			serial_printf("Init: 0xFFFFFFFF Rev In Half Out Enable = %8x != %8x\n", CRC_DR, ~CRC_DR);
+
+	// Test 14
+	crc_reset(); CRC_INIT = 0x00000000; crc_set_reverse_input(CRC_CR_REV_IN_HALF); crc_reverse_output_enable();
+	for (i = 0; i < 2; i++) {CRC_DR = data[i];}; 			serial_printf("Init: 0x00000000 Rev In Half Out Enable = %8x != %8x\n", CRC_DR, ~CRC_DR);
+
+	// Test 15
+	crc_reset(); CRC_INIT = 0xFFFFFFFF; crc_set_reverse_input(CRC_CR_REV_IN_WORD); crc_reverse_output_enable();
+	for (i = 0; i < 2; i++) {CRC_DR = data[i];}; 			serial_printf("Init: 0xFFFFFFFF Rev In Word Out Disable = %8x != %8x\n", CRC_DR, ~CRC_DR);
+
+	// Test 16
+	crc_reset(); CRC_INIT = 0x00000000; crc_set_reverse_input(CRC_CR_REV_IN_WORD); crc_reverse_output_enable();
+	for (i = 0; i < 2; i++) {CRC_DR = data[i];}; 			serial_printf("Init: 0x00000000 Rev In Word Out Disable = %8x != %8x\n", CRC_DR, ~CRC_DR);
 
 	// Deinit
 	crc_reset();
 	rcc_periph_clock_disable(RCC_CRC);
 
-	serial_printf("Checksum value: %8x %8x\n", crc, ~crc);
 }
 
 /*////////////////////////////////////////////////////////////////////////////*/
@@ -710,6 +760,25 @@ void test_analog_watchdog(void)
 		__asm__("nop");
 	}
 }
+
+
+
+// Init: 0xFFFFFFFF Rev In None Out Disable = 0X4E780056 != 0XB187FFA9
+// Init: 0x00000000 Rev In None Out Disable = 0X277CBB0F != 0XD88344F0
+// Init: 0xFFFFFFFF Rev In Byte Out Disable = 0X8A0F7668 != 0X75F08997
+// Init: 0x00000000 Rev In Byte Out Disable = 0XE30BCD31 != 0X1CF432CE
+// Init: 0xFFFFFFFF Rev In Half Out Disable = 0X357FD5D1 != 0XCA802A2E
+// Init: 0x00000000 Rev In Half Out Disable = 0X5C7B6E88 != 0XA3849177
+// Init: 0xFFFFFFFF Rev In Word Out Disable = 0XD41BDC9F != 0X2BE42360
+// Init: 0x00000000 Rev In Word Out Disable = 0XBD1F67C6 != 0X42E09839
+// Init: 0xFFFFFFFF Rev In None Out Enable = 0X6A001E72 != 0X95FFE18D
+// Init: 0x00000000 Rev In None Out Enable = 0XF0DD3EE4 != 0X0F22C11B
+// Init: 0xFFFFFFFF Rev In Byte Out Enable = 0X166EF051 != 0XE9910FAE
+// Init: 0x00000000 Rev In Byte Out Enable = 0X8CB3D0C7 != 0X734C2F38
+// Init: 0xFFFFFFFF Rev In Half Out Enable = 0X8BABFEAC != 0X74540153
+// Init: 0x00000000 Rev In Half Out Enable = 0X1176DE3A != 0XEE8921C5
+// Init: 0xFFFFFFFF Rev In Word Out Disable = 0XF93BD82B != 0X06C427D4
+// Init: 0x00000000 Rev In Word Out Disable = 0X63E6F8BD != 0X9C190742
 
 /** @} */
 /** @} */

@@ -125,6 +125,7 @@ void boot_init(void)
     }
 }
 
+// This works perfectly before jumping to application
 void boot_deinit(void)
 {
     // Reset all peripherals
@@ -151,7 +152,7 @@ void boot_jump_to_application(uint32_t address)
     void (*start)(void) = (void *)MMIO32(address + 4);
 
     // Deinitialize all used peripherals
-    boot_deinit();
+    // boot_deinit();
 
     // Enable interruptsf
     __asm__ volatile("CPSIE I\n");
