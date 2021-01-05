@@ -76,6 +76,8 @@ static bootloader_t *bootloader = ((bootloader_t *)(EEPROM_BOOTLOADER_BASE));
 // Static Function Declarations
 /*////////////////////////////////////////////////////////////////////////////*/
 
+static bool verify_half_page_checksum(uint32_t data[FLASH_PAGE_SIZE / 2], uint32_t expected);
+
 /** @} */
 
 /** @addtogroup BOOTLOADER_UTILS_API
@@ -162,6 +164,43 @@ void boot_jump_to_application(uint32_t address)
     while (1)
     {
     };
+}
+
+void boot_fallback(void)
+{
+    // Try to redownload new firmware
+    // If still not working fallback to safe version for the time being
+}
+
+
+bool boot_program_half_page(bool lower, uint32_t crc_expected, uint32_t page_num, uint32_t data[FLASH_PAGE_SIZE / 2])
+{
+    bool success = false;
+
+    // Check crc32
+    if (!verify_half_page_checksum(data, crc_expected))
+    {
+        log_error(ERR_USB_PAGE_CHECKSUM_BAD);
+    }
+    // Program half page
+    else if (!mem_flash_write_half_page(FLASH_APP_ADDRESS + (page_num * FLASH_PAGE_SIZE) + (lower ? 0 : (FLASH_PAGE_SIZE / 2)), data))
+    {
+        if (lower)
+        {
+            log_error(ERR_USB_PROGRAM_LOWER_HALF_PAGE_FAIL);
+        }
+        else
+        {
+            log_error(ERR_USB_PROGRAM_UPPER_HALF_PAGE_FAIL);
+        }
+    }
+    // Everything went well
+    else
+    {
+        success = true;
+    }
+
+    return success;
 }
 
 bool boot_program_application(uint32_t *data, uint32_t start_address, uint32_t len, uint32_t crc)
@@ -254,13 +293,6 @@ bool boot_verify_checksum(uint32_t *data, uint32_t len, uint32_t expected)
     return (crc == expected ? true : false);
 }
 
-void boot_fallback(void)
-{
-    // Try to redownload new firmware
-    // If still not working fallback to safe version for the time being
-}
-
-
 /** @} */
 
 /** @addtogroup BOOTLOADER_UTILS_INT
@@ -270,6 +302,39 @@ void boot_fallback(void)
 /*////////////////////////////////////////////////////////////////////////////*/
 // Static Function Definitions
 /*////////////////////////////////////////////////////////////////////////////*/
+
+static bool verify_half_page_checksum(uint32_t data[FLASH_PAGE_SIZE / 2], uint32_t expected)
+{
+    // log_printf("boot_verify_checksum\n");
+
+    // for(uint16_t i = 0; i < 16; i++)
+    // {
+    //     serial_printf("%8x ", hid_out_report.buf[i]);
+    // }
+    // serial_printf("\n%8x", expected);
+
+    // Initialize CRC Peripheral
+    rcc_periph_clock_enable(RCC_CRC);
+    crc_reset();
+    crc_set_reverse_input(CRC_CR_REV_IN_BYTE);
+    crc_reverse_output_enable();
+    CRC_INIT = 0xFFFFFFFF;
+    
+    // serial_printf("\n%8x\n", CRC_INIT);
+
+
+    // Calc CRC32
+    uint32_t crc = ~crc_calculate_block(data, 16);
+
+    // Deinit
+    crc_reset();
+    rcc_periph_clock_disable(RCC_CRC);
+
+    // serial_printf("Checksum value: %8x\n", crc);
+
+    // Check against expected
+    return (crc == expected ? true : false);
+}
 
 /** @} */
 /** @} */

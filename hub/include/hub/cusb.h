@@ -58,9 +58,6 @@ extern "C" {
 /** @brief Initialize clock and interrupts */
 void cusb_init(void);
 
-void cusb_test_poll(void);
-void cusb_send(char character);
-
 /** @brief True if usb state is CONNECTED
  * 
  * Set by hid config callback after 
@@ -71,7 +68,9 @@ void cusb_send(char character);
  */
 bool cusb_connected(void);
 
-bool cusb_program_half_page(bool lower, uint32_t crc_expected, uint32_t page_num, uint32_t data[FLASH_PAGE_SIZE/2]);
+void cusb_poll(void);
+
+void cusb_send(char character);
 
 /*////////////////////////////////////////////////////////////////////////////*/
 // Hook Functions
