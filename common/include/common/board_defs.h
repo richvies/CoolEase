@@ -48,8 +48,9 @@ sensor_t *get_sensor(uint32_t dev_num);
 #define PWR_SENS GPIO1
 
 // Status LED
-#define LED_PORT GPIOB
-#define LED GPIO8
+#define LED_PORT 	GPIOB
+#define LED 		GPIO8
+#define LED_RCC 	RCC_GPIOB
 
 // USART / Serial Printf
 #define SPF_USART_BAUD 115200
@@ -157,6 +158,7 @@ sensor_t *get_sensor(uint32_t dev_num);
 // Status LED
 #define LED_PORT GPIOA
 #define LED GPIO14
+#define LED_RCC 	RCC_GPIOA
 
 // USART / Serial Printf
 #define SPF_USART_BAUD 115200
