@@ -454,24 +454,44 @@ bool sim_get_bin(void)
 
 			// Print out for debugging
 			serial_printf("Got half page %8x\n", (n * FLASH_PAGE_SIZE / 2));
-			for (uint8_t i = 0; i < num_bytes; i++)
+			// for (uint8_t i = 0; i < num_bytes; i++)
+			// {
+			// 	if(!(i % 4))
+			// 	{
+			// 		// Print 32 bit version every 4 bytes
+			// 		serial_printf("\n%8x\n", half_page.buf32[(i / 4)]);
+			// 	}
+			// 	serial_printf("%2x ", half_page.buf8[i]);
+			// }
+
+			serial_printf("\nHalf page Done\nProgramming\n");
+
+			// Program half page
+			static bool lower = true;
+			uint32_t crc = boot_get_half_page_checksum(half_page.buf32);
+			if(boot_program_half_page(lower, crc, n / 2, half_page.buf32))
 			{
-				serial_printf("%2x ", half_page.buf8[i]);
+				serial_printf("Programming success\n");
 			}
-			serial_printf("\nHalf page Done\n\n");
+			else
+			{
+				serial_printf("Programming Fail\n");
+			}
+			
+			lower = !lower;
 		}
-		serial_printf("Read all data\n\n");
+		serial_printf("Programming Done\n\n");
 	}
 
-	sim_serial_pass_through();
-
-	
+	// sim_serial_pass_through();
 
 	sim_printf("at+httpterm\r\n");
 	TIMEOUT(1000000, "SIM: at+httpterm", 0, check_for_response("OK"), ;, ;);
 	timers_delay_milliseconds(100);
 
 	sim_end();
+
+	boot_jump_to_application(FLASH_APP_ADDRESS);
 
 	return true;
 }
