@@ -23,13 +23,11 @@
 #include <libopencm3/stm32/flash.h>
 #include <libopencm3/cm3/nvic.h>
 
-#include "common/aes.h"
 #include "common/board_defs.h"
-#include "common/bootloader_utils.h"
 #include "common/log.h"
 #include "common/memory.h"
-#include "common/printf.h"
 #include "common/timers.h"
+#include "common/printf.h"
 
 /** @addtogroup SIM_FILE 
  * @{
@@ -71,6 +69,16 @@
 // Static Variables
 /*////////////////////////////////////////////////////////////////////////////*/
 
+enum
+{	
+	OFF = 0,
+	RESET,
+	SLEEP,
+	CONNECTED,
+
+}sim_state;
+
+
 #define SIM_BUFFER_SIZE 64U
 
 static char		sim_rx_buf[SIM_BUFFER_SIZE];
@@ -79,6 +87,8 @@ static uint8_t 	sim_rx_head, sim_rx_tail;
 static uint8_t 	sim_tx_head, sim_tx_tail;
 
 static char		last_reply[SIM_BUFFER_SIZE];
+
+static const char base_url_str[] = "http://cooleasetest.000webhostapp.com/";
 
 /*////////////////////////////////////////////////////////////////////////////*/
 // Static Function Declarations
@@ -94,6 +104,20 @@ static inline bool _is_digit(char ch);
 // internal ASCII string to uint32_t conversion
 static uint32_t _atoi(const char **str);
 
+/** @brief Check all unread received characters for ceratin response 
+ * 
+ * Adds received chars to temporary buffer until \r\n received
+ * Then appends a \0 and checks if message contains expected response
+ * If expected is found then stores response in last_reply buffer
+ */
+static bool check_response(const char *expected_response);
+
+/** @brief Wait until correct response received or timeout 
+ * 
+ * Check response + timeout
+ */
+static bool wait_and_check_response(uint32_t timeout_ms, const char *expected_response);
+
 
 /** @} */
 
@@ -105,7 +129,7 @@ static uint32_t _atoi(const char **str);
 // Exported Function Definitions
 /*////////////////////////////////////////////////////////////////////////////*/
 
-void sim_init(void)
+bool sim_init(void)
 {
 	log_printf("Sim Init\n");
 
@@ -132,34 +156,33 @@ void sim_init(void)
 	nvic_enable_irq(SIM_USART_NVIC);
   	nvic_set_priority(SIM_USART_NVIC, 0);
 
-	sim_printf("ate0\r\n");
-	TIMEOUT(1000000, "SIM: ate0", 0, check_for_response("OK"), ;, ;);
-	sim_printf("at+cfun=1\r\n");
-	TIMEOUT(1000000, "SIM: at+cfun=1", 0, check_for_response("OK"), ;, ;);
-	sim_printf("at+csclk=0\r\n");
-	TIMEOUT(1000000, "SIM: at+csclk=0", 0, check_for_response("OK"), ;, ;);
+	bool result = false;
+	if 		(!sim_printf_and_check_response(1000, "OK", "ATE0\r\n"));
+	else if (!sim_printf_and_check_response(1000, "OK", "AT+CFUN=1\r\n"));
+	else if (!sim_printf_and_check_response(1000, "OK", "AT+CSCLK=0\r\n"));
+	else 	{result = true;}
 
 	log_printf("Sim Init Done\n");
+
+	return result;
 }
 
-void sim_end(void)
+bool sim_end(void)
 {
-	// sim_printf("at+cpowd=1\r\n");
-	// TIMEOUT(5000000, "SIM: at+cpowd=1", 0, check_for_response("POWER DOWN"), ;);
-
-	sim_printf("at+cfun=0\r\n");
-	TIMEOUT(10000000, "SIM: at+cfun=0", 0, check_for_response("OK"), ;, ;);
-
-	sim_printf("at+csclk=1\r\n");
-	TIMEOUT(10000000, "SIM: at+csclk=1", 0, check_for_response("OK"), ;, ;);
+	bool result = false;
+	if 		(!sim_printf_and_check_response(5000, "OK", "AT+CFUN=0\r\n"));
+	else if (!sim_printf_and_check_response(5000, "OK", "AT+CSCLK=1\r\n"));
+	else 	{result = true;}
 
 	usart_disable(SIM_USART);
 	rcc_periph_clock_disable(SIM_USART_RCC);
 
 	log_printf("Sim End Done\n");
+
+	return result;
 }
 
-void sim_printf(const char* format, ...)
+void sim_printf(const char *format, ...)
 {	
 	va_list va;
 	va_start(va, format);
@@ -169,61 +192,19 @@ void sim_printf(const char* format, ...)
 	while(!usart_get_flag(SIM_USART, USART_ISR_TC)) {__asm__("nop");}
 }
 
-bool check_for_response(char *str)
-{
-	bool found = false;
+bool sim_printf_and_check_response(uint32_t timeout_ms, const char *expected_response, const char *format, ...)
+{	
+	// Clear receive buffer first
+	sim_rx_tail = sim_rx_tail;
 
-	static char check_buf[SIM_BUFFER_SIZE];
-	static uint8_t check_idx = 0;
-	
-	// Go through RX Buf
-	while( sim_rx_tail != sim_rx_head )
-	{
-		// Get next char from RX Buf
-		char character = sim_rx_buf[sim_rx_tail];
-		sim_rx_tail = (sim_rx_tail + 1) % SIM_BUFFER_SIZE;
+	// Write to SIM800
+	va_list va;
+	va_start(va, format);
+	fnprintf(_putchar, format, va);
+  	va_end(va);
+	while(!usart_get_flag(SIM_USART, USART_ISR_TC)) {__asm__("nop");}
 
-		check_buf[check_idx] = character;
-		check_idx = (check_idx + 1) % SIM_BUFFER_SIZE;
-
-		// serial_printf("%c", character);
-
-		// End of reply
-		if(character == '\n')
-		{
-			// Null Terminate String
-			check_buf[check_idx] = '\0';
-			check_idx = (check_idx + 1) % SIM_BUFFER_SIZE;
-
-			// Only bother copying reply if longer than 2 chars
-			// SIM800 sometimes sends lots of \r\n only messages
-			if(strlen(check_buf) > 2)
-			{
-				// Check for target substring
-				if( strstr(check_buf, str) )
-					found = true;
-
-				#if DEBUG
-				serial_printf("Check for response l%i %s\n", strlen(check_buf), check_buf);
-				#endif
-
-				// Copy into last reply buffer
-				strcpy(last_reply, check_buf);
-			}
-
-			// Reset ckeck buf
-			memset(check_buf, 0, sizeof(check_buf));
-			check_idx = 0;
-		}
-
-		// Substring found
-		if(found)
-			return true;
-	}
-	
-	// Substring not found
-	return false;
-
+	return wait_and_check_response(timeout_ms, expected_response);
 }
 
 void sim_serial_pass_through(void)
@@ -293,283 +274,237 @@ void sim_print_capabilities(void)
 	sim_printf("at+gcap\r\n");
 }
 
-void sim_connect(void)
-{
-	sim_printf("at\r\n");
-	TIMEOUT(10000000, "SIM: at", 0, check_for_response("OK"), ;, ;);
-	timers_delay_milliseconds(100);
+bool sim_connect(void)
+{	
+	bool result = false;
 
-	sim_printf("at+cfun=1\r\n");
-	TIMEOUT(10000000, "SIM: at+cfun=1", 0, check_for_response("OK"), ;, ;);
-	TIMEOUT(20000000, "SIM: SMS Ready", 0, check_for_response("SMS Ready"), ;, ;);
-	timers_delay_milliseconds(100);
-
-	// sim_printf("at+cpol=0,0,\"T-Mobile\"\r\n");
-	// TIMEOUT(10000000, "at+cpol=0,0,\"T-Mobile\"", 0, check_for_response("OK"), ;, ;);
-
-	sim_printf("at+creg=1\r\n");
-	TIMEOUT(60000000, "SIM: at+creg=1", 0, check_for_response("+CREG: 5"), ;, ;);
-	timers_delay_milliseconds(100);
-
-	sim_printf("at+creg=0\r\n");
-	TIMEOUT(60000000, "SIM: at+creg=0", 0, check_for_response("OK"), ;, ;);
-	timers_delay_milliseconds(100);
-
-	// sim_printf("at+cops=?\r\n");
-	// TIMEOUT(60000000, "at+cops=?", 0, check_for_response("OK"), ;, ;);
-	// timers_delay_milliseconds(100);
-}
-
-void sim_send_data(uint8_t *data, uint8_t len)
-{
-	sim_printf("at+sapbr=3,1,APN,data.rewicom.net\r\n");
-	TIMEOUT(1000000, "SIM: at+sapbr=3,1,APN,data.rewicom.net", 0, check_for_response("OK"), ;, ;);
-	timers_delay_milliseconds(100);
-	
-	sim_printf("at+httpinit\r\n");
-	TIMEOUT(1000000, "SIM: at+httpinit", 0, check_for_response("OK"), ;, ;);
-	timers_delay_milliseconds(100);
-	
-	sim_printf("at+httppara=cid,1\r\n");
-	TIMEOUT(1000000, "SIM: at+httppara=cid,1", 0, check_for_response("OK"), ;, ;);
-	timers_delay_milliseconds(100);
-
-	sim_printf("at+httppara=url,www.circuitboardsamurai.com:8085/website/upload_save_all.php?s=");
-	for(uint8_t i = 0; i < len; i++){ sim_printf("%02X", data[i]); }
-	sim_printf("N\r\n");
-	TIMEOUT(1000000, "SIM: at+httppara=url,www.circuitboardsamurai.com:8085/website/upload_save_all.php?s=", 0, check_for_response("OK"), ;, ;);
-	timers_delay_milliseconds(100);
-
-	// sim_printf("at+httppara=url,www.google.com\r\n");
-	// timers_delay_milliseconds(100);
-
-	sim_printf("at+sapbr=1,1\r\n");
-	TIMEOUT(60000000, "SIM: at+sapbr=1,1", 0, check_for_response("OK"), ;, ;);
-	timers_delay_milliseconds(100);
-
-	sim_printf("at+httpaction=0\r\n");
-	TIMEOUT(20000000, "SIM: at+httpaction=0", 0, check_for_response("OK"), ;, ;);
-	TIMEOUT(60000000, "SIM: at+httpaction=0", 0, check_for_response("+HTTPACTION"), ;, ;);
-	timers_delay_milliseconds(100);
-
-	sim_printf("at+httpread\r\n");
-	TIMEOUT(2000000, "SIM: at+httpread", 0, check_for_response("OK"), ;, ;);
-	timers_delay_milliseconds(100);
-
-	sim_printf("at+httpterm\r\n");
-	TIMEOUT(1000000, "SIM: at+httpterm", 0, check_for_response("OK"), ;, ;);
-	timers_delay_milliseconds(100);
-
-	sim_printf("at+sapbr=0,1\r\n");
-	TIMEOUT(60000000, "SIM: at+sapbr=0,1", 0, check_for_response("OK"), ;, ;);
-	timers_delay_milliseconds(100);
-}
-
-bool sim_get_bin(void)
-{
-	sim_connect();
-
-	uint32_t file_size = 0;
-
-	sim_printf("at+sapbr=3,1,APN,data.rewicom.net\r\n");
-	TIMEOUT(1000000, "SIM: at+sapbr=3,1,APN,data.rewicom.net", 0, check_for_response("OK"), ;, ;);
-	timers_delay_milliseconds(100);
-	
-	sim_printf("at+httpinit\r\n");
-	TIMEOUT(1000000, "SIM: at+httpinit", 0, check_for_response("OK"), ;, ;);
-	timers_delay_milliseconds(100);
-	
-	sim_printf("at+httppara=cid,1\r\n");
-	TIMEOUT(1000000, "SIM: at+httppara=cid,1", 0, check_for_response("OK"), ;, ;);
-	timers_delay_milliseconds(100);
-
-	sim_printf("at+httppara=url,http://cooleasetest.000webhostapp.com/hub.bin\r\n");
-	TIMEOUT(1000000, "SIM: at+httppara=url,http://cooleasetest.000webhostapp.com/hub.bin", 0, check_for_response("OK"), ;, ;);
-	timers_delay_milliseconds(100);
-
-	sim_printf("at+sapbr=1,1\r\n");
-	TIMEOUT(60000000, "SIM: at+sapbr=1,1", 0, check_for_response("OK"), ;, ;);
-	timers_delay_milliseconds(100);
-
-	sim_printf("at+httpaction=0\r\n");
-	TIMEOUT(20000000, "SIM: at+httpaction=0", 0, check_for_response("OK"), ;, ;);
-	TIMEOUT( 60000000, "SIM: at+httpaction=0", 0, check_for_response("+HTTPACTION"), 
-			if(_is_digit(last_reply[19])) 
-			{
-				char *ptr = &last_reply[19];
-				file_size = _atoi((const char **)&ptr);
-			}, );
-	
-	timers_delay_milliseconds(100);
-
-	sim_printf("at+sapbr=0,1\r\n");
-	TIMEOUT(60000000, "SIM: at+sapbr=0,1", 0, check_for_response("OK"), ;, ;);
-	timers_delay_milliseconds(100);
-
-	serial_printf("Filesize %i\n", file_size);
-
-	if (file_size)
+	if (!sim_printf_and_check_response(1000, "OK", "AT\r\n"))
 	{
-		// Todo: make sure num pages is an even integer, otherwise will program garbage at end
-		uint16_t num_half_pages = ( file_size / (FLASH_PAGE_SIZE / 2) ) + 1;
-
-		serial_printf("Num half pages %i\n", num_half_pages);
-
-		// Get data and program
-		for(uint16_t n = 0; n < num_half_pages; n++)
-		{
-			serial_printf("------------------------------\n");
-			serial_printf("-----------Half Page %i-------\n", n);
-			serial_printf("------------------------------\n");
-
-			// Half page buffer
-			// Using union so that data can be read from as bytes and programmed as u32
-			// this automatically deals with endianness
-			union
-			{
-				uint8_t buf8[64];
-				uint32_t buf32[16];
-			}half_page;
-
-			// HTTPREAD command and get number of bytes read
-			// Number may be less than half page depending on how many are left in bin file
-			// SIM800 signifies how many bytes are returned
-			uint8_t num_bytes = 0;
-			sim_printf("at+httpread=%i,%i\r\n", (n * FLASH_PAGE_SIZE / 2), (FLASH_PAGE_SIZE / 2) );
-			TIMEOUT(2000000, "SIM: at+httpread", 0, check_for_response("+HTTPREAD"),
-					if(_is_digit(last_reply[11])) 
-					{
-						char *ptr = &last_reply[11];
-						num_bytes = _atoi((const char **)&ptr);
-					}, );
-
-			// SIM800 now returns that number of bytes
-			for (uint8_t i = 0; i < num_bytes; i++)
-			{
-				while(!sim_available()){};
-				half_page.buf8[i] = (uint8_t)sim_read();
-			}
-			// Wait for final ok reply
-			TIMEOUT(20000000, "SIM: at+httpread", 0, check_for_response("OK"), ;, ;);
-
-			// Print out for debugging
-			serial_printf("Got half page %8x\n", (n * FLASH_PAGE_SIZE / 2));
-			// for (uint8_t i = 0; i < num_bytes; i++)
-			// {
-			// 	if(!(i % 4))
-			// 	{
-			// 		// Print 32 bit version every 4 bytes
-			// 		serial_printf("\n%8x\n", half_page.buf32[(i / 4)]);
-			// 	}
-			// 	serial_printf("%2x ", half_page.buf8[i]);
-			// }
-
-			serial_printf("\nHalf page Done\nProgramming\n");
-
-			// Program half page
-			static bool lower = true;
-			uint32_t crc = boot_get_half_page_checksum(half_page.buf32);
-			if(boot_program_half_page(lower, crc, n / 2, half_page.buf32))
-			{
-				serial_printf("Programming success\n");
-			}
-			else
-			{
-				serial_printf("Programming Fail\n");
-			}
-			
-			lower = !lower;
-		}
-		serial_printf("Programming Done\n\n");
+		log_error(ERR_SIM_AT);
+	}
+	else if (!sim_printf_and_check_response(20000, "SMS Ready", "AT+CFUN=1\r\n"))
+	{
+		log_error(ERR_SIM_CFUN);
+	}
+	else if (!sim_printf_and_check_response(60000, "+CREG: 5", "AT+CREG=1\r\n"))
+	{
+		log_error(ERR_SIM_CREG_NONE);
+	}
+	else if (!sim_printf_and_check_response(60000, "OK", "AT+CREG=0\r\n"))
+	{
+		log_error(ERR_SIM_CREG_0);
+	}
+	// All good
+	else
+	{
+		result = true;
 	}
 
-	// sim_serial_pass_through();
-
-	sim_printf("at+httpterm\r\n");
-	TIMEOUT(1000000, "SIM: at+httpterm", 0, check_for_response("OK"), ;, ;);
-	timers_delay_milliseconds(100);
-
-	sim_end();
-
-	boot_jump_to_application(FLASH_APP_ADDRESS);
-
-	return true;
+	return result;
 }
+
+/** @brief HTTP get request. Must be null terminalted string for url 
+ * 	Must call http term after using this function 
+ * 
+ * @ref sim_http_term()
+ * 
+ * @param url_str Null terminated string for url to get
+ */
+uint32_t sim_http_get(const char *url_str)
+{
+	uint32_t file_size = 0;
+
+	if (!sim_printf_and_check_response(1000, "OK", "AT+SAPBR=3,1,APN,data.rewicom.net\r\n"))
+	{
+		log_error(ERR_SIM_SAPBR_CONFIG);
+	}
+	else if (!sim_printf_and_check_response(1000, "OK", "AT+HTTPINIT\r\n"))
+	{
+		log_error(ERR_SIM_HTTPINIT);
+	}
+	else if (!sim_printf_and_check_response(1000, "OK", "AT+HTTPPARA=CID,1\r\n"))
+	{
+		log_error(ERR_SIM_HTTPPARA_CID);
+	}
+	else if (!sim_printf_and_check_response(1000, "OK", "AT+HTTPPARA=URL,%s\r\n", url_str))
+	{
+		log_error(ERR_SIM_HTTPPARA_URL);
+	}
+	else if (!sim_printf_and_check_response(60000, "OK", "AT+SAPBR=1,1\r\n"))
+	{
+		log_error(ERR_SIM_SAPBR_CONNECT);
+	}
+	else if (!sim_printf_and_check_response(10000, "OK", "AT+HTTPACTION=0\r\n"))
+	{
+		log_error(ERR_SIM_HTTPACTION_0);
+	}
+	// Wait for download
+	else if (!wait_and_check_response(60000, "+HTTPACTION"))
+	{
+		log_error(ERR_SIM_HTTP_GET_TIMEOUT);
+	}
+	// All good, get length of response
+	else
+	{
+		if(_is_digit(last_reply[19])) 
+		{
+			char *ptr = &last_reply[19];
+			file_size = _atoi((const char **)&ptr);
+		}
+		if (!sim_printf_and_check_response(60000, "OK", "AT+SAPBR=0,1\r\n"))
+		{
+			log_error(ERR_SIM_SAPBR_DISCONNECT);
+		}
+	}
+	
+	return file_size;
+}
+
+uint32_t sim_http_read_response(uint32_t address, uint32_t num_bytes)
+{
+	uint32_t num_ret = 0;
+
+	// Request num_bytes of data
+	if (!sim_printf_and_check_response(2000, "+HTTPREAD", "AT+HTTPREAD=%i,%i\r\n", address, num_bytes))
+	{
+		log_error(ERR_SIM_HTTP_READ_TIMEOUT);
+	}
+	else
+	{
+		// Get actual number of bytes returned
+		if (_is_digit(last_reply[11])) 
+		{
+			char *ptr = &last_reply[11];
+			num_ret = _atoi((const char **)&ptr);
+		}
+	}
+
+	return num_ret;
+}
+
+bool sim_http_term(void)
+{
+	bool result = false;
+
+	if (!sim_printf_and_check_response(1000, "OK", "AT+HTTPTERM\r\n"))
+	{
+		log_error(ERR_SIM_HTTPTERM);
+	}
+	else
+	{
+		result = true;
+	}
+	
+	return result;
+}
+
+bool sim_send_data(uint8_t *data, uint8_t data_len)
+{
+	bool result = false;
+
+	char url_str[sizeof(base_url_str) + 3 + data_len];
+
+	strcpy(url_str, base_url_str);
+	strcat(url_str, "?s=");
+
+	uint16_t url_len = strlen(url_str);
+	uint16_t i = 0;
+
+	// serial_printf("%s %i %i\n",url_str, url_len, sizeof(url_str));
+
+	for (i = url_len; i < url_len + data_len; i++)
+	{
+		url_str[i] = data[i - url_len];
+	}
+
+	url_str[i] = '\0';
+
+
+	if (sim_http_get(url_str))
+	{
+		result = sim_http_term();
+	}
+
+	// serial_printf("URL: l%i %s\n", strlen(url_str), url_str);
+
+	return result;
+}
+
 
 // Send Temperature
 /*
 void sim_send_temp(rfm_packet_t *packets,  uint8_t len)
 {
 	// sim_printf("at+sapbr=3,1,APN,data.rewicom.net\r\n");
-	// TIMEOUT(10000000, "SIM: at+sapbr=3,1,APN,data.rewicom.net", 0, check_for_response("OK"), ;, ;);
+	// TIMEOUT(10000000, "SIM: at+sapbr=3,1,APN,data.rewicom.net", 0, check_response("OK"), ;, ;);
 	
 	// sim_printf("at+httpinit\r\n");
-	// TIMEOUT(10000000, "SIM: at+httpinit", 0, check_for_response("OK"), ;, ;);
+	// TIMEOUT(10000000, "SIM: at+httpinit", 0, check_response("OK"), ;, ;);
 	
 	// sim_printf("at+httppara=cid,1\r\n");
-	// TIMEOUT(10000000, "SIM: at+httppara=cid,1", 0, check_for_response("OK"), ;, ;);
+	// TIMEOUT(10000000, "SIM: at+httppara=cid,1", 0, check_response("OK"), ;, ;);
 	
 	// // sim_printf("at+httppara=url,www.circuitboardsamurai.com/upload.php?s=%08x", mem_get_dev_num());
 	// for(uint8_t i = 0; i < len; i++){ sim_printf("%08X%04hX%04hX", ids[i], temps[i], battery[i]); }
 	// sim_printf("N\r\n");
-	// TIMEOUT(10000000, "SIM: at+httppara=url,www.circuitboardsamurai.com/upload.php?s=", 0, check_for_response("OK"), ;, ;);
+	// TIMEOUT(10000000, "SIM: at+httppara=url,www.circuitboardsamurai.com/upload.php?s=", 0, check_response("OK"), ;, ;);
 	
 	// sim_printf("at+sapbr=1,1\r\n");
-	// TIMEOUT(10000000, "SIM: at+sapbr=1,1", 0, check_for_response("OK"), ;, timers_delay_milliseconds(1000);sim_printf("at+sapbr=1,1\r\n");log_printf("else code\n"););
+	// TIMEOUT(10000000, "SIM: at+sapbr=1,1", 0, check_response("OK"), ;, timers_delay_milliseconds(1000);sim_printf("at+sapbr=1,1\r\n");log_printf("else code\n"););
 	
 	// sim_printf("at+httpaction=0\r\n");
-	// TIMEOUT(20000000, "SIM: at+httpaction=0", 0, check_for_response("OK"), ;, timers_delay_milliseconds(1000);sim_printf("at+httpaction=0\r\n");log_printf("else code\n"););
-	// TIMEOUT(20000000, "SIM: at+httpaction=0", 0, check_for_response("+HTTPACTION"), ;, ;);
+	// TIMEOUT(20000000, "SIM: at+httpaction=0", 0, check_response("OK"), ;, timers_delay_milliseconds(1000);sim_printf("at+httpaction=0\r\n");log_printf("else code\n"););
+	// TIMEOUT(20000000, "SIM: at+httpaction=0", 0, check_response("+HTTPACTION"), ;, ;);
 
 	// sim_printf("at+httpread\r\n");
-	// TIMEOUT(10000000, "SIM: at+httpread", 0, check_for_response("OK"), ;, ;);
+	// TIMEOUT(10000000, "SIM: at+httpread", 0, check_response("OK"), ;, ;);
 	
 	// sim_printf("at+httpterm\r\n");
-	// TIMEOUT(10000000, "SIM: at+httpterm", 0, check_for_response("OK"), ;, ;);
+	// TIMEOUT(10000000, "SIM: at+httpterm", 0, check_response("OK"), ;, ;);
 	
 	// sim_printf("at+sapbr=0,1\r\n");
-	// TIMEOUT(10000000, "SIM: at+sapbr=0,1", 0, check_for_response("OK"), ;, ;);
+	// TIMEOUT(10000000, "SIM: at+sapbr=0,1", 0, check_response("OK"), ;, ;);
 }
 
 void sim_send_temp_and_num(rfm_packet_t *packets,  uint8_t len)
 {
 	sim_printf("at+sapbr=3,1,APN,data.rewicom.net\r\n");
-	TIMEOUT(1000000, "SIM: at+sapbr=3,1,APN,data.rewicom.net", 0, check_for_response("OK"), ;, ;);
+	TIMEOUT(1000000, "SIM: at+sapbr=3,1,APN,data.rewicom.net", 0, check_response("OK"), ;, ;);
 	timers_delay_milliseconds(100);
 	
 	sim_printf("at+httpinit\r\n");
-	TIMEOUT(1000000, "SIM: at+httpinit", 0, check_for_response("OK"), ;, ;);
+	TIMEOUT(1000000, "SIM: at+httpinit", 0, check_response("OK"), ;, ;);
 	timers_delay_milliseconds(100);
 	
 	sim_printf("at+httppara=cid,1\r\n");
-	TIMEOUT(1000000, "SIM: at+httppara=cid,1", 0, check_for_response("OK"), ;, ;);
+	TIMEOUT(1000000, "SIM: at+httppara=cid,1", 0, check_response("OK"), ;, ;);
 	timers_delay_milliseconds(100);
 
 	sim_printf("at+httppara=url,www.circuitboardsamurai.com/upload_save_all.php?s=%08X", mem_get_dev_num());
 	for(uint8_t i = 0; i < len; i++){ sim_printf("%08X%04hX%04hX%08X%08X%04hX", packets[i].device_number, packets[i].temperature, packets[i].battery, total_packets[i], ok_packets[i], packets[i].rssi); }
 	sim_printf("N\r\n");
-	TIMEOUT(1000000, "SIM: at+httppara=url,www.circuitboardsamurai.com/upload.php?s=", 0, check_for_response("OK"), ;, ;);
+	TIMEOUT(1000000, "SIM: at+httppara=url,www.circuitboardsamurai.com/upload.php?s=", 0, check_response("OK"), ;, ;);
 	timers_delay_milliseconds(100);
 
 	sim_printf("at+sapbr=1,1\r\n");
-	TIMEOUT(60000000, "SIM: at+sapbr=1,1", 0, check_for_response("OK"), ;, ;);
+	TIMEOUT(60000000, "SIM: at+sapbr=1,1", 0, check_response("OK"), ;, ;);
 	timers_delay_milliseconds(100);
 
 	sim_printf("at+httpaction=0\r\n");
-	TIMEOUT(20000000, "SIM: at+httpaction=0", 0, check_for_response("OK"), ;, ;);
-	TIMEOUT(60000000, "SIM: at+httpaction=0", 0, check_for_response("+HTTPACTION"), ;, ;);
+	TIMEOUT(20000000, "SIM: at+httpaction=0", 0, check_response("OK"), ;, ;);
+	TIMEOUT(60000000, "SIM: at+httpaction=0", 0, check_response("+HTTPACTION"), ;, ;);
 	timers_delay_milliseconds(100);
 
 	sim_printf("at+httpread\r\n");
-	TIMEOUT(2000000, "SIM: at+httpread", 0, check_for_response("OK"), ;, ;);
+	TIMEOUT(2000000, "SIM: at+httpread", 0, check_response("OK"), ;, ;);
 	timers_delay_milliseconds(100);
 
 	sim_printf("at+httpterm\r\n");
-	TIMEOUT(1000000, "SIM: at+httpterm", 0, check_for_response("OK"), ;, ;);
+	TIMEOUT(1000000, "SIM: at+httpterm", 0, check_response("OK"), ;, ;);
 	timers_delay_milliseconds(100);
 
 	sim_printf("at+sapbr=0,1\r\n");
-	TIMEOUT(60000000, "SIM: at+sapbr=0,1", 0, check_for_response("OK"), ;, ;);
+	TIMEOUT(60000000, "SIM: at+sapbr=0,1", 0, check_response("OK"), ;, ;);
 	timers_delay_milliseconds(100);
 }
 */
@@ -631,6 +566,83 @@ static uint32_t _atoi(const char **str)
     }
     return i;
 }
+
+static bool check_response(const char *expected_response)
+{
+	bool found = false;
+
+	static char check_buf[SIM_BUFFER_SIZE];
+	static uint8_t check_idx = 0;
+	
+	// Go through RX Buf
+	while( sim_rx_tail != sim_rx_head )
+	{
+		// Get next char from RX Buf
+		char character = sim_rx_buf[sim_rx_tail];
+		sim_rx_tail = (sim_rx_tail + 1) % SIM_BUFFER_SIZE;
+
+		check_buf[check_idx] = character;
+		check_idx = (check_idx + 1) % SIM_BUFFER_SIZE;
+
+		// serial_printf("%c", character);
+
+		// End of reply
+		if(character == '\n')
+		{
+			// Null Terminate String
+			check_buf[check_idx] = '\0';
+			check_idx = (check_idx + 1) % SIM_BUFFER_SIZE;
+
+			// Only bother copying reply if longer than 2 chars
+			// SIM800 sometimes sends lots of \r\n only messages
+			if(strlen(check_buf) > 2)
+			{
+				// Check for target substring
+				if( strstr(check_buf, expected_response) )
+					found = true;
+
+				#if DEBUG
+				serial_printf("Check for response l%i %s\n", strlen(check_buf), check_buf);
+				#endif
+
+				// Copy into last reply buffer
+				strcpy(last_reply, check_buf);
+			}
+
+			// Reset ckeck buf
+			memset(check_buf, 0, sizeof(check_buf));
+			check_idx = 0;
+		}
+
+		// Substring found
+		if(found)
+			return true;
+	}
+	
+	// Substring not found
+	return false;
+
+}
+
+static bool wait_and_check_response(uint32_t timeout_ms, const char *expected_response)
+{ 
+	bool result = false;
+	uint32_t counter = 0;
+	uint16_t time = timers_millis();
+	while(counter < timeout_ms)
+	{
+		if(check_response(expected_response))
+		{
+			result = true;
+			break;
+		}
+		counter += (uint16_t)(timers_millis() - time);
+		time = timers_millis();
+	}
+
+	return result;
+}
+
 
 /** @} */
 

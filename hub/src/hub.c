@@ -66,7 +66,7 @@ int main(void)
 {
 	init();
 	// serial_printf("OOHHHHHH YEAH BABY!!!!\n");
-	serial_printf("I was downloaded from the internet\n");
+	serial_printf("Another one downloaded hehe\n");
   	// gpio_init();
 	// mem_init();
 	// aes_init();

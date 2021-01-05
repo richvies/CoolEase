@@ -56,18 +56,26 @@ extern "C" {
 /*////////////////////////////////////////////////////////////////////////////*/
 
 
-void sim_init(void);
-void sim_end(void);
-void sim_printf(const char* format, ...);
-bool check_for_response(char *str);
+bool sim_init(void);
+bool sim_end(void);
+
+// Communication
+
+void sim_printf(const char *format, ...);
+
+/** @brief Print to SIM800 then wait for expected response or timeout */
+bool sim_printf_and_check_response(uint32_t timeout_ms, const char *expected_response, const char *format, ...);
 void sim_serial_pass_through(void);
 bool sim_available(void);
 char sim_read(void);
 
+
 void sim_print_capabilities(void);
-void sim_connect(void);
-void sim_send_data(uint8_t *data, uint8_t len);
-bool sim_get_bin(void);
+bool sim_connect(void);
+uint32_t sim_http_get(const char *url);
+uint32_t sim_http_read_response(uint32_t address, uint32_t num_bytes);
+bool sim_http_term(void);
+bool sim_send_data(uint8_t *data, uint8_t len);
 
 // void sim_send_temp(rfm_packet_t *packet_start,  uint8_t len);
 // void sim_send_temp_and_num(rfm_packet_t *packet_start,  uint8_t len);
