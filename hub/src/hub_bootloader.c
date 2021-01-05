@@ -22,6 +22,8 @@
 
 #include "hub/cusb.h"
 #include "hub/hub_test.h"
+#include "hub/w25qxx.h"
+#include "hub/sim.h"
 
 /** @addtogroup HUB_BOOTLOADER_FILE 
  * @{
@@ -54,11 +56,23 @@ static void init(void);
 int main(void)
 {
 	init();
+
+	sim_init();
+	// sim_end();
+	sim_get_bin();
+	// sim_serial_pass_through();
+	// sim_print_capabilities();
+
+	// Test HTTP
+	// sim_printf('ATE0\r\n');
+
+
+	// w25_Init();
 	// test_crc();
 	// test_cusb_get_log();
 	// cusb_init();
 
-    // boot_jump_to_application(FLASH_APP_ADDRESS);
+    boot_jump_to_application(FLASH_APP_ADDRESS);
 
 	// serial_printf("Hub Bootloader Ready");
 
@@ -72,7 +86,6 @@ int main(void)
 
     return 0;
 }
-
 
 
 /** @} */
