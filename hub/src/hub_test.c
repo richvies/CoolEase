@@ -44,24 +44,6 @@
  * @{
  */
 
-/** @addtogroup HUB_TEST_INT 
- * @{
- */
-
-/*////////////////////////////////////////////////////////////////////////////*/
-// Static Variables
-/*////////////////////////////////////////////////////////////////////////////*/
-
-
-
-/*////////////////////////////////////////////////////////////////////////////*/
-// Static Function Declarations
-/*////////////////////////////////////////////////////////////////////////////*/
-
-
-
-/** @} */
-
 /** @addtogroup HUB_TEST_API
  * @{
  */
@@ -72,8 +54,23 @@
 
 void test_cusb_poll(void)
 {
-  cusb_init();
-  cusb_test_poll();
+  	clock_setup_msi_2mhz();
+	log_init();
+	timers_lptim_init();
+	timers_tim6_init();
+	serial_printf("test_cusb_poll()\n------------------\n\n");
+	
+	// Initialize USB and wait for connection before erasing eeprom
+	// Otherwise causes usb config problems
+	cusb_init();
+	serial_printf("USB Initialized\nWaiting for connection\n");
+	while(!cusb_connected()){};
+	serial_printf("USB Connected\n");
+
+	while (1)
+	{
+	    cusb_poll();
+	}
 }
 
 void test_cusb_get_log(void)
@@ -285,18 +282,6 @@ void test_hub(void)
 	// 	}
 	// }
 }
-
-
-/** @} */
-
-/** @addtogroup HUB_TEST_INT
- * @{
- */
-
-/*////////////////////////////////////////////////////////////////////////////*/
-// Static Function Definitions
-/*////////////////////////////////////////////////////////////////////////////*/
-
 
 
 /** @} */
