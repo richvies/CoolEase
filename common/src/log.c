@@ -121,7 +121,7 @@ void log_printf(const char *format, ...)
 
 void log_error(uint16_t error)
 {
-	log_printf("Error %i\n", error);
+	log_printf("Error %4x\n", error);
 }
 
 void serial_printf(const char *format, ...)
