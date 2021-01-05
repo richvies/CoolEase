@@ -39,6 +39,17 @@
             },
             "problemMatcher":[]
         },
+        // Rebuild Sensor
+        {
+            "label": "Rebuild sensor",
+            "group": "build",
+            "dependsOrder": "sequence",
+            "dependsOn":["Clean sensor", "Build sensor"],
+            "presentation": {
+                "focus": true
+            },
+            "problemMatcher":[]
+        },
         // Build hub
         {
             "label": "Build hub",
@@ -179,20 +190,34 @@
         {
             "label": "Sensor Download",
             "type": "shell",
-            "command": "/usr/local/bin/openocd",
+            "command": "./tools/stm32flash/stm32flash",
             "args": [
-                "-f",
-                "tools/openocd/stlink.cfg",
-                "-f",
-                "tools/openocd/stm32l0.cfg",
-                "-c",
-                "program sensor/bin/sensor.elf verify",
-                "-c",
-                "program sensor/bin/sensor_bootloader.elf verify",
-                "-c",
-                "reset",
-                "-c",
-                "exit"
+                "-b230400",
+                "-E",
+                "-S0x08004000",
+                "-wsensor/bin/sensor.bin",
+                "-v",
+                "-R",
+                "-i-dtr,rts,-rts:rts",
+                "/dev/cu.usbserial-A50285BI",
+            ],
+            "dependsOn": ["Build sensor"],
+            "problemMatcher": []
+        },
+        // Sensor Bootloader
+        {
+            "label": "Sensor Bootloader Download",
+            "type": "shell",
+            "command": "./tools/stm32flash/stm32flash",
+            "args": [
+                "-b230400",
+                "-E",
+                "-S0x08000000",
+                "-wsensor/bin/sensor_bootloader.bin",
+                "-v",
+                "-R",
+                "-i-dtr,rts,-rts:rts",
+                "/dev/cu.usbserial-A50285BI",
             ],
             "dependsOn": ["Build sensor"],
             "problemMatcher": []
