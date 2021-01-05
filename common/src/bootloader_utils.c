@@ -76,7 +76,7 @@ static bootloader_t *bootloader = ((bootloader_t *)(EEPROM_BOOTLOADER_BASE));
 // Static Function Declarations
 /*////////////////////////////////////////////////////////////////////////////*/
 
-static bool verify_half_page_checksum(uint32_t data[FLASH_PAGE_SIZE / 2], uint32_t expected);
+static bool verify_half_page_checksum(uint32_t data[16], uint32_t expected);
 
 /** @} */
 
@@ -173,7 +173,7 @@ void boot_fallback(void)
 }
 
 
-bool boot_program_half_page(bool lower, uint32_t crc_expected, uint32_t page_num, uint32_t data[FLASH_PAGE_SIZE / 2])
+bool boot_program_half_page(bool lower, uint32_t crc_expected, uint32_t page_num, uint32_t data[16])
 {
     bool success = false;
 
@@ -291,6 +291,25 @@ bool boot_verify_checksum(uint32_t *data, uint32_t len, uint32_t expected)
 
     // Check against expected
     return (crc == expected ? true : false);
+}
+
+uint32_t boot_get_half_page_checksum(uint32_t data[16])
+{
+    // Initialize CRC Peripheral
+    rcc_periph_clock_enable(RCC_CRC);
+    crc_reset();
+    crc_set_reverse_input(CRC_CR_REV_IN_BYTE);
+    crc_reverse_output_enable();
+    CRC_INIT = 0xFFFFFFFF;
+
+    // Calc CRC32
+    uint32_t crc = ~crc_calculate_block(data, 16);
+
+    // Deinit
+    crc_reset();
+    rcc_periph_clock_disable(RCC_CRC);
+
+    return crc;
 }
 
 /** @} */
