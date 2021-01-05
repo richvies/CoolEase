@@ -94,7 +94,7 @@ void log_init(void)
     #ifdef DEBUG
 	#ifdef _HUB
 	// Init usb first so that uart has correct clock speed to set baud rate
-	cusb_init();
+	// cusb_init();
 	#endif
     usart_setup();
 	for(int i = 0; i < 100000; i++){__asm__("nop");};
