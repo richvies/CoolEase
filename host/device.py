@@ -310,7 +310,7 @@ def test_crc():
 def main():
     print('\nCoolEase Hub Usb Thing\n')
 
-    # test_programming()
+    test_programming()
     # test_crc()
 
     # cmd = ProgramPageCommand(1, 0x12345678, 0x24681357)
