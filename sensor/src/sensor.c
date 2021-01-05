@@ -47,7 +47,8 @@
 // Static Function Declarations
 /*////////////////////////////////////////////////////////////////////////////*/
 
-
+static void init(void);
+static void flash_led_failsafe(void);
 
 /** @} */
 
@@ -61,27 +62,16 @@
 
 int main(void)
 {
-  	// test_cusb_poll();
-  	// test_boot(APP_ADDRESS);
-  	// gpio_init();
-	log_init();
-	// mem_init();
-	// aes_init();
-	// batt_init();
-	// timers_lptim_init();
-	// timers_tim6_init();
-
-	// for(int i = 0; i < 100000; i++){__asm__("nop");};
-
-
-	log_printf("Sensor Start\n");
-	// flash_led(100, 5);
-
+	init();
+	
+	
 	// rfm_init();
 	// rfm_end();
 
 	// tmp112_init();
 	// tmp112_end();
+
+	test_tmp112(10);
 	
 	// test_wakeup();
 	// test_standby(60);
@@ -126,7 +116,30 @@ int main(void)
 // Static Function Definitions
 /*////////////////////////////////////////////////////////////////////////////*/
 
+static void init(void)
+{
+	clock_setup_msi_2mhz();
+	timers_lptim_init();
+	timers_tim6_init();
+    log_init();
+	flash_led(100, 5);
+    log_printf("Sensor Start\n");
 
+	(void)flash_led_failsafe;
+}
+
+static void flash_led_failsafe(void)
+{
+	rcc_periph_clock_enable(RCC_GPIOA);
+	gpio_mode_setup(GPIOA, GPIO_MODE_OUTPUT, GPIO_PUPD_NONE, GPIO14);
+	for(;;)
+	{
+		for (uint32_t i = 0; i < 100000; i++) { __asm__("nop"); }
+		gpio_set(GPIOA, GPIO14);
+		for (uint32_t i = 0; i < 100000; i++) { __asm__("nop"); }
+		gpio_clear(GPIOA, GPIO14);
+	}
+}
 
 /** @} */
 /** @} */

@@ -104,7 +104,8 @@ static void init(void)
     log_init();
 	timers_lptim_init();
 	timers_tim6_init();
-    log_printf("Hub Bl Start\n");
+	flash_led(100, 10);
+    log_printf("Hub Bootloader Start\n");
 }
 
 /** @} */

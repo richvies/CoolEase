@@ -14,7 +14,21 @@
 
 #include "sensor/sensor_bootloader.h"
 
+#include "common/aes.h"
+#include "common/battery.h"
+#include "common/bootloader_utils.h"
+#include "common/board_defs.h"
+#include "common/aes.h"
+#include "common/reset.h"
+#include "common/rf_scan.h"
+#include "common/rfm.h"
 #include "common/log.h"
+#include "common/test.h"
+#include "common/timers.h"
+
+#include "sensor/tmp112.h"
+#include "sensor/si7051.h"
+#include "sensor/sensor_test.h"
 
 /** @addtogroup SENSOR_BOOTLOADER_FILE 
  * @{
@@ -32,6 +46,9 @@
 // Static Function Declarations
 /*////////////////////////////////////////////////////////////////////////////*/
 
+static void init(void);
+static void flash_led_failsafe(void);
+
 /** @} */
 
 /** @addtogroup SENSOR_BOOTLOADER_API
@@ -44,8 +61,10 @@
 
 int main(void)
 {
-    log_init();
-    log_printf("Sensor Bootloader Start\n");
+	init();
+
+	boot_jump_to_application(FLASH_APP_ADDRESS);
+
     return 0;
 }
 
@@ -58,6 +77,31 @@ int main(void)
 /*////////////////////////////////////////////////////////////////////////////*/
 // Static Function Definitions
 /*////////////////////////////////////////////////////////////////////////////*/
+
+static void init(void)
+{
+	clock_setup_msi_2mhz();
+	timers_lptim_init();
+	timers_tim6_init();
+    log_init();
+	flash_led(100, 10);
+    log_printf("Sensor Bootloader Start\n");
+
+	(void)flash_led_failsafe;
+}
+
+static void flash_led_failsafe(void)
+{
+	rcc_periph_clock_enable(RCC_GPIOA);
+	gpio_mode_setup(GPIOA, GPIO_MODE_OUTPUT, GPIO_PUPD_NONE, GPIO14);
+	for(;;)
+	{
+		for (uint32_t i = 0; i < 100000; i++) { __asm__("nop"); }
+		gpio_set(GPIOA, GPIO14);
+		for (uint32_t i = 0; i < 100000; i++) { __asm__("nop"); }
+		gpio_clear(GPIOA, GPIO14);
+	}
+}
 
 /** @} */
 /** @} */

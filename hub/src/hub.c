@@ -65,6 +65,8 @@ static void hub_download_info(void);
 int main(void)
 {
 	init();
+	// serial_printf("OOHHHHHH YEAH BABY!!!!\n");
+	serial_printf("I was downloaded from the internet\n");
   	// gpio_init();
 	// mem_init();
 	// aes_init();
@@ -124,9 +126,8 @@ static void init(void)
     log_init();
 	timers_lptim_init();
 	timers_tim6_init();
-    log_printf("Hub Start\n");
-    serial_printf("OOHHHHHH YEAH BABY!!!!\n");
 	flash_led(100, 5);
+    log_printf("Hub Start\n");
 }
 
 static void test_hub2(void)
