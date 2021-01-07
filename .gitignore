@@ -13,3 +13,5 @@ rc
 .env
 todo.md
 web
+*.bin
+Netmore SIMs

@@ -11,7 +11,7 @@
 			"**/.hg": true,
 			"**/CVS": true,
 			"**/.DS_Store": true,
-			".gitignore": false,
+			".gitignore": true,
 			".vscode": false,
 			
 			"tools":true,
@@ -21,7 +21,7 @@
 			"hardware": true,
 			"coolterm":true,
 			"old": true,
-			"docs": true,
+			"docs": false,
 			"README.md": true,
 			
 			"**/obj/":false,

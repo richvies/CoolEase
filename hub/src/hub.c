@@ -282,7 +282,7 @@ static void test_hub2(void)
 			log_printf("SimUp\n");
 			sim_init();
 			log_printf("SimInit\n");
-			sim_connect();
+			sim_register_to_network();
 			log_printf("SimCnt\n");
 			sim_send_data(sim_buf, sim_buf_idx);
 			log_printf("SimDone\n\n");

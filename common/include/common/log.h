@@ -57,20 +57,28 @@ extern "C" {
 #define ERR_USB_PROGRAM_LOWER_HALF_PAGE_FAIL        0x0104
 
 #define ERR_SIM_AT                                  0x0200
-#define ERR_SIM_CFUN                                0x0201
-#define ERR_SIM_CREG_NONE                           0x0202
-#define ERR_SIM_CREG_0                              0x0203 
-#define ERR_SIM_SAPBR_CONFIG                        0x0204                        
-#define ERR_SIM_HTTPINIT                            0x0205
-#define ERR_SIM_HTTPPARA_CID                        0x0206
-#define ERR_SIM_HTTPPARA_URL                        0x0207
-#define ERR_SIM_SAPBR_CONNECT                       0x0208
-#define ERR_SIM_HTTP_GET                            0x0209
-#define ERR_SIM_HTTPACTION_0                        0x020A
-#define ERR_SIM_HTTP_GET_TIMEOUT                    0x020B
-#define ERR_SIM_HTTPTERM                            0x020C
-#define ERR_SIM_HTTP_READ_TIMEOUT                   0x020D
-#define ERR_SIM_SAPBR_DISCONNECT                    0x020E
+#define ERR_SIM_CFUN_0                              0x0201
+#define ERR_SIM_CFUN_1                              0x0202
+#define ERR_SIM_CREG_NONE                           0x0203
+#define ERR_SIM_CREG_0                              0x0204 
+#define ERR_SIM_SAPBR_CONFIG                        0x0205                        
+#define ERR_SIM_HTTPINIT                            0x0206
+#define ERR_SIM_HTTPPARA_CID                        0x0207
+#define ERR_SIM_HTTPPARA_URL                        0x0208
+#define ERR_SIM_SAPBR_CONNECT                       0x0209
+#define ERR_SIM_HTTP_GET                            0x020A
+#define ERR_SIM_HTTPACTION_0                        0x020B
+#define ERR_SIM_HTTP_GET_TIMEOUT                    0x020C
+#define ERR_SIM_HTTPTERM                            0x020D
+#define ERR_SIM_HTTP_READ_TIMEOUT                   0x020E
+#define ERR_SIM_SAPBR_DISCONNECT                    0x020F
+#define ERR_SIM_INIT_NO_RESPONSE                    0x0210
+#define ERR_SIM_ATE_0                               0x0211
+#define ERR_SIM_CREG_QUERY                          0x0212
+#define ERR_SIM_INIT                                0x0213
+#define ERR_SIM_SET_FULL_FUNCTION                   0x0214
+#define ERR_SIM_HTTP_TERM                           0x0215
+#define ERR_SIM_CSCLK_1                             0x0216
 
 /** @} */
 

@@ -52,124 +52,19 @@
 // Exported Function Definitions
 /*////////////////////////////////////////////////////////////////////////////*/
 
-void test_cusb_poll(void)
-{
-  	clock_setup_msi_2mhz();
-	log_init();
-	timers_lptim_init();
-	timers_tim6_init();
-	serial_printf("test_cusb_poll()\n------------------\n\n");
-	
-	// Initialize USB and wait for connection before erasing eeprom
-	// Otherwise causes usb config problems
-	cusb_init();
-	serial_printf("USB Initialized\nWaiting for connection\n");
-	while(!cusb_connected()){};
-	serial_printf("USB Connected\n");
-
-	while (1)
-	{
-	    cusb_poll();
-	}
-}
-
-void test_cusb_get_log(void)
+void test_hub_init(const char *test_name)
 {
 	clock_setup_msi_2mhz();
 	log_init();
 	timers_lptim_init();
 	timers_tim6_init();
-	serial_printf("test_cusb_get_log()\n------------------\n\n");
-	
-	// Initialize USB and wait for connection before erasing eeprom
-	// Otherwise causes usb config problems
-	cusb_init();
-	serial_printf("USB Initialized\nWaiting for connection\n");
-	while(!cusb_connected()){};
-	serial_printf("USB Connected\n");
 
-	serial_printf("Wiping Log\n");
-	log_erase();
-	serial_printf("Writing Log\n");
-	for (uint16_t i = 0; i < 10; i++)
+	for (uint32_t i = 0; i < 10000; i++)
 	{
-		log_printf("Test %i\n", i);
+		__asm__("nop");
 	}
-	log_read_reset();
-	serial_printf("\nPrinting Log\n\n");
-	for (uint16_t i = 0; i < log_size(); i++)
-	{
-		serial_printf("%c", log_read());
-	}
-}
 
-void test_sim(void)
-{
-	log_printf("Testing Sim\n");
-
-	// Hub device number
-	uint32_t dev_num = mem_get_dev_num();
-
-	// Start listening on rfm
-	rfm_init();
-	rfm_config_for_lora(RFM_BW_125KHZ, RFM_CODING_RATE_4_5, RFM_SPREADING_FACTOR_128CPS, true, 0);
-	rfm_start_listening();
-
-	uint8_t	 	num_vals			= 3;
-	uint32_t 	ids[3] 				= {0x00000001, 0x00000010, 0x00000100};
-	int16_t	 	temps[3] 			= {-634, -312, 512};
-	uint16_t	battery[3] 			= {345, 301, 276};
-	uint32_t	total_packets[3] 	= {1, 1, 1};
-	uint32_t	ok_packets[3]		= {1,1,1};
-	int8_t 		rssi[3]				= {1,1,1};
-
-	for(;;)
-	{
-		// Create Sim Message
-		uint8_t sim_buf[256];
-		uint8_t sim_idx = 0;
-		sim_buf[sim_idx++] = dev_num >> 24; 
-		sim_buf[sim_idx++] = dev_num >> 16; 
-		sim_buf[sim_idx++] = dev_num >> 8; 
-		sim_buf[sim_idx++] = dev_num;
-
-		for(uint8_t i = 0; i < num_vals; i++)
-		{
-			sim_buf[sim_idx++] = ids[i] 			>> 24;	sim_buf[sim_idx++] = ids[i] 			>> 16; sim_buf[sim_idx++] = ids[i] 				>> 8; sim_buf[sim_idx++] = ids[i];
-			sim_buf[sim_idx++] = temps[i] 			>> 8; 	sim_buf[sim_idx++] = temps[i];
-			sim_buf[sim_idx++] = battery[i] 		>> 8; 	sim_buf[sim_idx++] = battery[i];
-			sim_buf[sim_idx++] = total_packets[i] 	>> 24;	sim_buf[sim_idx++] = total_packets[i]	>> 16; sim_buf[sim_idx++] = total_packets[i]	>> 8; sim_buf[sim_idx++] = total_packets[i];
-			sim_buf[sim_idx++] = ok_packets[i]		>> 24;	sim_buf[sim_idx++] = ok_packets[i]		>> 16; sim_buf[sim_idx++] = ok_packets[i]		>> 8; sim_buf[sim_idx++] = ok_packets[i];
-			sim_buf[sim_idx++] = rssi[i]			>> 8; 	sim_buf[sim_idx++] = rssi[i];
-		}
-
-		// Send Data
-		sim_init();
-		sim_connect();
-
-		sim_send_data(sim_buf, sim_idx);
-
-		log_printf("Sent\n\n");
-
-		sim_end();
-
-		temps[2]++;
-
-		timers_delay_milliseconds(5000);
-
-		// Update message number
-		for(uint8_t i = 0; i < num_vals; i++)
-		{
-			total_packets[i]++;
-			ok_packets[i]++;
-		}
-	}
-}
-
-void test_sim_serial_pass_through(void)
-{
-	log_printf("Testing sim serial pass through\n");
-	sim_serial_pass_through();
+	serial_printf("%s\n------------------\n\n", test_name);
 }
 
 void test_hub(void)
@@ -234,7 +129,7 @@ void test_hub(void)
 	// 		else log_printf("CRC Fail\n");
 
 	// 		log_printf("Power: %i\n", received_packet.data[RFM_PACKET_POWER]);
-			
+
 	// 		uint16_t battery = ((received_packet.data[RFM_PACKET_BATTERY_1] << 8) | received_packet.data[RFM_PACKET_BATTERY_0]);
 	// 		log_printf("Battery: %uV\n", battery);
 
@@ -247,7 +142,6 @@ void test_hub(void)
 
 	// 		if(recv_msg_num != ++prev_msg_num)
 	// 			log_printf("Missed Message %i\n", prev_msg_num);
-				
 
 	// 		int16_t temp = received_packet.data[RFM_PACKET_TEMP_1] << 8 | received_packet.data[RFM_PACKET_TEMP_0];
 	// 		log_printf("Temperature: %i\n", temp);
@@ -269,11 +163,11 @@ void test_hub(void)
 	// 		rfm_end();
 
 	// 		sim_init();
-	// 		sim_connect();
-	
+	// 		sim_register_to_network();
+
 	// 		sim_send_temp_and_num(&dev_num_rec, &temp, &battery, &total_packets, &ok_packets, &received_packet.rssi, 1);
 	// 		log_printf("Sent %i\n\n", total_packets);
-	
+
 	// 		sim_end();
 
 	// 		rfm_init();
@@ -283,6 +177,210 @@ void test_hub(void)
 	// }
 }
 
+/*////////////////////////////////////////////////////////////////////////////*/
+// USB Tests
+/*////////////////////////////////////////////////////////////////////////////*/
+
+void test_cusb_poll(void)
+{
+	test_hub_init("test_cusb_poll()");
+
+	// Initialize USB and wait for connection before erasing eeprom
+	// Otherwise causes usb config problems
+	cusb_init();
+	serial_printf("USB Initialized\nWaiting for connection\n");
+	while (!cusb_connected())
+	{
+	};
+	serial_printf("USB Connected\n");
+
+	while (1)
+	{
+		cusb_poll();
+	}
+}
+
+void test_cusb_get_log(void)
+{
+	test_hub_init("test_cusb_get_log()");
+
+	// Initialize USB and wait for connection before erasing eeprom
+	// Otherwise causes usb config problems
+	cusb_init();
+	serial_printf("USB Initialized\nWaiting for connection\n");
+	while (!cusb_connected())
+	{
+	};
+	serial_printf("USB Connected\n");
+
+	serial_printf("Wiping Log\n");
+	log_erase();
+	serial_printf("Writing Log\n");
+	for (uint16_t i = 0; i < 10; i++)
+	{
+		log_printf("Test %i\n", i);
+	}
+	log_read_reset();
+	serial_printf("\nPrinting Log\n\n");
+	for (uint16_t i = 0; i < log_size(); i++)
+	{
+		serial_printf("%c", log_read());
+	}
+}
+
+/*////////////////////////////////////////////////////////////////////////////*/
+// SIM800 Tests
+/*////////////////////////////////////////////////////////////////////////////*/
+
+void test_sim_serial_passtrhough(void)
+{
+	test_hub_init("test_sim_serial_passtrhough()");
+
+	if (!sim_init())
+	{
+		serial_printf("Sim init fail\n");
+	}
+	else if (!sim_set_full_function())
+	{
+		serial_printf("Sim can't enter full function mode\n");
+	}
+	else if (!sim_register_to_network())
+	{
+		serial_printf("Sim not able to register to network\n");
+	}
+	else
+	{
+		sim_serial_pass_through();
+	}
+
+	serial_printf("Sim Passthrough Error\n");
+}
+
+void test_sim(void)
+{
+	test_hub_init("test_sim()");
+
+	// Hub device number
+	uint32_t dev_num = mem_get_dev_num();
+
+	// Start listening on rfm
+	rfm_init();
+	rfm_config_for_lora(RFM_BW_125KHZ, RFM_CODING_RATE_4_5, RFM_SPREADING_FACTOR_128CPS, true, 0);
+	rfm_start_listening();
+
+	uint8_t num_vals = 3;
+	uint32_t ids[3] = {0x00000001, 0x00000010, 0x00000100};
+	int16_t temps[3] = {-634, -312, 512};
+	uint16_t battery[3] = {345, 301, 276};
+	uint32_t total_packets[3] = {1, 1, 1};
+	uint32_t ok_packets[3] = {1, 1, 1};
+	int8_t rssi[3] = {1, 1, 1};
+
+	for (;;)
+	{
+		// Create Sim Message
+		uint8_t sim_buf[256];
+		uint8_t sim_idx = 0;
+		sim_buf[sim_idx++] = dev_num >> 24;
+		sim_buf[sim_idx++] = dev_num >> 16;
+		sim_buf[sim_idx++] = dev_num >> 8;
+		sim_buf[sim_idx++] = dev_num;
+
+		for (uint8_t i = 0; i < num_vals; i++)
+		{
+			sim_buf[sim_idx++] = ids[i] >> 24;
+			sim_buf[sim_idx++] = ids[i] >> 16;
+			sim_buf[sim_idx++] = ids[i] >> 8;
+			sim_buf[sim_idx++] = ids[i];
+			sim_buf[sim_idx++] = temps[i] >> 8;
+			sim_buf[sim_idx++] = temps[i];
+			sim_buf[sim_idx++] = battery[i] >> 8;
+			sim_buf[sim_idx++] = battery[i];
+			sim_buf[sim_idx++] = total_packets[i] >> 24;
+			sim_buf[sim_idx++] = total_packets[i] >> 16;
+			sim_buf[sim_idx++] = total_packets[i] >> 8;
+			sim_buf[sim_idx++] = total_packets[i];
+			sim_buf[sim_idx++] = ok_packets[i] >> 24;
+			sim_buf[sim_idx++] = ok_packets[i] >> 16;
+			sim_buf[sim_idx++] = ok_packets[i] >> 8;
+			sim_buf[sim_idx++] = ok_packets[i];
+			sim_buf[sim_idx++] = rssi[i] >> 8;
+			sim_buf[sim_idx++] = rssi[i];
+		}
+
+		// Send Data
+		sim_init();
+		sim_register_to_network();
+
+		sim_send_data(sim_buf, sim_idx);
+
+		log_printf("Sent\n\n");
+
+		sim_end();
+
+		temps[2]++;
+
+		timers_delay_milliseconds(5000);
+
+		// Update message number
+		for (uint8_t i = 0; i < num_vals; i++)
+		{
+			total_packets[i]++;
+			ok_packets[i]++;
+		}
+	}
+}
+
+void test_sim_get_request(void)
+{
+	test_hub_init("test_sim_get_request()");
+
+	uint8_t num_tests = 20;
+	uint8_t num_pass = 0;
+
+	for (uint8_t test_num = 1; test_num <= num_tests; test_num++)
+	{
+		serial_printf("------------------------------\n");
+		serial_printf("-----------Test %i------------\n", test_num);
+		serial_printf("------------------------------\n");
+
+		if (!sim_init())
+		{
+			serial_printf("Sim init fail\n");
+		}
+		else if (!sim_set_full_function())
+		{
+			serial_printf("Sim can't enter full function mode\n");
+		}
+		else if (!sim_register_to_network())
+		{
+			serial_printf("Sim not able to register to network\n");
+		}
+		else
+		{
+			uint32_t response_size = sim_http_get("www.google.com");
+
+			if (!response_size)
+			{
+				serial_printf("Sim get request error\n");
+			}
+			else
+			{
+				serial_printf("Response Size %i\n", response_size);
+				num_pass++;
+				// sim_http_read_response(0, response_size);
+			}
+		}
+
+		serial_printf("Passed %i/%i\n\n*******************\n\n", num_pass, test_num);
+
+		// sim_serial_pass_through();
+	}
+
+	serial_printf("------------------------------\n");
+	serial_printf("Test Finished %i/%i Passed\n", num_pass, num_tests);
+	serial_printf("------------------------------\n");
+}
 
 /** @} */
 /** @} */
