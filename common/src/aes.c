@@ -41,7 +41,6 @@ NOTE:   String length must be evenly divisible by 16byte (str_len % 16 == 0)
 
 #include "common/aes.h"
 #include "common/log.h"
-#include "common/memory.h"
 
 /*****************************************************************************/
 // Defines:                                                                  
@@ -66,8 +65,8 @@ NOTE:   String length must be evenly divisible by 16byte (str_len % 16 == 0)
 /*****************************************************************************/
 // state - array holding the intermediate results during decryption.
 typedef uint8_t state_t[4][4];
-static uint8_t adc_channels[4] = {0, 1, 8, 9};
 static uint8_t round_key[AES_KEY_EXP_SIZE];
+static bool initialized = false;
 
 
 // The lookup-tables are marked const so they can be placed in read-only storage instead of RAM
@@ -419,31 +418,15 @@ static void InvCipher(state_t* state, const uint8_t* RoundKey)
 // Public functions:                                                         
 /*****************************************************************************/
 
-void aes_init(void)
+void aes_init(uint8_t key[16])
 {
-  uint8_t tmp[AES_KEY_EXP_SIZE];
-  mem_get_aes_key_exp(tmp);
+  log_printf("AES Init\n");
 
-  for(int i = 0; i < AES_KEY_EXP_SIZE; i++)
+  if(!initialized)
   {
-    round_key[i] = tmp[i];
+    KeyExpansion(round_key, key);
+    initialized = true;
   }
-}
-
-void aes_expand_key(void)
-{
-  uint8_t key[16];
-  mem_get_aes_key(key);
-
-  KeyExpansion(round_key, key);
-
-  uint8_t tmp[AES_KEY_EXP_SIZE];
-  for(int i = 0; i < AES_KEY_EXP_SIZE; i++)
-  {
-    tmp[i] = round_key[i];
-  }
-
-  mem_set_aes_key_exp(tmp);
 }
 
 void aes_ecb_encrypt(uint8_t* buf)

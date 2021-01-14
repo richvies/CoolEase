@@ -8,6 +8,7 @@
 
 typedef struct
 {
+	uint8_t aes_key[16];
 	bool msg_pend;
 	bool active;
 	uint32_t dev_num;
@@ -19,6 +20,7 @@ typedef struct
 
 typedef struct
 {
+	uint8_t aes_key[16];
 	bool msg_pend;
 	bool active;
 	uint32_t dev_num;

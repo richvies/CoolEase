@@ -50,9 +50,13 @@ extern "C" {
 // Exported Function Declarations
 /*////////////////////////////////////////////////////////////////////////////*/
 
+void test_sensor_init(const char *test_name);
 void test_sensor(uint32_t dev_num);
 void test_si7051(uint8_t num_readings);
 void test_tmp112(uint8_t num_readings);
+
+/** @brief Sends temperature followed by 1 second high signal. This is recorded for calibrating rf frequency vs temperature - to keep center at 868MHz */
+void test_sensor_rf_vs_temp_cal(void);
 
 /** @} */
 

@@ -87,6 +87,10 @@ static void init(void)
 	flash_led(100, 10);
     log_printf("Sensor Bootloader Start\n");
 
+	boot_init();
+
+	log_printf("Bootloader Run\n");
+
 	(void)flash_led_failsafe;
 }
 

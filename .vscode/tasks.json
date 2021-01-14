@@ -222,6 +222,24 @@
             "dependsOn": ["Build sensor"],
             "problemMatcher": []
         },
+        // Sensor EEPROM
+        {
+            "label": "Sensor EEPROM Download",
+            "type": "shell",
+            "command": "./tools/stm32flash/stm32flash",
+            "args": [
+                "-b230400",
+                "-E",
+                "-S0x08080000",
+                "-wsensor/sensor_eeprom.bin",
+                "-v",
+                "-R",
+                "-i-dtr,rts,-rts:rts",
+                "/dev/cu.usbserial-A50285BI",
+            ],
+            // "dependsOn": ["Build sensor"],
+            "problemMatcher": []
+        },
         // CPU: Reset & run
         {
             "label": "CPU: Reset and run",

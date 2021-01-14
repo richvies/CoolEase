@@ -50,6 +50,4 @@ void reset_print_cause(void)
 	{
 		log_printf("PINRSTF Reset\n");
 	}
-
-    RCC_CSR |= RCC_CSR_RMVF;
 }

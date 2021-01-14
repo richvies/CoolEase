@@ -184,6 +184,7 @@ uint16_t log_size(void)
 
 void log_erase(void)
 {
+	serial_printf("Log Erase Start: %8x\n", &(log_file->log[0]));
 	for(write_index = 0; write_index < log_file->size; write_index++)
 	{
 		mem_eeprom_write_byte((uint32_t)(&(log_file->log[write_index])), 0);

@@ -17,6 +17,7 @@
 #include "common/board_defs.h"
 #include "common/aes.h"
 #include "common/reset.h"
+#include "common/memory.h"
 #include "common/rf_scan.h"
 #include "common/rfm.h"
 #include "common/log.h"
@@ -41,7 +42,7 @@
 // Static Variables
 /*////////////////////////////////////////////////////////////////////////////*/
 
-
+static sensor_t *dev = ((sensor_t *)(EEPROM_DEV_INFO_BASE));
 
 /*////////////////////////////////////////////////////////////////////////////*/
 // Static Function Declarations
@@ -63,7 +64,13 @@ static void flash_led_failsafe(void);
 int main(void)
 {
 	init();
+
+	serial_printf("Dev Info Location: %8x %8x %8x\n", EEPROM_DEV_INFO_BASE, &dev->aes_key[0], dev->aes_key);
 	
+	// test_encryption(dev->aes_key);
+
+	// test_eeprom_read();
+	// test_log();
 	
 	// rfm_init();
 	// rfm_end();
@@ -71,7 +78,7 @@ int main(void)
 	// tmp112_init();
 	// tmp112_end();
 
-	test_tmp112(10);
+	// test_tmp112(10);
 	
 	// test_wakeup();
 	// test_standby(60);
@@ -99,8 +106,8 @@ int main(void)
 	for (;;)
 	{
 		// test_sensor(DEV_NUM_CHIP);
-		// log_printf("Loop\n");
-		// timers_delay_milliseconds(1000);
+		serial_printf("Loop\n");
+		timers_delay_milliseconds(1000);
 	}
 
 	return 0;
@@ -122,9 +129,10 @@ static void init(void)
 	timers_lptim_init();
 	timers_tim6_init();
     log_init();
+	aes_init(dev->aes_key);
+	
 	flash_led(100, 5);
     log_printf("Sensor Start\n");
-
 	(void)flash_led_failsafe;
 }
 

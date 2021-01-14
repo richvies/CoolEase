@@ -70,6 +70,22 @@
 // Exported Function Definitions
 /*////////////////////////////////////////////////////////////////////////////*/
 
+void test_sensor_init(const char *test_name)
+{
+	clock_setup_msi_2mhz();
+	log_init();
+	timers_lptim_init();
+	timers_tim6_init();
+
+	for (uint32_t i = 0; i < 10000; i++)
+	{
+		__asm__("nop");
+	}
+
+	serial_printf("%s\n------------------\n\n", test_name);
+}
+
+
 void test_si7051(uint8_t num_readings)
 {
 	log_printf("Testing SI7051\n");
@@ -200,6 +216,58 @@ void test_sensor(uint32_t dev_num)
 	// Go back to sleep
 	timers_enter_standby();
 }
+
+void test_sensor_rf_vs_temp_cal(void)
+{
+	test_sensor_init("test_sensor_rf_vs_temp_cal()");
+
+	/*////////////////////////*/
+	// Get Average Temperature
+	/*////////////////////////*/
+	uint8_t max_readings = 4;
+	int16_t readings[4] = {22222, 22222, 22222, 22222};
+	tmp112_init();
+	tmp112_read_temperature(readings, max_readings);
+	tmp112_end();
+	int32_t sum = 0;
+	uint8_t num_readings = 0;
+	int16_t temp_avg = 22222;
+	for(int i = 0; i < max_readings; i++)
+	{
+		if(readings[i] != 22222)
+		{
+			sum += readings[i];
+			num_readings++;
+		}
+	}
+	// Only calc avg if num_readings > 0
+	if(num_readings)
+	{
+		temp_avg = sum/num_readings;
+	}
+	serial_printf("Temp: %i\n", temp_avg);
+
+	/*////////////////////////*/
+	// Send Temperature
+	/*////////////////////////*/
+	rfm_init();
+	rfm_config_for_lora(RFM_BW_125KHZ, RFM_CODING_RATE_4_5, RFM_SPREADING_FACTOR_128CPS, true, 0);
+	rfm_packet_t packet;
+	packet.data.temperature = temp_avg;
+	rfm_transmit_packet(packet);
+	serial_printf("Sent\n");
+
+	/*////////////////////////*/
+	// 1 Second High Pulse
+	/*////////////////////////*/
+	
+
+	for (;;)
+	{
+		
+	}
+}
+
 
 
 /** @} */

@@ -58,6 +58,7 @@ void test_hub_init(const char *test_name)
 	log_init();
 	timers_lptim_init();
 	timers_tim6_init();
+	aes_init(dev->aes_key);
 
 	for (uint32_t i = 0; i < 10000; i++)
 	{

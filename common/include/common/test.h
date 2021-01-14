@@ -45,6 +45,7 @@ extern "C" {
 #define DEV_NUM_PCB		    (uint32_t)~DEV_NUM_CHIP
 
 void flash_led(uint16_t milliseconds, uint8_t num_flashes);
+void test_common_init(const char *test_name);
 
 /*////////////////////////////////////////////////////////////////////////////*/
 // Memory tests
@@ -52,6 +53,7 @@ void flash_led(uint16_t milliseconds, uint8_t num_flashes);
 
 void test_mem_write_read(void);
 void test_eeprom(void);
+void test_eeprom_read(void);
 void test_eeprom_keys(void);
 void test_eeprom_wipe(void);
 void test_reset_eeprom(void);
@@ -97,7 +99,7 @@ void test_low_power_run(void);
 // Other tests
 /*////////////////////////////////////////////////////////////////////////////*/
 
-void test_encryption(void);
+void test_encryption(uint8_t *key);
 void test_analog_watchdog(void);
 
 
