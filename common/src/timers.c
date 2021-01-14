@@ -172,7 +172,11 @@ uint16_t timers_millis(void)
 // Start independant watchdog timer
 void timers_iwdg_init(uint32_t period)
 {
-    // Turn on independant watchdog. 5 second time out
+    // Start low speed internal oscillator ≈ 40kHz. And wait until it is ready
+    rcc_osc_on(RCC_LSI);
+    rcc_wait_for_osc_ready(RCC_LSI);
+
+    // Turn on independant watchdog
     iwdg_reset();
     iwdg_set_period_ms(period);
     iwdg_start();
