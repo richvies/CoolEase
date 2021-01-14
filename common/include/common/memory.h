@@ -81,17 +81,17 @@ extern "C" {
 #warning "EEPROM: Data does not fit"
 #endif
 
-// Bootloader Data
-#define EEPROM_BOOTLOADER_BASE      EEPROM_START
-#define EEPROM_BOOTLOADER_END       EEPROM_BOOTLOADER_BASE + EEPROM_BOOTLOADER_INFO_SIZE
+// Bootloader Information
+#define EEPROM_BOOTLOADER_INFO_BASE      EEPROM_START
+#define EEPROM_BOOTLOADER_INFO_END       EEPROM_BOOTLOADER_INFO_BASE + EEPROM_BOOTLOADER_INFO_SIZE
 
 // Device information
-#define EEPROM_DEV_BASE             EEPROM_BOOTLOADER_END          
-#define EEPROM_DEV_END              EEPROM_START + EEPROM_BOOTLOADER_INFO_SIZE 
+#define EEPROM_DEV_INFO_BASE             EEPROM_BOOTLOADER_INFO_END          
+#define EEPROM_DEV_INFO_END              EEPROM_DEV_INFO_BASE + EEPROM_DEV_INFO_SIZE 
 
 // Logging
-#define EEPROM_LOG_BASE             EEPROM_DEV_END
-#define EEPROM_LOG_END              EEPROM_LOG_BASE + EEPROM_LOG_SIZE
+#define EEPROM_LOG_BASE                 EEPROM_DEV_INFO_END
+#define EEPROM_LOG_END                  EEPROM_LOG_BASE + EEPROM_LOG_SIZE
 
 
 /*////////////////////////////////////////////////////////////////////////////*/
