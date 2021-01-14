@@ -21,9 +21,12 @@
 #include <libopencm3/cm3/common.h>
 #include <libopencm3/stm32/rcc.h>
 #include <libopencm3/stm32/crc.h>
+#include <libopencm3/stm32/gpio.h>
 
 #include "common/memory.h"
 #include "common/log.h"
+#include "common/reset.h"
+#include "common/timers.h"
 
 /** @addtogroup BOOTLOADER_UTILS_FILE 
  * @{
@@ -70,7 +73,7 @@ typedef struct
     uint8_t  num_reset;
 }bootloader_t;
 
-static bootloader_t *bootloader = ((bootloader_t *)(EEPROM_BOOTLOADER_BASE));
+static bootloader_t *bootloader = ((bootloader_t *)(EEPROM_BOOTLOADER_INFO_BASE));
 
 /*////////////////////////////////////////////////////////////////////////////*/
 // Static Function Declarations
@@ -90,9 +93,14 @@ static bool verify_half_page_checksum(uint32_t data[16], uint32_t expected);
 
 void boot_init(void)
 {
+    log_printf("Boot Init\n");
+    reset_print_cause();
+
     // Save reset flags and clear register
     mem_eeprom_write_word((uint32_t)&bootloader->reset_flags, RCC_CSR & RCC_CSR_RESET_FLAGS);
     RCC_CSR |= RCC_CSR_RMVF;
+
+    serial_printf("VTOR: %8x Flags: %8x Code: %8x Num Reset: %i State: %i\n", bootloader->vtor, bootloader->reset_flags, bootloader->magic_code, bootloader->num_reset, bootloader->state);
 
     // If watchdogs keep causing reset then there is problem with app code
     // Todo, use RTC backup registers instead
@@ -112,8 +120,7 @@ void boot_init(void)
     else if(bootloader->num_reset)
     {
         mem_eeprom_write_byte((uint32_t)&bootloader->num_reset, 0);
-    }
-    
+    }    
 
     // If the program address is set and there are no entry bits set in the CSR (or the magic code is programmed appropriate), start the user program
     if (bootloader->vtor &&
@@ -131,14 +138,21 @@ void boot_init(void)
 void boot_deinit(void)
 {
     // Reset all peripherals
-    RCC_AHBRSTR  = 0xFFFFFFFF; RCC_AHBRSTR  = 0x00000000;
+    RCC_AHBRSTR  = 0xFFFFFEFF; RCC_AHBRSTR  = 0x00000000;
     RCC_APB2RSTR = 0xFFFFFFFF; RCC_APB2RSTR = 0x00000000;
     RCC_APB1RSTR = 0xFFFFFFFF; RCC_APB1RSTR = 0x00000000;
     RCC_IOPRSTR  = 0xFFFFFFFF; RCC_IOPRSTR  = 0x00000000;
+
+    // Reenable STLink
+    serial_printf("GPIOA Mode: %8x Speed: %8x PUPD: %8x\n", GPIOA_MODER, GPIOA_OSPEEDR, GPIOA_PUPDR);
+    #ifdef DEBUG
+    #endif
 }
 
 void boot_jump_to_application(uint32_t address)
 {
+    log_printf("Boot Jump to %8x\n", address);
+
     // Disable Interrupts
     __asm__ volatile("CPSID I\n");
 
@@ -153,16 +167,21 @@ void boot_jump_to_application(uint32_t address)
     // Get start address of program
     void (*start)(void) = (void *)MMIO32(address + 4);
 
-    // Deinitialize all used peripherals
-    // boot_deinit();
+    // Deinitialize peripherals
+    boot_deinit();
 
-    // Enable interruptsf
+    // Start Watchdog
+    // timers_iwdg_init(5000);
+
+    // Enable interrupts
     __asm__ volatile("CPSIE I\n");
 
     start();
 
     while (1)
     {
+        // Should not get here
+        __asm__ volatile("nop");
     };
 }
 
@@ -170,6 +189,7 @@ void boot_fallback(void)
 {
     // Try to redownload new firmware
     // If still not working fallback to safe version for the time being
+    log_printf("Bootloader Fallback\n");
 }
 
 
