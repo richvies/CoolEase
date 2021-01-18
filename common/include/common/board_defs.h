@@ -6,6 +6,9 @@
 #include <libopencm3/stm32/spi.h>
 #include <libopencm3/stm32/usart.h>
 
+#include "common/log.h"
+
+#define PRINT_REG(reg) serial_printf(#reg);serial_printf(" : %8x\n",reg);
 
 
 #ifdef _HUB
