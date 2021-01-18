@@ -166,6 +166,42 @@
             "dependsOn": ["Build hub"],
             "problemMatcher": []
         },
+        // Hub uart
+        {
+            "label": "Hub Download uart",
+            "type": "shell",
+            "command": "./tools/stm32flash/stm32flash",
+            "args": [
+                "-b230400",
+                "-E",
+                "-S0x08004000",
+                "-whub/bin/hub.bin",
+                "-v",
+                "-R",
+                "-i-dtr,rts,-rts:rts",
+                "/dev/cu.usbserial-A50285BI",
+            ],
+            "dependsOn": ["Build hub"],
+            "problemMatcher": []
+        },
+        // Hub Bootloader uart
+        {
+            "label": "Hub Bootloader Download uart",
+            "type": "shell",
+            "command": "./tools/stm32flash/stm32flash",
+            "args": [
+                "-b230400",
+                "-E",
+                "-S0x08000000",
+                "-whub/bin/hub_bootloader.bin",
+                "-v",
+                "-R",
+                "-i-dtr,rts,-rts:rts",
+                "/dev/cu.usbserial-A50285BI",
+            ],
+            "dependsOn": ["Build hub"],
+            "problemMatcher": []
+        },
         // Hub Bootloader
         {
             "label": "Hub Bootloader Download",

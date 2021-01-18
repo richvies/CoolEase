@@ -1,0 +1,576 @@
+* commit 1a72105c57fa5b9af17c523070e2bf2cf0579b38
+| Author: Richard Davies <richvies@gmail.com>
+| Date:   Thu Jan 14 16:44:26 2021 +0000
+| 
+|     Fix AES and add to EEPROM
+| 
+* commit ba3af83bc3c2d73ea7dc050b40c2c1e8c709132b
+| Author: Richard Davies <richvies@gmail.com>
+| Date:   Thu Jan 14 16:43:44 2021 +0000
+| 
+|     IWDG clock setup independant
+| 
+* commit b409e52cff6515f800b879eeb520e7377acdd889
+| Author: Richard Davies <richvies@gmail.com>
+| Date:   Thu Jan 14 16:42:56 2021 +0000
+| 
+|     Fix Deinit and peripheral reset
+| 
+* commit 714ac03878ba1990d0a59fb757f8b28ab116164a
+| Author: Richard Davies <richvies@gmail.com>
+| Date:   Thu Jan 14 16:41:40 2021 +0000
+| 
+|     Fix eeprom memory map
+| 
+* commit 12432273c06c160154bf82d509ea98de786291db
+| Author: Richard Davies <richvies@gmail.com>
+| Date:   Thu Jan 7 03:25:48 2021 +0100
+| 
+|     Fixed HTTP Get Request
+|     
+|     Delay needed after opening bearer before http get request made otherwise SIM800 doesn't register it properly. Also spereated previous connection function into seperate set full function and network registration functions
+| 
+* commit d136ea40649b799888270ead28f2a27798720453
+| Author: Richard Davies <richvies@gmail.com>
+| Date:   Wed Jan 6 00:47:06 2021 +0100
+| 
+|     Moved download bin to from sim.c to bootloader.c, and updated sim printf timeout function
+| 
+* commit 158dd74cd4f3be2c48ca2e31a34f63a51d53843c
+| Author: Richard Davies <richvies@gmail.com>
+| Date:   Wed Jan 6 00:45:48 2021 +0100
+| 
+|     Added some sim800 errors
+| 
+* commit 0c321db9996a16025bb8306dcea1ffd64f5de113
+| Author: Richard Davies <richvies@gmail.com>
+| Date:   Tue Jan 5 15:07:53 2021 +0100
+| 
+|     Sensor bootloader now capable of booting app
+| 
+* commit 22bb4e94a903725c6dd842d6a1125455ebd5bfef
+| Author: Richard Davies <richvies@gmail.com>
+| Date:   Tue Jan 5 15:07:17 2021 +0100
+| 
+|     TMP112a communication same as TMP112
+| 
+* commit 2b5595cba97a10a7f435736d91decda9ce15c7b4
+| Author: Richard Davies <richvies@gmail.com>
+| Date:   Tue Jan 5 15:06:48 2021 +0100
+| 
+|     board defs now in common folder
+| 
+* commit a2bd22ae3ef634e3efe2b55366b9d1be71c998e8
+| Author: Richard Davies <richvies@gmail.com>
+| Date:   Tue Jan 5 15:05:54 2021 +0100
+| 
+|     Sensor uses serial flash
+| 
+* commit 86f9a6ac6b63f56e6d02b3a4bd878f8e2ac6a958
+| Author: Richard Davies <richvies@gmail.com>
+| Date:   Tue Jan 5 02:17:08 2021 +0100
+| 
+|     Oh yeah!!! Able to download bin and reprogram self
+| 
+* commit 81c284b55d05114ad54089ae8652c171306cf90a
+| Author: Richard Davies <richvies@gmail.com>
+| Date:   Tue Jan 5 02:16:39 2021 +0100
+| 
+|     Added get checksum fn to help testing other modules
+| 
+* commit a25d5283f8397894a46e55eeb358c93fef00c5c8
+| Author: Richard Davies <richvies@gmail.com>
+| Date:   Tue Jan 5 01:55:47 2021 +0100
+| 
+|     Updated usb polling test
+| 
+* commit 0db9a078d0a0024633a6316125de7c027eb44ec6
+| Author: Richard Davies <richvies@gmail.com>
+| Date:   Tue Jan 5 01:55:33 2021 +0100
+| 
+|     Now capable of downloading bin file. Also fixed printf
+| 
+* commit e17cc567b8f0a3bf8e0ef30a280172cd0b45e753
+| Author: Richard Davies <richvies@gmail.com>
+| Date:   Tue Jan 5 01:53:17 2021 +0100
+| 
+|     Moved program/ verify half page to bootloader_utils
+| 
+* commit 630d48deafced96cba8081b351ea197674754772
+| Author: Richard Davies <richvies@gmail.com>
+| Date:   Tue Jan 5 01:50:47 2021 +0100
+| 
+|     Temporarily disabled logging over usb
+| 
+* commit 8232cabf44b39ee7da36a89ef493c2bdc75fa52e
+| Author: Richard Davies <richvies@gmail.com>
+| Date:   Tue Jan 5 01:50:18 2021 +0100
+| 
+|     Added extra sim800 docs
+| 
+* commit 7cf48274fffca0b90f320167f6bf4b5fed1b709d
+| Author: Richard Davies <richvies@gmail.com>
+| Date:   Tue Jan 5 01:50:03 2021 +0100
+| 
+|     Removed clock setup and changed to serial_print
+| 
+* commit ed3dfe8a0e02e6e4b1c6fdf084852b46b71b3275
+| Author: Richard Davies <richvies@gmail.com>
+| Date:   Tue Jan 5 01:49:36 2021 +0100
+| 
+|     Minor Changes
+| 
+* commit ab79372976635d23e9d5502bdb24302ebefb9e86
+| Author: Richard Davies <richvies@gmail.com>
+| Date:   Mon Jan 4 02:44:40 2021 +0100
+| 
+|     Update device.py
+|     
+|     Programming by usb now working and added jump to app usb command
+| 
+* commit 2b9abca40cc632e8186ad802fab7eba805fa00e9
+| Author: Richard Davies <richvies@gmail.com>
+| Date:   Mon Jan 4 02:41:04 2021 +0100
+| 
+|     Revert "Boot deinit ok, need to update to keep stlink working"
+|     
+|     This reverts commit 43390d4ab16e4d1011f4f5bb1b3e0ac4f9cc13ed.
+| 
+* commit 43390d4ab16e4d1011f4f5bb1b3e0ac4f9cc13ed
+| Author: Richard Davies <richvies@gmail.com>
+| Date:   Mon Jan 4 02:28:02 2021 +0100
+| 
+|     Boot deinit ok, need to update to keep stlink working
+| 
+* commit c8255bee2ab4f58f7a928ee253caf647c430a539
+| Author: Richard Davies <richvies@gmail.com>
+| Date:   Mon Jan 4 02:25:26 2021 +0100
+| 
+|     Boot deinit ok, need to update to keep stlink working
+| 
+* commit 6587f93db934789c10c84832434479fe53d8373d
+| Author: Richard Davies <richvies@gmail.com>
+| Date:   Mon Jan 4 02:23:53 2021 +0100
+| 
+|     Changed to pylance server
+| 
+* commit 1e0d2383b0a869afeb24a42bc578e89406774435
+| Author: Richard Davies <richvies@gmail.com>
+| Date:   Sun Jan 3 16:38:40 2021 +0100
+| 
+|     Initialize USB before erasing eeprom
+| 
+* commit 4857c58905670c3c7e0bbdc269a9860c1ed59950
+| Author: Richard Davies <richvies@gmail.com>
+| Date:   Sun Jan 3 16:37:22 2021 +0100
+| 
+|     Added usb get log test
+| 
+* commit 784b1bbb06930f466093133706f84293470986e7
+| Author: Richard Davies <richvies@gmail.com>
+| Date:   Sun Jan 3 16:36:41 2021 +0100
+| 
+|     Added USB programming code
+| 
+* commit 4098564e7abcdefd7d7d154dfde8c259d94d5119
+| Author: Richard Davies <richvies@gmail.com>
+| Date:   Sun Jan 3 02:46:38 2021 +0100
+| 
+|     g
+| 
+* commit 299408d6bd1dd5030b84261ad61dd30e0946f3c9
+| Author: Richard Davies <richvies@gmail.com>
+| Date:   Sun Jan 3 02:46:22 2021 +0100
+| 
+|     a
+| 
+* commit 2fcf08dc1c05a05221f86e4410dab804af0b7e8b
+| Author: Richard Davies <richvies@gmail.com>
+| Date:   Sun Jan 3 02:40:55 2021 +0100
+| 
+|     Readded files
+| 
+* commit 563530a2c28c5f80ba13a07042a18d9f5eaa753e
+| Author: Richard Davies <richvies@gmail.com>
+| Date:   Sun Jan 3 02:34:53 2021 +0100
+| 
+|     Cleaning
+| 
+* commit 320cdaff0bec945a655ca20acac5fb48dfd7d509
+| Author: Richard Davies <richvies@gmail.com>
+| Date:   Sun Jan 3 02:20:03 2021 +0100
+| 
+|     Added check for watchdog resets
+| 
+* commit 49aa6ac7b6d9f18636042e502f2dd0c69b4e7df7
+| Author: Richard Davies <richvies@gmail.com>
+| Date:   Sun Jan 3 02:04:32 2021 +0100
+| 
+|     Updated boot init to check conditions before starting main app
+| 
+* commit 460d291c600c226c6ac097c107fd03d238808e76
+| Author: Richard Davies <richvies@gmail.com>
+| Date:   Sun Jan 3 01:42:22 2021 +0100
+| 
+|     added logging test and updated common test source file
+| 
+* commit 7264cea7aa6f95bf6b470859ee36104cf674ca24
+| Author: Richard Davies <richvies@gmail.com>
+| Date:   Sat Jan 2 20:22:11 2021 +0100
+| 
+|     updated log _putchar to use log struct
+| 
+* commit 53e301c1b80a0066f329bf96aafe57d72f2cc91c
+| Author: Richard Davies <richvies@gmail.com>
+| Date:   Sat Jan 2 20:08:21 2021 +0100
+| 
+|     update logger
+| 
+* commit 3023529637a280c591da0c320b5c3ae808eb6759
+| Author: Richard Davies <richvies@gmail.com>
+| Date:   Sat Jan 2 18:54:45 2021 +0100
+| 
+|     update eeprom map
+| 
+* commit ba86e9ca392983355986c454de76be4beb86021d
+| Author: Richard Davies <richvies@gmail.com>
+| Date:   Fri Jan 1 22:15:15 2021 +0100
+| 
+|     USB interrupt driven. Updated log.c
+| 
+* commit 02ca659490e4d4c8d61b978cb25e3830b6bbd684
+| Author: Richard Davies <richvies@gmail.com>
+| Date:   Thu Dec 31 02:35:53 2020 +0100
+| 
+|     Fixed printf - only subtract from 0 if integer output
+| 
+* commit d6d1f2f5d074671d0ceafc9891d072a41b78cb7e
+| Author: Richard Davies <richvies@gmail.com>
+| Date:   Wed Dec 30 22:40:45 2020 +0100
+| 
+|     Simplified printf
+| 
+* commit 265d3305bfb0f18e0ffa0a3a5b05963d8fb729cc
+| Author: Richard Davies <richvies@gmail.com>
+| Date:   Wed Dec 30 18:45:51 2020 +0100
+| 
+|     Moved serial print functionality into log module
+| 
+* commit 0d0c4373f6811307ddeae67e3e86e40004e16701
+| Author: Richard Davies <richvies@gmail.com>
+| Date:   Tue Dec 29 16:30:41 2020 +0100
+| 
+|     fixed flash page write (moved to ram)
+| 
+* commit bbb8009bdeae377901dca2947a6a87c9bf155f59
+| Author: Richard Davies <richvies@gmail.com>
+| Date:   Tue Dec 29 15:20:46 2020 +0100
+| 
+|     added memory read/ write funcs
+| 
+* commit 694464559eb160e531e27f210753cb7b33d4fea8
+| Author: Richard Davies <richvies@gmail.com>
+| Date:   Tue Dec 29 02:14:28 2020 +0100
+| 
+|     updated openocd stuff
+| 
+* commit 2edf002c98f0a279a093f610d19b04e9b845bdf7
+| Author: Richard Davies <richvies@gmail.com>
+| Date:   Sun Dec 27 04:49:41 2020 +0100
+| 
+|     f
+| 
+* commit 231a43f4de19e79c9fab75713195b52dc82b401c
+| Author: Richard Davies <richvies@gmail.com>
+| Date:   Sun Dec 27 04:47:17 2020 +0100
+| 
+|     f
+| 
+* commit 66a50be21bd055a0205d3fa567651a59a2afc887
+| Author: Richard Davies <richvies@gmail.com>
+| Date:   Sun Dec 27 04:43:54 2020 +0100
+| 
+|     f
+| 
+* commit 286314c42b551bb23369c84d0c8e756f9c6698b9
+| Author: Richard Davies <richvies@gmail.com>
+| Date:   Sun Dec 27 04:40:15 2020 +0100
+| 
+|     s
+| 
+* commit 3937270a1eb1d5d3c288a506f7437ef3cba7343e
+| Author: Richard Davies <richvies@gmail.com>
+| Date:   Sun Dec 27 04:29:24 2020 +0100
+| 
+|     l
+| 
+* commit c8c73596f98e8f9417c9b716e750f6e364b2e3be
+| Author: Richard Davies <richvies@gmail.com>
+| Date:   Sun Dec 27 03:29:55 2020 +0100
+| 
+|     f
+| 
+* commit ce8ad9638375642e5ab6c6d9964ef49674f8bf94
+| Author: Richard Davies <richvies@gmail.com>
+| Date:   Sat Dec 26 17:50:04 2020 +0100
+| 
+|     Added old source files
+| 
+* commit f84d51ab7cf77e0b3aa715ae170f57ea69d43735
+| Author: Richard Davies <richvies@gmail.com>
+| Date:   Fri Dec 25 21:41:09 2020 +0100
+| 
+|     added rfm registers
+| 
+* commit 7098061d0af18f9b2224ef587214401a24fb8af9
+| Author: Richard Davies <richvies@gmail.com>
+| Date:   Fri Dec 25 21:36:54 2020 +0100
+| 
+|     Updated RFM
+| 
+* commit 6c006d5fe0f6471f0a153af119a8151c06ab393c
+| Author: Richard Davies <richvies@gmail.com>
+| Date:   Fri Dec 25 21:23:38 2020 +0100
+| 
+|     Added RFM Code
+| 
+* commit fc08ca82a53d925ded077626195e6457c0144506
+| Author: Richard Davies <richvies@gmail.com>
+| Date:   Fri Dec 25 20:41:10 2020 +0100
+| 
+|     added bootloader utils header
+| 
+* commit 9b808989a3381b22fa4db466ae0ed1f6fd357e94
+| Author: Richard Davies <richvies@gmail.com>
+| Date:   Fri Dec 25 20:38:09 2020 +0100
+| 
+|     removed invoices
+| 
+* commit b20e4c0b21d83383b79c96e0c4056df4f913b071
+| Author: Richard Davies <richvies@gmail.com>
+| Date:   Fri Dec 25 20:36:50 2020 +0100
+| 
+|     removed invoices
+| 
+* commit ce372e90d8627a8f6ea6025e95265dbdd4f667c2
+| Author: Richard Davies <richvies@gmail.com>
+| Date:   Fri Dec 25 20:31:59 2020 +0100
+| 
+|     Remove ignored files
+| 
+* commit dd99d93a1f14eb4af36ffe8d1635d2856fb7b164
+| Author: Richard Davies <richvies@gmail.com>
+| Date:   Thu Dec 24 18:46:21 2020 +0100
+| 
+|     updated tasks to inlclude open doxygen command
+| 
+* commit af08aaea73af32c0904abfd48c47d048a4b7ed6a
+| Author: Richard Davies <richvies@gmail.com>
+| Date:   Thu Dec 24 18:42:23 2020 +0100
+| 
+|     updated doxyfiile
+| 
+* commit 16945c213318e630989371b0722f4e3363eb4622
+| Author: Richard Davies <richvies@gmail.com>
+| Date:   Thu Dec 24 18:04:19 2020 +0100
+| 
+|     added test files
+| 
+* commit aee2dc84299fa58d92caf26e49acb0591bb6af49
+| Author: Richard Davies <richvies@gmail.com>
+| Date:   Thu Dec 24 04:39:35 2020 +0100
+| 
+|     Named usb enums and made vars static
+| 
+* commit 4f64f534817387f4fdd09072bb58919bdd08714f
+| Author: Richard Davies <richvies@gmail.com>
+| Date:   Thu Dec 24 04:24:10 2020 +0100
+| 
+|     USB Working and VSCode Setup Properly
+| 
+* commit e94521fb745996b535d1e0e12b0154104cb71077
+| Author: Richard Davies <richvies@gmail.com>
+| Date:   Thu Dec 24 04:06:45 2020 +0100
+| 
+|     Updated Makefile
+| 
+* commit f5d6f0a0d5f105628f4c1f010b7f70e9a856521d
+| Author: Richard Davies <richvies@gmail.com>
+| Date:   Thu Dec 24 03:19:36 2020 +0100
+| 
+|     why oh why
+|   
+*   commit 9db3bf42ad0bd25314ea352e2e3332acf9387d93
+|\  Merge: 5a5cb63 bbd0348
+| | Author: Richard Davies <richvies@gmail.com>
+| | Date:   Thu Dec 24 03:18:31 2020 +0100
+| | 
+| |     my god
+| | 
+| * commit bbd03482d9e83cae6ae42c8a4df775c15b688787
+| | Author: Richard Davies <richvies@gmail.com>
+| | Date:   Thu Dec 24 02:52:07 2020 +0100
+| | 
+| |     g
+| | 
+| * commit 21318aa84f0dc7d7d058069162dcccbec3e758ca
+| | Author: Richard Davies <richvies@gmail.com>
+| | Date:   Thu Dec 24 02:45:04 2020 +0100
+| | 
+| |     Removing all git
+| | 
+| * commit 65ab5121ff8b8e4f13e95e692a0f8c4d6401898c
+| | Author: Richard Davies <richvies@gmail.com>
+| | Date:   Thu Dec 24 02:38:26 2020 +0100
+| | 
+| |     Changed hardware name
+| | 
+| * commit 65994109ad75d6a042a0909c152b87e9e8acdce0
+| | Author: Richard Davies <richvies@gmail.com>
+| | Date:   Thu Dec 24 02:36:28 2020 +0100
+| | 
+| |     Updated gitignore and folder names
+| | 
+* | commit 5a5cb6319408a0137d758e0e897bf8cfc28aa1f5
+|/  Author: Richard Davies <richvies@gmail.com>
+|   Date:   Thu Dec 24 03:06:25 2020 +0100
+|   
+|       Git is so confusing
+| 
+* commit 7b9a34b6cd0e5d7dac314763ebca21403bbd95a8
+| Author: Richard Davies <richvies@gmail.com>
+| Date:   Thu Dec 24 02:31:37 2020 +0100
+| 
+|     Refreshed git
+| 
+* commit 49e6f2895c30f8e2bcb998f57621468cb8704a2c
+| Author: Richard Davies <richvies@gmail.com>
+| Date:   Thu Dec 24 02:27:15 2020 +0100
+| 
+|     Updated older names
+| 
+* commit 313b989515c09749f09d8877e685614239fc9510
+| Author: Richard Davies <richvies@gmail.com>
+| Date:   Thu Dec 24 02:24:01 2020 +0100
+| 
+|     d
+| 
+* commit 06e1e3d58ef127fd52cefb19af4f5e269b7b75b0
+| Author: Richard Davies <richvies@gmail.com>
+| Date:   Thu Dec 24 01:43:49 2020 +0100
+| 
+|     Added Doxygen
+| 
+* commit 7f1dda7038beb5b6cd06977e85b74f53e7f60e26
+| Author: Richard Davies <richvies@gmail.com>
+| Date:   Thu Dec 24 01:32:57 2020 +0100
+| 
+|     Refactoring USB Code
+| 
+* commit 51d6068436c1101ac812795af62d3a585aacaffd
+| Author: Richard Davies <richvies@gmail.com>
+| Date:   Thu Dec 24 00:17:34 2020 +0100
+| 
+|     Using only 1 callback for HID transfer
+| 
+* commit e234a6c48a1f0ee7851aca64e948eee544a4015d
+| Author: Richard Davies <richvies@gmail.com>
+| Date:   Thu Dec 24 00:09:25 2020 +0100
+| 
+|     Added HID report callbacks
+| 
+* commit 306411701246abf497704de858d1841f83a5aaa1
+| Author: Richard Davies <richvies@gmail.com>
+| Date:   Wed Dec 23 14:15:46 2020 +0100
+| 
+|     Added HID Descriptors
+| 
+* commit 7761a58caabf9db099a9f3f5442b25c68d0bf969
+| Author: Richard Davies <richvies@gmail.com>
+| Date:   Tue Dec 22 07:23:11 2020 +0100
+| 
+|     d
+| 
+* commit cdd58243a6675a5655d76f52b3f04394c650fe08
+| Author: Richard Davies <richvies@gmail.com>
+| Date:   Tue Dec 22 00:04:07 2020 +0100
+| 
+|     Added Web Files
+| 
+* commit da39fc8eb8a9355aa4b10291f60fc0496f57303c
+| Author: Richard Davies <richvies@gmail.com>
+| Date:   Sun Dec 20 15:50:46 2020 +0100
+| 
+|     Cleaned Libopencm3
+| 
+* commit 6336f7e47f24530b695530ac671e88d22196ef90
+| Author: Richard Davies <richvies@gmail.com>
+| Date:   Sun Dec 20 02:16:08 2020 +0100
+| 
+|     updated cpp_properties with libopencm3 include dir
+| 
+* commit 371b4c01c5abece528102feb040f4ee372d573ea
+| Author: Richard Davies <richvies@gmail.com>
+| Date:   Sat Dec 19 23:59:01 2020 +0100
+| 
+|     a
+| 
+* commit 8a1ee0b9fee66842690e292b2f64aa224678fe8b
+| Author: Richard Davies <richvies@gmail.com>
+| Date:   Sat Dec 19 23:21:25 2020 +0100
+| 
+|     Removed DS_Store
+| 
+* commit 8ffdf070fe5368ec523a4de028202def467b82cc
+| Author: Richard Davies <richvies@gmail.com>
+| Date:   Sat Dec 19 23:18:12 2020 +0100
+| 
+|     a
+| 
+* commit 214e3f995ac3892dff3274ebcf384592af000eaf
+| Author: Richard Davies <richvies@gmail.com>
+| Date:   Sat Dec 19 23:16:35 2020 +0100
+| 
+|     a
+| 
+* commit 457b26911c8c26c664f708808ca230048eb3bbc9
+| Author: Richard Davies <richvies@gmail.com>
+| Date:   Sat Dec 19 23:13:24 2020 +0100
+| 
+|     Fixed python shell environment
+| 
+* commit ab0917ecc0c2f2c8490172aa20ab20e33b67307f
+| Author: Richard Davies <richvies@gmail.com>
+| Date:   Sat Dec 19 17:29:17 2020 +0100
+| 
+|     Setting up VSCode and trying to configure python properly
+| 
+* commit 1c5f5f203b3d92e0218f3bfe598e594256c14cd6
+| Author: Richard Davies <richvies@gmail.com>
+| Date:   Mon Dec 14 14:42:59 2020 +0000
+| 
+|     Updated Readme
+| 
+* commit 0a599fbb4fcf834af4f721e9c368eed37615f801
+| Author: Richard Davies <richvies@gmail.com>
+| Date:   Mon Dec 14 14:42:04 2020 +0000
+| 
+|     Changed Readme to update file extension
+| 
+* commit 57dce1b9fd0db35f8d84139ffb85212380835baf
+| Author: Richard Davies <richvies@gmail.com>
+| Date:   Mon Dec 14 14:37:09 2020 +0000
+| 
+|     Updated README
+| 
+* commit 90f40e8ba167c2af8ecd4cc00434d01470bf48d3
+| Author: Richard Davies <richvies@gmail.com>
+| Date:   Mon Dec 14 14:15:58 2020 +0000
+| 
+|     Added readme file
+| 
+* commit bbb573b9c9ed3065004b35de05951e7c5725b898
+  Author: Richard Davies <richvies@gmail.com>
+  Date:   Mon Dec 14 14:11:33 2020 +0000
+  
+      First Commit
