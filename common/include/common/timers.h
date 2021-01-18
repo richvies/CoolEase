@@ -38,6 +38,7 @@ uint16_t timers_micros(void);
 
 // Setup TIM6 as millisecond counter. Clocked by APB1
 void timers_tim6_init(void);
+uint32_t timers_lsi_freq(void);
 
 // Simple delay function. Puts cpu into nop loop timed by lptim1
 void timers_delay_milliseconds(uint32_t delay_milliseconds);

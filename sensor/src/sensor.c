@@ -78,8 +78,8 @@ int main(void)
 	(void)print_aes_key;
 	(void)test;
 
-	// test();
-	sensor();
+	test();
+	// sensor();
 
 	for (;;)
 	{
@@ -152,6 +152,7 @@ static void sensor(void)
 {	
 	init();
 	serial_printf("Device: %8x\n", dev->dev_num);
+
 	// print_aes_key();
 
 	timers_rtc_init(1);
@@ -165,6 +166,8 @@ static void sensor(void)
 static void test(void)
 {
 	init();
+
+	timers_lsi_freq();
 	
 	// serial_printf("Dev Info Location: %8x %8x %8x\n", EEPROM_DEV_INFO_BASE, &dev->aes_key[0], dev->aes_key);
 	// test_encryption(dev->aes_key);
@@ -175,7 +178,7 @@ static void test(void)
 	// rfm_init();
 	// rfm_end();
 
-	test_sensor_standby(10);
+	// test_sensor_standby(10);
 
 	// tmp112_init();
 	// tmp112_end();
@@ -184,7 +187,7 @@ static void test(void)
 	
 	// test_wakeup();
 	// test_sensor_rf_vs_temp_cal();
-	// test_sensor_standby(5);
+	test_sensor_standby(5);
 	// test_rf();
 	// test_rf_listen();
 	// test_sensor(DEV_NUM_CHIP);
@@ -303,7 +306,7 @@ static void send_packet(void)
 // Override default rtc interrupt handler
 void rtc_isr(void)
 { 
-	// scb_reset_system();
+	scb_reset_system();
 
     exti_reset_request(EXTI20);
 

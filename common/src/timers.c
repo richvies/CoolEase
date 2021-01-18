@@ -47,9 +47,9 @@ void timers_rtc_init(uint32_t standby_time_seconds)
 	// RCC_CSR |= (RCC_CSR_RTCSEL_LSE << RCC_CSR_RTCSEL_SHIFT);
     // RCC_CSR |= RCC_CSR_RTCEN;
 
-    // Start low speed internal oscillator ≈ 40kHz. And wait until it is ready
-    rcc_osc_on(RCC_LSI);
-    rcc_wait_for_osc_ready(RCC_LSI);
+    // Get LSI frequency
+    uint32_t lsi_freq = timers_lsi_freq();
+    serial_printf("Freq: %u\n", lsi_freq);
 
     // Enable RTC clock and select LSI
     RCC_CSR &= ~(RCC_CSR_RTCSEL_MASK << RCC_CSR_RTCSEL_SHIFT);
@@ -64,7 +64,8 @@ void timers_rtc_init(uint32_t standby_time_seconds)
     while (!((RTC_ISR) & (RTC_ISR_INITF)));
 
     // Set RTC prescaler
-    rtc_set_prescaler(0x00FF, 0x007F);
+    rtc_set_prescaler(((lsi_freq / 4) - 1), 0x0003);
+    PRINT_REG(RTC_PRER);
     
     // Configure & enable wakeup timer/ interrupt
     rtc_clear_wakeup_flag();
@@ -89,6 +90,56 @@ void timers_rtc_init(uint32_t standby_time_seconds)
     // nvic_disable_irq(NVIC_RTC_IRQ);
 }
 
+uint32_t timers_lsi_freq(void)
+{
+    // Start low speed internal oscillator ≈ 40kHz. And wait until it is ready
+    rcc_osc_on(RCC_LSI);
+    rcc_wait_for_osc_ready(RCC_LSI);
+
+    // TIM21 on APB2
+    rcc_periph_clock_enable(RCC_TIM21);
+    rcc_periph_reset_pulse(RCC_APB2RSTR_TIM21RST);
+    timer_disable_counter(TIM21);
+
+    // Edge aligned, up counter
+    TIM_CR1(TIM21) |= TIM_CR1_CMS_EDGE | TIM_CR1_DIR_UP;
+
+    // Enable
+    TIM_CR1(TIM21) |= TIM_CR1_CEN;
+
+    // CC1 input capture mode, 8 prescale, 8 sample filter
+    TIM_CCMR1(TIM21) |= TIM_CCMR1_CC1S_IN_TI1 | TIM_CCMR1_IC1PSC_8 | TIM_CCMR1_IC1F_CK_INT_N_8;
+
+    // Select LSI capture
+    TIM21_OR |= TIM21_OR_TI1_RMP_LSI;
+
+    // Enable capture
+    TIM_CCER(TIM21) |= TIM_CCER_CC1E;
+
+    // Wait for captures
+    uint32_t count = 0;
+    while(!(TIM_SR(TIM21) & TIM_SR_CC1IF)){};
+    uint16_t time = TIM_CCR1(TIM21);
+    for (uint16_t i = 0; i < 10; i++)
+    {
+        while(!(TIM_SR(TIM21) & TIM_SR_CC1IF)){};
+        count += (uint16_t)(TIM_CCR1(TIM21) - time);
+        time = TIM_CCR1(TIM21);
+    }
+
+    // prescaler * number of samples
+    count /= 80;
+    
+    uint32_t freq = rcc_apb2_frequency / count;
+
+    // Disable
+    TIM_CCER(TIM21) &= ~TIM_CCER_CC1E;
+    TIM_CR1(TIM21) &= ~TIM_CR1_CEN;
+    rcc_periph_reset_pulse(RCC_APB2RSTR_TIM21RST);
+    rcc_periph_clock_disable(RCC_TIM21);
+
+    return freq;
+}
 
 // Setup lptim1 as approx. microsecond counter. Clocked by APB by default
 void timers_lptim_init(void)
