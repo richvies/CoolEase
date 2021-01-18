@@ -34,6 +34,8 @@
  * @{
  */
 
+#include "hub/hub.h"
+
 /** @addtogroup HUB_INT 
  * @{
  */
@@ -42,13 +44,15 @@
 // Static Variables
 /*////////////////////////////////////////////////////////////////////////////*/
 
-
+static sensor_t 	sensors[MAX_SENSORS];
+static uint8_t 		num_sensors = 0;
 
 /*////////////////////////////////////////////////////////////////////////////*/
 // Static Function Declarations
 /*////////////////////////////////////////////////////////////////////////////*/
 
 static void init(void);
+static void hub(void);
 static void test_hub2(void);
 static void hub_download_info(void);
 
@@ -64,51 +68,85 @@ static void hub_download_info(void);
 
 int main(void)
 {
+	// Stop unused warnings
+	(void)init;
+	(void)hub;
+
 	init();
-	// serial_printf("OOHHHHHH YEAH BABY!!!!\n");
-	serial_printf("Another one downloaded hehe\n");
-  	// gpio_init();
-	// mem_init();
-	// aes_init();
-	// batt_init();
 
-	// test_mem_write_read();
-
-	// Read Bootloader ID causes hard fault
-	// log_printf("%08x : %08x\n", 0x1FF00FFE, tst);
-
-	// rfm_init();
-	// rfm_end();
-
-	// sim_init();
-	// sim_end();
-
-	// test_wakeup();
-	// test_rf();
-	// test_rf_listen();
-	// test_receiver(DEV_NUM_CHIP);
-	// test_hub();
-	// test_rfm();
-	// test_sensor();
-	// test_sim();
-	// test_sim_serial_pass_through();
-	// if( test_timeout() ) log_printf("Good\n"); else log_printf("Timeout\n");
-	// test_analog_watchdog();
-	// test_cusb_poll();
-
-	(void)test_hub2;
+	test_hub2();
 
 
 	for (;;)
 	{
-		// log_printf("Hub Loop\n\n");
-		// timers_delay_milliseconds(1000);
+		log_printf("Hub Loop\n\n");
+		timers_delay_milliseconds(1000);
 	}
-
-    // test_hub2();
 
   return 0;
 }
+
+void set_gpio_for_standby(void)
+{   
+    rcc_periph_clock_enable(RCC_GPIOA);
+    rcc_periph_clock_enable(RCC_GPIOB);
+
+    // LED
+    gpio_mode_setup(LED_PORT, GPIO_MODE_ANALOG, GPIO_PUPD_NONE, LED);
+
+    // Serial Print
+	// FTDI not connected
+	usart_disable(SPF_USART);
+	rcc_periph_clock_disable(SPF_USART_RCC);
+    gpio_mode_setup(SPF_USART_TX_PORT, GPIO_MODE_ANALOG, GPIO_PUPD_NONE, SPF_USART_TX);
+	gpio_mode_setup(SPF_USART_RX_PORT, GPIO_MODE_ANALOG, GPIO_PUPD_NONE,  SPF_USART_RX);
+	// FTDI Connected
+    // gpio_mode_setup(SPF_USART_TX_PORT, GPIO_MODE_INPUT, GPIO_PUPD_PULLUP, SPF_USART_TX);
+	// gpio_mode_setup(SPF_USART_RX_PORT, GPIO_MODE_OUTPUT, GPIO_PUPD_NONE,  SPF_USART_RX);
+	// gpio_set_output_options(SPF_USART_RX_PORT, GPIO_OTYPE_OD, GPIO_OSPEED_2MHZ, SPF_USART_RX);
+	// gpio_set(SPF_USART_RX_PORT, SPF_USART_RX);
+
+    // Batt Sense
+    gpio_mode_setup(BATT_SENS_PORT, GPIO_MODE_ANALOG, GPIO_PUPD_NONE, BATT_SENS);
+    gpio_mode_setup(PWR_SENS_PORT, GPIO_MODE_ANALOG, GPIO_PUPD_NONE, PWR_SENS);
+    
+    // RFM
+    // SPI
+    gpio_mode_setup(RFM_SPI_MISO_PORT,  GPIO_MODE_ANALOG,   GPIO_PUPD_NONE,       RFM_SPI_MISO);
+
+    gpio_mode_setup(RFM_SPI_SCK_PORT,   GPIO_MODE_INPUT,    GPIO_PUPD_PULLDOWN,   RFM_SPI_SCK);
+    gpio_mode_setup(RFM_SPI_MOSI_PORT,  GPIO_MODE_INPUT,    GPIO_PUPD_PULLDOWN,   RFM_SPI_MOSI);
+
+    gpio_mode_setup(RFM_SPI_NSS_PORT,   GPIO_MODE_INPUT,    GPIO_PUPD_PULLUP,     RFM_SPI_NSS);
+    gpio_mode_setup(RFM_RESET_PORT,     GPIO_MODE_INPUT,    GPIO_PUPD_PULLUP,     RFM_RESET);
+
+    // DIO
+	// Input or analog, seems to make no difference
+    gpio_mode_setup(RFM_IO_0_PORT, GPIO_MODE_ANALOG, GPIO_PUPD_NONE, RFM_IO_0);
+    gpio_mode_setup(RFM_IO_1_PORT, GPIO_MODE_ANALOG, GPIO_PUPD_NONE, RFM_IO_1);
+    gpio_mode_setup(RFM_IO_2_PORT, GPIO_MODE_ANALOG, GPIO_PUPD_NONE, RFM_IO_2);
+    gpio_mode_setup(RFM_IO_3_PORT, GPIO_MODE_ANALOG, GPIO_PUPD_NONE, RFM_IO_3);
+    gpio_mode_setup(RFM_IO_4_PORT, GPIO_MODE_ANALOG, GPIO_PUPD_NONE, RFM_IO_4);
+    gpio_mode_setup(RFM_IO_5_PORT, GPIO_MODE_ANALOG, GPIO_PUPD_NONE, RFM_IO_5);
+
+    // SIM
+    gpio_mode_setup(SIM_USART_TX_PORT, GPIO_MODE_ANALOG, GPIO_PUPD_PULLUP SIM_USART_TX);
+	gpio_mode_setup(SIM_USART_RX_PORT, GPIO_MODE_ANALOG, GPIO_PUPD_PULLUP, SIM_USART_RX);
+}
+
+
+sensor_t *get_sensor(uint32_t dev_num)
+{
+	sensor_t *sensor = NULL;
+
+	for(uint8_t i = 0; i < num_sensors; i++)
+	{
+		if(dev_num == sensors[i].dev_num)
+			sensor = &sensors[i];
+	}
+	return sensor;
+}
+
 
 /** @} */
 
@@ -124,10 +162,19 @@ static void init(void)
 {
 	clock_setup_msi_2mhz();
     log_init();
+	batt_init();
 	timers_lptim_init();
 	timers_tim6_init();
 	flash_led(100, 5);
     log_printf("Hub Start\n");
+}
+
+static void hub(void)
+{
+	// 
+	// Check for packets
+
+	// Upload if any
 }
 
 static void test_hub2(void)
@@ -246,6 +293,7 @@ static void test_hub2(void)
 				sensor->total_packets = 1 + packet->data.msg_number - sensor->msg_num_start;
 
 				// Print packet details
+				// print_packet_details();
 				log_printf("Device ID: %08x\n", packet->data.device_number);
 				log_printf("Packet RSSI: %i dbm\n", packet->rssi);
 				log_printf("Packet SNR: %i dB\n", packet->snr);
@@ -309,28 +357,6 @@ static void hub_download_info(void)
 }
 
 /** @} */
-
-/*////////////////////////////////////////////////////////////////////////////*/
-// Interrupts
-/*////////////////////////////////////////////////////////////////////////////*/
-
-void nmi_handler(void)
-{
-  log_printf("nmi\n");
-	while(1)
-	{
-		
-	}
-}
-
-void hard_fault_handler(void)
-{
-  log_printf("hard fault\n");
-	while(1)
-	{
-
-	}
-}
 
 /** @} */
 

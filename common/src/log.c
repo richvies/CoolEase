@@ -97,7 +97,6 @@ void log_init(void)
 	// cusb_init();
 	#endif
     usart_setup();
-	for(int i = 0; i < 100000; i++){__asm__("nop");};
     #endif
 
 	// log_printf("\n\nLog Init\n----------------\n");

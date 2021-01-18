@@ -145,8 +145,6 @@ void boot_deinit(void)
 
     // Reenable STLink
     serial_printf("GPIOA Mode: %8x Speed: %8x PUPD: %8x\n", GPIOA_MODER, GPIOA_OSPEEDR, GPIOA_PUPDR);
-    #ifdef DEBUG
-    #endif
 }
 
 void boot_jump_to_application(uint32_t address)

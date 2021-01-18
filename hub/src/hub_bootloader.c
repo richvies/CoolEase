@@ -56,12 +56,15 @@ static bool download_and_program_bin(const char *url, uint8_t num_attempts);
 
 int main(void)
 {
+	// Stop unused warnings
+	(void)download_and_program_bin;
+	
 	init();
 
 	// download_and_program_bin("http://cooleasetest.000webhostapp.com/hub.bin", 3);
 
 	// test_sim_serial_passtrhough();
-	test_sim_get_request();
+	// test_sim_get_request();
 
 	boot_jump_to_application(FLASH_APP_ADDRESS);
 

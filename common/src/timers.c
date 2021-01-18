@@ -90,7 +90,7 @@ void timers_rtc_init(uint32_t standby_time_seconds)
 }
 
 
-// Setup lptim1 as approx. microsecond counter
+// Setup lptim1 as approx. microsecond counter. Clocked by APB by default
 void timers_lptim_init(void)
 {
     // Input clock is 2.097Mhz
@@ -188,18 +188,19 @@ void timers_pet_dogs(void)
     iwdg_reset();
 }
 
-
 // Enter standby mode
 void timers_enter_standby(void)
 {
     pwr_disable_backup_domain_write_protect();
 
+    // Cortex deepsleep - stop & standy modes
     SCB_SCR |= SCB_SCR_SLEEPDEEP;
 
     // pwr_set_standby_mode();
     pwr_set_stop_mode();
 
-    PWR_CR |= PWR_CR_LPDS | PWR_CR_ULP;
+    // Put regulator in low power mode & turn iff Vreftint during deepsleep 
+    PWR_CR |= PWR_CR_LPDS | PWR_CR_ULP; 
 
     pwr_clear_wakeup_flag();
     pwr_clear_standby_flag();
@@ -207,8 +208,6 @@ void timers_enter_standby(void)
     // Enter standby
     while(1)
     {
-        log_printf("WFI/E\n");
-        set_gpio_for_standby();
         cm_disable_interrupts();
         __asm__("wfi");
         cm_enable_interrupts();
@@ -240,69 +239,5 @@ bool timeout(uint32_t time_microseconds, char *msg, uint32_t data)
         return false;
 }
 
-void set_gpio_for_standby(void)
-{   
-    // Common
-    // LED
-    gpio_mode_setup(LED_PORT, GPIO_MODE_ANALOG, GPIO_PUPD_NONE, LED);
-    gpio_set(LED_PORT, LED);
 
-    // Serial Print
-    gpio_mode_setup(SPF_USART_TX_PORT, GPIO_MODE_INPUT, GPIO_PUPD_PULLUP, SPF_USART_TX);
-	gpio_mode_setup(SPF_USART_RX_PORT, GPIO_MODE_OUTPUT, GPIO_PUPD_NONE,  SPF_USART_RX);
-	gpio_set(SPF_USART_RX_PORT, SPF_USART_RX);
 
-    // Batt Sense
-    gpio_mode_setup(BATT_SENS_PORT, GPIO_MODE_ANALOG, GPIO_PUPD_NONE, BATT_SENS);
-    
-    // RFM
-    // SPI
-    gpio_mode_setup(RFM_SPI_MISO_PORT,  GPIO_MODE_ANALOG,   GPIO_PUPD_NONE,       RFM_SPI_MISO);
-
-    gpio_mode_setup(RFM_SPI_SCK_PORT,   GPIO_MODE_INPUT,    GPIO_PUPD_PULLDOWN,   RFM_SPI_SCK);
-    gpio_mode_setup(RFM_SPI_MOSI_PORT,  GPIO_MODE_INPUT,    GPIO_PUPD_PULLDOWN,   RFM_SPI_MOSI);
-
-    gpio_mode_setup(RFM_SPI_NSS_PORT,   GPIO_MODE_INPUT,    GPIO_PUPD_PULLUP,     RFM_SPI_NSS);
-    gpio_mode_setup(RFM_RESET_PORT,     GPIO_MODE_INPUT,    GPIO_PUPD_PULLUP,     RFM_RESET);
-
-    // DIO
-    gpio_mode_setup(RFM_IO_0_PORT, GPIO_MODE_ANALOG, GPIO_PUPD_NONE, RFM_IO_0);
-    gpio_mode_setup(RFM_IO_1_PORT, GPIO_MODE_ANALOG, GPIO_PUPD_NONE, RFM_IO_1);
-    gpio_mode_setup(RFM_IO_2_PORT, GPIO_MODE_ANALOG, GPIO_PUPD_NONE, RFM_IO_2);
-    gpio_mode_setup(RFM_IO_3_PORT, GPIO_MODE_ANALOG, GPIO_PUPD_NONE, RFM_IO_3);
-    gpio_mode_setup(RFM_IO_4_PORT, GPIO_MODE_ANALOG, GPIO_PUPD_NONE, RFM_IO_4);
-    gpio_mode_setup(RFM_IO_5_PORT, GPIO_MODE_ANALOG, GPIO_PUPD_NONE, RFM_IO_5);
-
-    #ifdef _HUB
-    #else
-
-    // TMP
-    gpio_mode_setup(TEMP_I2C_SCL_PORT, GPIO_MODE_INPUT, GPIO_PUPD_PULLUP, TEMP_I2C_SCL);
-	gpio_mode_setup(TEMP_I2C_SDA_PORT, GPIO_MODE_INPUT, GPIO_PUPD_PULLUP, TEMP_I2C_SDA);
-
-    #endif
-
-}
-
-// Override default rtc interrupt handler
-void rtc_isr(void)
-{ 
-    exti_reset_request(EXTI20);
-
-    // scb_reset_system();
-
-    log_init();
-    log_printf("RTC ISR\n");
-
-    if(RTC_ISR & RTC_ISR_WUTF)
-    { 
-        pwr_disable_backup_domain_write_protect();
-        rtc_unlock();
-	    rtc_clear_wakeup_flag();
-        pwr_clear_wakeup_flag();
-        pwr_clear_standby_flag();
-        rtc_lock();
-	    pwr_enable_backup_domain_write_protect();
-        set_gpio_for_standby();
-    }
-}

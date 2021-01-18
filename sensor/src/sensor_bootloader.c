@@ -61,6 +61,8 @@ static void flash_led_failsafe(void);
 
 int main(void)
 {
+	// Stop unused warnings
+	(void)init;
 	init();
 
 	boot_jump_to_application(FLASH_APP_ADDRESS);
@@ -83,6 +85,7 @@ static void init(void)
 	clock_setup_msi_2mhz();
 	timers_lptim_init();
 	timers_tim6_init();
+	for(int i = 0; i < 100000; i++){__asm__("nop");};
     log_init();
 	flash_led(100, 10);
     log_printf("Sensor Bootloader Start\n");

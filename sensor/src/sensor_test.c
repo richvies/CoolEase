@@ -36,6 +36,7 @@
 #include "common/timers.h"
 #include "common/memory.h"
 
+#include "sensor/sensor.h"
 #include "sensor/sensor_bootloader.h"
 #include "sensor/si7051.h"
 #include "sensor/tmp112.h"
@@ -241,33 +242,60 @@ void test_sensor_rf_vs_temp_cal(void)
 		}
 	}
 	// Only calc avg if num_readings > 0
-	if(num_readings)
+	if(num_readings) 
 	{
 		temp_avg = sum/num_readings;
 	}
 	serial_printf("Temp: %i\n", temp_avg);
 
 	/*////////////////////////*/
-	// Send Temperature
+	// Assemble Packet
+	/*////////////////////////*/
+	rfm_packet_t packet;
+	packet.data.temperature = temp_avg;
+	packet.data.msg_number = 0;
+	packet.data.device_number = 0xAD7503BF;
+
+	/*////////////////////////*/
+	// Send Packet
 	/*////////////////////////*/
 	rfm_init();
 	rfm_config_for_lora(RFM_BW_125KHZ, RFM_CODING_RATE_4_5, RFM_SPREADING_FACTOR_128CPS, true, 0);
-	rfm_packet_t packet;
-	packet.data.temperature = temp_avg;
 	rfm_transmit_packet(packet);
 	serial_printf("Sent\n");
 
 	/*////////////////////////*/
 	// 1 Second High Pulse
 	/*////////////////////////*/
-	
+	rfm_set_tx_continuous();
+	timers_delay_milliseconds(1000);
+	rfm_end();
 
-	for (;;)
-	{
-		
-	}
+	/*////////////////////////*/
+	// Enter Standby for 30 seconds
+	// Resets in RTC ISR
+	/*////////////////////////*/
+	timers_rtc_init(30);
+	timers_enter_standby();
 }
 
+void test_sensor_standby(uint32_t standby_time)
+{
+	test_sensor_init("test_sensor_standby()");
+
+	serial_printf("%i seconds\n", standby_time);
+
+	rfm_init();
+	rfm_end();
+
+	tmp112_init();
+	tmp112_end();
+
+	// log_printf("Entering Standby\n");
+	timers_rtc_init(standby_time);
+	set_gpio_for_standby();
+	timers_enter_standby();
+}
 
 
 /** @} */

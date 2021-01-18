@@ -34,11 +34,13 @@
 #include "common/rfm.h"
 #include "common/log.h"
 #include "common/timers.h"
+#include "common/test.h"
 #include "common/memory.h"
 
 #include "hub/cusb.h"
 #include "hub/hub_bootloader.h"
 #include "hub/sim.h"
+#include "hub/hub.h"
 
 /** @addtogroup HUB_TEST_FILE 
  * @{
@@ -58,7 +60,6 @@ void test_hub_init(const char *test_name)
 	log_init();
 	timers_lptim_init();
 	timers_tim6_init();
-	aes_init(dev->aes_key);
 
 	for (uint32_t i = 0; i < 10000; i++)
 	{
@@ -176,6 +177,161 @@ void test_hub(void)
 	// 		rfm_start_listening();
 	// 	}
 	// }
+}
+
+void test_hub_rf_vs_temp_cal(void)
+{
+	test_hub_init("test_hub_rf_vs_temp_cal()");
+
+	rfm_init();
+	rfm_config_for_lora(RFM_BW_125KHZ, RFM_CODING_RATE_4_5, RFM_SPREADING_FACTOR_128CPS, true, 0);
+	rfm_start_listening();
+
+	rfm_packet_t *packet;
+
+	for (;;)
+	{
+		if (rfm_get_num_packets())
+		{
+			uint16_t timer = timers_micros();
+			packet = rfm_get_next_packet();
+			uint16_t timer2 = timers_micros();
+
+			// serial_printf("Packet Received\n");
+			// serial_printf("%i us\n", (uint16_t)(timer2 - timer));
+
+			if(packet->data.device_number != 0xAD7503BF)
+			{
+				// serial_printf("Wrong Dev Num\n");
+			}
+			else
+			{
+				serial_printf("Temperature: %i\n", packet->data.temperature);
+			}
+			// serial_printf("\n");
+		}
+	}
+}
+
+void test_receiver(uint32_t dev_num)
+{
+	test_hub_init("test_receiver()");
+
+	// Sensors
+	uint8_t num_sensors = 3;
+	sensor_t sensors[3];
+	
+	sensors[0].dev_num = dev_num;
+	sensors[1].dev_num = 0x12345678;
+	sensors[2].dev_num = 0x87654321;
+
+	sensor_t *sensor = NULL;
+
+	// Start listening on rfm
+	rfm_packet_t *packet = NULL;
+	rfm_init();
+	rfm_config_for_lora(RFM_BW_125KHZ, RFM_CODING_RATE_4_5, RFM_SPREADING_FACTOR_128CPS, true, 0);
+	rfm_start_listening();
+
+	// Get First message number
+	serial_printf("Waiting for first message\n");
+	bool recv = false;
+	while (!recv)
+	{
+		// Wait for first packet to arrive
+		while (!rfm_get_num_packets())
+		{
+		}
+
+		// Get packet, decrypt and organise
+		packet = rfm_get_next_packet();
+		aes_ecb_decrypt(packet->data.buffer);
+		rfm_organize_packet(packet);
+
+		// Print data received
+		serial_printf("Received ");
+		for (int i = 0; i < 16; i++)
+		{
+			serial_printf("%02X ", packet->data.buffer[i]);
+		}
+		serial_printf("\n");
+
+		// Skip if not correct device number
+		sensor = get_sensor(packet->data.device_number);
+		if (sensor == NULL)
+		{
+			serial_printf("Wrong Dev Num: %08X\n", packet->data.device_number);
+			continue;
+		}
+		else
+		{
+			sensor->msg_num = packet->data.msg_number;
+			sensor->msg_num_start = packet->data.msg_number;
+			serial_printf("First Message Number: %i %i\n", packet->data.msg_number, sensor->msg_num);
+			recv = true;
+		}
+	}
+
+	serial_printf("Ready\n");
+
+	for (;;)
+	{
+		if (rfm_get_num_packets())
+		{
+			while (rfm_get_num_packets())
+			{
+				// Get packet, decrypt and organise
+				packet = rfm_get_next_packet();
+				aes_ecb_decrypt(packet->data.buffer);
+				rfm_organize_packet(packet);
+
+				// Check CRC
+				if (!packet->crc_ok)
+				{
+					serial_printf("CRC Fail\n");
+					flash_led(100, 5);
+					continue;
+				}
+				else
+				{
+					serial_printf("CRC OK\n");
+				}
+
+				// Get sensor from device number
+				sensor = get_sensor(packet->data.device_number);
+
+				// Skip if wrong device number
+				if (sensor == NULL)
+				{
+					serial_printf("Wrong Dev Num: %08X\n", packet->data.device_number);
+					flash_led(100, 3);
+					continue;
+				}
+
+				// Update sensor ok packet counter
+				sensor->ok_packets++;
+				flash_led(100, 1);
+
+				// Check if message number is correct
+				if (packet->data.msg_number != ++sensor->msg_num)
+				{
+					serial_printf("Missed Message %i\n", sensor->msg_num);
+				}
+
+				sensor->total_packets = packet->data.msg_number - sensor->msg_num_start;
+
+				// Print packet details
+				serial_printf("Device ID: %08x\n", packet->data.device_number);
+				serial_printf("Packet RSSI: %i dbm\n", packet->rssi);
+				serial_printf("Packet SNR: %i dB\n", packet->snr);
+				serial_printf("Power: %i\n", packet->data.power);
+				serial_printf("Battery: %uV\n", packet->data.battery);
+				serial_printf("Temperature: %i\n", packet->data.temperature);
+				serial_printf("Message Number: %i\n", packet->data.msg_number);
+				serial_printf("Accuracy: %i / %i packets\n\n", sensor->ok_packets, sensor->total_packets);
+			}
+		}
+	}
 }
 
 /*////////////////////////////////////////////////////////////////////////////*/

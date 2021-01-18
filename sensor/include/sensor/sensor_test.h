@@ -58,6 +58,8 @@ void test_tmp112(uint8_t num_readings);
 /** @brief Sends temperature followed by 1 second high signal. This is recorded for calibrating rf frequency vs temperature - to keep center at 868MHz */
 void test_sensor_rf_vs_temp_cal(void);
 
+void test_sensor_standby(uint32_t standby_time);
+
 /** @} */
 
 #ifdef __cplusplus

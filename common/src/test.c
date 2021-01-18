@@ -24,6 +24,7 @@
 #include <libopencm3/stm32/timer.h>
 #include <libopencm3/stm32/lptimer.h>
 #include <libopencm3/stm32/pwr.h>
+#include <libopencm3/cm3/nvic.h>
 #include <libopencm3/stm32/crc.h>
 
 #include "common/aes.h"
@@ -91,18 +92,18 @@ void test_mem_write_read(void)
 	flash_data[0] = 0x12345678;
 	flash_data[1] = 0x24681234;
 
-	log_printf("EEPROM Start: %08x : %08x\n", eeprom_address, MMIO32(eeprom_address));
-	log_printf("Programming: %08x\n", eeprom_word);
+	serial_printf("EEPROM Start: %08x : %08x\n", eeprom_address, MMIO32(eeprom_address));
+	serial_printf("Programming: %08x\n", eeprom_word);
 	mem_eeprom_write_word(eeprom_address, eeprom_word);
-	log_printf("EEPROM End: %08x : %08x\n\n", eeprom_address, MMIO32(eeprom_address));
+	serial_printf("EEPROM End: %08x : %08x\n\n", eeprom_address, MMIO32(eeprom_address));
 
-	log_printf("Flash Erase\n");
+	serial_printf("Flash Erase\n");
 	mem_flash_erase_page(flash_address);
-	log_printf("Flash Start: %08x : %08x\n%08x : %08x\n", flash_address, MMIO32(flash_address), flash_address + 4, MMIO32(flash_address + 4));
-	log_printf("Programming %08x %08x\n", flash_data[0], flash_data[1]);
+	serial_printf("Flash Start: %08x : %08x\n%08x : %08x\n", flash_address, MMIO32(flash_address), flash_address + 4, MMIO32(flash_address + 4));
+	serial_printf("Programming %08x %08x\n", flash_data[0], flash_data[1]);
 	mem_flash_write_half_page(flash_address, flash_data);
-	// log_printf("Programming %08x\n", flash_data[1]); mem_flash_write_word(flash_address, flash_data[1]);
-	log_printf("Flash End: %08x : %08x\n%08x : %08x\n", flash_address, MMIO32(flash_address), flash_address + 4, MMIO32(flash_address + 4));
+	// serial_printf("Programming %08x\n", flash_data[1]); mem_flash_write_word(flash_address, flash_data[1]);
+	serial_printf("Flash End: %08x : %08x\n%08x : %08x\n", flash_address, MMIO32(flash_address), flash_address + 4, MMIO32(flash_address + 4));
 }
 
 void test_eeprom(void)
@@ -113,8 +114,8 @@ void test_eeprom(void)
 
 	for (;;)
 	{
-		log_printf("Device: %04x\n", mem_get_dev_num());
-		log_printf("Message: %04x\n", mem_get_msg_num());
+		serial_printf("Device: %04x\n", mem_get_dev_num());
+		serial_printf("Message: %04x\n", mem_get_msg_num());
 
 		// mem_update_msg_num(mem_get_msg_num() + 1);
 
@@ -157,25 +158,25 @@ void test_eeprom_keys(void)
 	uint8_t aes_key_exp[176];
 	mem_get_aes_key_exp(aes_key_exp);
 
-	log_printf("AES Key: ");
+	serial_printf("AES Key: ");
 	for (int i = 0; i < 16; i++)
 	{
-		log_printf("%02x ", aes_key[i]);
+		serial_printf("%02x ", aes_key[i]);
 	}
 
-	log_printf("\n\nAES Key Exp: ");
+	serial_printf("\n\nAES Key Exp: ");
 	for (int i = 0; i < 176; i++)
 	{
-		log_printf("%02x ", aes_key_exp[i]);
+		serial_printf("%02x ", aes_key_exp[i]);
 	}
 
 	// aes_expand_key();
 	mem_get_aes_key_exp(aes_key_exp);
 
-	log_printf("\n\nAES Key Exp: ");
+	serial_printf("\n\nAES Key Exp: ");
 	for (int i = 0; i < 176; i++)
 	{
-		log_printf("%02x ", aes_key_exp[i]);
+		serial_printf("%02x ", aes_key_exp[i]);
 	}
 }
 
@@ -189,7 +190,7 @@ void test_eeprom_wipe(void)
 
 	while (address < 0x080807FF)
 	{
-		log_printf("%08x : %08x\n", address, MMIO32(address));
+		serial_printf("%08x : %08x\n", address, MMIO32(address));
 		address += 4;
 	}
 
@@ -205,11 +206,11 @@ void test_eeprom_wipe(void)
 
 	while (address < 0x080807FF)
 	{
-		log_printf("%08x : %08x\n", address, MMIO32(address));
+		serial_printf("%08x : %08x\n", address, MMIO32(address));
 		address += 4;
 	}
 
-	log_printf("Done\n");
+	serial_printf("Done\n");
 }
 
 void test_reset_eeprom(void)
@@ -222,11 +223,11 @@ void test_reset_eeprom(void)
 	eeprom_program_word(0x08080008, 2);
 	eeprom_program_word(0x0808000C, 0);
 
-	log_printf("%04x : %i\n", 0x08080000, MMIO32(0x08080000));
-	log_printf("%04x : %i\n", 0x08080004, MMIO32(0x08080004));
-	log_printf("%04x : %i\n", 0x08080008, MMIO32(0x08080008));
-	log_printf("%04x : %i\n", 0x0808000C, MMIO32(0x0808000C));
-	log_printf("Done\n");
+	serial_printf("%04x : %i\n", 0x08080000, MMIO32(0x08080000));
+	serial_printf("%04x : %i\n", 0x08080004, MMIO32(0x08080004));
+	serial_printf("%04x : %i\n", 0x08080008, MMIO32(0x08080008));
+	serial_printf("%04x : %i\n", 0x0808000C, MMIO32(0x0808000C));
+	serial_printf("Done\n");
 }
 
 void test_log(void)
@@ -238,7 +239,7 @@ void test_log(void)
 	serial_printf("Writing Log\n");
 	for (uint16_t i = 0; i < 10; i++)
 	{
-		log_printf("Test %i\n", i);
+		serial_printf("Test %i\n", i);
 	}
 	log_read_reset();
 	serial_printf("\nPrinting Log\n\n");
@@ -261,7 +262,7 @@ void test_boot_jump_to_application(uint32_t address)
 {
 	test_common_init("test_boot_jump_to_application()");
 
-	log_printf("Address: %8x\n", address);
+	serial_printf("Address: %8x\n", address);
 	boot_jump_to_application(address);
 }
 
@@ -292,11 +293,11 @@ void test_boot_verify_checksum(void)
 
 	if (boot_verify_checksum(data, sizeof(data) / sizeof(uint32_t), expected))
 	{
-		log_printf("Checksum Good\n");
+		serial_printf("Checksum Good\n");
 	}
 	else
 	{
-		log_printf("Checksum Bad\n");
+		serial_printf("Checksum Bad\n");
 	}
 }
 
@@ -408,35 +409,36 @@ void test_rf(void)
 	rfm_packet_t *packet_received;
 	rfm_packet_t packet;
 
-	char msg[16] = {'H', 'E', 'L', 'L', '0', '\n', 0};
+	strcpy((char*)packet.data.buffer, "Hello 123456789");
 
-	packet.data.buffer[0] = msg[0];
+	serial_printf("Message: %s\n", packet.data.buffer);
 
 	for (;;)
 	{
 		rfm_transmit_packet(packet);
-		log_printf("Sent\n");
+		serial_printf("Sent\n");
 
 		rfm_start_listening();
 		for (int i = 0; i < 300000; i++)
+		{
 			__asm__("nop");
+		}
 		if (rfm_get_num_packets())
 		{
 			uint16_t timer = timers_micros();
 			packet_received = rfm_get_next_packet();
 			uint16_t timer2 = timers_micros();
-			log_printf("%i us\n", (uint16_t)(timer2 - timer));
+			serial_printf("%i us\n", (uint16_t)(timer2 - timer));
 
-			log_printf("Packet Received\n");
+			serial_printf("Packet Received: %s\n", packet_received->data.buffer);
 
-			for (int i = 0; i < RFM_PACKET_LENGTH; i++)
-				log_printf("%02x, ", packet_received->data.buffer[i]);
-
-			log_printf("\n");
+			serial_printf("\n");
 		}
 
 		for (int i = 0; i < 300000; i++)
+		{
 			__asm__("nop");
+		}
 	}
 }
 
@@ -457,14 +459,14 @@ void test_rf_listen(void)
 			uint16_t timer = timers_micros();
 			packet_received = rfm_get_next_packet();
 			uint16_t timer2 = timers_micros();
-			log_printf("%i us\n", (uint16_t)(timer2 - timer));
+			serial_printf("%i us\n", (uint16_t)(timer2 - timer));
 
-			log_printf("Packet Received\n");
+			serial_printf("Packet Received\n");
 
 			for (int i = 0; i < RFM_PACKET_LENGTH; i++)
-				log_printf("%02x, ", packet_received->data.buffer[i]);
+				serial_printf("%02x, ", packet_received->data.buffer[i]);
 
-			log_printf("\n");
+			serial_printf("\n");
 		}
 
 		for (int i = 0; i < 300000; i++)
@@ -481,123 +483,6 @@ void test_rfm(void)
 	rfm_set_tx_continuous();
 }
 
-void test_receiver(uint32_t dev_num)
-{
-	test_common_init("test_receiver()");
-
-	// Sensors
-	num_sensors = 3;
-	sensors[0].dev_num = dev_num;
-	sensors[1].dev_num = 0x12345678;
-	sensors[2].dev_num = 0x87654321;
-
-	sensor_t *sensor = NULL;
-
-	// Start listening on rfm
-	rfm_packet_t *packet = NULL;
-	rfm_init();
-	rfm_config_for_lora(RFM_BW_125KHZ, RFM_CODING_RATE_4_5, RFM_SPREADING_FACTOR_128CPS, true, 0);
-	rfm_start_listening();
-
-	// Get First message number
-	log_printf("Waiting for first message\n");
-	bool recv = false;
-	while (!recv)
-	{
-		// Wait for first packet to arrive
-		while (!rfm_get_num_packets())
-			;
-
-		// Get packet, decrypt and organise
-		packet = rfm_get_next_packet();
-		aes_ecb_decrypt(packet->data.buffer);
-		rfm_organize_packet(packet);
-
-		// Print data received
-		log_printf("Received ");
-		for (int i = 0; i < 16; i++)
-		{
-			log_printf("%02X ", packet->data.buffer[i]);
-		}
-		log_printf("\n");
-
-		// Skip if not correct device number
-		sensor = get_sensor(packet->data.device_number);
-		if (sensor == NULL)
-		{
-			log_printf("Wrong Dev Num: %08X\n", packet->data.device_number);
-			continue;
-		}
-		else
-		{
-			sensor->msg_num = packet->data.msg_number;
-			sensor->msg_num_start = packet->data.msg_number;
-			log_printf("First Message Number: %i %i\n", packet->data.msg_number, sensor->msg_num);
-			recv = true;
-		}
-	}
-
-	log_printf("Ready\n");
-
-	for (;;)
-	{
-		if (rfm_get_num_packets())
-		{
-			while (rfm_get_num_packets())
-			{
-				// Get packet, decrypt and organise
-				packet = rfm_get_next_packet();
-				aes_ecb_decrypt(packet->data.buffer);
-				rfm_organize_packet(packet);
-
-				// Check CRC
-				if (!packet->crc_ok)
-				{
-					log_printf("CRC Fail\n");
-					flash_led(100, 5);
-					continue;
-				}
-				else
-				{
-					log_printf("CRC OK\n");
-				}
-
-				// Get sensor from device number
-				sensor = get_sensor(packet->data.device_number);
-
-				// Skip if wrong device number
-				if (sensor == NULL)
-				{
-					log_printf("Wrong Dev Num: %08X\n", packet->data.device_number);
-					flash_led(100, 3);
-					continue;
-				}
-
-				// Update sensor ok packet counter
-				sensor->ok_packets++;
-				flash_led(100, 1);
-
-				// Check if message number is correct
-				if (packet->data.msg_number != ++sensor->msg_num)
-				{
-					log_printf("Missed Message %i\n", sensor->msg_num);
-				}
-
-				sensor->total_packets = packet->data.msg_number - sensor->msg_num_start;
-
-				// Print packet details
-				log_printf("Device ID: %08x\n", packet->data.device_number);
-				log_printf("Packet RSSI: %i dbm\n", packet->rssi);
-				log_printf("Packet SNR: %i dB\n", packet->snr);
-				log_printf("Power: %i\n", packet->data.power);
-				log_printf("Battery: %uV\n", packet->data.battery);
-				log_printf("Temperature: %i\n", packet->data.temperature);
-				log_printf("Message Number: %i\n", packet->data.msg_number);
-				log_printf("Accuracy: %i / %i packets\n\n", sensor->ok_packets, sensor->total_packets);
-			}
-		}
-	}
-}
 
 
 /*////////////////////////////////////////////////////////////////////////////*/
@@ -612,7 +497,7 @@ void test_lptim(void)
 
 	for (;;)
 	{
-		log_printf("LPTim Count: %i\n", lptimer_get_counter(LPTIM1));
+		serial_printf("LPTim Count: %i\n", lptimer_get_counter(LPTIM1));
 		for (int i = 0; i < 1000; i++)
 		{
 			__asm__("nop");
@@ -629,9 +514,9 @@ void test_wakeup(void)
 	batt_init();
 	batt_update_voltages();
 
-	log_printf("Battery = %uV\n", batt_voltages[BATT_VOLTAGE]);
+	serial_printf("Battery = %uV\n", batt_voltages[BATT_VOLTAGE]);
 #ifdef _HUB
-	log_printf("Power = %uV\n", batt_voltages[PWR_VOLTAGE]);
+	serial_printf("Power = %uV\n", batt_voltages[PWR_VOLTAGE]);
 #endif
 }
 
@@ -665,22 +550,10 @@ void test_standby(uint32_t standby_time)
 
 	timers_rtc_init(standby_time);
 
-	// rfm_init();
-	// rfm_end();
+	rfm_init();
+	rfm_end();
 
-	// tmp112_init();
-	// tmp112_end();
-
-	// #ifdef _HUB
-	// sim_init();
-	// sim_reset_hold();
-	// #endif
-
-	// rcc_periph_clock_enable(RCC_GPIOA);
-	// gpio_mode_setup(GPIOA, GPIO_MODE_INPUT, GPIO_PUPD_NONE, GPIO0 | GPIO1 | GPIO4 | GPIO7 | GPIO9 | GPIO10 | GPIO13 | GPIO14);
-	// rcc_periph_clock_disable(RCC_GPIOA);
-
-	log_printf("Entering Standby\n");
+	serial_printf("Entering Standby\n");
 	timers_enter_standby();
 }
 
@@ -700,12 +573,12 @@ void test_voltage_scale(uint8_t scale)
 	// // tmp112_end();
 	// #endif
 
-	log_printf("Testing Voltage Scaling\n");
-	log_printf("Current Scaling: %08x\n", PWR_CR);
+	serial_printf("Testing Voltage Scaling\n");
+	serial_printf("Current Scaling: %08x\n", PWR_CR);
 
 	batt_set_voltage_scale(scale);
 
-	log_printf("New Scaling: %08x\n", PWR_CR);
+	serial_printf("New Scaling: %08x\n", PWR_CR);
 
 	for (;;)
 	{
@@ -732,7 +605,7 @@ void test_low_power_run(void)
 	// // tmp112_end();
 	// #endif
 
-	log_printf("Testing Low Power Run\n");
+	serial_printf("Testing Low Power Run\n");
 
 	// rcc_periph_clock_enable(RCC_GPIOA);
 	// gpio_mode_setup(GPIOA, GPIO_MODE_INPUT, GPIO_PUPD_NONE, GPIO0 | GPIO1 | GPIO4 | GPIO7 | GPIO9 | GPIO10 | GPIO13 | GPIO14);
@@ -800,6 +673,28 @@ void test_analog_watchdog(void)
 // Init: 0x00000000 Rev In Half Out Enable = 0X1176DE3A != 0XEE8921C5
 // Init: 0xFFFFFFFF Rev In Word Out Disable = 0XF93BD82B != 0X06C427D4
 // Init: 0x00000000 Rev In Word Out Disable = 0X63E6F8BD != 0X9C190742
+
+/*////////////////////////////////////////////////////////////////////////////*/
+// Interrupts
+/*////////////////////////////////////////////////////////////////////////////*/
+
+void nmi_handler(void)
+{
+  log_printf("nmi\n");
+	while(1)
+	{
+		
+	}
+}
+
+void hard_fault_handler(void)
+{
+  log_printf("hard fault\n");
+	while(1)
+	{
+
+	}
+}
 
 /** @} */
 /** @} */

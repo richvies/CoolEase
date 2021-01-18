@@ -75,7 +75,6 @@ void test_crc(void);
 
 void test_rf(void);
 void test_rf_listen(void);
-void test_receiver(uint32_t dev_num);
 void test_rfm(void);
 
 

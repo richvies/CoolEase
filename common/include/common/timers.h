@@ -60,6 +60,4 @@ void timers_enter_standby(void);
 void timeout_init(void);
 bool timeout(uint32_t time_microseconds, char *msg, uint32_t data);
 
-void set_gpio_for_standby(void);
-
 #endif

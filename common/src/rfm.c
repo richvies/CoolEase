@@ -163,7 +163,10 @@ void rfm_reset(void)
 
   timers_delay_milliseconds(10);
 
-  print_registers();
+  // print_registers();
+
+  // Stop unused warning
+  (void)print_registers;
 
   set_sleep_mode();
 
@@ -367,7 +370,7 @@ void rfm_get_packets(void)
 
     while(packets_tail != packets_head)
     {
-      log_printf("Get %u %u\n", packets_head, packets_tail);
+      // serial_printf("Get %u %u\n", packets_head, packets_tail);
 
       // Read data from RFM
       spi_read_burst(RFM_REG_00_FIFO, packets_buf[packets_tail].data.buffer, RFM_PACKET_LENGTH);
@@ -388,7 +391,7 @@ rfm_packet_t* rfm_get_next_packet(void)
 {
   rfm_get_packets();
 
-  log_printf("Read %u\n", packets_read);
+  // serial_printf("Read %u\n", packets_read);
   rfm_packet_t *packet = &packets_buf[packets_read];
 
   packets_read = (packets_read + 1) % PACKETS_BUF_SIZE;
