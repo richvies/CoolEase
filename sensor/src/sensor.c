@@ -38,6 +38,7 @@
  * @{
  */
 
+#define SENSOR_SLEEP_TIME 600
 #define APP_ADDRESS 0x08004000
 
 /** @addtogroup SENSOR_INT 
@@ -48,7 +49,7 @@
 // Static Variables
 /*////////////////////////////////////////////////////////////////////////////*/
 
-static sensor_t *dev = ((sensor_t *)(EEPROM_DEV_INFO_BASE));
+static dev_info_t *dev_info = ((dev_info_t *)(EEPROM_DEV_INFO_BASE));
 
 /*////////////////////////////////////////////////////////////////////////////*/
 // Static Function Declarations
@@ -59,7 +60,6 @@ static void test(void);
 static void init(void);
 static void flash_led_failsafe(void);
 static void send_packet(void);
-static void print_aes_key(void);
 
 /** @} */
 
@@ -78,8 +78,8 @@ int main(void)
 	(void)print_aes_key;
 	(void)test;
 
-	test();
-	// sensor();
+	// test();
+	sensor();
 
 	for (;;)
 	{
@@ -137,7 +137,6 @@ void set_gpio_for_standby(void)
 	gpio_mode_setup(TEMP_I2C_SDA_PORT, GPIO_MODE_INPUT, GPIO_PUPD_PULLUP, TEMP_I2C_SDA);
 }
 
-
 /** @} */
 
 /** @addtogroup SENSOR_INT
@@ -151,14 +150,17 @@ void set_gpio_for_standby(void)
 static void sensor(void)
 {	
 	init();
-	serial_printf("Device: %8x\n", dev->dev_num);
+	serial_printf("Device: %8x\n", dev_info->dev_num);
+	send_packet();
 
 	// print_aes_key();
 
-	timers_rtc_init(1);
+	timers_rtc_init(SENSOR_SLEEP_TIME);
 
 	for (;;)
 	{
+		// Enter standby
+		set_gpio_for_standby();
 		timers_enter_standby();
 	}
 }
@@ -167,10 +169,10 @@ static void test(void)
 {
 	init();
 
-	timers_lsi_freq();
+	// timers_lsi_freq();
 	
-	// serial_printf("Dev Info Location: %8x %8x %8x\n", EEPROM_DEV_INFO_BASE, &dev->aes_key[0], dev->aes_key);
-	// test_encryption(dev->aes_key);
+	// serial_printf("Dev Info Location: %8x %8x %8x\n", EEPROM_DEV_INFO_BASE, &dev_info->aes_key[0], dev_info->aes_key);
+	// test_encryption(dev_info->aes_key);
 
 	// test_eeprom_read();
 	// test_log();
@@ -187,7 +189,7 @@ static void test(void)
 	
 	// test_wakeup();
 	// test_sensor_rf_vs_temp_cal();
-	test_sensor_standby(5);
+	// test_sensor_standby(5);
 	// test_rf();
 	// test_rf_listen();
 	// test_sensor(DEV_NUM_CHIP);
@@ -209,24 +211,13 @@ static void test(void)
 	// test_log();
 }
 
-static void print_aes_key(void)
-{
-	serial_printf("AES Key:");
-	for(uint8_t i = 0; i < 16; i++)
-	{
-		serial_printf(" %2x", dev->aes_key[i]);
-	}
-	serial_printf("\n");
-}
-
 static void init(void)
 {
 	clock_setup_msi_2mhz();
 	timers_lptim_init();
-	timers_tim6_init();
 	for(int i = 0; i < 100000; i++){__asm__("nop");};
     log_init();
-	aes_init(dev->aes_key);
+	aes_init(dev_info->aes_key);
 	batt_init();
 	
 	flash_led(100, 5);
@@ -286,7 +277,7 @@ static void send_packet(void)
 	// Assemble & Encrypt Packet
 	/*////////////////////////*/
 	rfm_packet_t packet;
-	packet.data.device_number = dev->dev_num;
+	packet.data.device_number = dev_info->dev_num;
 	packet.data.battery = batt_voltages[BATT_VOLTAGE];
 	packet.data.temperature = temp_avg;
 	packet.data.msg_number = 0;
@@ -306,7 +297,7 @@ static void send_packet(void)
 // Override default rtc interrupt handler
 void rtc_isr(void)
 { 
-	scb_reset_system();
+	// scb_reset_system();
 
     exti_reset_request(EXTI20);
 
@@ -326,10 +317,6 @@ void rtc_isr(void)
     log_printf("RTC ISR\n");
 
 	send_packet();
-
-	// Enter Standby for 10 mins
-	timers_rtc_init(300);
-	set_gpio_for_standby();
 }
 
 /** @} */

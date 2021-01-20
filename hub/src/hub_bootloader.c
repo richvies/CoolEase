@@ -38,6 +38,8 @@
 /*////////////////////////////////////////////////////////////////////////////*/
 
 static void init(void);
+static void deinit(void);
+static void test(void);
 static bool download_and_program_bin(const char *url, uint8_t num_attempts);
 
 /*////////////////////////////////////////////////////////////////////////////*/
@@ -58,22 +60,19 @@ int main(void)
 {
 	// Stop unused warnings
 	(void)download_and_program_bin;
-	
+
 	init();
 
-	// download_and_program_bin("http://cooleasetest.000webhostapp.com/hub.bin", 3);
+	// test();
 
-	// test_sim_serial_passtrhough();
-	// test_sim_get_request();
-
+	deinit();
 	boot_jump_to_application(FLASH_APP_ADDRESS);
 
-	// serial_printf("Hub Bootloader Ready");
+	
 
 	for (;;)
 	{
-		// serial_printf("Hub Bootloader Loop\n\n");
-		// timers_delay_milliseconds(1000);
+		serial_printf("Hub Bootloader Loop\n\n");
 		__asm__("nop");
 	}
 
@@ -93,11 +92,27 @@ int main(void)
 static void init(void)
 {
 	clock_setup_msi_2mhz();
-	log_init();
+	cusb_init();
 	timers_lptim_init();
-	timers_tim6_init();
+	log_init();
 	flash_led(100, 10);
 	log_printf("Hub Bootloader Start\n");
+}
+
+static void deinit(void)
+{
+	cusb_end();
+	clock_setup_msi_2mhz();
+	log_init();
+}
+
+
+static void test(void)
+{
+	// download_and_program_bin("http://cooleasetest.000webhostapp.com/hub.bin", 3);
+
+	// test_sim_serial_passtrhough();
+	// test_sim_get_request();
 }
 
 static bool download_and_program_bin(const char *url, uint8_t num_attempts)

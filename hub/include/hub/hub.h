@@ -57,7 +57,6 @@ extern "C" {
 
 sensor_t *get_sensor(uint32_t dev_num);
 
-
 /** @} */
 
 #ifdef __cplusplus

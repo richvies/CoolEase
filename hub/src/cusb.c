@@ -382,7 +382,7 @@ static void hid_set_config(usbd_device *dev, uint16_t wValue);
 
 /** @brief HID Control Callback 
  * 
- * Sends hid report descriptor to host
+ * Links hid report descriptor to usbd
  */
 static enum usbd_request_return_codes hid_control_request(usbd_device *dev, struct usb_setup_data *req, uint8_t **buf, uint16_t *len,
                                                           void (**complete)(usbd_device *, struct usb_setup_data *));
@@ -418,8 +418,7 @@ void cusb_init(void)
         // Initialize clocks
         cusb_clock_init();
 
-        // Reset USB
-        usb_state = RESET;
+        // Reset USB peripheral
         SET_REG(USB_CNTR_REG, USB_CNTR_FRES);
         SET_REG(USB_CNTR_REG, 0);
         SET_REG(USB_ISTR_REG, 0);
@@ -439,6 +438,20 @@ void cusb_init(void)
         nvic_enable_irq(NVIC_USB_IRQ);
         nvic_set_priority(NVIC_USB_IRQ, 0);
     }
+}
+
+void cusb_end(void)
+{
+    nvic_disable_irq(NVIC_USB_IRQ);
+    
+    rcc_periph_reset_pulse(RST_USB);
+
+    rcc_osc_off(RCC_HSI48);
+
+    rcc_periph_clock_disable(RCC_USB);
+    rcc_periph_clock_disable(RCC_CRS);
+
+    usb_state == OFF;
 }
 
 bool cusb_connected(void)

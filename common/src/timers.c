@@ -27,6 +27,8 @@
 
 static uint16_t timeout_timer = 0;
 static uint32_t timeout_counter  = 0;
+static uint32_t micros_counter = 0;
+static uint32_t millis_counter = 0;
 
 
 // Start Low Speed Oscillator and Configure RTC to wakeup device
@@ -98,7 +100,7 @@ uint32_t timers_lsi_freq(void)
 
     // TIM21 on APB2
     rcc_periph_clock_enable(RCC_TIM21);
-    rcc_periph_reset_pulse(RCC_APB2RSTR_TIM21RST);
+    rcc_periph_reset_pulse(RST_TIM21);
     timer_disable_counter(TIM21);
 
     // Edge aligned, up counter
@@ -135,88 +137,93 @@ uint32_t timers_lsi_freq(void)
     // Disable
     TIM_CCER(TIM21) &= ~TIM_CCER_CC1E;
     TIM_CR1(TIM21) &= ~TIM_CR1_CEN;
-    rcc_periph_reset_pulse(RCC_APB2RSTR_TIM21RST);
+    rcc_periph_reset_pulse(RST_TIM21);
     rcc_periph_clock_disable(RCC_TIM21);
 
     return freq;
 }
 
-// Setup lptim1 as approx. microsecond counter. Clocked by APB by default
 void timers_lptim_init(void)
 {
-    // Input clock is 2.097Mhz
+    // Internal clock = APB1
     rcc_set_peripheral_clk_sel(LPTIM1, RCC_CCIPR_LPTIM1SEL_APB);
  
     rcc_periph_clock_enable(RCC_LPTIM1);
+
+    // Reset timer
+    rcc_periph_reset_pulse(RST_LPTIM1);
     
+    // Select internal clock as src
     lptimer_set_internal_clock_source(LPTIM1);
+
+    // Find best prescaler for 1us clock
+    uint8_t freq_mhz = rcc_apb1_frequency / 1000000;
+    serial_printf("APB1 MHz %u\n", freq_mhz);
+    for (uint8_t i = 0; i < 8; i++)
+    {
+        if (freq_mhz <= (1 << i))
+        {
+            lptimer_set_prescaler(LPTIM1, (i << LPTIM_CFGR_PRESC_SHIFT));
+            break;
+        }
+    }
+
+    // Enable SW start triggering
     lptimer_enable_trigger(LPTIM1, LPTIM_CFGR_TRIGEN_SW);
-    lptimer_set_prescaler(LPTIM1, LPTIM_CFGR_PRESC_2);
     
     lptimer_enable(LPTIM1);
     
-    lptimer_set_period(LPTIM1, 0xffff);
-    
+    // Must be done after timer enable
+    lptimer_set_period(LPTIM1, 1000);
+    lptimer_enable_irq(LPTIM1, LPTIM_IER_ARRMIE);
+
+    micros_counter = 0;
+    millis_counter = 0;
+
+    // Enable lptim interrupt through exti29 - updates millis counter
+    nvic_enable_irq(NVIC_LPTIM1_IRQ);
+    nvic_set_priority(NVIC_LPTIM1_IRQ, 0);
+    exti_reset_request(EXTI29);
+    exti_enable_request(EXTI29);
+    exti_set_trigger(EXTI29, EXTI_TRIGGER_RISING);
+
+    // Trigger SW start
     lptimer_start_counter(LPTIM1, LPTIM_CR_CNTSTRT);
 }
 
-// Simple delay function. Puts cpu into nop loop timed by lptim1
+uint32_t timers_micros(void)
+{
+    return (micros_counter + lptimer_get_counter(LPTIM1));
+}
+
+uint32_t timers_millis(void)
+{
+    return millis_counter;
+}
+
 void timers_delay_microseconds(uint32_t delay_microseconds)
 {
-    uint32_t curr_time = lptimer_get_counter(LPTIM1);
+    uint32_t curr_time = timers_micros();
 
-    // Limit delay to 16 bit max. Otherwise delay might never end
-    if(delay_microseconds > 65000)
-        delay_microseconds = 65000;
-
-    while (lptimer_get_counter(LPTIM1) - curr_time < delay_microseconds);
+    while ((timers_micros() - curr_time) < delay_microseconds);
 }
 
-/*
 void timers_delay_milliseconds(uint32_t delay_milliseconds)
 {
-    uint32_t curr_time = lptimer_get_counter(LPTIM1);
+    uint32_t curr_time = timers_millis();
 
-    while(delay_milliseconds-- > 0)
-    {
-        while (lptimer_get_counter(LPTIM1) - curr_time < 1000);
-        curr_time = lptimer_get_counter(LPTIM1);
-    }
-}
-*/
-
-// Returns value of microsecond counter
-uint16_t timers_micros(void)
-{
-    return (uint16_t)lptimer_get_counter(LPTIM1);
+    while ((timers_millis() - curr_time) < delay_milliseconds);
 }
 
 
-// Setup TIM6 as millisecond counter. Clocked by APB1
 void timers_tim6_init(void)
 {
     rcc_periph_clock_enable(RCC_TIM6);
+    rcc_periph_reset_pulse(RST_TIM6);
     timer_disable_counter(TIM6);
-    timer_set_prescaler(TIM6, (2097 - 1));
+
+    timer_set_prescaler(TIM6, ((rcc_apb1_frequency / 1000000) - 1));
     timer_enable_counter(TIM6);
-}
-
-// Simple delay function. Puts cpu into nop loop timed by lptim1
-void timers_delay_milliseconds(uint32_t delay_milliseconds)
-{
-    uint32_t curr_time = timer_get_counter(TIM6);
-
-    // Limit delay to 16 bit max. Otherwise delay might never end
-    if(delay_milliseconds > 65000)
-        delay_milliseconds = 65000;
-
-    while (timer_get_counter(TIM6) - curr_time < delay_milliseconds);
-}
-
-// Returns value of millisecond counter
-uint16_t timers_millis(void)
-{
-    return timer_get_counter(TIM6);
 }
 
 
@@ -239,7 +246,8 @@ void timers_pet_dogs(void)
     iwdg_reset();
 }
 
-// Enter standby mode
+
+// Enter standby mode. Vrefint disabled (ULP bit)
 void timers_enter_standby(void)
 {
     pwr_disable_backup_domain_write_protect();
@@ -250,7 +258,7 @@ void timers_enter_standby(void)
     // pwr_set_standby_mode();
     pwr_set_stop_mode();
 
-    // Put regulator in low power mode & turn iff Vreftint during deepsleep 
+    // Put regulator in low power mode & turn off Vreftint during deepsleep 
     PWR_CR |= PWR_CR_LPDS | PWR_CR_ULP; 
 
     pwr_clear_wakeup_flag();
@@ -291,4 +299,11 @@ bool timeout(uint32_t time_microseconds, char *msg, uint32_t data)
 }
 
 
+void lptim1_isr(void)
+{
+    // Clear all flags
+    lptimer_clear_flag(LPTIM1, 0xFFFFFFFF);
+    micros_counter += 1000;
+    millis_counter++;
+}
 

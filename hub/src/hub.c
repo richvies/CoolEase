@@ -15,6 +15,7 @@
 #include <stdio.h>
 
 #include "libopencm3/cm3/nvic.h"
+#include "libopencm3/stm32/syscfg.h"
 
 #include "common/aes.h"
 #include "common/battery.h"
@@ -28,6 +29,7 @@
 #include "common/test.h"
 
 #include "hub/hub_test.h"
+#include "hub/cusb.h"
 #include "hub/sim.h"
 
 /** @addtogroup HUB_FILE 
@@ -44,16 +46,18 @@
 // Static Variables
 /*////////////////////////////////////////////////////////////////////////////*/
 
-static sensor_t 	sensors[MAX_SENSORS];
-static uint8_t 		num_sensors = 0;
+static sensor_t sensors[MAX_SENSORS];
+static uint8_t num_sensors = 0;
+static dev_info_t *dev_info = ((dev_info_t *)(EEPROM_DEV_INFO_BASE));
 
 /*////////////////////////////////////////////////////////////////////////////*/
 // Static Function Declarations
 /*////////////////////////////////////////////////////////////////////////////*/
 
 static void init(void);
+static void test(void);
 static void hub(void);
-static void test_hub2(void);
+static void hub2(void);
 static void hub_download_info(void);
 
 /** @} */
@@ -70,12 +74,20 @@ int main(void)
 {
 	// Stop unused warnings
 	(void)init;
+	(void)test;
 	(void)hub;
-
+	(void)hub2;
+	(void)hub_download_info;
+	
 	init();
 
-	test_hub2();
+	test();
 
+	hub();
+
+	
+
+	// test_hub2();
 
 	for (;;)
 	{
@@ -83,70 +95,68 @@ int main(void)
 		timers_delay_milliseconds(1000);
 	}
 
-  return 0;
+	return 0;
 }
 
 void set_gpio_for_standby(void)
-{   
-    rcc_periph_clock_enable(RCC_GPIOA);
-    rcc_periph_clock_enable(RCC_GPIOB);
+{
+	rcc_periph_clock_enable(RCC_GPIOA);
+	rcc_periph_clock_enable(RCC_GPIOB);
 
-    // LED
-    gpio_mode_setup(LED_PORT, GPIO_MODE_ANALOG, GPIO_PUPD_NONE, LED);
+	// LED
+	gpio_mode_setup(LED_PORT, GPIO_MODE_ANALOG, GPIO_PUPD_NONE, LED);
 
-    // Serial Print
+	// Serial Print
 	// FTDI not connected
 	usart_disable(SPF_USART);
 	rcc_periph_clock_disable(SPF_USART_RCC);
-    gpio_mode_setup(SPF_USART_TX_PORT, GPIO_MODE_ANALOG, GPIO_PUPD_NONE, SPF_USART_TX);
-	gpio_mode_setup(SPF_USART_RX_PORT, GPIO_MODE_ANALOG, GPIO_PUPD_NONE,  SPF_USART_RX);
+	gpio_mode_setup(SPF_USART_TX_PORT, GPIO_MODE_ANALOG, GPIO_PUPD_NONE, SPF_USART_TX);
+	gpio_mode_setup(SPF_USART_RX_PORT, GPIO_MODE_ANALOG, GPIO_PUPD_NONE, SPF_USART_RX);
 	// FTDI Connected
-    // gpio_mode_setup(SPF_USART_TX_PORT, GPIO_MODE_INPUT, GPIO_PUPD_PULLUP, SPF_USART_TX);
+	// gpio_mode_setup(SPF_USART_TX_PORT, GPIO_MODE_INPUT, GPIO_PUPD_PULLUP, SPF_USART_TX);
 	// gpio_mode_setup(SPF_USART_RX_PORT, GPIO_MODE_OUTPUT, GPIO_PUPD_NONE,  SPF_USART_RX);
 	// gpio_set_output_options(SPF_USART_RX_PORT, GPIO_OTYPE_OD, GPIO_OSPEED_2MHZ, SPF_USART_RX);
 	// gpio_set(SPF_USART_RX_PORT, SPF_USART_RX);
 
-    // Batt Sense
-    gpio_mode_setup(BATT_SENS_PORT, GPIO_MODE_ANALOG, GPIO_PUPD_NONE, BATT_SENS);
-    gpio_mode_setup(PWR_SENS_PORT, GPIO_MODE_ANALOG, GPIO_PUPD_NONE, PWR_SENS);
-    
-    // RFM
-    // SPI
-    gpio_mode_setup(RFM_SPI_MISO_PORT,  GPIO_MODE_ANALOG,   GPIO_PUPD_NONE,       RFM_SPI_MISO);
+	// Batt Sense
+	gpio_mode_setup(BATT_SENS_PORT, GPIO_MODE_ANALOG, GPIO_PUPD_NONE, BATT_SENS);
+	gpio_mode_setup(PWR_SENS_PORT, GPIO_MODE_ANALOG, GPIO_PUPD_NONE, PWR_SENS);
 
-    gpio_mode_setup(RFM_SPI_SCK_PORT,   GPIO_MODE_INPUT,    GPIO_PUPD_PULLDOWN,   RFM_SPI_SCK);
-    gpio_mode_setup(RFM_SPI_MOSI_PORT,  GPIO_MODE_INPUT,    GPIO_PUPD_PULLDOWN,   RFM_SPI_MOSI);
+	// RFM
+	// SPI
+	gpio_mode_setup(RFM_SPI_MISO_PORT, GPIO_MODE_ANALOG, GPIO_PUPD_NONE, RFM_SPI_MISO);
 
-    gpio_mode_setup(RFM_SPI_NSS_PORT,   GPIO_MODE_INPUT,    GPIO_PUPD_PULLUP,     RFM_SPI_NSS);
-    gpio_mode_setup(RFM_RESET_PORT,     GPIO_MODE_INPUT,    GPIO_PUPD_PULLUP,     RFM_RESET);
+	gpio_mode_setup(RFM_SPI_SCK_PORT, GPIO_MODE_INPUT, GPIO_PUPD_PULLDOWN, RFM_SPI_SCK);
+	gpio_mode_setup(RFM_SPI_MOSI_PORT, GPIO_MODE_INPUT, GPIO_PUPD_PULLDOWN, RFM_SPI_MOSI);
 
-    // DIO
+	gpio_mode_setup(RFM_SPI_NSS_PORT, GPIO_MODE_INPUT, GPIO_PUPD_PULLUP, RFM_SPI_NSS);
+	gpio_mode_setup(RFM_RESET_PORT, GPIO_MODE_INPUT, GPIO_PUPD_PULLUP, RFM_RESET);
+
+	// DIO
 	// Input or analog, seems to make no difference
-    gpio_mode_setup(RFM_IO_0_PORT, GPIO_MODE_ANALOG, GPIO_PUPD_NONE, RFM_IO_0);
-    gpio_mode_setup(RFM_IO_1_PORT, GPIO_MODE_ANALOG, GPIO_PUPD_NONE, RFM_IO_1);
-    gpio_mode_setup(RFM_IO_2_PORT, GPIO_MODE_ANALOG, GPIO_PUPD_NONE, RFM_IO_2);
-    gpio_mode_setup(RFM_IO_3_PORT, GPIO_MODE_ANALOG, GPIO_PUPD_NONE, RFM_IO_3);
-    gpio_mode_setup(RFM_IO_4_PORT, GPIO_MODE_ANALOG, GPIO_PUPD_NONE, RFM_IO_4);
-    gpio_mode_setup(RFM_IO_5_PORT, GPIO_MODE_ANALOG, GPIO_PUPD_NONE, RFM_IO_5);
+	gpio_mode_setup(RFM_IO_0_PORT, GPIO_MODE_ANALOG, GPIO_PUPD_NONE, RFM_IO_0);
+	gpio_mode_setup(RFM_IO_1_PORT, GPIO_MODE_ANALOG, GPIO_PUPD_NONE, RFM_IO_1);
+	gpio_mode_setup(RFM_IO_2_PORT, GPIO_MODE_ANALOG, GPIO_PUPD_NONE, RFM_IO_2);
+	gpio_mode_setup(RFM_IO_3_PORT, GPIO_MODE_ANALOG, GPIO_PUPD_NONE, RFM_IO_3);
+	gpio_mode_setup(RFM_IO_4_PORT, GPIO_MODE_ANALOG, GPIO_PUPD_NONE, RFM_IO_4);
+	gpio_mode_setup(RFM_IO_5_PORT, GPIO_MODE_ANALOG, GPIO_PUPD_NONE, RFM_IO_5);
 
-    // SIM
-    gpio_mode_setup(SIM_USART_TX_PORT, GPIO_MODE_ANALOG, GPIO_PUPD_PULLUP SIM_USART_TX);
+	// SIM
+	gpio_mode_setup(SIM_USART_TX_PORT, GPIO_MODE_ANALOG, GPIO_PUPD_PULLUP, SIM_USART_TX);
 	gpio_mode_setup(SIM_USART_RX_PORT, GPIO_MODE_ANALOG, GPIO_PUPD_PULLUP, SIM_USART_RX);
 }
-
 
 sensor_t *get_sensor(uint32_t dev_num)
 {
 	sensor_t *sensor = NULL;
 
-	for(uint8_t i = 0; i < num_sensors; i++)
+	for (uint8_t i = 0; i < num_sensors; i++)
 	{
-		if(dev_num == sensors[i].dev_num)
+		if (dev_num == sensors[i].dev_num)
 			sensor = &sensors[i];
 	}
 	return sensor;
 }
-
 
 /** @} */
 
@@ -161,23 +171,56 @@ sensor_t *get_sensor(uint32_t dev_num)
 static void init(void)
 {
 	clock_setup_msi_2mhz();
-    log_init();
-	batt_init();
+	cusb_init();
 	timers_lptim_init();
-	timers_tim6_init();
-	flash_led(100, 5);
-    log_printf("Hub Start\n");
+	log_init();
+	aes_init(dev_info->aes_key);
+	batt_init();
+
+	print_aes_key(dev_info);
+
+	// flash_led(100, 5);
+	log_printf("Hub Start\n");
+}
+
+static void test(void)
+{
+	// test_sim_get_request();
+	// test_revceiver_basic();
+	// test_standby(5);
+	// test_lptim();
+	// test_micros();
+	// test_millis();
 }
 
 static void hub(void)
 {
-	// 
-	// Check for packets
+	/* Initial setup */
+	// Check if first time running
+	if (dev_info->init_key != INIT_KEY)
+	{
+		dev_info->init_key = INIT_KEY;
+	}
+	// Sensor init - IDs, active or not,
+	// Power checking
+	batt_enable_interrupt();
+	// USB checking
+	// Get timestamp from sim and init rtc
+	// Watchdog
 
-	// Upload if any
+	// Check for packets
+	// Upload if any valid temp packets
+	// Keep record of id, num packets, temperature, battery for each sensor
+	// Timestamp packets
+
+	// Everyday check hour for new software
+	// RTC Alarm
+	// Upload log
+	// Check if new version every hour
+	// Set bootloader state
 }
 
-static void test_hub2(void)
+static void hub2(void)
 {
 	log_printf("Testing Hub 2\n");
 
@@ -201,18 +244,18 @@ static void test_hub2(void)
 	rfm_start_listening();
 
 	// Useful var
-	bool 	upload_packets 	= false;
+	bool upload_packets = false;
 	uint8_t sim_buf[256];
-	uint8_t sim_buf_idx 	= 0;
+	uint8_t sim_buf_idx = 0;
 
 	log_printf("Ready\n");
 
-	for(;;)
+	for (;;)
 	{
 		// log_printf("Packets:%u\n", rfm_get_num_packets());
 
 		// Check for packets and upload if any from sensors
-		if(rfm_get_num_packets() > 0)
+		if (rfm_get_num_packets() > 0)
 		{
 			log_printf("GetPkts %u\n", rfm_get_num_packets());
 
@@ -220,25 +263,24 @@ static void test_hub2(void)
 			sim_buf_idx = 0;
 
 			// Hub device number and voltage stored first
-			sim_buf[sim_buf_idx++] = dev_num >> 24; 
-			sim_buf[sim_buf_idx++] = dev_num >> 16; 
-			sim_buf[sim_buf_idx++] = dev_num >> 8; 
+			sim_buf[sim_buf_idx++] = dev_num >> 24;
+			sim_buf[sim_buf_idx++] = dev_num >> 16;
+			sim_buf[sim_buf_idx++] = dev_num >> 8;
 			sim_buf[sim_buf_idx++] = dev_num;
 
 			sim_buf[sim_buf_idx++] = batt_voltages[PWR_VOLTAGE] >> 8;
 			sim_buf[sim_buf_idx++] = batt_voltages[PWR_VOLTAGE];
 
-			while(rfm_get_num_packets())
+			while (rfm_get_num_packets())
 			{
 				// log_printf("Pkts %u\n", rfm_get_num_packets());
 
 				// Get packet, decrypt and organise
 				packet = rfm_get_next_packet();
 				aes_ecb_decrypt(packet->data.buffer);
-				rfm_organize_packet(packet);
 
 				// Check CRC
-				if( !packet->crc_ok )
+				if (!packet->crc_ok)
 				{
 					log_printf("CRC Fail\n");
 					log_printf("!Crc\n");
@@ -255,7 +297,7 @@ static void test_hub2(void)
 				sensor = get_sensor(packet->data.device_number);
 
 				// Skip if wrong device number
-				if(sensor == NULL)
+				if (sensor == NULL)
 				{
 					log_printf("Wrong Dev Num: %08X\n", packet->data.device_number);
 					log_printf("WDN%08X\n", packet->data.device_number);
@@ -271,17 +313,17 @@ static void test_hub2(void)
 				}
 
 				// Initialize sensor if first message received
-				if(!sensor->active)
+				if (!sensor->active)
 				{
-					sensor->msg_num 		= packet->data.msg_number;
-					sensor->msg_num_start 	= packet->data.msg_number;
-					sensor->total_packets 	= 0;
-					sensor->ok_packets 		= 0;
+					sensor->msg_num = packet->data.msg_number;
+					sensor->msg_num_start = packet->data.msg_number;
+					sensor->total_packets = 0;
+					sensor->ok_packets = 0;
 					sensor->active = true;
-					log_printf("First message from %u\nNumber: %i\n",sensor->dev_num, sensor->msg_num_start);
+					log_printf("First message from %u\nNumber: %i\n", sensor->dev_num, sensor->msg_num_start);
 				}
 				// Check if message number is correct
-				else if(++sensor->msg_num != packet->data.msg_number)
+				else if (++sensor->msg_num != packet->data.msg_number)
 				{
 					log_printf("Missed Message %i\n", sensor->msg_num);
 					// log_printf("Missed Message %i\n", sensor->msg_num);
@@ -314,18 +356,30 @@ static void test_hub2(void)
 
 				// Append Sim Packet
 				// packets[i].device_number, packets[i].temperature, packets[i].battery, total_packets[i], ok_packets[i], packets[i].rssi); }
-				sim_buf[sim_buf_idx++] = packet->data.device_number 		>> 24;	sim_buf[sim_buf_idx++] = packet->data.device_number 		>> 16; sim_buf[sim_buf_idx++] = packet->data.device_number 		>> 8; sim_buf[sim_buf_idx++] = packet->data.device_number;
-				sim_buf[sim_buf_idx++] = packet->data.temperature 		>> 8; 	sim_buf[sim_buf_idx++] = packet->data.temperature;
-				sim_buf[sim_buf_idx++] = packet->data.battery 			>> 8; 	sim_buf[sim_buf_idx++] = packet->data.battery;
-				sim_buf[sim_buf_idx++] = sensor->total_packets		>> 24;	sim_buf[sim_buf_idx++] = sensor->total_packets		>> 16; sim_buf[sim_buf_idx++] = sensor->total_packets		>> 8; sim_buf[sim_buf_idx++] = sensor->total_packets;
-				sim_buf[sim_buf_idx++] = sensor->ok_packets			>> 24;	sim_buf[sim_buf_idx++] = sensor->ok_packets			>> 16; sim_buf[sim_buf_idx++] = sensor->ok_packets			>> 8; sim_buf[sim_buf_idx++] = sensor->ok_packets;
-				sim_buf[sim_buf_idx++] = packet->rssi				>> 8; 	sim_buf[sim_buf_idx++] = packet->rssi;
+				sim_buf[sim_buf_idx++] = packet->data.device_number >> 24;
+				sim_buf[sim_buf_idx++] = packet->data.device_number >> 16;
+				sim_buf[sim_buf_idx++] = packet->data.device_number >> 8;
+				sim_buf[sim_buf_idx++] = packet->data.device_number;
+				sim_buf[sim_buf_idx++] = packet->data.temperature >> 8;
+				sim_buf[sim_buf_idx++] = packet->data.temperature;
+				sim_buf[sim_buf_idx++] = packet->data.battery >> 8;
+				sim_buf[sim_buf_idx++] = packet->data.battery;
+				sim_buf[sim_buf_idx++] = sensor->total_packets >> 24;
+				sim_buf[sim_buf_idx++] = sensor->total_packets >> 16;
+				sim_buf[sim_buf_idx++] = sensor->total_packets >> 8;
+				sim_buf[sim_buf_idx++] = sensor->total_packets;
+				sim_buf[sim_buf_idx++] = sensor->ok_packets >> 24;
+				sim_buf[sim_buf_idx++] = sensor->ok_packets >> 16;
+				sim_buf[sim_buf_idx++] = sensor->ok_packets >> 8;
+				sim_buf[sim_buf_idx++] = sensor->ok_packets;
+				sim_buf[sim_buf_idx++] = packet->rssi >> 8;
+				sim_buf[sim_buf_idx++] = packet->rssi;
 			}
 		}
 
 		// Upload to server	if good packets
-		if(upload_packets)
-		{		
+		if (upload_packets)
+		{
 			log_printf("Uploading\n");
 			log_printf("SimUp\n");
 			sim_init();
@@ -340,7 +394,7 @@ static void test_hub2(void)
 		}
 
 		// Redownload hub info if reset sequence (plug out for between 1 -10s)
-		if(batt_rst_seq)
+		if (batt_rst_seq)
 		{
 			batt_rst_seq = false;
 			hub_download_info();
@@ -359,7 +413,3 @@ static void hub_download_info(void)
 /** @} */
 
 /** @} */
-
-
-
-

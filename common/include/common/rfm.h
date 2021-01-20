@@ -364,7 +364,6 @@ void            rfm_start_listening(void);
 void            rfm_get_packets(void);
 rfm_packet_t*   rfm_get_next_packet(void);
 uint8_t         rfm_get_num_packets(void);
-void            rfm_organize_packet(rfm_packet_t *packet);
 
 bool rfm_transmit_packet(rfm_packet_t packet);
 void rfm_set_tx_continuous(void);

@@ -58,6 +58,8 @@ extern "C" {
 /** @brief Initialize clock and interrupts */
 void cusb_init(void);
 
+void cusb_end(void);
+
 /** @brief True if usb state is CONNECTED
  * 
  * Set by hid config callback after 

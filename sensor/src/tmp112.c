@@ -15,14 +15,16 @@ static void i2c_transfer(uint32_t i2c, uint8_t addr, uint8_t *w, size_t wn, uint
 
 void tmp112_init(void)
 {
+	log_printf("TMP Init\n");
+
 	tmp112_clock_setup();
 	tmp112_i2c_setup();
-
-	log_printf("TMP Init Done\n");
 }
 
 void tmp112_end(void)
 {
+	log_printf("TMP End\n");
+
     // Device enters shutdown after oneshot conversion with SD bit set
 	uint8_t config[3] = {TMP112_SEL_CONFIG_REG, TMP112_CONFIG_OS_MSB, TMP112_CONFIG_OS_LSB};
 	// uint8_t config[3] = {TMP112_SEL_CONFIG_REG, TMP112_CONFIG_CM_MSB, TMP112_CONFIG_CM_LSB};
@@ -34,12 +36,12 @@ void tmp112_end(void)
 	// Disable i2c Peripheral and Clock. GPIO clock still enabled
 	i2c_peripheral_disable(TEMP_I2C);
 	rcc_periph_clock_disable(TEMP_I2C_RCC);
-
-	log_printf("TMP End Done\n");
 }
 
 void tmp112_reset(void)
 {
+	log_printf("TMP Reset\n");
+
 	uint8_t cmd[1] = {TMP112_RESET_CMD};
 	i2c_transfer(TEMP_I2C, TMP112_GEN_CALL_ADDR, cmd, 1, NULL, 0);
 }

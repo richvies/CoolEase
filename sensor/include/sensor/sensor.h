@@ -55,8 +55,6 @@ extern "C" {
 // Exported Function Declarations
 /*////////////////////////////////////////////////////////////////////////////*/
 
-void set_gpio_for_standby(void);
-
 
 /** @} */
 

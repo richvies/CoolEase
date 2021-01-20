@@ -18,6 +18,8 @@ extern uint16_t batt_voltages[NUM_VOLTAGES];
 extern bool batt_rst_seq;
 
 void batt_init(void);
+void batt_end(void);
+
 void batt_set_voltage_scale(uint8_t scale);
 void batt_set_low_power_run(void);
 void batt_update_voltages(void);

@@ -4,27 +4,14 @@
 typedef struct
 {
 	uint8_t aes_key[16];
-	bool msg_pend;
-	bool active;
 	uint32_t dev_num;
 	uint32_t msg_num;
 	uint32_t msg_num_start;
 	uint32_t ok_packets;
 	uint32_t total_packets;
+	bool msg_pend;
+	bool active;
 } sensor_t;
-
-typedef struct
-{
-	uint8_t aes_key[16];
-	bool msg_pend;
-	bool active;
-	uint32_t dev_num;
-	uint32_t msg_num;
-	uint32_t msg_num_start;
-	uint32_t ok_packets;
-	uint32_t total_packets;
-} hub_t;
-
 
 
 // Battery Voltage

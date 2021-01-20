@@ -84,7 +84,6 @@ static rfm_packet_t packets_buf[PACKETS_BUF_SIZE];
 // Static Function Declarations
 /*////////////////////////////////////////////////////////////////////////////*/
 
-static void clock_setup(void);
 static void spi_setup(void);
 static uint8_t spi_read_single(uint8_t reg);
 static void spi_read_burst(uint8_t reg, uint8_t *buf, uint8_t len);
@@ -122,12 +121,15 @@ static inline void set_sleep_mode(void);
  */
 void rfm_init(void) 
 { 
+  log_printf("RFM Init\n");
+
   rcc_periph_clock_enable(RCC_GPIOA);
   rcc_periph_clock_enable(RCC_GPIOB);
+
+  // Configuring EXTI gpio lines
   rcc_periph_clock_enable(RCC_SYSCFG);
 
   // Configure device clock and spi port
-  clock_setup();
   spi_setup();  
 
   // Config Inputs
@@ -148,12 +150,12 @@ void rfm_init(void)
   set_sleep_mode();
 
   rfm_reset();
-
-  log_printf("RFM Init Done\n");
 }
 
 void rfm_reset(void)
 {
+  log_printf("RFM Reset\n");
+
   // Reset device
   gpio_clear(RFM_RESET_PORT, RFM_RESET);
   timers_delay_milliseconds(1);
@@ -169,19 +171,18 @@ void rfm_reset(void)
   (void)print_registers;
 
   set_sleep_mode();
-
-  log_printf("RFM Reset Done\n");
 }
 
 void rfm_end(void)
 {
+  log_printf("RFM End\n");
+
   set_standby_mode();
   set_sleep_mode();
 
   spi_disable(RFM_SPI);
   rcc_periph_clock_disable(RFM_SPI_RCC);
 
-  log_printf("RFM End Done\n");
 }
 
 void rfm_calibrate_crystal(void)
@@ -348,16 +349,6 @@ void rfm_start_listening(void)
   set_rx_mode();
 }
 
-void rfm_organize_packet(rfm_packet_t *packet)
-{
-      // Organize Data
-      packet->data.device_number  = packet->data.buffer[RFM_PACKET_DEV_NUM_3] << 24 | packet->data.buffer[RFM_PACKET_DEV_NUM_2] << 16 | packet->data.buffer[RFM_PACKET_DEV_NUM_1] << 8 | packet->data.buffer[RFM_PACKET_DEV_NUM_0];
-      packet->data.msg_number     = packet->data.buffer[RFM_PACKET_MSG_NUM_3] << 24 | packet->data.buffer[RFM_PACKET_MSG_NUM_2] << 16 | packet->data.buffer[RFM_PACKET_MSG_NUM_1] << 8 | packet->data.buffer[RFM_PACKET_MSG_NUM_0];
-      packet->data.power          = packet->data.buffer[RFM_PACKET_POWER];
-      packet->data.battery        = packet->data.buffer[RFM_PACKET_BATTERY_1] << 8  | packet->data.buffer[RFM_PACKET_BATTERY_0];
-      packet->data.temperature    = packet->data.buffer[RFM_PACKET_TEMP_1]    << 8  | packet->data.buffer[RFM_PACKET_TEMP_0];
-}
-
 void rfm_get_packets(void)
 {
   if(packets_tail != packets_head)
@@ -494,33 +485,6 @@ void rfm_clear_tx_continuous(void)
 /*////////////////////////////////////////////////////////////////////////////*/
 // Static Function Definitions
 /*////////////////////////////////////////////////////////////////////////////*/
-
-/** @brief Setup Clock
- * 
- * Initializes clock to be 2Mhz and sets baud divider to 8
- */
-static void clock_setup(void)
-{
-	// Enable MSI Osc 2.097Mhz
-	rcc_osc_on(RCC_MSI);
-	rcc_wait_for_osc_ready(RCC_MSI);
-
-	// Set MSI to 2.097Mhz
-	rcc_set_msi_range(5);
-
-	// Set prescalers for AHB, APB1, APB2
-	rcc_set_hpre(RCC_CFGR_HPRE_NODIV);				// AHB -> 2.097Mhz
-	rcc_set_ppre1(RCC_CFGR_PPRE1_NODIV);			// APB1 -> 2.097Mhz
-	rcc_set_ppre2(RCC_CFGR_PPRE2_NODIV);			// APB2 -> 2.097Mhz
-
-	// Set flash, 2.097Mhz -> 0 waitstates
-	flash_set_ws(FLASH_ACR_LATENCY_0WS);
-
-	// Set Peripheral Clock Frequencies used
-	rcc_ahb_frequency = 2097000;
-	rcc_apb1_frequency = 2097000;
-	rcc_apb2_frequency = 2097000;
-}
 
 static void spi_setup(void)
 {

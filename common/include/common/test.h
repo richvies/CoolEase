@@ -33,6 +33,8 @@
 #include <stdbool.h>
 #include <stdlib.h>
 
+#include "common/board_defs.h"
+
 #ifdef __cplusplus
 extern "C" {
 #endif
@@ -44,8 +46,9 @@ extern "C" {
 #define DEV_NUM_CHIP		(uint32_t)0x0000001B
 #define DEV_NUM_PCB		    (uint32_t)~DEV_NUM_CHIP
 
+void test_init(const char *test_name);
 void flash_led(uint16_t milliseconds, uint8_t num_flashes);
-void test_common_init(const char *test_name);
+void print_aes_key(dev_info_t *dev_info);
 
 /*////////////////////////////////////////////////////////////////////////////*/
 // Memory tests
@@ -81,6 +84,12 @@ void test_rfm(void);
 /*////////////////////////////////////////////////////////////////////////////*/
 // Timer tests
 /*////////////////////////////////////////////////////////////////////////////*/
+
+void test_tim6(void);
+
+void test_micros(void);
+void test_millis(void);
+
 
 void test_lptim(void);
 void test_wakeup(void);

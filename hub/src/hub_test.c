@@ -50,24 +50,10 @@
  * @{
  */
 
+
 /*////////////////////////////////////////////////////////////////////////////*/
-// Exported Function Definitions
+// Main
 /*////////////////////////////////////////////////////////////////////////////*/
-
-void test_hub_init(const char *test_name)
-{
-	clock_setup_msi_2mhz();
-	log_init();
-	timers_lptim_init();
-	timers_tim6_init();
-
-	for (uint32_t i = 0; i < 10000; i++)
-	{
-		__asm__("nop");
-	}
-
-	serial_printf("%s\n------------------\n\n", test_name);
-}
 
 void test_hub(void)
 {
@@ -179,9 +165,13 @@ void test_hub(void)
 	// }
 }
 
+/*////////////////////////////////////////////////////////////////////////////*/
+// RF
+/*////////////////////////////////////////////////////////////////////////////*/
+
 void test_hub_rf_vs_temp_cal(void)
 {
-	test_hub_init("test_hub_rf_vs_temp_cal()");
+	test_init("test_hub_rf_vs_temp_cal()");
 
 	rfm_init();
 	rfm_config_for_lora(RFM_BW_125KHZ, RFM_CODING_RATE_4_5, RFM_SPREADING_FACTOR_128CPS, true, 0);
@@ -213,9 +203,55 @@ void test_hub_rf_vs_temp_cal(void)
 	}
 }
 
+void test_revceiver_basic(void)
+{
+	test_init("test_revceiver_basic()");
+
+	rfm_init();
+	rfm_config_for_lora(RFM_BW_125KHZ, RFM_CODING_RATE_4_5, RFM_SPREADING_FACTOR_128CPS, true, 0);
+	rfm_start_listening();
+
+	rfm_packet_t *packet;
+
+	for (;;)
+	{
+		if (rfm_get_num_packets())
+		{
+			uint16_t timer = timers_micros();
+			packet = rfm_get_next_packet();
+			uint16_t timer2 = timers_micros();
+
+			// serial_printf("Packet Received\n");
+			// serial_printf("%i us\n", (uint16_t)(timer2 - timer));
+
+			aes_ecb_decrypt(packet->data.buffer);
+
+			serial_printf("Packet CRC %s\n", packet->crc_ok? "Ok" : "Bad");
+			if(!packet->crc_ok)
+			{
+				continue;
+			}
+
+			if(packet->data.device_number != 1)
+			{
+				serial_printf("Wrong Dev Num\n");
+			}
+			else
+			{
+				serial_printf("ID: %i\n", packet->data.device_number);
+				serial_printf("Battery: %i\n", packet->data.battery);
+				serial_printf("Temperature: %i\n", packet->data.temperature); 
+				serial_printf("Packet RSSI: %i dbm\n", packet->rssi);
+				serial_printf("Packet SNR: %i dB\n", packet->snr);
+			}
+			// serial_printf("\n");
+		}
+	}
+}
+
 void test_receiver(uint32_t dev_num)
 {
-	test_hub_init("test_receiver()");
+	test_init("test_receiver()");
 
 	// Sensors
 	uint8_t num_sensors = 3;
@@ -246,7 +282,6 @@ void test_receiver(uint32_t dev_num)
 		// Get packet, decrypt and organise
 		packet = rfm_get_next_packet();
 		aes_ecb_decrypt(packet->data.buffer);
-		rfm_organize_packet(packet);
 
 		// Print data received
 		serial_printf("Received ");
@@ -283,7 +318,6 @@ void test_receiver(uint32_t dev_num)
 				// Get packet, decrypt and organise
 				packet = rfm_get_next_packet();
 				aes_ecb_decrypt(packet->data.buffer);
-				rfm_organize_packet(packet);
 
 				// Check CRC
 				if (!packet->crc_ok)
@@ -340,7 +374,7 @@ void test_receiver(uint32_t dev_num)
 
 void test_cusb_poll(void)
 {
-	test_hub_init("test_cusb_poll()");
+	test_init("test_cusb_poll()");
 
 	// Initialize USB and wait for connection before erasing eeprom
 	// Otherwise causes usb config problems
@@ -359,7 +393,7 @@ void test_cusb_poll(void)
 
 void test_cusb_get_log(void)
 {
-	test_hub_init("test_cusb_get_log()");
+	test_init("test_cusb_get_log()");
 
 	// Initialize USB and wait for connection before erasing eeprom
 	// Otherwise causes usb config problems
@@ -391,7 +425,7 @@ void test_cusb_get_log(void)
 
 void test_sim_serial_passtrhough(void)
 {
-	test_hub_init("test_sim_serial_passtrhough()");
+	test_init("test_sim_serial_passtrhough()");
 
 	if (!sim_init())
 	{
@@ -415,7 +449,7 @@ void test_sim_serial_passtrhough(void)
 
 void test_sim(void)
 {
-	test_hub_init("test_sim()");
+	test_init("test_sim()");
 
 	// Hub device number
 	uint32_t dev_num = mem_get_dev_num();
@@ -490,7 +524,7 @@ void test_sim(void)
 
 void test_sim_get_request(void)
 {
-	test_hub_init("test_sim_get_request()");
+	test_init("test_sim_get_request()");
 
 	uint8_t num_tests = 20;
 	uint8_t num_pass = 0;

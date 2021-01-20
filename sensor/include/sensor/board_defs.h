@@ -1,14 +1,3 @@
-// Sensor Struct
-typedef struct
-{
-	uint8_t aes_key[16];
-	uint32_t dev_num;
-	uint32_t msg_num;
-	uint32_t msg_num_start;
-	uint32_t ok_packets;
-	uint32_t total_packets;
-} sensor_t;
-
 // Battery Voltage
 #define BATT_SENS_PORT GPIOA
 #define BATT_SENS GPIO0

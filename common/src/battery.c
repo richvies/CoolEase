@@ -24,6 +24,8 @@ static bool     plugged_in  = true;
 void batt_init(void)
 {
     rcc_periph_clock_enable(RCC_PWR);
+
+    // Enables Vrefint atuomatically and allows config.
     rcc_periph_clock_enable(RCC_SYSCFG);
 
     // Wait for voltage reference to start
@@ -31,6 +33,11 @@ void batt_init(void)
 
     // Enable Ultra Low Power for VFREFINT
     // PWR_CR |= PWR_CR_ULP;
+}
+
+void batt_end(void)
+{
+    rcc_periph_clock_disable(RCC_PWR);
 }
 
 void batt_set_voltage_scale(uint8_t scale)

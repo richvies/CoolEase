@@ -239,7 +239,7 @@ bool sim_set_full_function(void)
 			}
 		}
 		// Set full functionality
-		if (!sim_printf_and_check_response(10000, "Call Ready", "AT+CFUN=1\r\n"))
+		if (!sim_printf_and_check_response(10000, "OK", "AT+CFUN=1\r\n"))
 		{
 			log_error(ERR_SIM_CFUN_1);
 		}

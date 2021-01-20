@@ -16,6 +16,9 @@ void clock_setup_msi_2mhz(void)
 	// Set MSI to 2.097Mhz
 	rcc_set_msi_range(5);
 
+	// Select as system clock
+	rcc_set_sysclk_source(RCC_MSI);
+
 	// Set prescalers for AHB, APB1, APB2
 	rcc_set_hpre(RCC_CFGR_HPRE_NODIV);				// AHB -> 2.097Mhz
 	rcc_set_ppre1(RCC_CFGR_PPRE1_NODIV);			// APB1 -> 2.097Mhz

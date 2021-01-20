@@ -46,6 +46,20 @@
  * @{
  */
 
+/*////////////////////////////////////////////////////////////////////////////*/
+// Utils
+/*////////////////////////////////////////////////////////////////////////////*/
+
+void test_init(const char *test_name)
+{
+	for (uint32_t i = 0; i < 10000; i++)
+	{
+		__asm__("nop");
+	}
+
+	serial_printf("%s\n------------------\n\n", test_name);
+}
+
 void flash_led(uint16_t milliseconds, uint8_t num_flashes)
 {
 	rcc_periph_clock_enable(RCC_GPIOA);
@@ -61,20 +75,16 @@ void flash_led(uint16_t milliseconds, uint8_t num_flashes)
 	}
 }
 
-void test_common_init(const char *test_name)
+void print_aes_key(dev_info_t *dev_info)
 {
-	clock_setup_msi_2mhz();
-	log_init();
-	timers_lptim_init();
-	timers_tim6_init();
-
-	for (uint32_t i = 0; i < 10000; i++)
+	serial_printf("AES Key:");
+	for(uint8_t i = 0; i < 16; i++)
 	{
-		__asm__("nop");
+		serial_printf(" %2x", dev_info->aes_key[i]);
 	}
-
-	serial_printf("%s\n------------------\n\n", test_name);
+	serial_printf("\n");
 }
+
 
 /*////////////////////////////////////////////////////////////////////////////*/
 // Memory tests
@@ -82,7 +92,7 @@ void test_common_init(const char *test_name)
 
 void test_mem_write_read(void)
 {
-	test_common_init("test_mem_write_read()");
+	test_init("test_mem_write_read()");
 
 	uint32_t eeprom_address = EEPROM_END - EEPROM_PAGE_SIZE;
 	uint32_t eeprom_word = 0x12345678;
@@ -108,7 +118,7 @@ void test_mem_write_read(void)
 
 void test_eeprom(void)
 {
-	test_common_init("test_eeprom()");
+	test_init("test_eeprom()");
 
 	rcc_periph_clock_enable(RCC_MIF);
 
@@ -125,7 +135,7 @@ void test_eeprom(void)
 
 void test_eeprom_read(void)
 {
-	test_common_init("test_eeprom_read()");
+	test_init("test_eeprom_read()");
 
 	serial_printf("Bytes\n---------------------\n");
 
@@ -144,7 +154,7 @@ void test_eeprom_read(void)
 
 void test_eeprom_keys(void)
 {
-	test_common_init("test_eeprom_keys()");
+	test_init("test_eeprom_keys()");
 
 	mem_init();
 
@@ -182,7 +192,7 @@ void test_eeprom_keys(void)
 
 void test_eeprom_wipe(void)
 {
-	test_common_init("test_eeprom_wipe()");
+	test_init("test_eeprom_wipe()");
 
 	rcc_periph_clock_enable(RCC_MIF);
 
@@ -215,7 +225,7 @@ void test_eeprom_wipe(void)
 
 void test_reset_eeprom(void)
 {
-	test_common_init("test_reset_eeprom()");
+	test_init("test_reset_eeprom()");
 
 	rcc_periph_clock_enable(RCC_MIF);
 	eeprom_program_word(0x08080000, 0);
@@ -232,7 +242,7 @@ void test_reset_eeprom(void)
 
 void test_log(void)
 {
-	test_common_init("test_log()");
+	test_init("test_log()");
 
 	serial_printf("Wiping Log\n");
 	log_erase();
@@ -260,7 +270,7 @@ void test_log(void)
  */
 void test_boot_jump_to_application(uint32_t address)
 {
-	test_common_init("test_boot_jump_to_application()");
+	test_init("test_boot_jump_to_application()");
 
 	serial_printf("Address: %8x\n", address);
 	boot_jump_to_application(address);
@@ -268,7 +278,7 @@ void test_boot_jump_to_application(uint32_t address)
 
 void test_boot_verify_checksum(void)
 {
-	test_common_init("test_boot_verify_checksum()");
+	test_init("test_boot_verify_checksum()");
 
 	uint32_t data[] = {
 		0x12345678,
@@ -303,7 +313,7 @@ void test_boot_verify_checksum(void)
 
 void test_crc(void)
 {
-	test_common_init("test_crc()");
+	test_init("test_crc()");
 
 	/** To work with zlib needs byte reversed input and reversed inverse output 
 	 * Also zlib can work on bytes but stm32 only on 32 bits so need to pad zlib 
@@ -401,7 +411,7 @@ void test_crc(void)
 
 void test_rf(void)
 {
-	test_common_init("test_rf()");
+	test_init("test_rf()");
 
 	rfm_init();
 	rfm_config_for_lora(RFM_BW_125KHZ, RFM_CODING_RATE_4_5, RFM_SPREADING_FACTOR_128CPS, true, 0);
@@ -444,7 +454,7 @@ void test_rf(void)
 
 void test_rf_listen(void)
 {
-	test_common_init("test_rf_listen()");
+	test_init("test_rf_listen()");
 
 	rfm_init();
 	rfm_config_for_lora(RFM_BW_125KHZ, RFM_CODING_RATE_4_5, RFM_SPREADING_FACTOR_128CPS, true, 0);
@@ -476,14 +486,12 @@ void test_rf_listen(void)
 
 void test_rfm(void)
 {
-	test_common_init("test_rfm()");
+	test_init("test_rfm()");
 
 	rfm_init();
 	rfm_config_for_lora(RFM_BW_125KHZ, RFM_CODING_RATE_4_5, RFM_SPREADING_FACTOR_128CPS, true, -5);
 	rfm_set_tx_continuous();
 }
-
-
 
 /*////////////////////////////////////////////////////////////////////////////*/
 // Timer tests
@@ -491,23 +499,62 @@ void test_rfm(void)
 
 void test_lptim(void)
 {
-	test_common_init("test_lptim()");
+	test_init("test_lptim()");
 
 	timers_lptim_init();
 
 	for (;;)
 	{
-		serial_printf("LPTim Count: %i\n", lptimer_get_counter(LPTIM1));
-		for (int i = 0; i < 1000; i++)
-		{
-			__asm__("nop");
-		}
+		serial_printf("Counter : %u %u %u\n", lptimer_get_counter(LPTIM1), timers_micros(), timers_millis());
+	}
+}
+
+void test_micros(void)
+{
+	test_init("test_micros()");
+
+	timers_lptim_init();
+
+	for (;;)
+	{
+		timers_delay_microseconds(1000000);
+
+		serial_printf("L\n");
+	}
+}
+
+void test_millis(void)
+{
+	test_init("test_millis()");
+
+	timers_lptim_init();
+
+	for (;;)
+	{
+		timers_delay_milliseconds(1000);
+
+		serial_printf("L\n");
+	}
+}
+
+
+void test_tim6(void)
+{
+	test_init("test_tim6()");
+
+	timers_tim6_init();
+
+	for (;;)
+	{
+		serial_printf("Count %u\n", (uint16_t)timer_get_counter(TIM6));
+
+		serial_printf("L\n");
 	}
 }
 
 void test_wakeup(void)
 {
-	test_common_init("test_wakeup()");
+	test_init("test_wakeup()");
 
 	reset_print_cause();
 
@@ -522,7 +569,7 @@ void test_wakeup(void)
 
 bool test_timeout(void)
 {
-	test_common_init("test_timeout()");
+	test_init("test_timeout()");
 
 	timeout_init();
 
@@ -544,7 +591,7 @@ bool test_timeout(void)
 
 void test_standby(uint32_t standby_time)
 {
-	test_common_init("test_standby()");
+	test_init("test_standby()");
 
 	serial_printf("%i seconds\n", standby_time);
 
@@ -559,7 +606,7 @@ void test_standby(uint32_t standby_time)
 
 void test_voltage_scale(uint8_t scale)
 {
-	test_common_init("test_voltage_scale()");
+	test_init("test_voltage_scale()");
 
 	rfm_init();
 	rfm_end();
@@ -591,7 +638,7 @@ void test_voltage_scale(uint8_t scale)
 
 void test_low_power_run(void)
 {
-	test_common_init("test_low_power_run()");
+	test_init("test_low_power_run()");
 
 	rfm_init();
 	rfm_end();
@@ -624,7 +671,7 @@ void test_low_power_run(void)
 
 void test_encryption(uint8_t *key)
 {
-	test_common_init("test_encryption()");
+	test_init("test_encryption()");
 
 	serial_printf("Key: ");
 	for(uint8_t i = 0; i < 16; i++){serial_printf("%2x ", key[i]);}
@@ -644,7 +691,7 @@ void test_encryption(uint8_t *key)
 
 void test_analog_watchdog(void)
 {
-	test_common_init("test_analog_watchdog()");
+	test_init("test_analog_watchdog()");
 
 	batt_enable_interrupt();
 	// batt_enable_comp();
