@@ -803,6 +803,25 @@ void test_batt_update_voltages(void)
 	}
 }
 
+void test_batt_interrupt(void)
+{
+	test_init("test_adc_voltages()");
+
+	batt_enable_interrupt();
+
+	for (;;)
+	{
+		serial_printf("Battery = %uV\n", batt_voltages[BATT_VOLTAGE]);
+
+#ifdef _HUB
+		serial_printf("Power = %uV\n", batt_voltages[PWR_VOLTAGE]);
+#endif
+
+		timers_delay_milliseconds(1000);
+	}
+}
+
+
 /*////////////////////////////////////////////////////////////////////////////*/
 // Other tests
 /*////////////////////////////////////////////////////////////////////////////*/

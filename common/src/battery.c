@@ -1,3 +1,17 @@
+/**
+ ******************************************************************************
+ * @file    battery.c
+ * @author  Richard Davies
+ * @date    20/Jan/2021
+ * @brief   Battery Source File
+ *  
+ ******************************************************************************
+ */
+
+/*////////////////////////////////////////////////////////////////////////////*/
+// Includes
+/*////////////////////////////////////////////////////////////////////////////*/
+
 #include "common/battery.h"
 
 #include <libopencm3/stm32/adc.h>
@@ -14,99 +28,76 @@
 #include "common/board_defs.h"
 #include "common/timers.h"
 
-uint16_t    batt_voltages[NUM_VOLTAGES];
-bool        batt_rst_seq = false;
+/** @addtogroup BATTERY_FILE 
+ * @{
+ */
 
-static uint16_t adc_vals[3] = {0,0,0};
-static bool     plugged_in  = true;
+uint16_t batt_voltages[NUM_VOLTAGES];
+bool batt_rst_seq = false;
 
+/** @addtogroup BATTERY_INT 
+ * @{
+ */
+
+/*////////////////////////////////////////////////////////////////////////////*/
+// Static Variables
+/*////////////////////////////////////////////////////////////////////////////*/
+
+static uint16_t adc_vals[3] = {0, 0, 0};
+static bool plugged_in = true;
+
+/*////////////////////////////////////////////////////////////////////////////*/
+// Static Function Declarations
+/*////////////////////////////////////////////////////////////////////////////*/
+
+
+
+/** @} */
+
+/** @addtogroup BATTERY_API
+ * @{
+ */
+
+/*////////////////////////////////////////////////////////////////////////////*/
+// Exported Function Definitions
+/*////////////////////////////////////////////////////////////////////////////*/
 
 void batt_init(void)
 {
-    rcc_periph_clock_enable(RCC_PWR);
+    // Disable Interrupts
+    nvic_disable_irq(NVIC_ADC_COMP_IRQ);
 
-    // Enables Vrefint atuomatically and allows config.
+    // Config Vrefint
     rcc_periph_clock_enable(RCC_SYSCFG);
 
-    // Wait for voltage reference to start
-    while(!( PWR_CSR & PWR_CSR_VREFINTRDYF ));
+    // Start/ wait for voltage reference, enable buffer to adc
+    SYSCFG_CFGR3 |= SYSCFG_CFGR3_EN_VREFINT;
+    while (!(SYSCFG_CFGR3 & SYSCFG_CFGR3_VREFINT_RDYF))
+    {
+    }
+    SYSCFG_CFGR3 |= SYSCFG_CFGR3_ENBUF_VREFINT_ADC;
 
-    // Enable Ultra Low Power for VFREFINT
-    // PWR_CR |= PWR_CR_ULP;
-}
-
-void batt_end(void)
-{
-    rcc_periph_clock_disable(RCC_PWR);
-}
-
-void batt_set_voltage_scale(uint8_t scale)
-{
-    rcc_periph_clock_enable(RCC_PWR);
-
-    // Poll VOSF bit of in PWR_CSR. Wait until it is reset to 0
-    while(PWR_CSR & PWR_CSR_VOSF);
-
-    // Configure the voltage scaling range by setting the VOS[1:0] bits in the PWR_CR register
-    pwr_set_vos_scale(scale);
-
-    // Poll VOSF bit of in PWR_CSR register. Wait until it is reset to 0
-    while(PWR_CSR & PWR_CSR_VOSF);
-}
-
-void batt_set_low_power_run(void)
-{
-    rcc_periph_clock_enable(RCC_PWR);
-
-	// Set LPRUN & LPSDSR bits in PWR_CR register
-	PWR_CR |= PWR_CR_LPSDSR;
-	PWR_CR |= PWR_CR_LPRUN;
-
-	// Enable MSI Osc 2.097Mhz
-	rcc_osc_on(RCC_MSI);
-	rcc_wait_for_osc_ready(RCC_MSI);
-
-	// Set MSI to 65.536kHz
-	rcc_set_msi_range(0);
-
-	// Set prescalers for AHB, APB1, APB2
-	rcc_set_hpre(RCC_CFGR_HPRE_NODIV);				// AHB -> 65.536kHz
-	rcc_set_ppre1(RCC_CFGR_PPRE1_NODIV);			// APB1 -> 65.536kHz
-	rcc_set_ppre2(RCC_CFGR_PPRE2_NODIV);			// APB2 -> 65.536kHz
-
-	// Set flash, 65.536kHz -> 0 waitstates
-	flash_set_ws(FLASH_ACR_LATENCY_0WS);
-
-	// Set Peripheral Clock Frequencies used
-	rcc_ahb_frequency = 65536;
-	rcc_apb1_frequency = 65536;
-	rcc_apb2_frequency = 65536;
-
-    rcc_periph_clock_disable(RCC_PWR);
-}
-
-void batt_update_voltages(void)
-{   
-    // Enable clock and calibrate
+    // Enable adc clock and calibrate
     rcc_periph_clock_enable(RCC_ADC1);
     rcc_periph_reset_pulse(RST_ADC1);
 
     // Enable low frequency below 2.8MHz, pg.297 of ref
     uint32_t adc_freq = rcc_apb2_frequency / 4;
-    if(adc_freq < 2800000)
+    if (adc_freq < 2800000)
     {
         ADC_CCR(ADC1) |= (1 << 25);
     }
 
     // Set clock to APB clk
     ADC_CFGR2(ADC1) |= (3 << 30);
-    
+
+    // Power off & calibrate
     adc_power_off(ADC1);
     adc_calibrate(ADC1);
-    
-    // Set ADC Params
-    adc_set_single_conversion_mode(ADC1);
-    ADC_SMPR1(ADC1) &= ~7; ADC_SMPR1(ADC1) |= ADC_SMPR_SMP_160DOT5CYC;
+
+    // Highest sampling time (239.5 for l052)
+    // ADC clk 1/4 PCLK, 3 channels = 2874 cpu clk per conversion
+    ADC_SMPR1(ADC1) |= 7;
 
     // Reverse scan direction so that VREF is always first conversion
     ADC_CFGR1(ADC1) |= ADC_CFGR1_SCANDIR;
@@ -117,117 +108,130 @@ void batt_update_voltages(void)
     // Turn on ADC
     adc_power_on(ADC1);
     timers_delay_microseconds(1000);
-    
+
     // Enable input pins
-    rcc_periph_clock_enable(RCC_GPIOA);    
+    rcc_periph_clock_enable(RCC_GPIOA);
     gpio_mode_setup(BATT_SENS_PORT, GPIO_MODE_ANALOG, GPIO_PUPD_NONE, BATT_SENS);
 
     // Set channels to convert
     ADC_CHSELR(ADC1) |= (1 << ADC_CHANNEL_VREF);
     ADC_CHSELR(ADC1) |= (1 << 0);
-    
-    #ifdef _HUB
+
+#ifdef _HUB
     gpio_mode_setup(PWR_SENS_PORT, GPIO_MODE_ANALOG, GPIO_PUPD_NONE, PWR_SENS);
     ADC_CHSELR(ADC1) |= (1 << 1);
-    #endif
+#endif
+}
 
+void batt_end(void)
+{
     // Disable Interrupts
-    nvic_enable_irq(NVIC_ADC_COMP_IRQ);
-    nvic_set_priority(NVIC_ADC_COMP_IRQ, 0);
+    nvic_disable_irq(NVIC_ADC_COMP_IRQ);
 
-    // Start conversions
-    adc_start_conversion_regular(ADC1);
-    for(uint8_t i = 0; i < NUM_VOLTAGES + 1; i++)
+    adc_power_off(ADC1);
+    adc_disable_vrefint();
+    rcc_periph_reset_pulse(RST_ADC1);
+    rcc_periph_clock_disable(RCC_ADC1);
+    SYSCFG_CFGR3 &= ~SYSCFG_CFGR3_ENBUF_VREFINT_ADC;
+}
+
+void batt_set_voltage_scale(uint8_t scale)
+{
+    rcc_periph_clock_enable(RCC_PWR);
+
+    // Poll VOSF bit of in PWR_CSR. Wait until it is reset to 0
+    while (PWR_CSR & PWR_CSR_VOSF)
     {
-        while ( !adc_eoc(ADC1) );
-        adc_vals[i] = adc_read_regular(ADC1);
     }
-    
+
+    // Configure the voltage scaling range by setting the VOS[1:0] bits in the PWR_CR register
+    pwr_set_vos_scale(scale);
+
+    // Poll VOSF bit of in PWR_CSR register. Wait until it is reset to 0
+    while (PWR_CSR & PWR_CSR_VOSF)
+    {
+    }
+}
+
+void batt_set_low_power_run(void)
+{
+    rcc_periph_clock_enable(RCC_PWR);
+
+    // Set LPRUN & LPSDSR bits in PWR_CR register
+    PWR_CR |= PWR_CR_LPSDSR;
+    PWR_CR |= PWR_CR_LPRUN;
+
+    // Enable MSI Osc 2.097Mhz
+    rcc_osc_on(RCC_MSI);
+    rcc_wait_for_osc_ready(RCC_MSI);
+
+    // Set MSI to 65.536kHz
+    rcc_set_msi_range(0);
+
+    // Set prescalers for AHB, APB1, APB2
+    rcc_set_hpre(RCC_CFGR_HPRE_NODIV);   // AHB -> 65.536kHz
+    rcc_set_ppre1(RCC_CFGR_PPRE1_NODIV); // APB1 -> 65.536kHz
+    rcc_set_ppre2(RCC_CFGR_PPRE2_NODIV); // APB2 -> 65.536kHz
+
+    // Set flash, 65.536kHz -> 0 waitstates
+    flash_set_ws(FLASH_ACR_LATENCY_0WS);
+
+    // Set Peripheral Clock Frequencies used
+    rcc_ahb_frequency = 65536;
+    rcc_apb1_frequency = 65536;
+    rcc_apb2_frequency = 65536;
+
+    rcc_periph_clock_disable(RCC_PWR);
+}
+
+void batt_calculate_voltages(void)
+{
     // Calculate batt_voltages
-    for(uint8_t i = 0; i < NUM_VOLTAGES; i++)
+    for (uint8_t i = 0; i < NUM_VOLTAGES; i++)
     {
-        batt_voltages[i] = ( (uint32_t)300 * ST_VREFINT_CAL * adc_vals[i + 1] ) / ( adc_vals[0] * 4095 );
+        batt_voltages[i] = ((uint32_t)300 * ST_VREFINT_CAL * adc_vals[i + 1]) / (adc_vals[0] * 4095);
     }
 
-    // For Hub : Measured voltage is half of actual
-    #ifdef _HUB
-    for(uint8_t i = 0; i < NUM_VOLTAGES; i++)
+// For Hub : Measured voltage is half of actual
+#ifdef _HUB
+    for (uint8_t i = 0; i < NUM_VOLTAGES; i++)
     {
         batt_voltages[i] = batt_voltages[i] * 2;
     }
-    #endif
-    
+#endif
+}
 
-    // Power down
-    adc_disable_vrefint();
-    adc_power_off(ADC1);
-    rcc_periph_clock_disable(RCC_ADC1);
+void batt_update_voltages(void)
+{
+    // Start conversions
+    adc_set_single_conversion_mode(ADC1);
+    adc_start_conversion_regular(ADC1);
+    for (uint8_t i = 0; i < NUM_VOLTAGES + 1; i++)
+    {
+        while (!adc_eoc(ADC1))
+        {
+        }
+        adc_vals[i] = adc_read_regular(ADC1);
+    }
+
+    batt_calculate_voltages();
 }
 
 void batt_enable_interrupt(void)
 {
-    // Enable clock and reset
-    rcc_periph_clock_enable(RCC_ADC1);
-    rcc_periph_reset_pulse(RST_ADC1);
+    adc_set_continuous_conversion_mode(ADC1);
 
-    // Enable low frequency below 2.8MHz, pg.297 of ref
-    uint32_t adc_freq = rcc_apb2_frequency / 4;
-    if(adc_freq < 2800000)
-    {
-        ADC_CCR(ADC1) |= (1 << 25);
-    }
-
-    // Set clock to APB2 clk / 4
-    ADC_CFGR2(ADC1) |= (2 << 30);
-    
-    // Power off and calibrate
-    adc_power_off(ADC1);
-    adc_calibrate(ADC1);
-
-    // Config ADC
-    adc_set_single_conversion_mode(ADC1);
-    ADC_SMPR1(ADC1) &= ~7; ADC_SMPR1(ADC1) |= ADC_SMPR_SMP_160DOT5CYC;
-    ADC_IER(ADC1) = ADC_IER_EOSIE;
     adc_enable_dma(ADC1);
-
-    // Reverse scan direction so that VREF is always first conversion
-    ADC_CFGR1(ADC1) |= ADC_CFGR1_SCANDIR;
-
-    // Enable voltage reference
-    adc_enable_vrefint();
-
-    /*
-    // Interrupt if voltage below 4.7V (2.35 on pin)
-    uint16_t vrefint_low    = (300 * ST_VREFINT_CAL) / 600;
-    uint16_t vrefint_high   = (300 * ST_VREFINT_CAL) / 235;
-    log_printf("Thresh %i %i\n", vrefint_low, vrefint_high);
-    ADC_TR1(ADC1)           = (vrefint_high << 16) + vrefint_low; 
-    // Configure ADC
-    ADC_CFGR1(ADC1)  |= (1<<26) | ADC_CFGR1_AWD1EN | ADC_CFGR1_AWD1SGL;
-    ADC_IER(ADC1) |= ADC_IER_AWD1IE;
-    */
-
-    // Enable inputs
-    rcc_periph_clock_enable(RCC_GPIOA); 
-    gpio_mode_setup(BATT_SENS_PORT, GPIO_MODE_ANALOG, GPIO_PUPD_NONE, BATT_SENS);
-
-    // Set channels to convert
-    ADC_CHSELR(ADC1) |= (1 << ADC_CHANNEL_VREF);
-    ADC_CHSELR(ADC1) |= (1 << 0);
-    
-    // Extra pwr channel for hub
-    #ifdef _HUB
-    gpio_mode_setup(PWR_SENS_PORT, GPIO_MODE_ANALOG, GPIO_PUPD_NONE, PWR_SENS);
-    ADC_CHSELR(ADC1) |= (1 << 1);
-    #endif
+    adc_enable_dma_circular_mode(ADC1);
 
     // Setup DMA
     rcc_periph_clock_enable(RCC_DMA);
     dma_channel_reset(DMA1, 1);
 
     dma_enable_circular_mode(DMA1, 1);
+
     dma_set_read_from_peripheral(DMA1, 1);
-    dma_set_number_of_data(DMA1, 1, 3);
+    dma_set_number_of_data(DMA1, 1, NUM_VOLTAGES + 1);
     dma_set_priority(DMA1, 1, DMA_CCR_PL_VERY_HIGH);
 
     dma_set_peripheral_address(DMA1, 1, (uint32_t)&ADC_DR(ADC1));
@@ -238,15 +242,13 @@ void batt_enable_interrupt(void)
     dma_set_memory_size(DMA1, 1, DMA_CCR_MSIZE_16BIT);
     dma_enable_memory_increment_mode(DMA1, 1);
 
+    dma_enable_transfer_complete_interrupt(DMA1, DMA_CHANNEL1);
+
     dma_enable_channel(DMA1, 1);
 
-    // Turn on ADC
-    adc_power_on(ADC1);
-    timers_delay_microseconds(1000);
-
     // Enable interrupt. Low priority
-    nvic_enable_irq(NVIC_ADC_COMP_IRQ);
-    nvic_set_priority(NVIC_ADC_COMP_IRQ, 0xFF);
+    nvic_enable_irq(NVIC_DMA1_CHANNEL1_IRQ);
+    nvic_set_priority(NVIC_DMA1_CHANNEL1_IRQ, 0x10);
 
     // Start conversions
     adc_start_conversion_regular(ADC1);
@@ -297,79 +299,101 @@ uint8_t batt_get_voltage(void)
 }
 */
 
+/** @} */
+
+/** @addtogroup BATTERY_INT
+ * @{
+ */
+
+/*////////////////////////////////////////////////////////////////////////////*/
+// Static Function Definitions
+/*////////////////////////////////////////////////////////////////////////////*/
+
+
+
+/** @} */
+
+void dma1_channel1_isr(void)
+{
+    dma_clear_interrupt_flags(DMA1, DMA_CHANNEL1, DMA_TEIF | DMA_TCIF | DMA_HTIF | DMA_GIF);
+
+    batt_calculate_voltages();
+}
+
+/*
 // ISRs
 #ifdef _HUB
 // For use with ADC1
 void adc_comp_isr(void)
 {
-    // Takes about 150us to run
+    serial_printf("ADC ISR\n");
+    // // Takes about 150us to run
 
-    // log_printf("ADC ISR %08X\n", ADC_ISR(ADC1));
+    // // log_printf("ADC ISR %08X\n", ADC_ISR(ADC1));
 
-    // Calculate batt_voltages
-    for(uint8_t i = 0; i < NUM_VOLTAGES; i++){
-        batt_voltages[i] = ( (uint32_t)300 * ST_VREFINT_CAL * adc_vals[i + 1] ) / ( adc_vals[0] * 4095 ); }
+    // // Calculate batt_voltages
+    // for(uint8_t i = 0; i < NUM_VOLTAGES; i++){
+    //     batt_voltages[i] = ( (uint32_t)300 * ST_VREFINT_CAL * adc_vals[i + 1] ) / ( adc_vals[0] * 4095 ); }
 
-    // For Hub : Measured voltage is half of actual
-    for(uint8_t i = 0; i < NUM_VOLTAGES; i++){
-        batt_voltages[i] = batt_voltages[i] * 2; }
+    // // For Hub : Measured voltage is half of actual
+    // for(uint8_t i = 0; i < NUM_VOLTAGES; i++){
+    //     batt_voltages[i] = batt_voltages[i] * 2; }
 
-    static uint16_t timer = 0;
-    static uint8_t state = 0;
-    switch(state)
-    {
-        case 0:
-            plugged_in = true;
-            timer = timers_millis();
-            if(batt_voltages[PWR_VOLTAGE] < batt_voltages[BATT_VOLTAGE])
-                state = 1;
-            break;
+    // static uint16_t timer = 0;
+    // static uint8_t state = 0;
+    // switch(state)
+    // {
+    //     case 0:
+    //         plugged_in = true;
+    //         timer = timers_millis();
+    //         if(batt_voltages[PWR_VOLTAGE] < batt_voltages[BATT_VOLTAGE])
+    //             state = 1;
+    //         break;
 
-        case 1:
-            if(batt_voltages[PWR_VOLTAGE] > batt_voltages[BATT_VOLTAGE])
-                state = 0;
-            else if(timers_millis() - timer > 1000)
-                state = 2;
-            break;
-        
-        case 2:
-            if(batt_voltages[PWR_VOLTAGE] > batt_voltages[BATT_VOLTAGE]){
-                timer = timers_millis(); 
-                state = 4;}
-            else if(timers_millis() - timer > 10000){
-                state = 3;
-                plugged_in = false;
-                log_printf("Plugged Out\n");}
-            break;
-        
-        case 3:
-            if(batt_voltages[PWR_VOLTAGE] > batt_voltages[BATT_VOLTAGE]){
-                timer = timers_millis();
-                state = 0;
-                log_printf("Plugged In\n");}
-            break;
+    //     case 1:
+    //         if(batt_voltages[PWR_VOLTAGE] > batt_voltages[BATT_VOLTAGE])
+    //             state = 0;
+    //         else if(timers_millis() - timer > 1000)
+    //             state = 2;
+    //         break;
 
-        case 4:
-            if(batt_voltages[PWR_VOLTAGE] < batt_voltages[BATT_VOLTAGE]){
-                state = 2; }
-            else if(timers_millis() - timer > 1000){
-                state = 0;
-                batt_rst_seq = true; 
-                log_printf("Reset Sequence\n"); }
-            break;
+    //     case 2:
+    //         if(batt_voltages[PWR_VOLTAGE] > batt_voltages[BATT_VOLTAGE]){
+    //             timer = timers_millis();
+    //             state = 4;}
+    //         else if(timers_millis() - timer > 10000){
+    //             state = 3;
+    //             plugged_in = false;
+    //             log_printf("Plugged Out\n");}
+    //         break;
 
-        default:
-            log_printf("Error ADC ISR Defaut Case\n");
-            break;
-    }
+    //     case 3:
+    //         if(batt_voltages[PWR_VOLTAGE] > batt_voltages[BATT_VOLTAGE]){
+    //             timer = timers_millis();
+    //             state = 0;
+    //             log_printf("Plugged In\n");}
+    //         break;
 
-    // log_printf("ADC ISR %u %u %u V\n",state, batt_voltages[0], batt_voltages[1]);
+    //     case 4:
+    //         if(batt_voltages[PWR_VOLTAGE] < batt_voltages[BATT_VOLTAGE]){
+    //             state = 2; }
+    //         else if(timers_millis() - timer > 1000){
+    //             state = 0;
+    //             batt_rst_seq = true;
+    //             log_printf("Reset Sequence\n"); }
+    //         break;
 
-    ADC_ISR(ADC1) = 0xFFFFFFFF;
-    adc_start_conversion_regular(ADC1);
+    //     default:
+    //         log_printf("Error ADC ISR Defaut Case\n");
+    //         break;
+    // }
+
+    // // log_printf("ADC ISR %u %u %u V\n",state, batt_voltages[0], batt_voltages[1]);
+
+    // ADC_ISR(ADC1) = 0xFFFFFFFF;
+    // adc_start_conversion_regular(ADC1);
 }
 
-/*
 // For use with comp1
 void adc_comp_isr(void)
 {
@@ -419,4 +443,4 @@ void adc_comp_isr(void)
 }
 */
 
-#endif
+/** @} */

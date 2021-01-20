@@ -170,7 +170,7 @@ sensor_t *get_sensor(uint32_t dev_num)
 static void init(void)
 {
 	clock_setup_msi_2mhz();
-	cusb_init();
+	// cusb_init();
 	timers_lptim_init();
 	log_init();
 	aes_init(dev_info->aes_key);
@@ -190,7 +190,8 @@ static void test(void)
 	// test_lptim();
 	// test_micros();
 	// test_millis();
-	test_batt_update_voltages();
+	// test_batt_update_voltages();
+	// test_batt_interrupt();
 }
 
 static void hub(void)
