@@ -73,7 +73,6 @@ static void hub_download_info(void);
 int main(void)
 {
 	// Stop unused warnings
-	(void)init;
 	(void)test;
 	(void)hub;
 	(void)hub2;
@@ -83,7 +82,7 @@ int main(void)
 
 	test();
 
-	hub();
+	// hub();
 
 	
 
@@ -191,6 +190,7 @@ static void test(void)
 	// test_lptim();
 	// test_micros();
 	// test_millis();
+	test_batt_update_voltages();
 }
 
 static void hub(void)

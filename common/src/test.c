@@ -63,7 +63,7 @@ void test_init(const char *test_name)
 void flash_led(uint16_t milliseconds, uint8_t num_flashes)
 {
 	rcc_periph_clock_enable(RCC_GPIOA);
-	
+
 	gpio_mode_setup(LED_PORT, GPIO_MODE_OUTPUT, GPIO_PUPD_NONE, LED);
 	gpio_clear(LED_PORT, LED);
 	for (uint8_t i = 0; i < num_flashes; i++)
@@ -78,13 +78,12 @@ void flash_led(uint16_t milliseconds, uint8_t num_flashes)
 void print_aes_key(dev_info_t *dev_info)
 {
 	serial_printf("AES Key:");
-	for(uint8_t i = 0; i < 16; i++)
+	for (uint8_t i = 0; i < 16; i++)
 	{
 		serial_printf(" %2x", dev_info->aes_key[i]);
 	}
 	serial_printf("\n");
 }
-
 
 /*////////////////////////////////////////////////////////////////////////////*/
 // Memory tests
@@ -139,14 +138,14 @@ void test_eeprom_read(void)
 
 	serial_printf("Bytes\n---------------------\n");
 
-	for(uint32_t i = EEPROM_START; i < EEPROM_END; i++)
+	for (uint32_t i = EEPROM_START; i < EEPROM_END; i++)
 	{
 		serial_printf("%2x", MMIO8(i));
 	}
 
 	serial_printf("\n----------------------------\nChars\n---------------------\n");
 
-	for(uint32_t i = EEPROM_START; i < EEPROM_END; i++)
+	for (uint32_t i = EEPROM_START; i < EEPROM_END; i++)
 	{
 		serial_printf("%c", MMIO8(i));
 	}
@@ -332,77 +331,195 @@ void test_crc(void)
 
 	// uint32_t data2[16] = {0X03020100, 0X07060504};
 	uint32_t data2[16] = {0x03020100, 0x07060504, 0x0B0A0908, 0x0F0E0D0C, 0x13121110, 0x17161514, 0x1B1A1918, 0x1F1E1D1C, 0x23222120, 0x27262524, 0x2B2A2928, 0x2F2E2D2C, 0x33323130, 0x37363534, 0x3B3A3938, 0x3F3E3D3C};
-	crc_reset(); CRC_INIT = 0xFFFFFFFF; crc_set_reverse_input(CRC_CR_REV_IN_BYTE); crc_reverse_output_enable();
-	for (i = 0; i < 16; i++) {CRC_DR = data2[i];}; 			serial_printf("Init: 0xFFFFFFFF Rev In Byte Out Enable = %8x != %8x\n\n\n", CRC_DR, ~CRC_DR);
+	crc_reset();
+	CRC_INIT = 0xFFFFFFFF;
+	crc_set_reverse_input(CRC_CR_REV_IN_BYTE);
+	crc_reverse_output_enable();
+	for (i = 0; i < 16; i++)
+	{
+		CRC_DR = data2[i];
+	};
+	serial_printf("Init: 0xFFFFFFFF Rev In Byte Out Enable = %8x != %8x\n\n\n", CRC_DR, ~CRC_DR);
 
 	// Test 1
-	crc_reset(); CRC_INIT = 0xFFFFFFFF; crc_set_reverse_input(CRC_CR_REV_IN_NONE); crc_reverse_output_disable();
-	for (i = 0; i < 2; i++) {CRC_DR = data[i];}; 			serial_printf("Init: 0xFFFFFFFF Rev In None Out Disable = %8x != %8x\n", CRC_DR, ~CRC_DR);
+	crc_reset();
+	CRC_INIT = 0xFFFFFFFF;
+	crc_set_reverse_input(CRC_CR_REV_IN_NONE);
+	crc_reverse_output_disable();
+	for (i = 0; i < 2; i++)
+	{
+		CRC_DR = data[i];
+	};
+	serial_printf("Init: 0xFFFFFFFF Rev In None Out Disable = %8x != %8x\n", CRC_DR, ~CRC_DR);
 
 	// Test 2
-	crc_reset(); CRC_INIT = 0x00000000; crc_set_reverse_input(CRC_CR_REV_IN_NONE); crc_reverse_output_disable();
-	for (i = 0; i < 2; i++) {CRC_DR = data[i];}; 			serial_printf("Init: 0x00000000 Rev In None Out Disable = %8x != %8x\n", CRC_DR, ~CRC_DR);
+	crc_reset();
+	CRC_INIT = 0x00000000;
+	crc_set_reverse_input(CRC_CR_REV_IN_NONE);
+	crc_reverse_output_disable();
+	for (i = 0; i < 2; i++)
+	{
+		CRC_DR = data[i];
+	};
+	serial_printf("Init: 0x00000000 Rev In None Out Disable = %8x != %8x\n", CRC_DR, ~CRC_DR);
 
 	// Test 3
-	crc_reset(); CRC_INIT = 0xFFFFFFFF; crc_set_reverse_input(CRC_CR_REV_IN_BYTE); crc_reverse_output_disable();
-	for (i = 0; i < 2; i++) {CRC_DR = data[i];}; 			serial_printf("Init: 0xFFFFFFFF Rev In Byte Out Disable = %8x != %8x\n", CRC_DR, ~CRC_DR);
+	crc_reset();
+	CRC_INIT = 0xFFFFFFFF;
+	crc_set_reverse_input(CRC_CR_REV_IN_BYTE);
+	crc_reverse_output_disable();
+	for (i = 0; i < 2; i++)
+	{
+		CRC_DR = data[i];
+	};
+	serial_printf("Init: 0xFFFFFFFF Rev In Byte Out Disable = %8x != %8x\n", CRC_DR, ~CRC_DR);
 
 	// Test 4
-	crc_reset(); CRC_INIT = 0x00000000; crc_set_reverse_input(CRC_CR_REV_IN_BYTE); crc_reverse_output_disable();
-	for (i = 0; i < 2; i++) {CRC_DR = data[i];}; 			serial_printf("Init: 0x00000000 Rev In Byte Out Disable = %8x != %8x\n", CRC_DR, ~CRC_DR);
+	crc_reset();
+	CRC_INIT = 0x00000000;
+	crc_set_reverse_input(CRC_CR_REV_IN_BYTE);
+	crc_reverse_output_disable();
+	for (i = 0; i < 2; i++)
+	{
+		CRC_DR = data[i];
+	};
+	serial_printf("Init: 0x00000000 Rev In Byte Out Disable = %8x != %8x\n", CRC_DR, ~CRC_DR);
 
 	// Test 5
-	crc_reset(); CRC_INIT = 0xFFFFFFFF; crc_set_reverse_input(CRC_CR_REV_IN_HALF); crc_reverse_output_disable();
-	for (i = 0; i < 2; i++) {CRC_DR = data[i];}; 			serial_printf("Init: 0xFFFFFFFF Rev In Half Out Disable = %8x != %8x\n", CRC_DR, ~CRC_DR);
+	crc_reset();
+	CRC_INIT = 0xFFFFFFFF;
+	crc_set_reverse_input(CRC_CR_REV_IN_HALF);
+	crc_reverse_output_disable();
+	for (i = 0; i < 2; i++)
+	{
+		CRC_DR = data[i];
+	};
+	serial_printf("Init: 0xFFFFFFFF Rev In Half Out Disable = %8x != %8x\n", CRC_DR, ~CRC_DR);
 
 	// Test 6
-	crc_reset(); CRC_INIT = 0x00000000; crc_set_reverse_input(CRC_CR_REV_IN_HALF); crc_reverse_output_disable();
-	for (i = 0; i < 2; i++) {CRC_DR = data[i];}; 			serial_printf("Init: 0x00000000 Rev In Half Out Disable = %8x != %8x\n", CRC_DR, ~CRC_DR);
+	crc_reset();
+	CRC_INIT = 0x00000000;
+	crc_set_reverse_input(CRC_CR_REV_IN_HALF);
+	crc_reverse_output_disable();
+	for (i = 0; i < 2; i++)
+	{
+		CRC_DR = data[i];
+	};
+	serial_printf("Init: 0x00000000 Rev In Half Out Disable = %8x != %8x\n", CRC_DR, ~CRC_DR);
 
 	// Test 7
-	crc_reset(); CRC_INIT = 0xFFFFFFFF; crc_set_reverse_input(CRC_CR_REV_IN_WORD); crc_reverse_output_disable();
-	for (i = 0; i < 2; i++) {CRC_DR = data[i];}; 			serial_printf("Init: 0xFFFFFFFF Rev In Word Out Disable = %8x != %8x\n", CRC_DR, ~CRC_DR);
+	crc_reset();
+	CRC_INIT = 0xFFFFFFFF;
+	crc_set_reverse_input(CRC_CR_REV_IN_WORD);
+	crc_reverse_output_disable();
+	for (i = 0; i < 2; i++)
+	{
+		CRC_DR = data[i];
+	};
+	serial_printf("Init: 0xFFFFFFFF Rev In Word Out Disable = %8x != %8x\n", CRC_DR, ~CRC_DR);
 
 	// Test 8
-	crc_reset(); CRC_INIT = 0x00000000; crc_set_reverse_input(CRC_CR_REV_IN_WORD); crc_reverse_output_disable();
-	for (i = 0; i < 2; i++) {CRC_DR = data[i];}; 			serial_printf("Init: 0x00000000 Rev In Word Out Disable = %8x != %8x\n", CRC_DR, ~CRC_DR);
+	crc_reset();
+	CRC_INIT = 0x00000000;
+	crc_set_reverse_input(CRC_CR_REV_IN_WORD);
+	crc_reverse_output_disable();
+	for (i = 0; i < 2; i++)
+	{
+		CRC_DR = data[i];
+	};
+	serial_printf("Init: 0x00000000 Rev In Word Out Disable = %8x != %8x\n", CRC_DR, ~CRC_DR);
 
 	// Test 9
-	crc_reset(); CRC_INIT = 0xFFFFFFFF; crc_set_reverse_input(CRC_CR_REV_IN_NONE); crc_reverse_output_enable();
-	for (i = 0; i < 2; i++) {CRC_DR = data[i];}; 			serial_printf("Init: 0xFFFFFFFF Rev In None Out Enable = %8x != %8x\n", CRC_DR, ~CRC_DR);
+	crc_reset();
+	CRC_INIT = 0xFFFFFFFF;
+	crc_set_reverse_input(CRC_CR_REV_IN_NONE);
+	crc_reverse_output_enable();
+	for (i = 0; i < 2; i++)
+	{
+		CRC_DR = data[i];
+	};
+	serial_printf("Init: 0xFFFFFFFF Rev In None Out Enable = %8x != %8x\n", CRC_DR, ~CRC_DR);
 
 	// Test 10
-	crc_reset(); CRC_INIT = 0x00000000; crc_set_reverse_input(CRC_CR_REV_IN_NONE); crc_reverse_output_enable();
-	for (i = 0; i < 2; i++) {CRC_DR = data[i];}; 			serial_printf("Init: 0x00000000 Rev In None Out Enable = %8x != %8x\n", CRC_DR, ~CRC_DR);
+	crc_reset();
+	CRC_INIT = 0x00000000;
+	crc_set_reverse_input(CRC_CR_REV_IN_NONE);
+	crc_reverse_output_enable();
+	for (i = 0; i < 2; i++)
+	{
+		CRC_DR = data[i];
+	};
+	serial_printf("Init: 0x00000000 Rev In None Out Enable = %8x != %8x\n", CRC_DR, ~CRC_DR);
 
 	// Test 11
-	crc_reset(); CRC_INIT = 0xFFFFFFFF; crc_set_reverse_input(CRC_CR_REV_IN_BYTE); crc_reverse_output_enable();
-	for (i = 0; i < 2; i++) {CRC_DR = data[i];}; 			serial_printf("Init: 0xFFFFFFFF Rev In Byte Out Enable = %8x != %8x\n", CRC_DR, ~CRC_DR);
+	crc_reset();
+	CRC_INIT = 0xFFFFFFFF;
+	crc_set_reverse_input(CRC_CR_REV_IN_BYTE);
+	crc_reverse_output_enable();
+	for (i = 0; i < 2; i++)
+	{
+		CRC_DR = data[i];
+	};
+	serial_printf("Init: 0xFFFFFFFF Rev In Byte Out Enable = %8x != %8x\n", CRC_DR, ~CRC_DR);
 
 	// Test 12
-	crc_reset(); CRC_INIT = 0x00000000; crc_set_reverse_input(CRC_CR_REV_IN_BYTE); crc_reverse_output_enable();
-	for (i = 0; i < 2; i++) {CRC_DR = data[i];}; 			serial_printf("Init: 0x00000000 Rev In Byte Out Enable = %8x != %8x\n", CRC_DR, ~CRC_DR);
+	crc_reset();
+	CRC_INIT = 0x00000000;
+	crc_set_reverse_input(CRC_CR_REV_IN_BYTE);
+	crc_reverse_output_enable();
+	for (i = 0; i < 2; i++)
+	{
+		CRC_DR = data[i];
+	};
+	serial_printf("Init: 0x00000000 Rev In Byte Out Enable = %8x != %8x\n", CRC_DR, ~CRC_DR);
 
 	// Test 13
-	crc_reset(); CRC_INIT = 0xFFFFFFFF; crc_set_reverse_input(CRC_CR_REV_IN_HALF); crc_reverse_output_enable();
-	for (i = 0; i < 2; i++) {CRC_DR = data[i];}; 			serial_printf("Init: 0xFFFFFFFF Rev In Half Out Enable = %8x != %8x\n", CRC_DR, ~CRC_DR);
+	crc_reset();
+	CRC_INIT = 0xFFFFFFFF;
+	crc_set_reverse_input(CRC_CR_REV_IN_HALF);
+	crc_reverse_output_enable();
+	for (i = 0; i < 2; i++)
+	{
+		CRC_DR = data[i];
+	};
+	serial_printf("Init: 0xFFFFFFFF Rev In Half Out Enable = %8x != %8x\n", CRC_DR, ~CRC_DR);
 
 	// Test 14
-	crc_reset(); CRC_INIT = 0x00000000; crc_set_reverse_input(CRC_CR_REV_IN_HALF); crc_reverse_output_enable();
-	for (i = 0; i < 2; i++) {CRC_DR = data[i];}; 			serial_printf("Init: 0x00000000 Rev In Half Out Enable = %8x != %8x\n", CRC_DR, ~CRC_DR);
+	crc_reset();
+	CRC_INIT = 0x00000000;
+	crc_set_reverse_input(CRC_CR_REV_IN_HALF);
+	crc_reverse_output_enable();
+	for (i = 0; i < 2; i++)
+	{
+		CRC_DR = data[i];
+	};
+	serial_printf("Init: 0x00000000 Rev In Half Out Enable = %8x != %8x\n", CRC_DR, ~CRC_DR);
 
 	// Test 15
-	crc_reset(); CRC_INIT = 0xFFFFFFFF; crc_set_reverse_input(CRC_CR_REV_IN_WORD); crc_reverse_output_enable();
-	for (i = 0; i < 2; i++) {CRC_DR = data[i];}; 			serial_printf("Init: 0xFFFFFFFF Rev In Word Out Disable = %8x != %8x\n", CRC_DR, ~CRC_DR);
+	crc_reset();
+	CRC_INIT = 0xFFFFFFFF;
+	crc_set_reverse_input(CRC_CR_REV_IN_WORD);
+	crc_reverse_output_enable();
+	for (i = 0; i < 2; i++)
+	{
+		CRC_DR = data[i];
+	};
+	serial_printf("Init: 0xFFFFFFFF Rev In Word Out Disable = %8x != %8x\n", CRC_DR, ~CRC_DR);
 
 	// Test 16
-	crc_reset(); CRC_INIT = 0x00000000; crc_set_reverse_input(CRC_CR_REV_IN_WORD); crc_reverse_output_enable();
-	for (i = 0; i < 2; i++) {CRC_DR = data[i];}; 			serial_printf("Init: 0x00000000 Rev In Word Out Disable = %8x != %8x\n", CRC_DR, ~CRC_DR);
+	crc_reset();
+	CRC_INIT = 0x00000000;
+	crc_set_reverse_input(CRC_CR_REV_IN_WORD);
+	crc_reverse_output_enable();
+	for (i = 0; i < 2; i++)
+	{
+		CRC_DR = data[i];
+	};
+	serial_printf("Init: 0x00000000 Rev In Word Out Disable = %8x != %8x\n", CRC_DR, ~CRC_DR);
 
 	// Deinit
 	crc_reset();
 	rcc_periph_clock_disable(RCC_CRC);
-
 }
 
 /*////////////////////////////////////////////////////////////////////////////*/
@@ -419,7 +536,7 @@ void test_rf(void)
 	rfm_packet_t *packet_received;
 	rfm_packet_t packet;
 
-	strcpy((char*)packet.data.buffer, "Hello 123456789");
+	strcpy((char *)packet.data.buffer, "Hello 123456789");
 
 	serial_printf("Message: %s\n", packet.data.buffer);
 
@@ -536,7 +653,6 @@ void test_millis(void)
 		serial_printf("L\n");
 	}
 }
-
 
 void test_tim6(void)
 {
@@ -666,6 +782,28 @@ void test_low_power_run(void)
 }
 
 /*////////////////////////////////////////////////////////////////////////////*/
+// Battery
+/*////////////////////////////////////////////////////////////////////////////*/
+
+void test_batt_update_voltages(void)
+{
+	test_init("test_adc_voltages()");
+
+	for (;;)
+	{
+		batt_update_voltages();
+
+		serial_printf("Battery = %uV\n", batt_voltages[BATT_VOLTAGE]);
+
+#ifdef _HUB
+		serial_printf("Power = %uV\n", batt_voltages[PWR_VOLTAGE]);
+#endif
+
+		timers_delay_milliseconds(1000);
+	}
+}
+
+/*////////////////////////////////////////////////////////////////////////////*/
 // Other tests
 /*////////////////////////////////////////////////////////////////////////////*/
 
@@ -674,7 +812,10 @@ void test_encryption(uint8_t *key)
 	test_init("test_encryption()");
 
 	serial_printf("Key: ");
-	for(uint8_t i = 0; i < 16; i++){serial_printf("%2x ", key[i]);}
+	for (uint8_t i = 0; i < 16; i++)
+	{
+		serial_printf("%2x ", key[i]);
+	}
 	serial_printf("\n");
 
 	aes_init(key);
@@ -702,8 +843,6 @@ void test_analog_watchdog(void)
 	}
 }
 
-
-
 // Init: 0xFFFFFFFF Rev In None Out Disable = 0X4E780056 != 0XB187FFA9
 // Init: 0x00000000 Rev In None Out Disable = 0X277CBB0F != 0XD88344F0
 // Init: 0xFFFFFFFF Rev In Byte Out Disable = 0X8A0F7668 != 0X75F08997
@@ -727,19 +866,17 @@ void test_analog_watchdog(void)
 
 void nmi_handler(void)
 {
-  log_printf("nmi\n");
-	while(1)
+	log_printf("nmi\n");
+	while (1)
 	{
-		
 	}
 }
 
 void hard_fault_handler(void)
 {
-  log_printf("hard fault\n");
-	while(1)
+	log_printf("hard fault\n");
+	while (1)
 	{
-
 	}
 }
 

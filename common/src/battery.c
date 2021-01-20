@@ -91,6 +91,13 @@ void batt_update_voltages(void)
     rcc_periph_clock_enable(RCC_ADC1);
     rcc_periph_reset_pulse(RST_ADC1);
 
+    // Enable low frequency below 2.8MHz, pg.297 of ref
+    uint32_t adc_freq = rcc_apb2_frequency / 4;
+    if(adc_freq < 2800000)
+    {
+        ADC_CCR(ADC1) |= (1 << 25);
+    }
+
     // Set clock to APB clk
     ADC_CFGR2(ADC1) |= (3 << 30);
     
@@ -163,7 +170,14 @@ void batt_enable_interrupt(void)
     rcc_periph_clock_enable(RCC_ADC1);
     rcc_periph_reset_pulse(RST_ADC1);
 
-    // Set clock to APB clk / 4
+    // Enable low frequency below 2.8MHz, pg.297 of ref
+    uint32_t adc_freq = rcc_apb2_frequency / 4;
+    if(adc_freq < 2800000)
+    {
+        ADC_CCR(ADC1) |= (1 << 25);
+    }
+
+    // Set clock to APB2 clk / 4
     ADC_CFGR2(ADC1) |= (2 << 30);
     
     // Power off and calibrate
@@ -236,39 +250,6 @@ void batt_enable_interrupt(void)
 
     // Start conversions
     adc_start_conversion_regular(ADC1);
-}
-
-void batt_enable_comp(void)
-{
-    // Batt on PA0 -input, PWR on PA1 +input
-    // Ok when PWR > BATT, Comp 1 positive
-
-    // Enable clock and calibrate
-    // rcc_periph_clock_enable(RCC_ADC1);
-    rcc_periph_clock_enable(RCC_SYSCFG);
-
-    // rcc_periph_reset_pulse(RST_ADC1);
-
-    // Enable inputs
-    rcc_periph_clock_enable(RCC_GPIOA); 
-    gpio_mode_setup(BATT_SENS_PORT, GPIO_MODE_ANALOG, GPIO_PUPD_NONE, BATT_SENS);
-
-    #ifdef _HUB
-    gpio_mode_setup(PWR_SENS_PORT, GPIO_MODE_ANALOG, GPIO_PUPD_NONE, PWR_SENS);
-    #endif
-
-    // Config COMP1
-    COMP1_CTRL = 0x00000000;
-    COMP1_CTRL = 0x00000010;
-    COMP1_CTRL = 0x00000011;
-
-    // Enable interrupt
-    exti_reset_request(EXTI21);
-	exti_set_trigger(EXTI21, EXTI_TRIGGER_BOTH);
-	exti_enable_request(EXTI21);
-
-    nvic_enable_irq(NVIC_ADC_COMP_IRQ);
-    nvic_set_priority(NVIC_ADC_COMP_IRQ, 0);
 }
 
 /*
