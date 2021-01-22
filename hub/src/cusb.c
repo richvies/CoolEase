@@ -483,31 +483,9 @@ void cusb_send(char character)
 // Static Function Definitions
 /*////////////////////////////////////////////////////////////////////////////*/
 
+/* HSI16 must be sys_clk */
 static void cusb_clock_init(void)
 {
-    //  Set flash, 16Mhz -> 0 waitstates
-    flash_set_ws(FLASH_ACR_LATENCY_0WS);
-
-    //  Turn on HSI16 osc
-    rcc_osc_on(RCC_HSI16);
-    rcc_wait_for_osc_ready(RCC_HSI16);
-
-    //  Select CPU Clock
-    rcc_set_sysclk_source(RCC_HSI16);
-
-    //  HSI is now the wakeup clock
-    RCC_CFGR |= RCC_CFGR_STOPWUCK_HSI16;
-
-    //  Set prescalers for AHB, APB1, APB2
-    rcc_set_hpre(RCC_CFGR_HPRE_NODIV);   //  AHB -> 16Mhz
-    rcc_set_ppre1(RCC_CFGR_PPRE1_NODIV); //  APB1 ->16Mhz
-    rcc_set_ppre2(RCC_CFGR_PPRE2_NODIV); //  APB2 ->16Mhz
-
-    //  Set Peripheral Clock Frequencies used
-    rcc_ahb_frequency = 16000000;
-    rcc_apb1_frequency = 16000000;
-    rcc_apb2_frequency = 16000000;
-
     //  Enable the VREF for HSI48
     rcc_periph_clock_enable(RCC_SYSCFG);
     SYSCFG_CFGR3 |= 0x01;
@@ -528,9 +506,6 @@ static void cusb_clock_init(void)
 
     //  Select RC HSI48 as usb clock
     rcc_set_hsi48_source_rc48();
-
-    //  turn off MSI
-    rcc_osc_off(RCC_MSI);
 }
 
 /*////////////////////////////////////////////////////////////////////////////*/
