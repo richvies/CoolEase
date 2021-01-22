@@ -28,6 +28,23 @@
 #include "common/board_defs.h"
 #include "common/timers.h"
 
+#define ADC_CCR_LFMEN           (1 << 25)
+
+#define ADC_CCR_PRESC_SHIFT     18
+#define ADC_CCR_PRESC           (0xF << ADC_CCR_PRESC_SHIFT)
+#define ADC_CCR_PRESC_NODIV     (0 << ADC_CCR_PRESC_SHIFT)
+#define ADC_CCR_PRESC_DIV2      (1 << ADC_CCR_PRESC_SHIFT)
+#define ADC_CCR_PRESC_DIV4      (2 << ADC_CCR_PRESC_SHIFT)
+#define ADC_CCR_PRESC_DIV6      (3 << ADC_CCR_PRESC_SHIFT)
+#define ADC_CCR_PRESC_DIV8      (4 << ADC_CCR_PRESC_SHIFT)
+#define ADC_CCR_PRESC_DIV10     (5 << ADC_CCR_PRESC_SHIFT)
+#define ADC_CCR_PRESC_DIV12     (6 << ADC_CCR_PRESC_SHIFT)
+#define ADC_CCR_PRESC_DIV16     (7 << ADC_CCR_PRESC_SHIFT)
+#define ADC_CCR_PRESC_DIV32     (8 << ADC_CCR_PRESC_SHIFT)
+#define ADC_CCR_PRESC_DIV64     (9 << ADC_CCR_PRESC_SHIFT)
+#define ADC_CCR_PRESC_DIV128    (10 << ADC_CCR_PRESC_SHIFT)
+#define ADC_CCR_PRESC_DIV256    (11 << ADC_CCR_PRESC_SHIFT)
+
 /** @addtogroup BATTERY_FILE 
  * @{
  */
@@ -81,23 +98,45 @@ void batt_init(void)
     rcc_periph_clock_enable(RCC_ADC1);
     rcc_periph_reset_pulse(RST_ADC1);
 
+    // Clock config
+    uint32_t adc_freq;
+    if(sys_clk == RCC_HSI16)
+    {
+        // Set clock to HSI clk
+        ADC_CFGR2(ADC1) &= ~ADC_CFGR2_CKMODE;
+
+        // Set prescaler 32
+        ADC_CCR(ADC1) &= ~ADC_CCR_PRESC;
+        ADC_CCR(ADC1) |= ADC_CCR_PRESC_DIV32;
+
+        adc_freq = 16000000 / 32;
+    }
+    else
+    {
+        // Set clock to APB clk / 4
+        ADC_CFGR2(ADC1) &= ~ADC_CFGR2_CKMODE;
+        ADC_CFGR2(ADC1) |= ADC_CFGR2_CKMODE_PCLK_DIV4;
+        adc_freq = rcc_apb2_frequency / 4;
+    }
+    
+
     // Enable low frequency below 2.8MHz, pg.297 of ref
-    uint32_t adc_freq = rcc_apb2_frequency / 4;
     if (adc_freq < 2800000)
     {
-        ADC_CCR(ADC1) |= (1 << 25);
+        ADC_CCR(ADC1) |= ADC_CCR_LFMEN;
     }
-
-    // Set clock to APB clk
-    ADC_CFGR2(ADC1) |= (3 << 30);
+    else
+    {
+        ADC_CCR(ADC1) &= ~ADC_CCR_LFMEN;
+    }
+    
 
     // Power off & calibrate
     adc_power_off(ADC1);
     adc_calibrate(ADC1);
 
-    // Highest sampling time (239.5 for l052)
-    // ADC clk 1/4 PCLK, 3 channels = 2874 cpu clk per conversion
-    ADC_SMPR1(ADC1) |= 7;
+    // Highest sampling time. 160.5 for l051 (239.5 for l052)
+    ADC_SMPR1(ADC1) |= ADC_SMPR_SMP_160DOT5CYC;
 
     // Reverse scan direction so that VREF is always first conversion
     ADC_CFGR1(ADC1) |= ADC_CFGR1_SCANDIR;
@@ -109,7 +148,7 @@ void batt_init(void)
     adc_power_on(ADC1);
     timers_delay_microseconds(1000);
 
-    // Enable input pins
+    // Enable analog pins
     rcc_periph_clock_enable(RCC_GPIOA);
     gpio_mode_setup(BATT_SENS_PORT, GPIO_MODE_ANALOG, GPIO_PUPD_NONE, BATT_SENS);
 
@@ -139,7 +178,7 @@ void batt_set_voltage_scale(uint8_t scale)
 {
     rcc_periph_clock_enable(RCC_PWR);
 
-    // Poll VOSF bit of in PWR_CSR. Wait until it is reset to 0
+    // Poll VOSF bit of in PWR_CSR
     while (PWR_CSR & PWR_CSR_VOSF)
     {
     }
@@ -147,7 +186,7 @@ void batt_set_voltage_scale(uint8_t scale)
     // Configure the voltage scaling range by setting the VOS[1:0] bits in the PWR_CR register
     pwr_set_vos_scale(scale);
 
-    // Poll VOSF bit of in PWR_CSR register. Wait until it is reset to 0
+    // Poll VOSF bit of in PWR_CSR register
     while (PWR_CSR & PWR_CSR_VOSF)
     {
     }
