@@ -7,6 +7,8 @@
 #include <stdint.h>
 #include <stddef.h>
 
+enum rcc_osc sys_clk = RCC_MSI;
+
 void clock_setup_msi_2mhz(void) 
 {
 	// Enable MSI Osc 2.097Mhz
@@ -31,4 +33,35 @@ void clock_setup_msi_2mhz(void)
 	rcc_ahb_frequency = 2097000;
 	rcc_apb1_frequency = 2097000;
 	rcc_apb2_frequency = 2097000;
+
+	rcc_osc_off(RCC_HSI16);
+
+	sys_clk = RCC_MSI;
+}
+
+void clock_setup_hsi_16mhz(void) 
+{
+	// Enable MSI Osc 16MHz
+	rcc_osc_on(RCC_HSI16);
+	rcc_wait_for_osc_ready(RCC_HSI16);
+
+	// Select as system clock
+	rcc_set_sysclk_source(RCC_HSI16);
+
+	// Set prescalers for AHB, APB1, APB2
+	rcc_set_hpre(RCC_CFGR_HPRE_NODIV);				// AHB -> 16MHz
+	rcc_set_ppre1(RCC_CFGR_PPRE1_NODIV);			// APB1 -> 16MHz
+	rcc_set_ppre2(RCC_CFGR_PPRE2_NODIV);			// APB2 -> 16MHz
+
+	// Set flash, 16MHz -> 0 waitstates, voltgae scale must be range 1 (1.8v)
+	flash_set_ws(FLASH_ACR_LATENCY_0WS);
+
+	// Set Peripheral Clock Frequencies used
+	rcc_ahb_frequency = 16000000;
+	rcc_apb1_frequency = 16000000;
+	rcc_apb2_frequency = 16000000;
+
+	rcc_osc_off(RCC_HSI16);
+
+	sys_clk = RCC_HSI16;
 }

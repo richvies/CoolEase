@@ -16,10 +16,6 @@ typedef struct
 	uint8_t aes_key[16];
 	uint32_t dev_num;
 	uint32_t init_key;
-	uint32_t msg_num;
-	uint32_t msg_num_start;
-	uint32_t ok_packets;
-	uint32_t total_packets;
 } dev_info_t;
 
 
@@ -30,6 +26,7 @@ typedef struct
 #endif
 
 void clock_setup_msi_2mhz(void);
+void clock_setup_hsi_16mhz(void);
 void set_gpio_for_standby(void);
 
 #endif
