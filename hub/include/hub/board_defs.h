@@ -1,3 +1,7 @@
+#include <libopencm3/stm32/rcc.h>
+
+extern enum rcc_osc sys_clk;
+
 // Sensor Struct
 #define MAX_SENSORS 50
 

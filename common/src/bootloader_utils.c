@@ -71,7 +71,7 @@ typedef struct
     uint32_t reset_flags;
     bootloader_state_t state;
     uint8_t  num_reset;
-}bootloader_t;
+} bootloader_t;
 
 static bootloader_t *bootloader = ((bootloader_t *)(EEPROM_BOOTLOADER_INFO_BASE));
 
