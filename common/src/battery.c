@@ -81,8 +81,8 @@ static bool plugged_in = true;
 
 void batt_init(void)
 {
-    // Disable Interrupts
-    nvic_disable_irq(NVIC_ADC_COMP_IRQ);
+    // Disable Interrupt
+    nvic_disable_irq(NVIC_DMA1_CHANNEL1_IRQ);
 
     // Config Vrefint
     rcc_periph_clock_enable(RCC_SYSCFG);
@@ -165,7 +165,7 @@ void batt_init(void)
 void batt_end(void)
 {
     // Disable Interrupts
-    nvic_disable_irq(NVIC_ADC_COMP_IRQ);
+    nvic_disable_irq(NVIC_DMA1_CHANNEL1_IRQ);
 
     adc_power_off(ADC1);
     adc_disable_vrefint();
@@ -242,8 +242,13 @@ void batt_calculate_voltages(void)
 
 void batt_update_voltages(void)
 {
-    // Start conversions
+    ADC_CR(ADC1) |= ADC_CR_ADSTP;
+    while(!(ADC_CR(ADC1) & ADC_CR_ADSTP))
+    {
+    }
     adc_set_single_conversion_mode(ADC1);
+
+    // Start conversions
     adc_start_conversion_regular(ADC1);
     for (uint8_t i = 0; i < NUM_VOLTAGES + 1; i++)
     {
@@ -258,6 +263,10 @@ void batt_update_voltages(void)
 
 void batt_enable_interrupt(void)
 {
+    ADC_CR(ADC1) |= ADC_CR_ADSTP;
+    while(!(ADC_CR(ADC1) & ADC_CR_ADSTP))
+    {
+    }
     adc_set_continuous_conversion_mode(ADC1);
 
     adc_enable_dma(ADC1);
@@ -291,6 +300,16 @@ void batt_enable_interrupt(void)
 
     // Start conversions
     adc_start_conversion_regular(ADC1);
+}
+
+void batt_disable_interrupt(void)
+{
+    adc_disable_dma(ADC1);
+    adc_disable_dma_circular_mode(ADC1);
+
+    dma_channel_reset(DMA1, DMA_CHANNEL1);
+
+    nvic_disable_irq(NVIC_DMA1_CHANNEL1_IRQ);
 }
 
 /*

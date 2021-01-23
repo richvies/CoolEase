@@ -74,6 +74,7 @@ void batt_set_low_power_run(void);
 void batt_calculate_voltages(void);
 void batt_update_voltages(void);
 void batt_enable_interrupt(void);
+void batt_disable_interrupt(void);
 
 
 /** @} */
