@@ -155,7 +155,9 @@ static void sensor(void)
 
 	// print_aes_key();
 
-	timers_rtc_init(SENSOR_SLEEP_TIME);
+	timers_rtc_init();
+	timers_set_wakeup_time(SENSOR_SLEEP_TIME);
+	timers_enable_wut_interrupt();
 
 	for (;;)
 	{
@@ -169,7 +171,7 @@ static void test(void)
 {
 	init();
 
-	// timers_lsi_freq();
+	// timers_measure_lsi_freq();
 	
 	// serial_printf("Dev Info Location: %8x %8x %8x\n", EEPROM_DEV_INFO_BASE, &dev_info->aes_key[0], dev_info->aes_key);
 	// test_encryption(dev_info->aes_key);

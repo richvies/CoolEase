@@ -1,22 +1,22 @@
 #include <libopencm3/stm32/rcc.h>
 
-extern enum rcc_osc sys_clk;
-
 // Sensor Struct
-#define MAX_SENSORS 50
+#define MAX_SENSORS 20
 
 typedef struct
 {
-	uint8_t aes_key[16];
 	uint32_t dev_num;
 	uint32_t msg_num;
 	uint32_t msg_num_start;
 	uint32_t ok_packets;
 	uint32_t total_packets;
+	int8_t power;
+	uint16_t battery;
+	int16_t temperature;
+	int16_t rssi;
 	bool msg_pend;
 	bool active;
 } sensor_t;
-
 
 // Battery Voltage
 #define BATT_SENS_PORT GPIOA

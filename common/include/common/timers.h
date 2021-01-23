@@ -73,11 +73,17 @@ extern "C" {
 // Exported Function Declarations
 /*////////////////////////////////////////////////////////////////////////////*/
 
-/* Start Low Speed Oscillator and Configure RTC, IWDG & WWDG Registers */
-void timers_rtc_init(uint32_t standby_time_seconds);
+void timers_rtc_unlock(void);
+void timers_rtc_lock(void);
+void timers_rtc_init(void);
+void timers_rtc_set_time(uint8_t secs, uint8_t mins, uint8_t hours, uint8_t day, uint8_t month, uint8_t year);
+void timers_set_wakeup_time(uint32_t wakeup_time);
+void timers_clear_wakeup_flag(void);
+void timers_enable_wut_interrupt(void);
+void timers_disable_wut_interrupt(void);
 
 /* Measure LSI frequency with TIM21 */
-uint32_t timers_lsi_freq(void);
+uint32_t timers_measure_lsi_freq(void);
 
 
 /* Setup lptim approx. us counter. Clocked by APB1 

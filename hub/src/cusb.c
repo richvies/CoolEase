@@ -451,7 +451,7 @@ void cusb_end(void)
     rcc_periph_clock_disable(RCC_USB);
     rcc_periph_clock_disable(RCC_CRS);
 
-    usb_state == OFF;
+    usb_state = OFF;
 }
 
 bool cusb_connected(void)

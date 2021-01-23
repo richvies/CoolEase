@@ -59,6 +59,7 @@ static void test(void);
 static void hub(void);
 static void hub2(void);
 static void hub_download_info(void);
+static void check_for_packets(void);
 
 /** @} */
 
@@ -190,11 +191,15 @@ static void test(void)
 	// test_millis();
 	// test_batt_update_voltages();
 	// test_batt_interrupt();
+	// test_rtc();
+	test_rtc_wakeup();
 }
 
 static void hub(void)
 {
 	/* Initial setup */
+	// Watchdog
+
 	// Power checking
 	batt_enable_interrupt();
 
@@ -203,62 +208,74 @@ static void hub(void)
 	// Check if first time running
 	if (dev_info->init_key != INIT_KEY)
 	{
-		dev_info->init_key = INIT_KEY;
+		mem_eeprom_write_word((uint32_t)&dev_info->init_key, INIT_KEY);
 		// Sensor init - IDs, active or not,
 	}
 
+	// Sensors to listen for
+	sensors[0].dev_num = 0x00000001;
+	num_sensors = 1;
+
 	// Start listening on rfm
-	rfm_packet_t *packet = NULL;
 	rfm_init();
 	rfm_config_for_lora(RFM_BW_125KHZ, RFM_CODING_RATE_4_5, RFM_SPREADING_FACTOR_128CPS, false, 0);
 	rfm_start_listening();
 
-	// Get timestamp from sim and init rtc
-	// Watchdog
+	// Init rtc
+	timers_rtc_init();
+	// Get timestamp from sim
 
-	// Check for packets
-	// Upload if any valid temp packets
-	// Keep record of id, num packets, temperature, battery for each sensor
-	// Timestamp packets
+	for (;;)
+	{
+		// Check for packets
+		check_for_packets();
 
-	// Everyday check hour for new software
-	// RTC Alarm
-	// Upload log
-	// Check if new version every hour
-	// Set bootloader state
+		// Keep record of id, num packets, temperature, battery for each sensor
+		// Timestamp packets
+
+		// Upload if any valid temp packets
+		uint8_t sim_buf[256];
+		bool upload = false;
+		for (uint8_t i = 0; i < num_sensors; i++)
+		{
+			if (sensors[i].msg_pend)
+			{
+				upload = true;
+				sensors[i].msg_pend = false;
+			}
+		}
+		if (upload)
+		{
+			sim_init();
+			sim_set_full_function();
+			sim_register_to_network();
+			sim_end();
+		}
+
+		// Everyday check hour for new software
+		// RTC Alarm
+		// Upload log
+		// Check if new version every hour
+		// Set bootloader state
+	}
 }
 
 static void check_for_packets(void)
 {
 	if (rfm_get_num_packets() > 0)
 	{
-		serial_printf("GetPkts %u\n", rfm_get_num_packets());
-
-		upload_packets = false;
-		sim_buf_idx = 0;
-
-		// Hub device number and voltage stored first
-		sim_buf[sim_buf_idx++] = dev_num >> 24;
-		sim_buf[sim_buf_idx++] = dev_num >> 16;
-		sim_buf[sim_buf_idx++] = dev_num >> 8;
-		sim_buf[sim_buf_idx++] = dev_num;
-
-		sim_buf[sim_buf_idx++] = batt_voltages[PWR_VOLTAGE] >> 8;
-		sim_buf[sim_buf_idx++] = batt_voltages[PWR_VOLTAGE];
+		log_printf("RFM: Get packets %u\n", rfm_get_num_packets());
 
 		while (rfm_get_num_packets())
 		{
-			// log_printf("Pkts %u\n", rfm_get_num_packets());
-
 			// Get packet, decrypt and organise
-			packet = rfm_get_next_packet();
+			rfm_packet_t *packet = rfm_get_next_packet();
 			aes_ecb_decrypt(packet->data.buffer);
 
 			// Check CRC
 			if (!packet->crc_ok)
 			{
 				log_printf("CRC Fail\n");
-				flash_led(100, 5);
 				continue;
 			}
 			else
@@ -267,273 +284,226 @@ static void check_for_packets(void)
 			}
 
 			// Get sensor from device number
-			sensor_t sensor = get_sensor(packet->data.device_number);
+			sensor_t *sensor = get_sensor(packet->data.device_number);
 
 			// Skip if wrong device number
 			if (sensor == NULL)
 			{
 				log_printf("Wrong Dev Num: %08X\n", packet->data.device_number);
-				log_printf("WDN%08X\n", packet->data.device_number);
-				flash_led(100, 3);
 				continue;
 			}
 			else
 			{
-				// Good packet to upload
-				upload_packets = true;
-				flash_led(100, 1);
-				log_printf("PktOk\n", packet->data.device_number);
-			}
+				if (!sensor->active)
+				{
+					sensor->active = true;
+					sensor->msg_pend = false;
+					sensor->msg_num = 0;
+				}
 
-			// Initialize sensor if first message received
-			if (!sensor->active)
-			{
-				sensor->msg_num = packet->data.msg_number;
-				sensor->msg_num_start = packet->data.msg_number;
-				sensor->total_packets = 0;
-				sensor->ok_packets = 0;
-				sensor->active = true;
-				log_printf("First message from %u\nNumber: %i\n", sensor->dev_num, sensor->msg_num_start);
+				sensor->power = packet->data.power;
+				sensor->battery = packet->data.battery;
+				sensor->temperature = packet->data.temperature;
+				sensor->msg_num++;
+				sensor->msg_pend = true;
+				sensor->rssi = packet->rssi;
 			}
-			// Check if message number is correct
-			else if (++sensor->msg_num != packet->data.msg_number)
-			{
-				log_printf("Missed Message %i\n", sensor->msg_num);
-				// log_printf("Missed Message %i\n", sensor->msg_num);
-				sensor->msg_num = packet->data.msg_number;
-			}
-
-			// Update sensor packet info
-			sensor->ok_packets++;
-			sensor->total_packets = 1 + packet->data.msg_number - sensor->msg_num_start;
 
 			// Print packet details
-			// print_packet_details();
-			log_printf("Device ID: %08x\n", packet->data.device_number);
-			log_printf("Packet RSSI: %i dbm\n", packet->rssi);
-			log_printf("Packet SNR: %i dB\n", packet->snr);
-			log_printf("Power: %i\n", packet->data.power);
-			log_printf("Battery: %uV\n", packet->data.battery);
-			log_printf("Temperature: %i\n", packet->data.temperature);
-			log_printf("Message Number: %i\n", packet->data.msg_number);
-			log_printf("Accuracy: %i / %i packets\n\n", sensor->ok_packets, sensor->total_packets);
-			// Log packet details
-			// log_printf("Device ID: %08x\n", packet->data.device_number);
-			// log_printf("Packet RSSI: %i dbm\n", packet->rssi);
-			// log_printf("Packet SNR: %i dB\n", packet->snr);
-			// log_printf("Power: %i\n", packet->data.power);
-			// log_printf("Battery: %uV\n", packet->data.battery);
-			// log_printf("Temperature: %i\n", packet->data.temperature);
-			// log_printf("Message Number: %i\n", packet->data.msg_number);
-			// log_printf("Accuracy: %i / %i packets\n\n", sensor->ok_packets, sensor->total_packets);
-
-			// Append Sim Packet
-			// packets[i].device_number, packets[i].temperature, packets[i].battery, total_packets[i], ok_packets[i], packets[i].rssi); }
-			sim_buf[sim_buf_idx++] = packet->data.device_number >> 24;
-			sim_buf[sim_buf_idx++] = packet->data.device_number >> 16;
-			sim_buf[sim_buf_idx++] = packet->data.device_number >> 8;
-			sim_buf[sim_buf_idx++] = packet->data.device_number;
-			sim_buf[sim_buf_idx++] = packet->data.temperature >> 8;
-			sim_buf[sim_buf_idx++] = packet->data.temperature;
-			sim_buf[sim_buf_idx++] = packet->data.battery >> 8;
-			sim_buf[sim_buf_idx++] = packet->data.battery;
-			sim_buf[sim_buf_idx++] = sensor->total_packets >> 24;
-			sim_buf[sim_buf_idx++] = sensor->total_packets >> 16;
-			sim_buf[sim_buf_idx++] = sensor->total_packets >> 8;
-			sim_buf[sim_buf_idx++] = sensor->total_packets;
-			sim_buf[sim_buf_idx++] = sensor->ok_packets >> 24;
-			sim_buf[sim_buf_idx++] = sensor->ok_packets >> 16;
-			sim_buf[sim_buf_idx++] = sensor->ok_packets >> 8;
-			sim_buf[sim_buf_idx++] = sensor->ok_packets;
-			sim_buf[sim_buf_idx++] = packet->rssi >> 8;
-			sim_buf[sim_buf_idx++] = packet->rssi;
+			serial_printf("Device ID: %08x\n", packet->data.device_number);
+			serial_printf("Packet RSSI: %i dbm\n", packet->rssi);
+			serial_printf("Packet SNR: %i dB\n", packet->snr);
+			serial_printf("Power: %i\n", packet->data.power);
+			serial_printf("Battery: %uV\n", packet->data.battery);
+			serial_printf("Temperature: %i\n", packet->data.temperature);
+			serial_printf("Message Number: %i\n", packet->data.msg_number);
 		}
 	}
 }
 
 static void hub2(void)
 {
-	log_printf("Testing Hub 2\n");
+	// log_printf("Testing Hub 2\n");
 
-	// Enable power voltgae checking
-	batt_enable_interrupt();
+	// // Enable power voltgae checking
+	// batt_enable_interrupt();
 
-	// Hub device number
-	uint32_t dev_num = mem_get_dev_num();
+	// // Hub device number
+	// uint32_t dev_num = mem_get_dev_num();
 
-	// Sensors
-	sensor_t *sensor = NULL;
-	num_sensors = 3;
-	sensors[0].dev_num = DEV_NUM_CHIP;
-	sensors[1].dev_num = 0x12345678;
-	sensors[2].dev_num = 0x87654321;
+	// // Sensors
+	// sensor_t *sensor = NULL;
+	// num_sensors = 3;
+	// sensors[0].dev_num = DEV_NUM_CHIP;
+	// sensors[1].dev_num = 0x12345678;
+	// sensors[2].dev_num = 0x87654321;
 
-	// Start listening on rfm
-	rfm_packet_t *packet = NULL;
-	rfm_init();
-	rfm_config_for_lora(RFM_BW_125KHZ, RFM_CODING_RATE_4_5, RFM_SPREADING_FACTOR_128CPS, false, 0);
-	rfm_start_listening();
+	// // Start listening on rfm
+	// rfm_packet_t *packet = NULL;
+	// rfm_init();
+	// rfm_config_for_lora(RFM_BW_125KHZ, RFM_CODING_RATE_4_5, RFM_SPREADING_FACTOR_128CPS, false, 0);
+	// rfm_start_listening();
 
-	// Useful var
-	bool upload_packets = false;
-	uint8_t sim_buf[256];
-	uint8_t sim_buf_idx = 0;
+	// // Useful var
+	// bool upload_packets = false;
+	// uint8_t sim_buf[256];
+	// uint8_t sim_buf_idx = 0;
 
-	log_printf("Ready\n");
+	// log_printf("Ready\n");
 
-	for (;;)
-	{
-		// log_printf("Packets:%u\n", rfm_get_num_packets());
+	// for (;;)
+	// {
+	// 	// log_printf("Packets:%u\n", rfm_get_num_packets());
 
-		// Check for packets and upload if any from sensors
-		if (rfm_get_num_packets() > 0)
-		{
-			log_printf("GetPkts %u\n", rfm_get_num_packets());
+	// 	// Check for packets and upload if any from sensors
+	// 	if (rfm_get_num_packets() > 0)
+	// 	{
+	// 		log_printf("GetPkts %u\n", rfm_get_num_packets());
 
-			upload_packets = false;
-			sim_buf_idx = 0;
+	// 		upload_packets = false;
+	// 		sim_buf_idx = 0;
 
-			// Hub device number and voltage stored first
-			sim_buf[sim_buf_idx++] = dev_num >> 24;
-			sim_buf[sim_buf_idx++] = dev_num >> 16;
-			sim_buf[sim_buf_idx++] = dev_num >> 8;
-			sim_buf[sim_buf_idx++] = dev_num;
+	// 		// Hub device number and voltage stored first
+	// 		sim_buf[sim_buf_idx++] = dev_num >> 24;
+	// 		sim_buf[sim_buf_idx++] = dev_num >> 16;
+	// 		sim_buf[sim_buf_idx++] = dev_num >> 8;
+	// 		sim_buf[sim_buf_idx++] = dev_num;
 
-			sim_buf[sim_buf_idx++] = batt_voltages[PWR_VOLTAGE] >> 8;
-			sim_buf[sim_buf_idx++] = batt_voltages[PWR_VOLTAGE];
+	// 		sim_buf[sim_buf_idx++] = batt_voltages[PWR_VOLTAGE] >> 8;
+	// 		sim_buf[sim_buf_idx++] = batt_voltages[PWR_VOLTAGE];
 
-			while (rfm_get_num_packets())
-			{
-				// log_printf("Pkts %u\n", rfm_get_num_packets());
+	// 		while (rfm_get_num_packets())
+	// 		{
+	// 			// log_printf("Pkts %u\n", rfm_get_num_packets());
 
-				// Get packet, decrypt and organise
-				packet = rfm_get_next_packet();
-				aes_ecb_decrypt(packet->data.buffer);
+	// 			// Get packet, decrypt and organise
+	// 			packet = rfm_get_next_packet();
+	// 			aes_ecb_decrypt(packet->data.buffer);
 
-				// Check CRC
-				if (!packet->crc_ok)
-				{
-					log_printf("CRC Fail\n");
-					log_printf("!Crc\n");
-					flash_led(100, 5);
-					continue;
-				}
-				else
-				{
-					log_printf("CRC OK\n");
-					log_printf("CrcOk\n");
-				}
+	// 			// Check CRC
+	// 			if (!packet->crc_ok)
+	// 			{
+	// 				log_printf("CRC Fail\n");
+	// 				log_printf("!Crc\n");
+	// 				flash_led(100, 5);
+	// 				continue;
+	// 			}
+	// 			else
+	// 			{
+	// 				log_printf("CRC OK\n");
+	// 				log_printf("CrcOk\n");
+	// 			}
 
-				// Get sensor from device number
-				sensor = get_sensor(packet->data.device_number);
+	// 			// Get sensor from device number
+	// 			sensor = get_sensor(packet->data.device_number);
 
-				// Skip if wrong device number
-				if (sensor == NULL)
-				{
-					log_printf("Wrong Dev Num: %08X\n", packet->data.device_number);
-					log_printf("WDN%08X\n", packet->data.device_number);
-					flash_led(100, 3);
-					continue;
-				}
-				else
-				{
-					// Good packet to upload
-					upload_packets = true;
-					flash_led(100, 1);
-					log_printf("PktOk\n", packet->data.device_number);
-				}
+	// 			// Skip if wrong device number
+	// 			if (sensor == NULL)
+	// 			{
+	// 				log_printf("Wrong Dev Num: %08X\n", packet->data.device_number);
+	// 				log_printf("WDN%08X\n", packet->data.device_number);
+	// 				flash_led(100, 3);
+	// 				continue;
+	// 			}
+	// 			else
+	// 			{
+	// 				// Good packet to upload
+	// 				upload_packets = true;
+	// 				flash_led(100, 1);
+	// 				log_printf("PktOk\n", packet->data.device_number);
+	// 			}
 
-				// Initialize sensor if first message received
-				if (!sensor->active)
-				{
-					sensor->msg_num = packet->data.msg_number;
-					sensor->msg_num_start = packet->data.msg_number;
-					sensor->total_packets = 0;
-					sensor->ok_packets = 0;
-					sensor->active = true;
-					log_printf("First message from %u\nNumber: %i\n", sensor->dev_num, sensor->msg_num_start);
-				}
-				// Check if message number is correct
-				else if (++sensor->msg_num != packet->data.msg_number)
-				{
-					log_printf("Missed Message %i\n", sensor->msg_num);
-					// log_printf("Missed Message %i\n", sensor->msg_num);
-					sensor->msg_num = packet->data.msg_number;
-				}
+	// 			// Initialize sensor if first message received
+	// 			if (!sensor->active)
+	// 			{
+	// 				sensor->msg_num = packet->data.msg_number;
+	// 				sensor->msg_num_start = packet->data.msg_number;
+	// 				sensor->total_packets = 0;
+	// 				sensor->ok_packets = 0;
+	// 				sensor->active = true;
+	// 				log_printf("First message from %u\nNumber: %i\n", sensor->dev_num, sensor->msg_num_start);
+	// 			}
+	// 			// Check if message number is correct
+	// 			else if (++sensor->msg_num != packet->data.msg_number)
+	// 			{
+	// 				log_printf("Missed Message %i\n", sensor->msg_num);
+	// 				// log_printf("Missed Message %i\n", sensor->msg_num);
+	// 				sensor->msg_num = packet->data.msg_number;
+	// 			}
 
-				// Update sensor packet info
-				sensor->ok_packets++;
-				sensor->total_packets = 1 + packet->data.msg_number - sensor->msg_num_start;
+	// 			// Update sensor packet info
+	// 			sensor->ok_packets++;
+	// 			sensor->total_packets = 1 + packet->data.msg_number - sensor->msg_num_start;
 
-				// Print packet details
-				// print_packet_details();
-				log_printf("Device ID: %08x\n", packet->data.device_number);
-				log_printf("Packet RSSI: %i dbm\n", packet->rssi);
-				log_printf("Packet SNR: %i dB\n", packet->snr);
-				log_printf("Power: %i\n", packet->data.power);
-				log_printf("Battery: %uV\n", packet->data.battery);
-				log_printf("Temperature: %i\n", packet->data.temperature);
-				log_printf("Message Number: %i\n", packet->data.msg_number);
-				log_printf("Accuracy: %i / %i packets\n\n", sensor->ok_packets, sensor->total_packets);
-				// Log packet details
-				// log_printf("Device ID: %08x\n", packet->data.device_number);
-				// log_printf("Packet RSSI: %i dbm\n", packet->rssi);
-				// log_printf("Packet SNR: %i dB\n", packet->snr);
-				// log_printf("Power: %i\n", packet->data.power);
-				// log_printf("Battery: %uV\n", packet->data.battery);
-				// log_printf("Temperature: %i\n", packet->data.temperature);
-				// log_printf("Message Number: %i\n", packet->data.msg_number);
-				// log_printf("Accuracy: %i / %i packets\n\n", sensor->ok_packets, sensor->total_packets);
+	// 			// Print packet details
+	// 			// print_packet_details();
+	// 			log_printf("Device ID: %08x\n", packet->data.device_number);
+	// 			log_printf("Packet RSSI: %i dbm\n", packet->rssi);
+	// 			log_printf("Packet SNR: %i dB\n", packet->snr);
+	// 			log_printf("Power: %i\n", packet->data.power);
+	// 			log_printf("Battery: %uV\n", packet->data.battery);
+	// 			log_printf("Temperature: %i\n", packet->data.temperature);
+	// 			log_printf("Message Number: %i\n", packet->data.msg_number);
+	// 			log_printf("Accuracy: %i / %i packets\n\n", sensor->ok_packets, sensor->total_packets);
+	// 			// Log packet details
+	// 			// log_printf("Device ID: %08x\n", packet->data.device_number);
+	// 			// log_printf("Packet RSSI: %i dbm\n", packet->rssi);
+	// 			// log_printf("Packet SNR: %i dB\n", packet->snr);
+	// 			// log_printf("Power: %i\n", packet->data.power);
+	// 			// log_printf("Battery: %uV\n", packet->data.battery);
+	// 			// log_printf("Temperature: %i\n", packet->data.temperature);
+	// 			// log_printf("Message Number: %i\n", packet->data.msg_number);
+	// 			// log_printf("Accuracy: %i / %i packets\n\n", sensor->ok_packets, sensor->total_packets);
 
-				// Append Sim Packet
-				// packets[i].device_number, packets[i].temperature, packets[i].battery, total_packets[i], ok_packets[i], packets[i].rssi); }
-				sim_buf[sim_buf_idx++] = packet->data.device_number >> 24;
-				sim_buf[sim_buf_idx++] = packet->data.device_number >> 16;
-				sim_buf[sim_buf_idx++] = packet->data.device_number >> 8;
-				sim_buf[sim_buf_idx++] = packet->data.device_number;
-				sim_buf[sim_buf_idx++] = packet->data.temperature >> 8;
-				sim_buf[sim_buf_idx++] = packet->data.temperature;
-				sim_buf[sim_buf_idx++] = packet->data.battery >> 8;
-				sim_buf[sim_buf_idx++] = packet->data.battery;
-				sim_buf[sim_buf_idx++] = sensor->total_packets >> 24;
-				sim_buf[sim_buf_idx++] = sensor->total_packets >> 16;
-				sim_buf[sim_buf_idx++] = sensor->total_packets >> 8;
-				sim_buf[sim_buf_idx++] = sensor->total_packets;
-				sim_buf[sim_buf_idx++] = sensor->ok_packets >> 24;
-				sim_buf[sim_buf_idx++] = sensor->ok_packets >> 16;
-				sim_buf[sim_buf_idx++] = sensor->ok_packets >> 8;
-				sim_buf[sim_buf_idx++] = sensor->ok_packets;
-				sim_buf[sim_buf_idx++] = packet->rssi >> 8;
-				sim_buf[sim_buf_idx++] = packet->rssi;
-			}
-		}
+	// 			// Append Sim Packet
+	// 			// packets[i].device_number, packets[i].temperature, packets[i].battery, total_packets[i], ok_packets[i], packets[i].rssi); }
+	// 			sim_buf[sim_buf_idx++] = packet->data.device_number >> 24;
+	// 			sim_buf[sim_buf_idx++] = packet->data.device_number >> 16;
+	// 			sim_buf[sim_buf_idx++] = packet->data.device_number >> 8;
+	// 			sim_buf[sim_buf_idx++] = packet->data.device_number;
+	// 			sim_buf[sim_buf_idx++] = packet->data.temperature >> 8;
+	// 			sim_buf[sim_buf_idx++] = packet->data.temperature;
+	// 			sim_buf[sim_buf_idx++] = packet->data.battery >> 8;
+	// 			sim_buf[sim_buf_idx++] = packet->data.battery;
+	// 			sim_buf[sim_buf_idx++] = sensor->total_packets >> 24;
+	// 			sim_buf[sim_buf_idx++] = sensor->total_packets >> 16;
+	// 			sim_buf[sim_buf_idx++] = sensor->total_packets >> 8;
+	// 			sim_buf[sim_buf_idx++] = sensor->total_packets;
+	// 			sim_buf[sim_buf_idx++] = sensor->ok_packets >> 24;
+	// 			sim_buf[sim_buf_idx++] = sensor->ok_packets >> 16;
+	// 			sim_buf[sim_buf_idx++] = sensor->ok_packets >> 8;
+	// 			sim_buf[sim_buf_idx++] = sensor->ok_packets;
+	// 			sim_buf[sim_buf_idx++] = packet->rssi >> 8;
+	// 			sim_buf[sim_buf_idx++] = packet->rssi;
+	// 		}
+	// 	}
 
-		// Upload to server	if good packets
-		if (upload_packets)
-		{
-			log_printf("Uploading\n");
-			log_printf("SimUp\n");
-			sim_init();
-			log_printf("SimInit\n");
-			sim_register_to_network();
-			log_printf("SimCnt\n");
-			sim_send_data(sim_buf, sim_buf_idx);
-			log_printf("SimDone\n\n");
-			sim_end();
+	// 	// Upload to server	if good packets
+	// 	if (upload_packets)
+	// 	{
+	// 		log_printf("Uploading\n");
+	// 		log_printf("SimUp\n");
+	// 		sim_init();
+	// 		log_printf("SimInit\n");
+	// 		sim_register_to_network();
+	// 		log_printf("SimCnt\n");
+	// 		sim_send_data(sim_buf, sim_buf_idx);
+	// 		log_printf("SimDone\n\n");
+	// 		sim_end();
 
-			upload_packets = false;
-		}
+	// 		upload_packets = false;
+	// 	}
 
-		// Redownload hub info if reset sequence (plug out for between 1 -10s)
-		if (batt_rst_seq)
-		{
-			batt_rst_seq = false;
-			hub_download_info();
-			log_printf("BattRst\n");
-		}
+	// 	// Redownload hub info if reset sequence (plug out for between 1 -10s)
+	// 	if (batt_rst_seq)
+	// 	{
+	// 		batt_rst_seq = false;
+	// 		hub_download_info();
+	// 		log_printf("BattRst\n");
+	// 	}
 
-		timers_delay_milliseconds(1);
-	}
+	// 	timers_delay_milliseconds(1);
+	// }
 }
 
 static void hub_download_info(void)

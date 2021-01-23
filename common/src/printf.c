@@ -191,7 +191,7 @@ uint32_t fnprintf(out_fct_type out, const char *format, va_list va)
             }
             else
             {
-                idx += _ntoa_format(out, va_arg(va, int), base, width, false);
+                idx += _ntoa_format(out, (uint32_t)va_arg(va, int), base, width, false);
             }
             format++;
             break;
@@ -223,7 +223,7 @@ uint32_t fnprintf(out_fct_type out, const char *format, va_list va)
         case 'p':
         {
             width = sizeof(void *) * 2U;
-            idx += _ntoa_format(out, (int32_t)((uintptr_t)va_arg(va, void *)), 16U, width, false);
+            idx += _ntoa_format(out, (uint32_t)((uintptr_t)va_arg(va, void *)), 16U, width, false);
             format++;
             break;
         }

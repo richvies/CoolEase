@@ -18,6 +18,7 @@
 #include <stdbool.h>
 
 #include <libopencm3/stm32/rcc.h>
+#include <libopencm3/stm32/rtc.h>
 #include <libopencm3/stm32/flash.h>
 #include <libopencm3/stm32/gpio.h>
 #include <libopencm3/stm32/flash.h>
@@ -614,6 +615,52 @@ void test_rfm(void)
 // Timer tests
 /*////////////////////////////////////////////////////////////////////////////*/
 
+void test_rtc(void)
+{
+	test_init("test_rtc()");
+	timers_rtc_init();
+	timers_delay_milliseconds(3000);
+	PRINT_REG(RTC_TR);
+	PRINT_REG(RTC_DR);
+	// timers_rtc_set_time(30, 40, 8, 24, 6, 94);
+
+	uint8_t i = 1;
+
+	for (;;)
+	{
+		timers_rtc_set_time(30, 40, 8, ((i * 4) % 30), 6, 94);
+		PRINT_REG(RTC_TR);
+		PRINT_REG(RTC_DR);
+		timers_delay_milliseconds(3000);
+		PRINT_REG(RTC_TR);
+		PRINT_REG(RTC_DR);
+
+		i++;
+
+		serial_printf("\n\n");
+	}
+}
+
+void test_rtc_wakeup(void)
+{
+	test_init("test_rtc_wakeup()");
+
+	timers_rtc_init();
+	timers_rtc_set_time(1, 1, 1, 1, 1, 1);
+	timers_set_wakeup_time(5);
+
+	for (;;)
+	{
+		while (!(RTC_ISR & RTC_ISR_WUTF))
+		{
+		}
+
+		timers_clear_wakeup_flag();
+		
+		serial_printf("Wakeup\n");
+	}
+}
+
 void test_lptim(void)
 {
 	test_init("test_lptim()");
@@ -711,7 +758,10 @@ void test_standby(uint32_t standby_time)
 
 	serial_printf("%i seconds\n", standby_time);
 
-	timers_rtc_init(standby_time);
+	timers_rtc_init();
+	timers_rtc_set_time(1, 1, 1, 1, 1, 1);
+	timers_set_wakeup_time(standby_time);
+	timers_enable_wut_interrupt();
 
 	rfm_init();
 	rfm_end();
@@ -820,7 +870,6 @@ void test_batt_interrupt(void)
 		timers_delay_milliseconds(1000);
 	}
 }
-
 
 /*////////////////////////////////////////////////////////////////////////////*/
 // Other tests

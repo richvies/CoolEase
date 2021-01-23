@@ -59,6 +59,7 @@ static bool download_and_program_bin(const char *url, uint8_t num_attempts);
 int main(void)
 {
 	// Stop unused warnings
+	(void)test;
 	(void)download_and_program_bin;
 
 	init();

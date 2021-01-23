@@ -301,7 +301,6 @@ void test_receiver(uint32_t dev_num)
 		else
 		{
 			sensor->msg_num = packet->data.msg_number;
-			sensor->msg_num_start = packet->data.msg_number;
 			serial_printf("First Message Number: %i %i\n", packet->data.msg_number, sensor->msg_num);
 			recv = true;
 		}

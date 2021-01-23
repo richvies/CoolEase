@@ -85,6 +85,9 @@ void test_rfm(void);
 // Timer tests
 /*////////////////////////////////////////////////////////////////////////////*/
 
+void test_rtc(void);
+void test_rtc_wakeup(void);
+
 void test_tim6(void);
 
 void test_micros(void);

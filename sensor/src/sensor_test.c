@@ -109,8 +109,9 @@ void test_sensor(uint32_t dev_num)
 
 	// uint16_t start = timers_millis();
 
-	// Set wakeup every 2 minutes
-	timers_rtc_init(2);
+	timers_rtc_init();
+	timers_set_wakeup_time(5);
+	timers_enable_wut_interrupt();
 
 	// Read temperature
 	uint8_t num_readings = 4;
@@ -193,6 +194,7 @@ void test_sensor(uint32_t dev_num)
 	// log_printf("Time: %u\n",(uint16_t)(end - start));
 
 	// Go back to sleep
+	set_gpio_for_standby();
 	timers_enter_standby();
 }
 
@@ -257,7 +259,10 @@ void test_sensor_rf_vs_temp_cal(void)
 	// Enter Standby for 30 seconds
 	// Resets in RTC ISR
 	/*////////////////////////*/
-	timers_rtc_init(30);
+	timers_rtc_init();
+	timers_set_wakeup_time(30);
+	timers_enable_wut_interrupt();
+	set_gpio_for_standby();
 	timers_enter_standby();
 }
 
@@ -278,7 +283,9 @@ void test_sensor_standby(uint32_t standby_time)
 	tmp112_end();
 
 	// log_printf("Entering Standby\n");
-	timers_rtc_init(standby_time);
+	timers_rtc_init();
+	timers_set_wakeup_time(standby_time);
+	timers_enable_wut_interrupt();
 	set_gpio_for_standby();
 	timers_enter_standby();
 }
