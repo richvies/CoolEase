@@ -74,9 +74,10 @@ static void send_packet(void);
 int main(void)
 {
 	// Stop unused warnings
-	(void)init;
-	(void)print_aes_key;
 	(void)test;
+	(void)sensor;
+
+	init();
 
 	// test();
 	sensor();
@@ -147,13 +148,25 @@ void set_gpio_for_standby(void)
 // Static Function Definitions
 /*////////////////////////////////////////////////////////////////////////////*/
 
+static void init(void)
+{
+	clock_setup_msi_2mhz();
+	timers_lptim_init();
+    log_init();
+	aes_init(dev_info->aes_key);
+	batt_init();
+
+	print_aes_key(dev_info);
+	
+	// flash_led(100, 5);
+    log_printf("Sensor Start\n");
+	(void)flash_led_failsafe;
+}
+
 static void sensor(void)
 {	
-	init();
 	serial_printf("Device: %8x\n", dev_info->dev_num);
 	send_packet();
-
-	// print_aes_key();
 
 	timers_rtc_init();
 	timers_set_wakeup_time(SENSOR_SLEEP_TIME);
@@ -169,8 +182,6 @@ static void sensor(void)
 
 static void test(void)
 {
-	init();
-
 	// timers_measure_lsi_freq();
 	
 	// serial_printf("Dev Info Location: %8x %8x %8x\n", EEPROM_DEV_INFO_BASE, &dev_info->aes_key[0], dev_info->aes_key);
@@ -213,19 +224,6 @@ static void test(void)
 	// test_log();
 }
 
-static void init(void)
-{
-	clock_setup_msi_2mhz();
-	timers_lptim_init();
-	for(int i = 0; i < 100000; i++){__asm__("nop");};
-    log_init();
-	aes_init(dev_info->aes_key);
-	batt_init();
-	
-	flash_led(100, 5);
-    log_printf("Sensor Start\n");
-	(void)flash_led_failsafe;
-}
 
 static void flash_led_failsafe(void)
 {
@@ -308,7 +306,6 @@ void rtc_isr(void)
         pwr_disable_backup_domain_write_protect();
         rtc_unlock();
 	    rtc_clear_wakeup_flag();
-        pwr_clear_wakeup_flag();
         pwr_clear_standby_flag();
         rtc_lock();
 	    pwr_enable_backup_domain_write_protect();

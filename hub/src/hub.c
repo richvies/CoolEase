@@ -12,10 +12,13 @@
 // Includes
 /*////////////////////////////////////////////////////////////////////////////*/
 
+#include "hub/hub.h"
+
 #include <stdio.h>
 
 #include "libopencm3/cm3/nvic.h"
 #include "libopencm3/stm32/syscfg.h"
+#include "libopencm3/stm32/rtc.h"
 
 #include "common/aes.h"
 #include "common/battery.h"
@@ -32,11 +35,13 @@
 #include "hub/cusb.h"
 #include "hub/sim.h"
 
+// TODO
+// Http post with ssl, logging
+// Pass version to bootloader
+
 /** @addtogroup HUB_FILE 
  * @{
  */
-
-#include "hub/hub.h"
 
 /** @addtogroup HUB_INT 
  * @{
@@ -59,7 +64,9 @@ static void test(void);
 static void hub(void);
 static void hub2(void);
 static void hub_download_info(void);
+
 static void check_for_packets(void);
+static void upload_log_and_check_version(void);
 
 /** @} */
 
@@ -81,9 +88,9 @@ int main(void)
 
 	init();
 
-	test();
+	// test();
 
-	// hub();
+	hub();
 
 	// test_hub2();
 
@@ -184,7 +191,7 @@ static void init(void)
 static void test(void)
 {
 	// test_sim_get_request();
-	// test_revceiver_basic();
+	test_revceiver_basic();
 	// test_standby(5);
 	// test_lptim();
 	// test_micros();
@@ -192,11 +199,13 @@ static void test(void)
 	// test_batt_update_voltages();
 	// test_batt_interrupt();
 	// test_rtc();
-	test_rtc_wakeup();
+	// test_rtc_wakeup();
 }
 
 static void hub(void)
 {
+	upload_log_and_check_version();
+
 	/* Initial setup */
 	// Watchdog
 
@@ -221,9 +230,12 @@ static void hub(void)
 	rfm_config_for_lora(RFM_BW_125KHZ, RFM_CODING_RATE_4_5, RFM_SPREADING_FACTOR_128CPS, false, 0);
 	rfm_start_listening();
 
-	// Init rtc
-	timers_rtc_init();
 	// Get timestamp from sim
+
+	// Init rtc, one hour wakeup flag for logging & checking software
+	timers_rtc_init();
+	timers_set_wakeup_time(3600);
+	timers_disable_wut_interrupt();
 
 	for (;;)
 	{
@@ -254,9 +266,14 @@ static void hub(void)
 
 		// Everyday check hour for new software
 		// RTC Alarm
-		// Upload log
-		// Check if new version every hour
-		// Set bootloader state
+		if (RTC_ISR & RTC_ISR_WUTF)
+		{
+			// Upload log
+			// Check if new version every hour
+			upload_log_and_check_version();
+
+			// Set bootloader state
+		}
 	}
 }
 
@@ -264,7 +281,7 @@ static void check_for_packets(void)
 {
 	if (rfm_get_num_packets() > 0)
 	{
-		log_printf("RFM: Get packets %u\n", rfm_get_num_packets());
+		log_printf("RFM: %u Pkts\n", rfm_get_num_packets());
 
 		while (rfm_get_num_packets())
 		{
@@ -272,24 +289,13 @@ static void check_for_packets(void)
 			rfm_packet_t *packet = rfm_get_next_packet();
 			aes_ecb_decrypt(packet->data.buffer);
 
-			// Check CRC
-			if (!packet->crc_ok)
-			{
-				log_printf("CRC Fail\n");
-				continue;
-			}
-			else
-			{
-				log_printf("CRC OK\n");
-			}
-
 			// Get sensor from device number
 			sensor_t *sensor = get_sensor(packet->data.device_number);
 
 			// Skip if wrong device number
 			if (sensor == NULL)
 			{
-				log_printf("Wrong Dev Num: %08X\n", packet->data.device_number);
+				log_printf("Wrong # : %08X\n", packet->data.device_number);
 				continue;
 			}
 			else
@@ -319,6 +325,34 @@ static void check_for_packets(void)
 			serial_printf("Message Number: %i\n", packet->data.msg_number);
 		}
 	}
+}
+
+static void upload_log_and_check_version(void)
+{
+	sim_init();
+	sim_set_full_function();
+	sim_register_to_network();
+
+	// Check Version
+	uint32_t file_size = sim_http_get("http://cooleasetest.000webhostapp.com/version.php");
+
+	if (file_size)
+	{
+		uint8_t num_bytes = sim_http_read_response(0, file_size);
+		uint16_t version = 0;
+
+		// SIM800 now returns that number of bytes
+		for (uint8_t i = 0; i < num_bytes; i++)
+		{
+			while (!sim_available())
+			{
+			}
+			version = (version * 10) + (uint8_t)(sim_read() - '0');
+		}
+		serial_printf("Online Version: %u\n", version);
+	}
+
+	sim_end();
 }
 
 static void hub2(void)

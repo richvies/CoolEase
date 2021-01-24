@@ -180,7 +180,7 @@ bool sim_init(void)
 	usart_enable_rx_interrupt(SIM_USART);
 	// usart_enable_tx_interrupt(SIM_USART);
 	nvic_enable_irq(SIM_USART_NVIC);
-	nvic_set_priority(SIM_USART_NVIC, 0);
+	nvic_set_priority(SIM_USART_NVIC, 0x40);
 
 	// Reset SIM800
 	gpio_mode_setup(SIM_RESET_PORT, GPIO_MODE_OUTPUT, GPIO_PUPD_NONE, SIM_RESET);
@@ -188,7 +188,6 @@ bool sim_init(void)
 	gpio_clear(SIM_RESET_PORT, SIM_RESET);
 	timers_delay_milliseconds(500);
 	gpio_set(SIM_RESET_PORT, SIM_RESET);
-	timers_delay_milliseconds(5000);
 
 	// Init RX, TX & Reply Buffers
 	sim_rx_head = sim_rx_tail = sim_tx_head = sim_tx_tail = 0;
@@ -196,7 +195,7 @@ bool sim_init(void)
 
 	// Wait for autobaud and disable command echo
 	bool result = false;
-	if (!try_autobaud(10))
+	if (!try_autobaud(100))
 	{
 		log_error(ERR_SIM_INIT_NO_RESPONSE);
 	}
@@ -263,6 +262,7 @@ bool sim_end(void)
 
 	if (!sim_printf_and_check_response(5000, "OK", "AT+CFUN=0\r\n"))
 	{
+		serial_printf("ATCFUN0\n");
 		log_error(ERR_SIM_CFUN_0);
 	}
 	else if (!sim_printf_and_check_response(5000, "OK", "AT+CSCLK=1\r\n"))
@@ -275,6 +275,8 @@ bool sim_end(void)
 		registration_status = NONE;
 		result = true;
 	}
+
+	serial_printf("0\n");
 
 	usart_disable(SIM_USART);
 	rcc_periph_clock_disable(SIM_USART_RCC);
@@ -299,8 +301,6 @@ void sim_printf(const char *format, ...)
 
 bool sim_printf_and_check_response(uint32_t timeout_ms, const char *expected_response, const char *format, ...)
 {
-	timers_delay_milliseconds(1000);
-
 	// Clear receive buffer first
 	sim_rx_tail = sim_rx_head;
 
@@ -462,11 +462,11 @@ uint32_t sim_http_get(const char *url_str)
 		else
 		{
 			http_state = HTTP_TERM;
-		}	
+		}
 	}
 
 	http_state = HTTP_INIT;
-	
+
 	if (!sim_printf_and_check_response(1000, "OK", "AT+SAPBR=3,1,\"APN\",\"data.rewicom.net\"\r\n"))
 	{
 		log_error(ERR_SIM_SAPBR_CONFIG);
@@ -500,11 +500,24 @@ uint32_t sim_http_get(const char *url_str)
 	// All good, get length of response
 	else
 	{
-		if (_is_digit(last_reply[19]))
+		// Status code
+		char *ptr = &last_reply[15];
+		uint16_t status_code = _atoi((const char **)&ptr);
+
+		if (status_code == 200)
 		{
-			char *ptr = &last_reply[19];
-			file_size = _atoi((const char **)&ptr);
+			// Response length
+			if (_is_digit(last_reply[19]))
+			{
+				ptr = &last_reply[19];
+				file_size = _atoi((const char **)&ptr);
+			}
 		}
+		else
+		{
+			log_printf("HTTP Stat: %u\n", status_code);
+		}
+
 		if (!sim_printf_and_check_response(60000, "OK", "AT+SAPBR=0,1\r\n"))
 		{
 			log_error(ERR_SIM_SAPBR_DISCONNECT);
@@ -813,6 +826,11 @@ void usart2_isr(void)
 		{
 			usart_send(SIM_USART, sim_tx_buf[sim_tx_tail]);
 			sim_tx_tail = (sim_tx_tail + 1) % SIM_BUFFER_SIZE;
+		}
+		// Otherwise tranfer is done, disable interrupt (prevent irq firing constantly waiting for TX Data Reg to be filled)
+		else
+		{
+			usart_disable_tx_interrupt(SIM_USART);
 		}
 	}
 }
