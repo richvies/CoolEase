@@ -18,6 +18,7 @@ typedef struct
 	uint8_t aes_key[16];
 	uint32_t dev_num;
 	uint32_t init_key;
+	uint32_t version;
 } dev_info_t;
 
 

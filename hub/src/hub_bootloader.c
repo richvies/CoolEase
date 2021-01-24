@@ -163,7 +163,7 @@ static bool download_and_program_bin(const char *url, uint8_t num_attempts)
 					{
 						while (!sim_available())
 						{
-						};
+						}
 						half_page.buf8[i] = (uint8_t)sim_read();
 					}
 

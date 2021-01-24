@@ -25,6 +25,9 @@
 #include "common/test.h"
 #include "common/timers.h"
 
+// Problems
+// LPTIM counter update using lptim_irq means it must have higher priority than every other irq otherwise calls to delay_ inside an irq will hang
+
 static uint16_t timeout_timer = 0;
 static uint32_t timeout_counter = 0;
 static uint32_t micros_counter = 0;
@@ -163,7 +166,8 @@ void timers_enable_wut_interrupt(void)
     exti_set_trigger(EXTI20, EXTI_TRIGGER_RISING);
     exti_enable_request(EXTI20);
 
-    nvic_clear_pending_irq(NVIC_RTC_IRQ);
+    nvic_clear_pending_irq(NVIC_RTC_IRQ); 
+    nvic_set_priority(NVIC_RTC_IRQ, 0x40);
     nvic_enable_irq(NVIC_RTC_IRQ);
 }
 
@@ -270,7 +274,7 @@ void timers_lptim_init(void)
 
     // Enable lptim interrupt through exti29 - updates millis counter
     nvic_enable_irq(NVIC_LPTIM1_IRQ);
-    nvic_set_priority(NVIC_LPTIM1_IRQ, 0);
+    nvic_set_priority(NVIC_LPTIM1_IRQ, 0x00);
     exti_reset_request(EXTI29);
     exti_enable_request(EXTI29);
     exti_set_trigger(EXTI29, EXTI_TRIGGER_RISING);
@@ -302,7 +306,10 @@ void timers_delay_milliseconds(uint32_t delay_milliseconds)
     uint32_t curr_time = timers_millis();
 
     while ((timers_millis() - curr_time) < delay_milliseconds)
-        ;
+    {
+        // serial_printf("%u\n", timers_micros());
+        // serial_printf("%u\n\n", timers_millis());
+    }
 }
 
 void timers_tim6_init(void)

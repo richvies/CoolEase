@@ -234,7 +234,7 @@ void test_revceiver_basic(void)
 
 			if(packet->data.device_number != 1)
 			{
-				serial_printf("Wrong Dev Num\n");
+				serial_printf("Wrong Dev Num %u\n", packet->data.device_number);
 			}
 			else
 			{
@@ -244,7 +244,7 @@ void test_revceiver_basic(void)
 				serial_printf("Packet RSSI: %i dbm\n", packet->rssi);
 				serial_printf("Packet SNR: %i dB\n", packet->snr);
 			}
-			// serial_printf("\n");
+			serial_printf("\n");
 		}
 	}
 }

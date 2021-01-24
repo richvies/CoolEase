@@ -33,6 +33,7 @@
 #include <stdbool.h>
 #include <stddef.h>
 
+#include "common/board_defs.h"
 #include "common/log.h"
 #include "common/memory.h"
 

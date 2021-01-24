@@ -436,7 +436,7 @@ void cusb_init(void)
 
         // Enable NVIC interrupt (through EXTI18 which is enabled on reset)
         nvic_enable_irq(NVIC_USB_IRQ);
-        nvic_set_priority(NVIC_USB_IRQ, 0);
+        nvic_set_priority(NVIC_USB_IRQ, 0x40);
     }
 }
 

@@ -296,7 +296,7 @@ void batt_enable_interrupt(void)
 
     // Enable interrupt. Low priority
     nvic_enable_irq(NVIC_DMA1_CHANNEL1_IRQ);
-    nvic_set_priority(NVIC_DMA1_CHANNEL1_IRQ, 0x10);
+    nvic_set_priority(NVIC_DMA1_CHANNEL1_IRQ, 0x40);
 
     // Start conversions
     adc_start_conversion_regular(ADC1);
