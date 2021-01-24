@@ -303,6 +303,7 @@ extern "C" {
 typedef struct rfm_packet_s
 {
     #define RFM_PACKET_LENGTH 16
+    #define RFM_TX_TIMEOUT 100000
 
     // Data Buffer
     union {
