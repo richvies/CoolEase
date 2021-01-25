@@ -72,11 +72,11 @@ void timers_rtc_init(void)
     // Check if rtc already initialized
     if (RTC_ISR & RTC_ISR_INITS)
     {
-        serial_printf("Init\n");
+        serial_printf("RTC: Init\n");
     }
     else
     {
-        serial_printf("No init\n");
+        serial_printf("RTC: Not init\n");
 
         // Set RTC initialization mode
         RTC_ISR |= RTC_ISR_INIT;
@@ -167,7 +167,7 @@ void timers_enable_wut_interrupt(void)
     exti_enable_request(EXTI20);
 
     nvic_clear_pending_irq(NVIC_RTC_IRQ); 
-    nvic_set_priority(NVIC_RTC_IRQ, 0x40);
+    nvic_set_priority(NVIC_RTC_IRQ, IRQ_PRIORITY_RTC);
     nvic_enable_irq(NVIC_RTC_IRQ);
 }
 
@@ -274,7 +274,7 @@ void timers_lptim_init(void)
 
     // Enable lptim interrupt through exti29 - updates millis counter
     nvic_enable_irq(NVIC_LPTIM1_IRQ);
-    nvic_set_priority(NVIC_LPTIM1_IRQ, 0x00);
+    nvic_set_priority(NVIC_LPTIM1_IRQ, IRQ_PRIORITY_LPTIM);
     exti_reset_request(EXTI29);
     exti_enable_request(EXTI29);
     exti_set_trigger(EXTI29, EXTI_TRIGGER_RISING);
@@ -298,7 +298,8 @@ void timers_delay_microseconds(uint32_t delay_microseconds)
     uint32_t curr_time = timers_micros();
 
     while ((timers_micros() - curr_time) < delay_microseconds)
-        ;
+    {
+    }
 }
 
 void timers_delay_milliseconds(uint32_t delay_milliseconds)

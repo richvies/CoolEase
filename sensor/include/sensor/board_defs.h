@@ -1,3 +1,9 @@
+// Interrupt Priorities
+#define IRQ_PRIORITY_LPTIM	0x00
+#define IRQ_PRIORITY_RFM	0x40
+#define IRQ_PRIORITY_RTC  	0xC0
+#define IRQ_PRIORITY_BATT 	0xF0
+
 // Battery Voltage
 #define BATT_SENS_PORT GPIOA
 #define BATT_SENS GPIO0

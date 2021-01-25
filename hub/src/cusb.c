@@ -32,6 +32,7 @@
 #include <libopencm3/usb/hid.h>
 
 #include "common/log.h"
+#include "common/board_defs.h"
 #include "common/memory.h"
 #include "common/bootloader_utils.h"
 
@@ -436,7 +437,7 @@ void cusb_init(void)
 
         // Enable NVIC interrupt (through EXTI18 which is enabled on reset)
         nvic_enable_irq(NVIC_USB_IRQ);
-        nvic_set_priority(NVIC_USB_IRQ, 0x40);
+        nvic_set_priority(NVIC_USB_IRQ, IRQ_PRIORITY_USB);
     }
 }
 

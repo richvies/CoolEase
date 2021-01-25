@@ -45,7 +45,7 @@
 // 		exti_enable_request(EXTI2);
     	
 // 		nvic_enable_irq(NVIC_EXTI2_3_IRQ);
-//     	nvic_set_priority(NVIC_EXTI2_3_IRQ, 0);
+//     	nvic_set_priority(NVIC_EXTI2_3_IRQ, IRQ_PRIORITY_RFM);
 // 	}
 // 	else
 // 	{
@@ -53,7 +53,7 @@
 // 		timer_enable_irq(TIM2, TIM_DIER_UIE);
 		
 // 		nvic_enable_irq(NVIC_TIM2_IRQ);
-// 		nvic_set_priority(NVIC_TIM2_IRQ, 0);
+// 		nvic_set_priority(NVIC_TIM2_IRQ, IRQ_PRIORITY_RFM);
 // 	}
 	
 // }

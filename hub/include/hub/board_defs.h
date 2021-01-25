@@ -1,5 +1,14 @@
 #include <libopencm3/stm32/rcc.h>
 
+// Interrupt Priorities
+#define IRQ_PRIORITY_LPTIM	0x00
+#define IRQ_PRIORITY_RFM	0x40
+#define IRQ_PRIORITY_SIM	0x80
+#define IRQ_PRIORITY_USB	0xC0
+#define IRQ_PRIORITY_RTC  	0xC0
+#define IRQ_PRIORITY_BATT 	0xF0
+
+
 // Sensor Struct
 #define MAX_SENSORS 20
 

@@ -342,7 +342,7 @@ void rfm_start_listening(void)
   exti_enable_request(RFM_IO_0_EXTI);
 
   nvic_enable_irq(RFM_IO_0_NVIC);
-  nvic_set_priority(RFM_IO_0_NVIC, 0x40);
+  nvic_set_priority(RFM_IO_0_NVIC, IRQ_PRIORITY_RFM);
 
   // Start listening
   set_rx_mode();
@@ -739,6 +739,7 @@ void exti4_15_isr(void)
 
   // Check CRC and discard if bad
   uint8_t flags = get_irq();
+  // serial_printf("RFM: F %8b\n", flags);
   clear_irq(RFM_IRQ_ALL);
 
   if (flags & RFM_IRQ_PAYLOAD_CRC_ERROR)
