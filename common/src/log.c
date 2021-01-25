@@ -111,16 +111,11 @@ void log_printf(const char *format, ...)
 
 	// Update write location
 	mem_eeprom_write_byte((uint32_t)&log_file->idx, write_index);
-
-    // Wait for uart to finish if serial print is used
-    #ifdef DEBUG
-    while(!usart_get_flag(SPF_USART, USART_ISR_TC)) {}
-    #endif
 }
 
 void log_error(uint16_t error)
 {
-	log_printf("Error %4x\n", error);
+	log_printf("LError %4x\n", error);
 }
 
 void serial_printf(const char *format, ...)
@@ -132,7 +127,6 @@ void serial_printf(const char *format, ...)
   	va_end(va);
 
     // Wait for uart to finish if serial print is used
-    while(!usart_get_flag(SPF_USART, USART_ISR_TC)) {}
     #endif
 }
 
