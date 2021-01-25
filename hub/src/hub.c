@@ -43,6 +43,8 @@
  * @{
  */
 
+#define HUB_CHECK_TIME 3600
+
 /** @addtogroup HUB_INT 
  * @{
  */
@@ -190,8 +192,10 @@ static void init(void)
 
 static void test(void)
 {
+	// test_sim_serial_passtrhough();
+	// test_sim_end();
 	// test_sim_get_request();
-	test_revceiver_basic();
+	// test_revceiver_basic();
 	// test_standby(5);
 	// test_lptim();
 	// test_micros();
@@ -200,12 +204,17 @@ static void test(void)
 	// test_batt_interrupt();
 	// test_rtc();
 	// test_rtc_wakeup();
+
+	for (;;)
+	{
+		upload_log_and_check_version();
+		timers_delay_milliseconds(20000);
+	}
+	
 }
 
 static void hub(void)
 {
-	upload_log_and_check_version();
-
 	/* Initial setup */
 	// Watchdog
 
@@ -217,24 +226,27 @@ static void hub(void)
 	// Check if first time running
 	if (dev_info->init_key != INIT_KEY)
 	{
+		serial_printf("Dev Info: First Power On\n");
+
 		mem_eeprom_write_word((uint32_t)&dev_info->init_key, INIT_KEY);
 		// Sensor init - IDs, active or not,
 	}
 
 	// Sensors to listen for
-	sensors[0].dev_num = 0x00000001;
-	num_sensors = 1;
+	sensors[num_sensors++].dev_num = 0x00000001;
 
 	// Start listening on rfm
 	rfm_init();
-	rfm_config_for_lora(RFM_BW_125KHZ, RFM_CODING_RATE_4_5, RFM_SPREADING_FACTOR_128CPS, false, 0);
+	rfm_config_for_lora(RFM_BW_125KHZ, RFM_CODING_RATE_4_5, RFM_SPREADING_FACTOR_128CPS, true, 0);
 	rfm_start_listening();
 
 	// Get timestamp from sim
+	sim_init();
+	sim_end();
 
 	// Init rtc, one hour wakeup flag for logging & checking software
 	timers_rtc_init();
-	timers_set_wakeup_time(3600);
+	timers_set_wakeup_time(HUB_CHECK_TIME);
 	timers_disable_wut_interrupt();
 
 	for (;;)
@@ -258,16 +270,22 @@ static void hub(void)
 		}
 		if (upload)
 		{
-			sim_init();
-			sim_set_full_function();
-			sim_register_to_network();
-			sim_end();
+			serial_printf("Upload\n");
+
+			// sim_init();
+			// sim_set_full_function();
+			// sim_register_to_network();
+			// sim_end();
 		}
 
 		// Everyday check hour for new software
 		// RTC Alarm
 		if (RTC_ISR & RTC_ISR_WUTF)
 		{
+			serial_printf("RTC Wakeup\n");
+
+			timers_clear_wakeup_flag();
+
 			// Upload log
 			// Check if new version every hour
 			upload_log_and_check_version();
@@ -329,11 +347,12 @@ static void check_for_packets(void)
 
 static void upload_log_and_check_version(void)
 {
+	log_printf("Update Hub Info\n");
+
 	sim_init();
-	sim_set_full_function();
 	sim_register_to_network();
 
-	// Check Version
+	// Upload Log
 	uint32_t file_size = sim_http_get("http://cooleasetest.000webhostapp.com/version.php");
 
 	if (file_size)
@@ -347,10 +366,32 @@ static void upload_log_and_check_version(void)
 			while (!sim_available())
 			{
 			}
+			// ASCII to char
 			version = (version * 10) + (uint8_t)(sim_read() - '0');
 		}
 		serial_printf("Online Version: %u\n", version);
 	}
+
+	sim_http_term();
+
+	// // Check Version
+	// uint32_t file_size = sim_http_get("http://cooleasetest.000webhostapp.com/version.php");
+
+	// if (file_size)
+	// {
+	// 	uint8_t num_bytes = sim_http_read_response(0, file_size);
+	// 	uint16_t version = 0;
+
+	// 	// SIM800 now returns that number of bytes
+	// 	for (uint8_t i = 0; i < num_bytes; i++)
+	// 	{
+	// 		while (!sim_available())
+	// 		{
+	// 		}
+	// 		version = (version * 10) + (uint8_t)(sim_read() - '0');
+	// 	}
+	// 	serial_printf("Online Version: %u\n", version);
+	// }
 
 	sim_end();
 }
@@ -375,7 +416,7 @@ static void hub2(void)
 	// // Start listening on rfm
 	// rfm_packet_t *packet = NULL;
 	// rfm_init();
-	// rfm_config_for_lora(RFM_BW_125KHZ, RFM_CODING_RATE_4_5, RFM_SPREADING_FACTOR_128CPS, false, 0);
+	// rfm_config_for_lora(RFM_BW_125KHZ, RFM_CODING_RATE_4_5, RFM_SPREADING_FACTOR_128CPS, true, 0);
 	// rfm_start_listening();
 
 	// // Useful var

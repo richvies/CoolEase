@@ -70,7 +70,7 @@ void test_hub(void)
 	// rfm_packet_t received_packet;
 
 	// rfm_init();
-	// rfm_config_for_lora(RFM_BW_125KHZ, RFM_CODING_RATE_4_5, RFM_SPREADING_FACTOR_128CPS, false, 0);
+	// rfm_config_for_lora(RFM_BW_125KHZ, RFM_CODING_RATE_4_5, RFM_SPREADING_FACTOR_128CPS, true, 0);
 	// rfm_start_listening();
 
 	// // Get First message number
@@ -421,6 +421,19 @@ void test_cusb_get_log(void)
 /*////////////////////////////////////////////////////////////////////////////*/
 // SIM800 Tests
 /*////////////////////////////////////////////////////////////////////////////*/
+
+void test_sim_end(void)
+{
+	for(;;)
+	{
+		sim_init();
+		sim_set_full_function();
+		sim_register_to_network();
+		timers_delay_milliseconds(3000);
+		sim_end();
+		timers_delay_milliseconds(5000);
+	}
+}
 
 void test_sim_serial_passtrhough(void)
 {

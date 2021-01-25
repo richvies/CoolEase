@@ -122,7 +122,7 @@ static uint32_t _atoi(const char **str);
 
 /** @brief Check all unread received characters for ceratin response 
  * 
- * Adds received chars to temporary buffer until \r\n received
+ * Adds received chars to temporary buffer until  received
  * Then appends a \0 and checks if message contains expected response
  * If expected is found then stores response in last_reply buffer
  */
@@ -180,7 +180,7 @@ bool sim_init(void)
 	usart_enable_rx_interrupt(SIM_USART);
 	// usart_enable_tx_interrupt(SIM_USART);
 	nvic_enable_irq(SIM_USART_NVIC);
-	nvic_set_priority(SIM_USART_NVIC, 0x40);
+	nvic_set_priority(SIM_USART_NVIC, IRQ_PRIORITY_SIM);
 
 	// Reset SIM800
 	gpio_mode_setup(SIM_RESET_PORT, GPIO_MODE_OUTPUT, GPIO_PUPD_NONE, SIM_RESET);
@@ -199,27 +199,32 @@ bool sim_init(void)
 	{
 		log_error(ERR_SIM_INIT_NO_RESPONSE);
 	}
-	else if (!sim_printf_and_check_response(1000, "OK", "ATE0\r\n"))
+	else if (!sim_printf_and_check_response(1000, "OK", "ATE0"))
 	{
 		log_error(ERR_SIM_ATE_0);
 	}
-	else if (!sim_printf_and_check_response(10000, "OK", "AT+CFUN=0\r\n"))
+	// Must go to full function first otherwise causes problems
+	else if (!sim_printf_and_check_response(10000, "OK", "AT+CFUN=1"))
+	{
+		log_error(ERR_SIM_CFUN_0);
+	}
+	else if (!sim_printf_and_check_response(5000, "OK", "AT+CFUN?"))
 	{
 		log_error(ERR_SIM_CFUN_0);
 	}
 	else
 	{
-		sim_state = MIN_FUNCTION;
+		sim_state = FULL_FUNCTION;
 		result = true;
 	}
-
-	log_printf("Sim Init Done\n");
 
 	return result;
 }
 
 bool sim_set_full_function(void)
 {
+	log_printf("Sim Set FF\n");
+
 	bool result = false;
 
 	if (sim_state == FULL_FUNCTION)
@@ -238,7 +243,7 @@ bool sim_set_full_function(void)
 			}
 		}
 		// Set full functionality
-		if (!sim_printf_and_check_response(10000, "OK", "AT+CFUN=1\r\n"))
+		if (!sim_printf_and_check_response(10000, "OK", "AT+CFUN=1"))
 		{
 			log_error(ERR_SIM_CFUN_1);
 		}
@@ -254,18 +259,21 @@ bool sim_set_full_function(void)
 
 bool sim_end(void)
 {
+	log_printf("Sim End\n");
+
 	bool result = false;
 
-	// Terminate HTTP just in case
-	sim_printf_and_check_response(1000, "OK", "AT+HTTPTERM\r\n");
-	http_state = HTTP_TERM;
-
-	if (!sim_printf_and_check_response(5000, "OK", "AT+CFUN=0\r\n"))
+	if (!sim_printf_and_check_response(5000, "OK", "AT+CFUN=0"))
 	{
 		serial_printf("ATCFUN0\n");
 		log_error(ERR_SIM_CFUN_0);
 	}
-	else if (!sim_printf_and_check_response(5000, "OK", "AT+CSCLK=1\r\n"))
+	else if (!sim_printf_and_check_response(5000, "OK", "AT+CFUN?"))
+	{
+		serial_printf("ATCFUN0\n");
+		log_error(ERR_SIM_CFUN_0);
+	}
+	else if (!sim_printf_and_check_response(5000, "OK", "AT+CSCLK=1"))
 	{
 		log_error(ERR_SIM_CSCLK_1);
 	}
@@ -281,8 +289,6 @@ bool sim_end(void)
 	usart_disable(SIM_USART);
 	rcc_periph_clock_disable(SIM_USART_RCC);
 
-	log_printf("Sim End Done\n");
-
 	return result;
 }
 
@@ -293,10 +299,8 @@ void sim_printf(const char *format, ...)
 	fnprintf(_putchar, format, va);
 	va_end(va);
 
-	while (!usart_get_flag(SIM_USART, USART_ISR_TC))
-	{
-		__asm__("nop");
-	}
+	// Terminate
+	_putchar('\r');
 }
 
 bool sim_printf_and_check_response(uint32_t timeout_ms, const char *expected_response, const char *format, ...)
@@ -309,10 +313,9 @@ bool sim_printf_and_check_response(uint32_t timeout_ms, const char *expected_res
 	va_start(va, format);
 	fnprintf(_putchar, format, va);
 	va_end(va);
-	while (!usart_get_flag(SIM_USART, USART_ISR_TC))
-	{
-		__asm__("nop");
-	}
+	
+	// Terminate
+	_putchar('\r');
 
 	return wait_and_check_response(timeout_ms, expected_response);
 }
@@ -383,7 +386,7 @@ char sim_read(void)
 
 void sim_print_capabilities(void)
 {
-	sim_printf("at+gcap\r\n");
+	sim_printf("at+gcap");
 }
 
 /*////////////////////////////////////////////////////////////////////////////*/
@@ -406,7 +409,7 @@ bool sim_register_to_network(void)
 		for (uint8_t attempt = 0; attempt < 30; attempt++)
 		{
 			// Query current registration status
-			if (!sim_printf_and_check_response(1000, "+CREG", "AT+CREG?\r\n"))
+			if (!sim_printf_and_check_response(1000, "+CREG", "AT+CREG?"))
 			{
 				log_error(ERR_SIM_CREG_QUERY);
 			}
@@ -454,7 +457,7 @@ uint32_t sim_http_get(const char *url_str)
 	// Terminate any old http stack
 	if (http_state != HTTP_TERM)
 	{
-		if (!sim_printf_and_check_response(1000, "OK", "AT+HTTPTERM\r\n"))
+		if (!sim_printf_and_check_response(1000, "OK", "AT+HTTPTERM"))
 		{
 			log_error(ERR_SIM_HTTP_TERM);
 			return 0;
@@ -467,19 +470,19 @@ uint32_t sim_http_get(const char *url_str)
 
 	http_state = HTTP_INIT;
 
-	if (!sim_printf_and_check_response(1000, "OK", "AT+SAPBR=3,1,\"APN\",\"data.rewicom.net\"\r\n"))
+	if (!sim_printf_and_check_response(1000, "OK", "AT+SAPBR=3,1,\"APN\",\"data.rewicom.net\""))
 	{
 		log_error(ERR_SIM_SAPBR_CONFIG);
 	}
-	else if (!sim_printf_and_check_response(1000, "OK", "AT+HTTPINIT\r\n"))
+	else if (!sim_printf_and_check_response(1000, "OK", "AT+HTTPINIT"))
 	{
 		log_error(ERR_SIM_HTTPINIT);
 	}
-	else if (!sim_printf_and_check_response(1000, "OK", "AT+HTTPPARA=\"CID\",\"1\"\r\n"))
+	else if (!sim_printf_and_check_response(1000, "OK", "AT+HTTPPARA=\"CID\",\"1\""))
 	{
 		log_error(ERR_SIM_HTTPPARA_CID);
 	}
-	else if (!sim_printf_and_check_response(1000, "OK", "AT+HTTPPARA=\"URL\",\"%s\"\r\n", url_str))
+	else if (!sim_printf_and_check_response(1000, "OK", "AT+HTTPPARA=\"URL\",\"%s\"", url_str))
 	{
 		log_error(ERR_SIM_HTTPPARA_URL);
 	}
@@ -487,7 +490,7 @@ uint32_t sim_http_get(const char *url_str)
 	{
 		log_error(ERR_SIM_SAPBR_CONNECT);
 	}
-	else if (!sim_printf_and_check_response(10000, "OK", "AT+HTTPACTION=0\r\n"))
+	else if (!sim_printf_and_check_response(10000, "OK", "AT+HTTPACTION=0"))
 	{
 		http_state = HTTP_ACTION;
 		log_error(ERR_SIM_HTTPACTION_0);
@@ -518,7 +521,7 @@ uint32_t sim_http_get(const char *url_str)
 			log_printf("HTTP Stat: %u\n", status_code);
 		}
 
-		if (!sim_printf_and_check_response(60000, "OK", "AT+SAPBR=0,1\r\n"))
+		if (!sim_printf_and_check_response(60000, "OK", "AT+SAPBR=0,1"))
 		{
 			log_error(ERR_SIM_SAPBR_DISCONNECT);
 		}
@@ -534,7 +537,7 @@ uint32_t sim_http_read_response(uint32_t address, uint32_t num_bytes)
 	uint32_t num_ret = 0;
 
 	// Request num_bytes of data
-	if (!sim_printf_and_check_response(2000, "+HTTPREAD", "AT+HTTPREAD=%i,%i\r\n", address, num_bytes))
+	if (!sim_printf_and_check_response(2000, "+HTTPREAD", "AT+HTTPREAD=%i,%i", address, num_bytes))
 	{
 		log_error(ERR_SIM_HTTP_READ_TIMEOUT);
 	}
@@ -555,7 +558,7 @@ bool sim_http_term(void)
 {
 	bool result = false;
 
-	if (!sim_printf_and_check_response(1000, "OK", "AT+HTTPTERM\r\n"))
+	if (!sim_printf_and_check_response(1000, "OK", "AT+HTTPTERM"))
 	{
 		log_error(ERR_SIM_HTTPTERM);
 	}
@@ -608,13 +611,13 @@ bool sim_send_sms(const char *phone_number, const char *str)
 	bool result = false;
 
 	// Set text mode
-	if (!sim_printf_and_check_response(1000, "OK", "AT+CMGF=1\r\n"))
+	if (!sim_printf_and_check_response(1000, "OK", "AT+CMGF=1"))
 	{
 	}
-	else if (!sim_printf_and_check_response(1000, "OK", "AT+CSCS=\"GSM\"\r\n"))
+	else if (!sim_printf_and_check_response(1000, "OK", "AT+CSCS=\"GSM\""))
 	{
 	}
-	else if (!sim_printf_and_check_response(1000, "OK", "AT+CMGS=\"%s\"\r\n", phone_number))
+	else if (!sim_printf_and_check_response(1000, "OK", "AT+CMGS=\"%s\"", phone_number))
 	{
 	}
 	else
@@ -699,7 +702,7 @@ static bool check_response(const char *expected_response)
 		check_buf[check_idx] = character;
 		check_idx = (check_idx + 1) % SIM_BUFFER_SIZE;
 
-		// serial_printf("%c", character);
+		// serial_printf("%u", (uint8_t)character);
 
 		// End of reply
 		if (character == '\n')
@@ -709,7 +712,7 @@ static bool check_response(const char *expected_response)
 			check_idx = (check_idx + 1) % SIM_BUFFER_SIZE;
 
 			// Only bother copying reply if longer than 2 chars
-			// SIM800 sometimes sends lots of \r\n only messages
+			// SIM800 sometimes sends lots of  only messages
 			if (strlen(check_buf) > 2)
 			{
 				// Check for target substring
@@ -717,7 +720,7 @@ static bool check_response(const char *expected_response)
 					found = true;
 
 #if DEBUG
-				serial_printf("Check for response l%i %s\n", strlen(check_buf), check_buf);
+				serial_printf("Check response: %s\n", check_buf);
 #endif
 
 				// Copy into last reply buffer
@@ -763,7 +766,7 @@ static bool try_autobaud(uint8_t num_tries)
 
 	while (num_tries--)
 	{
-		if (sim_printf_and_check_response(100, "OK", "AT\r\n"))
+		if (sim_printf_and_check_response(100, "OK", "AT"))
 		{
 			result = true;
 			break;
@@ -778,7 +781,7 @@ static bool open_bearer(void)
 	bool result = false;
 
 	// If connection fails
-	if (!sim_printf_and_check_response(60000, "OK", "AT+SAPBR=1,1\r\n"))
+	if (!sim_printf_and_check_response(60000, "OK", "AT+SAPBR=1,1"))
 	{
 		result = false;
 	}
@@ -812,9 +815,6 @@ void usart2_isr(void)
 	{
 		sim_rx_buf[sim_rx_head] = usart_recv(SIM_USART);
 		sim_rx_head = (sim_rx_head + 1) % SIM_BUFFER_SIZE;
-#if DEBUG
-// usart_send(SPF_USART, usart_recv(SIM_USART));
-#endif
 	}
 
 	// Transmit buffer empty

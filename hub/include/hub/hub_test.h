@@ -59,6 +59,7 @@ void test_cusb_get_log(void);
 // SIM800 Tests
 /*////////////////////////////////////////////////////////////////////////////*/
 
+void test_sim_end(void);
 void test_sim_serial_passtrhough(void);
 void test_sim(void);
 void test_sim_get_request(void);
