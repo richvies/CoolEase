@@ -63,6 +63,11 @@ void test_sim_end(void);
 void test_sim_serial_passtrhough(void);
 void test_sim(void);
 void test_sim_get_request(void);
+void test_sim_get_request_version(void);
+void test_sim_post(void);
+void test_sim_tcip_get(void);
+void test_sim_send_sms(void);
+void test_sim_init(void);
 
 
 /** @} */

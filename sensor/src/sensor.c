@@ -220,7 +220,7 @@ static void test(void)
 	// test_rfm();
 	// test_reset_eeprom();
 	// test_encryption();
-	// test_timeout();
+	// test_timers_timeout();
 	// test_log();
 }
 

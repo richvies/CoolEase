@@ -96,7 +96,7 @@ void test_millis(void);
 
 void test_lptim(void);
 void test_wakeup(void);
-bool test_timeout(void);
+bool test_timers_timeout(void);
 
 /*////////////////////////////////////////////////////////////////////////////*/
 // Low Power tests

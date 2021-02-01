@@ -15,6 +15,7 @@
 #include "hub/hub.h"
 
 #include <stdio.h>
+#include <string.h>
 
 #include "libopencm3/cm3/nvic.h"
 #include "libopencm3/stm32/syscfg.h"
@@ -43,7 +44,7 @@
  * @{
  */
 
-#define HUB_CHECK_TIME 3600
+#define HUB_CHECK_TIME 60
 
 /** @addtogroup HUB_INT 
  * @{
@@ -56,6 +57,8 @@
 static sensor_t sensors[MAX_SENSORS];
 static uint8_t num_sensors = 0;
 static dev_info_t *dev_info = ((dev_info_t *)(EEPROM_DEV_INFO_BASE));
+static uint8_t sim_buf[256];
+static uint32_t online_version = 0;
 
 /*////////////////////////////////////////////////////////////////////////////*/
 // Static Function Declarations
@@ -68,7 +71,14 @@ static void hub2(void);
 static void hub_download_info(void);
 
 static void check_for_packets(void);
-static void upload_log_and_check_version(void);
+static uint8_t temps_pending(void);
+
+static uint32_t get_timestamp(void);
+static bool upload_and_get_version(void);
+static bool post_init(void);
+static void append_temp(void);
+static void append_log(void);
+static uint32_t post_and_get_version(void);
 
 /** @} */
 
@@ -90,7 +100,7 @@ int main(void)
 
 	init();
 
-	// test();
+	test();
 
 	hub();
 
@@ -192,25 +202,16 @@ static void init(void)
 
 static void test(void)
 {
-	// test_sim_serial_passtrhough();
-	// test_sim_end();
 	// test_sim_get_request();
-	// test_revceiver_basic();
-	// test_standby(5);
-	// test_lptim();
-	// test_micros();
-	// test_millis();
-	// test_batt_update_voltages();
-	// test_batt_interrupt();
-	// test_rtc();
-	// test_rtc_wakeup();
+	// test_sim_get_request_version();
+	// test_sim_post();
+	// test_sim_serial_passtrhough();
 
 	for (;;)
 	{
-		upload_log_and_check_version();
-		timers_delay_milliseconds(20000);
+		serial_printf("Hub Loop\n");
+		timers_delay_milliseconds(1000);
 	}
-	
 }
 
 static void hub(void)
@@ -241,8 +242,7 @@ static void hub(void)
 	rfm_start_listening();
 
 	// Get timestamp from sim
-	sim_init();
-	sim_end();
+	uint32_t timestamp = get_timestamp();
 
 	// Init rtc, one hour wakeup flag for logging & checking software
 	timers_rtc_init();
@@ -257,42 +257,40 @@ static void hub(void)
 		// Keep record of id, num packets, temperature, battery for each sensor
 		// Timestamp packets
 
-		// Upload if any valid temp packets
-		uint8_t sim_buf[256];
-		bool upload = false;
-		for (uint8_t i = 0; i < num_sensors; i++)
+		// Upload and reset pending message flags
+		if (upload_and_get_version())
 		{
-			if (sensors[i].msg_pend)
+			if (RTC_ISR & RTC_ISR_WUTF)
 			{
-				upload = true;
+				timers_clear_wakeup_flag();
+			}
+
+			for (uint16_t i = 0; i < num_sensors; i++)
+			{
 				sensors[i].msg_pend = false;
 			}
 		}
-		if (upload)
-		{
-			serial_printf("Upload\n");
-
-			// sim_init();
-			// sim_set_full_function();
-			// sim_register_to_network();
-			// sim_end();
-		}
-
-		// Everyday check hour for new software
-		// RTC Alarm
-		if (RTC_ISR & RTC_ISR_WUTF)
-		{
-			serial_printf("RTC Wakeup\n");
-
-			timers_clear_wakeup_flag();
-
-			// Upload log
-			// Check if new version every hour
-			upload_log_and_check_version();
-
-			// Set bootloader state
-		}
 	}
+}
+
+static uint32_t get_timestamp(void)
+{
+	uint32_t stamp = 0;
+
+	if (!sim_init())
+	{
+	}
+	else if (!sim_register_to_network())
+	{
+	}
+	else if (!sim_get_timestamp())
+	{
+	}
+	else if (!sim_end())
+	{
+	}
+
+	return stamp;
 }
 
 static void check_for_packets(void)
@@ -345,20 +343,121 @@ static void check_for_packets(void)
 	}
 }
 
-static void upload_log_and_check_version(void)
+static uint8_t temps_pending(void)
 {
-	log_printf("Update Hub Info\n");
-
-	sim_init();
-	sim_register_to_network();
-
-	// Upload Log
-	uint32_t file_size = sim_http_get("http://cooleasetest.000webhostapp.com/version.php");
-
-	if (file_size)
+	// Upload if any valid temp packets
+	uint8_t res = 0;
+	for (uint8_t i = 0; i < num_sensors; i++)
 	{
-		uint8_t num_bytes = sim_http_read_response(0, file_size);
-		uint16_t version = 0;
+		if (sensors[i].msg_pend)
+		{
+			++res;
+		}
+	}
+
+	return res;
+}
+
+static bool upload_and_get_version(void)
+{
+	uint32_t version = 0;
+
+	if (temps_pending() || (RTC_ISR & RTC_ISR_WUTF))
+	{
+		serial_printf("upload_and_get_version()\n");
+
+		if (!post_init())
+		{
+		}
+		else
+		{
+			// Sensor readings
+			append_temp();
+
+			// Everyday hour, upload log
+			if (RTC_ISR & RTC_ISR_WUTF)
+			{
+				append_log();
+			}
+
+			sim_printf_and_check_response(10000, "OK", "\r");
+
+			// Post
+			version = post_and_get_version();
+
+			sim_http_term();
+		}
+		sim_end();
+	}
+
+	if (version != 0)
+	{
+		online_version = version;
+		return true;
+	}
+
+	return false;
+}
+
+static bool post_init(void)
+{
+	bool res = false;
+
+	if (!sim_init())
+	{
+	}
+	else if (!sim_register_to_network())
+	{
+	}
+	else if (!sim_http_post_init("https://cooleasetest.000webhostapp.com/hub.php", 2000, 10000))
+	{
+	}
+	else
+	{
+		sim_printf("pwd=%s&id=%8u&version=get", dev_info->pwd, dev_info->dev_num);
+		res = true;
+	}
+
+	return res;
+}
+
+static void append_temp(void)
+{
+	uint8_t num_pending = temps_pending();
+	if (num_pending)
+	{
+		sim_printf("&num_temp=%u", num_pending);
+
+		for (uint16_t i = 0; i < num_sensors; i++)
+		{
+			if (sensors[i].msg_pend)
+			{
+				sim_printf("&dev%8u=%i", sensors[i].dev_num, sensors[i].temperature);
+			}
+		}
+	}
+}
+
+static void append_log(void)
+{
+	sim_printf("&log=\n-----LOG START------\n");
+
+	log_read_reset();
+	for (uint16_t i = 0; i < log_size(); i++)
+	{
+		sim_printf("%c", log_read());
+	}
+
+	sim_printf("\n-----LOG END------\n");
+}
+
+static uint32_t post_and_get_version(void)
+{
+	uint32_t resp_len = sim_http_post(1);
+	uint32_t version = 0;
+	if (resp_len)
+	{
+		uint8_t num_bytes = sim_http_read_response(0, resp_len);
 
 		// SIM800 now returns that number of bytes
 		for (uint8_t i = 0; i < num_bytes; i++)
@@ -372,28 +471,7 @@ static void upload_log_and_check_version(void)
 		serial_printf("Online Version: %u\n", version);
 	}
 
-	sim_http_term();
-
-	// // Check Version
-	// uint32_t file_size = sim_http_get("http://cooleasetest.000webhostapp.com/version.php");
-
-	// if (file_size)
-	// {
-	// 	uint8_t num_bytes = sim_http_read_response(0, file_size);
-	// 	uint16_t version = 0;
-
-	// 	// SIM800 now returns that number of bytes
-	// 	for (uint8_t i = 0; i < num_bytes; i++)
-	// 	{
-	// 		while (!sim_available())
-	// 		{
-	// 		}
-	// 		version = (version * 10) + (uint8_t)(sim_read() - '0');
-	// 	}
-	// 	serial_printf("Online Version: %u\n", version);
-	// }
-
-	sim_end();
+	return version;
 }
 
 static void hub2(void)

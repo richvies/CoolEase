@@ -65,3 +65,18 @@ void clock_setup_hsi_16mhz(void)
 
 	sys_clk = RCC_HSI16;
 }
+
+void __attribute__((weak)) serial_printf(const char *format, ...)
+{
+	(void)format;
+}
+
+bool __attribute__((weak)) serial_available(void)
+{
+	return false;
+}
+
+char __attribute__((weak)) serial_read(void)
+{
+	return 0;
+}

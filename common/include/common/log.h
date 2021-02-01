@@ -79,6 +79,13 @@ extern "C" {
 #define ERR_SIM_SET_FULL_FUNCTION                   0x0214
 #define ERR_SIM_HTTP_TERM                           0x0215
 #define ERR_SIM_CSCLK_1                             0x0216
+#define ERR_SIM_HTTPSSL                             0x0217
+#define ERR_SIM_HTTP_CONTENT                        0x0218
+#define ERR_SIM_HTTPACTION_1                        0x0219
+#define ERR_SIM_HTTP_POST_TIMEOUT                   0x0220
+#define ERR_SIM_AUTOBAUD                            0x0221
+#define ERR_SIM_CLTS                                0x0222
+
 
 /** @} */
 
@@ -101,6 +108,8 @@ uint16_t log_size(void);
 void log_erase(void);
 
 void serial_printf(const char *format, ...);
+bool serial_available(void);
+char serial_read(void);
 
 /** @} */
 

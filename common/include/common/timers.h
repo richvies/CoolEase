@@ -58,8 +58,8 @@ extern "C" {
                                     if(time > timeout * 1000){ \
                                     return false;}}}
 
-#define TIMEOUT(time, print_str, print_data, break_condition, if_code, else_code)    timeout_init(); \
-  	                                                                        while(!timeout(time, print_str, print_data)) { \
+#define TIMEOUT(time, print_str, print_data, break_condition, if_code, else_code)    timers_timeout_init(); \
+  	                                                                        while(!timers_timeout(time, print_str, print_data)) { \
   	  	                                                                        if(break_condition){ if_code break; } \
 		                                                                        else{ else_code }}
 
@@ -117,8 +117,8 @@ void timers_pet_dogs(void);
 void timers_enter_standby(void);
 
 /* Timout functions */
-void timeout_init(void);
-bool timeout(uint32_t time_microseconds, char *msg, uint32_t data);
+void timers_timeout_init(void);
+bool timers_timeout(uint32_t time_microseconds, char *msg, uint32_t data);
 
 
 /** @} */

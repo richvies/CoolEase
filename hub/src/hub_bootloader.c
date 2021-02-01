@@ -64,7 +64,7 @@ int main(void)
 
 	init();
 
-	// test();
+	test();
 
 	deinit();
 	boot_jump_to_application(FLASH_APP_ADDRESS);
@@ -110,9 +110,14 @@ static void deinit(void)
 
 static void test(void)
 {
-	// download_and_program_bin("http://cooleasetest.000webhostapp.com/hub.bin", 3);
-
+	test_sim_init();
+	// test_sim_send_sms();
+	// test_sim_tcip_get();
 	// test_sim_serial_passtrhough();
+	// test_sim_get_request();
+	// test_sim_post();
+	// download_and_program_bin("https://cooleasetest.000webhostapp.com/hub.php", 3);
+
 	// test_sim_get_request();
 }
 
@@ -126,9 +131,9 @@ static bool download_and_program_bin(const char *url, uint8_t num_attempts)
 	{
 		serial_printf("Attempt %i\n", attempt);
 
-		if (sim_init() && sim_set_full_function() && sim_register_to_network())
+		if (sim_init() && sim_register_to_network())
 		{
-			uint32_t file_size = sim_http_get(url);
+			uint32_t file_size = sim_http_post_str("https://cooleasetest.000webhostapp.com/hub.php", "pwd=pwd&id=00000001&log=hello%20there&version=101", 1);;
 
 			if (file_size)
 			{
@@ -172,15 +177,6 @@ static bool download_and_program_bin(const char *url, uint8_t num_attempts)
 
 					// Print out for debugging
 					serial_printf("Got half page %8x\n", (n * FLASH_PAGE_SIZE / 2));
-					// for (uint8_t i = 0; i < num_bytes; i++)
-					// {
-					// 	if(!(i % 4))
-					// 	{
-					// 		// Print 32 bit version every 4 bytes
-					// 		serial_printf("\n%8x\n", half_page.buf32[(i / 4)]);
-					// 	}
-					// 	serial_printf("%2x ", half_page.buf8[i]);
-					// }
 
 					serial_printf("\nHalf page Done\nProgramming\n");
 
@@ -207,6 +203,8 @@ static bool download_and_program_bin(const char *url, uint8_t num_attempts)
 
 	return result;
 }
+
+
 
 /** @} */
 /** @} */

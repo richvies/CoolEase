@@ -59,7 +59,7 @@ extern "C" {
 #define FLASH_END           0x08010000U   
 
 #define FLASH_BOOTLOADER_ADDRESS    0x08000000U
-#define FLASH_APP_ADDRESS           0x08004000U
+#define FLASH_APP_ADDRESS           0x08008000U
 
 /*////////////////////////////////////////////////////////////////////////////*/
 // EEPROM Map

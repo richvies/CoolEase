@@ -1,8 +1,9 @@
 // Interrupt Priorities
 #define IRQ_PRIORITY_LPTIM	0x00
-#define IRQ_PRIORITY_RFM	0x40
-#define IRQ_PRIORITY_RTC  	0xC0
-#define IRQ_PRIORITY_BATT 	0xF0
+#define IRQ_PRIORITY_SPF    0x40
+#define IRQ_PRIORITY_RFM	0x80
+#define IRQ_PRIORITY_BATT 	0xC0
+#define IRQ_PRIORITY_RTC  	0xF0
 
 // Battery Voltage
 #define BATT_SENS_PORT GPIOA
@@ -16,9 +17,11 @@
 // USART / Serial Printf
 #define SPF_USART_BAUD 115200
 #define SPF_USART USART2
+#define SPF_USART_NVIC NVIC_USART2_IRQ
 #define SPF_USART_AF GPIO_AF4
 #define SPF_USART_RCC RCC_USART2
 #define SPF_USART_RCC_RST RST_USART2
+#define SPF_ISR() void usart2_isr(void)
 
 // GPIOA
 #define SPF_USART_TX_PORT GPIOA

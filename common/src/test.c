@@ -249,7 +249,7 @@ void test_log(void)
 	serial_printf("Writing Log\n");
 	for (uint16_t i = 0; i < 10; i++)
 	{
-		serial_printf("Test %i\n", i);
+		log_printf("Test %i\n", i);
 	}
 	log_read_reset();
 	serial_printf("\nPrinting Log\n\n");
@@ -730,17 +730,17 @@ void test_wakeup(void)
 #endif
 }
 
-bool test_timeout(void)
+bool test_timers_timeout(void)
 {
 	test_init("test_timeout()");
 
-	timeout_init();
+	timers_timeout_init();
 
 	// TIMEOUT(test_func(90), 5000000);
 	// WAIT_US(test_func(90), 65000);
 	// WAIT_MS(test_func(90), 1000);
 
-	while (!timeout(4094967296, "TEST", 0))
+	while (!timers_timeout(4094967296, "TEST", 0))
 	{
 		timers_delay_microseconds(1);
 	}

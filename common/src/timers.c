@@ -250,7 +250,6 @@ void timers_lptim_init(void)
 
     // Find best prescaler for 1us clock
     uint8_t freq_mhz = rcc_apb1_frequency / 1000000;
-    serial_printf("APB1 MHz %u\n", freq_mhz);
     for (uint8_t i = 0; i < 8; i++)
     {
         if (freq_mhz <= (1 << i))
@@ -369,14 +368,14 @@ void timers_enter_standby(void)
 }
 
 // Timout functions
-void timeout_init(void)
+void timers_timeout_init(void)
 {
     timeout_counter = 0;
     // timeout_counter     = 2140483648;
     timeout_timer = timers_micros();
 }
 
-bool timeout(uint32_t time_microseconds, char *msg, uint32_t data)
+bool timers_timeout(uint32_t time_microseconds, char *msg, uint32_t data)
 {
     timeout_counter += (uint16_t)(timers_micros() - timeout_timer);
     timeout_timer = timers_micros();

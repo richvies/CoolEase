@@ -1,0 +1,23 @@
+cooleasetest.000webhostapp.com
+
+Need \r\n in-between headers and again at the end
+000webhost working with ssl and normal
+
+at+cipssl=0
+at+cipstart="TCP","cooleasetest.000webhostapp.com",80
+at+cipsend
+GET / HTTP/1.0
+Host: cooleasetest.000webhostapp.com
+
+
+----
+at+cstt="data.rewicom.net","",""
+at+ciicr
+at+cifsr
+at+cipssl=1
+at+cipstart="TCP","cooleasetest.000webhostapp.com",443
+ 
+GET / HTTP/1.1
+Host: cooleasetest.000webhostapp.com
+
+

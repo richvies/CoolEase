@@ -1,13 +1,14 @@
 #include <libopencm3/stm32/rcc.h>
+#include <libopencm3/cm3/nvic.h>
 
 // Interrupt Priorities
-#define IRQ_PRIORITY_LPTIM	0x00
-#define IRQ_PRIORITY_RFM	0x40
-#define IRQ_PRIORITY_SIM	0x80
-#define IRQ_PRIORITY_USB	0xC0
-#define IRQ_PRIORITY_RTC  	0xC0
-#define IRQ_PRIORITY_BATT 	0xF0
-
+#define IRQ_PRIORITY_LPTIM 0x00
+#define IRQ_PRIORITY_SPF 0x40
+#define IRQ_PRIORITY_RFM 0x80
+#define IRQ_PRIORITY_SIM 0x80
+#define IRQ_PRIORITY_USB 0xC0
+#define IRQ_PRIORITY_BATT 0xC0
+#define IRQ_PRIORITY_RTC 0xF0
 
 // Sensor Struct
 #define MAX_SENSORS 20
@@ -35,13 +36,14 @@ typedef struct
 #define PWR_SENS GPIO1
 
 // Status LED
-#define LED_PORT 	GPIOB
-#define LED 		GPIO8
-#define LED_RCC 	RCC_GPIOB
+#define LED_PORT GPIOB
+#define LED GPIO8
+#define LED_RCC RCC_GPIOB
 
 // USART / Serial Printf
 #define SPF_USART_BAUD 115200
 #define SPF_USART USART1
+#define SPF_USART_NVIC NVIC_USART1_IRQ
 #define SPF_USART_AF GPIO_AF4
 #define SPF_USART_RCC RCC_USART1
 #define SPF_USART_RCC_RST RST_USART1
@@ -49,6 +51,7 @@ typedef struct
 #define SPF_USART_TX GPIO9
 #define SPF_USART_RX_PORT GPIOA
 #define SPF_USART_RX GPIO10
+#define SPF_ISR() void usart1_isr(void)
 
 // RFM
 // SPI
@@ -94,12 +97,13 @@ typedef struct
 #define RFM_IO_5 GPIO0
 
 // USART / SIM
-#define SIM_USART_BAUD 		38400
-#define SIM_USART_NVIC		NVIC_USART2_IRQ
-#define SIM_USART 			USART2
-#define SIM_USART_AF 		GPIO_AF4
-#define SIM_USART_RCC 		RCC_USART2
-#define SIM_USART_RCC_RST 	RST_USART2
+#define SIM_USART USART2
+#define SIM_USART_AF GPIO_AF4
+#define SIM_USART_RCC RCC_USART2
+#define SIM_USART_RCC_RST RST_USART2
+#define SIM_USART_NVIC NVIC_USART2_IRQ
+#define SIM_ISR() void usart2_isr(void)
+#define SIM_USART_BAUD 38400
 
 #define SIM_USART_TX_PORT GPIOA
 #define SIM_USART_TX GPIO2

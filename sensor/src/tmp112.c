@@ -158,8 +158,8 @@ static void i2c_transfer(uint32_t i2c, uint8_t addr, uint8_t *w, size_t wn, uint
 		{	
 			timers_delay_microseconds(1);
 			TIMEOUT(100000, "TMP I2C:", ((wn << 16) | *w), i2c_transmit_int_status(i2c), ;, ;);
-			// timeout_init();
-			// while (!timeout(100000, "TMP I2C", (wn << 16) | *w)) 
+			// timers_timeout_init();
+			// while (!timers_timeout(100000, "TMP I2C", (wn << 16) | *w)) 
 			// {         
 			// 	if (i2c_transmit_int_status(i2c)) 
 			// 	{
