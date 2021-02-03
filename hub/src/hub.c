@@ -205,7 +205,7 @@ static void test(void)
 	// test_sim_get_request();
 	// test_sim_get_request_version();
 	// test_sim_post();
-	// test_sim_serial_passtrhough();
+	// test_sim_serial_passthrough();
 
 	for (;;)
 	{

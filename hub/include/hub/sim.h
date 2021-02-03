@@ -49,7 +49,7 @@ extern "C" {
 // Exported Variables
 /*////////////////////////////////////////////////////////////////////////////*/
 
-typedef enum
+typedef enum sim_state
 {
     SIM_READY = 0,
     SIM_BUSY,
@@ -71,10 +71,11 @@ typedef enum
 /** @brief Enable MCU USART, reset SIM800 into minimum func mode & disable command echo */
 sim_state_t sim_init(void);
 
-bool sim_set_full_function(void);
-
 /** @brief Enter sleep mode and disable MCU USART */
-bool sim_end(void);
+sim_state_t sim_end(void);
+sim_state_t sim_register_to_network(void);
+
+bool sim_set_full_function(void);
 
 void sim_printf(const char *format, ...);
 
@@ -82,6 +83,7 @@ void sim_printf(const char *format, ...);
 bool sim_printf_and_check_response(uint32_t timeout_ms, const char *expected_response, const char *format, ...);
 
 void sim_serial_pass_through(void);
+void sim_print_res(sim_state_t res);
 
 bool sim_available(void);
 
@@ -97,7 +99,6 @@ void sim_print_capabilities(void);
 // Network Configuration
 /*////////////////////////////////////////////////////////////////////////////*/
 
-bool sim_register_to_network(void);
 uint32_t sim_get_timestamp(void);
 
 /*////////////////////////////////////////////////////////////////////////////*/

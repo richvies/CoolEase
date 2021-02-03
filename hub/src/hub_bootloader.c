@@ -110,11 +110,12 @@ static void deinit(void)
 
 static void test(void)
 {
-	test_sim_init();
+	// test_sim_send_sms();
+	// test_sim_init();
 	// test_sim_send_sms();
 	// test_sim_tcip_get();
-	// test_sim_serial_passtrhough();
-	// test_sim_get_request();
+	// test_sim_serial_passthrough();
+	test_sim_get_request();
 	// test_sim_post();
 	// download_and_program_bin("https://cooleasetest.000webhostapp.com/hub.php", 3);
 

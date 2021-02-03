@@ -298,14 +298,14 @@ void serial_printf(const char *format, ...)
 
 bool serial_available(void)
 {
-	return (((spf_tx_head + SPF_BUFFER_SIZE - spf_rx_tail) % SPF_BUFFER_SIZE));
+	return (((spf_rx_head + SPF_BUFFER_SIZE - spf_rx_tail) % SPF_BUFFER_SIZE));
 }
 
 char serial_read(void)
 {
 	char c = 0;
 
-	if (spf_rx_head != spf_rx_tail)
+	if (serial_available())
 	{
 		c = spf_rx_buf[spf_rx_tail];
 		spf_rx_tail = (spf_rx_tail + 1) % SPF_BUFFER_SIZE;
