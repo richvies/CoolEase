@@ -76,7 +76,7 @@ extern "C" {
 void timers_rtc_unlock(void);
 void timers_rtc_lock(void);
 void timers_rtc_init(void);
-void timers_rtc_set_time(uint8_t secs, uint8_t mins, uint8_t hours, uint8_t day, uint8_t month, uint8_t year);
+void timers_rtc_set_time(uint8_t year, uint8_t month, uint8_t day, uint8_t hours, uint8_t mins, uint8_t secs);
 void timers_set_wakeup_time(uint32_t wakeup_time);
 void timers_clear_wakeup_flag(void);
 void timers_enable_wut_interrupt(void);

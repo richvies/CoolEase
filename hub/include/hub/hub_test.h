@@ -30,6 +30,7 @@
 /*////////////////////////////////////////////////////////////////////////////*/
 
 #include <stdint.h>
+#include <stdbool.h>
 
 #ifdef __cplusplus
 extern "C" {
@@ -59,15 +60,17 @@ void test_cusb_get_log(void);
 // SIM800 Tests
 /*////////////////////////////////////////////////////////////////////////////*/
 
+bool test_sim_init(void);
 void test_sim_end(void);
 void test_sim_serial_passthrough(void);
+void test_sim_timestamp(void);
+
 void test_sim(void);
 void test_sim_get_request(void);
 void test_sim_get_request_version(void);
 void test_sim_post(void);
 void test_sim_tcip_get(void);
 void test_sim_send_sms(void);
-void test_sim_init(void);
 
 
 /** @} */

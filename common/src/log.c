@@ -12,6 +12,8 @@
 // Includes
 /*////////////////////////////////////////////////////////////////////////////*/
 
+#include <stdlib.h>
+
 #include "common/log.h"
 
 #include <libopencm3/cm3/cortex.h>
@@ -108,8 +110,6 @@ void log_printf(const char *format, ...)
 	// Update write location
 	mem_eeprom_write_half_word((uint32_t)&log_file->idx, write_index);
 }
-
-// void __attribute__((weak)) serial_printf(const char *format, ...) {}
 
 void log_error(uint16_t error)
 {

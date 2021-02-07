@@ -421,12 +421,67 @@ void test_cusb_get_log(void)
 // SIM800 Tests
 /*////////////////////////////////////////////////////////////////////////////*/
 
+bool test_sim_init(void)
+{
+	test_init("test_sim_init()");
+
+	sim_state_t res;
+
+	uint8_t state = 0;
+
+	while (1)
+	{
+		switch (state)
+		{
+		case 0:
+			res = SIM_BUSY;
+			state++;
+			break;
+		case 1:
+			res = sim_init();
+			break;
+		case 2:
+			res = sim_register_to_network();
+			break;
+		case 3:
+			res = SIM_BUSY;
+			state = 'S';
+			break;
+		case 'S':
+			res = SIM_SUCCESS;
+			break;
+		case 'X':
+		default:
+			res = SIM_ERROR;
+			break;
+		}
+
+		// Go to next state
+		if (state != 'S' && res == SIM_SUCCESS)
+		{
+			res = SIM_BUSY;
+			state++;
+		}
+
+		if (res == SIM_ERROR || res == SIM_TIMEOUT)
+		{
+			serial_printf("Init Error\n");
+			while (1)
+			{
+			}
+		}
+		else if (res == SIM_SUCCESS)
+		{
+			return true;
+		}
+	}
+}
+
 void test_sim_end(void)
 {
 	for (;;)
 	{
 		sim_init();
-		sim_set_full_function();
 		sim_register_to_network();
 		timers_delay_milliseconds(3000);
 		sim_end();
@@ -440,38 +495,27 @@ void test_sim_serial_passthrough(void)
 
 	static uint8_t state = 0;
 
-	while (1)
-	{
-		sim_state_t res = SIM_ERROR;
-		switch (state)
-		{
-		case 0:
-			res = sim_init();
-			break;
-		case 1:
-			res = sim_register_to_network();
-			break;
-		case 2:
-			sim_serial_pass_through();
-			break;
-		default:
-			break;
-		}
+	while (!test_sim_init())
+		;
 
-		switch (res)
-		{
-		case SIM_SUCCESS:
-			state++;
-			break;
-		case SIM_FAIL:
-		case SIM_TIMEOUT:
-		case SIM_ERROR:
-			serial_printf("Sim Passthrough Error\n");
-			sim_print_res(res);
-		default:
-			break;
-		}
-	}
+	sim_serial_pass_through();
+}
+
+void test_sim_timestamp(void)
+{
+	test_init("test_sim_timestamp()");
+
+	static uint8_t state = 0;
+
+	while (!test_sim_init())
+		;
+
+	uint8_t *timestamp = sim_get_timestamp();
+
+	serial_printf("Test Done\n");
+
+	while (1)
+		;
 }
 
 void test_sim(void)
@@ -530,7 +574,7 @@ void test_sim(void)
 		sim_init();
 		sim_register_to_network();
 
-		sim_send_data(sim_buf, sim_idx);
+		// sim_send_data(sim_buf, sim_idx);
 
 		log_printf("Sent\n\n");
 
@@ -553,81 +597,34 @@ void test_sim_get_request(void)
 {
 	test_init("test_sim_get_request()");
 
+	sim_state_t res = SIM_ERROR;
+
+	while (!test_sim_init())
+	{
+	}
+
 	uint8_t num_tests = 20;
 	uint8_t num_pass = 0;
-
-	sim_state_t res;
-
-	uint8_t state = 0;
-
-	while (1)
-	{
-		switch (state)
-		{
-		case 0:
-			res = SIM_BUSY;
-			state++;
-			break;
-		case 1:
-			res = sim_init();
-			break;
-		case 2:
-			res = sim_register_to_network();
-			break;
-		case 3:
-			res = SIM_BUSY;
-			state = 'S';
-			break;
-		case 'S':
-			res = SIM_SUCCESS;
-			break;
-		case 'X':
-		default:
-			res = SIM_ERROR;
-			break;
-		}
-
-		// Go to next state
-		if (state != 'S' && res == SIM_SUCCESS)
-		{
-			res = SIM_BUSY;
-			state++;
-		}
-
-		if (res == SIM_ERROR)
-		{
-			serial_printf("Init Error\n");
-			while (1)
-			{
-			}
-		}
-		else if (res == SIM_SUCCESS)
-		{
-			break;
-		}
-	}
 
 	for (uint8_t test_num = 1; test_num <= num_tests; test_num++)
 	{
 		serial_printf("------------------------------\n");
 		serial_printf("-----------Test %i------------\n", test_num);
 		serial_printf("------------------------------\n");
-		uint32_t response_size = sim_http_get("www.google.com");
 
-		if (!response_size)
+		do
 		{
-			serial_printf("Sim get request error\n");
-		}
-		else
+			res = sim_http_get("https://www.google.com", true, 3);
+		} while (res == SIM_BUSY);
+
+		serial_printf("HTTP Status %u, Response size %u\n", sim800.http.status_code, sim800.http.response_size);
+
+		if (sim800.http.status_code == 200)
 		{
-			serial_printf("Response Size %i\n", response_size);
 			num_pass++;
-			// sim_http_read_response(0, response_size);
 		}
 
 		serial_printf("Passed %i/%i\n\n*******************\n\n", num_pass, test_num);
-
-		// sim_serial_pass_through();
 	}
 
 	serial_printf("------------------------------\n");
@@ -639,73 +636,83 @@ void test_sim_get_request_version(void)
 {
 	test_init("test_sim_get_request()");
 
+	sim_state_t res = SIM_ERROR;
+
+	while (!test_sim_init())
+	{
+	};
+
 	uint8_t num_tests = 20;
 	uint8_t num_pass = 0;
 	uint8_t test_num = 1;
 
-	if (!sim_init())
+	for (test_num = 1; test_num <= num_tests; test_num++)
 	{
-		serial_printf("Sim init fail\n");
-	}
-	else if (!sim_set_full_function())
-	{
-		serial_printf("Sim can't enter full function mode\n");
-	}
-	else if (!sim_register_to_network())
-	{
-		serial_printf("Sim not able to register to network\n");
-	}
-	else
-	{
-		for (test_num = 1; test_num <= num_tests; test_num++)
+		serial_printf("------------------------------\n");
+		serial_printf("-----------Test %i------------\n", test_num);
+		serial_printf("------------------------------\n");
+
+		do
 		{
-			serial_printf("------------------------------\n");
-			serial_printf("-----------Test %i------------\n", test_num);
-			serial_printf("------------------------------\n");
-			// uint32_t response_size = sim_https_get("https://cooleasetest.000webhostapp.com/version.php");
-			// uint32_t response_size = sim_http_get("www.circuitboardsamurai.com/test.php");
-			uint32_t response_size = sim_https_get("https://www.circuitboardsamurai.com/test.php");
+			// res = sim_http_get("https://rickceas.azurewebsites.net/CE/version.php", true, 3);
+			res = sim_http_get("http://rickceas.azurewebsites.net/CE/version.php", false, 3);
+		} while (res == SIM_BUSY);
 
-			if (!response_size)
+		serial_printf("HTTP Status %u, Response size %u\n", sim800.http.status_code, sim800.http.response_size);
+
+		if (sim800.http.status_code == 200 && sim800.http.response_size)
+		{
+			num_pass++;
+
+			uint32_t num_bytes = sim_http_read_response(0, sim800.http.response_size);
+
+			uint32_t timer = timers_millis();
+			// SIM800 now returns that number of bytes
+			for (uint32_t i = 0; i < num_bytes; i++)
 			{
-				serial_printf("Sim get request error\n");
-			}
-			else
-			{
-				serial_printf("Response Size %i\n", response_size);
-				num_pass++;
-
-				uint8_t num_bytes = sim_http_read_response(0, response_size);
-
-				serial_printf("Read Size %i\n", num_bytes);
-
-				// SIM800 now returns that number of bytes
-				for (uint8_t i = 0; i < num_bytes; i++)
+				while (!sim_available())
 				{
-					while (!sim_available())
+					if (timers_millis() - timer > 5000)
 					{
+						serial_printf("OT: %u %u\n", i, num_bytes);
+						break;
 					}
-					serial_printf("%c", sim_read());
 				}
-				serial_printf("\n", sim_read());
+				serial_printf("%c", sim_read());
 			}
-
-			sim_http_term();
-
-			serial_printf("Passed %i/%i\n\n*******************\n\n", num_pass, test_num);
+			serial_printf("\n");
+		}
+		else
+		{
+			serial_printf("Sim get request error\n");
 		}
 
-		// sim_serial_pass_through();
+		do
+		{
+			res = sim_http_term();
+		} while (res == SIM_BUSY);
+
+		serial_printf("Passed %i/%i\n\n*******************\n\n", num_pass, test_num);
 	}
 
 	serial_printf("------------------------------\n");
 	serial_printf("Test Finished %i/%i Passed\n", num_pass, num_tests);
 	serial_printf("------------------------------\n");
+
+	while (1)
+	{
+	}
 }
 
 void test_sim_post(void)
 {
 	test_init("test_sim_post()");
+
+	sim_state_t res = SIM_ERROR;
+
+	while (!test_sim_init())
+	{
+	};
 
 	uint8_t num_tests = 20;
 	uint8_t num_pass = 0;
@@ -716,50 +723,47 @@ void test_sim_post(void)
 		serial_printf("-----------Test %i------------\n", test_num);
 		serial_printf("------------------------------\n");
 
-		if (!sim_init())
+		do
 		{
-			serial_printf("Sim init fail\n");
-		}
-		else if (!sim_set_full_function())
+			// res = sim_http_get("https://rickceas.azurewebsites.net/CE/version.php", true, 3);
+			res = sim_http_post_str("http://rickceas.azurewebsites.net/CE/hub.php", "pwd=pwd&id=12334&log=test%20post&version=get", false, 3);
+		} while (res == SIM_BUSY);
+
+		serial_printf("HTTP Status %u, Response size %u\n", sim800.http.status_code, sim800.http.response_size);
+
+		if (sim800.http.status_code == 200 && sim800.http.response_size)
 		{
-			serial_printf("Sim can't enter full function mode\n");
-		}
-		else if (!sim_register_to_network())
-		{
-			serial_printf("Sim not able to register to network\n");
+			num_pass++;
+
+			uint32_t num_bytes = sim_http_read_response(0, sim800.http.response_size);
+
+			uint32_t timer = timers_millis();
+			// SIM800 now returns that number of bytes
+			for (uint32_t i = 0; i < num_bytes; i++)
+			{
+				while (!sim_available())
+				{
+					if (timers_millis() - timer > 5000)
+					{
+						serial_printf("OT: %u %u\n", i, num_bytes);
+						break;
+					}
+				}
+				serial_printf("%c", sim_read());
+			}
+			serial_printf("\n");
 		}
 		else
 		{
-			uint32_t response_size = sim_http_post_str("https://cooleasetest.000webhostapp.com/hub.php", "pwd=pwd&id=12334&log=hello%20there&version=get", 1);
-
-			if (!response_size)
-			{
-				serial_printf("Sim post request error\n");
-			}
-			else
-			{
-				serial_printf("Response Size %i\n", response_size);
-				num_pass++;
-
-				uint8_t num_bytes = sim_http_read_response(0, response_size);
-
-				serial_printf("Read Size %i\n", num_bytes);
-
-				// SIM800 now returns that number of bytes
-				for (uint8_t i = 0; i < num_bytes; i++)
-				{
-					while (!sim_available())
-					{
-					}
-					serial_printf("%c", sim_read());
-				}
-				serial_printf("\n", sim_read());
-			}
+			serial_printf("Sim post request error\n");
 		}
 
-		serial_printf("Passed %i/%i\n\n*******************\n\n", num_pass, test_num);
+		do
+		{
+			res = sim_http_term();
+		} while (res == SIM_BUSY);
 
-		// sim_serial_pass_through();
+		serial_printf("Passed %i/%i\n\n*******************\n\n", num_pass, test_num);
 	}
 
 	serial_printf("------------------------------\n");
@@ -783,10 +787,6 @@ void test_sim_tcip_get(void)
 		if (!sim_init())
 		{
 			serial_printf("Sim init fail\n");
-		}
-		else if (!sim_set_full_function())
-		{
-			serial_printf("Sim can't enter full function mode\n");
 		}
 		else if (!sim_register_to_network())
 		{
@@ -893,38 +893,6 @@ void test_sim_send_sms(void)
 	serial_printf("------------------------------\n");
 	serial_printf("Test Finished %i/%i Passed\n", num_pass, num_tests);
 	serial_printf("------------------------------\n");
-}
-
-void test_sim_init(void)
-{
-	test_init("test_sim_init()");
-
-	while (1)
-	{
-		sim_state_t res = sim_init();
-
-		switch (res)
-		{
-		case SIM_SUCCESS:
-			serial_printf("Success\n");
-			while (1)
-			{
-			}
-			break;
-		case SIM_TIMEOUT:
-			serial_printf("Timeout\n");
-			break;
-		case SIM_ERROR:
-			serial_printf("Error\n");
-			break;
-		case SIM_FAIL:
-			serial_printf("Fail\n");
-			break;
-		default:
-			break;
-		}
-		timers_delay_milliseconds(10);
-	}
 }
 
 /** @} */

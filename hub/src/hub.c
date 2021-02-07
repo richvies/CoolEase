@@ -14,7 +14,6 @@
 
 #include "hub/hub.h"
 
-#include <stdio.h>
 #include <string.h>
 
 #include "libopencm3/cm3/nvic.h"
@@ -409,9 +408,9 @@ static bool post_init(void)
 	else if (!sim_register_to_network())
 	{
 	}
-	else if (!sim_http_post_init("https://cooleasetest.000webhostapp.com/hub.php", 2000, 10000))
-	{
-	}
+	// else if (!sim_http_post_init("https://cooleasetest.000webhostapp.com/hub.php", 2000, 10000))
+	// {
+	// }
 	else
 	{
 		sim_printf("pwd=%s&id=%8u&version=get", dev_info->pwd, dev_info->dev_num);
@@ -453,23 +452,23 @@ static void append_log(void)
 
 static uint32_t post_and_get_version(void)
 {
-	uint32_t resp_len = sim_http_post(1);
+	// uint32_t resp_len = sim_http_post(1);
 	uint32_t version = 0;
-	if (resp_len)
-	{
-		uint8_t num_bytes = sim_http_read_response(0, resp_len);
+	// if (resp_len)
+	// {
+	// 	uint8_t num_bytes = sim_http_read_response(0, resp_len);
 
-		// SIM800 now returns that number of bytes
-		for (uint8_t i = 0; i < num_bytes; i++)
-		{
-			while (!sim_available())
-			{
-			}
-			// ASCII to char
-			version = (version * 10) + (uint8_t)(sim_read() - '0');
-		}
-		serial_printf("Online Version: %u\n", version);
-	}
+	// 	// SIM800 now returns that number of bytes
+	// 	for (uint8_t i = 0; i < num_bytes; i++)
+	// 	{
+	// 		while (!sim_available())
+	// 		{
+	// 		}
+	// 		// ASCII to char
+	// 		version = (version * 10) + (uint8_t)(sim_read() - '0');
+	// 	}
+	// 	serial_printf("Online Version: %u\n", version);
+	// }
 
 	return version;
 }

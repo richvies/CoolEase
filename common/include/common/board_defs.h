@@ -10,7 +10,7 @@
 
 extern enum rcc_osc sys_clk;
 
-#define PRINT_REG(reg) serial_printf(#reg);serial_printf(" : %8x\n",reg);
+#define PRINT_REG(reg) serial_printf("%s : %8x\n",#reg, reg);
 
 #define INIT_KEY 0xABC3F982
 typedef struct

@@ -34,6 +34,13 @@
  * @{
  */
 
+#define PRINT_CMD(type, cmd, val) serial_printf("%s: %s %s\n", ((type == CMD_TEST) ? "TEST" : (type == CMD_READ) ? "READ"  \
+																						  : (type == CMD_WRITE)	 ? "WRITE" \
+																												 : "EXEC"), \
+												cmd, val)
+
+#undef PRINT_CMD
+
 #define PRINT_ERROR(cmd, err)   \
 	serial_printf("SIM ERR: "); \
 	serial_printf(#cmd);        \
@@ -78,44 +85,19 @@
 // Static Variables
 /*////////////////////////////////////////////////////////////////////////////*/
 
+#define RX_TIMEOUT_MS 100
+#define QUICK_RESPONSE_MS 100
+
+sim800_t sim800;
+
 enum cmd_type
 {
 	CMD_TEST = 0,
 	CMD_READ,
 	CMD_WRITE,
-	CMD_EXEC
+	CMD_EXEC,
+	CMD_WAIT
 };
-
-typedef enum sim_function
-{
-	FUNC_MIN = 0,
-	FUNC_FULL = 1,
-	FUNC_NO_RF = 4,
-	FUNC_OFF,
-	FUNC_RESET,
-	FUNC_SLEEP
-} sim_function_t;
-static sim_function_t sim_func = FUNC_OFF;
-
-typedef enum registration_status
-{
-	REG_NONE = 0,
-	REG_HOME,
-	REG_SEARCHING,
-	REG_DENIED,
-	REG_UNKNOWN,
-	REG_ROAMING
-} registration_status_t;
-static registration_status_t reg_status = REG_NONE;
-
-typedef enum http_state
-{
-	HTTP_TERM = 0,
-	HTTP_INIT,
-	HTTP_ACTION,
-	HTTP_DONE
-} http_state_t;
-static http_state_t http_state = HTTP_TERM;
 
 #define SIM_BUFFER_SIZE 64U
 
@@ -127,9 +109,14 @@ static uint8_t sim_rx_head = 0;
 static uint8_t sim_rx_tail = 0;
 static bool sim_rx_overflow = false;
 
+static char _sprintf_buf[SIM_BUFFER_SIZE];
+static uint8_t _sprintf_buf_idx = 0;
+
 static char param_buf[SIM_BUFFER_SIZE];
 static char reply_buf[SIM_BUFFER_SIZE];
-static char timestamp[18];
+
+// year, month, day, hours, mins, secs
+static uint8_t timestamp[6] = {0, 0, 0, 0, 0, 0};
 
 static const char base_url_str[] = "http://cooleasetest.000webhostapp.com/";
 
@@ -137,14 +124,19 @@ static uint32_t _timer = 0;
 static uint32_t _timeout_ms = 0;
 
 /*////////////////////////////////////////////////////////////////////////////*/
-// Static Function Declarations
+// Comms
 /*////////////////////////////////////////////////////////////////////////////*/
 
-static sim_state_t command(enum cmd_type type, char *cmd_str, char *val_str, uint32_t timeout_ms);
-static sim_state_t read_command(char *cmd_str, uint32_t timeout_ms);
-static sim_state_t write_command(char *cmd_str, char *val_str, uint32_t timeout_ms);
-static sim_state_t exec_command(char *cmd_str, uint32_t timeout_ms);
-static sim_state_t set_param(char *cmd_str, char *val_str, uint32_t timeout_ms);
+static void _putchar_buffer(char character);
+static uint32_t _sprintf(const char *format, ...);
+static void _sprintf_clear_buf(void);
+
+static sim_state_t command(enum cmd_type type, const char *cmd_str, const char *val_str, uint32_t timeout_ms);
+static sim_state_t read_command(const char *cmd_str, uint32_t timeout_ms);
+static sim_state_t write_command(const char *cmd_str, const char *val_str, uint32_t timeout_ms);
+static sim_state_t exec_command(const char *cmd_str, uint32_t timeout_ms);
+static sim_state_t set_param(const char *cmd_str, const char *val_str, uint32_t timeout_ms);
+static sim_state_t wait_command(const char *wait_str, uint32_t timeout_ms);
 
 /** @brief Wait until correct response received or timeout 
  * 
@@ -152,13 +144,17 @@ static sim_state_t set_param(char *cmd_str, char *val_str, uint32_t timeout_ms);
  */
 static bool wait_and_check_response(uint32_t timeout_ms, const char *expected_response);
 /** @brief Read all unread characters until terminated or no rx in 100ms */
-static bool response_done(char terminating_char);
+static bool response_done(const char terminating_char);
 /** @brief Search for string in reply_buf */
 static bool check_response(const char *expected_response);
 /** @brief Search for parameter value in param_buf */
-static bool check_param_response(char *cmd_str, char *exp_val_str);
+static bool check_param_response(const char *cmd_str, const char *exp_val_str);
 static void timeout_init(uint32_t new_timeout_ms);
 static bool timeout(void);
+
+/*////////////////////////////////////////////////////////////////////////////*/
+// Setup & Config
+/*////////////////////////////////////////////////////////////////////////////*/
 
 static sim_state_t reset_and_wait_ready(void);
 /** @brief Repeatedly send AT command until SIM autbauding kicks in i.e. "OK" received
@@ -172,17 +168,21 @@ static sim_state_t disable_echo(void);
 static sim_state_t toggle_local_timestamp(bool on);
 static sim_state_t set_function(sim_function_t func);
 static sim_state_t config_saved_params(void);
-/** @brief Wrapper for SAPBR=1,1 command 
- * 
- * Adds delay of 1 second after opening bearer to prevent issues with next command coming to quickly 
- * Issue mainly with calling httpaction
- */
-static sim_state_t open_bearer(void);
+static sim_state_t config_bearer(char *apn_str, char *user_str, char *pwd_str);
+static sim_state_t toggle_bearer(bool open);
+
+/*////////////////////////////////////////////////////////////////////////////*/
+// HTTP
+/*////////////////////////////////////////////////////////////////////////////*/
+
+static sim_state_t http_toggle_ssl(bool on);
+static sim_state_t http_action(uint8_t action);
 
 static void reset(void);
 static void usart_setup(void);
 static void clear_rx_buf(void);
 static void _putchar(char character);
+static void print_timestamp(void);
 
 /** @brief Internal test if char is a digit (0-9) */
 static inline bool _is_digit(char ch);
@@ -197,35 +197,12 @@ static uint32_t _atoi(const char **str);
  */
 
 /*////////////////////////////////////////////////////////////////////////////*/
-// Exported Function Definitions
-/*////////////////////////////////////////////////////////////////////////////*/
-
-/*////////////////////////////////////////////////////////////////////////////*/
 // Comms
 /*////////////////////////////////////////////////////////////////////////////*/
 
-void sim_printf(const char *format, ...)
-{
-	va_list va;
-	va_start(va, format);
-	fnprintf(_putchar, format, va);
-	va_end(va);
-}
-
-bool sim_printf_and_check_response(uint32_t timeout_ms, const char *expected_response, const char *format, ...)
-{
-	// Write to SIM800
-	va_list va;
-	va_start(va, format);
-	fnprintf(_putchar, format, va);
-	va_end(va);
-
-	return wait_and_check_response(timeout_ms, expected_response);
-}
-
 void sim_serial_pass_through(void)
 {
-	log_printf("Ready\n");
+	serial_printf("SIM: Serial Passthrough Ready\n");
 
 	while (1)
 	{
@@ -247,6 +224,25 @@ void sim_serial_pass_through(void)
 	}
 }
 
+void sim_printf(const char *format, ...)
+{
+	va_list va;
+	va_start(va, format);
+	fnprintf(_putchar, format, va);
+	va_end(va);
+}
+
+bool sim_printf_and_check_response(uint32_t timeout_ms, const char *expected_response, const char *format, ...)
+{
+	// Write to SIM800
+	va_list va;
+	va_start(va, format);
+	fnprintf(_putchar, format, va);
+	va_end(va);
+
+	return wait_and_check_response(timeout_ms, expected_response);
+}
+
 bool sim_available(void)
 {
 	return ((sim_rx_head + SIM_BUFFER_SIZE - sim_rx_tail) % SIM_BUFFER_SIZE);
@@ -264,20 +260,48 @@ char sim_read(void)
 	return c;
 }
 
-static sim_state_t command(enum cmd_type type, char *cmd_str, char *val_str, uint32_t timeout_ms)
+static uint32_t _sprintf(const char *format, ...)
 {
+	_sprintf_clear_buf();
+
+	va_list va;
+	va_start(va, format);
+	uint32_t res = fnprintf(_putchar_buffer, format, va);
+	va_end(va);
+
+	return res;
+}
+
+static void _sprintf_clear_buf(void)
+{
+	for (uint8_t i = 0; i < _sprintf_buf_idx; i++)
+	{
+		_sprintf_buf[i] = '\0';
+	}
+	_sprintf_buf_idx = 0;
+}
+
+static sim_state_t command(enum cmd_type type, const char *cmd_str, const char *val_str, uint32_t timeout_ms)
+{
+#ifdef PRINT_CMD
+	PRINT_CMD(type, cmd_str, val_str);
+#endif
+
 	static uint8_t state = 0;
 
 	sim_state_t res = SIM_ERROR;
+
+	bool quick_response = (timeout_ms <= QUICK_RESPONSE_MS) ? true : false;
 
 	switch (state)
 	{
 	// Send command
 	case 0:
+
 		res = SIM_BUSY;
 		state++;
 
-		timers_delay_milliseconds(10);
+		timers_delay_milliseconds(1);
 
 		clear_rx_buf();
 		timeout_init(timeout_ms);
@@ -296,11 +320,16 @@ static sim_state_t command(enum cmd_type type, char *cmd_str, char *val_str, uin
 		case CMD_EXEC:
 			sim_printf("AT%s\r", cmd_str);
 			break;
+		case CMD_WAIT:
+			break;
 		default:
 			break;
 		}
 
-		break;
+		if (!quick_response)
+		{
+			break;
+		}
 	// Parse response, waits until finished if timeout is small
 	case 1:
 		res = SIM_BUSY;
@@ -308,36 +337,43 @@ static sim_state_t command(enum cmd_type type, char *cmd_str, char *val_str, uin
 		{
 			if (timeout())
 			{
+				res = SIM_TIMEOUT;
+				state = 0;
+
 				log_printf("SIM ERR: CMD TO %u %s %s\n", type, cmd_str, val_str);
-				state = 'X';
 				break;
 			}
 			else if (response_done('\n'))
 			{
 				if (check_response("OK"))
 				{
-					state = 'S';
+					res = SIM_SUCCESS;
+					state = 0;
+
 					break;
 				}
 				else if (check_response("ERROR"))
 				{
+					res = SIM_ERROR;
+					state = 0;
+
 					log_printf("SIM ERR: CMD FA %u %s %s\n", type, cmd_str, val_str);
-					state = 'X';
 					break;
 				}
 				// Save parameter value e.g. +CLTS: 1
 				else if (check_response(cmd_str))
 				{
 					strcpy(param_buf, reply_buf);
+
+					if (type == CMD_WAIT)
+					{
+						res = SIM_SUCCESS;
+						state = 0;
+					}
 				}
 			}
-		} while (timeout_ms < 150);
+		} while (quick_response);
 		break;
-	case 'S':
-		state = 0;
-		return SIM_SUCCESS;
-		break;
-	case 'X':
 	default:
 		state = 0;
 		return SIM_ERROR;
@@ -347,29 +383,34 @@ static sim_state_t command(enum cmd_type type, char *cmd_str, char *val_str, uin
 	return res;
 }
 
-static sim_state_t test_command(char *cmd_str, uint32_t timeout_ms)
+static sim_state_t test_command(const char *cmd_str, uint32_t timeout_ms)
 {
 	return command(CMD_TEST, cmd_str, "", timeout_ms);
 }
 
 // All end with OK. Only returns success if cmd_str found in response e,g, +clts
-static sim_state_t read_command(char *cmd_str, uint32_t timeout_ms)
+static sim_state_t read_command(const char *cmd_str, uint32_t timeout_ms)
 {
 	return command(CMD_READ, cmd_str, "", timeout_ms);
 }
 
 // All end with OK or error
-static sim_state_t write_command(char *cmd_str, char *val_str, uint32_t timeout_ms)
+static sim_state_t write_command(const char *cmd_str, const char *val_str, uint32_t timeout_ms)
 {
 	return command(CMD_WRITE, cmd_str, val_str, timeout_ms);
 }
 
-static sim_state_t exec_command(char *cmd_str, uint32_t timeout_ms)
+static sim_state_t exec_command(const char *cmd_str, uint32_t timeout_ms)
 {
 	return command(CMD_EXEC, cmd_str, "", timeout_ms);
 }
 
-static sim_state_t set_param(char *cmd_str, char *val_str, uint32_t timeout_ms)
+static sim_state_t wait_command(const char *wait_str, uint32_t timeout_ms)
+{
+	return command(CMD_WAIT, wait_str, "", timeout_ms);
+}
+
+static sim_state_t set_param(const char *cmd_str, const char *val_str, uint32_t timeout_ms)
 {
 	static uint8_t state = 0;
 
@@ -401,30 +442,34 @@ static sim_state_t set_param(char *cmd_str, char *val_str, uint32_t timeout_ms)
 		res = read_command(cmd_str, timeout_ms);
 		break;
 	case 4:
-		res = SIM_BUSY;
-
 		if (check_param_response(cmd_str, val_str))
 		{
-			state = 'S';
+			res = SIM_SUCCESS;
 		}
 		else
 		{
-			state = 'X';
+			res = SIM_ERROR;
 		}
 		break;
-	case 'S':
-		state = 0;
-		return SIM_SUCCESS;
+	case 5:
+		state = 'S';
 		break;
-	case 'X':
 	default:
-		state = 0;
-		return SIM_ERROR;
+		res = SIM_ERROR;
 		break;
 	}
 
-	// Go to next state
-	if (res == SIM_SUCCESS)
+	// Stop or go to next state
+	if (state == 'S')
+	{
+		res = SIM_SUCCESS;
+		state = 0;
+	}
+	else if (res == SIM_ERROR || res == SIM_TIMEOUT)
+	{
+		state = 0;
+	}
+	else if (res == SIM_SUCCESS)
 	{
 		res = SIM_BUSY;
 		state++;
@@ -456,7 +501,7 @@ static bool check_response(const char *expected_response)
 }
 
 // Assumes parameter response is in param_buf
-static bool check_param_response(char *cmd_str, char *exp_val_str)
+static bool check_param_response(const char *cmd_str, const char *exp_val_str)
 {
 	// E.g. Sim response from read commnad: "AT+CLTS?" -> "+CLTS: 1"
 
@@ -474,7 +519,7 @@ static bool check_param_response(char *cmd_str, char *exp_val_str)
 	return false;
 }
 
-static bool response_done(char terminating_char)
+static bool response_done(const char terminating_char)
 {
 	static char check_buf[SIM_BUFFER_SIZE];
 	static uint8_t check_idx = 0;
@@ -503,8 +548,8 @@ static bool response_done(char terminating_char)
 		}
 	}
 
-	// Copy message to buffer if terminated or no rx in 100ms
-	bool timeout = (timers_millis() - rx_timeout) > 100;
+	// Copy message to buffer if terminated or no rx
+	bool timeout = (timers_millis() - rx_timeout) > RX_TIMEOUT_MS;
 	if (terminated || timeout)
 	{
 		// Null Terminate String
@@ -516,7 +561,7 @@ static bool response_done(char terminating_char)
 #if DEBUG
 		if (check_idx > 2)
 		{
-			serial_printf("Sim Response %s: %s\n", timeout ? "TO" : "TE", reply_buf);
+			serial_printf("Response Done %s: %s\n", timeout ? "TO" : "TE", reply_buf);
 		}
 #endif
 
@@ -542,8 +587,33 @@ static bool timeout(void)
 	return ((timers_millis() - _timer) > _timeout_ms);
 }
 
+void sim_print_state(sim_state_t res)
+{
+	switch (res)
+	{
+	case SIM_READY:
+		serial_printf("SIM: Ready\n");
+		break;
+	case SIM_BUSY:
+		serial_printf("SIM: Busy\n");
+		break;
+	case SIM_SUCCESS:
+		serial_printf("SIM: Success\n");
+		break;
+	case SIM_TIMEOUT:
+		serial_printf("SIM: Timeout\n");
+		break;
+	case SIM_ERROR:
+		serial_printf("SIM: Error\n");
+		break;
+		break;
+	default:
+		break;
+	}
+}
+
 /*////////////////////////////////////////////////////////////////////////////*/
-// Setup
+// Setup & Config
 /*////////////////////////////////////////////////////////////////////////////*/
 
 sim_state_t sim_init(void)
@@ -557,9 +627,9 @@ sim_state_t sim_init(void)
 		res = SIM_BUSY;
 		state++;
 
-		log_printf("Sim Init\n");
+		log_printf("SIM: Init\n");
 
-		sim_func = FUNC_OFF;
+		sim800.func = FUNC_OFF;
 		break;
 	case 1:
 		res = reset_and_wait_ready();
@@ -571,22 +641,30 @@ sim_state_t sim_init(void)
 		res = reset_and_wait_ready();
 		break;
 	case 4:
-		res = SIM_BUSY;
+		res = sim_register_to_network();
+		break;
+	case 5:
+		res = config_bearer("data.rewicom.net", "", "");
+		break;
+	case 6:
 		state = 'S';
 		break;
-	case 'S':
-		state = 0;
-		return SIM_SUCCESS;
-		break;
-	case 'X':
 	default:
-		state = 0;
-		return SIM_ERROR;
+		res = SIM_ERROR;
 		break;
 	}
 
-	// Go to next state
-	if (res == SIM_SUCCESS)
+	// Stop or go to next state
+	if (state == 'S')
+	{
+		res = SIM_SUCCESS;
+		state = 0;
+	}
+	else if (res == SIM_ERROR || res == SIM_TIMEOUT)
+	{
+		state = 0;
+	}
+	else if (res == SIM_SUCCESS)
 	{
 		res = SIM_BUSY;
 		state++;
@@ -603,10 +681,9 @@ sim_state_t sim_end(void)
 	switch (state)
 	{
 	case 0:
-		res = SIM_BUSY;
-		state++;
+		res = SIM_SUCCESS;
 
-		log_printf("Sim End\n");
+		log_printf("SIM: End\n");
 
 		break;
 	case 1:
@@ -616,36 +693,40 @@ sim_state_t sim_end(void)
 		res = set_param("+CSCLK", "1", 5000);
 		break;
 	case 3:
-		res = SIM_BUSY;
-		state = 'S';
+		res = SIM_SUCCESS;
 
 		usart_disable(SIM_USART);
 		rcc_periph_clock_disable(SIM_USART_RCC);
-		
-		sim_func = FUNC_SLEEP;
-		reg_status = REG_NONE;
-		http_state = HTTP_TERM;
+
+		sim800.func = FUNC_SLEEP;
+		sim800.reg_status = REG_NONE;
+		sim800.http.state = HTTP_TERM;
 		break;
-	case 'S':
-		state = 0;
-		return SIM_SUCCESS;
+	case 4:
+		state = 'S';
 		break;
-	case 'X':
 	default:
-		state = 0;
-		return SIM_ERROR;
+		res = SIM_ERROR;
 		break;
 	}
 
-	// Go to next state
-	if (res == SIM_SUCCESS)
+	// Stop or go to next state
+	if (state == 'S')
+	{
+		res = SIM_SUCCESS;
+		state = 0;
+	}
+	else if (res == SIM_ERROR || res == SIM_TIMEOUT)
+	{
+		state = 0;
+	}
+	else if (res == SIM_SUCCESS)
 	{
 		res = SIM_BUSY;
 		state++;
 	}
 
 	return res;
-
 }
 
 sim_state_t sim_register_to_network(void)
@@ -659,23 +740,24 @@ sim_state_t sim_register_to_network(void)
 	{
 	// Init state machine
 	case 0:
-		res = SIM_BUSY;
-		state++;
+		res = SIM_SUCCESS;
 
 		log_printf("SIM: Register\n");
 
-		reg_status = REG_NONE;
+		sim800.reg_status = REG_NONE;
 		num_tries = 0;
 		break;
 	// Tried too many times with no end result
 	case 1:
-		res = SIM_BUSY;
-		state++;
+		res = SIM_SUCCESS;
 
-		num_tries++;
-		if (num_tries >= 30)
+		if (num_tries++ < 30)
 		{
-			state = 'X';
+			res = SIM_SUCCESS;
+		}
+		else
+		{
+			res = SIM_ERROR;
 		}
 		break;
 	// Query registration status
@@ -687,11 +769,11 @@ sim_state_t sim_register_to_network(void)
 		res = SIM_BUSY;
 
 		// enum uses same values as sim800 response
-		reg_status = param_buf[9] - '0';
+		sim800.reg_status = param_buf[9] - '0';
 
-		serial_printf("Register Attempt %i : %u %s\n", num_tries, reg_status, param_buf);
+		serial_printf("Register Attempt %i : %u %s\n", num_tries, sim800.reg_status, param_buf);
 
-		switch (reg_status)
+		switch (sim800.reg_status)
 		{
 		// Continue searching
 		case REG_NONE:
@@ -708,46 +790,85 @@ sim_state_t sim_register_to_network(void)
 			break;
 		default:
 			state++;
-			reg_status = REG_NONE;
+			sim800.reg_status = REG_NONE;
 			break;
 		}
 		break;
 	// Wait 2 seconds between CREG queries
 	case 4:
-		res = SIM_BUSY;
-		state++;
+		res = SIM_SUCCESS;
 
 		timer = timers_millis();
 		break;
 	case 5:
 		res = SIM_BUSY;
+
 		if ((timers_millis() - timer) > 2000)
 		{
 			state = 1;
 		}
 		break;
-	// Finished, reset
-	case 'S':
-		state = 0;
-		return SIM_SUCCESS;
+	case 6:
+		state = 'S';
 		break;
-	// Error, reset
-	case 'X':
 	default:
-		log_printf("SIM ERR: %u %u\n", reg_status);
-		state = 0;
-		return SIM_ERROR;
+		res = SIM_ERROR;
 		break;
 	}
 
-	// Go to next state
-	if (res == SIM_SUCCESS)
+	// Stop or go to next state
+	if (state == 'S')
+	{
+		res = SIM_SUCCESS;
+		state = 0;
+	}
+	else if (res == SIM_ERROR || res == SIM_TIMEOUT)
+	{
+		state = 0;
+	}
+	else if (res == SIM_SUCCESS)
 	{
 		res = SIM_BUSY;
 		state++;
 	}
 
 	return res;
+}
+
+uint8_t *sim_get_timestamp(void)
+{
+	// E.g. +CCLK: "21/02/03,13:37:12+00"
+
+	sim_state_t res = read_command("+CCLK", QUICK_RESPONSE_MS);
+
+	if (res == SIM_SUCCESS)
+	{
+		// Basic error check of reponse format
+		if ((param_buf[7] == '\"') && (param_buf[28] == '\"'))
+		{
+			// Parse reply and update timestamp buffer
+			char *ptr;
+			for (uint8_t i = 0; i < 6; i++)
+			{
+				ptr = &param_buf[8 + (3 * i)];
+				timestamp[i] = (uint8_t)_atoi((const char **)&ptr);
+			}
+		}
+		else
+		{
+			res = SIM_ERROR;
+		}
+
+		serial_printf("Timestamp: %s", param_buf);
+		print_timestamp();
+	}
+
+	if (res == SIM_ERROR || res == SIM_TIMEOUT)
+	{
+		memset(timestamp, 0, sizeof(timestamp));
+	}
+
+	return timestamp;
 }
 
 static sim_state_t reset_and_wait_ready(void)
@@ -758,8 +879,7 @@ static sim_state_t reset_and_wait_ready(void)
 	switch (state)
 	{
 	case 0:
-		res = SIM_BUSY;
-		state++;
+		res = SIM_SUCCESS;
 
 		reset();
 		break;
@@ -770,22 +890,24 @@ static sim_state_t reset_and_wait_ready(void)
 		res = disable_echo();
 		break;
 	case 3:
-		res = SIM_BUSY;
-		state = 250;
+		state = 'S';
 		break;
-	case 250:
-		res = SIM_SUCCESS;
-		state = 0;
-		break;
-	case 255:
 	default:
 		res = SIM_ERROR;
-		state = 0;
 		break;
 	}
 
-	// Go to next state if ok
-	if ((state != 0) && (res == SIM_SUCCESS))
+	// Stop or go to next state
+	if (state == 'S')
+	{
+		res = SIM_SUCCESS;
+		state = 0;
+	}
+	else if (res == SIM_ERROR || res == SIM_TIMEOUT)
+	{
+		state = 0;
+	}
+	else if (res == SIM_SUCCESS)
 	{
 		res = SIM_BUSY;
 		state++;
@@ -798,14 +920,28 @@ static sim_state_t try_autobaud(void)
 {
 	static uint8_t num_tries = 0;
 
-	sim_state_t res = exec_command("", 100);
+	if (num_tries == 0)
+	{
+		log_printf("SIM: AB\n");
+	}
+
+// Done with printf directly to avoid logging errors when no response
+#ifdef DEBUG
+	sim_state_t res = sim_printf_and_check_response(1000, "OK", "AT\r") ? SIM_SUCCESS : SIM_ERROR;
+#else
+	sim_state_t res = sim_printf_and_check_response(100, "OK", "AT\r") ? SIM_SUCCESS : SIM_ERROR;
+#endif
 
 	if (res == SIM_ERROR)
 	{
-		num_tries++;
-		if (num_tries < 100)
+		if (num_tries++ < 100)
 		{
 			res = SIM_BUSY;
+		}
+		else
+		{
+			log_printf("SIM: ERR AB\n");
+			num_tries = 0;
 		}
 	}
 	else if (res == SIM_SUCCESS)
@@ -835,22 +971,24 @@ static sim_state_t config_saved_params(void)
 		res = set_function(FUNC_FULL);
 		break;
 	case 2:
-		res = SIM_BUSY;
 		state = 'S';
 		break;
-	case 'S':
-		state = 0;
-		return SIM_SUCCESS;
-		break;
-	case 'X':
 	default:
-		state = 0;
-		return SIM_ERROR;
+		res = SIM_ERROR;
 		break;
 	}
 
-	// Go to next state if not finished & ok
-	if (res == SIM_SUCCESS)
+	// Stop or go to next state
+	if (state == 'S')
+	{
+		res = SIM_SUCCESS;
+		state = 0;
+	}
+	else if (res == SIM_ERROR || res == SIM_TIMEOUT)
+	{
+		state = 0;
+	}
+	else if (res == SIM_SUCCESS)
 	{
 		res = SIM_BUSY;
 		state++;
@@ -861,85 +999,46 @@ static sim_state_t config_saved_params(void)
 
 static sim_state_t toggle_local_timestamp(bool on)
 {
-	static char *buf = "0";
-	buf[0] = on ? '1' : '0';
-	
-	return set_param("+CLTS", buf, 1000);
+	return set_param("+CLTS", on ? "1" : "0", 1000);
 }
 
 static sim_state_t set_function(sim_function_t func)
 {
-	static char *buf = "0";
+	char buf[2] = {'1', '\0'};
 	buf[0] = func + '0';
 	return set_param("+CFUN", buf, 1000);
 }
 
-static sim_state_t open_bearer(void)
+static sim_state_t config_bearer(char *apn_str, char *user_str, char *pwd_str)
 {
-	return write_command("+SAPBR", '1,1', 90000);
+	bool res = true;
+
+	if (strlen(apn_str))
+	{
+		res = sim_printf_and_check_response(100, "OK", "AT+SAPBR=3,1,\"APN\",\"%s\"\r", apn_str);
+	}
+
+	if (strlen(user_str))
+	{
+		res = sim_printf_and_check_response(100, "OK", "AT+SAPBR=3,1,\"USER\",\"%s\"\r", user_str);
+	}
+
+	if (strlen(pwd_str))
+	{
+		res = sim_printf_and_check_response(100, "OK", "AT+SAPBR=3,1,\"PWD\",\"%s\"\r", pwd_str);
+	}
+
+	if (res)
+	{
+		return SIM_SUCCESS;
+	}
+
+	return SIM_ERROR;
 }
 
-bool sim_set_full_function(void)
+static sim_state_t toggle_bearer(bool open)
 {
-	log_printf("Sim Set FF\n");
-
-	bool result = false;
-
-	if (sim_func == FUNC_FULL)
-	{
-		result = true;
-	}
-	else
-	{
-		// Reset sim if off or in sleep mode
-		// Currently no connection to DTR so only way to get sim out of sleep is to reset
-		if (sim_func == FUNC_OFF || sim_func == FUNC_SLEEP)
-		{
-			if (!sim_init())
-			{
-				log_error(ERR_SIM_INIT);
-			}
-		}
-		// Set full functionality
-		if (!sim_printf_and_check_response(10000, "OK", "AT+CFUN=1\r"))
-		{
-			log_error(ERR_SIM_CFUN_1);
-		}
-		else
-		{
-			sim_func = FUNC_FULL;
-			result = true;
-		}
-	}
-
-	return result;
-}
-
-void sim_print_res(sim_state_t res)
-{
-	switch (res)
-	{
-	case SIM_READY:
-		serial_printf("SIM: Ready\n");
-		break;
-	case SIM_BUSY:
-		serial_printf("SIM: Busy\n");
-		break;
-	case SIM_SUCCESS:
-		serial_printf("SIM: Success\n");
-		break;
-	case SIM_TIMEOUT:
-		serial_printf("SIM: Timeout\n");
-		break;
-	case SIM_ERROR:
-		serial_printf("SIM: Error\n");
-		break;
-	case SIM_FAIL:
-		serial_printf("SIM: Fail\n");
-		break;
-	default:
-		break;
-	}
+	return write_command("+SAPBR", open ? "1,1" : "0,1", 120000);
 }
 
 /*////////////////////////////////////////////////////////////////////////////*/
@@ -952,29 +1051,492 @@ void sim_print_capabilities(void)
 }
 
 /*////////////////////////////////////////////////////////////////////////////*/
-// Network Configuration
+// HTTP
 /*////////////////////////////////////////////////////////////////////////////*/
 
-uint32_t sim_get_timestamp(void)
+sim_state_t sim_http_init(const char *url_str, bool ssl)
 {
-	if (!sim_printf_and_check_response(1000, "CCLK", "AT+CCLK?\r"))
+	static uint8_t state = 0;
+	sim_state_t res = SIM_ERROR;
+
+	switch (state)
 	{
+	case 0:
+		res = SIM_SUCCESS;
+
+		log_printf("SIM: HTTP Init\n");
+
+		sim800.http.response_size = 0;
+		sim800.http.status_code = 0;
+
+		break;
+	case 1:
+		res = sim_http_term();
+		break;
+	case 2:
+		if (sim800.http.state == HTTP_INIT)
+		{
+			res = SIM_SUCCESS;
+		}
+		else
+		{
+			res = exec_command("+HTTPINIT", 1000);
+
+			if (res == SIM_SUCCESS)
+			{
+				sim800.http.state = HTTP_INIT;
+			}
+		}
+		break;
+	case 3:
+		res = write_command("+HTTPPARA", "\"CID\",\"1\"", 100);
+		break;
+	case 4:
+		res = write_command("+HTTPPARA", "\"REDIR\",\"1\"", 100);
+		break;
+	case 5:
+		if (sim_printf_and_check_response(100, "OK", "AT+HTTPPARA=\"URL\",\"%s\"\r", url_str))
+		{
+			res = SIM_SUCCESS;
+		}
+		else
+		{
+			res = SIM_ERROR;
+		}
+		break;
+	case 6:
+		res = http_toggle_ssl(ssl ? true : false);
+		break;
+	case 7:
+		res = write_command("+SSLOPT", "0,1", 100);
+		break;
+	case 8:
+		res = write_command("+SSLOPT", "1,0", 100);
+		break;
+	case 9:
+		state = 'S';
+		break;
+	default:
+		res = SIM_ERROR;
+		break;
+	}
+
+	// Stop or go to next state
+	if (state == 'S')
+	{
+		res = SIM_SUCCESS;
+		sim800.http.state = HTTP_INIT;
+		state = 0;
+	}
+	else if (res == SIM_ERROR || res == SIM_TIMEOUT)
+	{
+		sim800.http.state = HTTP_ERROR;
+		state = 0;
+	}
+	else if (res == SIM_SUCCESS)
+	{
+		res = SIM_BUSY;
+		state++;
+	}
+
+	return res;
+}
+
+sim_state_t sim_http_term(void)
+{
+	sim_state_t res = SIM_ERROR;
+
+	// Skip if already terminated
+	if (sim800.http.state == HTTP_TERM)
+	{
+		res = SIM_SUCCESS;
 	}
 	else
 	{
-		memcpy(timestamp, &reply_buf[8], sizeof(timestamp) - 1);
-		timestamp[sizeof(timestamp)] = '\0';
-		serial_printf("Timestamp: %s\n", timestamp);
-		wait_and_check_response(1000, "OK");
+		res = exec_command("+HTTPTERM", 10000);
+
+		// Error returned if http stack has already been terminated, but that ok
+		if (res == SIM_SUCCESS || res == SIM_ERROR)
+		{
+			res = SIM_SUCCESS;
+			sim800.http.state = HTTP_TERM;
+		}
 	}
 
-	// uint32_t stamp = timestamp;
+	return res;
+}
 
-	return 0;
+sim_state_t sim_http_get(const char *url_str, bool ssl, uint8_t num_tries)
+{
+	static uint8_t state = 0;
+	sim_state_t res = SIM_ERROR;
+
+	static uint8_t tries = 0;
+
+	switch (state)
+	{
+	case 0:
+		res = SIM_SUCCESS;
+
+		log_printf("SIM: HTTP Get\n");
+
+		tries = 0;
+
+		break;
+	case 1:
+		res = sim_http_init(url_str, ssl);
+		break;
+	case 2:
+		res = toggle_bearer(true);
+		break;
+	case 3:
+		if (tries++ < num_tries)
+		{
+			res = SIM_SUCCESS;
+		}
+		else
+		{
+			res = SIM_BUSY;
+			state = 6;
+		}
+		break;
+	case 4:
+		res = http_action(0);
+		break;
+	case 5:
+		if ((sim800.http.status_code == 200))
+		{
+			res = SIM_SUCCESS;
+		}
+		else
+		{
+			res = SIM_BUSY;
+			state = 3;
+		}
+		break;
+	case 6:
+		res = toggle_bearer(false);
+		break;
+	case 7:
+		state = 'S';
+		break;
+	default:
+		res = SIM_ERROR;
+		break;
+	}
+
+	// Stop or go to next state
+	if (state == 'S')
+	{
+		res = SIM_SUCCESS;
+		sim800.http.state = HTTP_DONE;
+		state = 0;
+	}
+	else if (res == SIM_ERROR || res == SIM_TIMEOUT)
+	{
+		sim800.http.state = HTTP_ERROR;
+		state = 0;
+	}
+	else if (res == SIM_SUCCESS)
+	{
+		res = SIM_BUSY;
+		state++;
+	}
+
+	return res;
+}
+
+sim_state_t sim_http_post_str(const char *url_str, const char *msg_str, bool ssl, uint8_t num_tries)
+{
+	static uint8_t state = 0;
+	sim_state_t res = SIM_ERROR;
+
+	static uint8_t tries = 0;
+	static uint32_t size = 0;
+
+	switch (state)
+	{
+	case 0:
+		res = SIM_SUCCESS;
+
+		log_printf("SIM: HTTP Post Str\n");
+
+		tries = 0;
+
+		size = strlen(msg_str);
+
+		break;
+	case 1:
+		res = sim_http_post_init(url_str, ssl);
+		break;
+	case 2:
+		if (tries++ < num_tries)
+		{
+			res = SIM_SUCCESS;
+		}
+		else
+		{
+			res = SIM_BUSY;
+			state = 6;
+		}
+		break;
+	case 3:
+		res = sim_http_post_enter_data(size, 5000);
+		break;
+	case 4:
+		res = SIM_SUCCESS;
+		sim_printf("%s", msg_str);
+		break;
+	case 5:
+		res = wait_command("OK", 5000);
+		break;
+	case 6:
+		res = sim_http_post();
+		break;
+	case 7:
+		if ((sim800.http.status_code == 200))
+		{
+			res = SIM_SUCCESS;
+		}
+		else
+		{
+			res = SIM_BUSY;
+			state = 2;
+		}
+		break;
+	case 8:
+		res = toggle_bearer(false);
+		break;
+	case 9:
+		state = 'S';
+		break;
+	default:
+		res = SIM_ERROR;
+		break;
+	}
+
+	// Stop or go to next state
+	if (state == 'S')
+	{
+		res = SIM_SUCCESS;
+		state = 0;
+	}
+	else if (res == SIM_ERROR || res == SIM_TIMEOUT)
+	{
+		sim800.http.state = HTTP_ERROR;
+		state = 0;
+	}
+	else if (res == SIM_SUCCESS)
+	{
+		res = SIM_BUSY;
+		state++;
+	}
+
+	return res;
+}
+
+sim_state_t sim_http_post_init(const char *url_str, bool ssl)
+{
+	static uint8_t state = 0;
+	sim_state_t res = SIM_ERROR;
+
+	switch (state)
+	{
+	case 0:
+		res = SIM_SUCCESS;
+
+		log_printf("SIM: HTTP Post Init\n");
+
+		break;
+	case 1:
+		res = sim_http_init(url_str, ssl);
+		break;
+	case 2:
+		res = write_command("+HTTPPARA", "\"CONTENT\",\"application/x-www-form-urlencoded\"", 1000);
+		break;
+	case 3:
+		res = toggle_bearer(true);
+		break;
+	case 4:
+		state = 'S';
+		break;
+	default:
+		res = SIM_ERROR;
+		break;
+	}
+
+	// Stop or go to next state
+	if (state == 'S')
+	{
+		res = SIM_SUCCESS;
+		state = 0;
+	}
+	else if (res == SIM_ERROR || res == SIM_TIMEOUT)
+	{
+		sim800.http.state = HTTP_ERROR;
+		state = 0;
+	}
+	else if (res == SIM_SUCCESS)
+	{
+		res = SIM_BUSY;
+		state++;
+	}
+
+	return res;
+}
+
+sim_state_t sim_http_post_enter_data(uint32_t size, uint32_t time)
+{
+	sim_state_t res = sim_printf_and_check_response(100, "DOWNLOAD", "AT+HTTPDATA=%u,%u\r", size, time) ? SIM_SUCCESS : SIM_ERROR;
+	return res;
+}
+
+sim_state_t sim_http_post(void)
+{
+	static uint8_t state = 0;
+	sim_state_t res = SIM_ERROR;
+
+	static uint8_t tries = 0;
+
+	switch (state)
+	{
+	case 0:
+		res = http_action(1);
+		break;
+	case 1:
+		if ((sim800.http.status_code == 200))
+		{
+			res = SIM_SUCCESS;
+		}
+		else
+		{
+			res = SIM_ERROR;
+		}
+		break;
+	case 2:
+		state = 'S';
+		break;
+	default:
+		res = SIM_ERROR;
+		break;
+	}
+
+	// Stop or go to next state
+	if (state == 'S')
+	{
+		res = SIM_SUCCESS;
+		sim800.http.state = HTTP_DONE;
+		state = 0;
+	}
+	else if (res == SIM_ERROR || res == SIM_TIMEOUT)
+	{
+		sim800.http.state = HTTP_ERROR;
+		state = 0;
+	}
+	else if (res == SIM_SUCCESS)
+	{
+		res = SIM_BUSY;
+		state++;
+	}
+
+	return res;
+}
+
+uint32_t sim_http_read_response(uint32_t address, uint32_t num_bytes)
+{
+	uint32_t num_ret = 0;
+
+	// Request num_bytes of data
+	if (!sim_printf_and_check_response(2000, "+HTTPREAD", "AT+HTTPREAD=%u,%u\r", address, num_bytes))
+	{
+		log_error(ERR_SIM_HTTP_READ_TIMEOUT);
+	}
+	else
+	{
+		// Get actual number of bytes returned
+		char *ptr = &reply_buf[11];
+
+		if (_is_digit(*ptr))
+		{
+			num_ret = _atoi((const char **)&ptr);
+		}
+	}
+
+	return num_ret;
+}
+
+static sim_state_t http_toggle_ssl(bool on)
+{
+	return set_param("+HTTPSSL", on ? "1" : "0", 100);
+}
+
+static sim_state_t http_action(uint8_t action)
+{
+	static uint8_t state = 0;
+	sim_state_t res = SIM_ERROR;
+
+	switch (state)
+	{
+	case 0:
+		res = SIM_SUCCESS;
+
+		sim800.http.state = HTTP_ACTION;
+		break;
+	case 1:
+		res = write_command("+HTTPACTION", (action == 1) ? "1" : "0", 1000);
+		break;
+	case 2:
+		res = wait_command("+HTTPACTION", 120000);
+		break;
+	case 3:
+		res = SIM_SUCCESS;
+
+		char *ptr;
+
+		// Status code
+		ptr = &param_buf[15];
+		if (_is_digit(*ptr))
+		{
+			sim800.http.status_code = _atoi((const char **)&ptr);
+		}
+
+		// Response length
+		ptr = &param_buf[19];
+		if (_is_digit(*ptr))
+		{
+			sim800.http.response_size = _atoi((const char **)&ptr);
+		}
+
+		break;
+	case 4:
+		state = 'S';
+		break;
+	default:
+		res = SIM_ERROR;
+		break;
+	}
+
+	// Stop or go to next state
+	if (state == 'S')
+	{
+		res = SIM_SUCCESS;
+		state = 0;
+	}
+	else if (res == SIM_ERROR || res == SIM_TIMEOUT)
+	{
+		state = 0;
+	}
+	else if (res == SIM_SUCCESS)
+	{
+		res = SIM_BUSY;
+		state++;
+	}
+
+	return res;
 }
 
 /*////////////////////////////////////////////////////////////////////////////*/
-// Internet Access
+// TCP
 /*////////////////////////////////////////////////////////////////////////////*/
 
 bool sim_tcp_init(const char *url_str, uint16_t port, bool ssl)
@@ -1010,347 +1572,11 @@ bool sim_tcp_init(const char *url_str, uint16_t port, bool ssl)
 	return false;
 }
 
-bool sim_http_init(const char *url_str)
-{
-	// Terminate any old http stack
-	if (http_state != HTTP_TERM)
-	{
-		if (!sim_printf_and_check_response(1000, "OK", "AT+HTTPTERM\r"))
-		{
-			log_error(ERR_SIM_HTTP_TERM);
-			return 0;
-		}
-		else
-		{
-			http_state = HTTP_TERM;
-		}
-	}
-
-	if (!sim_printf_and_check_response(1000, "OK", "AT+SAPBR=3,1,\"APN\",\"data.rewicom.net\"\r"))
-	{
-		log_error(ERR_SIM_SAPBR_CONFIG);
-	}
-	else if (!sim_printf_and_check_response(1000, "OK", "AT+HTTPINIT\r"))
-	{
-		log_error(ERR_SIM_HTTPINIT);
-	}
-	else if (!sim_printf_and_check_response(1000, "OK", "AT+HTTPPARA=\"CID\",\"1\"\r"))
-	{
-		log_error(ERR_SIM_HTTPPARA_CID);
-	}
-	else if (!sim_printf_and_check_response(1000, "OK", "AT+HTTPPARA=\"URL\",\"%s\"\r", url_str))
-	{
-		log_error(ERR_SIM_HTTPPARA_URL);
-	}
-	else
-	{
-		return true;
-	}
-
-	http_state = HTTP_INIT;
-
-	return false;
-}
-
-bool sim_http_term(void)
-{
-	bool result = false;
-
-	if (!sim_printf_and_check_response(1000, "OK", "AT+HTTPTERM\r"))
-	{
-		log_error(ERR_SIM_HTTPTERM);
-	}
-	else
-	{
-		http_state = HTTP_TERM;
-		result = true;
-	}
-
-	return result;
-}
-
-bool sim_http_enable_ssl(void)
-{
-	return sim_printf_and_check_response(1000, "OK", "AT+HTTPSSL=1\r");
-}
-
-bool sim_http_disable_ssl(void)
-{
-	return sim_printf_and_check_response(1000, "OK", "AT+HTTPSSL=0\r");
-}
-
-uint32_t sim_http_get(const char *url_str)
-{
-	uint32_t file_size = 0;
-
-	if (!sim_http_init(url_str))
-	{
-	}
-	else if (!sim_http_disable_ssl())
-	{
-		log_error(ERR_SIM_HTTPSSL);
-	}
-	else if (!sim_printf_and_check_response(10000, "OK", "AT+SAPBR=1,1\r"))
-	{
-		log_error(ERR_SIM_SAPBR_CONNECT);
-	}
-	else if (!sim_printf_and_check_response(10000, "OK", "AT+HTTPACTION=0\r"))
-	{
-		http_state = HTTP_ACTION;
-		log_error(ERR_SIM_HTTPACTION_0);
-	}
-	// Wait for download
-	else if (!wait_and_check_response(120000, "+HTTPACTION"))
-	{
-		log_error(ERR_SIM_HTTP_GET_TIMEOUT);
-	}
-	// All good, get length of response
-	else
-	{
-		// Status code
-		char *ptr = &reply_buf[15];
-		uint16_t status_code = _atoi((const char **)&ptr);
-
-		if (status_code == 200)
-		{
-			// Response length
-			if (_is_digit(reply_buf[19]))
-			{
-				ptr = &reply_buf[19];
-				file_size = _atoi((const char **)&ptr);
-			}
-		}
-		else
-		{
-			log_printf("HTTP Stat: %u\n", status_code);
-		}
-
-		if (!sim_printf_and_check_response(60000, "OK", "AT+SAPBR=0,1\r"))
-		{
-			log_error(ERR_SIM_SAPBR_DISCONNECT);
-		}
-	}
-
-	http_state = HTTP_DONE;
-
-	return file_size;
-}
-
-uint32_t sim_https_get(const char *url_str)
-{
-	uint32_t file_size = 0;
-
-	if (!sim_http_init(url_str))
-	{
-	}
-	else if (!sim_http_enable_ssl())
-	{
-		log_error(ERR_SIM_HTTPSSL);
-	}
-	else if (!!sim_printf_and_check_response(10000, "OK", "AT+SAPBR=1,1\r"))
-	{
-		log_error(ERR_SIM_SAPBR_CONNECT);
-	}
-	else if (!sim_printf_and_check_response(10000, "OK", "AT+HTTPACTION=0\r"))
-	{
-		http_state = HTTP_ACTION;
-		log_error(ERR_SIM_HTTPACTION_0);
-	}
-	// Wait for download
-	else if (!wait_and_check_response(120000, "+HTTPACTION"))
-	{
-		log_error(ERR_SIM_HTTP_GET_TIMEOUT);
-	}
-	// All good, get length of response
-	else
-	{
-		// Status code
-		char *ptr = &reply_buf[15];
-		uint16_t status_code = _atoi((const char **)&ptr);
-
-		if (status_code == 200)
-		{
-			// Response length
-			if (_is_digit(reply_buf[19]))
-			{
-				ptr = &reply_buf[19];
-				file_size = _atoi((const char **)&ptr);
-			}
-		}
-		else
-		{
-			log_printf("HTTP Stat: %u\n", status_code);
-		}
-
-		if (!sim_printf_and_check_response(60000, "OK", "AT+SAPBR=0,1\r"))
-		{
-			log_error(ERR_SIM_SAPBR_DISCONNECT);
-		}
-	}
-
-	http_state = HTTP_DONE;
-
-	return file_size;
-}
-
-uint32_t sim_http_read_response(uint32_t address, uint32_t num_bytes)
-{
-	uint32_t num_ret = 0;
-
-	// Request num_bytes of data
-	if (!sim_printf_and_check_response(2000, "+HTTPREAD", "AT+HTTPREAD=%u,%u\r", address, num_bytes))
-	{
-		log_error(ERR_SIM_HTTP_READ_TIMEOUT);
-	}
-	else
-	{
-		// Get actual number of bytes returned
-		if (_is_digit(reply_buf[11]))
-		{
-			char *ptr = &reply_buf[11];
-			num_ret = _atoi((const char **)&ptr);
-		}
-	}
-
-	return num_ret;
-}
-
-bool sim_http_post_init(const char *url_str, uint16_t len, uint16_t ms)
-{
-	if (!sim_http_init(url_str))
-	{
-	}
-	else if (!sim_http_enable_ssl())
-	{
-		log_error(ERR_SIM_HTTPSSL);
-	}
-	else if (!sim_printf_and_check_response(1000, "OK", "AT+HTTPPARA=\"CONTENT\",\"application/x-www-form-urlencoded\"\r"))
-	{
-		log_error(ERR_SIM_HTTP_CONTENT);
-	}
-	else if (!sim_printf_and_check_response(2000, "DOWNLOAD", "AT+HTTPDATA=%u,%u\r", len, ms))
-	{
-	}
-	else
-	{
-		return true;
-	}
-
-	return false;
-}
-
-uint32_t sim_http_post(uint8_t num_tries)
-{
-	uint32_t file_size = 0;
-
-	if (!sim_printf_and_check_response(10000, "OK", "AT+SAPBR=1,1\r"))
-	{
-		log_error(ERR_SIM_SAPBR_CONNECT);
-	}
-	else
-	{
-		for (uint8_t i = 0; i < num_tries; i++)
-		{
-
-			if (!sim_printf_and_check_response(10000, "OK", "AT+HTTPACTION=1\r"))
-			{
-				http_state = HTTP_ACTION;
-				log_error(ERR_SIM_HTTPACTION_1);
-			}
-			// Wait for download
-			else if (!wait_and_check_response(120000, "+HTTPACTION"))
-			{
-				log_error(ERR_SIM_HTTP_POST_TIMEOUT);
-			}
-			// All good, get length of response
-			else
-			{
-				// Status code
-				char *ptr = &reply_buf[15];
-				uint16_t status_code = _atoi((const char **)&ptr);
-
-				if (status_code == 200)
-				{
-					// Response length
-					if (_is_digit(reply_buf[19]))
-					{
-						ptr = &reply_buf[19];
-						file_size = _atoi((const char **)&ptr);
-					}
-					break;
-				}
-				else
-				{
-					log_printf("HTTP Stat: %u\n", status_code);
-				}
-			}
-		}
-	}
-
-	if (!sim_printf_and_check_response(60000, "OK", "AT+SAPBR=0,1\r"))
-	{
-		log_error(ERR_SIM_SAPBR_DISCONNECT);
-	}
-
-	return file_size;
-}
-
-uint32_t sim_http_post_str(const char *url_str, const char *str, uint8_t num_tries)
-{
-	uint32_t len = strlen(str);
-
-	uint32_t resp_len = 0;
-
-	if (!sim_http_post_init(url_str, len, 10000))
-	{
-	}
-	else if (!sim_printf_and_check_response(11000, "OK", "%s", str))
-	{
-	}
-	else
-	{
-		resp_len = sim_http_post(num_tries);
-	}
-
-	return resp_len;
-}
-
-bool sim_send_data(uint8_t *data, uint8_t data_len)
-{
-	bool result = false;
-
-	char url_str[sizeof(base_url_str) + 3 + data_len];
-
-	strcpy(url_str, base_url_str);
-	strcat(url_str, "?s=");
-
-	uint16_t url_len = strlen(url_str);
-	uint16_t i = 0;
-
-	// serial_printf("%s %i %i\n",url_str, url_len, sizeof(url_str));
-
-	for (i = url_len; i < url_len + data_len; i++)
-	{
-		url_str[i] = data[i - url_len];
-	}
-
-	url_str[i] = '\0';
-
-	if (sim_http_get(url_str))
-	{
-		result = sim_http_term();
-	}
-
-	// serial_printf("URL: l%i %s\n", strlen(url_str), url_str);
-
-	return result;
-}
-
 /*////////////////////////////////////////////////////////////////////////////*/
 // SMS
 /*////////////////////////////////////////////////////////////////////////////*/
 
-bool sim_send_sms(const char *phone_number, const char *str)
+bool sim_send_sms(const char *phone_number, const char *msg_str)
 {
 	bool result = false;
 
@@ -1412,9 +1638,11 @@ static void reset(void)
 	sim_rx_head = sim_rx_tail = sim_tx_head = sim_tx_tail = 0;
 	memset(reply_buf, 0, sizeof(reply_buf));
 
-	sim_func = FUNC_RESET;
-	reg_status = REG_NONE;
-	http_state = HTTP_TERM;
+	_sprintf_clear_buf();
+
+	sim800.func = FUNC_RESET;
+	sim800.reg_status = REG_NONE;
+	sim800.http.state = HTTP_TERM;
 }
 
 static void usart_setup(void)
@@ -1499,6 +1727,11 @@ static void _putchar(char character)
 #endif
 }
 
+static void _putchar_buffer(char character)
+{
+	_sprintf_buf[_sprintf_buf_idx++] = character;
+}
+
 static inline bool _is_digit(char ch)
 {
 	return (ch >= '0') && (ch <= '9');
@@ -1512,6 +1745,16 @@ static uint32_t _atoi(const char **str)
 		i = i * 10U + (uint32_t)(*((*str)++) - '0');
 	}
 	return i;
+}
+
+static void print_timestamp(void)
+{
+	serial_printf("Timestamp: %u", timestamp[0]);
+	for (uint8_t i = 1; i < sizeof(timestamp); i++)
+	{
+		serial_printf("/%u", timestamp[i]);
+	}
+	serial_printf("\n");
 }
 
 /** @} */

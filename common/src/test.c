@@ -622,13 +622,13 @@ void test_rtc(void)
 	timers_delay_milliseconds(3000);
 	PRINT_REG(RTC_TR);
 	PRINT_REG(RTC_DR);
-	// timers_rtc_set_time(30, 40, 8, 24, 6, 94);
+	// timers_rtc_set_time(94, 6, 24, 8, 40, 30);
 
 	uint8_t i = 1;
 
 	for (;;)
 	{
-		timers_rtc_set_time(30, 40, 8, ((i * 4) % 30), 6, 94);
+		timers_rtc_set_time(94, 6, ((i * 4) % 30), 8, 40, 30);
 		PRINT_REG(RTC_TR);
 		PRINT_REG(RTC_DR);
 		timers_delay_milliseconds(3000);

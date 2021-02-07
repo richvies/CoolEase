@@ -96,7 +96,7 @@ void timers_rtc_init(void)
     timers_rtc_lock();
 }
 
-void timers_rtc_set_time(uint8_t secs, uint8_t mins, uint8_t hours, uint8_t day, uint8_t month, uint8_t year)
+void timers_rtc_set_time(uint8_t year, uint8_t month, uint8_t day, uint8_t hours, uint8_t mins, uint8_t secs)
 {
     // Enable PWR clock and disable write protection
     timers_rtc_unlock();
