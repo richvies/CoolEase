@@ -358,13 +358,15 @@ void timers_enter_standby(void)
     pwr_clear_wakeup_flag();
     pwr_clear_standby_flag();
 
-    // Enter standby
-    while (1)
-    {
-        cm_disable_interrupts();
-        __asm__("wfi");
-        cm_enable_interrupts();
-    }
+    __asm__("wfi");
+
+    // // Enter standby
+    // while (1)
+    // {
+    //     cm_disable_interrupts();
+    //     __asm__("wfi");
+    //     cm_enable_interrupts();
+    // }
 }
 
 // Timout functions
