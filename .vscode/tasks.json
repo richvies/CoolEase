@@ -97,6 +97,7 @@
             "label": "Clean all",
             "group": "build",
             "dependsOn":["Clean hub", "Clean sensor"],
+            "dependsOrder": "parallel",
             "presentation": {
                 "focus": true
             },
@@ -249,7 +250,7 @@
             "args": [
                 "-b230400",
                 "-E",
-                "-S0x08004000",
+                "-S0x08008000",
                 "-wsensor/bin/sensor.bin",
                 "-v",
                 "-R",
@@ -341,6 +342,49 @@
                 "-c resume",
                 "-c exit"
             ],
+            "problemMatcher": []
+        },
+
+        //////////////////////////////
+        // Get Log
+        //////////////////////////////
+        {
+            "label": "Read Log",
+            "type": "shell",
+            "command": "./tools/stm32flash/stm32flash",
+            "args": [
+                "-b230400",
+                "-S0x08080200:1024",
+                "-rlog.txt",
+                "-R",
+                "-i-dtr,rts,-rts:rts",
+                "/dev/cu.usbserial-A50285BI",
+            ],
+            "problemMatcher": []
+        },
+        {
+            "label": "Read Log bkp",
+            "type": "shell",
+            "command": "./tools/stm32flash/stm32flash",
+            "args": [
+                "-b230400",
+                "-S0x0800FC00:1024",
+                "-rlog_bkp.txt",
+                "-R",
+                "-i-dtr,rts,-rts:rts",
+                "/dev/cu.usbserial-A50285BI",
+            ],
+            "problemMatcher": []
+        },
+
+        //////////////////////////////
+        // Log, Rebuild, Program all
+        //////////////////////////////
+        {
+            "label": "Hub All",
+            "type": "shell",
+            "dependsOn":["Rebuild hub", "Read Log", "Hub EEPROM Download", "Hub Bootloader Download uart", "Hub Download uart"],
+            "dependsOrder": "sequence",
             "problemMatcher": []
         },
         

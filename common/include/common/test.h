@@ -62,6 +62,7 @@ void test_eeprom_wipe(void);
 void test_reset_eeprom(void);
 
 void test_log(void);
+void test_bkp_reg(void);
 
 /*////////////////////////////////////////////////////////////////////////////*/
 // Bootloader utils tests

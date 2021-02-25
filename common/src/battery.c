@@ -28,22 +28,24 @@
 #include "common/board_defs.h"
 #include "common/timers.h"
 
-#define ADC_CCR_LFMEN           (1 << 25)
+#define ADC_CCR_LFMEN (1 << 25)
 
-#define ADC_CCR_PRESC_SHIFT     18
-#define ADC_CCR_PRESC           (0xF << ADC_CCR_PRESC_SHIFT)
-#define ADC_CCR_PRESC_NODIV     (0 << ADC_CCR_PRESC_SHIFT)
-#define ADC_CCR_PRESC_DIV2      (1 << ADC_CCR_PRESC_SHIFT)
-#define ADC_CCR_PRESC_DIV4      (2 << ADC_CCR_PRESC_SHIFT)
-#define ADC_CCR_PRESC_DIV6      (3 << ADC_CCR_PRESC_SHIFT)
-#define ADC_CCR_PRESC_DIV8      (4 << ADC_CCR_PRESC_SHIFT)
-#define ADC_CCR_PRESC_DIV10     (5 << ADC_CCR_PRESC_SHIFT)
-#define ADC_CCR_PRESC_DIV12     (6 << ADC_CCR_PRESC_SHIFT)
-#define ADC_CCR_PRESC_DIV16     (7 << ADC_CCR_PRESC_SHIFT)
-#define ADC_CCR_PRESC_DIV32     (8 << ADC_CCR_PRESC_SHIFT)
-#define ADC_CCR_PRESC_DIV64     (9 << ADC_CCR_PRESC_SHIFT)
-#define ADC_CCR_PRESC_DIV128    (10 << ADC_CCR_PRESC_SHIFT)
-#define ADC_CCR_PRESC_DIV256    (11 << ADC_CCR_PRESC_SHIFT)
+#define ADC_CCR_PRESC_SHIFT 18
+#define ADC_CCR_PRESC (0xF << ADC_CCR_PRESC_SHIFT)
+#define ADC_CCR_PRESC_NODIV (0 << ADC_CCR_PRESC_SHIFT)
+#define ADC_CCR_PRESC_DIV2 (1 << ADC_CCR_PRESC_SHIFT)
+#define ADC_CCR_PRESC_DIV4 (2 << ADC_CCR_PRESC_SHIFT)
+#define ADC_CCR_PRESC_DIV6 (3 << ADC_CCR_PRESC_SHIFT)
+#define ADC_CCR_PRESC_DIV8 (4 << ADC_CCR_PRESC_SHIFT)
+#define ADC_CCR_PRESC_DIV10 (5 << ADC_CCR_PRESC_SHIFT)
+#define ADC_CCR_PRESC_DIV12 (6 << ADC_CCR_PRESC_SHIFT)
+#define ADC_CCR_PRESC_DIV16 (7 << ADC_CCR_PRESC_SHIFT)
+#define ADC_CCR_PRESC_DIV32 (8 << ADC_CCR_PRESC_SHIFT)
+#define ADC_CCR_PRESC_DIV64 (9 << ADC_CCR_PRESC_SHIFT)
+#define ADC_CCR_PRESC_DIV128 (10 << ADC_CCR_PRESC_SHIFT)
+#define ADC_CCR_PRESC_DIV256 (11 << ADC_CCR_PRESC_SHIFT)
+
+#define ADC_CR_ADVREGEN (1 << 28)
 
 /** @addtogroup BATTERY_FILE 
  * @{
@@ -66,8 +68,6 @@ static bool plugged_in = true;
 /*////////////////////////////////////////////////////////////////////////////*/
 // Static Function Declarations
 /*////////////////////////////////////////////////////////////////////////////*/
-
-
 
 /** @} */
 
@@ -100,7 +100,7 @@ void batt_init(void)
 
     // Clock config
     uint32_t adc_freq;
-    if(sys_clk == RCC_HSI16)
+    if (sys_clk == RCC_HSI16)
     {
         // Set clock to HSI clk
         ADC_CFGR2(ADC1) &= ~ADC_CFGR2_CKMODE;
@@ -118,7 +118,6 @@ void batt_init(void)
         ADC_CFGR2(ADC1) |= ADC_CFGR2_CKMODE_PCLK_DIV4;
         adc_freq = rcc_apb2_frequency / 4;
     }
-    
 
     // Enable low frequency below 2.8MHz, pg.297 of ref
     if (adc_freq < 2800000)
@@ -129,7 +128,6 @@ void batt_init(void)
     {
         ADC_CCR(ADC1) &= ~ADC_CCR_LFMEN;
     }
-    
 
     // Power off & calibrate
     adc_power_off(ADC1);
@@ -160,6 +158,8 @@ void batt_init(void)
     gpio_mode_setup(PWR_SENS_PORT, GPIO_MODE_ANALOG, GPIO_PUPD_NONE, PWR_SENS);
     ADC_CHSELR(ADC1) |= (1 << 1);
 #endif
+
+    log_printf("Batt Init\n");
 }
 
 void batt_end(void)
@@ -169,8 +169,14 @@ void batt_end(void)
 
     adc_power_off(ADC1);
     adc_disable_vrefint();
+
+    // Turn off ADC Regulator
+    ADC_CR(ADC1) &= ~ADC_CR_ADVREGEN;
+
     rcc_periph_reset_pulse(RST_ADC1);
     rcc_periph_clock_disable(RCC_ADC1);
+
+    // Disable VRef Buffer
     SYSCFG_CFGR3 &= ~SYSCFG_CFGR3_ENBUF_VREFINT_ADC;
 }
 
@@ -242,9 +248,17 @@ void batt_calculate_voltages(void)
 
 void batt_update_voltages(void)
 {
+    static uint32_t timer;
+    timer = timers_millis();
+
     ADC_CR(ADC1) |= ADC_CR_ADSTP;
-    while(!(ADC_CR(ADC1) & ADC_CR_ADSTP))
+    while (!(ADC_CR(ADC1) & ADC_CR_ADSTP))
     {
+        if (timers_millis() - timer > 2000)
+        {
+            log_printf("ERR: ADC Stop Timeout\n");
+            return;
+        }
     }
     adc_set_single_conversion_mode(ADC1);
 
@@ -254,6 +268,11 @@ void batt_update_voltages(void)
     {
         while (!adc_eoc(ADC1))
         {
+            if (timers_millis() - timer > 5000)
+            {
+                log_printf("ERR: ADC Conv Timeout\n");
+                return;
+            }
         }
         adc_vals[i] = adc_read_regular(ADC1);
     }
@@ -264,7 +283,7 @@ void batt_update_voltages(void)
 void batt_enable_interrupt(void)
 {
     ADC_CR(ADC1) |= ADC_CR_ADSTP;
-    while(!(ADC_CR(ADC1) & ADC_CR_ADSTP))
+    while (!(ADC_CR(ADC1) & ADC_CR_ADSTP))
     {
     }
     adc_set_continuous_conversion_mode(ADC1);
@@ -357,6 +376,11 @@ uint8_t batt_get_voltage(void)
 }
 */
 
+bool batt_is_plugged_in(void)
+{
+    return true;
+}
+
 /** @} */
 
 /** @addtogroup BATTERY_INT
@@ -366,8 +390,6 @@ uint8_t batt_get_voltage(void)
 /*////////////////////////////////////////////////////////////////////////////*/
 // Static Function Definitions
 /*////////////////////////////////////////////////////////////////////////////*/
-
-
 
 /** @} */
 

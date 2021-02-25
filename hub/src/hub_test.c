@@ -255,6 +255,7 @@ void test_receiver(uint32_t dev_num)
 	// Sensors
 	uint8_t num_sensors = 3;
 	sensor_t sensors[3];
+	(void)sensors;
 
 	sensors[0].dev_num = dev_num;
 	sensors[1].dev_num = 0x12345678;
@@ -540,35 +541,35 @@ void test_sim(void)
 
 	for (;;)
 	{
-		// Create Sim Message
-		uint8_t sim_buf[256];
-		uint8_t sim_idx = 0;
-		sim_buf[sim_idx++] = dev_num >> 24;
-		sim_buf[sim_idx++] = dev_num >> 16;
-		sim_buf[sim_idx++] = dev_num >> 8;
-		sim_buf[sim_idx++] = dev_num;
+		// // Create Sim Message
+		// uint8_t sim_buf[256];
+		// uint8_t sim_idx = 0;
+		// sim_buf[sim_idx++] = dev_num >> 24;
+		// sim_buf[sim_idx++] = dev_num >> 16;
+		// sim_buf[sim_idx++] = dev_num >> 8;
+		// sim_buf[sim_idx++] = dev_num;
 
-		for (uint8_t i = 0; i < num_vals; i++)
-		{
-			sim_buf[sim_idx++] = ids[i] >> 24;
-			sim_buf[sim_idx++] = ids[i] >> 16;
-			sim_buf[sim_idx++] = ids[i] >> 8;
-			sim_buf[sim_idx++] = ids[i];
-			sim_buf[sim_idx++] = temps[i] >> 8;
-			sim_buf[sim_idx++] = temps[i];
-			sim_buf[sim_idx++] = battery[i] >> 8;
-			sim_buf[sim_idx++] = battery[i];
-			sim_buf[sim_idx++] = total_packets[i] >> 24;
-			sim_buf[sim_idx++] = total_packets[i] >> 16;
-			sim_buf[sim_idx++] = total_packets[i] >> 8;
-			sim_buf[sim_idx++] = total_packets[i];
-			sim_buf[sim_idx++] = ok_packets[i] >> 24;
-			sim_buf[sim_idx++] = ok_packets[i] >> 16;
-			sim_buf[sim_idx++] = ok_packets[i] >> 8;
-			sim_buf[sim_idx++] = ok_packets[i];
-			sim_buf[sim_idx++] = rssi[i] >> 8;
-			sim_buf[sim_idx++] = rssi[i];
-		}
+		// for (uint8_t i = 0; i < num_vals; i++)
+		// {
+		// 	sim_buf[sim_idx++] = ids[i] >> 24;
+		// 	sim_buf[sim_idx++] = ids[i] >> 16;
+		// 	sim_buf[sim_idx++] = ids[i] >> 8;
+		// 	sim_buf[sim_idx++] = ids[i];
+		// 	sim_buf[sim_idx++] = temps[i] >> 8;
+		// 	sim_buf[sim_idx++] = temps[i];
+		// 	sim_buf[sim_idx++] = battery[i] >> 8;
+		// 	sim_buf[sim_idx++] = battery[i];
+		// 	sim_buf[sim_idx++] = total_packets[i] >> 24;
+		// 	sim_buf[sim_idx++] = total_packets[i] >> 16;
+		// 	sim_buf[sim_idx++] = total_packets[i] >> 8;
+		// 	sim_buf[sim_idx++] = total_packets[i];
+		// 	sim_buf[sim_idx++] = ok_packets[i] >> 24;
+		// 	sim_buf[sim_idx++] = ok_packets[i] >> 16;
+		// 	sim_buf[sim_idx++] = ok_packets[i] >> 8;
+		// 	sim_buf[sim_idx++] = ok_packets[i];
+		// 	sim_buf[sim_idx++] = rssi[i] >> 8;
+		// 	sim_buf[sim_idx++] = rssi[i];
+		// }
 
 		// Send Data
 		sim_init();
@@ -725,7 +726,7 @@ void test_sim_post(void)
 
 		do
 		{
-			// res = sim_http_get("https://rickceas.azurewebsites.net/CE/version.php", true, 3);
+			// res = sim_http_post_str("https://rickceas.azurewebsites.net/CE/hub.php", "pwd=pwd&id=12334&log=test%20post&version=get", true, 3);
 			res = sim_http_post_str("http://rickceas.azurewebsites.net/CE/hub.php", "pwd=pwd&id=12334&log=test%20post&version=get", false, 3);
 		} while (res == SIM_BUSY);
 

@@ -51,8 +51,7 @@ extern "C" {
 
 typedef enum sim_state
 {
-    SIM_READY = 0,
-    SIM_BUSY,
+    SIM_BUSY = 0,
     SIM_SUCCESS,
     SIM_TIMEOUT,
     SIM_ERROR
@@ -135,6 +134,8 @@ sim_state_t sim_init(void);
 /** @brief Enter sleep mode and disable MCU USART */
 sim_state_t sim_end(void);
 
+sim_state_t sim_sleep(void);
+
 sim_state_t sim_register_to_network(void);
 
 /*////////////////////////////////////////////////////////////////////////////*/
@@ -148,6 +149,9 @@ void sim_print_capabilities(void);
 /*////////////////////////////////////////////////////////////////////////////*/
 
 uint8_t *sim_get_timestamp(void);
+sim_state_t sim_open_bearer(char *apn_str, char *user_str, char *pwd_str);
+sim_state_t sim_close_bearer(void);
+sim_state_t sim_is_connected(void);
 
 /*////////////////////////////////////////////////////////////////////////////*/
 // HTTP

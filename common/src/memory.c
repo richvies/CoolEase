@@ -18,6 +18,7 @@
 #include <stdint.h>
 
 #include <libopencm3/stm32/flash.h>
+#include <libopencm3/stm32/rtc.h>
 
 #include "common/aes.h"
 #include "common/board_defs.h"
@@ -93,7 +94,7 @@ void mem_init(void)
     // msg_num = MMIO32(msg_num_add);
     // while(MMIO32(next_reading_add) != 0x00000000)
     // {
-    //     // log_printf("%08x : %08x\n", next_reading_add, MMIO32(next_reading_add));
+    //     // serial_printf("%08x : %08x\n", next_reading_add, MMIO32(next_reading_add));
     //     msg_num++;
     //     next_reading_add += 4;
     // }
@@ -199,12 +200,10 @@ bool mem_flash_write_word(uint32_t address, uint32_t data)
     if ((FLASH_SR & FLASH_SR_EOP) != 0)
     {
         FLASH_SR |= FLASH_SR_EOP;
-        log_printf("Write success\n");
         return true;
     }
     else
     {
-        log_printf("Write fail\n");
         return false;
     }
     return true; 
@@ -273,12 +272,12 @@ void mem_get_log(char log[EEPROM_LOG_SIZE])
 
 void mem_print_log(void)
 {
-    log_printf("LOG START\n");
+    serial_printf("LOG START\n");
     for(uint16_t i = 0; i < EEPROM_LOG_SIZE; i++)
     {
-        log_printf("%c", MMIO8(EEPROM_LOG_BASE + i));
+        serial_printf("%c", MMIO8(EEPROM_LOG_BASE + i));
     }   
-    log_printf("LOG END\n");
+    serial_printf("LOG END\n");
 }
 
 
@@ -348,19 +347,42 @@ void mem_set_aes_key_exp(uint8_t *aes_key_exp)
 
 void mem_wipe_readings(void)
 {
-    log_printf("Mem Wipe Readings\n");
+    serial_printf("Mem Wipe Readings\n");
 
     uint32_t page_add = READINGS_START;
 
     while( page_add < FLASH_END )
     {
-        // log_printf("Erasing %08X\n", page_add);
+        // serial_printf("Erasing %08X\n", page_add);
         mem_flash_erase_page(page_add);
         page_add += FLASH_PAGE_SIZE;
     }
 
-    log_printf("Done\n", page_add);
+    serial_printf("Done\n", page_add);
 }
+
+
+void mem_program_bkp_reg(uint8_t reg, uint32_t data)
+{
+    if(reg < 5)
+    {
+        timers_rtc_unlock();
+        RTC_BKPXR(reg) = data;
+        timers_rtc_lock();
+    }
+}
+
+uint32_t mem_read_bkp_reg(uint8_t reg)
+{
+    uint32_t data = 0;
+
+    if(reg < 5)
+    {
+        data = RTC_BKPXR(reg);
+    }
+    return data;
+}
+
 
 
 /** @} */

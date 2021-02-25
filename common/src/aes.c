@@ -420,13 +420,12 @@ static void InvCipher(state_t* state, const uint8_t* RoundKey)
 
 void aes_init(uint8_t key[16])
 {
-  log_printf("AES Init\n");
-
   if(!initialized)
   {
     KeyExpansion(round_key, key);
     initialized = true;
   }
+  log_printf("AES Init\n");
 }
 
 void aes_ecb_encrypt(uint8_t* buf)

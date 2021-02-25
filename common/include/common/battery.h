@@ -76,6 +76,8 @@ void batt_update_voltages(void);
 void batt_enable_interrupt(void);
 void batt_disable_interrupt(void);
 
+bool batt_is_plugged_in(void);
+
 
 /** @} */
 

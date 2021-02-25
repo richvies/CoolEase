@@ -2,8 +2,8 @@ EXTERN(vector_table)
 ENTRY(reset_handler)
 
 /* Generate a link error if heap and stack don't fit into RAM  */
-_min_heap_size  = 0x800;    /* required amount of heap   */
-_min_stack_size = 0x800;    /* required amount of stack  */
+_min_heap_size  = 0x400;    /* required amount of heap   */
+_min_stack_size = 0x400;    /* required amount of stack  */
 
 MEMORY
 {

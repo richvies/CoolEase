@@ -13,6 +13,9 @@ extern enum rcc_osc sys_clk;
 #define PRINT_REG(reg) serial_printf("%s : %8x\n",#reg, reg);
 
 #define INIT_KEY 0xABC3F982
+
+#define PRINT_OK() serial_printf("OK\n")
+
 typedef struct
 {
 	uint8_t aes_key[16];

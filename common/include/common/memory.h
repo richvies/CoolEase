@@ -92,6 +92,7 @@ extern "C" {
 // Logging
 #define EEPROM_LOG_BASE                 EEPROM_DEV_INFO_END
 #define EEPROM_LOG_END                  EEPROM_LOG_BASE + EEPROM_LOG_SIZE
+#define FLASH_LOG_BKP                   (FLASH_END - EEPROM_LOG_SIZE)
 
 
 /*////////////////////////////////////////////////////////////////////////////*/
@@ -131,6 +132,9 @@ void mem_get_aes_key_exp(uint8_t *aes_key_exp);
 void mem_set_aes_key_exp(uint8_t *aes_key_exp);
 
 void mem_wipe_readings(void);
+
+void mem_program_bkp_reg(uint8_t reg, uint32_t data);
+uint32_t mem_read_bkp_reg(uint8_t reg);
 
 
 /** @} */

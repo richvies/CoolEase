@@ -27,7 +27,8 @@
                 "Tools/OpenOCD/stm32l0.cfg"
             ],
             "preLaunchTask": "Build hub",
-            "executable": "hub/bin/hub_bootloader.elf"
+            "executable": "hub/bin/hub_bootloader.elf",
+            "gdbPath": "/usr/local/bin/arm-none-eabi-gdb"
         },
         {
             "name": "Sensor debug",

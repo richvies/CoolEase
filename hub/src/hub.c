@@ -30,10 +30,15 @@
 #include "common/rfm.h"
 #include "common/timers.h"
 #include "common/test.h"
+#include "common/printf.h"
 
 #include "hub/hub_test.h"
 #include "hub/cusb.h"
 #include "hub/sim.h"
+
+#define NET_LOG          \
+	log_printf("NET: "); \
+	log_printf
 
 // TODO
 // Http post with ssl, logging
@@ -44,6 +49,8 @@
  */
 
 #define HUB_CHECK_TIME 60
+#define NET_SLEEP_TIME_DEFAULT 300
+#define HUB_PLUGGED_IN_VALUE 1111
 
 /** @addtogroup HUB_INT 
  * @{
@@ -53,11 +60,21 @@
 // Static Variables
 /*////////////////////////////////////////////////////////////////////////////*/
 
-static sensor_t sensors[MAX_SENSORS];
-static uint8_t num_sensors = 0;
 static dev_info_t *dev_info = ((dev_info_t *)(EEPROM_DEV_INFO_BASE));
-static uint8_t sim_buf[256];
-static uint32_t online_version = 0;
+
+static bool hub_plugged_in;
+
+static uint32_t latest_app_version;
+
+static sensor_t sensors[MAX_SENSORS];
+static uint8_t num_sensors;
+
+static char sim_buf[1536];
+static uint16_t sim_buf_idx = 0;
+static uint32_t post_len;
+
+static bool log_upload_pending;
+static bool pwr_upload_pending;
 
 /*////////////////////////////////////////////////////////////////////////////*/
 // Static Function Declarations
@@ -69,15 +86,51 @@ static void hub(void);
 static void hub2(void);
 static void hub_download_info(void);
 
+static uint32_t get_timestamp(void);
+
 static void check_for_packets(void);
+
+static bool upload_pending(void);
+static void clear_upload_pending(void);
 static uint8_t temps_pending(void);
 
-static uint32_t get_timestamp(void);
-static bool upload_and_get_version(void);
-static bool post_init(void);
 static void append_temp(void);
 static void append_log(void);
-static uint32_t post_and_get_version(void);
+
+static void update_latest_app_version(void);
+
+static void sim_buf_clear(void);
+static uint32_t sim_buf_append_printf(const char *format, ...);
+static void _putchar_buffer(char character);
+
+static void net_task(void);
+
+typedef enum
+{
+	NET_0 = 0,
+	NET_UPLOAD_FIRST_PACKET,
+	NET_INIT,
+	NET_HARD_RESET,
+	NET_REGISTERING,
+	NET_REGISTERED,
+	NET_CONNECTING,
+	NET_CONNECTED,
+	NET_RUNNING,
+	NET_HTTPINIT,
+	NET_HTTPPOST,
+	NET_HTTPREADY,
+	NET_HTTP_DONE,
+	NET_ASSEMBLE_PACKET,
+	NET_POST,
+	NET_SLEEP_START,
+	NET_SLEEP_TRY_POST_AGAIN,
+	NET_GO_TO_SLEEP,
+	NET_SLEEP,
+	NET_PARSE_RESPONSE,
+	NET_SEND_ERROR_SMS,
+	NET_ERROR,
+	NET_NUM_STATES,
+} net_state_t;
 
 /** @} */
 
@@ -92,8 +145,6 @@ static uint32_t post_and_get_version(void);
 int main(void)
 {
 	// Stop unused warnings
-	(void)test;
-	(void)hub;
 	(void)hub2;
 	(void)hub_download_info;
 
@@ -187,7 +238,7 @@ sensor_t *get_sensor(uint32_t dev_num)
 static void init(void)
 {
 	clock_setup_hsi_16mhz();
-	cusb_init();
+	// cusb_init();
 	timers_lptim_init();
 	log_init();
 	aes_init(dev_info->aes_key);
@@ -195,22 +246,24 @@ static void init(void)
 
 	print_aes_key(dev_info);
 
-	// flash_led(100, 5);
-	log_printf("Hub Start\n");
+	flash_led(100, 1);
+	log_printf("Hub Init\n");
 }
 
 static void test(void)
 {
+	// test_bkp_reg();
+	// test_revceiver_basic();
+	// test_sim_timestamp();
+	// test_sim_send_sms();
+	// test_sim_init();
+	// test_sim_send_sms();
+	// test_sim_serial_passthrough();
 	// test_sim_get_request();
 	// test_sim_get_request_version();
 	// test_sim_post();
-	// test_sim_serial_passthrough();
 
-	for (;;)
-	{
-		serial_printf("Hub Loop\n");
-		timers_delay_milliseconds(1000);
-	}
+	// test_sim_get_request();
 }
 
 static void hub(void)
@@ -248,6 +301,13 @@ static void hub(void)
 	timers_set_wakeup_time(HUB_CHECK_TIME);
 	timers_disable_wut_interrupt();
 
+	// Assume plugged in at first
+	hub_plugged_in = true;
+
+	// Initial upload
+	pwr_upload_pending = true;
+	log_upload_pending = true;
+
 	for (;;)
 	{
 		// Check for packets
@@ -256,19 +316,29 @@ static void hub(void)
 		// Keep record of id, num packets, temperature, battery for each sensor
 		// Timestamp packets
 
-		// Upload and reset pending message flags
-		if (upload_and_get_version())
+		// Check if hub plugged in or out since last check
+		// Notify cloud if it has
+		if (hub_plugged_in ^ batt_is_plugged_in())
 		{
-			if (RTC_ISR & RTC_ISR_WUTF)
-			{
-				timers_clear_wakeup_flag();
-			}
-
-			for (uint16_t i = 0; i < num_sensors; i++)
-			{
-				sensors[i].msg_pend = false;
-			}
+			pwr_upload_pending = true;
 		}
+		hub_plugged_in = batt_is_plugged_in();
+
+		// Logging time?
+		if (RTC_ISR & RTC_ISR_WUTF)
+		{
+			timers_clear_wakeup_flag();
+			log_upload_pending = true;
+		}
+
+		// Deal with modem and uploading to azure
+		net_task();
+
+		timers_pet_dogs();
+
+		timers_delay_milliseconds(100);
+
+		// PRINT_OK();
 	}
 }
 
@@ -327,6 +397,7 @@ static void check_for_packets(void)
 				sensor->temperature = packet->data.temperature;
 				sensor->msg_num++;
 				sensor->msg_pend = true;
+				sensor->msg_appended = false;
 				sensor->rssi = packet->rssi;
 			}
 
@@ -357,81 +428,46 @@ static uint8_t temps_pending(void)
 	return res;
 }
 
-static bool upload_and_get_version(void)
+static bool upload_pending(void)
 {
-	uint32_t version = 0;
-
-	if (temps_pending() || (RTC_ISR & RTC_ISR_WUTF))
-	{
-		serial_printf("upload_and_get_version()\n");
-
-		if (!post_init())
-		{
-		}
-		else
-		{
-			// Sensor readings
-			append_temp();
-
-			// Everyday hour, upload log
-			if (RTC_ISR & RTC_ISR_WUTF)
-			{
-				append_log();
-			}
-
-			sim_printf_and_check_response(10000, "OK", "\r");
-
-			// Post
-			version = post_and_get_version();
-
-			sim_http_term();
-		}
-		sim_end();
-	}
-
-	if (version != 0)
-	{
-		online_version = version;
-		return true;
-	}
-
-	return false;
+	return (temps_pending() || log_upload_pending || pwr_upload_pending);
 }
 
-static bool post_init(void)
+static void clear_upload_pending(void)
 {
-	bool res = false;
+	log_upload_pending = false;
+	pwr_upload_pending = false;
 
-	if (!sim_init())
+	for (uint8_t i = 0; i < num_sensors; i++)
 	{
+		sensor_t *sensor = &sensors[i];
+		if (sensor->msg_pend && sensor->msg_appended)
+		{
+			sensor->msg_pend = false;
+			sensor->msg_appended = false;
+		}
 	}
-	else if (!sim_register_to_network())
-	{
-	}
-	// else if (!sim_http_post_init("https://cooleasetest.000webhostapp.com/hub.php", 2000, 10000))
-	// {
-	// }
-	else
-	{
-		sim_printf("pwd=%s&id=%8u&version=get", dev_info->pwd, dev_info->dev_num);
-		res = true;
-	}
-
-	return res;
 }
 
 static void append_temp(void)
 {
 	uint8_t num_pending = temps_pending();
+	sim_buf_append_printf("&num_temp=%u", num_pending);
+
 	if (num_pending)
 	{
-		sim_printf("&num_temp=%u", num_pending);
-
 		for (uint16_t i = 0; i < num_sensors; i++)
 		{
-			if (sensors[i].msg_pend)
+			sensor_t *sensor = &sensors[i];
+
+			if (sensor->msg_pend)
 			{
-				sim_printf("&dev%8u=%i", sensors[i].dev_num, sensors[i].temperature);
+				sim_printf("&id%u=%8u", i, sensor->dev_num);
+				sim_printf("&temp%u=%i", i, sensor->temperature);
+				sim_printf("&batt%u=%i", i, sensor->battery);
+				sim_printf("&rssi%u=%i", i, sensor->rssi);
+
+				sensor->msg_appended = true;
 			}
 		}
 	}
@@ -439,38 +475,35 @@ static void append_temp(void)
 
 static void append_log(void)
 {
-	sim_printf("&log=\n-----LOG START------\n");
+	sim_buf_append_printf("&log=\n-----LOG START------\n");
 
 	log_read_reset();
 	for (uint16_t i = 0; i < log_size(); i++)
 	{
-		sim_printf("%c", log_read());
+		sim_buf_append_printf("%c", log_read());
 	}
 
-	sim_printf("\n-----LOG END------\n");
+	sim_buf_append_printf("\n-----LOG END------\n");
 }
 
-static uint32_t post_and_get_version(void)
+static void update_latest_app_version(void)
 {
-	// uint32_t resp_len = sim_http_post(1);
-	uint32_t version = 0;
-	// if (resp_len)
-	// {
-	// 	uint8_t num_bytes = sim_http_read_response(0, resp_len);
+	if (sim800.http.response_size)
+	{
+		uint8_t num_bytes = sim_http_read_response(0, sim800.http.response_size);
 
-	// 	// SIM800 now returns that number of bytes
-	// 	for (uint8_t i = 0; i < num_bytes; i++)
-	// 	{
-	// 		while (!sim_available())
-	// 		{
-	// 		}
-	// 		// ASCII to char
-	// 		version = (version * 10) + (uint8_t)(sim_read() - '0');
-	// 	}
-	// 	serial_printf("Online Version: %u\n", version);
-	// }
+		// SIM800 now returns that number of bytes
+		for (uint8_t i = 0; i < num_bytes; i++)
+		{
+			while (!sim_available())
+			{
+			}
+			// ASCII to char
+			latest_app_version = (latest_app_version * 10) + (uint8_t)(sim_read() - '0');
+		}
+	}
 
-	return version;
+	serial_printf("Latest Version: %u\n", latest_app_version);
 }
 
 static void hub2(void)
@@ -661,6 +694,258 @@ static void hub2(void)
 static void hub_download_info(void)
 {
 	log_printf("Hub Redownload Info\n");
+}
+
+static void net_task(void)
+{
+	static net_state_t net_state = NET_0;
+	static net_state_t net_next_state;
+	static net_state_t net_fallback_state;
+
+	static uint32_t net_sleep_start;
+	static uint32_t net_sleep_time_ms = NET_SLEEP_TIME_DEFAULT;
+	static bool net_sleep_expired;
+
+	net_sleep_expired = (uint32_t)(timers_millis() - net_sleep_start) > net_sleep_time_ms;
+
+	sim800.state = SIM_ERROR;
+
+	switch (net_state)
+	{
+	// Upload inital message
+	case NET_0:
+		NET_LOG("FIRST UPLOAD\n");
+		net_next_state = NET_UPLOAD_FIRST_PACKET;
+
+		sim800.state = SIM_SUCCESS;
+
+		break;
+	
+	case NET_UPLOAD_FIRST_PACKET:
+		net_next_state = NET_REGISTERING;
+		net_fallback_state = NET_UPLOAD_FIRST_PACKET;
+
+		sim800.state = sim_init();
+		break;
+
+	case NET_INIT:
+
+		net_next_state = NET_REGISTERING;
+		net_fallback_state = NET_INIT;
+
+		if (hub_plugged_in == false)
+		{
+			// If unplugged, only upload when data waiting and sleep time expired
+			if (upload_pending() == true && net_sleep_expired == true)
+			{
+				net_next_state = NET_REGISTERING;
+			}
+			else
+			{
+				net_next_state = NET_GO_TO_SLEEP;
+			}
+		}
+
+		sim800.state = sim_init();
+
+		break;
+
+	case NET_REGISTERING:
+		net_next_state = NET_REGISTERED;
+		net_fallback_state = NET_INIT;
+
+		sim800.state = sim_register_to_network();
+		break;
+
+	case NET_REGISTERED:
+		NET_LOG("Registered\n");
+		net_next_state = NET_CONNECTING;
+		net_fallback_state = NET_INIT;
+
+		sim800.state = SIM_SUCCESS;
+		break;
+
+	case NET_CONNECTING:
+		net_next_state = NET_CONNECTED;
+		net_fallback_state = NET_REGISTERING;
+
+		sim800.state = sim_open_bearer("data.rewicom.net", "", "");
+		break;
+
+	case NET_CONNECTED:
+		NET_LOG("Connected\n");
+
+		net_next_state = NET_RUNNING;
+		net_fallback_state = NET_CONNECTING;
+		sim800.state = SIM_SUCCESS;
+		break;
+
+	case NET_RUNNING:
+		net_next_state = NET_RUNNING;
+		net_fallback_state = NET_CONNECTING;
+
+		if (upload_pending())
+		{
+			NET_LOG("Upload\n");
+			net_next_state = NET_ASSEMBLE_PACKET;
+		}
+		sim800.state = sim_is_connected();
+		break;
+
+	case NET_ASSEMBLE_PACKET:
+		net_next_state = NET_HTTPPOST;
+		net_fallback_state = NET_CONNECTED;
+
+		sim_buf_clear();
+
+		sim_buf_append_printf(  "pwd=%s"
+								"&id=%8u"
+								"&hub_batt=%u"
+								"&hub_pwr=%u"
+								"&hub_plugged_in=%u"
+								"&version=get",
+							  	dev_info->pwd, 
+								dev_info->dev_num, 
+								batt_voltages[BATT_VOLTAGE], 
+								batt_voltages[PWR_VOLTAGE], 
+								hub_plugged_in ? HUB_PLUGGED_IN_VALUE : ~HUB_PLUGGED_IN_VALUE );
+
+		if (temps_pending())
+		{
+			append_temp();
+		}
+		if (log_upload_pending)
+		{
+			append_log();
+		}
+
+		sim_buf_append_printf("\0\0");
+
+		sim800.state = SIM_SUCCESS;
+
+		// serial_printf("--------\nMSG: %s\n--------\n", sim_buf);
+		break;
+
+	case NET_HTTPPOST:
+		net_next_state = NET_HTTP_DONE;
+
+		if (hub_plugged_in)
+		{
+			// Test connection and try post again
+			net_fallback_state = NET_RUNNING;
+		}
+		else
+		{
+			// Sleep and try post again in a few minutes to conserve battery
+			net_sleep_time_ms = 120;
+			net_fallback_state = NET_SLEEP_START;
+		}
+
+		latest_app_version = 0;
+
+		sim800.state = sim_http_post_str("http://rickceas.azurewebsites.net/CE/hub.php", sim_buf, false, 3);
+		break;
+
+	case NET_HTTP_DONE:
+		if (hub_plugged_in)
+		{
+			net_next_state = NET_CONNECTED;
+			net_fallback_state = NET_CONNECTED;
+		}
+		else
+		{
+			net_sleep_time_ms = 600;
+			net_next_state = NET_SLEEP_START;
+			net_fallback_state = NET_SLEEP_START;
+		}
+
+		update_latest_app_version();
+		clear_upload_pending();
+
+		// Goto next state
+		sim800.state = SIM_SUCCESS;
+
+		serial_printf("HTTP: %u %u\n", sim800.http.status_code, sim800.http.response_size);
+		break;
+
+	case NET_SLEEP_START:
+		net_next_state = NET_GO_TO_SLEEP;
+		sim800.state = SIM_SUCCESS;
+
+		// Start timer
+		net_sleep_start = timers_millis();
+		break;
+
+	case NET_GO_TO_SLEEP:
+		net_next_state = NET_SLEEP;
+		net_fallback_state = NET_INIT;
+
+		sim800.state = sim_sleep();
+		break;
+
+	case NET_SLEEP:
+		net_next_state = NET_SLEEP;
+		net_fallback_state = NET_SLEEP;
+
+		sim800.state = SIM_SUCCESS;
+
+		if (hub_plugged_in || (net_sleep_expired && upload_pending()))
+		{
+			net_next_state = NET_INIT;
+		}
+		// Sim sometimes wakes up randomly, NET_INIT will put back to sleep
+		else if (sim_printf_and_check_response(100, "OK", "AT\r"))
+		{
+			net_next_state = NET_INIT;
+		}
+		break;
+
+	case NET_ERROR:
+		NET_LOG("ERROR State\n");
+		net_next_state = NET_INIT;
+		sim800.state = SIM_SUCCESS;
+		break;
+
+	default:
+		NET_LOG("DEFAULT State\n");
+		net_next_state = NET_INIT;
+		sim800.state = SIM_SUCCESS;
+		break;
+	}
+
+	if (sim800.state == SIM_SUCCESS)
+	{
+		net_state = net_next_state;
+	}
+	else if (sim800.state == SIM_ERROR || sim800.state == SIM_TIMEOUT)
+	{
+		NET_LOG("SIM ERR %u fb %u\n", net_state, net_fallback_state);
+		net_state = net_fallback_state;
+	}
+}
+
+static void sim_buf_clear(void)
+{
+	for (uint16_t i = 0; i < sim_buf_idx; i++)
+	{
+		sim_buf[i] = '\0';
+	}
+	sim_buf_idx = 0;
+}
+
+static uint32_t sim_buf_append_printf(const char *format, ...)
+{
+	va_list va;
+	va_start(va, format);
+	uint32_t res = fnprintf(_putchar_buffer, format, va);
+	va_end(va);
+
+	return res;
+}
+
+static void _putchar_buffer(char character)
+{
+	sim_buf[sim_buf_idx++] = character;
 }
 
 /** @} */

@@ -61,17 +61,16 @@ static bool download_and_program_bin(const char *url, uint8_t num_attempts);
 int main(void)
 {
 	// Stop unused warnings
-	(void)test;
 	(void)download_and_program_bin;
+	(void)deinit;
 
 	init();
 
-	test();
-
-	deinit();
 	boot_jump_to_application(FLASH_APP_ADDRESS);
 
-	
+	test();
+
+	boot_init();
 
 	for (;;)
 	{
@@ -94,12 +93,12 @@ int main(void)
 
 static void init(void)
 {
-	clock_setup_msi_2mhz();
-	cusb_init();
+	clock_setup_hsi_16mhz();
+	// cusb_init();
 	timers_lptim_init();
 	log_init();
-	flash_led(100, 10);
-	log_printf("Hub Bootloader Start\n");
+	flash_led(100, 5);
+	log_printf("Hub Bootloader Init\n");
 }
 
 static void deinit(void)
@@ -111,19 +110,7 @@ static void deinit(void)
 
 static void test(void)
 {
-	// test_revceiver_basic();
-	// test_sim_timestamp();
-	// test_sim_send_sms();
-	// test_sim_init();
-	// test_sim_send_sms();
-	// test_sim_tcip_get();
-	// test_sim_serial_passthrough();
-	// test_sim_get_request();
-	// test_sim_get_request_version();
-	test_sim_post();
 	// download_and_program_bin("https://cooleasetest.000webhostapp.com/hub.php", 3);
-
-	// test_sim_get_request();
 }
 
 static bool download_and_program_bin(const char *url, uint8_t num_attempts)
@@ -138,7 +125,8 @@ static bool download_and_program_bin(const char *url, uint8_t num_attempts)
 
 		if (sim_init() && sim_register_to_network())
 		{
-			uint32_t file_size = sim_http_post_str("https://cooleasetest.000webhostapp.com/hub.php", "pwd=pwd&id=00000001&log=hello%20there&version=101", false,1);;
+			uint32_t file_size = sim_http_post_str("https://cooleasetest.000webhostapp.com/hub.php", "pwd=pwd&id=00000001&log=hello%20there&version=101", false, 1);
+			;
 
 			if (file_size)
 			{
@@ -208,8 +196,6 @@ static bool download_and_program_bin(const char *url, uint8_t num_attempts)
 
 	return result;
 }
-
-
 
 /** @} */
 /** @} */

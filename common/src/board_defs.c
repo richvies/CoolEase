@@ -61,7 +61,7 @@ void clock_setup_hsi_16mhz(void)
 	rcc_apb1_frequency = 16000000;
 	rcc_apb2_frequency = 16000000;
 
-	rcc_osc_off(RCC_HSI16);
+	rcc_osc_off(RCC_MSI);
 
 	sys_clk = RCC_HSI16;
 }

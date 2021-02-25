@@ -165,10 +165,7 @@ void boot_jump_to_application(uint32_t address)
     void (*start)(void) = (void *)MMIO32(address + 4);
 
     // Deinitialize peripherals
-    boot_deinit();
-
-    // Start Watchdog
-    // timers_iwdg_init(5000);
+    // boot_deinit();
 
     // Enable interrupts
     __asm__ volatile("CPSIE I\n");

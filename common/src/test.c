@@ -259,6 +259,16 @@ void test_log(void)
 	}
 }
 
+void test_bkp_reg(void)
+{
+	for (uint8_t i = 0; i < 5; i++)
+	{
+		mem_program_bkp_reg(i, i+7);
+
+		serial_printf("BKP %u : %u\n", i, mem_read_bkp_reg(i));
+	}
+}
+
 /*////////////////////////////////////////////////////////////////////////////*/
 // Bootloader util tests
 /*////////////////////////////////////////////////////////////////////////////*/

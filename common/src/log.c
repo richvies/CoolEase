@@ -13,6 +13,7 @@
 /*////////////////////////////////////////////////////////////////////////////*/
 
 #include <stdlib.h>
+#include <string.h>
 
 #include "common/log.h"
 
@@ -27,6 +28,7 @@
 #include "common/memory.h"
 #include "common/printf.h"
 #include "common/log.h"
+#include "common/timers.h"
 
 #ifdef _HUB
 #include "hub/cusb.h"
@@ -43,6 +45,8 @@
 /*////////////////////////////////////////////////////////////////////////////*/
 // Static Variables
 /*////////////////////////////////////////////////////////////////////////////*/
+
+static char spf_cmd[64];
 
 // Vars used during normal operation
 static uint16_t write_index;
@@ -95,9 +99,9 @@ void log_init(void)
 	usart_setup();
 #endif
 
-	log_printf("\n\nLog Init\n----------------\n");
+	log_printf("\n----------------\nLog Init\n");
 	serial_printf("Log size: %u\n", log_file->size);
-	serial_printf("Log idx: %u\n", write_index);
+	serial_printf("Log idx: %u\n----------------\n", write_index);
 }
 
 void log_printf(const char *format, ...)
@@ -174,6 +178,23 @@ void log_erase(void)
 	mem_eeprom_write_half_word((uint32_t)&log_file->idx, write_index);
 }
 
+void log_create_backup(void)
+{
+	uint32_t address;
+
+	for (address = FLASH_LOG_BKP; address < FLASH_LOG_BKP + EEPROM_LOG_SIZE; address += FLASH_PAGE_SIZE)
+	{
+		mem_flash_erase_page(address);
+	}
+
+	log_read_reset();
+
+	for (uint16_t i = 0; i < log_size(); i += 4)
+	{
+		mem_flash_write_word(FLASH_LOG_BKP + i, (log_read() << 0 | log_read() << 8 | log_read() << 16 | log_read() << 24));
+	}
+}
+
 /** @} */
 
 /** @addtogroup LOG_INT
@@ -220,17 +241,6 @@ static uint8_t spf_rx_tail = 0;
 
 static void usart_setup(void)
 {
-	rcc_periph_clock_enable(RCC_GPIOA);
-	rcc_periph_clock_enable(RCC_GPIOB);
-
-	gpio_mode_setup(SPF_USART_TX_PORT, GPIO_MODE_AF, GPIO_PUPD_NONE, SPF_USART_TX);
-	gpio_mode_setup(SPF_USART_RX_PORT, GPIO_MODE_AF, GPIO_PUPD_NONE, SPF_USART_RX);
-
-	gpio_set_output_options(SPF_USART_TX_PORT, GPIO_OTYPE_PP, GPIO_OSPEED_2MHZ, SPF_USART_TX);
-
-	gpio_set_af(SPF_USART_TX_PORT, SPF_USART_AF, SPF_USART_TX);
-	gpio_set_af(SPF_USART_RX_PORT, SPF_USART_AF, SPF_USART_RX);
-
 	rcc_periph_clock_enable(SPF_USART_RCC);
 	rcc_periph_reset_pulse(SPF_USART_RCC_RST);
 	usart_disable(SPF_USART);
@@ -241,6 +251,18 @@ static void usart_setup(void)
 	usart_set_parity(SPF_USART, USART_PARITY_NONE);
 	usart_set_flow_control(SPF_USART, USART_FLOWCONTROL_NONE);
 	usart_enable(SPF_USART);
+
+	rcc_periph_clock_enable(RCC_GPIOA);
+	rcc_periph_clock_enable(RCC_GPIOB);
+
+	// Set AF first to avoid initial garbage on serial line
+	gpio_set_af(SPF_USART_TX_PORT, SPF_USART_AF, SPF_USART_TX);
+	gpio_set_af(SPF_USART_RX_PORT, SPF_USART_AF, SPF_USART_RX);
+
+	gpio_mode_setup(SPF_USART_TX_PORT, GPIO_MODE_AF, GPIO_PUPD_NONE, SPF_USART_TX);
+	gpio_mode_setup(SPF_USART_RX_PORT, GPIO_MODE_AF, GPIO_PUPD_NONE, SPF_USART_RX);
+
+	gpio_set_output_options(SPF_USART_TX_PORT, GPIO_OTYPE_PP, GPIO_OSPEED_2MHZ, SPF_USART_TX);
 
 	usart_enable_rx_interrupt(SPF_USART);
 
@@ -253,38 +275,38 @@ static void _putchar_spf(char character)
 {
 	bool done = false;
 
-	while (!done)
+	if ((spf_tx_head == spf_tx_tail) && usart_get_flag(SPF_USART, USART_ISR_TXE))
 	{
-		CM_ATOMIC_BLOCK()
+		usart_send(SPF_USART, character);
+		done = true;
+	}
+	else
+	{
+		while (!done)
 		{
+			cm_disable_interrupts();
 
-			if ((spf_tx_head == spf_tx_tail) && usart_get_flag(SPF_USART, USART_ISR_TXE))
+			uint8_t i = (spf_tx_head + 1) % SPF_BUFFER_SIZE;
+
+			if (i == spf_tx_tail)
 			{
-				usart_send(SPF_USART, character);
-				done = true;
+				done = false;
 			}
 			else
 			{
-				uint8_t i = (spf_tx_head + 1) % SPF_BUFFER_SIZE;
 
-				if (i == spf_tx_tail)
-				{
-					done = false;
-				}
-				else
-				{
+				spf_tx_buf[spf_tx_head] = character;
 
-					spf_tx_buf[spf_tx_head] = character;
+				spf_tx_head = i;
 
-					spf_tx_head = i;
+				usart_enable_tx_interrupt(SPF_USART);
 
-					usart_enable_tx_interrupt(SPF_USART);
-
-					done = true;
-				}
+				done = true;
 			}
+			
+			cm_enable_interrupts();
+			__asm__("nop");
 		}
-		__asm__("nop");
 	}
 }
 
@@ -328,6 +350,13 @@ SPF_ISR()
 		else
 		{
 			spf_rx_buf[spf_rx_head] = usart_recv(SPF_USART);
+
+			// if (spf_rx_buf[spf_rx_head] == '\n')
+			// {
+			// 	spf_rx_buf[spf_rx_head + 1] = '\0'
+			// 	strcpy()
+			// }
+
 			spf_rx_head = (spf_rx_head + 1) % SPF_BUFFER_SIZE;
 		}
 	}

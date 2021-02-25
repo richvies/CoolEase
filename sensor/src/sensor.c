@@ -16,6 +16,8 @@
 #include <libopencm3/stm32/rtc.h>
 #include <libopencm3/cm3/nvic.h>
 #include <libopencm3/cm3/scb.h>
+#include <libopencm3/cm3/systick.h>
+#include <libopencm3/stm32/syscfg.h>
 
 #include "common/aes.h"
 #include "common/battery.h"
@@ -40,6 +42,7 @@
 
 #define SENSOR_SLEEP_TIME 600
 #define APP_ADDRESS 0x08004000
+#define IWDG_MAGIC_VALUE 0x12345678
 
 /** @addtogroup SENSOR_INT 
  * @{
@@ -77,10 +80,43 @@ int main(void)
 	(void)test;
 	(void)sensor;
 
+	timers_rtc_init();
+	timers_set_wakeup_time(SENSOR_SLEEP_TIME);
+	timers_enable_wut_interrupt();
+
+	// If wathdog reset
+	if (RCC_CSR & RCC_CSR_IWDGRSTF)
+	{
+		log_init();
+
+		// Was on purpose
+		if (mem_read_bkp_reg(0) == IWDG_MAGIC_VALUE)
+		{
+			// Go back to standby
+			log_printf("IWDG back to sleep\n");
+			mem_program_bkp_reg(0, 0);
+			SYSCFG_CFGR3 &= ~SYSCFG_CFGR3_EN_VREFINT;
+			set_gpio_for_standby();
+			timers_enter_standby();
+		}
+		// Was actual problem with code, backup log
+		else
+		{
+			log_printf("IWDG Backup Log\n");
+			log_create_backup();
+		}
+	}
+
+	timers_iwdg_init(7000);
+
 	init();
+
+	log_create_backup();
 
 	// test();
 	sensor();
+
+	log_printf("ERROR: left main loop\n");
 
 	for (;;)
 	{
@@ -92,49 +128,51 @@ int main(void)
 }
 
 void set_gpio_for_standby(void)
-{   
-    rcc_periph_clock_enable(RCC_GPIOA);
-    rcc_periph_clock_enable(RCC_GPIOB);
+{
+	log_printf("GPIO sleep\n");
 
-    // LED
-    gpio_mode_setup(LED_PORT, GPIO_MODE_ANALOG, GPIO_PUPD_NONE, LED);
+	rcc_periph_clock_enable(RCC_GPIOA);
+	rcc_periph_clock_enable(RCC_GPIOB);
 
-    // Serial Print
+	// LED
+	gpio_mode_setup(LED_PORT, GPIO_MODE_ANALOG, GPIO_PUPD_NONE, LED);
+
+	// Serial Print
 	// FTDI not connected
 	usart_disable(SPF_USART);
 	rcc_periph_clock_disable(SPF_USART_RCC);
-    gpio_mode_setup(SPF_USART_TX_PORT, GPIO_MODE_ANALOG, GPIO_PUPD_NONE, SPF_USART_TX);
-	gpio_mode_setup(SPF_USART_RX_PORT, GPIO_MODE_ANALOG, GPIO_PUPD_NONE,  SPF_USART_RX);
+	gpio_mode_setup(SPF_USART_TX_PORT, GPIO_MODE_ANALOG, GPIO_PUPD_NONE, SPF_USART_TX);
+	gpio_mode_setup(SPF_USART_RX_PORT, GPIO_MODE_ANALOG, GPIO_PUPD_NONE, SPF_USART_RX);
 	// FTDI Connected
-    // gpio_mode_setup(SPF_USART_TX_PORT, GPIO_MODE_INPUT, GPIO_PUPD_PULLUP, SPF_USART_TX);
+	// gpio_mode_setup(SPF_USART_TX_PORT, GPIO_MODE_INPUT, GPIO_PUPD_PULLUP, SPF_USART_TX);
 	// gpio_mode_setup(SPF_USART_RX_PORT, GPIO_MODE_OUTPUT, GPIO_PUPD_NONE,  SPF_USART_RX);
 	// gpio_set_output_options(SPF_USART_RX_PORT, GPIO_OTYPE_OD, GPIO_OSPEED_2MHZ, SPF_USART_RX);
 	// gpio_set(SPF_USART_RX_PORT, SPF_USART_RX);
 
-    // Batt Sense
-    gpio_mode_setup(BATT_SENS_PORT, GPIO_MODE_ANALOG, GPIO_PUPD_NONE, BATT_SENS);
-    
-    // RFM
-    // SPI
-    gpio_mode_setup(RFM_SPI_MISO_PORT,  GPIO_MODE_ANALOG,   GPIO_PUPD_NONE,       RFM_SPI_MISO);
+	// Batt Sense
+	gpio_mode_setup(BATT_SENS_PORT, GPIO_MODE_ANALOG, GPIO_PUPD_NONE, BATT_SENS);
 
-    gpio_mode_setup(RFM_SPI_SCK_PORT,   GPIO_MODE_INPUT,    GPIO_PUPD_PULLDOWN,   RFM_SPI_SCK);
-    gpio_mode_setup(RFM_SPI_MOSI_PORT,  GPIO_MODE_INPUT,    GPIO_PUPD_PULLDOWN,   RFM_SPI_MOSI);
+	// RFM
+	// SPI
+	gpio_mode_setup(RFM_SPI_MISO_PORT, GPIO_MODE_ANALOG, GPIO_PUPD_NONE, RFM_SPI_MISO);
 
-    gpio_mode_setup(RFM_SPI_NSS_PORT,   GPIO_MODE_INPUT,    GPIO_PUPD_PULLUP,     RFM_SPI_NSS);
-    gpio_mode_setup(RFM_RESET_PORT,     GPIO_MODE_INPUT,    GPIO_PUPD_PULLUP,     RFM_RESET);
+	gpio_mode_setup(RFM_SPI_SCK_PORT, GPIO_MODE_INPUT, GPIO_PUPD_PULLDOWN, RFM_SPI_SCK);
+	gpio_mode_setup(RFM_SPI_MOSI_PORT, GPIO_MODE_INPUT, GPIO_PUPD_PULLDOWN, RFM_SPI_MOSI);
 
-    // DIO
+	gpio_mode_setup(RFM_SPI_NSS_PORT, GPIO_MODE_INPUT, GPIO_PUPD_PULLUP, RFM_SPI_NSS);
+	gpio_mode_setup(RFM_RESET_PORT, GPIO_MODE_INPUT, GPIO_PUPD_PULLUP, RFM_RESET);
+
+	// DIO
 	// Input or analog, seems to make no difference
-    gpio_mode_setup(RFM_IO_0_PORT, GPIO_MODE_ANALOG, GPIO_PUPD_NONE, RFM_IO_0);
-    gpio_mode_setup(RFM_IO_1_PORT, GPIO_MODE_ANALOG, GPIO_PUPD_NONE, RFM_IO_1);
-    gpio_mode_setup(RFM_IO_2_PORT, GPIO_MODE_ANALOG, GPIO_PUPD_NONE, RFM_IO_2);
-    gpio_mode_setup(RFM_IO_3_PORT, GPIO_MODE_ANALOG, GPIO_PUPD_NONE, RFM_IO_3);
-    gpio_mode_setup(RFM_IO_4_PORT, GPIO_MODE_ANALOG, GPIO_PUPD_NONE, RFM_IO_4);
-    gpio_mode_setup(RFM_IO_5_PORT, GPIO_MODE_ANALOG, GPIO_PUPD_NONE, RFM_IO_5);
+	gpio_mode_setup(RFM_IO_0_PORT, GPIO_MODE_ANALOG, GPIO_PUPD_NONE, RFM_IO_0);
+	gpio_mode_setup(RFM_IO_1_PORT, GPIO_MODE_ANALOG, GPIO_PUPD_NONE, RFM_IO_1);
+	gpio_mode_setup(RFM_IO_2_PORT, GPIO_MODE_ANALOG, GPIO_PUPD_NONE, RFM_IO_2);
+	gpio_mode_setup(RFM_IO_3_PORT, GPIO_MODE_ANALOG, GPIO_PUPD_NONE, RFM_IO_3);
+	gpio_mode_setup(RFM_IO_4_PORT, GPIO_MODE_ANALOG, GPIO_PUPD_NONE, RFM_IO_4);
+	gpio_mode_setup(RFM_IO_5_PORT, GPIO_MODE_ANALOG, GPIO_PUPD_NONE, RFM_IO_5);
 
-    // TMP
-    gpio_mode_setup(TEMP_I2C_SCL_PORT, GPIO_MODE_INPUT, GPIO_PUPD_PULLUP, TEMP_I2C_SCL);
+	// TMP
+	gpio_mode_setup(TEMP_I2C_SCL_PORT, GPIO_MODE_INPUT, GPIO_PUPD_PULLUP, TEMP_I2C_SCL);
 	gpio_mode_setup(TEMP_I2C_SDA_PORT, GPIO_MODE_INPUT, GPIO_PUPD_PULLUP, TEMP_I2C_SDA);
 }
 
@@ -151,30 +189,34 @@ void set_gpio_for_standby(void)
 static void init(void)
 {
 	clock_setup_msi_2mhz();
+	systick_counter_disable();
 	timers_lptim_init();
-    log_init();
-	aes_init(dev_info->aes_key);
+	log_init();
 	batt_init();
-
+	aes_init(dev_info->aes_key);
 	print_aes_key(dev_info);
-	
-	// flash_led(100, 5);
-    log_printf("Sensor Start\n");
+
+	flash_led(40, 1);
+	log_printf("Sensor Init\n");
 	(void)flash_led_failsafe;
 }
 
 static void sensor(void)
-{	
+{
+	serial_printf("Turn On\n");
 	serial_printf("Device: %8x\n", dev_info->dev_num);
-	send_packet();
-
-	timers_rtc_init();
-	timers_set_wakeup_time(SENSOR_SLEEP_TIME);
-	timers_enable_wut_interrupt();
 
 	for (;;)
 	{
+		send_packet();
+
+		timers_rtc_init();
+		timers_set_wakeup_time(SENSOR_SLEEP_TIME);
+		timers_enable_wut_interrupt();
+
 		// Enter standby
+		mem_program_bkp_reg(0, IWDG_MAGIC_VALUE);
+		SYSCFG_CFGR3 &= ~SYSCFG_CFGR3_EN_VREFINT;
 		set_gpio_for_standby();
 		timers_enter_standby();
 	}
@@ -183,13 +225,13 @@ static void sensor(void)
 static void test(void)
 {
 	// timers_measure_lsi_freq();
-	
+
 	// serial_printf("Dev Info Location: %8x %8x %8x\n", EEPROM_DEV_INFO_BASE, &dev_info->aes_key[0], dev_info->aes_key);
 	// test_encryption(dev_info->aes_key);
 
 	// test_eeprom_read();
 	// test_log();
-	
+
 	// rfm_init();
 	// rfm_end();
 
@@ -199,7 +241,7 @@ static void test(void)
 	// tmp112_end();
 
 	// test_tmp112(10);
-	
+
 	// test_wakeup();
 	// test_sensor_rf_vs_temp_cal();
 	// test_sensor_standby(5);
@@ -224,27 +266,35 @@ static void test(void)
 	// test_log();
 }
 
-
 static void flash_led_failsafe(void)
 {
 	rcc_periph_clock_enable(RCC_GPIOA);
 	gpio_mode_setup(GPIOA, GPIO_MODE_OUTPUT, GPIO_PUPD_NONE, GPIO14);
-	for(;;)
+	for (;;)
 	{
-		for (uint32_t i = 0; i < 100000; i++) { __asm__("nop"); }
+		for (uint32_t i = 0; i < 100000; i++)
+		{
+			__asm__("nop");
+		}
 		gpio_set(GPIOA, GPIO14);
-		for (uint32_t i = 0; i < 100000; i++) { __asm__("nop"); }
+		for (uint32_t i = 0; i < 100000; i++)
+		{
+			__asm__("nop");
+		}
 		gpio_clear(GPIOA, GPIO14);
 	}
 }
 
 static void send_packet(void)
 {
+	log_printf("Send Packet\n");
+
 	/*////////////////////////*/
 	// Update Battery
 	/*////////////////////////*/
 	batt_update_voltages();
 	log_printf("Batt %u\n", batt_voltages[BATT_VOLTAGE]);
+	batt_end();
 
 	/*////////////////////////*/
 	// Get Average Temperature
@@ -258,18 +308,18 @@ static void send_packet(void)
 	int32_t sum = 0;
 	uint8_t num_readings = 0;
 	int16_t temp_avg = 22222;
-	for(int i = 0; i < max_readings; i++)
+	for (int i = 0; i < max_readings; i++)
 	{
-		if(readings[i] != 22222)
+		if (readings[i] != 22222)
 		{
 			sum += readings[i];
 			num_readings++;
 		}
 	}
 	// Prevent divide by zero
-	if(num_readings) 
+	if (num_readings)
 	{
-		temp_avg = sum/num_readings;
+		temp_avg = sum / num_readings;
 	}
 	log_printf("Temp: %i\n", temp_avg);
 
@@ -296,26 +346,20 @@ static void send_packet(void)
 
 // Override default rtc interrupt handler
 void rtc_isr(void)
-{ 
+{
 	// scb_reset_system();
 
-    exti_reset_request(EXTI20);
+	exti_reset_request(EXTI20);
 
-    if(RTC_ISR & RTC_ISR_WUTF)
-    { 
-        pwr_disable_backup_domain_write_protect();
-        rtc_unlock();
-	    rtc_clear_wakeup_flag();
-        pwr_clear_standby_flag();
-        rtc_lock();
-	    pwr_enable_backup_domain_write_protect();
-    }
+	if (RTC_ISR & RTC_ISR_WUTF)
+	{
+		timers_clear_wakeup_flag();
+		pwr_clear_standby_flag();
+	}
 
 	init();
 
-    log_printf("RTC ISR\n");
-
-	send_packet();
+	log_printf("RTC ISR\n");
 }
 
 /** @} */

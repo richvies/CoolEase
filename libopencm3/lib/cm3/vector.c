@@ -21,13 +21,17 @@
 #include <libopencm3/cm3/scb.h>
 #include <libopencm3/cm3/vector.h>
 
+#ifdef DEBUG
+#include "common/log.h"
+#endif
+
 /* load optional platform dependent initialization routines */
 #include "../dispatch/vector_chipset.c"
 /* load the weak symbols for IRQ_HANDLERS */
 #include "../dispatch/vector_nvic.c"
 
 /* Less common symbols exported by the linker script(s): */
-typedef void (*funcp_t) (void);
+typedef void (*funcp_t)(void);
 extern funcp_t __preinit_array_start, __preinit_array_end;
 extern funcp_t __init_array_start, __init_array_end;
 extern funcp_t __fini_array_start, __fini_array_end;
@@ -36,7 +40,7 @@ int main(void);
 void blocking_handler(void);
 void null_handler(void);
 
-__attribute__ ((section(".vectors")))
+__attribute__((section(".vectors")))
 vector_table_t vector_table = {
 	.initial_sp_value = &_stack,
 	.reset = reset_handler,
@@ -55,22 +59,22 @@ vector_table_t vector_table = {
 	.pend_sv = pend_sv_handler,
 	.systick = sys_tick_handler,
 	.irq = {
-		IRQ_HANDLERS
-	}
-};
+		IRQ_HANDLERS}};
 
-void __attribute__ ((weak)) reset_handler(void)
+void __attribute__((weak)) reset_handler(void)
 {
 	volatile unsigned *src, *dest;
 	funcp_t *fp;
 
 	for (src = &_data_loadaddr, dest = &_data;
-		dest < &_edata;
-		src++, dest++) {
+		 dest < &_edata;
+		 src++, dest++)
+	{
 		*dest = *src;
 	}
 
-	while (dest < &_ebss) {
+	while (dest < &_ebss)
+	{
 		*dest++ = 0;
 	}
 
@@ -82,10 +86,12 @@ void __attribute__ ((weak)) reset_handler(void)
 	pre_main();
 
 	/* Constructors. */
-	for (fp = &__preinit_array_start; fp < &__preinit_array_end; fp++) {
+	for (fp = &__preinit_array_start; fp < &__preinit_array_end; fp++)
+	{
 		(*fp)();
 	}
-	for (fp = &__init_array_start; fp < &__init_array_end; fp++) {
+	for (fp = &__init_array_start; fp < &__init_array_end; fp++)
+	{
 		(*fp)();
 	}
 
@@ -93,19 +99,26 @@ void __attribute__ ((weak)) reset_handler(void)
 	(void)main();
 
 	/* Destructors. */
-	for (fp = &__fini_array_start; fp < &__fini_array_end; fp++) {
+	for (fp = &__fini_array_start; fp < &__fini_array_end; fp++)
+	{
 		(*fp)();
 	}
-
 }
 
 void blocking_handler(void)
 {
-	while (1);
+#ifdef DEBUG
+serial_printf("Blocking Handler\n");
+#endif
+	while (1)
+		;
 }
 
 void null_handler(void)
 {
+#ifdef DEBUG
+serial_printf("Null Handler\n");
+#endif
 	/* Do nothing. */
 }
 
@@ -122,4 +135,3 @@ void null_handler(void)
 #pragma weak usage_fault_handler = blocking_handler
 #pragma weak debug_monitor_handler = null_handler
 #endif
-

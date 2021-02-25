@@ -744,13 +744,13 @@ void exti4_15_isr(void)
 
   if (flags & RFM_IRQ_PAYLOAD_CRC_ERROR)
   {
-    serial_printf("CRC Bad\n");
+    // serial_printf("CRC Bad\n");
   }
   else
   {
     if (((packets_head + 1) % PACKETS_BUF_SIZE) == packets_tail)
     {
-      serial_printf("RFM OF\n");
+      log_printf("RFM OF\n");
     }
     else
     {

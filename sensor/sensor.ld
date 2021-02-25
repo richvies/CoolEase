@@ -8,7 +8,7 @@ _min_stack_size = 0x800;    /* required amount of stack */
 MEMORY
 {
     ram (rwx) : ORIGIN = 0x20000000, LENGTH = 8K
-    rom (rx) : ORIGIN = 0x08004000, LENGTH = 48K
+    rom (rx) : ORIGIN = 0x08008000, LENGTH = 32K
 }
 SECTIONS
 {

@@ -58,10 +58,18 @@ extern "C" {
                                     if(time > timeout * 1000){ \
                                     return false;}}}
 
-#define TIMEOUT(time, print_str, print_data, break_condition, if_code, else_code)    timers_timeout_init(); \
-  	                                                                        while(!timers_timeout(time, print_str, print_data)) { \
-  	  	                                                                        if(break_condition){ if_code break; } \
-		                                                                        else{ else_code }}
+#define TIMEOUT(time, \
+                print_str, \
+                print_data, \
+                break_condition, \
+                if_code, \
+                else_code) { \
+                timers_timeout_init(); \
+  	            while(!timers_timeout(time, print_str, print_data)) { \
+  	  	            if(break_condition){ \
+                        if_code break; } \
+		            else{ \
+                        else_code }}}
 
 /*////////////////////////////////////////////////////////////////////////////*/
 // Exported Variables
@@ -73,24 +81,20 @@ extern "C" {
 // Exported Function Declarations
 /*////////////////////////////////////////////////////////////////////////////*/
 
-void timers_rtc_unlock(void);
-void timers_rtc_lock(void);
 void timers_rtc_init(void);
 void timers_rtc_set_time(uint8_t year, uint8_t month, uint8_t day, uint8_t hours, uint8_t mins, uint8_t secs);
 void timers_set_wakeup_time(uint32_t wakeup_time);
 void timers_clear_wakeup_flag(void);
 void timers_enable_wut_interrupt(void);
 void timers_disable_wut_interrupt(void);
-
-/* Measure LSI frequency with TIM21 */
-uint32_t timers_measure_lsi_freq(void);
-
+void timers_rtc_unlock(void);
+void timers_rtc_lock(void);
 
 /* Setup lptim approx. us counter. Clocked by APB1 
     Inrements millis counter every 1,000 ticks */
 void timers_lptim_init(void);
 
-/* Returns value of lptimer */
+/* Returns value of millis_counter * 1000 + micros_counter */
 uint32_t timers_micros(void);
 
 /* Returns value of millis_counter */
@@ -102,9 +106,9 @@ void timers_delay_microseconds(uint32_t delay_microseconds);
 /* Simple delay function. Puts cpu into nop loop timed by lptim1 */
 void timers_delay_milliseconds(uint32_t delay_milliseconds);
 
-
 /* Setup TIM6 as approx. microsecond counter. Clocked by APB1. Not currently used */
 void timers_tim6_init(void);
+
 
 /* Setup independant watchdog timer */
 void timers_iwdg_init(uint32_t period);
@@ -115,6 +119,7 @@ void timers_pet_dogs(void);
 
 /* Enter standby mode */
 void timers_enter_standby(void);
+
 
 /* Timout functions */
 void timers_timeout_init(void);

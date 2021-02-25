@@ -25,6 +25,7 @@ typedef struct
 	int16_t temperature;
 	int16_t rssi;
 	bool msg_pend;
+	bool msg_appended;
 	bool active;
 } sensor_t;
 
