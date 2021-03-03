@@ -9,7 +9,7 @@ var searchData=
   ['sim_5frx_5ftail_1181',['sim_rx_tail',['../sim_8c.html#ab0c1366eb2229462883ec2cb7b34625f',1,'sim.c']]],
   ['size_1182',['size',['../structlog__t.html#a3754c37e85eedfa19a117c0b8b54023a',1,'log_t']]],
   ['snr_1183',['snr',['../structrfm__packet__s.html#a4095303e7dce5b3ba060a88910133614',1,'rfm_packet_s']]],
-  ['state_1184',['state',['../structbootloader__t.html#a82a7a881d699229166a1219037fb87fa',1,'bootloader_t']]],
+  ['state_1184',['state',['../structbootloader__t.html#a82a7a881d699229166a1219037fb87fa',1,'boot_info_t']]],
   ['statusregister1_1185',['StatusRegister1',['../structw25__t.html#a8caa06d032728c5b30de2f1c1fcac754',1,'w25_t']]],
   ['statusregister2_1186',['StatusRegister2',['../structw25__t.html#a5c58e41a8fea6b3098f66fb7d63eea38',1,'w25_t']]],
   ['statusregister3_1187',['StatusRegister3',['../structw25__t.html#a17c986274246ecad7eaf32adc640f1b5',1,'w25_t']]]

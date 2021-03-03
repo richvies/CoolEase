@@ -1317,23 +1317,10 @@ sim_state_t sim_http_init(const char *url_str, bool ssl)
 sim_state_t sim_http_term(void)
 {
 	sim_state_t res = SIM_ERROR;
+	sim_printf_and_check_response(1000, "OK", "AT+HTTPTERM\r");
 
-	// Skip if already terminated
-	if (sim800.http.state == HTTP_TERM)
-	{
-		res = SIM_SUCCESS;
-	}
-	else
-	{
-		res = exec_command("+HTTPTERM", 10000);
-
-		// Error returned if http stack has already been terminated, but that ok
-		if (res == SIM_SUCCESS || res == SIM_ERROR)
-		{
-			res = SIM_SUCCESS;
-			sim800.http.state = HTTP_TERM;
-		}
-	}
+	res = SIM_SUCCESS;
+	sim800.http.state = HTTP_TERM;
 
 	return res;
 }
@@ -1440,8 +1427,7 @@ sim_state_t sim_http_post_str(const char *url_str, const char *msg_str, bool ssl
 		}
 		else
 		{
-			res = SIM_BUSY;
-			state = 6;
+			res = SIM_ERROR;
 		}
 		break;
 	case 3:

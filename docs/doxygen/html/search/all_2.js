@@ -29,7 +29,7 @@ var searchData=
   ['boot_5fverify_5fchecksum_54',['boot_verify_checksum',['../group___b_o_o_t_l_o_a_d_e_r___u_t_i_l_s___a_p_i.html#ga26bd7e0102d41443ee0aefe24260b86a',1,'bootloader_utils.c']]],
   ['bootloader_55',['bootloader',['../group___b_o_o_t_l_o_a_d_e_r___u_t_i_l_s___i_n_t.html#ga5e8eb5ce0e51cdd322dacc71bd8fddd0',1,'bootloader_utils.c']]],
   ['bootloader_5fstate_5ft_56',['bootloader_state_t',['../group___b_o_o_t_l_o_a_d_e_r___u_t_i_l_s___i_n_t.html#gabc7eca86fbaca60c07a1cb93f5e63974',1,'bootloader_utils.c']]],
-  ['bootloader_5ft_57',['bootloader_t',['../structbootloader__t.html',1,'']]],
+  ['bootloader_5ft_57',['boot_info_t',['../structbootloader__t.html',1,'']]],
   ['bootloader_5futils_2ec_58',['bootloader_utils.c',['../bootloader__utils_8c.html',1,'']]],
   ['bootloader_5futils_2ed_59',['bootloader_utils.d',['../bootloader__utils_8d.html',1,'']]],
   ['bootloader_5futils_2eh_60',['bootloader_utils.h',['../bootloader__utils_8h.html',1,'']]],

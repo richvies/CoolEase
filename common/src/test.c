@@ -76,12 +76,12 @@ void flash_led(uint16_t milliseconds, uint8_t num_flashes)
 	}
 }
 
-void print_aes_key(dev_info_t *dev_info)
+void print_aes_key(app_info_t *info)
 {
 	serial_printf("AES Key:");
 	for (uint8_t i = 0; i < 16; i++)
 	{
-		serial_printf(" %2x", dev_info->aes_key[i]);
+		serial_printf(" %2x", info->aes_key[i]);
 	}
 	serial_printf("\n");
 }

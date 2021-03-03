@@ -315,9 +315,9 @@ typedef enum
 {
     OFF = 0,
     INIT,
-    RESET,
-    CONNECTED,
-    GET_LOG,
+    USB_RESET,
+    USB_CONNECTED,
+    USB_GET_LOG,
     PROGRAM_START,
     PROGRAM,
     PRINT
@@ -457,7 +457,7 @@ void cusb_end(void)
 
 bool cusb_connected(void)
 {
-    return ((usb_state == CONNECTED) ? true : false);
+    return ((usb_state == USB_CONNECTED) ? true : false);
 }
 
 void cusb_poll(void)
@@ -515,7 +515,7 @@ static void cusb_clock_init(void)
 
 static void cusb_reset_callback(void)
 {
-    usb_state = RESET;
+    usb_state = USB_RESET;
     cusb_hook_reset();
 }
 
@@ -533,7 +533,7 @@ static void hid_set_config(usbd_device *dev, uint16_t wValue)
         USB_REQ_TYPE_TYPE | USB_REQ_TYPE_RECIPIENT,
         hid_control_request);
 
-    usb_state = CONNECTED;
+    usb_state = USB_CONNECTED;
 }
 
 static enum usbd_request_return_codes hid_control_request(usbd_device *dev, struct usb_setup_data *req, uint8_t **buf, uint16_t *len,
@@ -558,7 +558,7 @@ static void hid_in_report_callback(usbd_device *dev, uint8_t ea)
 {
     // serial_printf("H");
 
-    if (usb_state == GET_LOG)
+    if (usb_state == USB_GET_LOG)
     {
         static uint16_t bytes_sent = 0;
 
@@ -573,7 +573,7 @@ static void hid_in_report_callback(usbd_device *dev, uint8_t ea)
 
         if (bytes_sent >= log_size())
         {
-            usb_state = RESET;
+            usb_state = USB_RESET;
             bytes_sent = 0;
         }
     }
@@ -606,7 +606,7 @@ static void hid_out_report_callback(usbd_device *dev, uint8_t ea)
     // Get Log
     if (command == 1)
     {
-        usb_state = GET_LOG;
+        usb_state = USB_GET_LOG;
         log_read_reset();
     }
     // Setup for programming

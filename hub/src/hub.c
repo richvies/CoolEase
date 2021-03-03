@@ -60,8 +60,6 @@
 // Static Variables
 /*////////////////////////////////////////////////////////////////////////////*/
 
-static dev_info_t *dev_info = ((dev_info_t *)(EEPROM_DEV_INFO_BASE));
-
 static bool hub_plugged_in;
 
 static uint32_t latest_app_version;
@@ -241,10 +239,10 @@ static void init(void)
 	// cusb_init();
 	timers_lptim_init();
 	log_init();
-	aes_init(dev_info->aes_key);
+	aes_init(app_info->aes_key);
 	batt_init();
 
-	print_aes_key(dev_info);
+	print_aes_key(app_info);
 
 	flash_led(100, 1);
 	log_printf("Hub Init\n");
@@ -253,7 +251,7 @@ static void init(void)
 static void test(void)
 {
 	// test_bkp_reg();
-	// test_revceiver_basic();
+	test_revceiver_basic();
 	// test_sim_timestamp();
 	// test_sim_send_sms();
 	// test_sim_init();
@@ -277,11 +275,11 @@ static void hub(void)
 	// USB checking
 
 	// Check if first time running
-	if (dev_info->init_key != INIT_KEY)
+	if (app_info->init_key != BOOT_INIT_KEY)
 	{
 		serial_printf("Dev Info: First Power On\n");
 
-		mem_eeprom_write_word((uint32_t)&dev_info->init_key, INIT_KEY);
+		mem_eeprom_write_word((uint32_t)&app_info->init_key, BOOT_INIT_KEY);
 		// Sensor init - IDs, active or not,
 	}
 
@@ -804,8 +802,8 @@ static void net_task(void)
 								"&hub_pwr=%u"
 								"&hub_plugged_in=%u"
 								"&version=get",
-							  	dev_info->pwd, 
-								dev_info->dev_num, 
+							  	app_info->pwd, 
+								app_info->dev_num, 
 								batt_voltages[BATT_VOLTAGE], 
 								batt_voltages[PWR_VOLTAGE], 
 								hub_plugged_in ? HUB_PLUGGED_IN_VALUE : ~HUB_PLUGGED_IN_VALUE );

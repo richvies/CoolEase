@@ -242,6 +242,7 @@ void test_revceiver_basic(void)
 				serial_printf("Temperature: %i\n", packet->data.temperature);
 				serial_printf("Packet RSSI: %i dbm\n", packet->rssi);
 				serial_printf("Packet SNR: %i dB\n", packet->snr);
+				serial_printf("Bad Boot: %s\n", packet->data.bad_reboot ? "Yes" : "No");
 			}
 			serial_printf("\n");
 		}

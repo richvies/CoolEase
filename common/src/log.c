@@ -52,16 +52,6 @@ static char spf_cmd[64];
 static uint16_t write_index;
 static uint16_t read_index;
 
-// Persistant data
-typedef struct
-{
-	uint16_t size;
-	uint16_t idx;
-	uint8_t log[];
-} log_t;
-
-static log_t *log_file = ((log_t *)(EEPROM_LOG_BASE));
-
 /*////////////////////////////////////////////////////////////////////////////*/
 // Static Function Declarations
 /*////////////////////////////////////////////////////////////////////////////*/
@@ -180,18 +170,23 @@ void log_erase(void)
 
 void log_create_backup(void)
 {
-	uint32_t address;
-
-	for (address = FLASH_LOG_BKP; address < FLASH_LOG_BKP + EEPROM_LOG_SIZE; address += FLASH_PAGE_SIZE)
-	{
-		mem_flash_erase_page(address);
-	}
+	log_erase_backup();
 
 	log_read_reset();
 
 	for (uint16_t i = 0; i < log_size(); i += 4)
 	{
 		mem_flash_write_word(FLASH_LOG_BKP + i, (log_read() << 0 | log_read() << 8 | log_read() << 16 | log_read() << 24));
+	}
+}
+
+void log_erase_backup(void)
+{
+	uint32_t address;
+
+	for (address = FLASH_LOG_BKP; address < FLASH_LOG_BKP + EEPROM_LOG_SIZE; address += FLASH_PAGE_SIZE)
+	{
+		mem_flash_erase_page(address);
 	}
 }
 

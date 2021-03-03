@@ -43,6 +43,15 @@
 #define SENSOR_SLEEP_TIME 600
 #define APP_ADDRESS 0x08004000
 #define IWDG_MAGIC_VALUE 0x12345678
+#define INIT_MAGIC_VALUE 0x24681358
+#define FIRST_MAGIC_VALUE 0x12345678
+
+typedef enum
+{
+	IWDG_MAGIC_REG = 0,
+	INIT_MAGIC_REG,
+	FIRST_MAGIC_REG,
+} magic_reg_e;
 
 /** @addtogroup SENSOR_INT 
  * @{
@@ -52,7 +61,8 @@
 // Static Variables
 /*////////////////////////////////////////////////////////////////////////////*/
 
-static dev_info_t *dev_info = ((dev_info_t *)(EEPROM_DEV_INFO_BASE));
+
+static bool bad_reboot = false;
 
 /*////////////////////////////////////////////////////////////////////////////*/
 // Static Function Declarations
@@ -80,21 +90,35 @@ int main(void)
 	(void)test;
 	(void)sensor;
 
+	reset_save_flags();
+	log_init();
+
 	timers_rtc_init();
 	timers_set_wakeup_time(SENSOR_SLEEP_TIME);
 	timers_enable_wut_interrupt();
 
-	// If wathdog reset
-	if (RCC_CSR & RCC_CSR_IWDGRSTF)
-	{
-		log_init();
+	serial_printf("%08x %08x\n", mem_read_bkp_reg(INIT_MAGIC_REG), mem_read_bkp_reg(IWDG_MAGIC_REG));
 
+	if (mem_read_bkp_reg(INIT_MAGIC_REG) != INIT_MAGIC_VALUE)
+	{
+		log_erase();
+		log_erase_backup();
+		mem_program_bkp_reg(INIT_MAGIC_REG, INIT_MAGIC_VALUE);
+
+		log_printf("Erased Logs\n");
+		log_printf("First Turn On\n");
+	}
+	// If wathdog reset
+	else if (reset_get_flags() & RCC_CSR_IWDGRSTF)
+	{
 		// Was on purpose
-		if (mem_read_bkp_reg(0) == IWDG_MAGIC_VALUE)
+		if (mem_read_bkp_reg(IWDG_MAGIC_REG) == IWDG_MAGIC_VALUE)
 		{
+			bad_reboot = false; 
+
 			// Go back to standby
 			log_printf("IWDG back to sleep\n");
-			mem_program_bkp_reg(0, 0);
+			mem_program_bkp_reg(IWDG_MAGIC_REG, 0);
 			SYSCFG_CFGR3 &= ~SYSCFG_CFGR3_EN_VREFINT;
 			set_gpio_for_standby();
 			timers_enter_standby();
@@ -102,9 +126,15 @@ int main(void)
 		// Was actual problem with code, backup log
 		else
 		{
+			bad_reboot = true;
+
 			log_printf("IWDG Backup Log\n");
 			log_create_backup();
 		}
+	}
+	else
+	{
+		bad_reboot = false;
 	}
 
 	timers_iwdg_init(7000);
@@ -193,8 +223,8 @@ static void init(void)
 	timers_lptim_init();
 	log_init();
 	batt_init();
-	aes_init(dev_info->aes_key);
-	print_aes_key(dev_info);
+	aes_init(app_info->aes_key);
+	print_aes_key(app_info);
 
 	flash_led(40, 1);
 	log_printf("Sensor Init\n");
@@ -203,8 +233,7 @@ static void init(void)
 
 static void sensor(void)
 {
-	serial_printf("Turn On\n");
-	serial_printf("Device: %8x\n", dev_info->dev_num);
+	serial_printf("Device: %8x\n", app_info->dev_num);
 
 	for (;;)
 	{
@@ -215,7 +244,7 @@ static void sensor(void)
 		timers_enable_wut_interrupt();
 
 		// Enter standby
-		mem_program_bkp_reg(0, IWDG_MAGIC_VALUE);
+		mem_program_bkp_reg(IWDG_MAGIC_REG, IWDG_MAGIC_VALUE);
 		SYSCFG_CFGR3 &= ~SYSCFG_CFGR3_EN_VREFINT;
 		set_gpio_for_standby();
 		timers_enter_standby();
@@ -226,8 +255,8 @@ static void test(void)
 {
 	// timers_measure_lsi_freq();
 
-	// serial_printf("Dev Info Location: %8x %8x %8x\n", EEPROM_DEV_INFO_BASE, &dev_info->aes_key[0], dev_info->aes_key);
-	// test_encryption(dev_info->aes_key);
+	// serial_printf("Dev Info Location: %8x %8x %8x\n", EEPROM_APP_INFO_BASE, &app_info->aes_key[0], app_info->aes_key);
+	// test_encryption(app_info->aes_key);
 
 	// test_eeprom_read();
 	// test_log();
@@ -327,10 +356,11 @@ static void send_packet(void)
 	// Assemble & Encrypt Packet
 	/*////////////////////////*/
 	rfm_packet_t packet;
-	packet.data.device_number = dev_info->dev_num;
+	packet.data.device_number = app_info->dev_num;
 	packet.data.battery = batt_voltages[BATT_VOLTAGE];
 	packet.data.temperature = temp_avg;
 	packet.data.msg_number = 0;
+	packet.data.bad_reboot = bad_reboot;
 
 	aes_ecb_encrypt(packet.data.buffer);
 

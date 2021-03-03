@@ -4,50 +4,54 @@
 #include <libopencm3/stm32/rcc.h>
 
 #include "common/log.h"
+#include "common/memory.h"
+#include "common/timers.h"
+
+#define RESET_WAKEUP_FLAG	(1 << 0)
+#define RESET_STANDBY_FLAG	(1 << 1)
 
 void reset_print_cause(void)
 {
-	rcc_periph_clock_enable(RCC_PWR);
-	
-    if(pwr_get_standby_flag())
-	{
-		log_printf("Standby flag set\n");
-		pwr_clear_standby_flag();
-	}
+	uint32_t reset_flags = reset_get_flags();
 
-	if(pwr_get_wakeup_flag())
-	{
-		log_printf("Wakeup flag set\n");
-		pwr_clear_wakeup_flag();
-	}
-
-    if(RCC_CSR & RCC_CSR_LPWRRSTF)
+    if(reset_flags & RCC_CSR_LPWRRSTF)
 	{
 		log_printf("Low Power Reset\n");
 	}
 
-	if(RCC_CSR & RCC_CSR_WWDGRSTF)
+	if(reset_flags & RCC_CSR_WWDGRSTF)
 	{
 		log_printf("Window Watchdog Reset\n");
 	}
 
-	if(RCC_CSR & RCC_CSR_IWDGRSTF)
+	if(reset_flags & RCC_CSR_IWDGRSTF)
 	{
 		log_printf("I Watchdog Reset\n");
 	}
 
-	if(RCC_CSR & RCC_CSR_SFTRSTF)
+	if(reset_flags & RCC_CSR_SFTRSTF)
 	{
 		log_printf("SFTRSTF Reset\n");
 	}
 
-	if(RCC_CSR & RCC_CSR_PORRSTF)
+	if(reset_flags & RCC_CSR_PORRSTF)
 	{
 		log_printf("PORRSTF Reset\n");
 	}
 
-	if(RCC_CSR & RCC_CSR_PINRSTF)
+	if(reset_flags & RCC_CSR_PINRSTF)
 	{
 		log_printf("PINRSTF Reset\n");
 	}
+}
+
+void reset_save_flags(void)
+{
+	mem_program_bkp_reg(BKUP_RESET_FLAGS, (RCC_CSR & RCC_CSR_RESET_FLAGS));
+	RCC_CSR |= RCC_CSR_RMVF;
+}
+
+uint32_t reset_get_flags(void)
+{
+	return mem_read_bkp_reg(BKUP_RESET_FLAGS);
 }

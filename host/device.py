@@ -278,6 +278,9 @@ class TestBin(object):
             bin.write(bytes([i for i in range(240)]))
             bin.close()
 
+def generate_bin():
+    
+    
 
 def test_programming():
     print('Test Programming Bin\n-----------------------------\n')

@@ -161,6 +161,10 @@ bool mem_eeprom_write_byte(uint32_t address, uint8_t data)
     return true;
 }
 
+bool mem_eeprom_write_word_ptr(uint32_t *ptr, uint32_t data)
+{
+	return mem_eeprom_write_word((uint32_t)ptr, data);
+}
 
 bool mem_flash_erase_page(uint32_t address)
 {

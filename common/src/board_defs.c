@@ -7,6 +7,11 @@
 #include <stdint.h>
 #include <stddef.h>
 
+shared_info_t *shared_info = ((shared_info_t *)(EEPROM_SHARED_INFO_BASE));
+boot_info_t *boot_info = ((boot_info_t *)(EEPROM_BOOT_INFO_BASE));
+app_info_t *app_info = ((app_info_t *)(EEPROM_APP_INFO_BASE));
+log_t *log_file = ((log_t *)(EEPROM_LOG_BASE));
+
 enum rcc_osc sys_clk = RCC_MSI;
 
 void clock_setup_msi_2mhz(void) 

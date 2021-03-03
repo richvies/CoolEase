@@ -37,7 +37,7 @@
  */
 
 /**
- * Mask for RCC_CSR defining which bits may trigger an entry into bootloader mode:
+ * Mask for RCC_CSR defining which bits may trigger an entry into boot_info mode:
  * - Any watchdog reset
  * - Any soft reset
  * - A pin reset (aka manual reset)
@@ -45,35 +45,11 @@
  */
 #define BOOTLOADER_RCC_CSR_ENTRY_MASK (RCC_CSR_WWDGRSTF | RCC_CSR_IWDGRSTF | RCC_CSR_SFTRSTF | RCC_CSR_PINRSTF | RCC_CSR_FWRSTF)
 
-/**
- * Magic code value to make the bootloader ignore any of the entry bits set in
- * RCC_CSR and skip to the user program anyway, if a valid program start value
- * has been programmed.
- */
-#define BOOTLOADER_MAGIC_SKIP 0x3C65A95A
-
-
 /*////////////////////////////////////////////////////////////////////////////*/
 // Static Variables
 /*////////////////////////////////////////////////////////////////////////////*/
 
-typedef enum
-{
-    RESET = 0,
-    CONNECTED,
-    GET_LOG
-} bootloader_state_t;
 
-typedef struct
-{
-    uint32_t vtor;
-    uint32_t magic_code;
-    uint32_t reset_flags;
-    bootloader_state_t state;
-    uint8_t  num_reset;
-} bootloader_t;
-
-static bootloader_t *bootloader = ((bootloader_t *)(EEPROM_BOOTLOADER_INFO_BASE));
 
 /*////////////////////////////////////////////////////////////////////////////*/
 // Static Function Declarations
@@ -93,45 +69,71 @@ static bool verify_half_page_checksum(uint32_t data[16], uint32_t expected);
 
 void boot_init(void)
 {
-    log_printf("Boot Init\n");
+    uint32_t *mem_eeprom_write_word_ptrNULL;
+    uint8_t *u8ptr = NULL;
+    uint32_t val = 0;
+
+    // This should only ever be called once after a reset
+    reset_save_flags();
     reset_print_cause();
 
-    // Save reset flags and clear register
-    mem_eeprom_write_word((uint32_t)&bootloader->reset_flags, RCC_CSR & RCC_CSR_RESET_FLAGS);
-    RCC_CSR |= RCC_CSR_RMVF;
+    if (mem_read_bkp_reg(BKUP_BOOT_OK) != BKUP_BOOT_OK)
 
-    serial_printf("VTOR: %8x Flags: %8x Code: %8x Num Reset: %i State: %i\n", bootloader->vtor, bootloader->reset_flags, bootloader->magic_code, bootloader->num_reset, bootloader->state);
-
-    // If watchdogs keep causing reset then there is problem with app code
-    // Todo, use RTC backup registers instead
-    if(bootloader->reset_flags & (RCC_CSR_WWDGRSTF | RCC_CSR_IWDGRSTF))
+    // If first power on, setup some data
+    if ((boot_info->init_key != BOOT_INIT_KEY) && (boot_info->init_key != BOOT_INIT_KEY2))
     {
-        if(bootloader->num_reset >= 3)
+        BOOT_LOG("First Power On\n");
+
+        // Reset RTC registers (Backup Registers)
+        timers_rtc_unlock();
+        RCC_CSR |= RCC_CSR_RTCRST;
+        timers_rtc_lock();
+
+        // Boot info
+        mem_eeprom_write_word_ptr(&boot_info->ok_key, 0);
+
+        mem_eeprom_write_word_ptr(&boot_info->app_init_key, 0);
+
+        mem_eeprom_write_word_ptr(&boot_info->upgrade_in_progress, 0);
+        mem_eeprom_write_word_ptr(&boot_info->upgrade_version_to_download, 0);
+        mem_eeprom_write_word_ptr(&boot_info->upgrade_num_recovery_attempts, 0);
+        mem_eeprom_write_word_ptr(&boot_info->upgrade_new_app_installed, 0);
+        mem_eeprom_write_word_ptr(&boot_info->upgrade_done, 0);
+        mem_eeprom_write_word_ptr(&boot_info->upgrade_state, 0);
+        mem_eeprom_write_word_ptr(&boot_info->upgrade_flags, 0);
+
+        mem_eeprom_write_word_ptr(&boot_info->magic_code, 0);
+
+        // Set initialized
+        mem_eeprom_write_word_ptr(&boot_info->init_key, BOOT_INIT_KEY);
+    }
+
+    serial_printf("VTOR: %8x Flags: %8x Code: %8x Num Reset: %i State: %i\n", boot_info->vtor, reset_get_flags(), mem_read_bkp_reg(BKUP_BOOT_MAGIC_SKIP), mem_read_bkp_reg(BKUP_NUM_IWDG_RESET), mem_read_bkp_reg(BKUP_BOOT_MAGIC_SKIP));
+
+    // If watchdogs keep causing reset then there is problem 
+    val = mem_read_bkp_reg(BKUP_NUM_IWDG_RESET);
+    if (reset_get_flags() & RCC_CSR_IWDGRSTF)
+    {
+        mem_program_bkp_reg(BKUP_NUM_IWDG_RESET, val + 1);
+
+        // Caused by app, not bootloader
+        if (mem_read_bkp_reg(BKUP_BOOT_OK) == BOOT_OK_KEY)
         {
-            // panic!!
-            boot_fallback();
+            mem_eeprom_write_word_ptr(&boot_info->app_num_iwdg_reset, boot_info->app_num_iwdg_reset + 1);
         }
+        // Caused by bootloader, much much worse
         else
         {
-            mem_eeprom_write_byte((uint32_t)&bootloader->num_reset, bootloader->num_reset + 1);
         }
     }
-    // Otherwise reset count to 0 if not already
-    else if(bootloader->num_reset)
+    // Otherwise reset count to 0
+    else
     {
-        mem_eeprom_write_byte((uint32_t)&bootloader->num_reset, 0);
-    }    
+        mem_program_bkp_reg(BKUP_NUM_IWDG_RESET, 0);
+    } 
 
-    // If the program address is set and there are no entry bits set in the CSR (or the magic code is programmed appropriate), start the user program
-    if (bootloader->vtor &&
-            (!(bootloader->reset_flags & BOOTLOADER_RCC_CSR_ENTRY_MASK) || bootloader->magic_code == BOOTLOADER_MAGIC_SKIP))
-    {
-        if (bootloader->magic_code)
-        {
-            mem_eeprom_write_word((uint32_t)&bootloader->magic_code, 0);
-        }
-        boot_jump_to_application(bootloader->vtor);
-    }
+    // Magic value must be set every time bootloader runs succesfully, before calling main app
+    mem_program_bkp_reg(BKUP_BOOT_OK, 0);
 }
 
 // This works perfectly before jumping to application
@@ -166,6 +168,9 @@ void boot_jump_to_application(uint32_t address)
 
     // Deinitialize peripherals
     // boot_deinit();
+
+
+    mem_program_bkp_reg(BKUP_BOOT_OK, BOOT_OK_KEY);
 
     // Enable interrupts
     __asm__ volatile("CPSIE I\n");

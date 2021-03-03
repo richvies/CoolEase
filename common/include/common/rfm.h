@@ -315,6 +315,7 @@ typedef struct rfm_packet_s
                 int8_t      power;
                 uint16_t    battery;
                 int16_t     temperature;
+                bool        bad_reboot;
         };     
     }data;
     

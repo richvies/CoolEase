@@ -78,7 +78,7 @@ var searchData=
   ['spi_5fsetup_636',['spi_setup',['../w25qxx_8c.html#a66fc9d680f96347b60f9fba28a2094bc',1,'spi_setup(void):&#160;w25qxx.c'],['../group___r_f_m___i_n_t.html#ga66fc9d680f96347b60f9fba28a2094bc',1,'spi_setup(void):&#160;rfm.c']]],
   ['spi_5fwrite_5fburst_637',['spi_write_burst',['../group___r_f_m___i_n_t.html#ga5b4b2cdff685125d7c3c10fc979cf50f',1,'rfm.c']]],
   ['spi_5fwrite_5fsingle_638',['spi_write_single',['../group___r_f_m___i_n_t.html#ga87d5d59902158b67eef5f9757c9ae65e',1,'rfm.c']]],
-  ['state_639',['state',['../structbootloader__t.html#a82a7a881d699229166a1219037fb87fa',1,'bootloader_t']]],
+  ['state_639',['state',['../structbootloader__t.html#a82a7a881d699229166a1219037fb87fa',1,'boot_info_t']]],
   ['state_5fattached_640',['STATE_ATTACHED',['../group___m_e_m_o_r_y___f_i_l_e.html#ga91aea8f18583a4f39018d2a6a552f5ff',1,'memory.c']]],
   ['state_5ffirst_5frun_641',['STATE_FIRST_RUN',['../group___m_e_m_o_r_y___f_i_l_e.html#ga97e023179b94640fcc163ac8de1e3c0b',1,'memory.c']]],
   ['state_5ft_642',['state_t',['../aes_8c.html#a35dbb26673d196810a7f6eac0ac632ec',1,'aes.c']]],

@@ -48,7 +48,7 @@ extern "C" {
 
 void test_init(const char *test_name);
 void flash_led(uint16_t milliseconds, uint8_t num_flashes);
-void print_aes_key(dev_info_t *dev_info);
+void print_aes_key(app_info_t *app_info);
 
 /*////////////////////////////////////////////////////////////////////////////*/
 // Memory tests

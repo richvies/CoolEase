@@ -107,6 +107,7 @@ uint8_t log_read(void);
 uint16_t log_size(void);
 void log_erase(void);
 void log_create_backup(void);
+void log_erase_backup(void);
 
 void serial_printf(const char *format, ...);
 bool serial_available(void);
