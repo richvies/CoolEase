@@ -148,9 +148,9 @@ int main(void)
 
 	init();
 
-	test();
+	// test();
 
-	hub();
+	// hub();
 
 	// test_hub2();
 

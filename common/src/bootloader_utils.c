@@ -77,12 +77,22 @@ void boot_init(void)
     reset_save_flags();
     reset_print_cause();
 
-    if (mem_read_bkp_reg(BKUP_BOOT_OK) != BKUP_BOOT_OK)
-
     // If first power on, setup some data
     if ((boot_info->init_key != BOOT_INIT_KEY) && (boot_info->init_key != BOOT_INIT_KEY2))
     {
         BOOT_LOG("First Power On\n");
+
+        serial_printf("Dev Num: %8u\n", boot_info->dev_num);
+        serial_printf("Boot Version: %8u\n", boot_info->boot_version);
+        serial_printf("VTOR: %8x\n", boot_info->vtor);
+        serial_printf("PWD: %s\n", boot_info->pwd);
+        serial_printf("AES Key: ");
+        for (uint8_t i = 0; i < 16; i++)
+        {
+            serial_printf("%2x ", boot_info->aes_key[i]);
+        }
+        serial_printf("\n");
+        
 
         // Reset RTC registers (Backup Registers)
         timers_rtc_unlock();
@@ -90,8 +100,6 @@ void boot_init(void)
         timers_rtc_lock();
 
         // Boot info
-        mem_eeprom_write_word_ptr(&boot_info->ok_key, 0);
-
         mem_eeprom_write_word_ptr(&boot_info->app_init_key, 0);
 
         mem_eeprom_write_word_ptr(&boot_info->upgrade_in_progress, 0);
@@ -102,13 +110,11 @@ void boot_init(void)
         mem_eeprom_write_word_ptr(&boot_info->upgrade_state, 0);
         mem_eeprom_write_word_ptr(&boot_info->upgrade_flags, 0);
 
-        mem_eeprom_write_word_ptr(&boot_info->magic_code, 0);
-
         // Set initialized
         mem_eeprom_write_word_ptr(&boot_info->init_key, BOOT_INIT_KEY);
     }
 
-    serial_printf("VTOR: %8x Flags: %8x Code: %8x Num Reset: %i State: %i\n", boot_info->vtor, reset_get_flags(), mem_read_bkp_reg(BKUP_BOOT_MAGIC_SKIP), mem_read_bkp_reg(BKUP_NUM_IWDG_RESET), mem_read_bkp_reg(BKUP_BOOT_MAGIC_SKIP));
+    serial_printf("Reset Flags: %8x\nNum IWDG Reset: %i\n", reset_get_flags(), mem_read_bkp_reg(BKUP_NUM_IWDG_RESET));
 
     // If watchdogs keep causing reset then there is problem 
     val = mem_read_bkp_reg(BKUP_NUM_IWDG_RESET);
@@ -131,6 +137,9 @@ void boot_init(void)
     {
         mem_program_bkp_reg(BKUP_NUM_IWDG_RESET, 0);
     } 
+
+    // Start watchdog
+    // timers_iwdg_init(5000);
 
     // Magic value must be set every time bootloader runs succesfully, before calling main app
     mem_program_bkp_reg(BKUP_BOOT_OK, 0);

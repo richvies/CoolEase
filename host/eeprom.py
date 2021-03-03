@@ -17,16 +17,16 @@ def generate_hub_eeprom(dev_num, boot_version, vtor, aes_key, pwd, log_size):
 
     vtor = int(vtor, 16)
     aes_key = bytes.fromhex(aes_key)
-    pwd = bytes(pwd, 'utf-8')
+    pwd = bytes(pwd, 'utf-8') + bytes(0)
 
-    boot = bin_section('boot', 256, struct.pack('<III16s33s', dev_num, boot_version, vtor, aes_key, pwd))
+    boot = bin_section('boot', 256, struct.pack('<III16s34s', dev_num, boot_version, vtor, aes_key, pwd))
     app = bin_section('app', 256, struct.pack('<I', 0))
     log = bin_section('log', 1024, struct.pack('<H', log_size))
     shared = bin_section('shared', 64, struct.pack('<I', 0))
 
     # Open blank bin file
     # filename = 'hub/bin/store/hub_' + '{0:08}'.format(dev_num) + '_eeprom_' + '{0:03}'.format(boot_version) + '.bin'
-    filename = 'hub/bin/hub+_eeprom.bin'
+    filename = 'hub/hub_eeprom.bin'
     with open(filename, "wb+") as eeprom:
         
         for _ in range(2048):

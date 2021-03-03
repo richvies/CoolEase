@@ -131,16 +131,6 @@ typedef struct
 
 	// Variable
 	uint32_t init_key;
-	uint32_t ok_key;
-	uint32_t magic_code;
-	
-	uint32_t app_init_key;
-	uint32_t app_ok_key;
-	uint32_t app_num_iwdg_reset;
-	uint32_t app_num_fail_runs;
-	uint32_t app_version;
-	uint32_t app_update_version;
-	uint32_t app_working_version;
 
 	uint32_t upgrade_in_progress;
 	uint32_t upgrade_new_app_installed;
@@ -150,6 +140,14 @@ typedef struct
 	
 	uint32_t upgrade_version_to_download;
 	uint32_t upgrade_num_recovery_attempts;	
+	
+	uint32_t app_init_key;
+	uint32_t app_ok_key;
+	uint32_t app_num_iwdg_reset;
+	uint32_t app_num_fail_runs;
+	uint32_t app_version;
+	uint32_t app_update_version;
+	uint32_t app_working_version;
 } boot_info_t;
 
 typedef struct

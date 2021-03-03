@@ -81,7 +81,7 @@ typedef enum
 typedef enum
 {
 	UPGRADE_INIT = 0,
-	// Critical Section Start
+	// Critical Section Start. Don't Change
 	UPGRADE_DOWNLOAD_BIN,
 	UPGRADE_CHECK_BIN,
 	UPGRADE_PROGRAM_BIN,
@@ -106,8 +106,8 @@ typedef enum
 static void prepare_msg(msg_type_e msg_type);
 
 #define NET_LOG          \
-	log_printf("NET: "); \
-	log_printf
+	BOOT_LOG("NET: "); \
+	BOOT_LOG
 
 #define BACKUP_VERSION 100
 
@@ -151,6 +151,7 @@ int main(void)
 	// If first power on
 	if (boot_info->init_key != BOOT_INIT_KEY2)
 	{
+		BOOT_LOG("Test Run App\n");
 		mem_eeprom_write_word_ptr(&boot_info->app_ok_key, 0);
 		mem_eeprom_write_word_ptr(&boot_info->app_num_fail_runs, 0);
 		mem_eeprom_write_word_ptr(&boot_info->app_num_iwdg_reset, 0);
@@ -162,6 +163,7 @@ int main(void)
 		mem_eeprom_write_word_ptr(&boot_info->upgrade_state, UPGRADE_TEST_RUN_APP);
 		mem_eeprom_write_word_ptr(&boot_info->upgrade_flags, UPG_FLAG_FIRST_CHECK);
 		mem_eeprom_write_word_ptr(&boot_info->upgrade_in_progress, BOOT_UPGRADE_IN_PROGRESS_KEY);
+		mem_eeprom_write_word_ptr(&boot_info->upgrade_new_app_installed, BOOT_UPGRADE_NEW_APP_INSTALLED_KEY);
 
 		// Set initialized
 		mem_eeprom_write_word_ptr(&boot_info->init_key, BOOT_INIT_KEY2);
@@ -215,17 +217,20 @@ int main(void)
 		uint32_t timer = 0;
 
 		// If reset occurs during critical part (downloading/ programming .bin), restart download section
-		if (boot_info->upgrade_state >= UPGRADE_DOWNLOAD_BIN || boot_info->upgrade_state <= UPGRADE_PROGRAM_BIN)
+		if ((boot_info->upgrade_state >= UPGRADE_DOWNLOAD_BIN) && (boot_info->upgrade_state <= UPGRADE_PROGRAM_BIN))
 		{
+
 			mem_eeprom_write_word_ptr(&boot_info->upgrade_state, UPGRADE_DOWNLOAD_BIN);
 		}
 
 		while (stop_upgrade_loop == false)
 		{
+			serial_printf("Upgrade State: %u\n", boot_info->upgrade_state);
+
 			switch (boot_info->upgrade_state)
 			{
 			case UPGRADE_INIT:
-				log_printf("Begin upgrade from v%u to v%u\n", boot_info->app_version, boot_info->app_update_version);
+				BOOT_LOG("Begin upgrade from v%u to v%u\n", boot_info->app_version, boot_info->app_update_version);
 
 				// Check info is set
 				if ((boot_info->app_version != 0) &&
@@ -239,7 +244,7 @@ int main(void)
 				}
 				else
 				{
-					log_printf("Upgrade data incorrect\n");
+					BOOT_LOG("Upgrade data incorrect\n");
 					BOOT_SET_UPG_FLAG(UPG_FLAG_DATA_ERR);
 					mem_eeprom_write_word_ptr(&boot_info->upgrade_state, UPGRADE_ERROR);
 				}
@@ -247,6 +252,7 @@ int main(void)
 
 			case UPGRADE_DOWNLOAD_BIN:
 				// Check for version & try download for 3 min
+				BOOT_LOG("Download Version %u\n", boot_info->upgrade_version_to_download);
 				timer = timers_millis();
 				download_ok = false;
 				while ((false == download_ok) && ((timers_millis() - timer) < 180000))
@@ -283,14 +289,14 @@ int main(void)
 
 				if (program_bin() == true)
 				{
-					log_printf("Binary installed\n");
+					BOOT_LOG("Binary installed\n");
 					mem_eeprom_write_word_ptr(&boot_info->upgrade_new_app_installed, BOOT_UPGRADE_NEW_APP_INSTALLED_KEY);
 
 					mem_eeprom_write_word_ptr(&boot_info->upgrade_state, UPGRADE_TEST_RUN_APP);
 				}
 				else
 				{
-					log_printf("Programming fail\n");
+					BOOT_LOG("Programming fail\n");
 					BOOT_SET_UPG_FLAG(UPG_FLAG_PROG_ERR);
 					mem_eeprom_write_word_ptr(&boot_info->upgrade_state, UPGRADE_ERROR);
 				}
@@ -366,6 +372,7 @@ int main(void)
 
 			case UPGRADE_RECOVERY_FAILED:
 				// Worst case senario, failed to update and then failed to install previous & backup bins. Check for instructions from cloud every minute. Send report & try auto recover every hour
+				timers_delay_milliseconds(5000);
 				if ((timers_millis() - recovery_check_timer) > 60000)
 				{
 					recovery_check_timer = timers_millis();
@@ -390,12 +397,14 @@ int main(void)
 
 				if (download_ok == true)
 				{
-					mem_eeprom_write_word_ptr(&boot_info->upgrade_state, UPGRADE_CHECK_BIN);
+					// Check response, download new bin
+					serial_printf("Todo UPGRADE_CHECK_CLOUD\n");
+					while(1);
 				}
 				else
 				{
 					BOOT_SET_UPG_FLAG(UPG_FLAG_DOWNLOAD_ERR);
-					mem_eeprom_write_word_ptr(&boot_info->upgrade_state, UPGRADE_ERROR);
+					mem_eeprom_write_word_ptr(&boot_info->upgrade_state, UPGRADE_RECOVERY_FAILED);
 				}
 				break;
 
@@ -411,9 +420,13 @@ int main(void)
 			// If any problems during upgrade, check if old version still programmed and ok. If so, signal app to send error message and continue
 			// Otherwise download previous working version.
 			case UPGRADE_ERROR:
+				BOOT_LOG("Upgrade Error\n");
+
 				// Check if old version still programmed
 				if (boot_info->app_ok_key == BOOT_APP_OK_KEY)
 				{
+					BOOT_LOG("App still Ok\n");
+
 					// Send error message
 					mem_eeprom_write_word_ptr(&boot_info->upgrade_state, UPGRADE_DONE);
 				}
@@ -423,12 +436,20 @@ int main(void)
 					// Try previous app
 					if (boot_info->upgrade_version_to_download == boot_info->app_update_version)
 					{
+						BOOT_LOG("Recover Old\n");
 						mem_eeprom_write_word_ptr(&boot_info->upgrade_state, UPGRADE_RECOVER_OLD_APP);
 					}
-					// All other cases, try to install backup
+					// Try backup
+					else if (boot_info->upgrade_version_to_download == BACKUP_VERSION)
+					{
+						BOOT_LOG("Recover Backup\n");
+						mem_eeprom_write_word_ptr(&boot_info->upgrade_state, UPGRADE_RECOVER_BACKUP_APP);
+					}
+					// All other cases, check for instructions from cloud, and try install backup every hour
 					else
 					{
-						mem_eeprom_write_word_ptr(&boot_info->upgrade_state, UPGRADE_RECOVER_BACKUP_APP);
+						BOOT_LOG("Recover Failed\n");
+						mem_eeprom_write_word_ptr(&boot_info->upgrade_state, UPGRADE_RECOVERY_FAILED);
 					}
 				}
 				break;
@@ -442,6 +463,7 @@ int main(void)
 	// Setup fresh app after new bin installed
 	if (boot_info->upgrade_new_app_installed == BOOT_UPGRADE_NEW_APP_INSTALLED_KEY)
 	{
+		BOOT_LOG("New App Installed\n");
 		// Boot Info
 
 		// Default app info setup by boot_init() when app_init_key is not set
@@ -498,6 +520,8 @@ int main(void)
 	// Reinitialize upgrade procedure, only run after confirmed that app is running successfully
 	if (boot_info->upgrade_done == BOOT_UPGRADE_DONE_KEY)
 	{
+		BOOT_LOG("Upgrade Done %8x\n", boot_info->upgrade_flags);
+
 		mem_eeprom_write_word_ptr(&boot_info->app_version, shared_info->app_curr_version);
 
 		mem_eeprom_write_word_ptr(&boot_info->app_working_version, shared_info->app_curr_version);
@@ -508,6 +532,9 @@ int main(void)
 	}
 
 	test();
+
+	// serial print finish
+	timers_delay_milliseconds(1000);
 
 	// Run Application
 	boot_jump_to_application(boot_info->vtor);
@@ -539,7 +566,7 @@ static void init(void)
 	log_init();
 	flash_led(100, 5);
 
-	log_printf("Hub Bootloader Init\n");
+	BOOT_LOG("Hub Bootloader Init\n");
 	boot_init();
 }
 
@@ -874,7 +901,7 @@ static bool check_bin(void)
 	// Check crc
 	if (check_crc() == false)
 	{
-		log_printf("Boot: CRC Check Error");
+		BOOT_LOG("Boot: CRC Check Error");
 		BOOT_SET_UPG_FLAG(UPG_FLAG_CRC_ERR);
 	}
 
