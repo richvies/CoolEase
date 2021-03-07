@@ -40,6 +40,7 @@
  * @{
  */
 
+#define VERSION 100
 #define SENSOR_SLEEP_TIME 600
 #define APP_ADDRESS 0x08004000
 #define IWDG_MAGIC_VALUE 0x12345678

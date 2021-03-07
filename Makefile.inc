@@ -67,8 +67,8 @@ $(PROJECT)_OBJS 	= $(filter-out %/$(BOOTLOADER).o, $(OBJS))
 $(BOOTLOADER)_OBJS 	= $(filter-out  %/$(PROJECT).o, $(OBJS))
 
 # Linker scripts
-$(PROJECT)_LDSCRIPT 	= $(PROJECT)/$(PROJECT).ld
-$(BOOTLOADER)_LDSCRIPT 	= $(PROJECT)/$(BOOTLOADER).ld
+$(PROJECT)_LDSCRIPT 	= $(PROJECT)/ld/$(PROJECT).ld
+$(BOOTLOADER)_LDSCRIPT 	= $(PROJECT)/ld/$(BOOTLOADER).ld
 LDSCRIPTS				= $($(PROJECT)_LDSCRIPT) $($(BOOTLOADER)_LDSCRIPT)
 
 #############################################################
@@ -133,10 +133,19 @@ TGT_LDFLAGS += -Wl,--nmagic
 all: project bootloader
 
 bootloader:	$(BINDIR)/$(BOOTLOADER).elf $(BINDIR)/$(BOOTLOADER).hex $(BINDIR)/$(BOOTLOADER).bin $(BINDIR)/$(BOOTLOADER).lss $(BINDIR)/$(BOOTLOADER).list
+			@echo ----------------
+			@echo Bootloader Stats
+			@echo ----------------
 			$(SIZE) $(BINDIR)/$(BOOTLOADER).elf
+			python ./host/eeprom.py $(PROJECT) bootloader
 
 project:	$(BINDIR)/$(PROJECT).elf $(BINDIR)/$(PROJECT).hex $(BINDIR)/$(PROJECT).bin $(BINDIR)/$(PROJECT).lss $(BINDIR)/$(PROJECT).list
+			@echo ----------------
+			@echo App Stats
+			@echo ----------------
 			$(SIZE) $(BINDIR)/$(PROJECT).elf
+			python ./host/eeprom.py $(PROJECT) app
+			
 
 clean:
 	rm -rf $(OBJDIR) $(GENERATED_BINS)

@@ -49,7 +49,7 @@
 // Static Variables
 /*////////////////////////////////////////////////////////////////////////////*/
 
-
+#define VERSION	100
 
 /*////////////////////////////////////////////////////////////////////////////*/
 // Static Function Declarations
@@ -83,7 +83,6 @@ void boot_init(void)
         BOOT_LOG("First Power On\n");
 
         serial_printf("Dev Num: %8u\n", boot_info->dev_num);
-        serial_printf("Boot Version: %8u\n", boot_info->boot_version);
         serial_printf("VTOR: %8x\n", boot_info->vtor);
         serial_printf("PWD: %s\n", boot_info->pwd);
         serial_printf("AES Key: ");
@@ -102,13 +101,13 @@ void boot_init(void)
         // Boot info
         mem_eeprom_write_word_ptr(&boot_info->app_init_key, 0);
 
-        mem_eeprom_write_word_ptr(&boot_info->upgrade_in_progress, 0);
-        mem_eeprom_write_word_ptr(&boot_info->upgrade_version_to_download, 0);
-        mem_eeprom_write_word_ptr(&boot_info->upgrade_num_recovery_attempts, 0);
-        mem_eeprom_write_word_ptr(&boot_info->upgrade_new_app_installed, 0);
-        mem_eeprom_write_word_ptr(&boot_info->upgrade_done, 0);
-        mem_eeprom_write_word_ptr(&boot_info->upgrade_state, 0);
-        mem_eeprom_write_word_ptr(&boot_info->upgrade_flags, 0);
+        mem_eeprom_write_word_ptr(&boot_info->upg_in_progress, 0);
+        mem_eeprom_write_word_ptr(&boot_info->upg_version_to_download, 0);
+        mem_eeprom_write_word_ptr(&boot_info->upg_num_recovery_attempts, 0);
+        mem_eeprom_write_word_ptr(&boot_info->upg_new_app_installed, 0);
+        mem_eeprom_write_word_ptr(&boot_info->upg_done, 0);
+        mem_eeprom_write_word_ptr(&boot_info->upg_state, 0);
+        mem_eeprom_write_word_ptr(&boot_info->upg_flags, 0);
 
         // Set initialized
         mem_eeprom_write_word_ptr(&boot_info->init_key, BOOT_INIT_KEY);
@@ -120,6 +119,8 @@ void boot_init(void)
     val = mem_read_bkp_reg(BKUP_NUM_IWDG_RESET);
     if (reset_get_flags() & RCC_CSR_IWDGRSTF)
     {
+        BOOT_LOG("->Watchdog Reset!\n");
+        
         mem_program_bkp_reg(BKUP_NUM_IWDG_RESET, val + 1);
 
         // Caused by app, not bootloader
@@ -139,7 +140,7 @@ void boot_init(void)
     } 
 
     // Start watchdog
-    // timers_iwdg_init(5000);
+    timers_iwdg_init(5000);
 
     // Magic value must be set every time bootloader runs succesfully, before calling main app
     mem_program_bkp_reg(BKUP_BOOT_OK, 0);
@@ -159,7 +160,7 @@ void boot_deinit(void)
 
 void boot_jump_to_application(uint32_t address)
 {
-    log_printf("Boot Jump to %8x\n", address);
+    BOOT_LOG("Jump to %8x\n", address);
 
     // Disable Interrupts
     __asm__ volatile("CPSID I\n");
@@ -175,9 +176,8 @@ void boot_jump_to_application(uint32_t address)
     // Get start address of program
     void (*start)(void) = (void *)MMIO32(address + 4);
 
-    // Deinitialize peripherals
+    // Deinitialize everything
     // boot_deinit();
-
 
     mem_program_bkp_reg(BKUP_BOOT_OK, BOOT_OK_KEY);
 

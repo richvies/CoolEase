@@ -18,12 +18,15 @@ extern enum rcc_osc sys_clk;
 // Flash Map
 /*////////////////////////////////////////////////////////////////////////////*/
 
-#define FLASH_PAGE_SIZE     128U
-#define FLASH_NUM_PAGES     512U
-#define FLASH_START         0x08000000U           
-#define FLASH_APP_START     0x08004000U  
-#define FLASH_APP_END       0x0800C000U       
-#define FLASH_END           0x08010000U   
+#define FLASH_PAGE_SIZE     	128U
+#define FLASH_NUM_PAGES     	512U
+#define FLASH_HALF_PAGE_SIZE	(FLASH_PAGE_SIZE / 2)
+
+#define FLASH_START         	0x08000000U           
+#define FLASH_BOOT_START        FLASH_START           
+#define FLASH_APP_START     	0x08004000U  
+#define FLASH_APP_END       	0x0800C000U       
+#define FLASH_END           	0x08010000U   
 
 #define FLASH_BOOT_ADDRESS    0x08000000U
 #define FLASH_APP_ADDRESS           0x08008000U
@@ -109,8 +112,8 @@ typedef struct
 	uint32_t app_ok_key;
 	uint32_t app_curr_version;	
 	uint32_t app_next_version;
-	uint32_t upgrade_pending;
-	uint32_t upgrade_flags;
+	uint32_t upg_pending;
+	uint32_t upg_flags;
 } shared_info_t;
 
 typedef enum
@@ -124,7 +127,6 @@ typedef struct
 {
 	// Permanent, need to be programed before hand
 	uint32_t dev_num;
-	uint32_t boot_version;
 	uint32_t vtor;
 	uint8_t	 aes_key[16];
 	char 	 pwd[33];
@@ -132,14 +134,14 @@ typedef struct
 	// Variable
 	uint32_t init_key;
 
-	uint32_t upgrade_in_progress;
-	uint32_t upgrade_new_app_installed;
-	uint32_t upgrade_done;
-	uint32_t upgrade_state;
-	uint32_t upgrade_flags;
+	uint32_t upg_in_progress;
+	uint32_t upg_new_app_installed;
+	uint32_t upg_done;
+	uint32_t upg_state;
+	uint32_t upg_flags;
 	
-	uint32_t upgrade_version_to_download;
-	uint32_t upgrade_num_recovery_attempts;	
+	uint32_t upg_version_to_download;
+	uint32_t upg_num_recovery_attempts;	
 	
 	uint32_t app_init_key;
 	uint32_t app_ok_key;
@@ -147,7 +149,7 @@ typedef struct
 	uint32_t app_num_fail_runs;
 	uint32_t app_version;
 	uint32_t app_update_version;
-	uint32_t app_working_version;
+	uint32_t app_previous_version;
 } boot_info_t;
 
 typedef struct

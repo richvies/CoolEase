@@ -666,21 +666,15 @@ void test_sim_get_request_version(void)
 		{
 			num_pass++;
 
-			uint32_t num_bytes = sim_http_read_response(0, sim800.http.response_size);
+			uint8_t buf[64] = {0};
+
+			uint32_t num_bytes = sim_http_read_response(0, sim800.http.response_size, buf);
 
 			uint32_t timer = timers_millis();
 			// SIM800 now returns that number of bytes
 			for (uint32_t i = 0; i < num_bytes; i++)
 			{
-				while (!sim_available())
-				{
-					if (timers_millis() - timer > 5000)
-					{
-						serial_printf("OT: %u %u\n", i, num_bytes);
-						break;
-					}
-				}
-				serial_printf("%c", sim_read());
+				serial_printf("%c", (char)buf[i]);
 			}
 			serial_printf("\n");
 		}
@@ -737,21 +731,15 @@ void test_sim_post(void)
 		{
 			num_pass++;
 
-			uint32_t num_bytes = sim_http_read_response(0, sim800.http.response_size);
+			uint8_t buf[64] = {0};
+
+			uint32_t num_bytes = sim_http_read_response(0, sim800.http.response_size, buf);
 
 			uint32_t timer = timers_millis();
 			// SIM800 now returns that number of bytes
 			for (uint32_t i = 0; i < num_bytes; i++)
 			{
-				while (!sim_available())
-				{
-					if (timers_millis() - timer > 5000)
-					{
-						serial_printf("OT: %u %u\n", i, num_bytes);
-						break;
-					}
-				}
-				serial_printf("%c", sim_read());
+				serial_printf("%c", (char)buf[i]);
 			}
 			serial_printf("\n");
 		}

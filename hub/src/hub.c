@@ -488,16 +488,14 @@ static void update_latest_app_version(void)
 {
 	if (sim800.http.response_size)
 	{
-		uint8_t num_bytes = sim_http_read_response(0, sim800.http.response_size);
+		uint8_t buf[64] = {0};
+		uint8_t num_bytes = sim_http_read_response(0, sim800.http.response_size, buf);
 
 		// SIM800 now returns that number of bytes
 		for (uint8_t i = 0; i < num_bytes; i++)
 		{
-			while (!sim_available())
-			{
-			}
 			// ASCII to char
-			latest_app_version = (latest_app_version * 10) + (uint8_t)(sim_read() - '0');
+			latest_app_version = (latest_app_version * 10) + (uint8_t)(buf[i] - '0');
 		}
 	}
 

@@ -46,6 +46,7 @@ extern "C" {
 // Exported Variables
 /*////////////////////////////////////////////////////////////////////////////*/
 
+// Turn defines into functions, uses less memory for repeated strings
 #define BOOT_LOG          \
 	log_printf("BOOT: "); \
 	log_printf

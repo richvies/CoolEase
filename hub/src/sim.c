@@ -1431,14 +1431,14 @@ sim_state_t sim_http_post_str(const char *url_str, const char *msg_str, bool ssl
 		}
 		break;
 	case 3:
-		res = sim_http_post_enter_data(size, 5000);
+		res = sim_http_post_enter_data(size, 2000);
 		break;
 	case 4:
 		res = SIM_SUCCESS;
 		sim_printf("%s\r\n", msg_str);
 		break;
 	case 5:
-		res = wait_command("OK", 5000);
+		res = wait_command("OK", 2000);
 		break;
 	case 6:
 		res = sim_http_post();
@@ -1540,12 +1540,15 @@ sim_state_t sim_http_post(void)
 	return http_action(1);
 }
 
-uint32_t sim_http_read_response(uint32_t address, uint32_t num_bytes)
+uint32_t sim_http_read_response(uint32_t address, uint32_t buf_size, uint8_t *buf)
 {
 	uint32_t num_ret = 0;
+	uint8_t i = 0;
 
-	// Request num_bytes of data
-	if (!sim_printf_and_check_response(2000, "+HTTPREAD", "AT+HTTPREAD=%u,%u\r", address, num_bytes))
+	clear_rx_buf();
+
+	// Request data
+	if (!sim_printf_and_check_response(2000, "+HTTPREAD", "AT+HTTPREAD=%u,%u\r", address, buf_size))
 	{
 		log_error(ERR_SIM_HTTP_READ_TIMEOUT);
 	}
@@ -1557,6 +1560,15 @@ uint32_t sim_http_read_response(uint32_t address, uint32_t num_bytes)
 		if (_is_digit(*ptr))
 		{
 			num_ret = _atoi((const char **)&ptr);
+		}
+
+		// Only read up to buf_size
+		for (i = 0; i < (num_ret <= buf_size) ? num_ret : buf_size; i++)
+		{
+			while (!sim_available())
+			{
+			}
+			buf[i] = (uint8_t)sim_read();
 		}
 	}
 

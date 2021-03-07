@@ -148,7 +148,7 @@ void sim_print_capabilities(void);
 // Network Configuration
 /*////////////////////////////////////////////////////////////////////////////*/
 
-uint8_t *sim_get_timestamp(void);
+uint8_t*	sim_get_timestamp(void);
 sim_state_t sim_open_bearer(char *apn_str, char *user_str, char *pwd_str);
 sim_state_t sim_close_bearer(void);
 sim_state_t sim_is_connected(void);
@@ -164,7 +164,7 @@ sim_state_t sim_http_post_str(const char *url_str, const char *msg_str, bool ssl
 sim_state_t sim_http_post_init(const char *url_str, bool ssl);
 sim_state_t sim_http_post_enter_data(uint32_t size, uint32_t time);
 sim_state_t sim_http_post(void);
-uint32_t sim_http_read_response(uint32_t address, uint32_t num_bytes);
+uint32_t 	sim_http_read_response(uint32_t address, uint32_t buf_size, uint8_t *buf);
 
 /*////////////////////////////////////////////////////////////////////////////*/
 // TCP

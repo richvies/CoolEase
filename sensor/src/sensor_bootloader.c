@@ -30,6 +30,8 @@
 #include "sensor/si7051.h"
 #include "sensor/sensor_test.h"
 
+#define VERSION 100
+
 /** @addtogroup SENSOR_BOOTLOADER_FILE 
  * @{
  */
