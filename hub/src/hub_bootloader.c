@@ -44,7 +44,6 @@
 static void init(void);
 static void deinit(void);
 static void test(void);
-static bool download_and_program_bin(const char *url, uint8_t num_attempts);
 static bool program_bin(void);
 static bool check_bin(void);
 static bool check_crc(void);
@@ -107,8 +106,8 @@ typedef enum
 static void prepare_msg(msg_type_e msg_type);
 
 #define NET_LOG        \
-	BOOT_LOG("NET: "); \
-	BOOT_LOG
+	log_printf("NET: "); \
+	log_printf
 
 #define BACKUP_VERSION 100
 
@@ -116,8 +115,8 @@ static void prepare_msg(msg_type_e msg_type);
 #define BOOT_SET_UPG_FLAG(x) mem_eeprom_write_word_ptr(&boot_info->upg_flags, (boot_info->upg_flags | (x)))
 
 #define UPG_FLAG_DATA_ERR (1 << 0)
-#define UPG_FLAG_NO_BIN_ERR (1 << 1)
-#define UPG_FLAG_DOWNLOAD_ERR (1 << 2)
+#define UPG_FLAG_DOWNLOAD_ERR (1 << 1)
+#define UPG_FLAG_NO_BIN_ERR (1 << 2)
 #define UPG_FLAG_CRC_ERR (1 << 3)
 #define UPG_FLAG_PROG_ERR (1 << 4)
 #define UPG_FLAG_TEST_ERR (1 << 5)
@@ -127,6 +126,8 @@ static void prepare_msg(msg_type_e msg_type);
 #define UPG_FLAG_RECOVERY (1 << 8)
 #define UPG_FLAG_BACKUP (1 << 9)
 #define UPG_FLAG_IWDG_UPGRADE (1 << 10)
+
+#define BIN_HEADER_SIZE 64
 
 typedef enum upg_type
 {
@@ -149,10 +150,6 @@ typedef enum upg_type
 
 int main(void)
 {
-	// Stop unused warnings
-	(void)download_and_program_bin;
-	(void)deinit;
-
 	init();
 
 	uint32_t recovery_auto_timer = timers_millis();
@@ -238,6 +235,8 @@ int main(void)
 
 		while (break_upg_loop == false)
 		{
+			timers_pet_dogs();
+
 			serial_printf("Upgrade State: %u\n", boot_info->upg_state);
 
 			switch (boot_info->upg_state)
@@ -276,19 +275,7 @@ int main(void)
 
 				if (download_ok == true)
 				{
-					char buf[64] = {0};
-					uint32_t num_bytes = sim_http_read_response(0, 63, (uint8_t *)buf);
-					buf[num_bytes] = '\0';
-
-					if (strstr(buf, "No Bin"))
-					{
-						BOOT_SET_UPG_FLAG(UPG_FLAG_NO_BIN_ERR);
-						mem_eeprom_write_word_ptr(&boot_info->upg_state, UPGRADE_ERROR);
-					}
-					else
-					{
-						mem_eeprom_write_word_ptr(&boot_info->upg_state, UPGRADE_CHECK_BIN);
-					}
+					mem_eeprom_write_word_ptr(&boot_info->upg_state, UPGRADE_CHECK_BIN);
 				}
 				else
 				{
@@ -576,8 +563,10 @@ int main(void)
 	timers_delay_milliseconds(1000);
 
 	// Deinit peripherals
+	deinit();
 
 	// Run Application
+	timers_pet_dogs();
 	boot_jump_to_application(boot_info->vtor);
 
 	for (;;)
@@ -613,16 +602,15 @@ static void init(void)
 
 static void deinit(void)
 {
-	cusb_end();
-	clock_setup_msi_2mhz();
-	log_init();
+	// cusb_end();
+	// clock_setup_msi_2mhz();
+	// log_init();
 }
 
 static void test(void)
 {
 	// download_and_program_bin("https://cooleasetest.000webhostapp.com/hub.php", 3);
 }
-
 
 static void prepare_msg(msg_type_e msg_type)
 {
@@ -655,6 +643,8 @@ static void prepare_msg(msg_type_e msg_type)
 
 static bool net_task(void)
 {
+	timers_pet_dogs();
+
 	static net_state_t net_state = NET_0;
 	static net_state_t net_next_state = NET_0;
 	static net_state_t net_fallback_state = NET_0;
@@ -789,33 +779,49 @@ static bool net_task(void)
 
 static bool check_bin(void)
 {
-	// Check header (no bin)
+	bool ret = false;
 
-	// Check crc
-	if (check_crc() == false)
+	// Check header (no bin)
+	char buf[BIN_HEADER_SIZE] = {0};
+	uint32_t num_bytes = sim_http_read_response(0, 63, (uint8_t *)buf);
+	buf[num_bytes] = '\0';
+
+	if (strstr(buf, "No Bin"))
 	{
-		BOOT_LOG("Boot: CRC Check Error");
+		BOOT_SET_UPG_FLAG(UPG_FLAG_NO_BIN_ERR);
+	}
+	// Todo: check returned version number same as expected
+	else if(check_crc() == false)
+	{
 		BOOT_SET_UPG_FLAG(UPG_FLAG_CRC_ERR);
 	}
+	else
+	{
+		BOOT_LOG("Bin Check OK\n");
+		ret = true;
+	}
 
-	return true;
+	return ret;
 }
 
 static bool check_crc(void)
 {
-	return true;
-}
+	bool ret = false;
+	uint32_t file_size = 0;
 
-static bool program_bin(void)
-{
-	bool result = true;
-
-	uint32_t file_size = sim800.http.response_size;
+	if (sim800.http.response_size <= BIN_HEADER_SIZE)
+	{
+		file_size = 0;
+	}
+	else
+	{
+		file_size = sim800.http.response_size - BIN_HEADER_SIZE;
+	}
 
 	if (file_size)
 	{
 		// Todo: make sure num half pages is an even integer, otherwise will program garbage at end
-		uint16_t num_half_pages = (file_size / (FLASH_PAGE_SIZE / 2)) + 1;
+		uint16_t num_half_pages = ((file_size - 1) / (FLASH_PAGE_SIZE / 2)) + 1;
 
 		serial_printf("Num half pages %i\n", num_half_pages);
 
@@ -838,24 +844,10 @@ static bool program_bin(void)
 			// HTTPREAD command & get number of bytes read
 			// 		*number of bytes returned may be less than requested depending how many are left in file
 			// 		SIM800 signifies how many bytes are returned
-			uint8_t num_bytes = sim_http_read_response((n * FLASH_PAGE_SIZE / 2), (FLASH_PAGE_SIZE / 2), half_page.buf8);
-
-			// SIM800 now returns that number of bytes
-			for (uint8_t i = 0; i < num_bytes; i++)
-			{
-				while (!sim_available())
-				{
-				}
-				half_page.buf8[i] = (uint8_t)sim_read();
-			}
-
-			// Wait for final ok reply
-			sim_printf_and_check_response(2000, "OK", "");
+			uint8_t num_bytes = sim_http_read_response(BIN_HEADER_SIZE + (n * FLASH_PAGE_SIZE / 2), (FLASH_PAGE_SIZE / 2), half_page.buf8);
 
 			// Print out for debugging
 			serial_printf("Got half page %8x\n", (n * FLASH_PAGE_SIZE / 2));
-
-			serial_printf("\nHalf page Done\nProgramming\n");
 
 			// Program half page
 			static bool lower = true;
@@ -873,11 +865,76 @@ static bool program_bin(void)
 		}
 		serial_printf("Programming Done\n\n");
 	}
-	return result;
+	
+	return ret;
 }
 
+static bool program_bin(void)
+{
+	bool ret = false;
+	uint32_t file_size;
 
-static void 	sim_buf_clear(void)
+	if (sim800.http.response_size <= BIN_HEADER_SIZE)
+	{
+		file_size = 0;
+	}
+	else
+	{
+		file_size = sim800.http.response_size - BIN_HEADER_SIZE;
+	}
+
+	BOOT_LOG("Program %u bytes\n", file_size);
+
+	if (file_size)
+	{
+		// Todo: make sure num half pages is an even integer, otherwise will program garbage at end
+		uint16_t num_half_pages = ((file_size - 1) / (FLASH_PAGE_SIZE / 2)) + 1;
+
+		serial_printf("Num half pages %i\n", num_half_pages);
+
+		// Get data and program
+		for (uint16_t n = 0; n < num_half_pages; n++)
+		{
+			serial_printf("------------------------------\n");
+			serial_printf("-----------Half Page %i-------\n", n);
+			serial_printf("------------------------------\n");
+
+			// Half page buffer
+			// Using union so that data can be read as bytes and programmed as u32
+			// this automatically deals with endianness
+			union
+			{
+				uint8_t buf8[FLASH_PAGE_SIZE / 2];
+				uint32_t buf32[(FLASH_PAGE_SIZE / 2) / 4];
+			} half_page;
+
+			// HTTPREAD command & get number of bytes read
+			// 		*number of bytes returned may be less than requested depending how many are left in file
+			// 		SIM800 signifies how many bytes are returned
+			uint8_t num_bytes = sim_http_read_response(BIN_HEADER_SIZE + (n * FLASH_PAGE_SIZE / 2), (FLASH_PAGE_SIZE / 2), half_page.buf8);
+
+			// Print out for debugging
+			serial_printf("Got half page %8x\n", (n * FLASH_PAGE_SIZE / 2));
+
+			// Program half page
+			if (mem_flash_write_half_page(FLASH_APP_ADDRESS + (n * FLASH_PAGE_SIZE / 2), half_page.buf32))
+			{
+				serial_printf("Programming success\n");
+			}
+			else
+			{
+				serial_printf("Programming Fail\n");
+				ret = false;
+				break;
+			}
+		}
+		serial_printf("Programming Done\n\n");
+		ret = true;
+	}
+	return ret;
+}
+
+static void sim_buf_clear(void)
 {
 	for (uint16_t i = 0; i < sim_buf_idx; i++)
 	{
@@ -896,7 +953,7 @@ static uint32_t sim_buf_append_printf(const char *format, ...)
 	return res;
 }
 
-static void 	_putchar_buffer(char character)
+static void _putchar_buffer(char character)
 {
 	sim_buf[sim_buf_idx++] = character;
 }

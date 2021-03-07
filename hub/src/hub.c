@@ -82,7 +82,6 @@ static void init(void);
 static void test(void);
 static void hub(void);
 static void hub2(void);
-static void hub_download_info(void);
 
 static uint32_t get_timestamp(void);
 
@@ -144,13 +143,12 @@ int main(void)
 {
 	// Stop unused warnings
 	(void)hub2;
-	(void)hub_download_info;
 
 	init();
 
-	// test();
+	test();
 
-	// hub();
+	hub();
 
 	// test_hub2();
 
@@ -251,7 +249,7 @@ static void init(void)
 static void test(void)
 {
 	// test_bkp_reg();
-	test_revceiver_basic();
+	// test_revceiver_basic();
 	// test_sim_timestamp();
 	// test_sim_send_sms();
 	// test_sim_init();
@@ -262,6 +260,12 @@ static void test(void)
 	// test_sim_post();
 
 	// test_sim_get_request();
+
+	for (;;)
+	{
+		log_printf("Hub App Testing\n\n");
+		timers_delay_milliseconds(1000);
+	}
 }
 
 static void hub(void)
@@ -491,7 +495,7 @@ static void update_latest_app_version(void)
 		uint8_t buf[64] = {0};
 		uint8_t num_bytes = sim_http_read_response(0, sim800.http.response_size, buf);
 
-		// SIM800 now returns that number of bytes
+		// Parse bytes
 		for (uint8_t i = 0; i < num_bytes; i++)
 		{
 			// ASCII to char
@@ -685,11 +689,6 @@ static void hub2(void)
 
 	// 	timers_delay_milliseconds(1);
 	// }
-}
-
-static void hub_download_info(void)
-{
-	log_printf("Hub Redownload Info\n");
 }
 
 static void net_task(void)

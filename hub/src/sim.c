@@ -1570,6 +1570,9 @@ uint32_t sim_http_read_response(uint32_t address, uint32_t buf_size, uint8_t *bu
 			}
 			buf[i] = (uint8_t)sim_read();
 		}
+
+		// Wait for final ok reply
+		sim_printf_and_check_response(1000, "OK", "");
 	}
 
 	return num_ret;

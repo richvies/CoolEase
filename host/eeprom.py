@@ -15,22 +15,22 @@ class bin_section(object):
         self.size = size
         self.data = data
 
-def generate_hub_eeprom(dev_num, vtor, aes_key, pwd, log_size):
+def generate_eeprom(dev_num, device_type, vtor, aes_key, pwd, log_size):
 
     vtor = int(vtor, 16)
     aes_key = bytes.fromhex(aes_key)
     pwd = bytes(pwd, 'utf-8') + bytes(0)
 
-    boot = bin_section('boot', 256, struct.pack('<II16s34s', dev_num, vtor, aes_key, pwd))
+    boot = bin_section('boot', 256, struct.pack('<I8sI16s34s', dev_num, bytes(device_type, 'utf-8') + bytes(0), vtor, aes_key, pwd))
     app = bin_section('app', 256, struct.pack('<I', 0))
     log = bin_section('log', 1024, struct.pack('<H', log_size))
     shared = bin_section('shared', 64, struct.pack('<I', 0))
 
     # Special case, default eeprom file
     if dev_num == 0:
-        filename = 'hub/bin/hub_eeprom.bin'
+        filename = device_type + '/bin/' + device_type + '_eeprom.bin'
     else:
-        filename = 'hub/bin/store/hub_' + '{0:08}'.format(dev_num) + '_eeprom' + '.bin'
+        filename = device_type + '/bin/store/' + device_type + '_eeprom_ ' + '{0:08}'.format(dev_num) + '.bin'
 
     # Open blank bin file
     with open(filename, "wb+") as eeprom:
@@ -65,25 +65,19 @@ def generate_app(device_type, bin_type):
     if device_type not in device_types:
         print('Error: Unknown device type \'' + device_type + '\'')
         print('\tShould be one of: ')
-        for type in device_types: print('\t\t' + type)
+        for i in device_types: print('\t\t' + i)
         exit()
 
     if bin_type not in bin_types:
         print('Error: Unknown bin type \'' + bin_type + '\'')
         print('\tShould be one of: ')
-        for type in bin_types: print('\t\t' + type)
+        for i in bin_types: print('\t\t' + i)
         exit()
 
     if bin_type == 'bootloader':
         dev_filename = device_type + '_bootloader'
     elif bin_type == 'app':
         dev_filename = device_type
-    else:
-        print('Error: Unknown device type \'' + device_type + '\'')
-        print('\tShould be one of: ')
-        for type in device_types: print('\t\t' + type)
-        exit()
-        exit()
 
     version = 0
     version_filename = device_type + '/include/' + device_type + '/' + dev_filename + '.h'
@@ -136,6 +130,16 @@ def generate_app(device_type, bin_type):
             original_bin.seek(0)
             new_bin.write(original_bin.read())
 
+    # Generate eeprom bins
+    for i in range (10):
+        generate_eeprom(dev_num=i,
+                        device_type = device_type,
+                        vtor='0x08008000', 
+                        aes_key='0102030405060708090A0B0C0D0E0FFF', 
+                        pwd='vAldoWDRaTHyrISmaTioNDERpormEntI', 
+                        log_size=1020)
+
+
 if __name__ == '__main__':
 
     # boot or app, hub or sensor
@@ -143,13 +147,6 @@ if __name__ == '__main__':
 
     if len(args) == 3:
         generate_app(str(args[1]), str(args[2]))
-
-        for i in range (10):
-            generate_hub_eeprom(dev_num=i, 
-                                vtor='0x08008000', 
-                                aes_key='0102030405060708090A0B0C0D0E0FFF', 
-                                pwd='vAldoWDRaTHyrISmaTioNDERpormEntI', 
-                                log_size=1020)
     else:       
         print('Error: Expected two arguments, got ' + str(len(args) - 1))
         exit()

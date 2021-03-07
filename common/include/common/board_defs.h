@@ -127,6 +127,7 @@ typedef struct
 {
 	// Permanent, need to be programed before hand
 	uint32_t dev_num;
+	char 	 dev_type[8]; // 'hub' / 'sensor'
 	uint32_t vtor;
 	uint8_t	 aes_key[16];
 	char 	 pwd[33];

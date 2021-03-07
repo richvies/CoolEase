@@ -57,20 +57,12 @@
             "group": "build",
             "type": "shell",
             "command": "make -fhub/Makefile all -j",
-            "args": [],
-            "problemMatcher": {
-                "pattern": {
-                    "regexp": "^(.*):(\\d+):(\\d+):\\s+(warning|error):\\s+(.*)$",
-                    "file": 1,
-                    "line": 2,
-                    "column": 3,
-                    "severity": 4,
-                    "message": 5
-                }
-            },
             "presentation": {
-                "focus": true
-            }
+                "focus": true,
+            },
+            "problemMatcher": [
+                "$gcc"
+            ]
         },
         // Build sensor
         {
@@ -78,19 +70,12 @@
             "group": "build",
             "type": "shell",
             "command": "make -fsensor/Makefile all -j",
-            "problemMatcher": {
-                "pattern": {
-                    "regexp": "^(.*):(\\d+):(\\d+):\\s+(warning|error):\\s+(.*)$",
-                    "file": 1,
-                    "line": 2,
-                    "column": 3,
-                    "severity": 4,
-                    "message": 5
-                }
-            },
             "presentation": {
-                "focus": true
-            }
+                "focus": true,
+            },
+            "problemMatcher": [
+                "$gcc"
+            ]
         },
         // Clean all
         {
@@ -233,7 +218,7 @@
                 "-b230400",
                 "-E",
                 "-S0x08080000",
-                "-whub/hub_eeprom.bin",
+                "-whub/bin/hub_eeprom.bin",
                 "-v",
                 "-R",
                 "-i-dtr,rts,-rts:rts",
@@ -287,7 +272,7 @@
                 "-b230400",
                 "-E",
                 "-S0x08080000",
-                "-wsensor/sensor_eeprom.bin",
+                "-wsensor/bin/sensor_eeprom.bin",
                 "-v",
                 "-R",
                 "-i-dtr,rts,-rts:rts",

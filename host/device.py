@@ -278,10 +278,6 @@ class TestBin(object):
             bin.write(bytes([i for i in range(240)]))
             bin.close()
 
-def generate_bin():
-    
-    
-
 def test_programming():
     print('Test Programming Bin\n-----------------------------\n')
     with Device() as dev:
@@ -291,23 +287,20 @@ def test_programming():
 
 def test_crc():
     print('Test Programming Bin\n-----------------------------\n')
-    with Device() as dev:
-        test_bin = TestBin()
-        with BinLoader(test_bin.filename, 128) as bin:
-            data = bin.file.read(8)
-            # print(data[0:4])
-            # print(data[4:8])
-            # print(data[7:3:-1])
-            # print(data[3:None:-1])
-
-            # Bin file is little endian but CRC on STM32 is big endian so reverse for zlib
-            data_be = bytes()
-            for i in range(2):
-                data_be += data[(i*4)+3:None if i == 0 else (i*4)-1:-1]
-            print(data_be)
-
-            crc = zlib.crc32(data_be)
-            print(hex(crc))
+    test_bin = TestBin()
+    with BinLoader(test_bin.filename, 128) as bin:
+        data = bin.file.read(8)
+        # print(data[0:4])
+        # print(data[4:8])
+        # print(data[7:3:-1])
+        # print(data[3:None:-1])
+        # Bin file is little endian but CRC on STM32 is big endian so reverse for zlib
+        data_be = bytes()
+        for i in range(2):
+            data_be += data[(i*4)+3:None if i == 0 else (i*4)-1:-1]
+        print(data_be)
+        crc = zlib.crc32(data_be)
+        print(hex(crc))
 
 
 def main():
