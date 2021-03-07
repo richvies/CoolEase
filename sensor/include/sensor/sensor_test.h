@@ -51,7 +51,7 @@ extern "C" {
 /*////////////////////////////////////////////////////////////////////////////*/
 
 
-void test_sensor(uint32_t dev_num);
+void test_sensor(uint32_t dev_id);
 void test_si7051(uint8_t num_readings);
 void test_tmp112(uint8_t num_readings);
 

@@ -3,6 +3,7 @@
 #include <libopencm3/stm32/flash.h>
 
 #include "common/board_defs.h"
+#include "common/timers.h"
 
 #include <stdint.h>
 #include <stddef.h>
@@ -69,6 +70,21 @@ void clock_setup_hsi_16mhz(void)
 	rcc_osc_off(RCC_MSI);
 
 	sys_clk = RCC_HSI16;
+}
+
+void flash_led(uint16_t milliseconds, uint8_t num_flashes)
+{
+	rcc_periph_clock_enable(RCC_GPIOA);
+
+	gpio_mode_setup(LED_PORT, GPIO_MODE_OUTPUT, GPIO_PUPD_NONE, LED);
+	gpio_clear(LED_PORT, LED);
+	for (uint8_t i = 0; i < num_flashes; i++)
+	{
+		gpio_set(LED_PORT, LED);
+		timers_delay_milliseconds(milliseconds / 4);
+		gpio_clear(LED_PORT, LED);
+		timers_delay_milliseconds(3 * milliseconds / 4);
+	}
 }
 
 void __attribute__((weak)) serial_printf(const char *format, ...)

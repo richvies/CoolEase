@@ -109,11 +109,13 @@ extern enum rcc_osc sys_clk;
 
 typedef struct
 {
+	uint32_t boot_version;	
+	uint32_t upg_pending;
+	uint32_t upg_flags;
+
 	uint32_t app_ok_key;
 	uint32_t app_curr_version;	
 	uint32_t app_next_version;
-	uint32_t upg_pending;
-	uint32_t upg_flags;
 } shared_info_t;
 
 typedef enum
@@ -126,7 +128,7 @@ typedef enum
 typedef struct
 {
 	// Permanent, need to be programed before hand
-	uint32_t dev_num;
+	uint32_t dev_id;
 	char 	 dev_type[8]; // 'hub' / 'sensor'
 	uint32_t vtor;
 	uint8_t	 aes_key[16];
@@ -156,12 +158,9 @@ typedef struct
 typedef struct
 {
 	uint32_t init_key;
-	uint32_t dev_num;
-	uint32_t boot_version;
-	uint32_t app_version;
 
+	uint32_t dev_id;
 	uint32_t registered_key;
-
 	uint8_t  aes_key[16];
 	char 	 pwd[33];
 } app_info_t;
@@ -195,5 +194,7 @@ void clock_setup_msi_2mhz(void);
 void clock_setup_hsi_16mhz(void);
 void set_gpio_for_standby(void);
 void set_app_ok(void);
+void flash_led(uint16_t milliseconds, uint8_t num_flashes);
+
 
 #endif

@@ -49,7 +49,7 @@ void timers_rtc_init(void)
 
     // Get LSI frequency
     uint32_t lsi_freq = timers_measure_lsi_freq();
-    serial_printf("Freq: %u\n", lsi_freq);
+    // serial_printf("Freq: %u\n", lsi_freq);
 
     // Select LSI as RTC clk
     RCC_CSR &= ~(RCC_CSR_RTCSEL_MASK << RCC_CSR_RTCSEL_SHIFT);
@@ -75,7 +75,7 @@ void timers_rtc_init(void)
 
         // Set RTC prescaler
         rtc_set_prescaler(((lsi_freq / 4) - 1), 0x0003);
-        PRINT_REG(RTC_PRER);
+        // PRINT_REG(RTC_PRER);
 
         // Exit RTC initialization mode
         RTC_ISR &= ~RTC_ISR_INIT;

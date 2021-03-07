@@ -106,6 +106,9 @@ bool mem_eeprom_write_word(uint32_t address, uint32_t data)
     if( !(address >= EEPROM_START && address < EEPROM_END) )
         return false;
 
+    if (MMIO32(address) == data)
+        return true;
+
     flash_unlock_pecr();
     FLASH_PECR &= ~FLASH_PECR_FTDW;
 
@@ -124,6 +127,9 @@ bool mem_eeprom_write_half_word(uint32_t address, uint16_t data)
 {
     if( !(address >= EEPROM_START && address < EEPROM_END) )
         return false;
+    
+    if (MMIO16(address) == data)
+        return true;
 
     flash_unlock_pecr();
     FLASH_PECR &= ~FLASH_PECR_FTDW;
@@ -146,6 +152,9 @@ bool mem_eeprom_write_byte(uint32_t address, uint8_t data)
         serial_printf("Mem Log EEPROM Address out of bounds\n");
         return false;
     }
+
+    if (MMIO8(address) == data)
+        return true;
 
     flash_unlock_pecr();
     FLASH_PECR &= ~FLASH_PECR_FTDW;

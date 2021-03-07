@@ -35,6 +35,7 @@
 #include <stdarg.h>
 #include <stddef.h>
 #include <stdint.h>
+#include <stdbool.h>
 
 
 #ifdef __cplusplus
@@ -51,6 +52,8 @@ extern "C" {
 // output function type
 typedef void (*out_fct_type)(char character);
 uint32_t fnprintf(out_fct_type out, const char *format, va_list va);
+uint32_t _atoi(const char **str);
+bool _is_digit(char ch);
 
 #ifdef __cplusplus
 }

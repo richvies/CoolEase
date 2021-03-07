@@ -234,7 +234,7 @@ static void init(void)
 
 static void sensor(void)
 {
-	serial_printf("Device: %8x\n", app_info->dev_num);
+	serial_printf("Device: %8x\n", app_info->dev_id);
 
 	for (;;)
 	{
@@ -357,7 +357,7 @@ static void send_packet(void)
 	// Assemble & Encrypt Packet
 	/*////////////////////////*/
 	rfm_packet_t packet;
-	packet.data.device_number = app_info->dev_num;
+	packet.data.device_number = app_info->dev_id;
 	packet.data.battery = batt_voltages[BATT_VOLTAGE];
 	packet.data.temperature = temp_avg;
 	packet.data.msg_number = 0;

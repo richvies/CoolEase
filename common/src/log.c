@@ -79,9 +79,6 @@ static void _putchar_usb(char character);
 
 void log_init(void)
 {
-	// Will be preloaded into eeprom bin during production
-	mem_eeprom_write_half_word((uint32_t)(&(log_file->size)), EEPROM_LOG_SIZE - sizeof(log_t));
-
 	write_index = log_file->idx;
 	read_index = write_index;
 
@@ -89,9 +86,9 @@ void log_init(void)
 	usart_setup();
 #endif
 
-	log_printf("\n----------------\nLog Init\n");
-	serial_printf("Log size: %u\n", log_file->size);
-	serial_printf("Log idx: %u\n----------------\n", write_index);
+	// serial_printf("\nLog Init\n");
+	// serial_printf("Log size: %u\n", log_file->size);
+	// serial_printf("Log idx: %u\n----------------\n", write_index);
 }
 
 void log_printf(const char *format, ...)

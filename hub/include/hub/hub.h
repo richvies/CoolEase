@@ -56,7 +56,7 @@ extern "C" {
 // Exported Function Declarations
 /*////////////////////////////////////////////////////////////////////////////*/
 
-sensor_t *get_sensor(uint32_t dev_num);
+sensor_t *get_sensor(uint32_t dev_id);
 
 /** @} */
 

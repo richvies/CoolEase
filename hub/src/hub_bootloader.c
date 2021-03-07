@@ -17,6 +17,8 @@
 
 #include "hub/hub_bootloader.h"
 
+#include <libopencm3/stm32/crc.h>
+
 #include "common/board_defs.h"
 #include "common/memory.h"
 #include "common/timers.h"
@@ -48,6 +50,7 @@ static bool program_bin(void);
 static bool check_bin(void);
 static bool check_crc(void);
 static bool net_task(void);
+static void net_fallback(void);
 
 static void sim_buf_clear(void);
 static uint32_t sim_buf_append_printf(const char *format, ...);
@@ -77,6 +80,10 @@ typedef enum
 	NET_NUM_STATES,
 } net_state_t;
 
+static net_state_t net_state = NET_0;
+static net_state_t net_next_state = NET_0;
+static net_state_t net_fallback_state = NET_0;
+
 typedef enum
 {
 	UPGRADE_INIT = 0,
@@ -105,7 +112,7 @@ typedef enum
 
 static void prepare_msg(msg_type_e msg_type);
 
-#define NET_LOG        \
+#define NET_LOG          \
 	log_printf("NET: "); \
 	log_printf
 
@@ -117,15 +124,16 @@ static void prepare_msg(msg_type_e msg_type);
 #define UPG_FLAG_DATA_ERR (1 << 0)
 #define UPG_FLAG_DOWNLOAD_ERR (1 << 1)
 #define UPG_FLAG_NO_BIN_ERR (1 << 2)
-#define UPG_FLAG_CRC_ERR (1 << 3)
-#define UPG_FLAG_PROG_ERR (1 << 4)
-#define UPG_FLAG_TEST_ERR (1 << 5)
+#define UPG_FLAG_BIN_SIZE_WRONG (1 << 3)
+#define UPG_FLAG_CRC_ERR (1 << 4)
+#define UPG_FLAG_PROG_ERR (1 << 5)
+#define UPG_FLAG_TEST_ERR (1 << 6)
 
-#define UPG_FLAG_FIRST_CHECK (1 << 6)
-#define UPG_FLAG_APP_UPGRADE (1 << 7)
-#define UPG_FLAG_RECOVERY (1 << 8)
-#define UPG_FLAG_BACKUP (1 << 9)
-#define UPG_FLAG_IWDG_UPGRADE (1 << 10)
+#define UPG_FLAG_FIRST_CHECK (1 << 7)
+#define UPG_FLAG_APP_UPGRADE (1 << 8)
+#define UPG_FLAG_RECOVERY (1 << 9)
+#define UPG_FLAG_BACKUP (1 << 10)
+#define UPG_FLAG_IWDG_UPGRADE (1 << 11)
 
 #define BIN_HEADER_SIZE 64
 
@@ -160,15 +168,11 @@ int main(void)
 	{
 		BOOT_LOG("First App Check\n");
 
-		serial_printf("Boot Version: %8u\n", VERSION);
+		serial_printf(".Boot Version: %8u\n", VERSION);
 
 		mem_eeprom_write_word_ptr(&boot_info->app_ok_key, 0);
 		mem_eeprom_write_word_ptr(&boot_info->app_num_fail_runs, 0);
 		mem_eeprom_write_word_ptr(&boot_info->app_num_iwdg_reset, 0);
-
-		mem_eeprom_write_word_ptr(&boot_info->app_version, 0);
-		mem_eeprom_write_word_ptr(&boot_info->app_update_version, BACKUP_VERSION);
-		mem_eeprom_write_word_ptr(&boot_info->app_previous_version, BACKUP_VERSION); // Default backup version (definitely working)
 
 		mem_eeprom_write_word_ptr(&boot_info->upg_state, UPGRADE_TEST_RUN_APP);
 		mem_eeprom_write_word_ptr(&boot_info->upg_flags, UPG_FLAG_FIRST_CHECK);
@@ -226,18 +230,18 @@ int main(void)
 		bool download_ok = false;
 		uint32_t timer = 0;
 
-		// If reset occurs during critical part (downloading/ programming .bin), restart download section
+		// If reset occurs during critical part (downloading/ programming .bin), error
 		if ((boot_info->upg_state >= UPGRADE_DOWNLOAD_BIN) && (boot_info->upg_state <= UPGRADE_PROGRAM_BIN))
 		{
 
-			mem_eeprom_write_word_ptr(&boot_info->upg_state, UPGRADE_DOWNLOAD_BIN);
+			mem_eeprom_write_word_ptr(&boot_info->upg_state, UPGRADE_ERROR);
 		}
 
 		while (break_upg_loop == false)
 		{
 			timers_pet_dogs();
 
-			serial_printf("Upgrade State: %u\n", boot_info->upg_state);
+			serial_printf("UPG: %u\n", boot_info->upg_state);
 
 			switch (boot_info->upg_state)
 			{
@@ -257,7 +261,7 @@ int main(void)
 				}
 				else
 				{
-					BOOT_LOG("Upgrade data incorrect\n");
+					log_printf("UPG: Bad init data\n");
 					BOOT_SET_UPG_FLAG(UPG_FLAG_DATA_ERR);
 					mem_eeprom_write_word_ptr(&boot_info->upg_state, UPGRADE_ERROR);
 				}
@@ -265,7 +269,7 @@ int main(void)
 
 			case UPGRADE_DOWNLOAD_BIN:
 				// Check for version & try download for 3 min
-				BOOT_LOG("Download Version %u\n", boot_info->upg_version_to_download);
+				log_printf("UPG: Download %u\n", boot_info->upg_version_to_download);
 				timer = timers_millis();
 				download_ok = false;
 				while ((false == download_ok) && ((timers_millis() - timer) < 180000))
@@ -279,6 +283,7 @@ int main(void)
 				}
 				else
 				{
+					net_fallback();
 					BOOT_SET_UPG_FLAG(UPG_FLAG_DOWNLOAD_ERR);
 					mem_eeprom_write_word_ptr(&boot_info->upg_state, UPGRADE_ERROR);
 				}
@@ -359,6 +364,7 @@ int main(void)
 				else
 				{
 					mem_eeprom_write_word_ptr(&boot_info->upg_version_to_download, boot_info->app_previous_version);
+
 					mem_eeprom_write_word_ptr(&boot_info->upg_flags, UPG_FLAG_RECOVERY);
 
 					prepare_msg(MSG_GET_NEXT_BIN);
@@ -388,14 +394,14 @@ int main(void)
 				break;
 
 			case UPGRADE_RECOVERY_FAILED:
-				// Worst case senario, failed to update and then failed to install previous & backup bins. Check for instructions from cloud every minute. Send report & try auto recover every hour
-				timers_delay_milliseconds(5000);
+				// Worst case senario, failed to update and then failed to install previous & backup bins. Check for instructions from cloud every minute. Send report & try auto recover every 10
+				timers_delay_milliseconds(3000);
 				if ((timers_millis() - recovery_check_timer) > 60000)
 				{
 					recovery_check_timer = timers_millis();
 					mem_eeprom_write_word_ptr(&boot_info->upg_state, UPGRADE_CHECK_CLOUD);
 				}
-				else if ((timers_millis() - recovery_auto_timer) > 3600000)
+				else if ((timers_millis() - recovery_auto_timer) > 600000)
 				{
 					recovery_auto_timer = timers_millis();
 					mem_eeprom_write_word_ptr(&boot_info->upg_num_recovery_attempts, 0);
@@ -414,13 +420,22 @@ int main(void)
 
 				if (download_ok == true)
 				{
-					// Check response, download new bin
-					serial_printf("Todo UPGRADE_CHECK_CLOUD\n");
-					while (1)
-						;
+					// Check header (no bin)
+					char buf[BIN_HEADER_SIZE] = {0};
+					uint32_t num_bytes = sim_http_read_response(0, 63, (uint8_t *)buf);
+					buf[num_bytes] = '\0';
+
+					if (strstr(buf, "Get"))
+					{
+						uint8_t i = 4;
+						char *ptr = &buf[i];
+						boot_info->upg_version_to_download = _atoi((const char **)&ptr);
+						mem_eeprom_write_word_ptr(&boot_info->upg_state, UPGRADE_DOWNLOAD_BIN);
+					}
 				}
 				else
 				{
+					net_fallback();
 					mem_eeprom_write_word_ptr(&boot_info->upg_state, UPGRADE_RECOVERY_FAILED);
 				}
 				break;
@@ -437,21 +452,12 @@ int main(void)
 			// If any problems during upgrade, check if old version still programmed and ok. If so, signal app to send error message and continue
 			// Otherwise download previous working version.
 			case UPGRADE_ERROR:
-				BOOT_LOG("Upgrade Error\n");
-
-				// Send error + flags
-				prepare_msg(MSG_UPGRADE_ERROR);
-				timer = timers_millis();
-				download_ok = false;
-				while ((false == download_ok) && ((timers_millis() - timer) < 60000))
-				{
-					download_ok = net_task();
-				}
+				log_printf("Upg: Error\n");
 
 				// Check if old version still programmed
 				if (boot_info->app_ok_key == BOOT_APP_OK_KEY)
 				{
-					BOOT_LOG("App still Ok\n");
+					log_printf(".App still Ok\n");
 
 					// Send error message
 					mem_eeprom_write_word_ptr(&boot_info->upg_state, UPGRADE_DONE);
@@ -463,22 +469,41 @@ int main(void)
 					if ((boot_info->upg_version_to_download == boot_info->app_update_version) ||
 						(boot_info->upg_version_to_download == boot_info->app_previous_version))
 					{
-						BOOT_LOG("Recover Old\n");
+						log_printf(".Recover Old\n");
 						mem_eeprom_write_word_ptr(&boot_info->upg_state, UPGRADE_RECOVER_PREVIOUS_APP);
 					}
 					// Try backup
 					else if (boot_info->upg_version_to_download == BACKUP_VERSION)
 					{
-						BOOT_LOG("Recover Backup\n");
+						log_printf(".Recover Backup\n");
 						mem_eeprom_write_word_ptr(&boot_info->upg_state, UPGRADE_RECOVER_BACKUP_APP);
 					}
 					// All other cases, check for instructions from cloud, and try install backup every hour
 					else
 					{
-						BOOT_LOG("Recover Failed\n");
+						log_printf(".Recover Failed\n");
 						mem_eeprom_write_word_ptr(&boot_info->upg_state, UPGRADE_RECOVERY_FAILED);
 					}
 				}
+
+				// Send error + flags
+				log_printf(".Sending\n");
+				prepare_msg(MSG_UPGRADE_ERROR);
+				timer = timers_millis();
+				download_ok = false;
+				while ((false == download_ok) && ((timers_millis() - timer) < 60000))
+				{
+					download_ok = net_task();
+				}
+				if (false == download_ok)
+				{
+					net_fallback();
+				}
+				break;
+
+			default:
+				log_printf("*UPG: Default State*\n");
+				mem_eeprom_write_word_ptr(&boot_info->upg_state, UPGRADE_ERROR);
 				break;
 			}
 
@@ -509,21 +534,21 @@ int main(void)
 		mem_eeprom_write_word_ptr(&boot_info->app_num_iwdg_reset, 0);
 
 		mem_eeprom_write_word_ptr(&boot_info->app_version, 0);
-		mem_eeprom_write_word_ptr(&boot_info->app_update_version, 0);
-		mem_eeprom_write_word_ptr(&boot_info->app_previous_version, 100); // Default backup version (definitely working)
+		mem_eeprom_write_word_ptr(&boot_info->app_update_version, BACKUP_VERSION);
+		mem_eeprom_write_word_ptr(&boot_info->app_previous_version, BACKUP_VERSION); // Default backup version (definitely working)
 
 		// Shared Info
-		mem_eeprom_write_word_ptr(&shared_info->app_curr_version, 0);
-		mem_eeprom_write_word_ptr(&shared_info->app_next_version, 0);
-		mem_eeprom_write_word_ptr(&shared_info->app_ok_key, 0);
+		mem_eeprom_write_word_ptr(&shared_info->boot_version, VERSION);
 		mem_eeprom_write_word_ptr(&shared_info->upg_pending, 0);
 		mem_eeprom_write_word_ptr(&shared_info->upg_flags, boot_info->upg_flags);
 
+		mem_eeprom_write_word_ptr(&shared_info->app_ok_key, 0);
+		mem_eeprom_write_word_ptr(&shared_info->app_curr_version, 0);
+		mem_eeprom_write_word_ptr(&shared_info->app_next_version, 0);
+
 		// App Info
 		mem_eeprom_write_word_ptr(&app_info->init_key, 0);
-		mem_eeprom_write_word_ptr(&app_info->app_version, 0);
-		mem_eeprom_write_word_ptr(&app_info->dev_num, boot_info->dev_num);
-		mem_eeprom_write_word_ptr(&app_info->boot_version, VERSION);
+		mem_eeprom_write_word_ptr(&app_info->dev_id, boot_info->dev_id);
 		mem_eeprom_write_word_ptr(&app_info->registered_key, 0);
 
 		uint8_t *u8ptr = NULL;
@@ -551,6 +576,8 @@ int main(void)
 		mem_eeprom_write_word_ptr(&boot_info->app_version, shared_info->app_curr_version);
 
 		mem_eeprom_write_word_ptr(&boot_info->app_previous_version, shared_info->app_curr_version);
+
+		mem_eeprom_write_word_ptr(&shared_info->upg_flags, boot_info->upg_flags);
 
 		mem_eeprom_write_word_ptr(&boot_info->upg_in_progress, 0);
 
@@ -594,9 +621,6 @@ static void init(void)
 	// cusb_init();
 	timers_lptim_init();
 	log_init();
-	flash_led(100, 5);
-
-	BOOT_LOG("Hub Bootloader Init\n");
 	boot_init();
 }
 
@@ -619,7 +643,7 @@ static void prepare_msg(msg_type_e msg_type)
 						  "&id=%8u"
 						  "&upg_flags=%8u",
 						  boot_info->pwd,
-						  boot_info->dev_num,
+						  boot_info->dev_id,
 						  boot_info->upg_flags);
 	switch (msg_type)
 	{
@@ -645,9 +669,6 @@ static bool net_task(void)
 {
 	timers_pet_dogs();
 
-	static net_state_t net_state = NET_0;
-	static net_state_t net_next_state = NET_0;
-	static net_state_t net_fallback_state = NET_0;
 	bool net_finish = false;
 
 	sim800.state = SIM_ERROR;
@@ -777,6 +798,11 @@ static bool net_task(void)
 	return net_finish;
 }
 
+static void net_fallback(void)
+{
+	net_state = net_fallback_state;
+}
+
 static bool check_bin(void)
 {
 	bool ret = false;
@@ -790,8 +816,13 @@ static bool check_bin(void)
 	{
 		BOOT_SET_UPG_FLAG(UPG_FLAG_NO_BIN_ERR);
 	}
+	// Check bin size is an integer multiple of flash pages
+	else if ((sim800.http.response_size - BIN_HEADER_SIZE) % FLASH_PAGE_SIZE != 0)
+	{
+		BOOT_SET_UPG_FLAG(UPG_FLAG_BIN_SIZE_WRONG);
+	}
 	// Todo: check returned version number same as expected
-	else if(check_crc() == false)
+	else if (check_crc() == false)
 	{
 		BOOT_SET_UPG_FLAG(UPG_FLAG_CRC_ERR);
 	}
@@ -809,6 +840,11 @@ static bool check_crc(void)
 	bool ret = false;
 	uint32_t file_size = 0;
 
+	uint8_t header[BIN_HEADER_SIZE];
+
+	uint32_t crc_expected = 0;
+	uint32_t crc = 0;
+
 	if (sim800.http.response_size <= BIN_HEADER_SIZE)
 	{
 		file_size = 0;
@@ -816,6 +852,8 @@ static bool check_crc(void)
 	else
 	{
 		file_size = sim800.http.response_size - BIN_HEADER_SIZE;
+		sim_http_read_response(0, BIN_HEADER_SIZE, header);
+		crc_expected = (header[7] << 24) | (header[6] << 16) | (header[5] << 8) | header[4];
 	}
 
 	if (file_size)
@@ -823,15 +861,16 @@ static bool check_crc(void)
 		// Todo: make sure num half pages is an even integer, otherwise will program garbage at end
 		uint16_t num_half_pages = ((file_size - 1) / (FLASH_PAGE_SIZE / 2)) + 1;
 
-		serial_printf("Num half pages %i\n", num_half_pages);
+		// Initialize CRC Peripheral
+		rcc_periph_clock_enable(RCC_CRC);
+		crc_reset();
+		crc_set_reverse_input(CRC_CR_REV_IN_BYTE);
+		crc_reverse_output_enable();
+		CRC_INIT = 0xFFFFFFFF;
 
-		// Get data and program
+		// Get data and calc crc
 		for (uint16_t n = 0; n < num_half_pages; n++)
 		{
-			serial_printf("------------------------------\n");
-			serial_printf("-----------Half Page %i-------\n", n);
-			serial_printf("------------------------------\n");
-
 			// Half page buffer
 			// Using union so that data can be read as bytes and programmed as u32
 			// this automatically deals with endianness
@@ -846,26 +885,17 @@ static bool check_crc(void)
 			// 		SIM800 signifies how many bytes are returned
 			uint8_t num_bytes = sim_http_read_response(BIN_HEADER_SIZE + (n * FLASH_PAGE_SIZE / 2), (FLASH_PAGE_SIZE / 2), half_page.buf8);
 
-			// Print out for debugging
-			serial_printf("Got half page %8x\n", (n * FLASH_PAGE_SIZE / 2));
-
-			// Program half page
-			static bool lower = true;
-			uint32_t crc = boot_get_half_page_checksum(half_page.buf32);
-			if (boot_program_half_page(lower, crc, n / 2, half_page.buf32))
-			{
-				serial_printf("Programming success\n");
-			}
-			else
-			{
-				serial_printf("Programming Fail\n");
-			}
-
-			lower = !lower;
+			// Add half page to crc
+			crc = ~crc_calculate_block(half_page.buf32, num_bytes / 4);
 		}
-		serial_printf("Programming Done\n\n");
+
+		// Deinit
+		crc_reset();
+		rcc_periph_clock_disable(RCC_CRC);
 	}
-	
+
+	ret = (crc == crc_expected) ? true : false;
+
 	return ret;
 }
 

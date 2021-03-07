@@ -15,7 +15,7 @@
 
 typedef struct
 {
-	uint32_t dev_num;
+	uint32_t dev_id;
 	uint32_t msg_num;
 	uint32_t msg_num_start;
 	uint32_t ok_packets;

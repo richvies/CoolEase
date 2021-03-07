@@ -103,7 +103,7 @@ void test_tmp112(uint8_t num_readings)
 	}
 }
 
-void test_sensor(uint32_t dev_num)
+void test_sensor(uint32_t dev_id)
 {
 	log_printf("Testing Sensor\n");
 
@@ -136,10 +136,10 @@ void test_sensor(uint32_t dev_num)
 	packet.data.buffer[RFM_PACKET_TEMP_1] = temp_avg >> 8;
 
 	// Sensor ID
-	packet.data.buffer[RFM_PACKET_DEV_NUM_0] = dev_num;
-	packet.data.buffer[RFM_PACKET_DEV_NUM_1] = dev_num >> 8;
-	packet.data.buffer[RFM_PACKET_DEV_NUM_2] = dev_num >> 16;
-	packet.data.buffer[RFM_PACKET_DEV_NUM_3] = dev_num >> 24;
+	packet.data.buffer[RFM_PACKET_DEV_NUM_0] = dev_id;
+	packet.data.buffer[RFM_PACKET_DEV_NUM_1] = dev_id >> 8;
+	packet.data.buffer[RFM_PACKET_DEV_NUM_2] = dev_id >> 16;
+	packet.data.buffer[RFM_PACKET_DEV_NUM_3] = dev_id >> 24;
 	// packet.data.buffer[RFM_PACKET_DEV_NUM_0] = mem_get_dev_num();
 	// packet.data.buffer[RFM_PACKET_DEV_NUM_1] = mem_get_dev_num() >> 8;
 	// packet.data.buffer[RFM_PACKET_DEV_NUM_2] = mem_get_dev_num() >> 16;

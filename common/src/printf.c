@@ -58,24 +58,6 @@ static inline uint32_t _strnlen_s(const char *str, uint32_t maxsize)
     return len;
 }
 
-// internal test if char is a digit (0-9)
-// \return true if char is a digit
-static inline bool _is_digit(char ch)
-{
-    return (ch >= '0') && (ch <= '9');
-}
-
-// internal ASCII string to uint32_t conversion
-static uint32_t _atoi(const char **str)
-{
-    uint32_t i = 0U;
-    while (_is_digit(**str))
-    {
-        i = i * 10U + (uint32_t)(*((*str)++) - '0');
-    }
-    return i;
-}
-
 // internal itoa format
 static uint32_t _ntoa_format(out_fct_type out, uint32_t value, uint32_t base, uint32_t width, bool negative)
 {
@@ -247,6 +229,21 @@ uint32_t fnprintf(out_fct_type out, const char *format, va_list va)
     }
     // return written chars without terminating \0
     return idx;
+}
+
+bool _is_digit(char ch)
+{
+	return (ch >= '0') && (ch <= '9');
+}
+
+uint32_t _atoi(const char **str)
+{
+	uint32_t i = 0U;
+	while (_is_digit(**str))
+	{
+		i = i * 10U + (uint32_t)(*((*str)++) - '0');
+	}
+	return i;
 }
 
 ///////////////////////////////////////////////////////////////////////////////

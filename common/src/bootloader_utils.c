@@ -72,20 +72,20 @@ void boot_init(void)
     uint32_t *mem_eeprom_write_word_ptrNULL;
     uint8_t *u8ptr = NULL;
     uint32_t val = 0;
-
-    // This should only ever be called once after a reset
-    reset_save_flags();
-    reset_print_cause();
+    
+    flash_led(40, 3);
+    log_printf("**********\nStart\n**********\n");
 
     // If first power on, setup some data
     if ((boot_info->init_key != BOOT_INIT_KEY) && (boot_info->init_key != BOOT_INIT_KEY2))
     {
-        BOOT_LOG("First Power On\n");
+        BOOT_LOG("First Run\n");
 
-        serial_printf("Dev Num: %8u\n", boot_info->dev_num);
-        serial_printf("VTOR: %8x\n", boot_info->vtor);
-        serial_printf("PWD: %s\n", boot_info->pwd);
-        serial_printf("AES Key: ");
+        serial_printf(".Ver: %u\n", VERSION);
+        serial_printf(".Dev ID: %u\n", boot_info->dev_id);
+        serial_printf(".VTOR: %8x\n", boot_info->vtor);
+        serial_printf(".PWD: %s\n", boot_info->pwd);
+        serial_printf(".AES: ");
         for (uint8_t i = 0; i < 16; i++)
         {
             serial_printf("%2x ", boot_info->aes_key[i]);
@@ -96,6 +96,7 @@ void boot_init(void)
         // Reset RTC registers (Backup Registers)
         timers_rtc_unlock();
         RCC_CSR |= RCC_CSR_RTCRST;
+        RCC_CSR &= ~RCC_CSR_RTCRST;
         timers_rtc_lock();
 
         // Boot info
@@ -113,7 +114,10 @@ void boot_init(void)
         mem_eeprom_write_word_ptr(&boot_info->init_key, BOOT_INIT_KEY);
     }
 
-    serial_printf("Reset Flags: %8x\nNum IWDG Reset: %i\n", reset_get_flags(), mem_read_bkp_reg(BKUP_NUM_IWDG_RESET));
+    // This should only ever be called once after a reset
+    timers_rtc_init();
+    reset_save_flags();
+    // reset_print_cause();
 
     // If watchdogs keep causing reset then there is problem 
     val = mem_read_bkp_reg(BKUP_NUM_IWDG_RESET);
@@ -139,8 +143,10 @@ void boot_init(void)
         mem_program_bkp_reg(BKUP_NUM_IWDG_RESET, 0);
     } 
 
+    BOOT_LOG("IWDG %i\n", mem_read_bkp_reg(BKUP_NUM_IWDG_RESET));
+
     // Start watchdog
-    timers_iwdg_init(5000);
+    timers_iwdg_init(10000);
 
     // Magic value must be set every time bootloader runs succesfully, before calling main app
     mem_program_bkp_reg(BKUP_BOOT_OK, 0);
@@ -160,7 +166,7 @@ void boot_deinit(void)
 
 void boot_jump_to_application(uint32_t address)
 {
-    BOOT_LOG("Jump to %8x\n", address);
+    BOOT_LOG("Jump %8x\n\n----------\n\n", address);
 
     // Disable Interrupts
     __asm__ volatile("CPSID I\n");

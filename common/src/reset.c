@@ -21,7 +21,7 @@ void reset_print_cause(void)
 
 	if(reset_flags & RCC_CSR_WWDGRSTF)
 	{
-		log_printf("Window Watchdog Reset\n");
+		log_printf("W Watchdog Reset\n");
 	}
 
 	if(reset_flags & RCC_CSR_IWDGRSTF)

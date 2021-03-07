@@ -110,7 +110,7 @@ void test_hub(void)
 	// 		else
 	// 			continue;
 
-	// 		// log_printf("Device ID: %04x\n", dev_num);
+	// 		// log_printf("Device ID: %04x\n", dev_id);
 
 	// 		if(received_packet.crc_ok)log_printf("CRC OK\n");
 	// 		else log_printf("CRC Fail\n");
@@ -249,7 +249,7 @@ void test_revceiver_basic(void)
 	}
 }
 
-void test_receiver(uint32_t dev_num)
+void test_receiver(uint32_t dev_id)
 {
 	test_init("test_receiver()");
 
@@ -258,9 +258,9 @@ void test_receiver(uint32_t dev_num)
 	sensor_t sensors[3];
 	(void)sensors;
 
-	sensors[0].dev_num = dev_num;
-	sensors[1].dev_num = 0x12345678;
-	sensors[2].dev_num = 0x87654321;
+	sensors[0].dev_id = dev_id;
+	sensors[1].dev_id = 0x12345678;
+	sensors[2].dev_id = 0x87654321;
 
 	sensor_t *sensor = NULL;
 
@@ -525,7 +525,7 @@ void test_sim(void)
 	test_init("test_sim()");
 
 	// Hub device number
-	uint32_t dev_num = mem_get_dev_num();
+	uint32_t dev_id = mem_get_dev_num();
 
 	// Start listening on rfm
 	rfm_init();
@@ -545,10 +545,10 @@ void test_sim(void)
 		// // Create Sim Message
 		// uint8_t sim_buf[256];
 		// uint8_t sim_idx = 0;
-		// sim_buf[sim_idx++] = dev_num >> 24;
-		// sim_buf[sim_idx++] = dev_num >> 16;
-		// sim_buf[sim_idx++] = dev_num >> 8;
-		// sim_buf[sim_idx++] = dev_num;
+		// sim_buf[sim_idx++] = dev_id >> 24;
+		// sim_buf[sim_idx++] = dev_id >> 16;
+		// sim_buf[sim_idx++] = dev_id >> 8;
+		// sim_buf[sim_idx++] = dev_id;
 
 		// for (uint8_t i = 0; i < num_vals; i++)
 		// {

@@ -47,7 +47,6 @@ extern "C" {
 #define DEV_NUM_PCB		    (uint32_t)~DEV_NUM_CHIP
 
 void test_init(const char *test_name);
-void flash_led(uint16_t milliseconds, uint8_t num_flashes);
 void print_aes_key(app_info_t *app_info);
 
 /*////////////////////////////////////////////////////////////////////////////*/

@@ -1,4 +1,4 @@
-#   uint32_t dev_num;
+#   uint32_t dev_id;
 # 	uint32_t boot_version;
 # 	uint32_t vtor;
 # 	uint8_t	 aes_key[16];
@@ -15,22 +15,22 @@ class bin_section(object):
         self.size = size
         self.data = data
 
-def generate_eeprom(dev_num, device_type, vtor, aes_key, pwd, log_size):
+def generate_eeprom(dev_id, device_type, vtor, aes_key, pwd, log_size):
 
     vtor = int(vtor, 16)
     aes_key = bytes.fromhex(aes_key)
     pwd = bytes(pwd, 'utf-8') + bytes(0)
 
-    boot = bin_section('boot', 256, struct.pack('<I8sI16s34s', dev_num, bytes(device_type, 'utf-8') + bytes(0), vtor, aes_key, pwd))
+    boot = bin_section('boot', 256, struct.pack('<I8sI16s34s', dev_id, bytes(device_type, 'utf-8') + bytes(0), vtor, aes_key, pwd))
     app = bin_section('app', 256, struct.pack('<I', 0))
-    log = bin_section('log', 1024, struct.pack('<H', log_size))
+    log = bin_section('log', 1024, struct.pack('<HH', log_size, 0))
     shared = bin_section('shared', 64, struct.pack('<I', 0))
 
     # Special case, default eeprom file
-    if dev_num == 0:
+    if dev_id == 0:
         filename = device_type + '/bin/' + device_type + '_eeprom.bin'
     else:
-        filename = device_type + '/bin/store/' + device_type + '_eeprom_ ' + '{0:08}'.format(dev_num) + '.bin'
+        filename = device_type + '/bin/store/' + device_type + '_eeprom_ ' + '{0:08}'.format(dev_id) + '.bin'
 
     # Open blank bin file
     with open(filename, "wb+") as eeprom:
@@ -132,7 +132,7 @@ def generate_app(device_type, bin_type):
 
     # Generate eeprom bins
     for i in range (10):
-        generate_eeprom(dev_num=i,
+        generate_eeprom(dev_id=i,
                         device_type = device_type,
                         vtor='0x08008000', 
                         aes_key='0102030405060708090A0B0C0D0E0FFF', 

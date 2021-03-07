@@ -61,20 +61,6 @@ void test_init(const char *test_name)
 	serial_printf("%s\n------------------\n\n", test_name);
 }
 
-void flash_led(uint16_t milliseconds, uint8_t num_flashes)
-{
-	rcc_periph_clock_enable(RCC_GPIOA);
-
-	gpio_mode_setup(LED_PORT, GPIO_MODE_OUTPUT, GPIO_PUPD_NONE, LED);
-	gpio_clear(LED_PORT, LED);
-	for (uint8_t i = 0; i < num_flashes; i++)
-	{
-		gpio_set(LED_PORT, LED);
-		timers_delay_milliseconds(milliseconds / 4);
-		gpio_clear(LED_PORT, LED);
-		timers_delay_milliseconds(3 * milliseconds / 4);
-	}
-}
 
 void print_aes_key(app_info_t *info)
 {

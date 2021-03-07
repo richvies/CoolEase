@@ -16,6 +16,7 @@
 
 #include <string.h>
 
+#include "libopencm3/cm3/scb.h"
 #include "libopencm3/cm3/nvic.h"
 #include "libopencm3/stm32/syscfg.h"
 #include "libopencm3/stm32/rtc.h"
@@ -146,11 +147,40 @@ int main(void)
 
 	init();
 
+	// Check if first time running
+	if (app_info->init_key != APP_INIT_KEY)
+	{
+		log_printf("APP: First Run\n");
+
+        serial_printf(".Ver: v%u\n", VERSION);
+        serial_printf(".Boot Ver: v%u\n", shared_info->boot_version);
+		serial_printf(".Dev ID: %u\n", app_info->dev_id);
+        serial_printf(".PWD: %s\n", app_info->pwd);
+        serial_printf(".AES: ");
+        for (uint8_t i = 0; i < 16; i++)
+        {
+            serial_printf("%2x ", app_info->aes_key[i]);
+        }
+        serial_printf("\n");
+
+		mem_eeprom_write_word_ptr(&shared_info->app_curr_version, VERSION);
+        mem_eeprom_write_word_ptr(&shared_info->app_ok_key, SHARED_APP_OK_KEY);
+
+		mem_eeprom_write_word_ptr(&app_info->init_key, APP_INIT_KEY);
+
+		// Sensor init - IDs, active or not,
+
+		// Reset to signal OK to bootloader
+		timers_pet_dogs();
+		timers_delay_milliseconds(1000);
+		scb_reset_system();
+	}
+
+	log_printf("Hub Start\n");
+
 	test();
 
 	hub();
-
-	// test_hub2();
 
 	for (;;)
 	{
@@ -209,13 +239,13 @@ void set_gpio_for_standby(void)
 	gpio_mode_setup(SIM_USART_RX_PORT, GPIO_MODE_ANALOG, GPIO_PUPD_PULLUP, SIM_USART_RX);
 }
 
-sensor_t *get_sensor(uint32_t dev_num)
+sensor_t *get_sensor(uint32_t dev_id)
 {
 	sensor_t *sensor = NULL;
 
 	for (uint8_t i = 0; i < num_sensors; i++)
 	{
-		if (dev_num == sensors[i].dev_num)
+		if (dev_id == sensors[i].dev_id)
 			sensor = &sensors[i];
 	}
 	return sensor;
@@ -239,15 +269,19 @@ static void init(void)
 	log_init();
 	aes_init(app_info->aes_key);
 	batt_init();
-
-	print_aes_key(app_info);
-
 	flash_led(100, 1);
-	log_printf("Hub Init\n");
 }
 
 static void test(void)
 {
+	// Test bootloader watchdog handling
+	serial_printf(".Testing 000 Do Nothing\n");
+	while (1)
+	{
+		timers_pet_dogs();
+		timers_delay_milliseconds(1000);
+	}
+	
 	// test_bkp_reg();
 	// test_revceiver_basic();
 	// test_sim_timestamp();
@@ -270,25 +304,16 @@ static void test(void)
 
 static void hub(void)
 {
-	/* Initial setup */
-	// Watchdog
+	/**/
+	// Register with cloud
 
 	// Power checking
 	batt_enable_interrupt();
 
 	// USB checking
 
-	// Check if first time running
-	if (app_info->init_key != BOOT_INIT_KEY)
-	{
-		serial_printf("Dev Info: First Power On\n");
-
-		mem_eeprom_write_word((uint32_t)&app_info->init_key, BOOT_INIT_KEY);
-		// Sensor init - IDs, active or not,
-	}
-
 	// Sensors to listen for
-	sensors[num_sensors++].dev_num = 0x00000001;
+	sensors[num_sensors++].dev_id = 0x00000001;
 
 	// Start listening on rfm
 	rfm_init();
@@ -464,7 +489,7 @@ static void append_temp(void)
 
 			if (sensor->msg_pend)
 			{
-				sim_printf("&id%u=%8u", i, sensor->dev_num);
+				sim_printf("&id%u=%8u", i, sensor->dev_id);
 				sim_printf("&temp%u=%i", i, sensor->temperature);
 				sim_printf("&batt%u=%i", i, sensor->battery);
 				sim_printf("&rssi%u=%i", i, sensor->rssi);
@@ -514,14 +539,14 @@ static void hub2(void)
 	// batt_enable_interrupt();
 
 	// // Hub device number
-	// uint32_t dev_num = mem_get_dev_num();
+	// uint32_t dev_id = mem_get_dev_num();
 
 	// // Sensors
 	// sensor_t *sensor = NULL;
 	// num_sensors = 3;
-	// sensors[0].dev_num = DEV_NUM_CHIP;
-	// sensors[1].dev_num = 0x12345678;
-	// sensors[2].dev_num = 0x87654321;
+	// sensors[0].dev_id = DEV_NUM_CHIP;
+	// sensors[1].dev_id = 0x12345678;
+	// sensors[2].dev_id = 0x87654321;
 
 	// // Start listening on rfm
 	// rfm_packet_t *packet = NULL;
@@ -549,10 +574,10 @@ static void hub2(void)
 	// 		sim_buf_idx = 0;
 
 	// 		// Hub device number and voltage stored first
-	// 		sim_buf[sim_buf_idx++] = dev_num >> 24;
-	// 		sim_buf[sim_buf_idx++] = dev_num >> 16;
-	// 		sim_buf[sim_buf_idx++] = dev_num >> 8;
-	// 		sim_buf[sim_buf_idx++] = dev_num;
+	// 		sim_buf[sim_buf_idx++] = dev_id >> 24;
+	// 		sim_buf[sim_buf_idx++] = dev_id >> 16;
+	// 		sim_buf[sim_buf_idx++] = dev_id >> 8;
+	// 		sim_buf[sim_buf_idx++] = dev_id;
 
 	// 		sim_buf[sim_buf_idx++] = batt_voltages[PWR_VOLTAGE] >> 8;
 	// 		sim_buf[sim_buf_idx++] = batt_voltages[PWR_VOLTAGE];
@@ -606,7 +631,7 @@ static void hub2(void)
 	// 				sensor->total_packets = 0;
 	// 				sensor->ok_packets = 0;
 	// 				sensor->active = true;
-	// 				log_printf("First message from %u\nNumber: %i\n", sensor->dev_num, sensor->msg_num_start);
+	// 				log_printf("First message from %u\nNumber: %i\n", sensor->dev_id, sensor->msg_num_start);
 	// 			}
 	// 			// Check if message number is correct
 	// 			else if (++sensor->msg_num != packet->data.msg_number)
@@ -800,7 +825,7 @@ static void net_task(void)
 								"&hub_plugged_in=%u"
 								"&version=get",
 							  	app_info->pwd, 
-								app_info->dev_num, 
+								app_info->dev_id, 
 								batt_voltages[BATT_VOLTAGE], 
 								batt_voltages[PWR_VOLTAGE], 
 								hub_plugged_in ? HUB_PLUGGED_IN_VALUE : ~HUB_PLUGGED_IN_VALUE );

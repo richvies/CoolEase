@@ -188,12 +188,6 @@ static void clear_rx_buf(void);
 static void _putchar(char character);
 static void print_timestamp(void);
 
-/** @brief Internal test if char is a digit (0-9) */
-static inline bool _is_digit(char ch);
-
-/** @brief internal ASCII string to uint32_t conversion */
-static uint32_t _atoi(const char **str);
-
 /** @} */
 
 /** @addtogroup SIM_API
@@ -1848,21 +1842,6 @@ static void _putchar(char character)
 static void _putchar_buffer(char character)
 {
 	_sprintf_buf[_sprintf_buf_idx++] = character;
-}
-
-static inline bool _is_digit(char ch)
-{
-	return (ch >= '0') && (ch <= '9');
-}
-
-static uint32_t _atoi(const char **str)
-{
-	uint32_t i = 0U;
-	while (_is_digit(**str))
-	{
-		i = i * 10U + (uint32_t)(*((*str)++) - '0');
-	}
-	return i;
 }
 
 static void print_timestamp(void)

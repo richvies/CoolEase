@@ -46,7 +46,7 @@ extern "C" {
 
 void test_hub(void);
 void test_hub_rf_vs_temp_cal(void);
-void test_receiver(uint32_t dev_num);
+void test_receiver(uint32_t dev_id);
 void test_revceiver_basic(void);
 
 /*////////////////////////////////////////////////////////////////////////////*/
