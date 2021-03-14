@@ -183,6 +183,7 @@ static sim_state_t http_toggle_ssl(bool on);
 static sim_state_t http_action(uint8_t action);
 
 static void reset(void);
+static void mcu_setup(void);
 static void usart_setup(void);
 static void clear_rx_buf(void);
 static void _putchar(char character);
@@ -636,9 +637,20 @@ sim_state_t sim_init(void)
 		res = SIM_BUSY;
 		state++;
 
+		sim800.func = FUNC_OFF;
+
 		log_printf("SIM: Init\n");
 
-		sim800.func = FUNC_OFF;
+		// // If sim already on, skip reset
+		// mcu_setup();
+		// if (sim_printf_and_check_response(1000, "OK", "AT\r") ||
+		// 	sim_printf_and_check_response(1000, "OK", "AT\r") ||
+		// 	sim_printf_and_check_response(1000, "OK", "AT\r"))
+		// {
+		// 	serial_printf(".already on\n");
+		// 	state = 4;
+		// }
+
 		break;
 	case 1:
 		res = reset_and_wait_ready();
@@ -1735,12 +1747,30 @@ bool sim_send_sms(const char *phone_number, const char *msg_str)
 
 static void reset(void)
 {
+	mcu_setup();
+
+	// Reset SIM800
+	gpio_clear(SIM_RESET_PORT, SIM_RESET);
+	timers_delay_milliseconds(1000);
+	gpio_set(SIM_RESET_PORT, SIM_RESET);
+
+	sim800.func = FUNC_RESET;
+	sim800.reg_status = REG_NONE;
+	sim800.http.state = HTTP_TERM;
+}
+
+static void mcu_setup(void)
+{
 	// Setup USART
 	rcc_periph_clock_enable(RCC_GPIOA);
 	rcc_periph_clock_enable(RCC_GPIOB);
-	usart_setup();
 
-	timers_delay_milliseconds(1000);
+	gpio_set(SIM_RESET_PORT, SIM_RESET);
+	gpio_mode_setup(SIM_RESET_PORT, GPIO_MODE_OUTPUT, GPIO_PUPD_NONE, SIM_RESET);
+	gpio_set_output_options(SIM_RESET_PORT, GPIO_OTYPE_OD, GPIO_OSPEED_2MHZ, SIM_RESET);
+	gpio_set(SIM_RESET_PORT, SIM_RESET);
+
+	usart_setup();
 
 	// Enable interrupts for RX/TX
 	usart_enable_rx_interrupt(SIM_USART);
@@ -1748,22 +1778,13 @@ static void reset(void)
 	nvic_enable_irq(SIM_USART_NVIC);
 	nvic_set_priority(SIM_USART_NVIC, IRQ_PRIORITY_SIM);
 
-	// Reset SIM800
-	gpio_mode_setup(SIM_RESET_PORT, GPIO_MODE_OUTPUT, GPIO_PUPD_NONE, SIM_RESET);
-	gpio_set_output_options(SIM_RESET_PORT, GPIO_OTYPE_OD, GPIO_OSPEED_2MHZ, SIM_RESET);
-	gpio_clear(SIM_RESET_PORT, SIM_RESET);
-	timers_delay_milliseconds(500);
-	gpio_set(SIM_RESET_PORT, SIM_RESET);
-
 	// Init RX, TX & Reply Buffers
 	sim_rx_head = sim_rx_tail = sim_tx_head = sim_tx_tail = 0;
 	memset(reply_buf, 0, sizeof(reply_buf));
 
-	_sprintf_clear_buf();
+	timers_delay_milliseconds(10);
 
-	sim800.func = FUNC_RESET;
-	sim800.reg_status = REG_NONE;
-	sim800.http.state = HTTP_TERM;
+	_sprintf_clear_buf();
 }
 
 static void usart_setup(void)

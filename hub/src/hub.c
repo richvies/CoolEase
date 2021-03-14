@@ -8,9 +8,6 @@
  ******************************************************************************
  */
 
-/*////////////////////////////////////////////////////////////////////////////*/
-// Includes
-/*////////////////////////////////////////////////////////////////////////////*/
 
 #include "hub/hub.h"
 
@@ -37,31 +34,56 @@
 #include "hub/cusb.h"
 #include "hub/sim.h"
 
-#define NET_LOG          \
-	log_printf("NET: "); \
-	log_printf
-
-// TODO
-// Http post with ssl, logging
-// Pass version to bootloader
-
-/** @addtogroup HUB_FILE 
- * @{
- */
-
+#define VERSION 100
 #define HUB_CHECK_TIME_S 60
 #define HUB_LOG_TIME_S 3600
 #define NET_SLEEP_TIME_DEFAULT_MS 300000
 #define HUB_PLUGGED_IN_VALUE 0x2468
 #define HUB_PLUGGED_OUT_VALUE 0x1357
 
-/** @addtogroup HUB_INT 
+#define NET_LOG          \
+	log_printf("NET: "); \
+	log_printf
+
+
+// TODO
+// Http post with ssl, logging
+
+/** @addtogroup HUB_FILE 
  * @{
  */
 
-/*////////////////////////////////////////////////////////////////////////////*/
-// Static Variables
-/*////////////////////////////////////////////////////////////////////////////*/
+typedef enum
+{
+	NET_0 = 0,
+	NET_UPLOAD_FIRST_PACKET,
+	NET_INIT,
+	NET_HARD_RESET,
+	NET_REGISTERING,
+	NET_REGISTERED,
+	NET_CONNECTING,
+	NET_CONNECTED,
+	NET_RUNNING,
+	NET_HTTPINIT,
+	NET_HTTPPOST,
+	NET_HTTPREADY,
+	NET_HTTP_DONE,
+	NET_ASSEMBLE_PACKET,
+	NET_POST,
+	NET_SLEEP_START,
+	NET_SLEEP_TRY_POST_AGAIN,
+	NET_GO_TO_SLEEP,
+	NET_SLEEP,
+	NET_PARSE_RESPONSE,
+	NET_SEND_ERROR_SMS,
+	NET_ERROR,
+	NET_NUM_STATES,
+} net_state_t;
+
+
+/** @addtogroup HUB_INT 
+ * @{
+ */
 
 static bool hub_plugged_in;
 
@@ -115,32 +137,6 @@ static void net_buf_clear(void);
 static uint32_t net_buf_append_printf(const char *format, ...);
 static void _putchar_buffer(char character);
 
-typedef enum
-{
-	NET_0 = 0,
-	NET_UPLOAD_FIRST_PACKET,
-	NET_INIT,
-	NET_HARD_RESET,
-	NET_REGISTERING,
-	NET_REGISTERED,
-	NET_CONNECTING,
-	NET_CONNECTED,
-	NET_RUNNING,
-	NET_HTTPINIT,
-	NET_HTTPPOST,
-	NET_HTTPREADY,
-	NET_HTTP_DONE,
-	NET_ASSEMBLE_PACKET,
-	NET_POST,
-	NET_SLEEP_START,
-	NET_SLEEP_TRY_POST_AGAIN,
-	NET_GO_TO_SLEEP,
-	NET_SLEEP,
-	NET_PARSE_RESPONSE,
-	NET_SEND_ERROR_SMS,
-	NET_ERROR,
-	NET_NUM_STATES,
-} net_state_t;
 
 /** @} */
 
@@ -626,7 +622,7 @@ static void net_task(void)
 		net_buf_clear();
 
 		net_buf_append_printf("pwd=%s"
-							  "&id=%8u",
+							  "&id=%u",
 							  app_info->pwd,
 							  app_info->dev_id);
 
@@ -815,6 +811,13 @@ static void parse_net_response(void)
 
 		net_buf[num_bytes] = '\0';
 
+		serial_printf(".num bytes: %u\n.header: ", num_bytes);
+		for (i = 0; i < num_bytes; i++)
+		{
+			serial_printf("%c", net_buf[i]);
+		}
+		serial_printf("\n");
+
 		if (sim800.http.response_size <= 64)
 		{
 			serial_printf(".Header: %s\n", net_buf);
@@ -894,9 +897,9 @@ static void append_temp(void)
 
 			if (sensor->msg_pend)
 			{
-				net_buf_append_printf("&id%u=%8u", i, sensor->dev_id);
+				net_buf_append_printf("&id%u=%u", i, sensor->dev_id);
 				net_buf_append_printf("&temp%u=%i", i, sensor->temperature);
-				net_buf_append_printf("&batt%u=%i", i, sensor->battery);
+				net_buf_append_printf("&batt%u=%u", i, sensor->battery);
 				net_buf_append_printf("&rssi%u=%i", i, sensor->rssi);
 
 				sensor->msg_appended = true;

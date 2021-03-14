@@ -39,29 +39,30 @@
  * @{
  */
 
-/*////////////////////////////////////////////////////////////////////////////*/
-// Static Variables
-/*////////////////////////////////////////////////////////////////////////////*/
+#define VERSION 100
+#define BACKUP_VERSION 100
+#define BIN_HEADER_SIZE 64
 
-static void init(void);
-static void deinit(void);
-static void test(void);
-static bool program_bin(void);
-static bool check_bin(void);
-static bool check_crc(uint32_t expected);
-static bool net_task(void);
-static void net_fallback(void);
+#define NET_LOG          \
+	log_printf("NET: "); \
+	log_printf
+#define BOOT_CLEAR_UPG_FLAG(x) mem_eeprom_write_word_ptr(&boot_info->upg_flags, (boot_info->upg_flags & (~(x))))
+#define BOOT_SET_UPG_FLAG(x) mem_eeprom_write_word_ptr(&boot_info->upg_flags, (boot_info->upg_flags | (x)))
 
-static void sim_buf_clear(void);
-static uint32_t sim_buf_append_printf(const char *format, ...);
-static void _putchar_buffer(char character);
+#define UPG_FLAG_DATA_ERR (1 << 0)
+#define UPG_FLAG_DOWNLOAD_ERR (1 << 1)
+#define UPG_FLAG_NO_BIN_ERR (1 << 2)
+#define UPG_FLAG_BIN_SIZE_WRONG (1 << 3)
+#define UPG_FLAG_CRC_ERR (1 << 4)
+#define UPG_FLAG_PROG_ERR (1 << 5)
+#define UPG_FLAG_TEST_ERR (1 << 6)
 
-static char sim_buf[1536];
-static uint16_t sim_buf_idx = 0;
+#define UPG_FLAG_FIRST_CHECK (1 << 7)
+#define UPG_FLAG_APP_UPGRADE (1 << 8)
+#define UPG_FLAG_RECOVERY (1 << 9)
+#define UPG_FLAG_BACKUP (1 << 10)
+#define UPG_FLAG_IWDG_UPGRADE (1 << 11)
 
-/*////////////////////////////////////////////////////////////////////////////*/
-// Static Function Declarations
-/*////////////////////////////////////////////////////////////////////////////*/
 
 typedef enum
 {
@@ -79,10 +80,6 @@ typedef enum
 	NET_ERROR,
 	NET_NUM_STATES,
 } net_state_t;
-
-static net_state_t net_state = NET_0;
-static net_state_t net_next_state = NET_0;
-static net_state_t net_fallback_state = NET_0;
 
 typedef enum
 {
@@ -110,33 +107,6 @@ typedef enum
 	MSG_CHECK_FOR_UPDATE,
 } msg_type_e;
 
-static void prepare_msg(msg_type_e msg_type);
-
-#define NET_LOG          \
-	log_printf("NET: "); \
-	log_printf
-
-#define BACKUP_VERSION 100
-
-#define BOOT_CLEAR_UPG_FLAG(x) mem_eeprom_write_word_ptr(&boot_info->upg_flags, (boot_info->upg_flags & (~(x))))
-#define BOOT_SET_UPG_FLAG(x) mem_eeprom_write_word_ptr(&boot_info->upg_flags, (boot_info->upg_flags | (x)))
-
-#define UPG_FLAG_DATA_ERR (1 << 0)
-#define UPG_FLAG_DOWNLOAD_ERR (1 << 1)
-#define UPG_FLAG_NO_BIN_ERR (1 << 2)
-#define UPG_FLAG_BIN_SIZE_WRONG (1 << 3)
-#define UPG_FLAG_CRC_ERR (1 << 4)
-#define UPG_FLAG_PROG_ERR (1 << 5)
-#define UPG_FLAG_TEST_ERR (1 << 6)
-
-#define UPG_FLAG_FIRST_CHECK (1 << 7)
-#define UPG_FLAG_APP_UPGRADE (1 << 8)
-#define UPG_FLAG_RECOVERY (1 << 9)
-#define UPG_FLAG_BACKUP (1 << 10)
-#define UPG_FLAG_IWDG_UPGRADE (1 << 11)
-
-#define BIN_HEADER_SIZE 64
-
 typedef enum upg_type
 {
 	FIRST_BOOT,
@@ -146,15 +116,36 @@ typedef enum upg_type
 	IWDG,
 } upg_type_e;
 
+
+static char sim_buf[1536];
+static uint16_t sim_buf_idx = 0;
+
+static net_state_t net_state = NET_0;
+static net_state_t net_next_state = NET_0;
+static net_state_t net_fallback_state = NET_0;
+
+
+static void init(void);
+static void deinit(void);
+static void test(void);
+
+static bool net_task(void);
+static void net_fallback(void);
+static bool check_bin(void);
+static bool check_crc(uint32_t expected);
+static bool program_bin(void);
+
+static void prepare_msg(msg_type_e msg_type);
+static void sim_buf_clear(void);
+static uint32_t sim_buf_append_printf(const char *format, ...);
+static void _putchar_buffer(char character);
+
+
 /** @} */
 
 /** @addtogroup HUB_BOOTLOADER_API
  * @{
  */
-
-/*////////////////////////////////////////////////////////////////////////////*/
-// Exported Function Definitions
-/*////////////////////////////////////////////////////////////////////////////*/
 
 int main(void)
 {
@@ -444,9 +435,19 @@ int main(void)
 					if (str != NULL)
 					{
 						str += strlen("verison=");
-						mem_eeprom_write_word_ptr(&boot_info->upg_version_to_download, _atoi((const char **)&str));
-						mem_eeprom_write_word_ptr(&boot_info->upg_state, UPGRADE_DOWNLOAD_BIN);
-						serial_printf(".Upgrade to v%u\n", boot_info->upg_version_to_download);
+						uint32_t ver = _atoi((const char **)&str);
+						if (ver != 0)
+						{
+							mem_eeprom_write_word_ptr(&boot_info->upg_version_to_download, ver);
+							serial_printf(".Upgrade to v%u\n", boot_info->upg_version_to_download);
+							prepare_msg(MSG_GET_NEXT_BIN);
+
+							mem_eeprom_write_word_ptr(&boot_info->upg_state, UPGRADE_DOWNLOAD_BIN);
+						}
+						else
+						{
+							mem_eeprom_write_word_ptr(&boot_info->upg_state, UPGRADE_RECOVERY_FAILED);
+						}
 					}
 				}
 				else
@@ -489,17 +490,11 @@ int main(void)
 						mem_eeprom_write_word_ptr(&boot_info->upg_state, UPGRADE_RECOVER_PREVIOUS_APP);
 					}
 					// Try backup
-					else // if (boot_info->upg_version_to_download == BACKUP_VERSION)
+					else
 					{
 						log_printf(".Recover Backup\n");
 						mem_eeprom_write_word_ptr(&boot_info->upg_state, UPGRADE_RECOVER_BACKUP_APP);
 					}
-					// // All other cases, check for instructions from cloud, and try install backup every hour
-					// else
-					// {
-					// 	log_printf(".Recover Failed\n");
-					// 	mem_eeprom_write_word_ptr(&boot_info->upg_state, UPGRADE_RECOVERY_FAILED);
-					// }
 				}
 
 				// Send error + flags
@@ -550,8 +545,6 @@ int main(void)
 		mem_eeprom_write_word_ptr(&boot_info->app_num_iwdg_reset, 0);
 
 		mem_eeprom_write_word_ptr(&boot_info->app_version, 0);
-		mem_eeprom_write_word_ptr(&boot_info->app_update_version, 0);
-		mem_eeprom_write_word_ptr(&boot_info->app_previous_version, 0);
 
 		// Shared Info
 		mem_eeprom_write_word_ptr(&shared_info->boot_version, VERSION);
@@ -591,6 +584,7 @@ int main(void)
 
 		mem_eeprom_write_word_ptr(&boot_info->app_version, shared_info->app_curr_version);
 		mem_eeprom_write_word_ptr(&boot_info->app_previous_version, shared_info->app_curr_version);
+		mem_eeprom_write_word_ptr(&boot_info->app_update_version, 0);
 		mem_eeprom_write_word_ptr(&shared_info->upg_flags, boot_info->upg_flags);
 		mem_eeprom_write_word_ptr(&boot_info->upg_in_progress, 0);
 
@@ -626,10 +620,6 @@ int main(void)
  * @{
  */
 
-/*////////////////////////////////////////////////////////////////////////////*/
-// Static Function Definitions
-/*////////////////////////////////////////////////////////////////////////////*/
-
 static void init(void)
 {
 	clock_setup_hsi_16mhz();
@@ -658,7 +648,7 @@ static void prepare_msg(msg_type_e msg_type)
 {
 	sim_buf_clear();
 	sim_buf_append_printf("pwd=%s"
-						  "&id=%8u"
+						  "&id=%u"
 						  "&upg_flags=%8u",
 						  boot_info->pwd,
 						  boot_info->dev_id,
@@ -674,7 +664,7 @@ static void prepare_msg(msg_type_e msg_type)
 		break;
 
 	case MSG_CHECK_FOR_UPDATE:
-		sim_buf_append_printf("&version=get");
+		sim_buf_append_printf("&version=get&error=true");
 		break;
 	default:
 		break;

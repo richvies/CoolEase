@@ -35,29 +35,9 @@ static uint32_t millis_counter = 0;
 
 static uint32_t timers_measure_lsi_freq(void);
 
-
 // Start Low Speed Oscillator and Configure RTC to wakeup device
 void timers_rtc_init(void)
 {
-    // Enable PWR clock and disable write protection
-    // RCC_CSR Write protected. Must come before turning on LSI/ LSE clocks
-    timers_rtc_unlock();
-
-    // Start low speed internal oscillator ≈ 40kHz. And wait until it is ready
-    rcc_osc_on(RCC_LSI);
-    rcc_wait_for_osc_ready(RCC_LSI);
-
-    // Get LSI frequency
-    uint32_t lsi_freq = timers_measure_lsi_freq();
-    // serial_printf("Freq: %u\n", lsi_freq);
-
-    // Select LSI as RTC clk
-    RCC_CSR &= ~(RCC_CSR_RTCSEL_MASK << RCC_CSR_RTCSEL_SHIFT);
-    RCC_CSR |= (RCC_CSR_RTCSEL_LSI << RCC_CSR_RTCSEL_SHIFT);
-
-    // Enable RTC
-    RCC_CSR |= RCC_CSR_RTCEN;
-
     // Check if rtc already initialized
     if (RTC_ISR & RTC_ISR_INITS)
     {
@@ -65,7 +45,28 @@ void timers_rtc_init(void)
     }
     else
     {
-        serial_printf("RTC: Not init\n");
+        log_printf("RTC: Not init\n");
+
+        // Enable PWR clock and disable write protection
+        // RCC_CSR Write protected. Must come before turning on LSI/ LSE clocks
+        timers_rtc_unlock();
+
+        // Start low speed internal oscillator ≈ 40kHz. And wait until it is ready
+        rcc_osc_on(RCC_LSI);
+        rcc_wait_for_osc_ready(RCC_LSI);
+
+        // Get LSI frequency
+        uint32_t lsi_freq = timers_measure_lsi_freq();
+        // serial_printf("Freq: %u\n", lsi_freq);
+
+        // Select LSI as RTC clk
+        RCC_CSR &= ~(RCC_CSR_RTCSEL_MASK << RCC_CSR_RTCSEL_SHIFT);
+        RCC_CSR |= (RCC_CSR_RTCSEL_LSI << RCC_CSR_RTCSEL_SHIFT);
+
+        // Enable RTC
+        RCC_CSR |= RCC_CSR_RTCEN;
+
+        timers_delay_milliseconds(10);
 
         // Set RTC initialization mode
         RTC_ISR |= RTC_ISR_INIT;
@@ -79,10 +80,14 @@ void timers_rtc_init(void)
 
         // Exit RTC initialization mode
         RTC_ISR &= ~RTC_ISR_INIT;
-    }
 
-    // Reenable write protection
-    timers_rtc_lock();
+        // Reenable write protection
+        timers_rtc_lock();
+
+        timers_rtc_set_time(21, 6, 24, 16, 20, 00);
+
+        log_printf(".done\n");
+    }
 }
 
 void timers_rtc_set_time(uint8_t year, uint8_t month, uint8_t day, uint8_t hours, uint8_t mins, uint8_t secs)
@@ -119,8 +124,8 @@ void timers_rtc_set_time(uint8_t year, uint8_t month, uint8_t day, uint8_t hours
     // Exit RTC initialization mode
     RTC_ISR &= ~RTC_ISR_INIT;
 
-    PRINT_REG(RTC_TR);
-    PRINT_REG(RTC_DR);
+    // PRINT_REG(RTC_TR);
+    // PRINT_REG(RTC_DR);
 
     // Reenable write protection
     timers_rtc_lock();
@@ -187,7 +192,6 @@ void timers_rtc_lock(void)
     rtc_lock();
 }
 
-
 static uint32_t timers_measure_lsi_freq(void)
 {
     // TIM21 on APB2
@@ -238,7 +242,6 @@ static uint32_t timers_measure_lsi_freq(void)
 
     return freq;
 }
-
 
 void timers_lptim_init(void)
 {
@@ -338,12 +341,11 @@ void timers_tim6_init(void)
     timer_enable_counter(TIM6);
 }
 
-
 // Start independant watchdog timer
 void timers_iwdg_init(uint32_t period)
 {
     timers_rtc_unlock();
-    
+
     // Start low speed internal oscillator ≈ 40kHz. And wait until it is ready
     rcc_osc_on(RCC_LSI);
     rcc_wait_for_osc_ready(RCC_LSI);
@@ -359,7 +361,6 @@ void timers_pet_dogs(void)
 {
     iwdg_reset();
 }
-
 
 // Enter standby mode. Vrefint disabled (ULP bit)
 void timers_enter_standby(void)
@@ -380,7 +381,6 @@ void timers_enter_standby(void)
 
     __asm__("wfi");
 }
-
 
 // Timout functions
 void timers_timeout_init(void)

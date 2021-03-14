@@ -149,7 +149,7 @@ bool mem_eeprom_write_byte(uint32_t address, uint8_t data)
 {
     if( !(address >= EEPROM_START && address < EEPROM_END) )
     {
-        serial_printf("Mem Log EEPROM Address out of bounds\n");
+        serial_printf("Mem: EE W out of bounds %8x %2x\n", address, data);
         return false;
     }
 

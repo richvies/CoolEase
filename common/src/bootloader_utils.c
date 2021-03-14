@@ -78,18 +78,7 @@ void boot_init(void)
     {
         BOOT_LOG("First Run\n");
 
-        serial_printf(".Dev ID: %u\n", boot_info->dev_id);
-        serial_printf(".VTOR: %8x\n", boot_info->vtor);
-        serial_printf(".PWD: %s\n", boot_info->pwd);
-        serial_printf(".AES: ");
-        for (uint8_t i = 0; i < 16; i++)
-        {
-            serial_printf("%2x ", boot_info->aes_key[i]);
-        }
-        serial_printf("\n");
-        
-
-        // Reset RTC registers (Backup Registers)
+        // Reset RTC (+Backup Registers)
         timers_rtc_unlock();
         RCC_CSR |= RCC_CSR_RTCRST;
         RCC_CSR &= ~RCC_CSR_RTCRST;
@@ -109,6 +98,16 @@ void boot_init(void)
         // Set initialized
         mem_eeprom_write_word_ptr(&boot_info->init_key, BOOT_INIT_KEY);
     }
+
+    serial_printf(".Dev ID: %u\n", boot_info->dev_id);
+    serial_printf(".VTOR: %8x\n", boot_info->vtor);
+    serial_printf(".PWD: %s\n", boot_info->pwd);
+    serial_printf(".AES: ");
+    for (uint8_t i = 0; i < 16; i++)
+    {
+        serial_printf("%2x ", boot_info->aes_key[i]);
+    }
+    serial_printf("\n");
 
     // This should only ever be called once after a reset
     timers_rtc_init();
@@ -153,7 +152,7 @@ void boot_init(void)
 void boot_jump_to_application(uint32_t address)
 {
     mem_program_bkp_reg(BKUP_BOOT_OK, BOOT_OK_KEY);
-
+    
     // Update vector table offset
     SCB_VTOR = address;
 

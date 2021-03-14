@@ -80,9 +80,9 @@ def generate_app(device_type, bin_type):
     elif bin_type == 'app':
         dev_filename = device_type
 
-    # Get version number from corresponding header e.g. hub.h, and open new bin file e.g. hub_100.bin
+    # Get version number from corresponding src e.g. hub.c, and open new bin file e.g. hub_100.bin
     version = 0
-    version_filename = device_type + '/include/' + device_type + '/' + dev_filename + '.h'
+    version_filename = device_type + '/src/' + dev_filename + '.c'
     if not path.isfile(version_filename):
         print('Error: Version file ' + version_filename + ' does not exist')
         exit()
