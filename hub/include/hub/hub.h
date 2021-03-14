@@ -59,6 +59,7 @@ sensor_t *get_sensor_by_id(uint32_t dev_id);
 void clean_sensors(void);
 void add_sensor(uint32_t dev_id);
 void rem_sensor(uint32_t dev_id);
+void print_sensors(void);
 
 /** @} */
 

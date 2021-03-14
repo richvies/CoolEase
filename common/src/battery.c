@@ -28,6 +28,15 @@
 #include "common/board_defs.h"
 #include "common/timers.h"
 
+#ifdef _HUB
+#define NUM_VOLTAGES 2
+#define PWR_VOLTAGE 0
+#define BATT_VOLTAGE 1
+#else
+#define NUM_VOLTAGES 1
+#define BATT_VOLTAGE 0
+#endif
+
 #define ADC_CCR_LFMEN (1 << 25)
 
 #define ADC_CCR_PRESC_SHIFT 18
@@ -47,12 +56,18 @@
 
 #define ADC_CR_ADVREGEN (1 << 28)
 
+#define BATT_LAG_MS 10000
+
+typedef enum
+{
+    BATT_INIT = 0,
+    BATT_PLUGGED_IN,
+    BATT_PLUGGED_OUT,
+} batt_state_t;
+
 /** @addtogroup BATTERY_FILE 
  * @{
  */
-
-uint16_t batt_voltages[NUM_VOLTAGES];
-bool batt_rst_seq = false;
 
 /** @addtogroup BATTERY_INT 
  * @{
@@ -64,6 +79,8 @@ bool batt_rst_seq = false;
 
 static uint16_t adc_vals[3] = {0, 0, 0};
 static bool plugged_in = true;
+static uint16_t batt_voltages[NUM_VOLTAGES];
+static batt_state_t state = BATT_INIT;
 
 /*////////////////////////////////////////////////////////////////////////////*/
 // Static Function Declarations
@@ -331,6 +348,20 @@ void batt_disable_interrupt(void)
     nvic_disable_irq(NVIC_DMA1_CHANNEL1_IRQ);
 }
 
+uint16_t batt_get_batt_voltage(void)
+{
+    return batt_voltages[BATT_VOLTAGE];
+}
+
+uint16_t batt_get_pwr_voltage(void)
+{
+#ifdef _HUB
+    return batt_voltages[PWR_VOLTAGE];
+#else
+    return 0;
+#endif
+}
+
 /*
 uint8_t batt_get_voltage(void)
 {
@@ -378,7 +409,7 @@ uint8_t batt_get_voltage(void)
 
 bool batt_is_plugged_in(void)
 {
-    return true;
+    return (state == BATT_PLUGGED_IN);
 }
 
 /** @} */
@@ -395,132 +426,31 @@ bool batt_is_plugged_in(void)
 
 void dma1_channel1_isr(void)
 {
+    static uint32_t timer = 0;
+    static batt_state_t last_state = BATT_INIT;
+    static batt_state_t curr_state = BATT_INIT;
+
     dma_clear_interrupt_flags(DMA1, DMA_CHANNEL1, DMA_TEIF | DMA_TCIF | DMA_HTIF | DMA_GIF);
 
     batt_calculate_voltages();
-}
 
-/*
-// ISRs
-#ifdef _HUB
-// For use with ADC1
-void adc_comp_isr(void)
-{
-    serial_printf("ADC ISR\n");
-    // // Takes about 150us to run
+    curr_state = (batt_get_pwr_voltage() >= batt_get_batt_voltage()) ? BATT_PLUGGED_IN : BATT_PLUGGED_OUT;
 
-    // // log_printf("ADC ISR %08X\n", ADC_ISR(ADC1));
-
-    // // Calculate batt_voltages
-    // for(uint8_t i = 0; i < NUM_VOLTAGES; i++){
-    //     batt_voltages[i] = ( (uint32_t)300 * ST_VREFINT_CAL * adc_vals[i + 1] ) / ( adc_vals[0] * 4095 ); }
-
-    // // For Hub : Measured voltage is half of actual
-    // for(uint8_t i = 0; i < NUM_VOLTAGES; i++){
-    //     batt_voltages[i] = batt_voltages[i] * 2; }
-
-    // static uint16_t timer = 0;
-    // static uint8_t state = 0;
-    // switch(state)
-    // {
-    //     case 0:
-    //         plugged_in = true;
-    //         timer = timers_millis();
-    //         if(batt_voltages[PWR_VOLTAGE] < batt_voltages[BATT_VOLTAGE])
-    //             state = 1;
-    //         break;
-
-    //     case 1:
-    //         if(batt_voltages[PWR_VOLTAGE] > batt_voltages[BATT_VOLTAGE])
-    //             state = 0;
-    //         else if(timers_millis() - timer > 1000)
-    //             state = 2;
-    //         break;
-
-    //     case 2:
-    //         if(batt_voltages[PWR_VOLTAGE] > batt_voltages[BATT_VOLTAGE]){
-    //             timer = timers_millis();
-    //             state = 4;}
-    //         else if(timers_millis() - timer > 10000){
-    //             state = 3;
-    //             plugged_in = false;
-    //             log_printf("Plugged Out\n");}
-    //         break;
-
-    //     case 3:
-    //         if(batt_voltages[PWR_VOLTAGE] > batt_voltages[BATT_VOLTAGE]){
-    //             timer = timers_millis();
-    //             state = 0;
-    //             log_printf("Plugged In\n");}
-    //         break;
-
-    //     case 4:
-    //         if(batt_voltages[PWR_VOLTAGE] < batt_voltages[BATT_VOLTAGE]){
-    //             state = 2; }
-    //         else if(timers_millis() - timer > 1000){
-    //             state = 0;
-    //             batt_rst_seq = true;
-    //             log_printf("Reset Sequence\n"); }
-    //         break;
-
-    //     default:
-    //         log_printf("Error ADC ISR Defaut Case\n");
-    //         break;
-    // }
-
-    // // log_printf("ADC ISR %u %u %u V\n",state, batt_voltages[0], batt_voltages[1]);
-
-    // ADC_ISR(ADC1) = 0xFFFFFFFF;
-    // adc_start_conversion_regular(ADC1);
-}
-
-// For use with comp1
-void adc_comp_isr(void)
-{
-    // log_printf("ADC ISR %08X\n", ADC_ISR(ADC1));
-
-    exti_reset_request(EXTI21);
-
-    static uint16_t timer = 0;
-    static uint8_t state = 0;
-    bool comp_high = COMP1_CTRL & (1 << 30);
-
-    switch(state)
+    // if state changed since last check
+    if (curr_state != last_state)
     {
-        case 0:
-            plugged_in = true;
-            timer = timers_millis();
-            if(!comp_high)
-                state = 1;
-            break;
-
-        case 1:
-            if(comp_high)
-                state = 0;
-            else if(timers_millis() - timer > 1000)
-                state = 2;
-            break;
-        
-        case 2:
-            if(comp_high){
-                state = 0;
-                batt_rst_seq = true; 
-                log_printf("Reset Sequence\n");}
-            else if(timers_millis() - timer > 10000){
-                plugged_in = false;
-                log_printf("Plugged Out\n");}
-            break;
-
-        default:
-            break;
-
+        timer = timers_millis();
+    }
+    else
+    {
+        // update state after lag
+        if ((state != curr_state) && (timers_millis() - timer > BATT_LAG_MS))
+        {
+            state = curr_state;
+        }
     }
 
-    log_printf("ADC ISR %u %u %u V\n",state, batt_voltages[0], batt_voltages[1]);
-
-    ADC_ISR(ADC1) = 0xFFFFFFFF;
-    adc_start_conversion_regular(ADC1);
+    last_state = curr_state;
 }
-*/
 
 /** @} */

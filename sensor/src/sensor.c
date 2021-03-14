@@ -326,11 +326,13 @@ static void send_packet(void)
 {
 	log_printf("Send Packet\n");
 
+	int8_t rf_power = 0;
+
 	/*////////////////////////*/
 	// Update Battery
 	/*////////////////////////*/
 	batt_update_voltages();
-	log_printf("Batt %u\n", batt_voltages[BATT_VOLTAGE]);
+	log_printf("Batt %u\n", batt_get_batt_voltage());
 	batt_end();
 
 	/*////////////////////////*/
@@ -365,10 +367,11 @@ static void send_packet(void)
 	/*////////////////////////*/
 	rfm_packet_t packet;
 	packet.data.device_number = app_info->dev_id;
-	packet.data.battery = batt_voltages[BATT_VOLTAGE];
+	packet.data.battery = batt_get_batt_voltage();
 	packet.data.temperature = temp_avg;
 	packet.data.msg_number = 0;
 	packet.data.bad_reboot = bad_reboot;
+	packet.data.power = rf_power;
 
 	aes_ecb_encrypt(packet.data.buffer);
 
@@ -376,7 +379,7 @@ static void send_packet(void)
 	// Send Packet
 	/*////////////////////////*/
 	rfm_init();
-	rfm_config_for_lora(RFM_BW_125KHZ, RFM_CODING_RATE_4_5, RFM_SPREADING_FACTOR_128CPS, true, 0);
+	rfm_config_for_lora(RFM_BW_125KHZ, RFM_CODING_RATE_4_5, RFM_SPREADING_FACTOR_128CPS, true, rf_power);
 	rfm_transmit_packet(packet);
 	rfm_end();
 	log_printf("Sent\n");

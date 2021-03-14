@@ -157,8 +157,7 @@ void test_sensor(uint32_t dev_id)
 
 	// Battery voltage
 	batt_update_voltages();
-	packet.data.buffer[RFM_PACKET_BATTERY_0] = batt_voltages[BATT_VOLTAGE];
-	packet.data.buffer[RFM_PACKET_BATTERY_1] = batt_voltages[BATT_VOLTAGE] >> 8;
+	packet.data.battery = batt_get_batt_voltage();
 
 	// Packet length fixed at the moment
 	// packet.length = RFM_PACKET_LENGTH;

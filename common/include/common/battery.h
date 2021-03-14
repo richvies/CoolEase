@@ -45,21 +45,7 @@ extern "C" {
  * @{
  */
 
-#ifdef _HUB
-#define NUM_VOLTAGES    2
-#define PWR_VOLTAGE     0
-#define BATT_VOLTAGE    1
-#else
-#define NUM_VOLTAGES    1
-#define BATT_VOLTAGE    0
-#endif
 
-/*////////////////////////////////////////////////////////////////////////////*/
-// Exported Variables
-/*////////////////////////////////////////////////////////////////////////////*/
-
-extern uint16_t batt_voltages[NUM_VOLTAGES];
-extern bool batt_rst_seq;
 
 
 /*////////////////////////////////////////////////////////////////////////////*/
@@ -77,6 +63,9 @@ void batt_enable_interrupt(void);
 void batt_disable_interrupt(void);
 
 bool batt_is_plugged_in(void);
+
+uint16_t batt_get_batt_voltage(void);
+uint16_t batt_get_pwr_voltage(void);
 
 
 /** @} */

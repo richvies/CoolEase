@@ -38,7 +38,9 @@
  * @{
  */
 
+#define VERSION 100
 #define BACKUP_VERSION 100
+#define BIN_HEADER_SIZE 64
 
 /*////////////////////////////////////////////////////////////////////////////*/
 // Static Variables

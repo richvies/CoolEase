@@ -720,10 +720,8 @@ void test_wakeup(void)
 	batt_init();
 	batt_update_voltages();
 
-	serial_printf("Battery = %uV\n", batt_voltages[BATT_VOLTAGE]);
-#ifdef _HUB
-	serial_printf("Power = %uV\n", batt_voltages[PWR_VOLTAGE]);
-#endif
+	serial_printf("Battery = %uV\n", batt_get_batt_voltage());
+	serial_printf("Power = %uV\n", batt_get_pwr_voltage());
 }
 
 bool test_timers_timeout(void)
@@ -839,11 +837,8 @@ void test_batt_update_voltages(void)
 	{
 		batt_update_voltages();
 
-		serial_printf("Battery = %uV\n", batt_voltages[BATT_VOLTAGE]);
-
-#ifdef _HUB
-		serial_printf("Power = %uV\n", batt_voltages[PWR_VOLTAGE]);
-#endif
+		serial_printf("Battery = %uV\n", batt_get_batt_voltage());
+		serial_printf("Power = %uV\n", batt_get_batt_voltage());
 
 		timers_delay_milliseconds(1000);
 	}
@@ -857,11 +852,8 @@ void test_batt_interrupt(void)
 
 	for (;;)
 	{
-		serial_printf("Battery = %uV\n", batt_voltages[BATT_VOLTAGE]);
-
-#ifdef _HUB
-		serial_printf("Power = %uV\n", batt_voltages[PWR_VOLTAGE]);
-#endif
+		serial_printf("Battery = %uV\n", batt_get_batt_voltage());
+		serial_printf("Power = %uV\n", batt_get_batt_voltage());
 
 		timers_delay_milliseconds(1000);
 	}

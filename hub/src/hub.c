@@ -8,7 +8,6 @@
  ******************************************************************************
  */
 
-
 #include "hub/hub.h"
 
 #include <string.h>
@@ -45,7 +44,6 @@
 	log_printf("NET: "); \
 	log_printf
 
-
 // TODO
 // Http post with ssl, logging
 
@@ -80,7 +78,6 @@ typedef enum
 	NET_NUM_STATES,
 } net_state_t;
 
-
 /** @addtogroup HUB_INT 
  * @{
  */
@@ -89,7 +86,7 @@ static bool hub_plugged_in;
 
 static uint32_t upgrade_to_version;
 
-static sensor_t sensors[MAX_SENSORS];
+static sensor_t sensors[MAX_SENSORS] = {0};
 static uint8_t num_sensors;
 
 static char net_buf[1536];
@@ -137,17 +134,13 @@ static void net_buf_clear(void);
 static uint32_t net_buf_append_printf(const char *format, ...);
 static void _putchar_buffer(char character);
 
-
 /** @} */
 
 /** @addtogroup HUB_API
  * @{
  */
 
-/*////////////////////////////////////////////////////////////////////////////*/
-// Exported Function Definitions
-/*////////////////////////////////////////////////////////////////////////////*/
-
+//
 int main(void)
 {
 	init();
@@ -245,15 +238,17 @@ void set_gpio_for_standby(void)
 	gpio_mode_setup(SIM_USART_RX_PORT, GPIO_MODE_ANALOG, GPIO_PUPD_PULLUP, SIM_USART_RX);
 }
 
+//
 sensor_t *get_sensor_by_id(uint32_t dev_id)
 {
 	sensor_t *sensor = NULL;
 
 	for (uint8_t i = 0; i < MAX_SENSORS; i++)
 	{
-		if (sensors[i].dev_id == dev_id)
+		if ((sensors[i].active) && (sensors[i].dev_id == dev_id))
 		{
 			sensor = &sensors[i];
+			break;
 		}
 	}
 	return sensor;
@@ -271,30 +266,120 @@ void clean_sensors(void)
 
 void add_sensor(uint32_t dev_id)
 {
-	for (uint8_t i = 0; i < MAX_SENSORS; i++)
+	// if not already in list
+	if (get_sensor_by_id(dev_id) == NULL)
 	{
-		if (sensors[i].active == false)
+		// Add sensor to first available slot
+		for (uint8_t i = 0; i < MAX_SENSORS; i++)
 		{
-			memset(&sensors[i], 0, sizeof(sensors[0]));
+			if (sensors[i].active == false)
+			{
+				memset(&sensors[i], 0, sizeof(sensors[0]));
 
-			sensors[i].active = true;
-			sensors[i].dev_id = dev_id;
+				sensors[i].active = true;
+				sensors[i].dev_id = dev_id;
 
-			++num_sensors;
+				++num_sensors;
+
+				break;
+			}
 		}
 	}
 }
 
 void rem_sensor(uint32_t dev_id)
 {
+	sensor_t *sensor = get_sensor_by_id(dev_id); 
+	if (sensor != NULL)
+	{
+		sensor->active = false;
+		--num_sensors;
+	}
+}
+
+void print_sensors(void)
+{
+	serial_printf("Print Sensors\n");
+	serial_printf(".num: %u\n", num_sensors);
+
+	uint8_t count = 0;
+
 	for (uint8_t i = 0; i < MAX_SENSORS; i++)
 	{
-		if (sensors[i].dev_id == dev_id)
+		if (sensors[i].active == false)
 		{
-			sensors[i].active = false;
-			--num_sensors;
+			continue;
+		}
+		else
+		{
+			serial_printf(".%3u\n", i);
+			serial_printf("..id  : %u\n", sensors[i].dev_id);
+			serial_printf("..temp: %i\n", sensors[i].temperature);
+			serial_printf("..batt: %u\n", sensors[i].battery);
+			serial_printf("..pwr : %i\n", sensors[i].power);
+			serial_printf("..rssi: %i\n", sensors[i].rssi);
+			count++;
 		}
 	}
+	serial_printf(".expected: %u count: %u -- %s\n", num_sensors, count, num_sensors == count ? "OK" : "Error");
+}
+
+static void update_sensor_list(const char *list_start, const uint32_t len)
+{
+	serial_printf(".update sensor list\n");
+
+	uint32_t i = 0;
+	uint32_t list[MAX_SENSORS];
+	sensor_t *psensor = NULL;
+
+	// IDs ascii to int
+	while ((i < len) && (*(list_start++) == ','))
+	{
+		const char *tmp = list_start;
+
+		list[i] = _atoi((const char **)&list_start);
+
+		serial_printf(".list %u %s : %u\n", i, tmp, list[i]);
+
+		++i;
+	}
+
+	// Remove any not on list
+	for (i = 0; i < MAX_SENSORS; i++)
+	{
+		psensor = &sensors[i];
+
+		if ((psensor == NULL) || (psensor->active == false))
+		{
+			continue;
+		}
+		else
+		{
+			bool found = false;
+
+			for (uint32_t j = 0; j < len; j++)
+			{
+				if (list[j] == psensor->dev_id)
+				{
+					found = true;
+					break;
+				}
+			}
+
+			if (found == false)
+			{
+				rem_sensor(psensor->dev_id);
+			}
+		}
+	}
+
+	// Add new
+	for (i = 0; i < len; i++)
+	{
+		add_sensor(list[i]);
+	}
+
+	print_sensors();
 }
 
 /** @} */
@@ -303,10 +388,7 @@ void rem_sensor(uint32_t dev_id)
  * @{
  */
 
-/*////////////////////////////////////////////////////////////////////////////*/
-// Static Function Definitions
-/*////////////////////////////////////////////////////////////////////////////*/
-
+//
 static void init(void)
 {
 	clock_setup_hsi_16mhz();
@@ -366,8 +448,11 @@ static void hub(void)
 	// USB checking
 
 	// Sensors to listen for
+	clean_sensors();
+	print_sensors();
 	add_sensor(0x00000001);
 	add_sensor(0x00000002);
+	print_sensors();
 
 	// Start listening on rfm
 	rfm_init();
@@ -429,6 +514,7 @@ static void hub(void)
 		{
 			if (hub_plugged_in)
 			{
+				log_printf("UPG: Start\n");
 				mem_eeprom_write_word_ptr(&shared_info->app_next_version, upgrade_to_version);
 				mem_eeprom_write_word_ptr(&shared_info->upg_pending, SHARED_UPGRADE_PENDING_KEY);
 
@@ -453,6 +539,7 @@ static void hub(void)
 	}
 }
 
+//
 static uint32_t get_timestamp(void)
 {
 	uint32_t stamp = 0;
@@ -628,6 +715,9 @@ static void net_task(void)
 
 		serial_printf(".Check\n");
 		append_check();
+		
+		serial_printf(".Get Sensors\n");
+		net_buf_append_printf("&sensors=get");
 
 		if (pwr_pending())
 		{
@@ -644,12 +734,13 @@ static void net_task(void)
 		if (log_pending())
 		{
 			serial_printf(".Log\n");
-			append_log();
+			// append_log();
+			log_appended = true;
 		}
 
 		net_buf_append_printf("\0\0");
 
-		sim800.state = SIM_SUCCESS;
+		sim800.state = SIM_SUCCESS;		
 
 		serial_printf("//////////\nMSG %u: %s\n//////////\n", strlen(net_buf), net_buf);
 		timers_delay_milliseconds(1000);
@@ -811,6 +902,7 @@ static void parse_net_response(void)
 
 		net_buf[num_bytes] = '\0';
 
+		// Print header
 		serial_printf(".num bytes: %u\n.header: ", num_bytes);
 		for (i = 0; i < num_bytes; i++)
 		{
@@ -823,6 +915,7 @@ static void parse_net_response(void)
 			serial_printf(".Header: %s\n", net_buf);
 		}
 
+		// Version
 		str = strstr(net_buf, "version=");
 		if (str != NULL)
 		{
@@ -830,12 +923,15 @@ static void parse_net_response(void)
 			upgrade_to_version = _atoi((const char **)&str);
 			serial_printf(".Upgrade to v%u\n", upgrade_to_version);
 		}
-
+		
+		// Sensor list
 		str = strstr(net_buf, "sensors=");
 		if (str != NULL)
 		{
 			str += strlen("sensors=");
 			sensor_list_len = _atoi((const char **)&str);
+
+			serial_printf(".List len: %u\n", sensor_list_len);
 
 			if (sensor_list_len > MAX_SENSORS)
 			{
@@ -849,6 +945,7 @@ static void parse_net_response(void)
 	}
 }
 
+///
 static bool check_pending(void)
 {
 	return check_upload_pending;
@@ -878,6 +975,7 @@ static bool pwr_pending(void)
 	return pwr_upload_pending;
 }
 
+///
 static void append_check(void)
 {
 	net_buf_append_printf("&version=get");
@@ -932,56 +1030,13 @@ static void append_pwr(void)
 	net_buf_append_printf("&hub_batt=%u"
 						  "&hub_pwr=%u"
 						  "&hub_plugged_in=%u",
-						  batt_voltages[BATT_VOLTAGE],
-						  batt_voltages[PWR_VOLTAGE],
+						  batt_get_pwr_voltage(),
+						  batt_get_batt_voltage(),
 						  hub_plugged_in ? HUB_PLUGGED_IN_VALUE : HUB_PLUGGED_OUT_VALUE);
 	pwr_appended = true;
 }
 
-static void update_sensor_list(const char *list_start, uint32_t sensor_list_len)
-{
-	uint32_t i = 0;
-	uint32_t sensor_id = 0;
-	sensor_t *psensor = NULL;
-
-	// Default deactivate sensor
-	for (i = 0; i < MAX_SENSORS; i++)
-	{
-		sensors[i].active = false;
-	}
-
-	// Reactivate previous still in list
-	const char *str = list_start;
-	while ((i < sensor_list_len) && (*(str++) == ','))
-	{
-		sensor_id = _atoi((const char **)&str);
-
-		psensor = get_sensor_by_id(sensor_id);
-
-		if (psensor != NULL)
-		{
-			psensor->active = true;
-		}
-	}
-
-	// Add new
-	str = list_start;
-	while ((i < sensor_list_len) && (*(str++) == ','))
-	{
-		sensor_id = _atoi((const char **)&str);
-
-		psensor = get_sensor_by_id(sensor_id);
-
-		if (psensor == NULL)
-		{
-			add_sensor(sensor_id);
-		}
-	}
-
-	// Remove old not active sensors, recalculate num_sensors
-	clean_sensors();
-}
-
+///
 static void net_buf_clear(void)
 {
 	memset(net_buf, '\0', sizeof(net_buf));
