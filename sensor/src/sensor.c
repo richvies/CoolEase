@@ -41,18 +41,7 @@
  */
 
 #define VERSION 100
-#define SENSOR_SLEEP_TIME 600
-#define APP_ADDRESS 0x08004000
-#define IWDG_MAGIC_VALUE 0x12345678
-#define INIT_MAGIC_VALUE 0x24681358
-#define FIRST_MAGIC_VALUE 0x12345678
-
-typedef enum
-{
-	IWDG_MAGIC_REG = 0,
-	INIT_MAGIC_REG,
-	FIRST_MAGIC_REG,
-} magic_reg_e;
+#define SENSOR_SLEEP_TIME 5
 
 /** @addtogroup SENSOR_INT 
  * @{
@@ -62,18 +51,20 @@ typedef enum
 // Static Variables
 /*////////////////////////////////////////////////////////////////////////////*/
 
-
 static bool bad_reboot = false;
 
 /*////////////////////////////////////////////////////////////////////////////*/
 // Static Function Declarations
 /*////////////////////////////////////////////////////////////////////////////*/
 
+static void init(void);
+static void deinit(void);
 static void sensor(void);
 static void test(void);
-static void init(void);
-static void flash_led_failsafe(void);
 static void send_packet(void);
+
+static bool report_pend = true;
+static uint32_t report_timer = 0;
 
 /** @} */
 
@@ -87,67 +78,85 @@ static void send_packet(void);
 
 int main(void)
 {
-	// Stop unused warnings
-	(void)test;
-	(void)sensor;
-
-	reset_save_flags();
-	log_init();
-
-	timers_rtc_init();
-	timers_set_wakeup_time(SENSOR_SLEEP_TIME);
-	timers_enable_wut_interrupt();
-
-	serial_printf("%08x %08x\n", mem_read_bkp_reg(INIT_MAGIC_REG), mem_read_bkp_reg(IWDG_MAGIC_REG));
-
-	if (mem_read_bkp_reg(INIT_MAGIC_REG) != INIT_MAGIC_VALUE)
-	{
-		log_erase();
-		log_erase_backup();
-		mem_program_bkp_reg(INIT_MAGIC_REG, INIT_MAGIC_VALUE);
-
-		log_printf("Erased Logs\n");
-		log_printf("First Turn On\n");
-	}
-	// If wathdog reset
-	else if (reset_get_flags() & RCC_CSR_IWDGRSTF)
-	{
-		// Was on purpose
-		if (mem_read_bkp_reg(IWDG_MAGIC_REG) == IWDG_MAGIC_VALUE)
-		{
-			bad_reboot = false; 
-
-			// Go back to standby
-			log_printf("IWDG back to sleep\n");
-			mem_program_bkp_reg(IWDG_MAGIC_REG, 0);
-			SYSCFG_CFGR3 &= ~SYSCFG_CFGR3_EN_VREFINT;
-			set_gpio_for_standby();
-			timers_enter_standby();
-		}
-		// Was actual problem with code, backup log
-		else
-		{
-			bad_reboot = true;
-
-			log_printf("IWDG Backup Log\n");
-			log_create_backup();
-		}
-	}
-	else
-	{
-		bad_reboot = false;
-	}
-
-	timers_iwdg_init(7000);
-
 	init();
 
-	log_create_backup();
+	// Check if first time running
+	if (app_info->init_key != APP_INIT_KEY)
+	{
+		log_printf("APP: First Run\n");
 
-	// test();
+        serial_printf(".App: v%u\n", VERSION);
+        serial_printf(".Boot: v%u\n", shared_info->boot_version);
+		serial_printf(".Dev ID: %u\n", app_info->dev_id);
+        serial_printf(".PWD: %s\n", app_info->pwd);
+        serial_printf(".AES: ");
+        for (uint8_t i = 0; i < 16; i++)
+        {
+            serial_printf("%2x ", app_info->aes_key[i]);
+        }
+        serial_printf("\n");
+
+		mem_eeprom_write_word_ptr(&shared_info->app_curr_version, VERSION);
+        mem_eeprom_write_word_ptr(&shared_info->app_ok_key, SHARED_APP_OK_KEY);
+
+		mem_eeprom_write_word_ptr(&app_info->init_key, APP_INIT_KEY);
+
+		// Sensor init - IDs, active or not,
+
+		// Reset to signal OK to bootloader
+		timers_pet_dogs();
+		timers_delay_milliseconds(1000);
+		deinit();
+		scb_reset_system();
+	}
+
+	log_printf("Sensor Start\n");
+
+	test();
+
 	sensor();
 
-	log_printf("ERROR: left main loop\n");
+	// if (mem_read_bkp_reg(INIT_MAGIC_REG) != INIT_MAGIC_VALUE)
+	// {
+	// 	log_erase();
+	// 	log_erase_backup();
+	// 	mem_program_bkp_reg(INIT_MAGIC_REG, INIT_MAGIC_VALUE);
+
+	// 	log_printf("Erased Logs\n");
+	// 	log_printf("First Turn On\n");
+	// }
+	// // If wathdog reset
+	// else if (reset_get_flags() & RCC_CSR_IWDGRSTF)
+	// {
+	// 	// Was on purpose
+	// 	if (mem_read_bkp_reg(IWDG_MAGIC_REG) == IWDG_MAGIC_VALUE)
+	// 	{
+	// 		bad_reboot = false; 
+
+	// 		// Go back to standby
+	// 		log_printf("IWDG back to sleep\n");
+	// 		mem_program_bkp_reg(IWDG_MAGIC_REG, 0);
+	// 		SYSCFG_CFGR3 &= ~SYSCFG_CFGR3_EN_VREFINT;
+	// 		set_gpio_for_standby();
+	// 		timers_enter_standby();
+	// 	}
+	// 	// Was actual problem with code, backup log
+	// 	else
+	// 	{
+	// 		bad_reboot = true;
+
+	// 		log_printf("IWDG Backup Log\n");
+	// 		log_create_backup();
+	// 	}
+	// }
+	// else
+	// {
+	// 	bad_reboot = false;
+	// }
+
+
+	// log_create_backup();
+
 
 	for (;;)
 	{
@@ -160,8 +169,6 @@ int main(void)
 
 void set_gpio_for_standby(void)
 {
-	log_printf("GPIO sleep\n");
-
 	rcc_periph_clock_enable(RCC_GPIOA);
 	rcc_periph_clock_enable(RCC_GPIOB);
 
@@ -170,8 +177,6 @@ void set_gpio_for_standby(void)
 
 	// Serial Print
 	// FTDI not connected
-	usart_disable(SPF_USART);
-	rcc_periph_clock_disable(SPF_USART_RCC);
 	gpio_mode_setup(SPF_USART_TX_PORT, GPIO_MODE_ANALOG, GPIO_PUPD_NONE, SPF_USART_TX);
 	gpio_mode_setup(SPF_USART_RX_PORT, GPIO_MODE_ANALOG, GPIO_PUPD_NONE, SPF_USART_RX);
 	// FTDI Connected
@@ -228,27 +233,48 @@ static void init(void)
 	print_aes_key(app_info);
 
 	flash_led(40, 1);
-	log_printf("Sensor Init\n");
-	(void)flash_led_failsafe;
+}
+
+static void deinit(void)
+{
+	batt_end();
+	SYSCFG_CFGR3 &= ~SYSCFG_CFGR3_EN_VREFINT;
+	log_end();
+	timers_lptim_end();
+	rcc_periph_clock_disable(RCC_GPIOA);
+	rcc_periph_clock_disable(RCC_GPIOB);
+	systick_counter_disable();
+	clock_setup_msi_2mhz();
+
 }
 
 static void sensor(void)
 {
-	serial_printf("Device: %8x\n", app_info->dev_id);
+	timers_set_wakeup_time(SENSOR_SLEEP_TIME);
+	timers_enable_wut_interrupt();
+
+	// Initial packet
+	send_packet();
+	report_pend = false;
+
+	deinit();
+	set_gpio_for_standby();
 
 	for (;;)
 	{
-		send_packet();
-
-		timers_rtc_init();
-		timers_set_wakeup_time(SENSOR_SLEEP_TIME);
-		timers_enable_wut_interrupt();
-
 		// Enter standby
-		mem_program_bkp_reg(IWDG_MAGIC_REG, IWDG_MAGIC_VALUE);
-		SYSCFG_CFGR3 &= ~SYSCFG_CFGR3_EN_VREFINT;
-		set_gpio_for_standby();
 		timers_enter_standby();
+
+		// Wakeup
+		if (report_pend)
+		{
+			init();
+			log_printf("Wakeup\n");
+			send_packet();
+			report_pend = false;
+			deinit();
+			set_gpio_for_standby();
+		}
 	}
 }
 
@@ -294,25 +320,6 @@ static void test(void)
 	// test_encryption();
 	// test_timers_timeout();
 	// test_log();
-}
-
-static void flash_led_failsafe(void)
-{
-	rcc_periph_clock_enable(RCC_GPIOA);
-	gpio_mode_setup(GPIOA, GPIO_MODE_OUTPUT, GPIO_PUPD_NONE, GPIO14);
-	for (;;)
-	{
-		for (uint32_t i = 0; i < 100000; i++)
-		{
-			__asm__("nop");
-		}
-		gpio_set(GPIOA, GPIO14);
-		for (uint32_t i = 0; i < 100000; i++)
-		{
-			__asm__("nop");
-		}
-		gpio_clear(GPIOA, GPIO14);
-	}
 }
 
 static void send_packet(void)
@@ -388,9 +395,13 @@ void rtc_isr(void)
 		pwr_clear_standby_flag();
 	}
 
-	init();
-
-	log_printf("RTC ISR\n");
+	timers_pet_dogs();
+	report_timer += SENSOR_SLEEP_TIME;
+	if (report_timer > 600)
+	{
+		report_pend = true;
+		report_timer = 0;
+	}
 }
 
 /** @} */

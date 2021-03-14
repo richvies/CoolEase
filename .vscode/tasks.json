@@ -16,7 +16,9 @@
                 "focus": true
             },
             "runOptions": {},
-            "problemMatcher":[]
+            "problemMatcher":[
+                "$gcc"
+            ]
         },   
         // Rebuild all
         {
@@ -27,7 +29,9 @@
             "presentation": {
                 "focus": true
             },
-            "problemMatcher":[]
+            "problemMatcher":[
+                "$gcc"
+            ]
         },  
         // Rebuild Hub
         {
@@ -38,7 +42,9 @@
             "presentation": {
                 "focus": true
             },
-            "problemMatcher":[]
+            "problemMatcher":[
+                "$gcc"
+            ]
         },
         // Rebuild Sensor
         {
@@ -49,7 +55,9 @@
             "presentation": {
                 "focus": true
             },
-            "problemMatcher":[]
+            "problemMatcher":[
+                "$gcc"
+            ]
         },
         // Build hub
         {
@@ -133,6 +141,20 @@
         //////////////////////////////
         // Download
         //////////////////////////////
+        // Full Erase Uart
+        {
+            "label": "Full Erase uart",
+            "type": "shell",
+            "command": "./tools/stm32flash/stm32flash",
+            "args": [
+                "-b230400",
+                "-o",
+                "-R",
+                "-i-dtr,rts,-rts:rts",
+                "/dev/cu.usbserial-A50285BI",
+            ],
+            "problemMatcher": []
+        },
         // Hub
         {
             "label": "Hub Download",
@@ -218,7 +240,7 @@
                 "-b230400",
                 "-E",
                 "-S0x08080000",
-                "-whub/bin/hub_eeprom.bin",
+                "-w${input:ee}",
                 "-v",
                 "-R",
                 "-i-dtr,rts,-rts:rts",
@@ -372,6 +394,13 @@
             "dependsOrder": "sequence",
             "problemMatcher": []
         },
+        {
+            "label": "Sensor All",
+            "type": "shell",
+            "dependsOn":["Rebuild sensor", "Sensor EEPROM Download", "Sensor Bootloader Download", "Sensor Download"],
+            "dependsOrder": "sequence",
+            "problemMatcher": []
+        },
         
         //////////////////////////////
         // Python
@@ -450,6 +479,16 @@
             "options": [
                 "hub/bin/hub.bin",
                 "sensor/bin/sensor.bin",
+            ]
+        },
+        {
+            "id": "ee",
+            "type": "pickString",
+            "description": "EEPROM",
+            "options": [
+                "hub/bin/store/hub_eeprom_20000001.bin",
+                "hub/bin/store/hub_eeprom_20000002.bin",
+                "hub/bin/store/hub_eeprom_20000003.bin"
             ]
         }
     ]

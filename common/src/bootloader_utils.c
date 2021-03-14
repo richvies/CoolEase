@@ -49,8 +49,6 @@
 // Static Variables
 /*////////////////////////////////////////////////////////////////////////////*/
 
-#define VERSION	100
-
 /*////////////////////////////////////////////////////////////////////////////*/
 // Static Function Declarations
 /*////////////////////////////////////////////////////////////////////////////*/
@@ -72,8 +70,7 @@ void boot_init(void)
     uint32_t *mem_eeprom_write_word_ptrNULL;
     uint8_t *u8ptr = NULL;
     uint32_t val = 0;
-    
-    flash_led(40, 3);
+
     log_printf("**********\nStart\n**********\n");
 
     // If first power on, setup some data
@@ -81,7 +78,6 @@ void boot_init(void)
     {
         BOOT_LOG("First Run\n");
 
-        serial_printf(".Ver: %u\n", VERSION);
         serial_printf(".Dev ID: %u\n", boot_info->dev_id);
         serial_printf(".VTOR: %8x\n", boot_info->vtor);
         serial_printf(".PWD: %s\n", boot_info->pwd);
@@ -130,11 +126,13 @@ void boot_init(void)
         // Caused by app, not bootloader
         if (mem_read_bkp_reg(BKUP_BOOT_OK) == BOOT_OK_KEY)
         {
+            log_printf(".App\n");
             mem_eeprom_write_word_ptr(&boot_info->app_num_iwdg_reset, boot_info->app_num_iwdg_reset + 1);
         }
         // Caused by bootloader, much much worse
         else
         {
+            log_printf(".Boot\n");
         }
     }
     // Otherwise reset count to 0
@@ -152,24 +150,9 @@ void boot_init(void)
     mem_program_bkp_reg(BKUP_BOOT_OK, 0);
 }
 
-// This works perfectly before jumping to application
-void boot_deinit(void)
-{
-    // Reset all peripherals
-    RCC_AHBRSTR  = 0xFFFFFEFF; RCC_AHBRSTR  = 0x00000000;
-    RCC_APB2RSTR = 0xFFFFFFFF; RCC_APB2RSTR = 0x00000000;
-    RCC_APB1RSTR = 0xFFFFFFFF; RCC_APB1RSTR = 0x00000000;
-    RCC_IOPRSTR  = 0xFFFFFFFF; RCC_IOPRSTR  = 0x00000000;
-
-    // Reenable STLink
-}
-
 void boot_jump_to_application(uint32_t address)
 {
-    BOOT_LOG("Jump %8x\n\n----------\n\n", address);
-
-    // Disable Interrupts
-    __asm__ volatile("CPSID I\n");
+    mem_program_bkp_reg(BKUP_BOOT_OK, BOOT_OK_KEY);
 
     // Update vector table offset
     SCB_VTOR = address;
@@ -181,14 +164,6 @@ void boot_jump_to_application(uint32_t address)
 
     // Get start address of program
     void (*start)(void) = (void *)MMIO32(address + 4);
-
-    // Deinitialize everything
-    // boot_deinit();
-
-    mem_program_bkp_reg(BKUP_BOOT_OK, BOOT_OK_KEY);
-
-    // Enable interrupts
-    __asm__ volatile("CPSIE I\n");
 
     start();
 

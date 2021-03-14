@@ -93,6 +93,7 @@ void timers_rtc_lock(void);
 /* Setup lptim approx. us counter. Clocked by APB1 
     Inrements millis counter every 1,000 ticks */
 void timers_lptim_init(void);
+void timers_lptim_end(void);
 
 /* Returns value of millis_counter * 1000 + micros_counter */
 uint32_t timers_micros(void);

@@ -219,6 +219,8 @@ void sim_serial_pass_through(void)
 		{
 			serial_printf("%c", sim_read());
 		}
+
+		timers_pet_dogs();
 	}
 }
 
@@ -237,6 +239,8 @@ bool sim_printf_and_check_response(uint32_t timeout_ms, const char *expected_res
 	va_start(va, format);
 	fnprintf(_putchar, format, va);
 	va_end(va);
+
+	clear_rx_buf();
 
 	return wait_and_check_response(timeout_ms, expected_response);
 }
@@ -934,7 +938,7 @@ sim_state_t sim_open_bearer(char *apn_str, char *user_str, char *pwd_str)
 	switch (state)
 	{
 	case 0:
-		res = write_command("+SAPBR", "2,1", QUICK_RESPONSE_MS);
+		res = write_command("+SAPBR", "2,1", 1000);
 		break;
 
 	case 1:
@@ -957,6 +961,11 @@ sim_state_t sim_open_bearer(char *apn_str, char *user_str, char *pwd_str)
 	case 3:
 		// sim_serial_pass_through();
 		res = toggle_bearer(true);
+
+		if (res == SIM_SUCCESS)
+		{
+			state = 'S';
+		}
 		break;
 
 	default:
@@ -1034,7 +1043,9 @@ sim_state_t sim_close_bearer(void)
 
 sim_state_t sim_is_connected(void)
 {
-	return sim_printf_and_check_response(1000, "+SAPBR: 1,1", "AT+SAPBR=2,1\r") ? SIM_SUCCESS : SIM_ERROR;
+	bool res = sim_printf_and_check_response(1000, "+SAPBR: 1,1", "AT+SAPBR=2,1\r");
+	res = sim_printf_and_check_response(1000, "OK", "");
+	return res ? SIM_SUCCESS : SIM_ERROR;
 }
 
 static sim_state_t reset_and_wait_ready(void)
@@ -1412,6 +1423,7 @@ sim_state_t sim_http_post_str(const char *url_str, const char *msg_str, bool ssl
 
 		break;
 	case 1:
+		// sim_serial_pass_through();
 		res = sim_http_post_init(url_str, ssl);
 		break;
 	case 2:
@@ -1557,7 +1569,7 @@ uint32_t sim_http_read_response(uint32_t address, uint32_t buf_size, uint8_t *bu
 		}
 
 		// Only read up to buf_size
-		for (i = 0; i < (num_ret <= buf_size) ? num_ret : buf_size; i++)
+		for (i = 0; i < num_ret; i++)
 		{
 			while (!sim_available())
 			{

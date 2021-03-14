@@ -287,6 +287,17 @@ void timers_lptim_init(void)
     lptimer_start_counter(LPTIM1, LPTIM_CR_CNTSTRT);
 }
 
+void timers_lptim_end(void)
+{
+    exti_disable_request(EXTI29);
+    nvic_disable_irq(NVIC_LPTIM1_IRQ);
+
+    lptimer_disable(LPTIM1);
+
+    rcc_periph_reset_pulse(RST_LPTIM1);
+    rcc_periph_clock_disable(RCC_LPTIM1);
+}
+
 uint32_t timers_micros(void)
 {
     return (micros_counter + LPTIM1_CNT);
@@ -368,14 +379,6 @@ void timers_enter_standby(void)
     pwr_clear_standby_flag();
 
     __asm__("wfi");
-
-    // // Enter standby
-    // while (1)
-    // {
-    //     cm_disable_interrupts();
-    //     __asm__("wfi");
-    //     cm_enable_interrupts();
-    // }
 }
 
 

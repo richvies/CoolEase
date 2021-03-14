@@ -74,7 +74,7 @@ void clock_setup_hsi_16mhz(void)
 
 void flash_led(uint16_t milliseconds, uint8_t num_flashes)
 {
-	rcc_periph_clock_enable(RCC_GPIOA);
+	rcc_periph_clock_enable(LED_RCC);
 
 	gpio_mode_setup(LED_PORT, GPIO_MODE_OUTPUT, GPIO_PUPD_NONE, LED);
 	gpio_clear(LED_PORT, LED);

@@ -61,6 +61,7 @@ static void _putchar_mem(char character);
 
 #ifdef DEBUG
 static void usart_setup(void);
+static void usart_end(void);
 static void _putchar_spf(char character);
 #ifdef _HUB
 static void _putchar_usb(char character);
@@ -89,6 +90,13 @@ void log_init(void)
 	// serial_printf("\nLog Init\n");
 	// serial_printf("Log size: %u\n", log_file->size);
 	// serial_printf("Log idx: %u\n----------------\n", write_index);
+}
+
+void log_end(void)
+{
+#ifdef DEBUG
+	usart_end();
+#endif
 }
 
 void log_printf(const char *format, ...)
@@ -263,6 +271,20 @@ static void usart_setup(void)
 	nvic_enable_irq(SPF_USART_NVIC);
 }
 
+static void usart_end(void)
+{
+	nvic_clear_pending_irq(SPF_USART_NVIC);
+	nvic_disable_irq(SPF_USART_NVIC);
+	usart_disable_rx_interrupt(SPF_USART);
+	
+	gpio_mode_setup(SPF_USART_RX_PORT, GPIO_MODE_ANALOG, GPIO_PUPD_NONE, SPF_USART_RX);
+	gpio_mode_setup(SPF_USART_TX_PORT, GPIO_MODE_ANALOG, GPIO_PUPD_NONE, SPF_USART_TX);
+	
+	usart_disable(SPF_USART);
+	rcc_periph_reset_pulse(SPF_USART_RCC_RST);
+	rcc_periph_clock_disable(SPF_USART_RCC);
+}
+
 static void _putchar_spf(char character)
 {
 	bool done = false;
@@ -295,7 +317,7 @@ static void _putchar_spf(char character)
 
 				done = true;
 			}
-			
+
 			cm_enable_interrupts();
 			__asm__("nop");
 		}
@@ -346,7 +368,6 @@ SPF_ISR()
 			// if (spf_rx_buf[spf_rx_head] == '\n')
 			// {
 			// 	spf_rx_buf[spf_rx_head + 1] = '\0'
-			// 	strcpy()
 			// }
 
 			spf_rx_head = (spf_rx_head + 1) % SPF_BUFFER_SIZE;

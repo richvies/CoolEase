@@ -38,7 +38,6 @@
 #include "common/memory.h"
 
 #include "hub/cusb.h"
-#include "hub/hub_bootloader.h"
 #include "hub/sim.h"
 #include "hub/hub.h"
 
@@ -293,7 +292,7 @@ void test_receiver(uint32_t dev_id)
 		serial_printf("\n");
 
 		// Skip if not correct device number
-		sensor = get_sensor(packet->data.device_number);
+		sensor = get_sensor_by_id(packet->data.device_number);
 		if (sensor == NULL)
 		{
 			serial_printf("Wrong Dev Num: %08X\n", packet->data.device_number);
@@ -332,7 +331,7 @@ void test_receiver(uint32_t dev_id)
 				}
 
 				// Get sensor from device number
-				sensor = get_sensor(packet->data.device_number);
+				sensor = get_sensor_by_id(packet->data.device_number);
 
 				// Skip if wrong device number
 				if (sensor == NULL)

@@ -99,6 +99,7 @@ extern "C" {
 /*////////////////////////////////////////////////////////////////////////////*/
 
 void log_init(void);
+void log_end(void);
 void log_printf(const char *format, ...);
 void log_error(uint16_t error);
 uint8_t log_get_byte(uint16_t index);

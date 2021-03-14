@@ -48,7 +48,7 @@ static void deinit(void);
 static void test(void);
 static bool program_bin(void);
 static bool check_bin(void);
-static bool check_crc(void);
+static bool check_crc(uint32_t expected);
 static bool net_task(void);
 static void net_fallback(void);
 
@@ -159,6 +159,7 @@ typedef enum upg_type
 int main(void)
 {
 	init();
+	boot_init();
 
 	uint32_t recovery_auto_timer = timers_millis();
 	uint32_t recovery_check_timer = timers_millis();
@@ -168,7 +169,7 @@ int main(void)
 	{
 		BOOT_LOG("First App Check\n");
 
-		serial_printf(".Boot Version: %8u\n", VERSION);
+		serial_printf(".Boot: v%8u\n", VERSION);
 
 		mem_eeprom_write_word_ptr(&boot_info->app_ok_key, 0);
 		mem_eeprom_write_word_ptr(&boot_info->app_num_fail_runs, 0);
@@ -182,8 +183,22 @@ int main(void)
 		// Set initialized
 		mem_eeprom_write_word_ptr(&boot_info->init_key, BOOT_INIT_KEY2);
 	}
+	// Super backup condition just in case
+	else if ((boot_info->app_num_iwdg_reset >= 10) || (mem_read_bkp_reg(BKUP_NUM_IWDG_RESET) >= 10))
+	{
+		mem_eeprom_write_word_ptr(&boot_info->upg_state, UPGRADE_RECOVERY_FAILED);
+
+		mem_eeprom_write_word_ptr(&boot_info->app_ok_key, 0);
+
+		mem_eeprom_write_word_ptr(&boot_info->upg_new_app_installed, 0);
+		mem_eeprom_write_word_ptr(&boot_info->upg_done, 0);
+
+		mem_eeprom_write_word_ptr(&boot_info->upg_flags, UPG_FLAG_IWDG_UPGRADE);
+
+		mem_eeprom_write_word_ptr(&boot_info->upg_in_progress, BOOT_UPGRADE_IN_PROGRESS_KEY);
+	}
 	// Try downgrade to backup version if watchdog resetting app
-	else if (boot_info->app_num_iwdg_reset > 3 &&
+	else if (boot_info->app_num_iwdg_reset >= 3 &&
 			 (boot_info->upg_in_progress != BOOT_UPGRADE_IN_PROGRESS_KEY))
 	{
 		mem_eeprom_write_word_ptr(&boot_info->upg_state, UPGRADE_RECOVER_BACKUP_APP);
@@ -217,6 +232,7 @@ int main(void)
 		mem_eeprom_write_word_ptr(&boot_info->upg_flags, UPG_FLAG_APP_UPGRADE);
 
 		// Only try upgrade once
+		mem_eeprom_write_word_ptr(&shared_info->upg_pending, 0);
 		mem_eeprom_write_word_ptr(&boot_info->upg_in_progress, BOOT_UPGRADE_IN_PROGRESS_KEY);
 	}
 
@@ -296,7 +312,6 @@ int main(void)
 				}
 				else
 				{
-					// UPG flags set in check_bin()
 					mem_eeprom_write_word_ptr(&boot_info->upg_state, UPGRADE_ERROR);
 				}
 				break;
@@ -425,12 +440,13 @@ int main(void)
 					uint32_t num_bytes = sim_http_read_response(0, 63, (uint8_t *)buf);
 					buf[num_bytes] = '\0';
 
-					if (strstr(buf, "Get"))
+					char *str = strstr(buf, "version=");
+					if (str != NULL)
 					{
-						uint8_t i = 4;
-						char *ptr = &buf[i];
-						boot_info->upg_version_to_download = _atoi((const char **)&ptr);
+						str += strlen("verison=");
+						mem_eeprom_write_word_ptr(&boot_info->upg_version_to_download, _atoi((const char **)&str));
 						mem_eeprom_write_word_ptr(&boot_info->upg_state, UPGRADE_DOWNLOAD_BIN);
+						serial_printf(".Upgrade to v%u\n", boot_info->upg_version_to_download);
 					}
 				}
 				else
@@ -473,17 +489,17 @@ int main(void)
 						mem_eeprom_write_word_ptr(&boot_info->upg_state, UPGRADE_RECOVER_PREVIOUS_APP);
 					}
 					// Try backup
-					else if (boot_info->upg_version_to_download == BACKUP_VERSION)
+					else // if (boot_info->upg_version_to_download == BACKUP_VERSION)
 					{
 						log_printf(".Recover Backup\n");
 						mem_eeprom_write_word_ptr(&boot_info->upg_state, UPGRADE_RECOVER_BACKUP_APP);
 					}
-					// All other cases, check for instructions from cloud, and try install backup every hour
-					else
-					{
-						log_printf(".Recover Failed\n");
-						mem_eeprom_write_word_ptr(&boot_info->upg_state, UPGRADE_RECOVERY_FAILED);
-					}
+					// // All other cases, check for instructions from cloud, and try install backup every hour
+					// else
+					// {
+					// 	log_printf(".Recover Failed\n");
+					// 	mem_eeprom_write_word_ptr(&boot_info->upg_state, UPGRADE_RECOVERY_FAILED);
+					// }
 				}
 
 				// Send error + flags
@@ -534,13 +550,13 @@ int main(void)
 		mem_eeprom_write_word_ptr(&boot_info->app_num_iwdg_reset, 0);
 
 		mem_eeprom_write_word_ptr(&boot_info->app_version, 0);
-		mem_eeprom_write_word_ptr(&boot_info->app_update_version, BACKUP_VERSION);
-		mem_eeprom_write_word_ptr(&boot_info->app_previous_version, BACKUP_VERSION); // Default backup version (definitely working)
+		mem_eeprom_write_word_ptr(&boot_info->app_update_version, 0);
+		mem_eeprom_write_word_ptr(&boot_info->app_previous_version, 0);
 
 		// Shared Info
 		mem_eeprom_write_word_ptr(&shared_info->boot_version, VERSION);
-		mem_eeprom_write_word_ptr(&shared_info->upg_pending, 0);
 		mem_eeprom_write_word_ptr(&shared_info->upg_flags, boot_info->upg_flags);
+		mem_eeprom_write_word_ptr(&shared_info->upg_pending, 0);
 
 		mem_eeprom_write_word_ptr(&shared_info->app_ok_key, 0);
 		mem_eeprom_write_word_ptr(&shared_info->app_curr_version, 0);
@@ -574,11 +590,8 @@ int main(void)
 		BOOT_LOG("Upgrade Done %8x\n", boot_info->upg_flags);
 
 		mem_eeprom_write_word_ptr(&boot_info->app_version, shared_info->app_curr_version);
-
 		mem_eeprom_write_word_ptr(&boot_info->app_previous_version, shared_info->app_curr_version);
-
 		mem_eeprom_write_word_ptr(&shared_info->upg_flags, boot_info->upg_flags);
-
 		mem_eeprom_write_word_ptr(&boot_info->upg_in_progress, 0);
 
 		mem_eeprom_write_word_ptr(&boot_info->upg_done, 0);
@@ -586,8 +599,10 @@ int main(void)
 
 	test();
 
+	BOOT_LOG("Jump %8x\n\n----------\n\n", boot_info->vtor);
+
 	// serial print finish
-	timers_delay_milliseconds(1000);
+	timers_delay_milliseconds(500);
 
 	// Deinit peripherals
 	deinit();
@@ -618,17 +633,20 @@ int main(void)
 static void init(void)
 {
 	clock_setup_hsi_16mhz();
-	// cusb_init();
 	timers_lptim_init();
 	log_init();
-	boot_init();
+	// cusb_init();
+	flash_led(40, 3);
 }
 
 static void deinit(void)
 {
 	// cusb_end();
-	// clock_setup_msi_2mhz();
-	// log_init();
+	log_end();
+	timers_lptim_end();
+	rcc_periph_clock_disable(RCC_GPIOA);
+	rcc_periph_clock_disable(RCC_GPIOB);
+	clock_setup_msi_2mhz();
 }
 
 static void test(void)
@@ -648,15 +666,15 @@ static void prepare_msg(msg_type_e msg_type)
 	switch (msg_type)
 	{
 	case MSG_GET_NEXT_BIN:
-		sim_buf_append_printf("version=%u\n", boot_info->upg_version_to_download);
+		sim_buf_append_printf("&version=%3u", boot_info->upg_version_to_download);
 		break;
 
 	case MSG_UPGRADE_ERROR:
-		sim_buf_append_printf("error=true\n");
+		sim_buf_append_printf("&error=true");
 		break;
 
 	case MSG_CHECK_FOR_UPDATE:
-		sim_buf_append_printf("version=get\n");
+		sim_buf_append_printf("&version=get");
 		break;
 	default:
 		break;
@@ -699,7 +717,7 @@ static bool net_task(void)
 		break;
 
 	case NET_REGISTERING:
-		net_next_state = NET_REGISTERED;
+		net_next_state = NET_CONNECTING;
 		net_fallback_state = NET_INIT;
 
 		sim800.state = sim_register_to_network();
@@ -715,6 +733,7 @@ static bool net_task(void)
 		net_fallback_state = NET_REGISTERING;
 
 		sim800.state = sim_open_bearer("data.rewicom.net", "", "");
+
 		break;
 
 	case NET_CONNECTED:
@@ -725,7 +744,7 @@ static bool net_task(void)
 
 		if (sim800.state == SIM_SUCCESS)
 		{
-			NET_LOG("Connected\n");
+			// NET_LOG("Connected\n");
 		}
 		else if (sim800.state != SIM_BUSY)
 		{
@@ -751,8 +770,8 @@ static bool net_task(void)
 		break;
 
 	case NET_HTTP_DONE:
-		net_next_state = NET_CONNECTED;
-		net_fallback_state = NET_CONNECTED;
+		net_next_state = NET_DONE;
+		net_fallback_state = NET_DONE;
 
 		// Goto next state
 		sim800.state = SIM_SUCCESS;
@@ -803,27 +822,58 @@ static void net_fallback(void)
 	net_state = net_fallback_state;
 }
 
+
 static bool check_bin(void)
 {
+	log_printf("Check Bin\n");
+	log_printf(".Size: %u\n", sim800.http.response_size);
+
 	bool ret = false;
 
-	// Check header (no bin)
-	char buf[BIN_HEADER_SIZE] = {0};
-	uint32_t num_bytes = sim_http_read_response(0, 63, (uint8_t *)buf);
-	buf[num_bytes] = '\0';
-
-	if (strstr(buf, "No Bin"))
+	// Fix: Sim seems to append \0A to resopnse for some reason
+	if ((sim800.http.response_size - BIN_HEADER_SIZE) % FLASH_HALF_PAGE_SIZE == 1)
 	{
+		--sim800.http.response_size;
+	}
+
+	// Check header (no bin)
+	struct
+	{
+		union
+		{
+			uint8_t u8buf[BIN_HEADER_SIZE];
+			char str[BIN_HEADER_SIZE];
+			struct
+			{
+				uint32_t version;
+				uint32_t crc32;
+			};
+		};
+	} header;
+
+	sim_http_read_response(0, 63, header.u8buf);
+	header.u8buf[64] = '\0';
+
+	serial_printf(".Header: %s\n", header.str);
+
+	timers_delay_milliseconds(500);
+
+	if (sim800.http.response_size <= BIN_HEADER_SIZE ||
+		strstr(header.str, "NoBin") != NULL)
+	{
+		serial_printf(".No Bin\n");
 		BOOT_SET_UPG_FLAG(UPG_FLAG_NO_BIN_ERR);
 	}
-	// Check bin size is an integer multiple of flash pages
-	else if ((sim800.http.response_size - BIN_HEADER_SIZE) % FLASH_PAGE_SIZE != 0)
+	// Check bin size is an integer multiple of flash half pages
+	else if ((sim800.http.response_size - BIN_HEADER_SIZE) % FLASH_HALF_PAGE_SIZE != 0)
 	{
+		serial_printf(".Not int half page\n");
 		BOOT_SET_UPG_FLAG(UPG_FLAG_BIN_SIZE_WRONG);
 	}
 	// Todo: check returned version number same as expected
-	else if (check_crc() == false)
+	else if (check_crc(header.crc32) == false)
 	{
+		serial_printf(".CRC Fail\n");
 		BOOT_SET_UPG_FLAG(UPG_FLAG_CRC_ERR);
 	}
 	else
@@ -832,34 +882,26 @@ static bool check_bin(void)
 		ret = true;
 	}
 
+	timers_delay_milliseconds(500);
+
 	return ret;
 }
 
-static bool check_crc(void)
+static bool check_crc(uint32_t expected)
 {
+	serial_printf(".Check CRC\n");
+
+	return true;
+
 	bool ret = false;
-	uint32_t file_size = 0;
+	uint32_t file_size = sim800.http.response_size - BIN_HEADER_SIZE;
 
-	uint8_t header[BIN_HEADER_SIZE];
-
-	uint32_t crc_expected = 0;
 	uint32_t crc = 0;
-
-	if (sim800.http.response_size <= BIN_HEADER_SIZE)
-	{
-		file_size = 0;
-	}
-	else
-	{
-		file_size = sim800.http.response_size - BIN_HEADER_SIZE;
-		sim_http_read_response(0, BIN_HEADER_SIZE, header);
-		crc_expected = (header[7] << 24) | (header[6] << 16) | (header[5] << 8) | header[4];
-	}
 
 	if (file_size)
 	{
 		// Todo: make sure num half pages is an even integer, otherwise will program garbage at end
-		uint16_t num_half_pages = ((file_size - 1) / (FLASH_PAGE_SIZE / 2)) + 1;
+		uint16_t num_half_pages = ((file_size - 1) / (FLASH_HALF_PAGE_SIZE)) + 1;
 
 		// Initialize CRC Peripheral
 		rcc_periph_clock_enable(RCC_CRC);
@@ -871,30 +913,38 @@ static bool check_crc(void)
 		// Get data and calc crc
 		for (uint16_t n = 0; n < num_half_pages; n++)
 		{
+			timers_pet_dogs();
+
 			// Half page buffer
 			// Using union so that data can be read as bytes and programmed as u32
 			// this automatically deals with endianness
 			union
 			{
-				uint8_t buf8[FLASH_PAGE_SIZE / 2];
-				uint32_t buf32[(FLASH_PAGE_SIZE / 2) / 4];
+				uint8_t buf8[FLASH_HALF_PAGE_SIZE];
+				uint32_t buf32[(FLASH_HALF_PAGE_SIZE) / 4];
 			} half_page;
 
 			// HTTPREAD command & get number of bytes read
 			// 		*number of bytes returned may be less than requested depending how many are left in file
 			// 		SIM800 signifies how many bytes are returned
-			uint8_t num_bytes = sim_http_read_response(BIN_HEADER_SIZE + (n * FLASH_PAGE_SIZE / 2), (FLASH_PAGE_SIZE / 2), half_page.buf8);
+			if (sim_http_read_response(BIN_HEADER_SIZE + (n * FLASH_HALF_PAGE_SIZE), FLASH_HALF_PAGE_SIZE, half_page.buf8) != 64)
+			{
+				log_printf("!CRC Sim resp not 64 bytes\n");
+				break;
+			}
 
 			// Add half page to crc
-			crc = ~crc_calculate_block(half_page.buf32, num_bytes / 4);
+			crc = ~crc_calculate_block(half_page.buf32, 16);
 		}
 
 		// Deinit
 		crc_reset();
 		rcc_periph_clock_disable(RCC_CRC);
+
+		ret = (crc == expected) ? true : false;
 	}
 
-	ret = (crc == crc_expected) ? true : false;
+	serial_printf(".CRC %8x %8x\n", crc, expected);
 
 	return ret;
 }
@@ -902,67 +952,67 @@ static bool check_crc(void)
 static bool program_bin(void)
 {
 	bool ret = false;
-	uint32_t file_size;
+	uint32_t file_size = sim800.http.response_size - BIN_HEADER_SIZE;
 
-	if (sim800.http.response_size <= BIN_HEADER_SIZE)
-	{
-		file_size = 0;
-	}
-	else
-	{
-		file_size = sim800.http.response_size - BIN_HEADER_SIZE;
-	}
-
-	BOOT_LOG("Program %u bytes\n", file_size);
+	serial_printf("Program %u bytes\n", file_size);
 
 	if (file_size)
 	{
-		// Todo: make sure num half pages is an even integer, otherwise will program garbage at end
-		uint16_t num_half_pages = ((file_size - 1) / (FLASH_PAGE_SIZE / 2)) + 1;
+		// make sure num half pages is an even integer, otherwise will program garbage at end
+		uint16_t num_half_pages = ((file_size - 1) / (FLASH_HALF_PAGE_SIZE)) + 1;
 
-		serial_printf("Num half pages %i\n", num_half_pages);
+		serial_printf(".Num half pages %i\n", num_half_pages);
+
+		// Todo: flash write timeout
+		serial_printf(".Erase\n");
+		for (uint16_t i = 0; i < ((num_half_pages + 1) / 2); i++)
+		{
+			timers_pet_dogs();
+			mem_flash_erase_page(FLASH_APP_START + (i * FLASH_PAGE_SIZE));
+		}
+
+		serial_printf(".done\n");
 
 		// Get data and program
 		for (uint16_t n = 0; n < num_half_pages; n++)
 		{
-			serial_printf("------------------------------\n");
-			serial_printf("-----------Half Page %i-------\n", n);
-			serial_printf("------------------------------\n");
+			timers_pet_dogs();
 
 			// Half page buffer
 			// Using union so that data can be read as bytes and programmed as u32
 			// this automatically deals with endianness
 			union
 			{
-				uint8_t buf8[FLASH_PAGE_SIZE / 2];
-				uint32_t buf32[(FLASH_PAGE_SIZE / 2) / 4];
+				uint8_t buf8[FLASH_HALF_PAGE_SIZE];
+				uint32_t buf32[(FLASH_HALF_PAGE_SIZE) / 4];
 			} half_page;
 
 			// HTTPREAD command & get number of bytes read
 			// 		*number of bytes returned may be less than requested depending how many are left in file
 			// 		SIM800 signifies how many bytes are returned
-			uint8_t num_bytes = sim_http_read_response(BIN_HEADER_SIZE + (n * FLASH_PAGE_SIZE / 2), (FLASH_PAGE_SIZE / 2), half_page.buf8);
+			uint8_t num_bytes = sim_http_read_response(BIN_HEADER_SIZE + (n * FLASH_HALF_PAGE_SIZE), (FLASH_HALF_PAGE_SIZE), half_page.buf8);
 
-			// Print out for debugging
-			serial_printf("Got half page %8x\n", (n * FLASH_PAGE_SIZE / 2));
+			serial_printf(".start %8x\n", FLASH_APP_ADDRESS + (n * FLASH_HALF_PAGE_SIZE));
+			timers_delay_milliseconds(10);
 
 			// Program half page
-			if (mem_flash_write_half_page(FLASH_APP_ADDRESS + (n * FLASH_PAGE_SIZE / 2), half_page.buf32))
+			if (mem_flash_write_half_page(FLASH_APP_ADDRESS + (n * FLASH_HALF_PAGE_SIZE), half_page.buf32))
 			{
-				serial_printf("Programming success\n");
+				serial_printf(".success\n");
 			}
 			else
 			{
-				serial_printf("Programming Fail\n");
+				serial_printf(".fail\n");
 				ret = false;
 				break;
 			}
 		}
-		serial_printf("Programming Done\n\n");
+		serial_printf(".done\n");
 		ret = true;
 	}
 	return ret;
 }
+
 
 static void sim_buf_clear(void)
 {
@@ -990,3 +1040,4 @@ static void _putchar_buffer(char character)
 
 /** @} */
 /** @} */
+ 

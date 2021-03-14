@@ -30,7 +30,7 @@ def generate_eeprom(dev_id, device_type, vtor, aes_key, pwd, log_size):
     if dev_id == 0:
         filename = device_type + '/bin/' + device_type + '_eeprom.bin'
     else:
-        filename = device_type + '/bin/store/' + device_type + '_eeprom_ ' + '{0:08}'.format(dev_id) + '.bin'
+        filename = device_type + '/bin/store/' + device_type + '_eeprom_' + '{0:08}'.format(dev_id) + '.bin'
 
     # Open blank bin file
     with open(filename, "wb+") as eeprom:
@@ -59,6 +59,7 @@ def generate_eeprom(dev_id, device_type, vtor, aes_key, pwd, log_size):
 # Append meta info to hub app binary
 def generate_app(device_type, bin_type):
 
+    # Check arguments
     device_types = {'hub', 'sensor'}
     bin_types = {'app', 'bootloader', 'eeprom'}
 
@@ -79,9 +80,9 @@ def generate_app(device_type, bin_type):
     elif bin_type == 'app':
         dev_filename = device_type
 
+    # Get version number from corresponding header e.g. hub.h, and open new bin file e.g. hub_100.bin
     version = 0
     version_filename = device_type + '/include/' + device_type + '/' + dev_filename + '.h'
-    # Check if .c file containing VERSION define exists
     if not path.isfile(version_filename):
         print('Error: Version file ' + version_filename + ' does not exist')
         exit()
@@ -100,13 +101,13 @@ def generate_app(device_type, bin_type):
                 print('Error: Version could not be found in ' + version_filename)
                 exit()
 
+    # Check original clean bin file (no header info, output of make)
     original_filename = device_type + '/bin/' + dev_filename + '.bin'
-
-    # Check if compiled binary exists
     if not path.isfile(original_filename):
         print('Error: ' + original_filename + ' does not exist')
         exit()
 
+    # Generate app binary with header info
     with open(original_filename, "rb") as original_bin:
 
         # Calculate CRC32
@@ -129,10 +130,16 @@ def generate_app(device_type, bin_type):
             new_bin.seek(meta.size)
             original_bin.seek(0)
             new_bin.write(original_bin.read())
+            
+            # make integer page number
+            len = new_bin.tell()
+            while len%64 != 0:
+                new_bin.write(b'\x00')
+                len+=1
 
     # Generate eeprom bins
-    for i in range (10):
-        generate_eeprom(dev_id=i,
+    for i in range (1, 10):
+        generate_eeprom(dev_id=20000000 + i,
                         device_type = device_type,
                         vtor='0x08008000', 
                         aes_key='0102030405060708090A0B0C0D0E0FFF', 

@@ -11,7 +11,7 @@
 #define IRQ_PRIORITY_RTC 0xF0
 
 // Sensor Struct
-#define MAX_SENSORS 20
+#define MAX_SENSORS 16
 
 typedef struct
 {
