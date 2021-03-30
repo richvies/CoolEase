@@ -22,14 +22,13 @@ extern enum rcc_osc sys_clk;
 #define FLASH_NUM_PAGES     	512U
 #define FLASH_HALF_PAGE_SIZE	(FLASH_PAGE_SIZE / 2)
 
-#define FLASH_START         	0x08000000U           
-#define FLASH_BOOT_START        FLASH_START           
-#define FLASH_APP_START     	0x08008000U  
+#define FLASH_START         	0x08000000U                    
+#define FLASH_APP_ADDRESS     	0x08008000U  
 #define FLASH_APP_END       	0x08010000U       
 #define FLASH_END           	0x08010000U   
 
-#define FLASH_BOOT_ADDRESS    0x08000000U
-#define FLASH_APP_ADDRESS           0x08008000U
+#define FLASH_BOOT_ADDRESS    	0x08000000U
+#define FLASH_APP_ADDRESS       0x08008000U
 
 /*////////////////////////////////////////////////////////////////////////////*/
 // EEPROM Map

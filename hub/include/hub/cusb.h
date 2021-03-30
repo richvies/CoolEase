@@ -69,6 +69,8 @@ void cusb_end(void);
  * @ref hid_set_config()
  */
 bool cusb_connected(void);
+bool cusb_reset(void);
+bool cusb_plugged_in(void);
 
 void cusb_poll(void);
 

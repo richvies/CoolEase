@@ -61,7 +61,7 @@
 enum dev_interfaces
 {
     INTERFACE_HID = 0,
-    
+
     // The next two must be consecutive since they are used in an Interface
     // Assication below. If the order is changed then the IAD must be changed as
     // well
@@ -313,17 +313,31 @@ static usbd_device *usbd_dev;
 
 typedef enum
 {
-    OFF = 0,
-    INIT,
+    USB_OFF = 0,
+    USB_INIT,
     USB_RESET,
     USB_CONNECTED,
     USB_GET_LOG,
-    PROGRAM_START,
-    PROGRAM,
-    PRINT
+    USB_PROG_PAGE,
+    USB_PRINT,
+    USB_TEST_CRC,
 } usb_state_t;
 
-static usb_state_t usb_state = OFF;
+typedef enum
+{
+    CMD_RESET = 0xFF,
+    CMD_GET_LOG = 1,
+    CMD_PROG_START,
+    CMD_PROG_PAGE,
+    CMD_PROG_END,
+    CMD_PRINT_START,
+    CMD_PRINT_END,
+    CMD_TEST_CRC,
+    CMD_END,
+} commands_t;
+
+static usb_state_t usb_state = USB_OFF;
+static bool usb_plugged_in = false;
 
 /** @brief Buffer to be used for control requests. */
 static uint8_t usbd_control_buffer[128];
@@ -414,7 +428,7 @@ static void hid_in_report_callback(usbd_device *dev, uint8_t ea);
 
 void cusb_init(void)
 {
-    if (usb_state == OFF)
+    if (usb_state == USB_OFF)
     {
         // Initialize clocks
         cusb_clock_init();
@@ -433,18 +447,20 @@ void cusb_init(void)
         // Register Configuration Callback for HID
         usbd_register_set_config_callback(usbd_dev, hid_set_config);
 
-        usb_state = INIT;
+        usb_state = USB_INIT;
 
         // Enable NVIC interrupt (through EXTI18 which is enabled on reset)
         nvic_enable_irq(NVIC_USB_IRQ);
         nvic_set_priority(NVIC_USB_IRQ, IRQ_PRIORITY_USB);
+
+        usb_plugged_in = false;
     }
 }
 
 void cusb_end(void)
 {
     nvic_disable_irq(NVIC_USB_IRQ);
-    
+
     rcc_periph_reset_pulse(RST_USB);
 
     rcc_osc_off(RCC_HSI48);
@@ -452,12 +468,22 @@ void cusb_end(void)
     rcc_periph_clock_disable(RCC_USB);
     rcc_periph_clock_disable(RCC_CRS);
 
-    usb_state = OFF;
+    usb_state = USB_OFF;
 }
 
 bool cusb_connected(void)
 {
-    return ((usb_state == USB_CONNECTED) ? true : false);
+    return ((usb_state >= USB_CONNECTED) ? true : false);
+}
+
+bool cusb_reset(void)
+{
+    return ((usb_state == USB_RESET) ? true : false);
+}
+
+bool cusb_plugged_in(void)
+{
+    return usb_plugged_in;
 }
 
 void cusb_poll(void)
@@ -467,12 +493,11 @@ void cusb_poll(void)
 
 void cusb_send(char character)
 {
-    if (usb_state == PRINT)
+    if (usb_state == USB_PRINT)
     {
         usbd_ep_write_packet(usbd_dev, ENDPOINT_HID_IN, &character, 1);
     }
 }
-
 
 /** @} */
 
@@ -516,6 +541,9 @@ static void cusb_clock_init(void)
 static void cusb_reset_callback(void)
 {
     usb_state = USB_RESET;
+
+    usb_plugged_in = true;
+
     cusb_hook_reset();
 }
 
@@ -532,8 +560,6 @@ static void hid_set_config(usbd_device *dev, uint16_t wValue)
         USB_REQ_TYPE_STANDARD | USB_REQ_TYPE_INTERFACE,
         USB_REQ_TYPE_TYPE | USB_REQ_TYPE_RECIPIENT,
         hid_control_request);
-
-    usb_state = USB_CONNECTED;
 }
 
 static enum usbd_request_return_codes hid_control_request(usbd_device *dev, struct usb_setup_data *req, uint8_t **buf, uint16_t *len,
@@ -556,7 +582,7 @@ static enum usbd_request_return_codes hid_control_request(usbd_device *dev, stru
 
 static void hid_in_report_callback(usbd_device *dev, uint8_t ea)
 {
-    // serial_printf("H");
+    // serial_printf("i\n");
 
     if (usb_state == USB_GET_LOG)
     {
@@ -573,7 +599,7 @@ static void hid_in_report_callback(usbd_device *dev, uint8_t ea)
 
         if (bytes_sent >= log_size())
         {
-            usb_state = USB_RESET;
+            usb_state = USB_CONNECTED;
             bytes_sent = 0;
         }
     }
@@ -581,86 +607,23 @@ static void hid_in_report_callback(usbd_device *dev, uint8_t ea)
 
 static void hid_out_report_callback(usbd_device *dev, uint8_t ea)
 {
-    // serial_printf("G");
+    // serial_printf("o\n");
 
     // Bit field indicating which pages have been succesfully written
     static uint32_t page_written[16];
-
-    static uint32_t num_pages;
     static uint32_t page_num;
     static uint32_t crc_lower;
     static uint32_t crc_upper;
     static bool lower;
     static bool prog_error;
 
-    // Have to write a packet back here to begin IN transactions
-    uint8_t buf[HID_REPORT_SIZE_BYTES] = "Out Report Callback\n";
-    usbd_ep_write_packet(dev, ea, buf, HID_REPORT_SIZE_BYTES);
+    static uint32_t crc_test_len;
 
     usbd_ep_read_packet(dev, ea, hid_out_report.buf, HID_REPORT_SIZE_BYTES);
-    uint32_t command = hid_out_report.command;
 
-    // serial_printf("OR %i %s\n", command, (char *)&hid_out_report.buf[1]);
-    // serial_printf("Out Report command: %i data: %s\n", command, &hid_report_buf[4]);
-
-    // Get Log
-    if (command == 1)
-    {
-        usb_state = USB_GET_LOG;
-        log_read_reset();
-    }
-    // Setup for programming
-    else if (command == 2)
-    {
-        serial_printf("OR %i %s\n", command, (char *)&hid_out_report.buf[1]);
-        usb_state = PROGRAM_START;
-        page_num = 0;
-        for (uint8_t i = 0; i < 16; i++)
-        {
-            // Default all pages to fail, any lost in transit automatically counted
-            page_written[i] = 0;
-        }
-    }
-    // Two half pages will be sent next, lower half page first
-    else if (command == 3)
-    {
-        usb_state = PROGRAM;
-        crc_lower = hid_out_report.crc_lower;
-        crc_upper = hid_out_report.crc_upper;
-        lower = true;
-        prog_error = false;
-
-        page_num = hid_out_report.page_num;
-
-        // serial_printf("OR c%i n%i l%8x h%8x \n", command, page_num, hid_out_report.crc_lower, hid_out_report.crc_upper);
-
-        // Erase page first
-        if (!mem_flash_erase_page(FLASH_APP_ADDRESS + (page_num * FLASH_PAGE_SIZE)))
-        {
-            log_error(ERR_USB_PAGE_ERASE_FAIL);
-            prog_error = true;
-        }
-    }
-    // Programming end, send back succesful pages
-    // Fails will be resent
-    else if (command == 4)
-    {
-        usbd_ep_write_packet(dev, ea, page_written, HID_REPORT_SIZE_BYTES);
-    }
-    // Jump to application
-    else if (command == 5)
-    {
-        boot_jump_to_application(FLASH_APP_ADDRESS);
-    }
     // Report is a half page of data
-    else if (usb_state == PROGRAM)
+    if (usb_state == USB_PROG_PAGE)
     {
-        // serial_printf("OR %c ", lower ? 'l' : 'u');
-        // for(uint16_t i = 0; i < 16; i++)
-        // {
-        //     serial_printf("%8x ", hid_out_report.buf[i]);
-        // }
-
         if (!prog_error)
         {
             if (boot_program_half_page(lower, lower ? crc_lower : crc_upper, page_num, hid_out_report.buf))
@@ -668,8 +631,141 @@ static void hid_out_report_callback(usbd_device *dev, uint8_t ea)
                 page_written[page_num / 32] |= (1 << (page_num % 32));
             }
         }
+
         lower = !lower;
+
+        // 2 half pages done
+        if (lower)
+        {
+            usb_state = USB_CONNECTED;
+        }
     }
+    else if (usb_state == USB_TEST_CRC)
+    {
+        serial_printf("page %u\n", crc_test_len);
+        if (crc_test_len)
+        {
+            crc_lower = ~crc_calculate_block(hid_out_report.buf, 16);
+            --crc_test_len;
+        }
+
+        if (crc_test_len == 0)
+        {
+            usb_state = USB_CONNECTED;
+            serial_printf("Test End %8x\n", crc_lower);
+
+            // Deinit
+            crc_reset();
+            rcc_periph_clock_disable(RCC_CRC);
+        }
+    }
+    else
+    {
+        uint32_t command = hid_out_report.command;
+
+        switch (command)
+        {
+        // Reset
+        case CMD_RESET:
+            usb_state = USB_CONNECTED;
+
+            serial_printf("Reset\n"); 
+            break;
+
+        // Get Log
+        case CMD_GET_LOG:
+            usb_state = USB_GET_LOG;
+            log_read_reset();
+
+            // Have to write a packet back here to begin IN transfer
+            uint8_t buf[HID_REPORT_SIZE_BYTES] = "Start IN\n";
+            usbd_ep_write_packet(dev, ea, buf, HID_REPORT_SIZE_BYTES);
+
+            serial_printf("Get Log\n"); 
+            break;
+
+        // Setup for programming
+        case CMD_PROG_START:
+            page_num = 0;
+            for (uint8_t i = 0; i < 16; i++)
+            {
+                // Default all pages to fail, any lost in transit automatically counted
+                page_written[i] = 0;
+            }
+
+            serial_printf("Prog Start\n");
+            break;
+
+        // Two half pages will be sent next, lower half page first
+        case CMD_PROG_PAGE:
+            usb_state = USB_PROG_PAGE;
+            crc_lower = hid_out_report.crc_lower;
+            crc_upper = hid_out_report.crc_upper;
+            lower = true;
+            prog_error = false;
+
+            page_num = hid_out_report.page_num;
+
+            // Erase page first
+            if (!mem_flash_erase_page(FLASH_APP_ADDRESS + (page_num * FLASH_PAGE_SIZE)))
+            {
+                log_error(ERR_USB_PAGE_ERASE_FAIL);
+                prog_error = true;
+            }
+
+            serial_printf(".page %u\n", page_num);
+            break;
+
+        // Programming end, send back succesful pages
+        // Fails will be resent
+        case CMD_PROG_END:
+            usb_state = USB_CONNECTED;
+
+            usbd_ep_write_packet(dev, ea, page_written, HID_REPORT_SIZE_BYTES);
+
+            serial_printf("Prog End\n");
+            break;
+        
+        case CMD_PRINT_START:
+            usb_state = USB_PRINT;
+
+            serial_printf("Print Start\n");
+            break;
+
+        case CMD_PRINT_END:
+            usb_state = USB_CONNECTED;
+
+            serial_printf("Print End\n");
+            break;
+
+        case CMD_TEST_CRC:
+            serial_printf("Test CRC\n%u half pages\ncrc %8x\n",hid_out_report.page_num, hid_out_report.crc_lower);
+
+            usb_state = USB_TEST_CRC;
+
+            crc_test_len = hid_out_report.page_num;
+
+            // Initialize CRC Peripheral
+		    rcc_periph_clock_enable(RCC_CRC);
+		    crc_reset();
+		    crc_set_reverse_input(CRC_CR_REV_IN_BYTE);
+		    crc_reverse_output_enable();
+		    CRC_INIT = 0xFFFFFFFF;
+
+            break;
+
+        case CMD_END:
+            cusb_end();
+            
+            serial_printf("End\n");
+            break;
+
+        default:
+            break;
+        }
+    }
+
+    uint32_t command = hid_out_report.command;
 }
 
 /*////////////////////////////////////////////////////////////////////////////*/

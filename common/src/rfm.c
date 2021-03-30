@@ -750,7 +750,7 @@ void exti4_15_isr(void)
   {
     if (((packets_head + 1) % PACKETS_BUF_SIZE) == packets_tail)
     {
-      log_printf("RFM OF\n");
+      // set flag
     }
     else
     {

@@ -41,8 +41,8 @@
 												cmd, val)
 
 #undef PRINT_CMD
-// #define PRINT_RESPONSE
-// #define FORWARD_TO_SPF
+#define PRINT_RESPONSE
+#define FORWARD_TO_SPF
 
 #define PRINT_ERROR(cmd, err)   \
 	serial_printf("SIM ERR: "); \
@@ -757,7 +757,7 @@ sim_state_t sim_sleep(void)
 	case 0:
 		res = SIM_SUCCESS;
 
-		log_printf("SIM: End\n");
+		log_printf("SIM: Sleep\n");
 
 		break;
 	case 1:
@@ -1747,6 +1747,7 @@ bool sim_send_sms(const char *phone_number, const char *msg_str)
 
 static void reset(void)
 {
+	serial_printf("SIM: Reset\n");
 	mcu_setup();
 
 	// Reset SIM800

@@ -119,6 +119,7 @@ void test_batt_interrupt(void);
 
 void test_encryption(uint8_t *key);
 void test_analog_watchdog(void);
+void test_spf_tx(void);
 
 
 /** @} */

@@ -175,51 +175,99 @@ bool mem_eeprom_write_word_ptr(uint32_t *ptr, uint32_t data)
 	return mem_eeprom_write_word((uint32_t)ptr, data);
 }
 
+
 bool mem_flash_erase_page(uint32_t address)
 {
-    bool result = false;
+    bool ret = false;
+    uint8_t num_tries;
 
     // Check page aligned
     if (address & 0x7F)
         return false; 
 
-    flash_unlock();
-    result = mem_flash_do_page_erase(address);
-    flash_lock();
-    return result;
+    num_tries = 0;
+    while ((false == ret) && (num_tries < 3))
+    {
+        flash_unlock();
+        ret = mem_flash_do_page_erase(address);
+        flash_lock();
+
+        num_tries++;
+    }
+
+    if (false == ret)
+    {
+        log_printf("MEM: ERR flash erase fail\n");
+    }
+
+    return ret;
 }
 
-bool mem_flash_write_half_page(uint32_t address, uint32_t data[FLASH_PAGE_SIZE/2])
+bool mem_flash_write_half_page(uint32_t address, uint32_t *data)
 {
-    bool result = false;
+    bool ret = false;
+    uint8_t num_tries;
 
     if ((uint32_t)address & 0x3F)
         return false; //not half-page aligned
 
-    flash_unlock();
-    result = mem_flash_do_write_half_page(address, data);
-    flash_lock();
-    return result;
+    num_tries = 0;
+    while ((false == ret) && (num_tries < 3))
+    {
+        flash_unlock();
+        ret = mem_flash_do_write_half_page(address, data);
+        flash_lock();
+
+        num_tries++;
+    }
+
+    if (false == ret)
+    {
+        log_printf("MEM: ERR flash write hp fail\n");
+    }
+
+    return ret;
 }
 
 bool mem_flash_write_word(uint32_t address, uint32_t data)
 {
+    bool ret = false;
+    uint32_t timer;
+
     flash_unlock();
 
     MMIO32(address) = data;
-    while ((FLASH_SR & FLASH_SR_BSY) != 0) {}
+
+    //wait for completion
+    timer = timers_millis();
+    while (1)
+    {
+        if (true != (FLASH_SR & FLASH_SR_BSY))
+        {
+            ret = true;
+            break;
+        }
+        else if (timers_millis() - timer < 100)
+        {
+            break;
+        }
+
+    }
+    
     flash_lock();
 
-    if ((FLASH_SR & FLASH_SR_EOP) != 0)
+    if ((ret) && (FLASH_SR & FLASH_SR_EOP))
     {
         FLASH_SR |= FLASH_SR_EOP;
-        return true;
+        ret = true;
     }
     else
     {
-        return false;
+        ret = false;
+        log_printf("MEM: ERR flash write hp fail\n");
     }
-    return true; 
+
+    return ret; 
 }
 
 
@@ -415,23 +463,45 @@ uint32_t mem_read_bkp_reg(uint8_t reg)
  */
 static _RAM bool mem_flash_do_page_erase(uint32_t address)
 {
+    bool ret = false;
+    uint32_t counter = rcc_ahb_frequency / 10;
+
     //erase operation
     FLASH_PECR |= FLASH_PECR_ERASE | FLASH_PECR_PROG;
     MMIO32(address) = (uint32_t)0;
-    //wait for completion
-    while (FLASH_SR & FLASH_SR_BSY) { }
-    if (FLASH_SR & FLASH_SR_EOP)
+
+    // wait for completion
+    while (1)
+    {
+        if (false == (FLASH_SR & FLASH_SR_BSY))
+        {
+            ret = true;
+            break;
+        }
+        else if (counter == 0)
+        {
+            break;
+        }
+        
+        --counter;
+    }
+
+    if ((ret) && (FLASH_SR & FLASH_SR_EOP))
     {
         //completed without incident
         FLASH_SR = FLASH_SR_EOP;
-        return true;
+        ret = true;
     }
     else
     {
         //there was an error
         FLASH_SR = FLASH_SR_FWWERR | FLASH_SR_PGAERR | FLASH_SR_WRPERR;
-        return false;
+        ret = false;
     }
+
+    FLASH_PECR &= ~(FLASH_PECR_ERASE | FLASH_PECR_PROG);
+
+    return ret;
 }
 
 /**
@@ -443,7 +513,9 @@ static _RAM bool mem_flash_do_page_erase(uint32_t address)
  */
 static _RAM bool mem_flash_do_write_half_page(uint32_t address, uint32_t data[FLASH_PAGE_SIZE/2])
 {
+    bool ret = false;
     uint8_t i;
+    uint32_t counter = rcc_ahb_frequency / 10;
 
     //half-page program operation
     FLASH_PECR |= FLASH_PECR_PROG | FLASH_PECR_FPRG;
@@ -451,21 +523,38 @@ static _RAM bool mem_flash_do_write_half_page(uint32_t address, uint32_t data[FL
     {
         MMIO32(address) = data[i]; //the actual address written is unimportant as these words will be queued
     }
+
     //wait for completion
-    while (FLASH_SR & FLASH_SR_BSY) { }
-    if (FLASH_SR & FLASH_SR_EOP)
+    while (1)
+    {
+        if (true != (FLASH_SR & FLASH_SR_BSY))
+        {
+            ret = true;
+            break;
+        }
+        else if (counter == 0)
+        {
+            break;
+        }
+        --counter;
+    }
+    
+    if ((ret) && (FLASH_SR & FLASH_SR_EOP))
     {
         //completed without incident
         FLASH_SR = FLASH_SR_EOP;
-        return true;
+        ret = true;
     }
     else
     {
         //there was an error
         FLASH_SR = FLASH_SR_FWWERR | FLASH_SR_NOTZEROERR | FLASH_SR_PGAERR | FLASH_SR_WRPERR;
-        return false;
-
+        ret = false;
     }
+
+    FLASH_PECR &= ~(FLASH_PECR_PROG | FLASH_PECR_FPRG);
+
+    return ret;
 }
 
 

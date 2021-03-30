@@ -67,7 +67,7 @@ bool mem_eeprom_write_word_ptr(uint32_t *ptr, uint32_t data);
 
 bool mem_flash_erase_page(uint32_t address);
 bool mem_flash_write_word(uint32_t address, uint32_t data);
-bool mem_flash_write_half_page(uint32_t address, uint32_t data[FLASH_PAGE_SIZE/2]);
+bool mem_flash_write_half_page(uint32_t address, uint32_t *data);
 
 void mem_save_reading(int16_t reading);
 

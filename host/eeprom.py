@@ -3,6 +3,7 @@
 # 	uint32_t vtor;
 # 	uint8_t	 aes_key[16];
 # 	char 	 pwd[33];
+from array import array
 import struct
 import os.path as path
 import zlib
@@ -108,12 +109,36 @@ def generate_app(device_type, bin_type):
         exit()
 
     # Generate app binary with header info
-    with open(original_filename, "rb") as original_bin:
+    with open(original_filename, "rb+") as original_bin:
 
-        # Calculate CRC32
+        # make integer page number
         original_bin.seek(0)
-        crc32 = zlib.crc32(original_bin.read())
+        original_bin.read()
+        len = original_bin.tell()
+        while len%64 != 0:
+            original_bin.write(b'\x00')
+            len+=1
+        
+        original_bin.seek(0)
+        print("Original\n" + str(original_bin.read(64)) + "\n\n")
 
+        # calculate crc32
+        num_u32 = int(len / 4)
+        u32_list = bytearray()
+
+        # bytes to int little endian for crc
+        original_bin.seek(0)
+        for _ in range (num_u32):
+            u32 = int.from_bytes(original_bin.read(4), byteorder='little')
+            u32_list.extend(u32.to_bytes(4, byteorder='big'))
+
+        crc32 = zlib.crc32(u32_list)
+
+        print("LE")
+        print(u32_list[0:16])
+        print(str(hex(crc32)))
+
+        # Append meta
         meta = bin_section('meta', 64, struct.pack('<II', version, crc32))
 
         new_filename = device_type + '/bin/store/' + dev_filename + '_{0:03}'.format(version) + '.bin'
@@ -124,6 +149,7 @@ def generate_app(device_type, bin_type):
             new_bin.seek(0)
             for _ in range(meta.size):
                 new_bin.write(b'\x00')
+
             new_bin.seek(0)
             new_bin.write(meta.data)
             
@@ -131,15 +157,15 @@ def generate_app(device_type, bin_type):
             original_bin.seek(0)
             new_bin.write(original_bin.read())
             
-            # make integer page number
-            len = new_bin.tell()
-            while len%64 != 0:
-                new_bin.write(b'\x00')
-                len+=1
-
     # Generate eeprom bins
+    dev_id_start = 0
+    if device_type == 'hub':
+        dev_id_start = 20000000
+    elif device_type =='sensor':
+        dev_id_start = 30000000
+
     for i in range (1, 10):
-        generate_eeprom(dev_id=20000000 + i,
+        generate_eeprom(dev_id=dev_id_start + i,
                         device_type = device_type,
                         vtor='0x08008000', 
                         aes_key='0102030405060708090A0B0C0D0E0FFF', 

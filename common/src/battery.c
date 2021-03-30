@@ -409,7 +409,8 @@ uint8_t batt_get_voltage(void)
 
 bool batt_is_plugged_in(void)
 {
-    return (state == BATT_PLUGGED_IN);
+    // return (state == BATT_PLUGGED_IN);
+    return true;
 }
 
 /** @} */

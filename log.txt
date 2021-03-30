@@ -1,64 +1,100 @@
-ü0ected
-NET: Upload
-SIM: HTTP Post Str
-SIM: HTTP Post Init
-SIM: HTTP Init
+üG*******
+Start
+**********
+BOOT: IWDG 0
+BOOT: Jump 0X08008000
+
+----------
+
+AES Init
+Batt Init
+Hub Start
+RFM Init
+RFM Reset
+SIM: Init
+NET: FIRST UPLOAD
+SIM: AB
+**********
+Start
+**********
+BOOT: IWDG 0
+BOOT: Jump 0X08008000
+
+----------
+
+AES Init
+Batt Init
+Hub Start
+RFM Init
+RFM Reset
+SIM: Init
+NET: FIRST UPLOAD
+SIM: AB
+**********
+Start
+**********
+BOOT: IWDG 0
+BOOT: Jump 0X08008000
+
+----------
+
+AES Init
+Batt Init
+Hub Start
+RFM Init
+RFM Reset
+SIM: Init
+NET: FIRST UPLOAD
+SIM: AB
+SIM: AB
+SIM: Register
+NET: Registered
 NET: Connected
 NET: Upload
 SIM: HTTP Post Str
 SIM: HTTP Post Init
 SIM: HTTP Init
+RFM: #RX 1
+.Bad ID 30000003
+NET: Parse Response
 NET: Connected
-NET: Upload
-SIM: HTTP Post Str
-SIM: HTTP Post Init
-SIM: HTTP Init
-NET: Connected
-NET: Upload
-SIM: HTTP Post Str
-SIM: HTTP Post Init
-SIM: HTTP Init
-NET: Connected
-NET: Upload
-SIM: HTTP Post Str
-SIM: HTTP Post Init
-SIM: HTTP Init
-NET: Connected
-NET: Upload
-SIM: HTTP Post Str
-SIM: HTTP Post Init
-SIM: HTTP Init
-NET: Connected
-NET: Upload
-SIM: HTTP Post Str
-SIM: HTTP Post Init
-SIM: HTTP Init
-NET: Connected
-NET: Upload
-SIM: HTTP Post Str
-SIM: HTTP Post Init
-SIM: HTTP Init
-NET: Connected
-NET: Upload
-SIM: HTTP Post Str
-SIM: HTTP Post Init
-SIM: HTTP Init
-NET: Connected
-NET: Upload
-SIM: HTTP Post Str
-SIM: HTTP Post Init
-SIM: HTTP Init
-NET: Connected
-M: HTTP Post Init
-SIM: HTTP Init
-NET: Connected
-NET: Upload
-SIM: HTTP Post Str
-SIM: HTTP Post Init
-SIM: HTTP Init
-NET: Connected
-NET: Upload
-SIM: HTTP Post Str
-SIM: HTTP Post Init
-SIM: HTTP Init
-NET: Conn
+**********
+Start
+**********
+RTC: Not init
+.done
+BOOT: IWDG 0
+BOOT: Jump 0X08008000
+
+----------
+
+AES Init
+Batt Init
+Hub Start
+RFM Init
+RFM Reset
+SIM: Init
+NET: FIRST UPLOAD
+SIM: AB
+000
+
+----------
+
+**********
+Start
+**********
+BOOT: IWDG 0
+BOOT: Jump 0X08008000
+
+----------
+
+**********
+Start
+**********
+BOOT: IWDG 0
+BOOT: Jump 0X08008000
+
+----------
+
+AES Init
+***

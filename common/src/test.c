@@ -84,7 +84,7 @@ void test_mem_write_read(void)
 	uint32_t eeprom_word = 0x12345678;
 
 	uint32_t flash_address = FLASH_END - FLASH_PAGE_SIZE;
-	uint32_t *flash_data = (uint32_t *)malloc(64);
+	uint32_t *flash_data = (uint32_t *)malloc(16);
 	flash_data[0] = 0x12345678;
 	flash_data[1] = 0x24681234;
 
@@ -915,6 +915,20 @@ void test_analog_watchdog(void)
 // Init: 0x00000000 Rev In Half Out Enable = 0X1176DE3A != 0XEE8921C5
 // Init: 0xFFFFFFFF Rev In Word Out Disable = 0XF93BD82B != 0X06C427D4
 // Init: 0x00000000 Rev In Word Out Disable = 0X63E6F8BD != 0X9C190742
+
+void test_spf_tx(void)
+{
+	test_init("test_spf_tx()");
+
+	while (1)
+	{
+		serial_printf("Testing\n");
+		for (uint32_t i = 0; i < 1000000; i++)
+		{
+			serial_printf("hello int %i\n", i);
+		}
+	}
+}
 
 /*////////////////////////////////////////////////////////////////////////////*/
 // Interrupts

@@ -138,6 +138,11 @@ void boot_init(void)
     else
     {
         mem_program_bkp_reg(BKUP_NUM_IWDG_RESET, 0);
+
+        if (boot_info->app_num_iwdg_reset)
+        {
+            mem_eeprom_write_word_ptr(&boot_info->app_num_iwdg_reset, 0);
+        }
     } 
 
     BOOT_LOG("IWDG %i\n", mem_read_bkp_reg(BKUP_NUM_IWDG_RESET));
@@ -222,12 +227,12 @@ bool boot_program_application(uint32_t *data, uint32_t start_address, uint32_t l
      * Size of new program
      * CRC checksum
     */
-    if (start_address < FLASH_APP_START || start_address > FLASH_END)
+    if (start_address < FLASH_APP_ADDRESS || start_address > FLASH_END)
     {
         log_error(ERR_BOOT_PROG_START_ADDRESS_OUT_OF_BOUNDS);
         res = false;
     }
-    else if (len > FLASH_APP_START - FLASH_APP_END)
+    else if (len > FLASH_APP_ADDRESS - FLASH_APP_END)
     {
         log_error(ERR_BOOT_PROG_TOO_BIG);
         res = false;
@@ -348,7 +353,6 @@ static bool verify_half_page_checksum(uint32_t data[FLASH_PAGE_SIZE / 2], uint32
     CRC_INIT = 0xFFFFFFFF;
     
     // serial_printf("\n%8x\n", CRC_INIT);
-
 
     // Calc CRC32
     uint32_t crc = ~crc_calculate_block(data, 16);

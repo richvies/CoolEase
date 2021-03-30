@@ -62,9 +62,11 @@ static void deinit(void);
 static void sensor(void);
 static void test(void);
 static void send_packet(void);
+static uint32_t xorshift32(void);
 
 static bool report_pend = true;
 static uint32_t report_timer = 0;
+static uint32_t report_wait = 0;
 
 /** @} */
 
@@ -250,28 +252,31 @@ static void deinit(void)
 
 static void sensor(void)
 {
-	timers_set_wakeup_time(SENSOR_SLEEP_TIME);
-	timers_enable_wut_interrupt();
-
 	// Initial packet
 	send_packet();
 	report_pend = false;
+	report_wait = 569 + (xorshift32() & 0x3F);
+	serial_printf("%us\n", report_wait);
+
+	timers_set_wakeup_time(SENSOR_SLEEP_TIME);
+	timers_enable_wut_interrupt();
 
 	deinit();
 	set_gpio_for_standby();
 
 	for (;;)
 	{
-		// Enter standby
 		timers_enter_standby();
 
 		// Wakeup
 		if (report_pend)
 		{
 			init();
-			log_printf("Wakeup\n");
 			send_packet();
 			report_pend = false;
+			report_wait = 569 + (xorshift32() & 0x3F);
+			serial_printf("%us\n", report_wait);
+		
 			deinit();
 			set_gpio_for_standby();
 		}
@@ -326,7 +331,7 @@ static void send_packet(void)
 {
 	log_printf("Send Packet\n");
 
-	int8_t rf_power = 0;
+	int8_t rf_power = 20;
 
 	/*////////////////////////*/
 	// Update Battery
@@ -385,6 +390,24 @@ static void send_packet(void)
 	log_printf("Sent\n");
 }
 
+/* The state word must be initialized to non-zero */
+static uint32_t xorshift32(void)
+{
+	static uint32_t state = 0;
+
+	if (state == 0)
+	{
+		state = app_info->dev_id;
+	}
+
+	/* Algorithm "xor" from p. 4 of Marsaglia, "Xorshift RNGs" */
+	state ^= state << 13;
+	state ^= state >> 17;
+	state ^= state << 5;
+
+	return state;
+}
+
 // Override default rtc interrupt handler
 void rtc_isr(void)
 {
@@ -400,7 +423,8 @@ void rtc_isr(void)
 
 	timers_pet_dogs();
 	report_timer += SENSOR_SLEEP_TIME;
-	if (report_timer > 600)
+	 
+	if (report_timer > report_wait)
 	{
 		report_pend = true;
 		report_timer = 0;

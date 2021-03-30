@@ -294,7 +294,7 @@
                 "-b230400",
                 "-E",
                 "-S0x08080000",
-                "-wsensor/bin/sensor_eeprom.bin",
+                "-w${input:ees}",
                 "-v",
                 "-R",
                 "-i-dtr,rts,-rts:rts",
@@ -488,7 +488,29 @@
             "options": [
                 "hub/bin/store/hub_eeprom_20000001.bin",
                 "hub/bin/store/hub_eeprom_20000002.bin",
-                "hub/bin/store/hub_eeprom_20000003.bin"
+                "hub/bin/store/hub_eeprom_20000003.bin",
+                "hub/bin/store/hub_eeprom_20000004.bin",
+                "hub/bin/store/hub_eeprom_20000005.bin",
+                "hub/bin/store/hub_eeprom_20000006.bin",
+                "hub/bin/store/hub_eeprom_20000007.bin",
+                "hub/bin/store/hub_eeprom_20000008.bin",
+                "hub/bin/store/hub_eeprom_20000009.bin"
+            ]
+        },
+        {
+            "id": "ees",
+            "type": "pickString",
+            "description": "EEPROM",
+            "options": [
+                "sensor/bin/store/sensor_eeprom_30000001.bin",
+                "sensor/bin/store/sensor_eeprom_30000002.bin",
+                "sensor/bin/store/sensor_eeprom_30000003.bin",
+                "sensor/bin/store/sensor_eeprom_30000004.bin",
+                "sensor/bin/store/sensor_eeprom_30000005.bin",
+                "sensor/bin/store/sensor_eeprom_30000006.bin",
+                "sensor/bin/store/sensor_eeprom_30000007.bin",
+                "sensor/bin/store/sensor_eeprom_30000008.bin",
+                "sensor/bin/store/sensor_eeprom_30000009.bin"
             ]
         }
     ]

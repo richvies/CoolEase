@@ -63,7 +63,6 @@
 #define UPG_FLAG_BACKUP (1 << 10)
 #define UPG_FLAG_IWDG_UPGRADE (1 << 11)
 
-
 typedef enum
 {
 	NET_0 = 0,
@@ -116,14 +115,12 @@ typedef enum upg_type
 	IWDG,
 } upg_type_e;
 
-
 static char sim_buf[1536];
 static uint16_t sim_buf_idx = 0;
 
 static net_state_t net_state = NET_0;
 static net_state_t net_next_state = NET_0;
 static net_state_t net_fallback_state = NET_0;
-
 
 static void init(void);
 static void deinit(void);
@@ -140,7 +137,6 @@ static void sim_buf_clear(void);
 static uint32_t sim_buf_append_printf(const char *format, ...);
 static void _putchar_buffer(char character);
 
-
 /** @} */
 
 /** @addtogroup HUB_BOOTLOADER_API
@@ -151,6 +147,40 @@ int main(void)
 {
 	init();
 	boot_init();
+	test();
+
+	// Wait to see if any usb activity
+	uint32_t start_time = timers_millis();
+	while ((timers_millis() - start_time) < 1000 &&
+		   cusb_plugged_in() == false)
+	{
+	}
+
+	if (cusb_plugged_in())
+	{
+		log_printf("USB Plugged in %s\n");
+
+		while ((timers_millis() - start_time) < 30000)
+		{
+			serial_printf(".%s\n", cusb_connected() ? "connected" : "not connected");
+
+			if (cusb_connected())
+			{
+				break;
+			}
+
+			timers_pet_dogs();
+			timers_delay_milliseconds(3000);
+		}
+
+		while (cusb_connected())
+		{
+			timers_pet_dogs();
+			timers_delay_milliseconds(3000);
+		}
+	}
+
+	cusb_end();
 
 	uint32_t recovery_auto_timer = timers_millis();
 	uint32_t recovery_check_timer = timers_millis();
@@ -240,7 +270,6 @@ int main(void)
 		// If reset occurs during critical part (downloading/ programming .bin), error
 		if ((boot_info->upg_state >= UPGRADE_DOWNLOAD_BIN) && (boot_info->upg_state <= UPGRADE_PROGRAM_BIN))
 		{
-
 			mem_eeprom_write_word_ptr(&boot_info->upg_state, UPGRADE_ERROR);
 		}
 
@@ -591,8 +620,6 @@ int main(void)
 		mem_eeprom_write_word_ptr(&boot_info->upg_done, 0);
 	}
 
-	test();
-
 	BOOT_LOG("Jump %8x\n\n----------\n\n", boot_info->vtor);
 
 	// serial print finish
@@ -625,7 +652,7 @@ static void init(void)
 	clock_setup_hsi_16mhz();
 	timers_lptim_init();
 	log_init();
-	// cusb_init();
+	cusb_init();
 	flash_led(40, 3);
 }
 
@@ -642,6 +669,8 @@ static void deinit(void)
 static void test(void)
 {
 	// download_and_program_bin("https://cooleasetest.000webhostapp.com/hub.php", 3);
+	// test_mem_write_read();
+	// test_spf_tx();
 }
 
 static void prepare_msg(msg_type_e msg_type)
@@ -812,7 +841,6 @@ static void net_fallback(void)
 	net_state = net_fallback_state;
 }
 
-
 static bool check_bin(void)
 {
 	log_printf("Check Bin\n");
@@ -879,9 +907,7 @@ static bool check_bin(void)
 
 static bool check_crc(uint32_t expected)
 {
-	serial_printf(".Check CRC\n");
-
-	return true;
+	serial_printf("Check CRC\n");
 
 	bool ret = false;
 	uint32_t file_size = sim800.http.response_size - BIN_HEADER_SIZE;
@@ -919,8 +945,8 @@ static bool check_crc(uint32_t expected)
 			// 		SIM800 signifies how many bytes are returned
 			if (sim_http_read_response(BIN_HEADER_SIZE + (n * FLASH_HALF_PAGE_SIZE), FLASH_HALF_PAGE_SIZE, half_page.buf8) != 64)
 			{
-				log_printf("!CRC Sim resp not 64 bytes\n");
-				break;
+				log_printf(".sim resp not 64 bytes\n");
+				return false;
 			}
 
 			// Add half page to crc
@@ -934,7 +960,7 @@ static bool check_crc(uint32_t expected)
 		ret = (crc == expected) ? true : false;
 	}
 
-	serial_printf(".CRC %8x %8x\n", crc, expected);
+	serial_printf(".crc %8x %8x\n", crc, expected);
 
 	return ret;
 }
@@ -944,24 +970,29 @@ static bool program_bin(void)
 	bool ret = false;
 	uint32_t file_size = sim800.http.response_size - BIN_HEADER_SIZE;
 
-	serial_printf("Program %u bytes\n", file_size);
+	serial_printf("Prog %u bytes\n", file_size);
 
 	if (file_size)
 	{
 		// make sure num half pages is an even integer, otherwise will program garbage at end
 		uint16_t num_half_pages = ((file_size - 1) / (FLASH_HALF_PAGE_SIZE)) + 1;
 
-		serial_printf(".Num half pages %i\n", num_half_pages);
+		serial_printf(".%i half pages\n", num_half_pages);
 
 		// Todo: flash write timeout
-		serial_printf(".Erase\n");
+		serial_printf(".erase\n");
 		for (uint16_t i = 0; i < ((num_half_pages + 1) / 2); i++)
 		{
 			timers_pet_dogs();
-			mem_flash_erase_page(FLASH_APP_START + (i * FLASH_PAGE_SIZE));
+
+			if (false == (mem_flash_erase_page(FLASH_APP_ADDRESS + (i * FLASH_PAGE_SIZE))))
+			{
+				serial_printf(".fail\n");
+				return false;
+			}
 		}
 
-		serial_printf(".done\n");
+		serial_printf(".prog\n");
 
 		// Get data and program
 		for (uint16_t n = 0; n < num_half_pages; n++)
@@ -982,27 +1013,24 @@ static bool program_bin(void)
 			// 		SIM800 signifies how many bytes are returned
 			uint8_t num_bytes = sim_http_read_response(BIN_HEADER_SIZE + (n * FLASH_HALF_PAGE_SIZE), (FLASH_HALF_PAGE_SIZE), half_page.buf8);
 
-			serial_printf(".start %8x\n", FLASH_APP_ADDRESS + (n * FLASH_HALF_PAGE_SIZE));
+			serial_printf("..%8x\n", FLASH_APP_ADDRESS + (n * FLASH_HALF_PAGE_SIZE));
 			timers_delay_milliseconds(10);
 
 			// Program half page
-			if (mem_flash_write_half_page(FLASH_APP_ADDRESS + (n * FLASH_HALF_PAGE_SIZE), half_page.buf32))
+			if (false == mem_flash_write_half_page(FLASH_APP_ADDRESS + (n * FLASH_HALF_PAGE_SIZE), half_page.buf32))
 			{
-				serial_printf(".success\n");
+				serial_printf("..fail\n");
+				return false;
 			}
-			else
-			{
-				serial_printf(".fail\n");
-				ret = false;
-				break;
-			}
+
 		}
+
 		serial_printf(".done\n");
 		ret = true;
 	}
+
 	return ret;
 }
-
 
 static void sim_buf_clear(void)
 {
@@ -1030,4 +1058,3 @@ static void _putchar_buffer(char character)
 
 /** @} */
 /** @} */
- 

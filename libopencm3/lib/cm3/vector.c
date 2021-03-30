@@ -21,9 +21,7 @@
 #include <libopencm3/cm3/scb.h>
 #include <libopencm3/cm3/vector.h>
 
-#ifdef DEBUG
 #include "common/log.h"
-#endif
 
 /* load optional platform dependent initialization routines */
 #include "../dispatch/vector_chipset.c"
@@ -107,22 +105,20 @@ void __attribute__((weak)) reset_handler(void)
 
 void blocking_handler(void)
 {
-#ifdef DEBUG
-serial_printf("Blocking Handler\n");
-#endif
+l	log_printf("Blocking Handler\n");
+	
 	while (1)
-		;
+	{
+		scb_reset_system();
+	}
 }
 
 void null_handler(void)
 {
-#ifdef DEBUG
-serial_printf("Null Handler\n");
-#endif
-	/* Do nothing. */
+	log_printf("Null Handler\n");
 }
 
-#pragma weak nmi_handler = null_handler
+#pragma weak nmi_handler = blocking_handler
 #pragma weak hard_fault_handler = blocking_handler
 #pragma weak sv_call_handler = null_handler
 #pragma weak pend_sv_handler = null_handler

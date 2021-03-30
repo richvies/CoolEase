@@ -87,9 +87,9 @@ void log_init(void)
 	usart_setup();
 #endif
 
-	// serial_printf("\nLog Init\n");
-	// serial_printf("Log size: %u\n", log_file->size);
-	// serial_printf("Log idx: %u\n----------------\n", write_index);
+	serial_printf("\nLog Init\n");
+	serial_printf("Log size: %u\n", log_file->size);
+	serial_printf("Log idx: %u\n----------------\n", write_index);
 }
 
 void log_end(void)
@@ -222,10 +222,10 @@ static void _putchar_mem(char character)
 	// serial_printf("Logging %8x\n", EEPROM_LOG_BASE+log_file->write_index);
 
 	// Write char
-	mem_eeprom_write_byte((uint32_t) & (log_file->log[write_index]), character);
+	mem_eeprom_write_byte((uint32_t)&(log_file->log[write_index]), character);
 
 	// Update current log index
-	write_index = (write_index + 1) % log_file->size;
+	write_index = (write_index + 1) % 1020;
 }
 
 #ifdef DEBUG
@@ -289,6 +289,7 @@ static void _putchar_spf(char character)
 {
 	bool done = false;
 
+	// send immediatly if tx buffer empty
 	if ((spf_tx_head == spf_tx_tail) && usart_get_flag(SPF_USART, USART_ISR_TXE))
 	{
 		usart_send(SPF_USART, character);
@@ -305,6 +306,8 @@ static void _putchar_spf(char character)
 			if (i == spf_tx_tail)
 			{
 				done = false;
+				cm_enable_interrupts();
+				timers_delay_milliseconds(1);
 			}
 			else
 			{
@@ -317,9 +320,7 @@ static void _putchar_spf(char character)
 
 				done = true;
 			}
-
 			cm_enable_interrupts();
-			__asm__("nop");
 		}
 	}
 }

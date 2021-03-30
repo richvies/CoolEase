@@ -33,7 +33,7 @@
 #include "hub/cusb.h"
 #include "hub/sim.h"
 
-#define VERSION 100
+#define VERSION 101
 #define HUB_CHECK_TIME_S 60
 #define HUB_LOG_TIME_S 3600
 #define NET_SLEEP_TIME_DEFAULT_MS 300000
@@ -62,6 +62,7 @@ typedef enum
 	NET_CONNECTING,
 	NET_CONNECTED,
 	NET_RUNNING,
+	NET_CHECK_CONNECTION,
 	NET_HTTPINIT,
 	NET_HTTPPOST,
 	NET_HTTPREADY,
@@ -266,18 +267,22 @@ void clean_sensors(void)
 
 void add_sensor(uint32_t dev_id)
 {
+	sensor_t *sensor = NULL;
+
 	// if not already in list
 	if (get_sensor_by_id(dev_id) == NULL)
 	{
 		// Add sensor to first available slot
 		for (uint8_t i = 0; i < MAX_SENSORS; i++)
 		{
-			if (sensors[i].active == false)
+			sensor = &sensors[i];
+
+			if (sensor->active == false)
 			{
 				memset(&sensors[i], 0, sizeof(sensors[0]));
 
-				sensors[i].active = true;
-				sensors[i].dev_id = dev_id;
+				sensor->active = true;
+				sensor->dev_id = dev_id;
 
 				++num_sensors;
 
@@ -299,38 +304,42 @@ void rem_sensor(uint32_t dev_id)
 
 void print_sensors(void)
 {
-	serial_printf("Print Sensors\n");
-	serial_printf(".num: %u\n", num_sensors);
-
 	uint8_t count = 0;
+	sensor_t *sensor = NULL;
+
+	serial_printf("HUB: %u sensors\n", num_sensors);
 
 	for (uint8_t i = 0; i < MAX_SENSORS; i++)
 	{
-		if (sensors[i].active == false)
+		sensor = &sensors[i];
+
+		if (sensor->active == false)
 		{
 			continue;
 		}
 		else
 		{
-			serial_printf(".%3u\n", i);
-			serial_printf("..id  : %u\n", sensors[i].dev_id);
-			serial_printf("..temp: %i\n", sensors[i].temperature);
-			serial_printf("..batt: %u\n", sensors[i].battery);
-			serial_printf("..pwr : %i\n", sensors[i].power);
-			serial_printf("..rssi: %i\n", sensors[i].rssi);
+			serial_printf(".%3u", i);
+			serial_printf(" id  : %u\n", sensor->dev_id);
+			serial_printf(".temp: %i", sensor->temperature);
+			serial_printf(" batt: %u", sensor->battery);
+			serial_printf(" pwr : %i", sensor->power);
+			serial_printf(" rssi: %i\n", sensor->rssi);
 			count++;
 		}
 	}
-	serial_printf(".expected: %u count: %u -- %s\n", num_sensors, count, num_sensors == count ? "OK" : "Error");
+	serial_printf(".%s expected: %u count: %u\n", num_sensors == count ? "OK" : "Error", num_sensors, count);
 }
 
 static void update_sensor_list(const char *list_start, const uint32_t len)
 {
-	serial_printf(".update sensor list\n");
-
 	uint32_t i = 0;
 	uint32_t list[MAX_SENSORS];
-	sensor_t *psensor = NULL;
+	sensor_t *sensor = NULL;
+
+	serial_printf("HUB: Update sensors\n");
+	// serial_printf(".list %s\n", list_start);
+
 
 	// IDs ascii to int
 	while ((i < len) && (*(list_start++) == ','))
@@ -339,17 +348,15 @@ static void update_sensor_list(const char *list_start, const uint32_t len)
 
 		list[i] = _atoi((const char **)&list_start);
 
-		serial_printf(".list %u %s : %u\n", i, tmp, list[i]);
-
 		++i;
 	}
 
 	// Remove any not on list
 	for (i = 0; i < MAX_SENSORS; i++)
 	{
-		psensor = &sensors[i];
+		sensor = &sensors[i];
 
-		if ((psensor == NULL) || (psensor->active == false))
+		if ((sensor == NULL) || (sensor->active == false))
 		{
 			continue;
 		}
@@ -359,7 +366,7 @@ static void update_sensor_list(const char *list_start, const uint32_t len)
 
 			for (uint32_t j = 0; j < len; j++)
 			{
-				if (list[j] == psensor->dev_id)
+				if (list[j] == sensor->dev_id)
 				{
 					found = true;
 					break;
@@ -368,7 +375,7 @@ static void update_sensor_list(const char *list_start, const uint32_t len)
 
 			if (found == false)
 			{
-				rem_sensor(psensor->dev_id);
+				rem_sensor(sensor->dev_id);
 			}
 		}
 	}
@@ -379,7 +386,7 @@ static void update_sensor_list(const char *list_start, const uint32_t len)
 		add_sensor(list[i]);
 	}
 
-	print_sensors();
+	// print_sensors();
 }
 
 /** @} */
@@ -396,7 +403,6 @@ static void init(void)
 	log_init();
 	aes_init(app_info->aes_key);
 	batt_init();
-	// cusb_init();
 
 	flash_led(100, 1);
 }
@@ -450,15 +456,13 @@ static void hub(void)
 	// Sensors to listen for
 	clean_sensors();
 	print_sensors();
-	add_sensor(0x00000001);
-	add_sensor(0x00000002);
-	print_sensors();
 
 	// Start listening on rfm
 	rfm_init();
 	rfm_config_for_lora(RFM_BW_125KHZ, RFM_CODING_RATE_4_5, RFM_SPREADING_FACTOR_128CPS, true, 0);
 	rfm_start_listening();
 
+	// Todo
 	// Get timestamp from sim
 	uint32_t timestamp = get_timestamp();
 
@@ -487,6 +491,7 @@ static void hub(void)
 		// Notify cloud if it has
 		if (hub_plugged_in ^ batt_is_plugged_in())
 		{
+			log_printf("PWR: plugged %s\n", hub_plugged_in ? "out" : "in");
 			pwr_upload_pending = true;
 		}
 		hub_plugged_in = batt_is_plugged_in();
@@ -544,19 +549,6 @@ static uint32_t get_timestamp(void)
 {
 	uint32_t stamp = 0;
 
-	if (!sim_init())
-	{
-	}
-	else if (!sim_register_to_network())
-	{
-	}
-	else if (!sim_get_timestamp())
-	{
-	}
-	else if (!sim_end())
-	{
-	}
-
 	return stamp;
 }
 
@@ -594,7 +586,7 @@ static void check_for_packets(void)
 
 			// Print packet details
 			serial_printf(".Packet\n.//////////\n");
-			serial_printf(".Device ID: %08x\n", packet->data.device_number);
+			serial_printf(".Device ID: %08u\n", packet->data.device_number);
 			serial_printf(".Packet RSSI: %i dbm\n", packet->rssi);
 			serial_printf(".Packet SNR: %i dB\n", packet->snr);
 			serial_printf(".Power: %i\n", packet->data.power);
@@ -693,18 +685,31 @@ static void net_task(void)
 	case NET_RUNNING:
 		net_next_state = NET_RUNNING;
 		net_fallback_state = NET_CONNECTING;
+		sim800.state = SIM_BUSY;
 
 		if (upload_pending())
 		{
 			NET_LOG("Upload\n");
-			net_next_state = NET_ASSEMBLE_PACKET;
+			net_next_state = NET_CHECK_CONNECTION;
+			sim800.state = SIM_SUCCESS;
 		}
+		// else if (false == hub_plugged_in)
+		// {
+		// 	net_next_state = NET_SLEEP_START;
+		// }
+		break;
+
+	case NET_CHECK_CONNECTION:
 		sim800.state = sim_is_connected();
+		net_fallback_state = NET_CONNECTING;
+		net_next_state = NET_ASSEMBLE_PACKET;
+
 		break;
 
 	case NET_ASSEMBLE_PACKET:
 		net_next_state = NET_HTTPPOST;
 		net_fallback_state = NET_CONNECTED;
+		sim800.state = sim_is_connected();
 
 		net_buf_clear();
 
@@ -734,13 +739,11 @@ static void net_task(void)
 		if (log_pending())
 		{
 			serial_printf(".Log\n");
-			// append_log();
+			append_log();
 			log_appended = true;
 		}
 
 		net_buf_append_printf("\0\0");
-
-		sim800.state = SIM_SUCCESS;		
 
 		serial_printf("//////////\nMSG %u: %s\n//////////\n", strlen(net_buf), net_buf);
 		timers_delay_milliseconds(1000);
@@ -978,7 +981,7 @@ static bool pwr_pending(void)
 ///
 static void append_check(void)
 {
-	net_buf_append_printf("&version=get");
+	net_buf_append_printf("&currver=%u&version=get", VERSION);
 	check_appended = true;
 }
 
@@ -989,18 +992,21 @@ static void append_temp(void)
 
 	if (num_pending)
 	{
-		for (uint16_t i = 0; i < num_sensors; i++)
+		uint16_t j = 0;
+		for (uint16_t i = 0; i < MAX_SENSORS; i++)
 		{
 			sensor_t *sensor = &sensors[i];
 
 			if (sensor->msg_pend)
 			{
-				net_buf_append_printf("&id%u=%u", i, sensor->dev_id);
-				net_buf_append_printf("&temp%u=%i", i, sensor->temperature);
-				net_buf_append_printf("&batt%u=%u", i, sensor->battery);
-				net_buf_append_printf("&rssi%u=%i", i, sensor->rssi);
+				net_buf_append_printf("&id%u=%u", j, sensor->dev_id);
+				net_buf_append_printf("&temp%u=%i", j, sensor->temperature);
+				net_buf_append_printf("&batt%u=%u", j, sensor->battery);
+				net_buf_append_printf("&rssi%u=%i", j, sensor->rssi);
 
 				sensor->msg_appended = true;
+
+				++j;
 			}
 		}
 	}

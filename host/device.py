@@ -1,3 +1,4 @@
+from array import array
 from os import write
 import hid
 import sys
@@ -36,6 +37,13 @@ class Device(hid.device):
         self.write_command(cmd)
         self.read_response()
 
+    def reset(self):
+        cmd = ResetCommand()
+        self.write_command(cmd)
+        self.read_response()
+
+        return self.log
+    
     def get_log(self):
         if self.log == "":
             cmd = GetLogCommand()
@@ -91,6 +99,42 @@ class Device(hid.device):
 
         print('Programming Done')
 
+    def test_crc(self):
+        print('Test CRC\n-----------------------------\n')
+        test_bin = TestBin()
+
+        with BinLoader(test_bin.filename, 128) as bin:
+
+            bin.file.seek(0)
+            print("Original\n" + str(bin.file.read(64)))
+
+            # calculate crc32
+            num_u32 = int(bin.filesize / 4)
+            u32_list = bytearray()
+
+            # bytes to int little endian for crc
+            bin.file.seek(0)
+            for _ in range (num_u32):
+                u32 = int.from_bytes(bin.file.read(4), byteorder='little')
+                u32_list.extend(u32.to_bytes(4, byteorder='big'))
+
+            print("LE")
+            print(u32_list)
+
+            crc32 = zlib.crc32(u32_list)
+            print("CRC " + str(hex(crc32)))
+
+            # send to mcu
+            num_half_pages = bin.num_pages * 2
+            # num_half_pages = 1
+
+            cmd = TestCrcCommand(num_half_pages, crc32)
+            self.write_command(cmd)
+
+            bin.file.seek(0)
+            for _ in range(num_half_pages):
+                self.write_command(HalfPage(bin.file.read(64)))
+
     def jump_to_app(self):
         print('Jumping to application')
         cmd = JumpToAppCommand()
@@ -104,7 +148,7 @@ class Device(hid.device):
             raise ValueError(self.error())
 
     def read_response(self):
-        report = self.read(max_length=256, timeout_ms=100)
+        report = self.read(max_length=256, timeout_ms=200)
         string = "".join([chr(report[i]) for i in range(len(report))])
         print('Response: ', string)
 
@@ -154,6 +198,14 @@ class TestCommand(Command):
         super().__init__(self.COMMAND, parts)
 
 
+class ResetCommand(Command):
+    COMMAND = 0xFF
+
+    def __init__(self):
+        data = bytes('Reset\0', 'utf-8')
+        super().__init__(self.COMMAND, data)
+
+
 class GetLogCommand(Command):
     COMMAND = 1
 
@@ -178,6 +230,47 @@ class ProgramPageCommand(Command):
         super().__init__(self.COMMAND, data)
 
 
+class EndProgrammingCommand(Command):
+    COMMAND = 4
+
+    def __init__(self):
+        data = bytes('End Programming\0', 'utf-8')
+        super().__init__(self.COMMAND, data)
+
+
+class StartPrintCommand(Command):
+    COMMAND = 5
+
+    def __init__(self):
+        data = bytes('Start Print\0', 'utf-8')
+        super().__init__(self.COMMAND, data)
+
+
+class EndPrintCommand(Command):
+    COMMAND = 6
+
+    def __init__(self):
+        data = bytes('End Print\0', 'utf-8')
+        super().__init__(self.COMMAND, data)
+
+
+class TestCrcCommand(Command):
+    COMMAND = 7
+
+    def __init__(self, num_half_pages, crc_expected):
+        data = struct.pack('<II', num_half_pages, crc_expected)
+        super().__init__(self.COMMAND, data)
+
+
+class JumpToAppCommand(Command):
+    COMMAND = 8
+
+    def __init__(self):
+        data = bytes('Jump to App\0', 'utf-8')
+        super().__init__(self.COMMAND, data)
+
+
+
 class HalfPage(object):
 
     def __init__(self, data):
@@ -185,15 +278,6 @@ class HalfPage(object):
 
     def pack(self):
         return struct.pack('<64s', self.data)
-
-
-
-class JumpToAppCommand(Command):
-    COMMAND = 5
-
-    def __init__(self):
-        data = bytes('Jump to App\0', 'utf-8')
-        super().__init__(self.COMMAND, data)
 
 
 class BinLoader(object):
@@ -207,7 +291,7 @@ class BinLoader(object):
         self.num_pages = 0
 
     def __enter__(self):
-        self.file = open(self.filename, "ab+")
+        self.file = open(self.filename, "rb+")
 
         # Get Size (pointer automatically reset when end reached)
         self.file.seek(0)
@@ -275,8 +359,9 @@ class TestBin(object):
 
     def generate_test_bin(self):
         with open(self.filename, 'wb+') as bin:
-            bin.write(bytes([i for i in range(240)]))
+            bin.write(bytes([i%256 for i in range(1024)]))
             bin.close()
+
 
 def test_programming():
     print('Test Programming Bin\n-----------------------------\n')
@@ -285,28 +370,34 @@ def test_programming():
         dev.program_bin(bin.filename)
 
 
-def test_crc():
-    print('Test Programming Bin\n-----------------------------\n')
-    test_bin = TestBin()
-    with BinLoader(test_bin.filename, 128) as bin:
-        data = bin.file.read(8)
-        # print(data[0:4])
-        # print(data[4:8])
-        # print(data[7:3:-1])
-        # print(data[3:None:-1])
-        # Bin file is little endian but CRC on STM32 is big endian so reverse for zlib
-        data_be = bytes()
-        for i in range(2):
-            data_be += data[(i*4)+3:None if i == 0 else (i*4)-1:-1]
-        print(data_be)
-        crc = zlib.crc32(data_be)
-        print(hex(crc))
-
-
 def main():
     print('\nCoolEase Hub Usb Thing\n')
 
-    test_programming()
+    with Device() as dev:
+
+        while 1:
+            print ("""
+            1.Connect
+            2.Get log
+            3.Program
+            4.Exit
+            5.Test CRC
+            """)
+            ans = input("What would you like to do? ") 
+            if ans=="1": 
+              dev.reset()
+            elif ans=="2":
+              print(dev.get_log())
+            elif ans=="3":
+              dev.program_bin('hub/bin/hub.bin')
+            elif ans=="4":
+              dev.jump_to_app()
+            elif ans=="5":
+              dev.test_crc()
+            elif ans !="":
+              print("\n Not Valid Choice Try again") 
+
+    # test_programming()
     # test_crc()
 
     # cmd = ProgramPageCommand(1, 0x12345678, 0x24681357)

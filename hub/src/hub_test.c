@@ -205,6 +205,19 @@ void test_revceiver_basic(void)
 {
 	test_init("test_revceiver_basic()");
 
+	// Sensors to listen for
+	clean_sensors();
+	add_sensor(30000001);
+	add_sensor(30000002);
+	add_sensor(30000003);
+	add_sensor(30000004);
+	add_sensor(30000005);
+	add_sensor(30000006);
+	add_sensor(30000007);
+	add_sensor(30000008);
+	add_sensor(30000009);
+	print_sensors();
+
 	rfm_init();
 	rfm_config_for_lora(RFM_BW_125KHZ, RFM_CODING_RATE_4_5, RFM_SPREADING_FACTOR_128CPS, true, 0);
 	rfm_start_listening();
@@ -229,8 +242,10 @@ void test_revceiver_basic(void)
 			{
 				continue;
 			}
+			
+			sensor_t *sensor = get_sensor_by_id(packet->data.device_number);
 
-			if (packet->data.device_number != 1)
+			if (sensor == NULL)
 			{
 				serial_printf("Wrong Dev Num %u\n", packet->data.device_number);
 			}
@@ -245,6 +260,9 @@ void test_revceiver_basic(void)
 			}
 			serial_printf("\n");
 		}
+
+		timers_pet_dogs();
+		timers_delay_milliseconds(10);
 	}
 }
 
