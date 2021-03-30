@@ -52,6 +52,8 @@ static char spf_cmd[64];
 static uint16_t write_index;
 static uint16_t read_index;
 
+#define LOG_SIZE (EEPROM_LOG_SIZE - 8)
+
 /*////////////////////////////////////////////////////////////////////////////*/
 // Static Function Declarations
 /*////////////////////////////////////////////////////////////////////////////*/
@@ -80,7 +82,7 @@ static void _putchar_usb(char character);
 
 void log_init(void)
 {
-	write_index = log_file->idx;
+	write_index = log_file->idx % LOG_SIZE;
 	read_index = write_index;
 
 #ifdef DEBUG
@@ -88,12 +90,15 @@ void log_init(void)
 #endif
 
 	serial_printf("\nLog Init\n");
-	serial_printf("Log size: %u\n", log_file->size);
+	serial_printf("Log size: %u\n", LOG_SIZE);
 	serial_printf("Log idx: %u\n----------------\n", write_index);
 }
 
 void log_end(void)
 {
+	// Update write location
+	mem_eeprom_write_half_word((uint32_t)&log_file->idx, write_index);
+
 #ifdef DEBUG
 	usart_end();
 #endif
@@ -105,9 +110,6 @@ void log_printf(const char *format, ...)
 	va_start(va, format);
 	fnprintf(_putchar_main, format, va);
 	va_end(va);
-
-	// Update write location
-	mem_eeprom_write_half_word((uint32_t)&log_file->idx, write_index);
 }
 
 void log_error(uint16_t error)
@@ -119,7 +121,7 @@ uint8_t log_get_byte(uint16_t index)
 {
 	uint8_t byte;
 
-	if (index > log_file->size)
+	if (index > LOG_SIZE)
 	{
 		byte = 0;
 	}
@@ -135,7 +137,7 @@ uint8_t log_read(void)
 {
 	uint8_t byte;
 
-	read_index = (read_index + 1) % log_file->size;
+	read_index = (read_index + 1) % LOG_SIZE;
 
 	if (read_index == write_index)
 	{
@@ -157,13 +159,13 @@ void log_read_reset(void)
 
 uint16_t log_size(void)
 {
-	return log_file->size;
+	return LOG_SIZE;
 }
 
 void log_erase(void)
 {
 	serial_printf("Log Erase Start: %8x\n", &(log_file->log[0]));
-	for (write_index = 0; write_index < log_file->size; write_index++)
+	for (write_index = 0; write_index < LOG_SIZE; write_index++)
 	{
 		mem_eeprom_write_byte((uint32_t)(&(log_file->log[write_index])), 0);
 	}
@@ -219,13 +221,9 @@ static void _putchar_main(char character)
 
 static void _putchar_mem(char character)
 {
-	// serial_printf("Logging %8x\n", EEPROM_LOG_BASE+log_file->write_index);
-
-	// Write char
 	mem_eeprom_write_byte((uint32_t)&(log_file->log[write_index]), character);
 
-	// Update current log index
-	write_index = (write_index + 1) % 1020;
+	write_index = (write_index + 1) % LOG_SIZE;
 }
 
 #ifdef DEBUG

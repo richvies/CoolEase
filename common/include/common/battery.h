@@ -63,6 +63,7 @@ void batt_enable_interrupt(void);
 void batt_disable_interrupt(void);
 
 bool batt_is_plugged_in(void);
+bool batt_is_ready(void);
 
 uint16_t batt_get_batt_voltage(void);
 uint16_t batt_get_pwr_voltage(void);

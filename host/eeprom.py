@@ -95,7 +95,6 @@ def generate_app(device_type, bin_type):
                 if 'VERSION' in line:
                     found = True
                     version = int(line[15:])
-                    print(device_type + ' ' + bin_type + ' version ' + str(version))
                     break
 
             if found == False:
@@ -120,7 +119,7 @@ def generate_app(device_type, bin_type):
             len+=1
         
         original_bin.seek(0)
-        print("Original\n" + str(original_bin.read(64)) + "\n\n")
+        # print("Original\n" + str(original_bin.read(64)) + "\n\n")
 
         # calculate crc32
         num_u32 = int(len / 4)
@@ -134,9 +133,9 @@ def generate_app(device_type, bin_type):
 
         crc32 = zlib.crc32(u32_list)
 
-        print("LE")
-        print(u32_list[0:16])
-        print(str(hex(crc32)))
+        # print("LE")
+        # print(u32_list[0:16])
+        # print(str(hex(crc32)))
 
         # Append meta
         meta = bin_section('meta', 64, struct.pack('<II', version, crc32))
@@ -156,6 +155,8 @@ def generate_app(device_type, bin_type):
             new_bin.seek(meta.size)
             original_bin.seek(0)
             new_bin.write(original_bin.read())
+        
+        print(device_type + ' ' + bin_type + ' version ' + str(version) + ' size ' + str(path.getsize(new_filename)))
             
     # Generate eeprom bins
     dev_id_start = 0

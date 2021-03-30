@@ -413,6 +413,11 @@ bool batt_is_plugged_in(void)
     return true;
 }
 
+bool batt_is_ready(void)
+{
+    // return (state != BATT_INIT);
+    return true;
+}
 /** @} */
 
 /** @addtogroup BATTERY_INT

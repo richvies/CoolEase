@@ -227,7 +227,7 @@ uint32_t fnprintf(out_fct_type out, const char *format, va_list va)
         }
         }
     }
-    // return written chars without terminating \0
+    // return written chars
     return idx;
 }
 

@@ -705,12 +705,16 @@ sim_state_t sim_end(void)
 
 		break;
 	case 1:
-		res = set_function(FUNC_MIN);
+		res = reset_and_wait_ready();
 		break;
 	case 2:
-		res = set_param("+CSCLK", "1", 5000);
+		res = set_function(FUNC_MIN);
 		break;
 	case 3:
+		res = SIM_SUCCESS;
+		serial_printf("AT+CSCLK=1\r\n");
+		break;
+	case 4:
 		res = SIM_SUCCESS;
 
 		usart_disable(SIM_USART);
@@ -720,7 +724,7 @@ sim_state_t sim_end(void)
 		sim800.reg_status = REG_NONE;
 		sim800.http.state = HTTP_TERM;
 		break;
-	case 4:
+	case 5:
 		state = 'S';
 		break;
 	default:
@@ -751,6 +755,7 @@ sim_state_t sim_sleep(void)
 {
 	static uint8_t state = 0;
 	sim_state_t res = SIM_ERROR;
+	static uint32_t timer = 0;
 
 	switch (state)
 	{
@@ -761,19 +766,38 @@ sim_state_t sim_sleep(void)
 
 		break;
 	case 1:
-		res = set_function(FUNC_MIN);
+		res = reset_and_wait_ready();
 		break;
 	case 2:
-		res = set_param("+CSCLK", "1", 5000);
+		res = set_function(FUNC_MIN);
 		break;
 	case 3:
+		res = SIM_SUCCESS;
+		// sim_printf_and_check_response(5000, "OK", "AT+CSCLK=1\r\n");
+		sim_printf("AT+CPOWD=0\r\n");
+		break;
+	case 4:
+		timer = timers_millis();
+		res = SIM_SUCCESS;
+		break;
+	case 5:
+		if (timers_millis() - timer > 3000)
+		{
+			res = SIM_SUCCESS;
+		}
+		else
+		{
+			res = SIM_BUSY;
+		}
+		break;
+	case 6:
 		res = SIM_SUCCESS;
 
 		sim800.func = FUNC_SLEEP;
 		sim800.reg_status = REG_NONE;
 		sim800.http.state = HTTP_TERM;
 		break;
-	case 4:
+	case 7:
 		state = 'S';
 		break;
 	default:

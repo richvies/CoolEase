@@ -36,7 +36,7 @@
 #define VERSION 101
 #define HUB_CHECK_TIME_S 60
 #define HUB_LOG_TIME_S 3600
-#define NET_SLEEP_TIME_DEFAULT_MS 300000
+#define NET_SLEEP_TIME_DEFAULT_MS 120000
 #define HUB_PLUGGED_IN_VALUE 0x2468
 #define HUB_PLUGGED_OUT_VALUE 0x1357
 
@@ -487,14 +487,18 @@ static void hub(void)
 		// Keep record of id, num packets, temperature, battery for each sensor
 		// Timestamp packets
 
-		// Check if hub plugged in or out since last check
-		// Notify cloud if it has
-		if (hub_plugged_in ^ batt_is_plugged_in())
+		if (batt_is_ready())
 		{
-			log_printf("PWR: plugged %s\n", hub_plugged_in ? "out" : "in");
-			pwr_upload_pending = true;
+			// Check if hub plugged in or out since last check
+			// Notify cloud if it has
+			if (hub_plugged_in ^ batt_is_plugged_in())
+			{
+				log_printf("PWR: plugged %s\n", hub_plugged_in ? "out" : "in");
+				pwr_upload_pending = true;
+			}
+			hub_plugged_in = batt_is_plugged_in();
 		}
-		hub_plugged_in = batt_is_plugged_in();
+		
 
 		// Check time?
 		if (RTC_ISR & RTC_ISR_WUTF)
@@ -538,7 +542,7 @@ static void hub(void)
 
 		timers_pet_dogs();
 
-		timers_delay_milliseconds(10);
+		timers_delay_milliseconds(1);
 
 		// PRINT_OK();
 	}
@@ -635,19 +639,6 @@ static void net_task(void)
 		net_next_state = NET_REGISTERING;
 		net_fallback_state = NET_INIT;
 
-		if (hub_plugged_in == false)
-		{
-			// If unplugged, only upload when data waiting and sleep time expired
-			if (upload_pending() == true && net_sleep_expired == true)
-			{
-				net_next_state = NET_REGISTERING;
-			}
-			else
-			{
-				net_next_state = NET_GO_TO_SLEEP;
-			}
-		}
-
 		sim800.state = sim_init();
 
 		break;
@@ -693,10 +684,12 @@ static void net_task(void)
 			net_next_state = NET_CHECK_CONNECTION;
 			sim800.state = SIM_SUCCESS;
 		}
-		// else if (false == hub_plugged_in)
-		// {
-		// 	net_next_state = NET_SLEEP_START;
-		// }
+		else if (false == hub_plugged_in)
+		{
+			net_sleep_time_ms = NET_SLEEP_TIME_DEFAULT_MS;
+			net_next_state = NET_GO_TO_SLEEP;
+			sim800.state = SIM_SUCCESS;
+		}
 		break;
 
 	case NET_CHECK_CONNECTION:
@@ -709,7 +702,7 @@ static void net_task(void)
 	case NET_ASSEMBLE_PACKET:
 		net_next_state = NET_HTTPPOST;
 		net_fallback_state = NET_CONNECTED;
-		sim800.state = sim_is_connected();
+		sim800.state = SIM_SUCCESS;
 
 		net_buf_clear();
 
@@ -718,10 +711,10 @@ static void net_task(void)
 							  app_info->pwd,
 							  app_info->dev_id);
 
-		serial_printf(".Check\n");
+		serial_printf(".check\n");
 		append_check();
 		
-		serial_printf(".Get Sensors\n");
+		serial_printf(".get sensors\n");
 		net_buf_append_printf("&sensors=get");
 
 		if (pwr_pending())
@@ -751,18 +744,7 @@ static void net_task(void)
 
 	case NET_HTTPPOST:
 		net_next_state = NET_HTTP_DONE;
-
-		if (hub_plugged_in)
-		{
-			// Test connection and try post again
-			net_fallback_state = NET_RUNNING;
-		}
-		else
-		{
-			// Sleep and try post again in a few minutes to conserve battery
-			net_sleep_time_ms = 120000;
-			net_fallback_state = NET_SLEEP_START;
-		}
+		net_fallback_state = NET_RUNNING;
 
 		upgrade_to_version = 0;
 
@@ -770,25 +752,14 @@ static void net_task(void)
 		break;
 
 	case NET_HTTP_DONE:
-		if (hub_plugged_in)
-		{
-			net_next_state = NET_CONNECTED;
-			net_fallback_state = NET_CONNECTED;
-		}
-		else
-		{
-			net_sleep_time_ms = 600000;
-			net_next_state = NET_SLEEP_START;
-			net_fallback_state = NET_SLEEP_START;
-		}
+		net_next_state = NET_RUNNING;
+		net_fallback_state = NET_RUNNING;
+		sim800.state = SIM_SUCCESS;
 
 		serial_printf("HTTP: %u %u\n", sim800.http.status_code, sim800.http.response_size);
-		NET_LOG("Parse Response\n");
+		NET_LOG("Parse response\n");
 		parse_net_response();
 		clear_upload_pending();
-
-		// Goto next state
-		sim800.state = SIM_SUCCESS;
 		break;
 
 	case NET_SLEEP_START:
@@ -819,7 +790,7 @@ static void net_task(void)
 		// Sim sometimes wakes up randomly, NET_INIT will put back to sleep
 		else if (sim_printf_and_check_response(100, "OK", "AT\r"))
 		{
-			net_next_state = NET_INIT;
+			net_next_state = NET_GO_TO_SLEEP;
 		}
 		break;
 
@@ -906,17 +877,7 @@ static void parse_net_response(void)
 		net_buf[num_bytes] = '\0';
 
 		// Print header
-		serial_printf(".num bytes: %u\n.header: ", num_bytes);
-		for (i = 0; i < num_bytes; i++)
-		{
-			serial_printf("%c", net_buf[i]);
-		}
-		serial_printf("\n");
-
-		if (sim800.http.response_size <= 64)
-		{
-			serial_printf(".Header: %s\n", net_buf);
-		}
+		serial_printf(".num bytes: %u\n.header: %s\n", num_bytes, net_buf);
 
 		// Version
 		str = strstr(net_buf, "version=");

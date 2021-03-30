@@ -168,7 +168,7 @@ typedef struct
 {
 	uint16_t size;
 	uint16_t idx;
-	uint8_t log[EEPROM_LOG_SIZE - 4];
+	uint8_t log[];
 } log_t;
 
 // Uncomment to check size 
