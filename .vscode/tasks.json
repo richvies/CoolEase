@@ -1,517 +1,548 @@
 {
-    "version": "2.0.0",
-    "tasks": [
-        //////////////////////////////
-        // Builds
-        //////////////////////////////
-        // Build all
-        {
-            "label": "Build all",
-            "group": {
-                "kind": "build",
-                "isDefault": true
-            },
-            "dependsOn":["Build hub", "Build sensor"],
-            "presentation": {
-                "focus": true
-            },
-            "runOptions": {},
-            "problemMatcher":[
-                "$gcc"
-            ]
-        },   
-        // Rebuild all
-        {
-            "label": "Rebuild all",
-            "group": "build",
-            "dependsOrder": "sequence",
-            "dependsOn":["Clean all", "Build all"],
-            "presentation": {
-                "focus": true
-            },
-            "problemMatcher":[
-                "$gcc"
-            ]
-        },  
-        // Rebuild Hub
-        {
-            "label": "Rebuild hub",
-            "group": "build",
-            "dependsOrder": "sequence",
-            "dependsOn":["Clean hub", "Build hub"],
-            "presentation": {
-                "focus": true
-            },
-            "problemMatcher":[
-                "$gcc"
-            ]
-        },
-        // Rebuild Sensor
-        {
-            "label": "Rebuild sensor",
-            "group": "build",
-            "dependsOrder": "sequence",
-            "dependsOn":["Clean sensor", "Build sensor"],
-            "presentation": {
-                "focus": true
-            },
-            "problemMatcher":[
-                "$gcc"
-            ]
-        },
-        // Build hub
-        {
-            "label": "Build hub",
-            "group": "build",
-            "type": "shell",
-            "command": "make -fhub/Makefile all -j",
-            "presentation": {
-                "focus": true,
-            },
-            "problemMatcher": [
-                "$gcc"
-            ]
-        },
-        // Build sensor
-        {
-            "label": "Build sensor",
-            "group": "build",
-            "type": "shell",
-            "command": "make -fsensor/Makefile all -j",
-            "presentation": {
-                "focus": true,
-            },
-            "problemMatcher": [
-                "$gcc"
-            ]
-        },
-        // Clean all
-        {
-            "label": "Clean all",
-            "group": "build",
-            "dependsOn":["Clean hub", "Clean sensor"],
-            "dependsOrder": "parallel",
-            "presentation": {
-                "focus": true
-            },
-            "problemMatcher":[]
-        },
-        // Clean hub
-        {
-            "label": "Clean hub",
-            "group": "build",
-            "type": "shell",
-            "command": "make -fhub/Makefile clean",
-            "args": [],
-            "problemMatcher": {
-                "pattern": {
-                    "regexp": "^(.*):(\\d+):(\\d+):\\s+(warning|error):\\s+(.*)$",
-                    "file": 1,
-                    "line": 2,
-                    "column": 3,
-                    "severity": 4,
-                    "message": 5
-                }
-            },
-            "presentation": {
-                "focus": true
-            }
-        },
-        // Clean sensor
-        {
-            "label": "Clean sensor",
-            "group": "build",
-            "type": "shell",
-            "command": "make -fsensor/Makefile clean",
-            "problemMatcher": {
-                "pattern": {
-                    "regexp": "^(.*):(\\d+):(\\d+):\\s+(warning|error):\\s+(.*)$",
-                    "file": 1,
-                    "line": 2,
-                    "column": 3,
-                    "severity": 4,
-                    "message": 5
-                }
-            },
-            "presentation": {
-                "focus": true
-            }
-        },
-        
-        //////////////////////////////
-        // Download
-        //////////////////////////////
-        // Full Erase Uart
-        {
-            "label": "Full Erase uart",
-            "type": "shell",
-            "command": "./tools/stm32flash/stm32flash",
-            "args": [
-                "-b230400",
-                "-o",
-                "-R",
-                "-i-dtr,rts,-rts:rts",
-                "/dev/cu.usbserial-A50285BI",
-            ],
-            "problemMatcher": []
-        },
-        // Hub
-        {
-            "label": "Hub Download",
-            "type": "shell",
-            "command": "/usr/local/bin/openocd",
-            "args": [
-                "-f",
-                "tools/openocd/stlink.cfg",
-                "-f",
-                "tools/openocd/stm32l0.cfg",
-                "-c",
-                "program hub/bin/hub.elf verify",
-                "-c",
-                "reset",
-                "-c",
-                "exit"
-            ],
-            "dependsOn": ["Build hub"],
-            "problemMatcher": []
-        },
-        // Hub uart
-        {
-            "label": "Hub Download uart",
-            "type": "shell",
-            "command": "./tools/stm32flash/stm32flash",
-            "args": [
-                "-b230400",
-                "-E",
-                "-S0x08008000",
-                "-whub/bin/hub.bin",
-                "-v",
-                "-R",
-                "-i-dtr,rts,-rts:rts",
-                "/dev/cu.usbserial-A50285BI",
-            ],
-            "dependsOn": ["Build hub"],
-            "problemMatcher": []
-        },
-        // Hub Bootloader uart
-        {
-            "label": "Hub Bootloader Download uart",
-            "type": "shell",
-            "command": "./tools/stm32flash/stm32flash",
-            "args": [
-                "-b230400",
-                "-E",
-                "-S0x08000000",
-                "-whub/bin/hub_bootloader.bin",
-                "-v",
-                "-R",
-                "-i-dtr,rts,-rts:rts",
-                "/dev/cu.usbserial-A50285BI",
-            ],
-            "dependsOn": ["Build hub"],
-            "problemMatcher": []
-        },
-        // Hub Bootloader
-        {
-            "label": "Hub Bootloader Download",
-            "type": "shell",
-            "command": "/usr/local/bin/openocd",
-            "args": [
-                "-f",
-                "tools/openocd/stlink.cfg",
-                "-f",
-                "tools/openocd/stm32l0.cfg",
-                "-c",
-                "program hub/bin/hub_bootloader.elf verify",
-                "-c",
-                "reset",
-                "-c",
-                "exit"
-            ],
-            "dependsOn": ["Build hub"],
-            "problemMatcher": []
-        },
-        // Hub EEPROM
-        {
-            "label": "Hub EEPROM Download",
-            "type": "shell",
-            "command": "./tools/stm32flash/stm32flash",
-            "args": [
-                "-b230400",
-                "-E",
-                "-S0x08080000",
-                "-w${input:ee}",
-                "-v",
-                "-R",
-                "-i-dtr,rts,-rts:rts",
-                "/dev/cu.usbserial-A50285BI",
-            ],
-            // "dependsOn": ["Build sensor"],
-            "problemMatcher": []
-        },
-        // Sensor
-        {
-            "label": "Sensor Download",
-            "type": "shell",
-            "command": "./tools/stm32flash/stm32flash",
-            "args": [
-                "-b230400",
-                "-E",
-                "-S0x08008000",
-                "-wsensor/bin/sensor.bin",
-                "-v",
-                "-R",
-                "-i-dtr,rts,-rts:rts",
-                "/dev/cu.usbserial-A50285BI",
-            ],
-            "dependsOn": ["Build sensor"],
-            "problemMatcher": []
-        },
-        // Sensor Bootloader
-        {
-            "label": "Sensor Bootloader Download",
-            "type": "shell",
-            "command": "./tools/stm32flash/stm32flash",
-            "args": [
-                "-b230400",
-                "-E",
-                "-S0x08000000",
-                "-wsensor/bin/sensor_bootloader.bin",
-                "-v",
-                "-R",
-                "-i-dtr,rts,-rts:rts",
-                "/dev/cu.usbserial-A50285BI",
-            ],
-            "dependsOn": ["Build sensor"],
-            "problemMatcher": []
-        },
-        // Sensor EEPROM
-        {
-            "label": "Sensor EEPROM Download",
-            "type": "shell",
-            "command": "./tools/stm32flash/stm32flash",
-            "args": [
-                "-b230400",
-                "-E",
-                "-S0x08080000",
-                "-w${input:ees}",
-                "-v",
-                "-R",
-                "-i-dtr,rts,-rts:rts",
-                "/dev/cu.usbserial-A50285BI",
-            ],
-            // "dependsOn": ["Build sensor"],
-            "problemMatcher": []
-        },
-        // CPU: Reset & run
-        {
-            "label": "CPU: Reset and run",
-            "type": "shell",
-            "command": "/usr/local/bin/openocd",
-            "args": [
-                "-f",
-                "tools/openocd/stlink.cfg",
-                "-f",
-                "tools/openocd/stm32l0.cfg",
-                "-c init",
-                "-c reset",
-                "-c exit"
-            ],
-            "problemMatcher": []
-        },
-        // CPU: Halt
-        {
-            "label": "CPU: Halt",
-            "type": "shell",
-            "command": "/usr/local/bin/openocd",
-            "args": [
-                "-f",
-                "tools/openocd/stlink.cfg",
-                "-f",
-                "tools/openocd/stm32l0.cfg",
-                "-c init",
-                "-c halt",
-                "-c exit"
-            ],
-            "problemMatcher": []
-        },
-        // CPU: Resume
-        {
-            "label": "CPU: Resume",
-            "type": "shell",
-            "command": "/usr/local/bin/openocd",
-            "args": [
-                "-f",
-                "tools/openocd/stlink.cfg",
-                "-f",
-                "tools/openocd/stm32l0.cfg",
-                "-c init",
-                "-c resume",
-                "-c exit"
-            ],
-            "problemMatcher": []
-        },
-
-        //////////////////////////////
-        // Get Log
-        //////////////////////////////
-        {
-            "label": "Read Log",
-            "type": "shell",
-            "command": "./tools/stm32flash/stm32flash",
-            "args": [
-                "-b230400",
-                "-S0x08080200:1024",
-                "-rlog.txt",
-                "-R",
-                "-i-dtr,rts,-rts:rts",
-                "/dev/cu.usbserial-A50285BI",
-            ],
-            "problemMatcher": []
-        },
-        {
-            "label": "Read Log bkp",
-            "type": "shell",
-            "command": "./tools/stm32flash/stm32flash",
-            "args": [
-                "-b230400",
-                "-S0x0800FC00:1024",
-                "-rlog_bkp.txt",
-                "-R",
-                "-i-dtr,rts,-rts:rts",
-                "/dev/cu.usbserial-A50285BI",
-            ],
-            "problemMatcher": []
-        },
-
-        //////////////////////////////
-        // Log, Rebuild, Program all
-        //////////////////////////////
-        {
-            "label": "Hub All",
-            "type": "shell",
-            "dependsOn":["Rebuild hub", "Read Log", "Hub EEPROM Download", "Hub Bootloader Download uart", "Hub Download uart"],
-            "dependsOrder": "sequence",
-            "problemMatcher": []
-        },
-        {
-            "label": "Sensor All",
-            "type": "shell",
-            "dependsOn":["Rebuild sensor", "Sensor EEPROM Download", "Sensor Bootloader Download", "Sensor Download"],
-            "dependsOrder": "sequence",
-            "problemMatcher": []
-        },
-        
-        //////////////////////////////
-        // Python
-        //////////////////////////////
-        // Run python file
-        {
-            "label": "Run Python file",
-            "type": "shell",
-            "command": "python",
-            "args": [
-                "${file}"
-            ],
-            "presentation": {
-                "focus": true
-            },
-            "problemMatcher": []
-        },
-        
-        
-        //////////////////////////////
-        // CubeMX
-        //////////////////////////////
-        // Open .ioc
-        {
-            "label": "Open CubeMX project",
-            "type": "shell",
-            "command": "/Applications/STMicroelectronics/STM32CubeMX.app/Contents/MacOs/STM32CubeMX",
-            "args": [
-                "CubeMXTest.ioc"
-            ],
-            "presentation": {
-                "focus": false
-            },
-            "problemMatcher": []
-        },
-        
-        //////////////////////////////
-        // Doxygen
-        //////////////////////////////
-        // Generate
-        {
-            "label": "Generate Doxygen",
-            "type": "shell",
-            "command": "doxygen Docs/doxygen/Doxyfile",
-            "presentation": {
-                "focus": true
-            },
-            "problemMatcher": []
-        },
-        // Open
-        {
-            "label": "Open Doxygen",
-            "type": "shell",
-            "command": "open docs/doxygen/html/index.html",
-            "presentation": {
-                "focus": true
-            },
-            "problemMatcher": [],
-            "dependsOn": "Generate Doxygen"
+  "version": "2.0.0",
+  "tasks": [
+    //////////////////////////////
+    // Builds
+    //////////////////////////////
+    // Build all
+    {
+      "label": "Build all",
+      "group": {
+        "kind": "build",
+        "isDefault": true
+      },
+      "dependsOn": [
+        "Build hub",
+        "Build sensor"
+      ],
+      "presentation": {
+        "focus": true
+      },
+      "runOptions": {},
+      "problemMatcher": [
+        "$gcc"
+      ]
+    },
+    // Rebuild all
+    {
+      "label": "Rebuild all",
+      "group": "build",
+      "dependsOrder": "sequence",
+      "dependsOn": [
+        "Clean all",
+        "Build all"
+      ],
+      "presentation": {
+        "focus": true
+      },
+      "problemMatcher": [
+        "$gcc"
+      ]
+    },
+    // Rebuild Hub
+    {
+      "label": "Rebuild hub",
+      "group": "build",
+      "dependsOrder": "sequence",
+      "dependsOn": [
+        "Clean hub",
+        "Build hub"
+      ],
+      "presentation": {
+        "focus": true
+      },
+      "problemMatcher": [
+        "$gcc"
+      ]
+    },
+    // Rebuild Sensor
+    {
+      "label": "Rebuild sensor",
+      "group": "build",
+      "dependsOrder": "sequence",
+      "dependsOn": [
+        "Clean sensor",
+        "Build sensor"
+      ],
+      "presentation": {
+        "focus": true
+      },
+      "problemMatcher": [
+        "$gcc"
+      ]
+    },
+    // Build hub
+    {
+      "label": "Build hub",
+      "group": "build",
+      "type": "shell",
+      "command": "make -fhub/Makefile all -j",
+      "presentation": {
+        "focus": true,
+      },
+      "problemMatcher": [
+        "$gcc"
+      ]
+    },
+    // Build sensor
+    {
+      "label": "Build sensor",
+      "group": "build",
+      "type": "shell",
+      "command": "make -fsensor/Makefile all -j",
+      "presentation": {
+        "focus": true,
+      },
+      "problemMatcher": [
+        "$gcc"
+      ]
+    },
+    // Clean all
+    {
+      "label": "Clean all",
+      "group": "build",
+      "dependsOn": [
+        "Clean hub",
+        "Clean sensor"
+      ],
+      "dependsOrder": "parallel",
+      "presentation": {
+        "focus": true
+      },
+      "problemMatcher": []
+    },
+    // Clean hub
+    {
+      "label": "Clean hub",
+      "group": "build",
+      "type": "shell",
+      "command": "make -fhub/Makefile clean",
+      "args": [],
+      "problemMatcher": {
+        "pattern": {
+          "regexp": "^(.*):(\\d+):(\\d+):\\s+(warning|error):\\s+(.*)$",
+          "file": 1,
+          "line": 2,
+          "column": 3,
+          "severity": 4,
+          "message": 5
         }
-    ],
-    "inputs": [
-        {
-            "id": "prog",
-            "type": "pickString",
-            "description": "Programming Method",
-            "options": [
-                "/usr/local/bin/openocd",
-                "./tools/stm32flash/stm32flash",
-            ]
-        },
-        {
-            "id": "dev",
-            "type": "pickString",
-            "description": "Device",
-            "options": [
-                "hub/bin/hub.bin",
-                "sensor/bin/sensor.bin",
-            ]
-        },
-        {
-            "id": "ee",
-            "type": "pickString",
-            "description": "EEPROM",
-            "options": [
-                "hub/bin/store/hub_eeprom_20000001.bin",
-                "hub/bin/store/hub_eeprom_20000002.bin",
-                "hub/bin/store/hub_eeprom_20000003.bin",
-                "hub/bin/store/hub_eeprom_20000004.bin",
-                "hub/bin/store/hub_eeprom_20000005.bin",
-                "hub/bin/store/hub_eeprom_20000006.bin",
-                "hub/bin/store/hub_eeprom_20000007.bin",
-                "hub/bin/store/hub_eeprom_20000008.bin",
-                "hub/bin/store/hub_eeprom_20000009.bin"
-            ]
-        },
-        {
-            "id": "ees",
-            "type": "pickString",
-            "description": "EEPROM",
-            "options": [
-                "sensor/bin/store/sensor_eeprom_30000001.bin",
-                "sensor/bin/store/sensor_eeprom_30000002.bin",
-                "sensor/bin/store/sensor_eeprom_30000003.bin",
-                "sensor/bin/store/sensor_eeprom_30000004.bin",
-                "sensor/bin/store/sensor_eeprom_30000005.bin",
-                "sensor/bin/store/sensor_eeprom_30000006.bin",
-                "sensor/bin/store/sensor_eeprom_30000007.bin",
-                "sensor/bin/store/sensor_eeprom_30000008.bin",
-                "sensor/bin/store/sensor_eeprom_30000009.bin"
-            ]
+      },
+      "presentation": {
+        "focus": true
+      }
+    },
+    // Clean sensor
+    {
+      "label": "Clean sensor",
+      "group": "build",
+      "type": "shell",
+      "command": "make -fsensor/Makefile clean",
+      "problemMatcher": {
+        "pattern": {
+          "regexp": "^(.*):(\\d+):(\\d+):\\s+(warning|error):\\s+(.*)$",
+          "file": 1,
+          "line": 2,
+          "column": 3,
+          "severity": 4,
+          "message": 5
         }
-    ]
+      },
+      "presentation": {
+        "focus": true
+      }
+    },
+    //////////////////////////////
+    // Download
+    //////////////////////////////
+    // Full Erase Uart
+    {
+      "label": "Full Erase uart",
+      "type": "shell",
+      "command": "./tools/stm32flash/stm32flash",
+      "args": [
+        "-b230400",
+        "-o",
+        "-R",
+        "-i-dtr,rts,-rts:rts",
+        "/dev/cu.usbserial-A50285BI",
+      ],
+      "problemMatcher": []
+    },
+    // Hub
+    {
+      "label": "Hub Download",
+      "type": "shell",
+      "command": "/usr/local/bin/openocd",
+      "args": [
+        "-f",
+        "tools/openocd/stlink.cfg",
+        "-f",
+        "tools/openocd/stm32l0.cfg",
+        "-c",
+        "program hub/bin/hub.elf verify",
+        "-c",
+        "reset",
+        "-c",
+        "exit"
+      ],
+      "dependsOn": [
+        "Build hub"
+      ],
+      "problemMatcher": []
+    },
+    // Hub uart
+    {
+      "label": "Hub Download uart",
+      "type": "shell",
+      "command": "./tools/stm32flash/stm32flash",
+      "args": [
+        "-b230400",
+        "-E",
+        "-S0x08008000",
+        "-whub/bin/hub.bin",
+        "-v",
+        "-R",
+        "-i-dtr,rts,-rts:rts",
+        "/dev/cu.usbserial-A50285BI",
+      ],
+      "dependsOn": [
+        "Build hub"
+      ],
+      "problemMatcher": []
+    },
+    // Hub Bootloader uart
+    {
+      "label": "Hub Bootloader Download uart",
+      "type": "shell",
+      "command": "./tools/stm32flash/stm32flash",
+      "args": [
+        "-b230400",
+        "-E",
+        "-S0x08000000",
+        "-whub/bin/hub_bootloader.bin",
+        "-v",
+        "-R",
+        "-i-dtr,rts,-rts:rts",
+        "/dev/cu.usbserial-A50285BI",
+      ],
+      "dependsOn": [
+        "Build hub"
+      ],
+      "problemMatcher": []
+    },
+    // Hub Bootloader
+    {
+      "label": "Hub Bootloader Download",
+      "type": "shell",
+      "command": "/usr/local/bin/openocd",
+      "args": [
+        "-f",
+        "tools/openocd/stlink.cfg",
+        "-f",
+        "tools/openocd/stm32l0.cfg",
+        "-c",
+        "program hub/bin/hub_bootloader.elf verify",
+        "-c",
+        "reset",
+        "-c",
+        "exit"
+      ],
+      "dependsOn": [
+        "Build hub"
+      ],
+      "problemMatcher": []
+    },
+    // Hub EEPROM
+    {
+      "label": "Hub EEPROM Download",
+      "type": "shell",
+      "command": "./tools/stm32flash/stm32flash",
+      "args": [
+        "-b230400",
+        "-E",
+        "-S0x08080000",
+        "-w${input:ee}",
+        "-v",
+        "-R",
+        "-i-dtr,rts,-rts:rts",
+        "/dev/cu.usbserial-A50285BI",
+      ],
+      // "dependsOn": ["Build sensor"],
+      "problemMatcher": []
+    },
+    // Sensor
+    {
+      "label": "Sensor Download",
+      "type": "shell",
+      "command": "./tools/stm32flash/stm32flash",
+      "args": [
+        "-b230400",
+        "-E",
+        "-S0x08008000",
+        "-wsensor/bin/sensor.bin",
+        "-v",
+        "-R",
+        "-i-dtr,rts,-rts:rts",
+        "/dev/cu.usbserial-A50285BI",
+      ],
+      "dependsOn": [
+        "Build sensor"
+      ],
+      "problemMatcher": []
+    },
+    // Sensor Bootloader
+    {
+      "label": "Sensor Bootloader Download",
+      "type": "shell",
+      "command": "./tools/stm32flash/stm32flash",
+      "args": [
+        "-b230400",
+        "-E",
+        "-S0x08000000",
+        "-wsensor/bin/sensor_bootloader.bin",
+        "-v",
+        "-R",
+        "-i-dtr,rts,-rts:rts",
+        "/dev/cu.usbserial-A50285BI",
+      ],
+      "dependsOn": [
+        "Build sensor"
+      ],
+      "problemMatcher": []
+    },
+    // Sensor EEPROM
+    {
+      "label": "Sensor EEPROM Download",
+      "type": "shell",
+      "command": "./tools/stm32flash/stm32flash",
+      "args": [
+        "-b230400",
+        "-E",
+        "-S0x08080000",
+        "-w${input:ees}",
+        "-v",
+        "-R",
+        "-i-dtr,rts,-rts:rts",
+        "/dev/cu.usbserial-A50285BI",
+      ],
+      // "dependsOn": ["Build sensor"],
+      "problemMatcher": []
+    },
+    // CPU: Reset & run
+    {
+      "label": "CPU: Reset and run",
+      "type": "shell",
+      "command": "/usr/local/bin/openocd",
+      "args": [
+        "-f",
+        "tools/openocd/stlink.cfg",
+        "-f",
+        "tools/openocd/stm32l0.cfg",
+        "-c init",
+        "-c reset",
+        "-c exit"
+      ],
+      "problemMatcher": []
+    },
+    // CPU: Halt
+    {
+      "label": "CPU: Halt",
+      "type": "shell",
+      "command": "/usr/local/bin/openocd",
+      "args": [
+        "-f",
+        "tools/openocd/stlink.cfg",
+        "-f",
+        "tools/openocd/stm32l0.cfg",
+        "-c init",
+        "-c halt",
+        "-c exit"
+      ],
+      "problemMatcher": []
+    },
+    // CPU: Resume
+    {
+      "label": "CPU: Resume",
+      "type": "shell",
+      "command": "/usr/local/bin/openocd",
+      "args": [
+        "-f",
+        "tools/openocd/stlink.cfg",
+        "-f",
+        "tools/openocd/stm32l0.cfg",
+        "-c init",
+        "-c resume",
+        "-c exit"
+      ],
+      "problemMatcher": []
+    },
+    //////////////////////////////
+    // Get Log
+    //////////////////////////////
+    {
+      "label": "Read Log",
+      "type": "shell",
+      "command": "./tools/stm32flash/stm32flash",
+      "args": [
+        "-b230400",
+        "-S0x08080200:1024",
+        "-rlog.txt",
+        "-R",
+        "-i-dtr,rts,-rts:rts",
+        "/dev/cu.usbserial-A50285BI",
+      ],
+      "problemMatcher": []
+    },
+    {
+      "label": "Read Log bkp",
+      "type": "shell",
+      "command": "./tools/stm32flash/stm32flash",
+      "args": [
+        "-b230400",
+        "-S0x0800FC00:1024",
+        "-rlog_bkp.txt",
+        "-R",
+        "-i-dtr,rts,-rts:rts",
+        "/dev/cu.usbserial-A50285BI",
+      ],
+      "problemMatcher": []
+    },
+    //////////////////////////////
+    // Log, Rebuild, Program all
+    //////////////////////////////
+    {
+      "label": "Hub All",
+      "type": "shell",
+      "dependsOn": [
+        "Rebuild hub",
+        "Read Log",
+        "Hub EEPROM Download",
+        "Hub Bootloader Download uart",
+        "Hub Download uart"
+      ],
+      "dependsOrder": "sequence",
+      "problemMatcher": []
+    },
+    {
+      "label": "Sensor All",
+      "type": "shell",
+      "dependsOn": [
+        "Rebuild sensor",
+        "Sensor EEPROM Download",
+        "Sensor Bootloader Download",
+        "Sensor Download"
+      ],
+      "dependsOrder": "sequence",
+      "problemMatcher": []
+    },
+    //////////////////////////////
+    // Python
+    //////////////////////////////
+    // Run python file
+    {
+      "label": "Run Python file",
+      "type": "shell",
+      "command": "python",
+      "args": [
+        "${file}"
+      ],
+      "presentation": {
+        "focus": true
+      },
+      "problemMatcher": []
+    },
+    //////////////////////////////
+    // CubeMX
+    //////////////////////////////
+    // Open .ioc
+    {
+      "label": "Open CubeMX project",
+      "type": "shell",
+      "command": "/Applications/STMicroelectronics/STM32CubeMX.app/Contents/MacOs/STM32CubeMX",
+      "args": [
+        "CubeMXTest.ioc"
+      ],
+      "presentation": {
+        "focus": false
+      },
+      "problemMatcher": []
+    },
+    //////////////////////////////
+    // Doxygen
+    //////////////////////////////
+    // Generate
+    {
+      "label": "Generate Doxygen",
+      "type": "shell",
+      "command": "doxygen Docs/doxygen/Doxyfile",
+      "presentation": {
+        "focus": true
+      },
+      "problemMatcher": []
+    },
+    // Open
+    {
+      "label": "Open Doxygen",
+      "type": "shell",
+      "command": "open docs/doxygen/html/index.html",
+      "presentation": {
+        "focus": true
+      },
+      "problemMatcher": [],
+      "dependsOn": "Generate Doxygen"
+    }
+  ],
+  "inputs": [
+    {
+      "id": "prog",
+      "type": "pickString",
+      "description": "Programming Method",
+      "options": [
+        "/usr/local/bin/openocd",
+        "./tools/stm32flash/stm32flash",
+      ]
+    },
+    {
+      "id": "dev",
+      "type": "pickString",
+      "description": "Device",
+      "options": [
+        "hub/bin/hub.bin",
+        "sensor/bin/sensor.bin",
+      ]
+    },
+    {
+      "id": "ee",
+      "type": "pickString",
+      "description": "EEPROM",
+      "options": [
+        "hub/bin/store/hub_eeprom_20000001.bin",
+        "hub/bin/store/hub_eeprom_20000002.bin",
+        "hub/bin/store/hub_eeprom_20000003.bin",
+        "hub/bin/store/hub_eeprom_20000004.bin",
+        "hub/bin/store/hub_eeprom_20000005.bin",
+        "hub/bin/store/hub_eeprom_20000006.bin",
+        "hub/bin/store/hub_eeprom_20000007.bin",
+        "hub/bin/store/hub_eeprom_20000008.bin",
+        "hub/bin/store/hub_eeprom_20000009.bin"
+      ]
+    },
+    {
+      "id": "ees",
+      "type": "pickString",
+      "description": "EEPROM",
+      "options": [
+        "sensor/bin/store/sensor_eeprom_30000001.bin",
+        "sensor/bin/store/sensor_eeprom_30000002.bin",
+        "sensor/bin/store/sensor_eeprom_30000003.bin",
+        "sensor/bin/store/sensor_eeprom_30000004.bin",
+        "sensor/bin/store/sensor_eeprom_30000005.bin",
+        "sensor/bin/store/sensor_eeprom_30000006.bin",
+        "sensor/bin/store/sensor_eeprom_30000007.bin",
+        "sensor/bin/store/sensor_eeprom_30000008.bin",
+        "sensor/bin/store/sensor_eeprom_30000009.bin"
+      ]
+    }
+  ]
 }

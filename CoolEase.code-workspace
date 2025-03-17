@@ -20,7 +20,10 @@
 			"*.log": "log",
 			".clang-format": "yaml",
 			".clangd": "yaml",
-			"log.h": "c"
+			"log.h": "c",
+			"rcc.h": "c",
+			"syscfg.h": "c",
+			"bootloader_utils.h": "c"
 		}
 	}
 }
