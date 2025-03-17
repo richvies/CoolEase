@@ -17,3 +17,4 @@ web
 *.log
 build
 .ccls-cache
+__pycache__
