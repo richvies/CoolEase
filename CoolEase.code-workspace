@@ -5,69 +5,15 @@
 		}
 	],
 	"settings": {
-		"files.exclude": {
-			"**/.git": true,
-			"**/.svn": true,
-			"**/.hg": true,
-			"**/CVS": true,
-			"**/.DS_Store": true,
-			".gitignore": true,
-			".vscode": false,
-			
-			"tools":true,
-			"web":true,
-			"000Webhost":true,
-			"Development Invoices": true, 
-			"hardware": true,
-			"coolterm":true,
-			"old": true,
-			"docs": false,
-			"README.md": true,
-			
-			"**/obj/":false,
-			"**/bin/":false,
-			"**/*.ld/":false,
-			"**/*eeprom.bin":false,
-
+		"debug.javascript.defaultRuntimeExecutable": {
+			"pwa-node": "/home/rick/.local/share/mise/shims/node"
 		},
-		"files.associations": {
-			"*.include": "makefile",
-			"*.inc": "makefile",
-			"Doxyfile": "makefile",
-			"*.h": "c",
-			"type_traits": "c",
-			"cstdlib": "c"
-		},
-		"explorer.autoReveal": false,
-
-		"terminal.integrated.shell.osx": "/bin/bash",
-		"terminal.integrated.inheritEnv": false,
-		"terminal.integrated.shellArgs.osx": [
-			"-l"
+		"ruff.path": [
+			"/home/rick/.local/share/mise/shims/ruff"
 		],
-
-
-		"C_Cpp.errorSquiggles": "Disabled",
-
-		"python.pythonPath": "/usr/local/anaconda3/bin/python",
-		"python.languageServer": "Pylance",
-		"python.terminal.activateEnvironment": true,
-		"python.linting.pylintEnabled": true,
-		"python.linting.enabled": true,
-		"python.autoComplete.extraPaths": [
-			"/Users/richarddavies/Desktop/Projects/CoolEase/host",
-			"/usr/local/anaconda3/lib/python3.8/site-packages"
-		],
-		// "python.envFile": "${workspaceFolder}/.env",
-		"python.analysis.extraPaths": [
-			"/Users/richarddavies/Desktop/Projects/CoolEase/host/device",
-			"/usr/local/anaconda3/lib/python3.8/site-packages"
-		],
-
-		"maptz.regionfolder": {
-			"[python]": {        
-				"disableFolding": true
-			}
-		}
+		"python.defaultInterpreterPath": "${workspaceFolder}/.venv",
+		"ruff.interpreter": [
+			"/home/rick/.local/share/mise/shims/python"
+		]
 	}
 }
