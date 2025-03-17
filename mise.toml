@@ -8,3 +8,17 @@ uv = "latest"
 
 [env]
 '_'.python.venv = { create = true, path = ".venv" }
+
+[tasks.clang-format]
+run = 'find common sensor hub -name "*.c" -o -name "*.h" | xargs clang-format -i'
+
+[tasks.reconfigure]
+alias = "rconf"
+run = "cmake . --preset {{arg(name='preset', i=1, default='debug')}}"
+
+[tasks.build]
+alias = "bu"
+run = 'cmake --build --preset {{arg(name="preset", i=1, default="debug")}}'
+
+[tasks.fclean]
+run = "rm -rf build"
