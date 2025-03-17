@@ -8,6 +8,12 @@
 		"debug.javascript.defaultRuntimeExecutable": {
 			"pwa-node": "/home/rick/.local/share/mise/shims/node"
 		},
+		"search.exclude": {
+			"**/node_modules": true,
+			"**/bower_components": true,
+			"**/*.code-search": true,
+			"docs/**/html": true
+		},
 		"ruff.path": [
 			"/home/rick/.local/share/mise/shims/ruff"
 		],

@@ -18,3 +18,4 @@ web
 build
 .ccls-cache
 __pycache__
+mise.local.toml

@@ -1,8 +1,4 @@
-#   uint32_t dev_id;
-# 	uint32_t boot_version;
-# 	uint32_t vtor;
-# 	uint8_t	 aes_key[16];
-# 	char 	 pwd[33];
+import os
 import os.path as path
 import struct
 import sys
@@ -195,13 +191,16 @@ def generate_app(device_type, bin_type):
     elif device_type == "sensor":
         dev_id_start = 30000000
 
+    _aes_key = os.environ["PROJ_AES_KEY"]
+    _pwd = os.environ["PROJ_PASSWORD"]
+
     for i in range(1, 10):
         generate_eeprom(
             dev_id=dev_id_start + i,
             device_type=device_type,
             vtor="0x08008000",
-            aes_key="0102030405060708090A0B0C0D0E0FFF",
-            pwd="vAldoWDRaTHyrISmaTioNDERpormEntI",
+            aes_key=_aes_key,
+            pwd=_pwd,
             log_size=1020,
         )
 
