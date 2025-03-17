@@ -22,4 +22,8 @@ depends = "reconfigure"
 run = 'cmake --build --preset {{arg(name="preset", i=1, default="debug")}}'
 
 [tasks.fclean]
-run = "rm -rf build && make -C libopencm3 clean"
+run = "rm -rf build"
+
+[tasks.ffclean]
+depends = "fclean"
+run = "make -C libopencm3 clean"
