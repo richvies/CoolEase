@@ -4,7 +4,7 @@
  * @author  Richard Davies
  * @date    26/Dec/2020
  * @brief   Testing Source File
- *  
+ *
  ******************************************************************************
  */
 
@@ -30,7 +30,7 @@
 
 #include "common/aes.h"
 #include "common/battery.h"
-#include "common/board_defs.h"
+#include "config/board_defs.h"
 #include "common/bootloader_utils.h"
 #include "common/memory.h"
 #include "common/log.h"
@@ -39,7 +39,7 @@
 #include "common/log.h"
 #include "common/timers.h"
 
-/** @addtogroup TEST_FILE 
+/** @addtogroup TEST_FILE
  * @{
  */
 
@@ -260,8 +260,8 @@ void test_bkp_reg(void)
 /*////////////////////////////////////////////////////////////////////////////*/
 
 /** @brief Test jumping to user defined address
- * 
- * @ref boot_jump_to_application() 
+ *
+ * @ref boot_jump_to_application()
  * Updates VTOR, stack pointer and calls fn(address+4) i.e.reset handler()
  */
 void test_boot_jump_to_application(uint32_t address)
@@ -311,8 +311,8 @@ void test_crc(void)
 {
 	test_init("test_crc()");
 
-	/** To work with zlib needs byte reversed input and reversed inverse output 
-	 * Also zlib can work on bytes but stm32 only on 32 bits so need to pad zlib 
+	/** To work with zlib needs byte reversed input and reversed inverse output
+	 * Also zlib can work on bytes but stm32 only on 32 bits so need to pad zlib
 	 * data with zeros to keep crc same
 	 */
 	// Init: 0xFFFFFFFF Rev In Byte Out Enable != 0XE9910FAE  //matches zlib normal
@@ -652,7 +652,7 @@ void test_rtc_wakeup(void)
 		}
 
 		timers_clear_wakeup_flag();
-		
+
 		serial_printf("Wakeup\n");
 	}
 }

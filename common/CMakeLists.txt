@@ -1,13 +1,35 @@
-set(COMMON_LIB "common_${APP}_${CMAKE_BUILD_TYPE}")
+set(COMMON_LIB "common_${APP}")
 set(COMMON_INCLUDE "${CMAKE_CURRENT_LIST_DIR}/include")
 
-file(GLOB C_SOURCES "*.c")
-add_library(${COMMON_LIB} STATIC ${C_SOURCES})
-target_include_directories(${COMMON_LIB} PUBLIC "${COMMON_INCLUDE}")
+add_library(${COMMON_LIB} STATIC
+  aes.c
+  battery.c
+  bootloader_utils.c
+  log.c
+  memory.c
+  printf.c
+  reset.c
+  rf_scan.c
+  rfm.c
+  test.c
+  timers.c
+)
+
+target_include_directories(${COMMON_LIB} PUBLIC ${COMMON_INCLUDE})
+
+################################################################################
+# Link to config
+################################################################################
+
+add_subdirectory(../config ${CMAKE_CURRENT_BINARY_DIR}/config)
+
+target_link_libraries(${COMMON_LIB} PUBLIC ${CONFIG_LIB})
+
+# TODO: config requires common headers so must pass back
+target_include_directories(${CONFIG_LIB} PRIVATE ${COMMON_INCLUDE})
 
 ################################################################################
 # Export
 ################################################################################
 
 set(COMMON_LIB ${COMMON_LIB} PARENT_SCOPE)
-set(COMMON_INCLUDE ${COMMON_INCLUDE} PARENT_SCOPE)

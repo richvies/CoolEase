@@ -4,7 +4,7 @@
  * @author  Richard Davies
  * @date    20/Jan/2021
  * @brief   Battery Source File
- *  
+ *
  ******************************************************************************
  */
 
@@ -25,7 +25,7 @@
 #include <libopencm3/cm3/nvic.h>
 
 #include "common/log.h"
-#include "common/board_defs.h"
+#include "config/board_defs.h"
 #include "common/timers.h"
 
 #ifdef _HUB
@@ -65,11 +65,11 @@ typedef enum
     BATT_PLUGGED_OUT,
 } batt_state_t;
 
-/** @addtogroup BATTERY_FILE 
+/** @addtogroup BATTERY_FILE
  * @{
  */
 
-/** @addtogroup BATTERY_INT 
+/** @addtogroup BATTERY_INT
  * @{
  */
 
@@ -386,7 +386,7 @@ uint8_t batt_get_voltage(void)
     pwr_enable_power_voltage_detect(PWR_CR_PLS_2V6);
     if(pwr_voltage_high())
         voltage = 6;
-    
+
     pwr_enable_power_voltage_detect(PWR_CR_PLS_2V7);
     if(pwr_voltage_high())
         voltage = 7;

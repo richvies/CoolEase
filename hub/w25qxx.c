@@ -11,7 +11,7 @@
 #include <libopencm3/stm32/syscfg.h>
 #include <libopencm3/cm3/nvic.h>
 
-#include "common/board_defs.h"
+#include "config/board_defs.h"
 #include "common/log.h"
 #include "common/timers.h"
 
@@ -29,9 +29,9 @@ bool w25_Init(void)
 {
 	spi_setup();
 
-	w25.Lock=1;	
+	w25.Lock=1;
 	timers_delay_microseconds(100);
-	spi_chip_deselect(); 
+	spi_chip_deselect();
   	timers_delay_microseconds(100);
 
 	timers_delay_milliseconds(20);
@@ -40,7 +40,7 @@ bool w25_Init(void)
 	serial_printf("w25 Init Begin...\r\n");
 
 	id=w25_ReadID();
-	
+
 	serial_printf("w25 ID:0x%X\r\n",id);
 	switch(id&0x0000FFFF)
 	{
@@ -96,11 +96,11 @@ bool w25_Init(void)
 		break;
 		default:
 				serial_printf("w25 Unknown ID\r\n");
-			w25.Lock=0;	
+			w25.Lock=0;
 			return false;
-				
-	}		
-	
+
+	}
+
 	w25.PageSize=256;
 	w25.SectorSize=0x1000;
 	w25.SectorCount=w25.BlockCount*16;
@@ -121,7 +121,7 @@ bool w25_Init(void)
 	serial_printf("w25 Init Done\r\n");
 
 	w25.Lock=0;
-	
+
 	return true;
 }
 
@@ -130,18 +130,18 @@ bool w25_Init(void)
 uint32_t 	w25_ReadID(void)
 {
 	uint32_t Temp = 0, Temp0 = 0, Temp1 = 0, Temp2 = 0;
-	
+
 	spi_chip_select();
 	timers_delay_microseconds(1);
-	
+
 	spi_xfer(W25_SPI, 0x9F);
 	Temp0 = spi_xfer(W25_SPI, W25_DUMMY_BYTE);
 	Temp1 = spi_xfer(W25_SPI, W25_DUMMY_BYTE);
 	Temp2 = spi_xfer(W25_SPI, W25_DUMMY_BYTE);
 
-	spi_chip_deselect(); 
+	spi_chip_deselect();
   	timers_delay_microseconds(1);
-	
+
 	Temp = (Temp0 << 16) | (Temp1 << 8) | Temp2;
   	return Temp;
 }
@@ -159,7 +159,7 @@ void 		w25_ReadUniqID(void)
 	for(uint8_t	i=0;i<8;i++)
 		w25.UniqID[i] = spi_xfer(W25_SPI, W25_DUMMY_BYTE);
 
-    spi_chip_deselect(); 
+    spi_chip_deselect();
   	timers_delay_microseconds(1);
 }
 
@@ -172,7 +172,7 @@ void w25_WriteEnable(void)
 
 	spi_xfer(W25_SPI, 0x06);
 
-	spi_chip_deselect(); 
+	spi_chip_deselect();
   	timers_delay_microseconds(1);
 }
 void w25_WriteDisable(void)
@@ -180,7 +180,7 @@ void w25_WriteDisable(void)
   spi_chip_select();
   	timers_delay_microseconds(1);
   spi_xfer(W25_SPI, 0x04);
-    	spi_chip_deselect(); 
+    	spi_chip_deselect();
   	timers_delay_microseconds(1);
 	timers_delay_microseconds(1);
 }
@@ -190,14 +190,14 @@ void w25_WaitForWriteEnd(void)
   	timers_delay_microseconds(1);
 
 	spi_xfer(W25_SPI, 0x05);
-	
+
 	do
 	{
 		w25.StatusRegister1 = spi_xfer(W25_SPI, W25_DUMMY_BYTE);
 		timers_delay_microseconds(10);
 	}while ((w25.StatusRegister1 & 0x01) == 0x01);
 
-   	spi_chip_deselect(); 
+   	spi_chip_deselect();
   	timers_delay_microseconds(1);
 }
 
@@ -206,32 +206,32 @@ void w25_WaitForWriteEnd(void)
 uint8_t w25_ReadStatusRegister(uint8_t	SelectStatusRegister_1_2_3)
 {
 	uint8_t	status=0;
-	
+
 	spi_chip_select();
   	timers_delay_microseconds(1);
 
 	if(SelectStatusRegister_1_2_3==1)
 	{
 		spi_xfer(W25_SPI, 0x05);
-		status=spi_xfer(W25_SPI, W25_DUMMY_BYTE);	
+		status=spi_xfer(W25_SPI, W25_DUMMY_BYTE);
 		w25.StatusRegister1 = status;
 	}
 	else if(SelectStatusRegister_1_2_3==2)
 	{
 		spi_xfer(W25_SPI, 0x35);
-		status=spi_xfer(W25_SPI, W25_DUMMY_BYTE);	
+		status=spi_xfer(W25_SPI, W25_DUMMY_BYTE);
 		w25.StatusRegister2 = status;
 	}
 	else
 	{
 		spi_xfer(W25_SPI, 0x15);
-		status=spi_xfer(W25_SPI, W25_DUMMY_BYTE);	
+		status=spi_xfer(W25_SPI, W25_DUMMY_BYTE);
 		w25.StatusRegister3 = status;
 	}
-	
-	spi_chip_deselect(); 
+
+	spi_chip_deselect();
   	timers_delay_microseconds(1);
-	  
+
 	return status;
 }
 void 	w25_WriteStatusRegister(uint8_t	SelectStatusRegister_1_2_3, uint8_t Data)
@@ -254,23 +254,23 @@ void 	w25_WriteStatusRegister(uint8_t	SelectStatusRegister_1_2_3, uint8_t Data)
 		spi_xfer(W25_SPI, 0x11);
 		w25.StatusRegister3 = Data;
 	}
-	
+
 	spi_xfer(W25_SPI, Data);
 
-    spi_chip_deselect(); 
+    spi_chip_deselect();
   	timers_delay_microseconds(1);
 }
 
-	
+
 //###################################################################################################################
 
 void	w25_EraseChip(void)
 {
 	while(w25.Lock==1)
 		timers_delay_microseconds(1);
-	w25.Lock=1;	
-	
-	// uint32_t	StartTime=HAL_GetTick();	
+	w25.Lock=1;
+
+	// uint32_t	StartTime=HAL_GetTick();
 	serial_printf("w25 EraseChip Begin...\r\n");
 
 	w25_WriteEnable();
@@ -280,7 +280,7 @@ void	w25_EraseChip(void)
 
   	spi_xfer(W25_SPI, 0xC7);
 
-    spi_chip_deselect(); 
+    spi_chip_deselect();
   	timers_delay_microseconds(1);
 
 	w25_WaitForWriteEnd();
@@ -289,14 +289,14 @@ void	w25_EraseChip(void)
 
 	timers_delay_microseconds(10);
 
-	w25.Lock=0;	
+	w25.Lock=0;
 }
 void 	w25_EraseSector(uint32_t SectorAddr)
 {
 	while(w25.Lock==1)
 		timers_delay_microseconds(1);
-	w25.Lock=1;	
-	// uint32_t	StartTime=HAL_GetTick();	
+	w25.Lock=1;
+	// uint32_t	StartTime=HAL_GetTick();
 	serial_printf("w25 EraseSector %d Begin...\r\n",SectorAddr);
 	w25_WaitForWriteEnd();
 	SectorAddr = SectorAddr * w25.SectorSize;
@@ -309,7 +309,7 @@ void 	w25_EraseSector(uint32_t SectorAddr)
   spi_xfer(W25_SPI, (SectorAddr & 0xFF0000) >> 16);
   spi_xfer(W25_SPI, (SectorAddr & 0xFF00) >> 8);
   spi_xfer(W25_SPI, SectorAddr & 0xFF);
-	  	spi_chip_deselect(); 
+	  	spi_chip_deselect();
   	timers_delay_microseconds(1);
   w25_WaitForWriteEnd();
 	// serial_printf("w25 EraseSector done after %d ms\r\n",HAL_GetTick()-StartTime);
@@ -320,9 +320,9 @@ void 	w25_EraseBlock(uint32_t BlockAddr)
 {
 	while(w25.Lock==1)
 		timers_delay_microseconds(1);
-	w25.Lock=1;	
+	w25.Lock=1;
 	serial_printf("w25 EraseBlock %d Begin...\r\n",BlockAddr);
-	// uint32_t	StartTime=HAL_GetTick();	
+	// uint32_t	StartTime=HAL_GetTick();
 	w25_WaitForWriteEnd();
 	BlockAddr = BlockAddr * w25.SectorSize*16;
   w25_WriteEnable();
@@ -334,7 +334,7 @@ void 	w25_EraseBlock(uint32_t BlockAddr)
   spi_xfer(W25_SPI, (BlockAddr & 0xFF0000) >> 16);
   spi_xfer(W25_SPI, (BlockAddr & 0xFF00) >> 8);
   spi_xfer(W25_SPI, BlockAddr & 0xFF);
-	  	spi_chip_deselect(); 
+	  	spi_chip_deselect();
   	timers_delay_microseconds(1);
   w25_WaitForWriteEnd();
 	// serial_printf("w25 EraseBlock done after %d ms\r\n",HAL_GetTick()-StartTime);
@@ -371,7 +371,7 @@ bool 	w25_IsEmptyPage(uint32_t Page_Address,uint32_t OffsetInByte,uint32_t NumBy
 {
 	while(w25.Lock==1)
 	timers_delay_microseconds(1);
-	w25.Lock=1;	
+	w25.Lock=1;
 	if(((NumByteToCheck_up_to_PageSize+OffsetInByte)>w25.PageSize)||(NumByteToCheck_up_to_PageSize==0))
 		NumByteToCheck_up_to_PageSize=w25.PageSize-OffsetInByte;
 	serial_printf("w25 CheckPage:%d, Offset:%d, Bytes:%d begin...\r\n",Page_Address,OffsetInByte,NumByteToCheck_up_to_PageSize);
@@ -393,18 +393,18 @@ bool 	w25_IsEmptyPage(uint32_t Page_Address,uint32_t OffsetInByte,uint32_t NumBy
 		spi_xfer(W25_SPI, (WorkAddress & 0xFF00) >> 8);
 		spi_xfer(W25_SPI, WorkAddress & 0xFF);
 		spi_xfer(W25_SPI, 0);
-		// HAL_SPI_Receive(&_W25_SPI,pBuffer,sizeof(pBuffer),100);	
-		  	spi_chip_deselect(); 
-  	timers_delay_microseconds(1);	
+		// HAL_SPI_Receive(&_W25_SPI,pBuffer,sizeof(pBuffer),100);
+		  	spi_chip_deselect();
+  	timers_delay_microseconds(1);
 		for(uint8_t x=0;x<sizeof(pBuffer);x++)
 		{
 			if(pBuffer[x]!=0xFF)
 			{
 
 			}
-				// goto NOT_EMPTY;		
-		}			
-	}	
+				// goto NOT_EMPTY;
+		}
+	}
 	if((w25.PageSize+OffsetInByte)%sizeof(pBuffer)!=0)
 	{
 		i-=sizeof(pBuffer);
@@ -420,19 +420,19 @@ bool 	w25_IsEmptyPage(uint32_t Page_Address,uint32_t OffsetInByte,uint32_t NumBy
 			spi_xfer(W25_SPI, (WorkAddress & 0xFF00) >> 8);
 			spi_xfer(W25_SPI, WorkAddress & 0xFF);
 			spi_xfer(W25_SPI, 0);
-			// HAL_SPI_Receive(&_W25_SPI,pBuffer,1,100);	
-			  	spi_chip_deselect(); 
-  	timers_delay_microseconds(1);	
+			// HAL_SPI_Receive(&_W25_SPI,pBuffer,1,100);
+			  	spi_chip_deselect();
+  	timers_delay_microseconds(1);
 			if(pBuffer[0]!=0xFF)
 			{
 
 			}
 				// goto NOT_EMPTY;
 		}
-	}	
+	}
 	// serial_printf("w25 CheckPage is Empty in %d ms\r\n",HAL_GetTick()-StartTime);
 	w25.Lock=0;
-	return true;	
+	return true;
 	// NOT_EMPTY:
 	// serial_printf("w25 CheckPage is Not Empty in %d ms\r\n",HAL_GetTick()-StartTime);
 	w25.Lock=0;
@@ -442,11 +442,11 @@ bool 	w25_IsEmptySector(uint32_t Sector_Address,uint32_t OffsetInByte,uint32_t N
 {
 	while(w25.Lock==1)
 	timers_delay_microseconds(1);
-	w25.Lock=1;	
+	w25.Lock=1;
 	if((NumByteToCheck_up_to_SectorSize>w25.SectorSize)||(NumByteToCheck_up_to_SectorSize==0))
 		NumByteToCheck_up_to_SectorSize=w25.SectorSize;
 	serial_printf("w25 CheckSector:%d, Offset:%d, Bytes:%d begin...\r\n",Sector_Address,OffsetInByte,NumByteToCheck_up_to_SectorSize);
-	// uint32_t	StartTime=HAL_GetTick();	
+	// uint32_t	StartTime=HAL_GetTick();
 	uint8_t	pBuffer[32];
 	uint32_t	WorkAddress;
 	uint32_t	i;
@@ -462,18 +462,18 @@ bool 	w25_IsEmptySector(uint32_t Sector_Address,uint32_t OffsetInByte,uint32_t N
 		spi_xfer(W25_SPI, (WorkAddress & 0xFF00) >> 8);
 		spi_xfer(W25_SPI, WorkAddress & 0xFF);
 		spi_xfer(W25_SPI, 0);
-		// HAL_SPI_Receive(&_W25_SPI,pBuffer,sizeof(pBuffer),100);	
-		  	spi_chip_deselect(); 
-  	timers_delay_microseconds(1);	
+		// HAL_SPI_Receive(&_W25_SPI,pBuffer,sizeof(pBuffer),100);
+		  	spi_chip_deselect();
+  	timers_delay_microseconds(1);
 		for(uint8_t x=0;x<sizeof(pBuffer);x++)
 		{
 			if(pBuffer[x]!=0xFF)
 			{
 
 			}
-				// goto NOT_EMPTY;		
-		}			
-	}	
+				// goto NOT_EMPTY;
+		}
+	}
 	if((w25.SectorSize+OffsetInByte)%sizeof(pBuffer)!=0)
 	{
 		i-=sizeof(pBuffer);
@@ -489,19 +489,19 @@ bool 	w25_IsEmptySector(uint32_t Sector_Address,uint32_t OffsetInByte,uint32_t N
 			spi_xfer(W25_SPI, (WorkAddress & 0xFF00) >> 8);
 			spi_xfer(W25_SPI, WorkAddress & 0xFF);
 			spi_xfer(W25_SPI, 0);
-			// HAL_SPI_Receive(&_W25_SPI,pBuffer,1,100);	
-			  	spi_chip_deselect(); 
-  	timers_delay_microseconds(1);	
+			// HAL_SPI_Receive(&_W25_SPI,pBuffer,1,100);
+			  	spi_chip_deselect();
+  	timers_delay_microseconds(1);
 			if(pBuffer[0]!=0xFF)
 			{
 
 			}
 				// goto NOT_EMPTY;
 		}
-	}	
+	}
 	// serial_printf("w25 CheckSector is Empty in %d ms\r\n",HAL_GetTick()-StartTime);
 	w25.Lock=0;
-	return true;	
+	return true;
 	// serial_printf("w25 CheckSector is Not Empty in %d ms\r\n",HAL_GetTick()-StartTime);
 	w25.Lock=0;
 	return false;
@@ -510,11 +510,11 @@ bool 	w25_IsEmptyBlock(uint32_t Block_Address,uint32_t OffsetInByte,uint32_t Num
 {
 	while(w25.Lock==1)
 	timers_delay_microseconds(1);
-	w25.Lock=1;	
+	w25.Lock=1;
 	if((NumByteToCheck_up_to_BlockSize>w25.BlockSize)||(NumByteToCheck_up_to_BlockSize==0))
 		NumByteToCheck_up_to_BlockSize=w25.BlockSize;
 	serial_printf("w25 CheckBlock:%d, Offset:%d, Bytes:%d begin...\r\n",Block_Address,OffsetInByte,NumByteToCheck_up_to_BlockSize);
-	// uint32_t	StartTime=HAL_GetTick();	
+	// uint32_t	StartTime=HAL_GetTick();
 	uint8_t	pBuffer[32];
 	uint32_t	WorkAddress;
 	uint32_t	i;
@@ -530,15 +530,15 @@ bool 	w25_IsEmptyBlock(uint32_t Block_Address,uint32_t OffsetInByte,uint32_t Num
 		spi_xfer(W25_SPI, (WorkAddress & 0xFF00) >> 8);
 		spi_xfer(W25_SPI, WorkAddress & 0xFF);
 		spi_xfer(W25_SPI, 0);
-		// HAL_SPI_Receive(&_W25_SPI,pBuffer,sizeof(pBuffer),100);	
-		  	spi_chip_deselect(); 
-  	timers_delay_microseconds(1);	
+		// HAL_SPI_Receive(&_W25_SPI,pBuffer,sizeof(pBuffer),100);
+		  	spi_chip_deselect();
+  	timers_delay_microseconds(1);
 		for(uint8_t x=0;x<sizeof(pBuffer);x++)
 		{
 			if(pBuffer[x]!=0xFF){}
-				// goto NOT_EMPTY;		
-		}			
-	}	
+				// goto NOT_EMPTY;
+		}
+	}
 	if((w25.BlockSize+OffsetInByte)%sizeof(pBuffer)!=0)
 	{
 		i-=sizeof(pBuffer);
@@ -554,20 +554,20 @@ bool 	w25_IsEmptyBlock(uint32_t Block_Address,uint32_t OffsetInByte,uint32_t Num
 			spi_xfer(W25_SPI, (WorkAddress & 0xFF00) >> 8);
 			spi_xfer(W25_SPI, WorkAddress & 0xFF);
 			spi_xfer(W25_SPI, 0);
-			// HAL_SPI_Receive(&_W25_SPI,pBuffer,1,100);	
-			  	spi_chip_deselect(); 
-  	timers_delay_microseconds(1);	
+			// HAL_SPI_Receive(&_W25_SPI,pBuffer,1,100);
+			  	spi_chip_deselect();
+  	timers_delay_microseconds(1);
 			if(pBuffer[0]!=0xFF){}
 				// goto NOT_EMPTY;
 		}
-	}	
+	}
 	// serial_printf("w25 CheckBlock is Empty in %d ms\r\n",HAL_GetTick()-StartTime);
-	
+
 	w25.Lock=0;
-	return true;	
+	return true;
 	// NOT_EMPTY:
 	// serial_printf("w25 CheckBlock is Not Empty in %d ms\r\n",HAL_GetTick()-StartTime);
-	
+
 	w25.Lock=0;
 	return false;
 }
@@ -594,7 +594,7 @@ void 	w25_WriteByte(uint8_t pBuffer, uint32_t WriteAddr_inBytes)
   spi_xfer(W25_SPI, (WriteAddr_inBytes & 0xFF00) >> 8);
   spi_xfer(W25_SPI, WriteAddr_inBytes & 0xFF);
   spi_xfer(W25_SPI, pBuffer);
-	  	spi_chip_deselect(); 
+	  	spi_chip_deselect();
   	timers_delay_microseconds(1);
   w25_WaitForWriteEnd();
 	// serial_printf("w25 WriteByte done after %d ms\r\n",HAL_GetTick()-StartTime);
@@ -611,37 +611,37 @@ void 	w25_WritePage(uint8_t *pBuffer	,uint32_t Page_Address,uint32_t OffsetInByt
 		NumByteToWrite_up_to_PageSize = w25.PageSize-OffsetInByte;
 	serial_printf("w25 WritePage:%d, Offset:%d ,Writes %d Bytes, begin...\r\n",Page_Address,OffsetInByte,NumByteToWrite_up_to_PageSize);
 	// uint32_t	StartTime=HAL_GetTick();
-	#	
+	#
 	w25_WaitForWriteEnd();
   w25_WriteEnable();
   spi_chip_select();
   	timers_delay_microseconds(1);
   spi_xfer(W25_SPI, 0x02);
-	Page_Address = (Page_Address*w25.PageSize)+OffsetInByte;	
+	Page_Address = (Page_Address*w25.PageSize)+OffsetInByte;
 	if(w25.ID>=W25Q256)
 		spi_xfer(W25_SPI, (Page_Address & 0xFF000000) >> 24);
   spi_xfer(W25_SPI, (Page_Address & 0xFF0000) >> 16);
   spi_xfer(W25_SPI, (Page_Address & 0xFF00) >> 8);
   spi_xfer(W25_SPI, Page_Address&0xFF);
-	// HAL_SPI_Transmit(&_W25_SPI,pBuffer,NumByteToWrite_up_to_PageSize,100);	
-	  	spi_chip_deselect(); 
+	// HAL_SPI_Transmit(&_W25_SPI,pBuffer,NumByteToWrite_up_to_PageSize,100);
+	  	spi_chip_deselect();
   	timers_delay_microseconds(1);
   w25_WaitForWriteEnd();
 
-	// StartTime = HAL_GetTick()-StartTime; 
+	// StartTime = HAL_GetTick()-StartTime;
 	for(uint32_t i=0;i<NumByteToWrite_up_to_PageSize ; i++)
 	{
 		if((i%8==0)&&(i>2))
 		{
 			serial_printf("\r\n");
-			timers_delay_microseconds(10);			
+			timers_delay_microseconds(10);
 		}
-		serial_printf("0x%02X,",pBuffer[i]);		
-	}	
+		serial_printf("0x%02X,",pBuffer[i]);
+	}
 	serial_printf("\r\n");
 	// serial_printf("w25 WritePage done after %d ms\r\n",StartTime);
 	timers_delay_microseconds(100);
-	#	
+	#
 	timers_delay_microseconds(1);
 	w25.Lock=0;
 }
@@ -650,30 +650,30 @@ void 	w25_WriteSector(uint8_t *pBuffer	,uint32_t Sector_Address,uint32_t OffsetI
 	if((NumByteToWrite_up_to_SectorSize>w25.SectorSize)||(NumByteToWrite_up_to_SectorSize==0))
 		NumByteToWrite_up_to_SectorSize=w25.SectorSize;
 	serial_printf("+++w25 WriteSector:%d, Offset:%d ,Write %d Bytes, begin...\r\n",Sector_Address,OffsetInByte,NumByteToWrite_up_to_SectorSize);
-	#	
+	#
 	if(OffsetInByte>=w25.SectorSize)
 	{
 		serial_printf("---w25 WriteSector Faild!\r\n");
 
 		return;
-	}	
+	}
 	uint32_t	StartPage;
 	int32_t		BytesToWrite;
-	uint32_t	LocalOffset;	
+	uint32_t	LocalOffset;
 	if((OffsetInByte+NumByteToWrite_up_to_SectorSize) > w25.SectorSize)
 		BytesToWrite = w25.SectorSize-OffsetInByte;
 	else
-		BytesToWrite = NumByteToWrite_up_to_SectorSize;	
+		BytesToWrite = NumByteToWrite_up_to_SectorSize;
 	StartPage = w25_SectorToPage(Sector_Address)+(OffsetInByte/w25.PageSize);
-	LocalOffset = OffsetInByte%w25.PageSize;	
+	LocalOffset = OffsetInByte%w25.PageSize;
 	do
-	{		
+	{
 		w25_WritePage(pBuffer,StartPage,LocalOffset,BytesToWrite);
 		StartPage++;
 		BytesToWrite-=w25.PageSize-LocalOffset;
 		pBuffer += w25.PageSize - LocalOffset;
 		LocalOffset=0;
-	}while(BytesToWrite>0);		
+	}while(BytesToWrite>0);
 	serial_printf("---w25 WriteSector Done\r\n");
 
 }
@@ -686,28 +686,28 @@ void 	w25_WriteBlock	(uint8_t* pBuffer ,uint32_t Block_Address	,uint32_t OffsetI
 	if(OffsetInByte>=w25.BlockSize)
 	{
 		serial_printf("---w25 WriteBlock Faild!\r\n");
-		
+
 		return;
-	}	
+	}
 	uint32_t	StartPage;
 	int32_t		BytesToWrite;
-	uint32_t	LocalOffset;	
+	uint32_t	LocalOffset;
 	if((OffsetInByte+NumByteToWrite_up_to_BlockSize) > w25.BlockSize)
 		BytesToWrite = w25.BlockSize-OffsetInByte;
 	else
-		BytesToWrite = NumByteToWrite_up_to_BlockSize;	
+		BytesToWrite = NumByteToWrite_up_to_BlockSize;
 	StartPage = w25_BlockToPage(Block_Address)+(OffsetInByte/w25.PageSize);
-	LocalOffset = OffsetInByte%w25.PageSize;	
+	LocalOffset = OffsetInByte%w25.PageSize;
 	do
-	{		
+	{
 		w25_WritePage(pBuffer,StartPage,LocalOffset,BytesToWrite);
 		StartPage++;
 		BytesToWrite-=w25.PageSize-LocalOffset;
 		pBuffer += w25.PageSize - LocalOffset;
 		LocalOffset=0;
-	}while(BytesToWrite>0);		
+	}while(BytesToWrite>0);
 	serial_printf("---w25 WriteBlock Done\r\n");
-	
+
 }
 
 //###################################################################################################################
@@ -717,7 +717,7 @@ void 	w25_ReadByte(uint8_t *pBuffer,uint32_t Bytes_Address)
 	while(w25.Lock==1)
 		timers_delay_microseconds(1);
 	w25.Lock=1;
-	
+
 	// uint32_t	StartTime=HAL_GetTick();
 	serial_printf("w25 ReadByte at address %d begin...\r\n",Bytes_Address);
 
@@ -731,8 +731,8 @@ void 	w25_ReadByte(uint8_t *pBuffer,uint32_t Bytes_Address)
   spi_xfer(W25_SPI, Bytes_Address & 0xFF);
 	spi_xfer(W25_SPI, 0);
 	*pBuffer = spi_xfer(W25_SPI, W25_DUMMY_BYTE);
-	  	spi_chip_deselect(); 
-  	timers_delay_microseconds(1);	
+	  	spi_chip_deselect();
+  	timers_delay_microseconds(1);
 	// serial_printf("w25 ReadByte 0x%02X done after %d ms\r\n",*pBuffer,HAL_GetTick()-StartTime);
 	w25.Lock=0;
 }
@@ -741,10 +741,10 @@ void 	w25_ReadBytes(uint8_t* pBuffer, uint32_t ReadAddr, uint32_t NumByteToRead)
 	while(w25.Lock==1)
 		timers_delay_microseconds(1);
 	w25.Lock=1;
-	
+
 	// uint32_t	StartTime=HAL_GetTick();
 	serial_printf("w25 ReadBytes at Address:%d, %d Bytes  begin...\r\n",ReadAddr,NumByteToRead);
-	
+
 	spi_chip_select();
   	timers_delay_microseconds(1);
 	spi_xfer(W25_SPI, 0x0B);
@@ -754,11 +754,11 @@ void 	w25_ReadBytes(uint8_t* pBuffer, uint32_t ReadAddr, uint32_t NumByteToRead)
   spi_xfer(W25_SPI, (ReadAddr& 0xFF00) >> 8);
   spi_xfer(W25_SPI, ReadAddr & 0xFF);
 	spi_xfer(W25_SPI, 0);
-	// HAL_SPI_Receive(&_W25_SPI,pBuffer,NumByteToRead,2000);	
-	  	spi_chip_deselect(); 
+	// HAL_SPI_Receive(&_W25_SPI,pBuffer,NumByteToRead,2000);
+	  	spi_chip_deselect();
   	timers_delay_microseconds(1);
-	
-	// StartTime = HAL_GetTick()-StartTime; 
+
+	// StartTime = HAL_GetTick()-StartTime;
 	for(uint32_t i=0;i<NumByteToRead ; i++)
 	{
 		if((i%8==0)&&(i>2))
@@ -766,12 +766,12 @@ void 	w25_ReadBytes(uint8_t* pBuffer, uint32_t ReadAddr, uint32_t NumByteToRead)
 			serial_printf("\r\n");
 			timers_delay_microseconds(10);
 		}
-		serial_printf("0x%02X,",pBuffer[i]);		
+		serial_printf("0x%02X,",pBuffer[i]);
 	}
 	serial_printf("\r\n");
 	// serial_printf("w25 ReadBytes done after %d ms\r\n",StartTime);
 	timers_delay_microseconds(100);
-	
+
 	timers_delay_microseconds(1);
 	w25.Lock=0;
 }
@@ -786,7 +786,7 @@ void 	w25_ReadPage(uint8_t *pBuffer,uint32_t Page_Address,uint32_t OffsetInByte,
 		NumByteToRead_up_to_PageSize = w25.PageSize-OffsetInByte;
 	serial_printf("w25 ReadPage:%d, Offset:%d ,Read %d Bytes, begin...\r\n",Page_Address,OffsetInByte,NumByteToRead_up_to_PageSize);
 	// uint32_t	StartTime=HAL_GetTick();
-	
+
 	Page_Address = Page_Address*w25.PageSize+OffsetInByte;
 	spi_chip_select();
   	timers_delay_microseconds(1);
@@ -797,11 +797,11 @@ void 	w25_ReadPage(uint8_t *pBuffer,uint32_t Page_Address,uint32_t OffsetInByte,
   spi_xfer(W25_SPI, (Page_Address& 0xFF00) >> 8);
   spi_xfer(W25_SPI, Page_Address & 0xFF);
 	spi_xfer(W25_SPI, 0);
-	// HAL_SPI_Receive(&_W25_SPI,pBuffer,NumByteToRead_up_to_PageSize,100);	
-	  	spi_chip_deselect(); 
+	// HAL_SPI_Receive(&_W25_SPI,pBuffer,NumByteToRead_up_to_PageSize,100);
+	  	spi_chip_deselect();
   	timers_delay_microseconds(1);
-	
-	// StartTime = HAL_GetTick()-StartTime; 
+
+	// StartTime = HAL_GetTick()-StartTime;
 	for(uint32_t i=0;i<NumByteToRead_up_to_PageSize ; i++)
 	{
 		if((i%8==0)&&(i>2))
@@ -809,78 +809,78 @@ void 	w25_ReadPage(uint8_t *pBuffer,uint32_t Page_Address,uint32_t OffsetInByte,
 			serial_printf("\r\n");
 			timers_delay_microseconds(10);
 		}
-		serial_printf("0x%02X,",pBuffer[i]);		
-	}	
+		serial_printf("0x%02X,",pBuffer[i]);
+	}
 	serial_printf("\r\n");
 	// serial_printf("w25 ReadPage done after %d ms\r\n",StartTime);
 	timers_delay_microseconds(100);
-	
+
 	timers_delay_microseconds(1);
 	w25.Lock=0;
 }
 void 	w25_ReadSector(uint8_t *pBuffer,uint32_t Sector_Address,uint32_t OffsetInByte,uint32_t NumByteToRead_up_to_SectorSize)
-{	
+{
 	if((NumByteToRead_up_to_SectorSize>w25.SectorSize)||(NumByteToRead_up_to_SectorSize==0))
 		NumByteToRead_up_to_SectorSize=w25.SectorSize;
 	serial_printf("+++w25 ReadSector:%d, Offset:%d ,Read %d Bytes, begin...\r\n",Sector_Address,OffsetInByte,NumByteToRead_up_to_SectorSize);
-	
+
 	if(OffsetInByte>=w25.SectorSize)
 	{
 		serial_printf("---w25 ReadSector Faild!\r\n");
-		
+
 		return;
-	}	
+	}
 	uint32_t	StartPage;
 	int32_t		BytesToRead;
-	uint32_t	LocalOffset;	
+	uint32_t	LocalOffset;
 	if((OffsetInByte+NumByteToRead_up_to_SectorSize) > w25.SectorSize)
 		BytesToRead = w25.SectorSize-OffsetInByte;
 	else
-		BytesToRead = NumByteToRead_up_to_SectorSize;	
+		BytesToRead = NumByteToRead_up_to_SectorSize;
 	StartPage = w25_SectorToPage(Sector_Address)+(OffsetInByte/w25.PageSize);
-	LocalOffset = OffsetInByte%w25.PageSize;	
+	LocalOffset = OffsetInByte%w25.PageSize;
 	do
-	{		
+	{
 		w25_ReadPage(pBuffer,StartPage,LocalOffset,BytesToRead);
 		StartPage++;
 		BytesToRead-=w25.PageSize-LocalOffset;
 		pBuffer += w25.PageSize - LocalOffset;
 		LocalOffset=0;
-	}while(BytesToRead>0);		
+	}while(BytesToRead>0);
 	serial_printf("---w25 ReadSector Done\r\n");
-	
+
 }
 void 	w25_ReadBlock(uint8_t* pBuffer,uint32_t Block_Address,uint32_t OffsetInByte,uint32_t	NumByteToRead_up_to_BlockSize)
 {
 	if((NumByteToRead_up_to_BlockSize>w25.BlockSize)||(NumByteToRead_up_to_BlockSize==0))
 		NumByteToRead_up_to_BlockSize=w25.BlockSize;
 	serial_printf("+++w25 ReadBlock:%d, Offset:%d ,Read %d Bytes, begin...\r\n",Block_Address,OffsetInByte,NumByteToRead_up_to_BlockSize);
-	
+
 	if(OffsetInByte>=w25.BlockSize)
 	{
 		serial_printf("w25 ReadBlock Faild!\r\n");
-		
+
 		return;
-	}	
+	}
 	uint32_t	StartPage;
 	int32_t		BytesToRead;
-	uint32_t	LocalOffset;	
+	uint32_t	LocalOffset;
 	if((OffsetInByte+NumByteToRead_up_to_BlockSize) > w25.BlockSize)
 		BytesToRead = w25.BlockSize-OffsetInByte;
 	else
-		BytesToRead = NumByteToRead_up_to_BlockSize;	
+		BytesToRead = NumByteToRead_up_to_BlockSize;
 	StartPage = w25_BlockToPage(Block_Address)+(OffsetInByte/w25.PageSize);
-	LocalOffset = OffsetInByte%w25.PageSize;	
+	LocalOffset = OffsetInByte%w25.PageSize;
 	do
-	{		
+	{
 		w25_ReadPage(pBuffer,StartPage,LocalOffset,BytesToRead);
 		StartPage++;
 		BytesToRead-=w25.PageSize-LocalOffset;
 		pBuffer += w25.PageSize - LocalOffset;
 		LocalOffset=0;
-	}while(BytesToRead>0);		
+	}while(BytesToRead>0);
 	serial_printf("---w25 ReadBlock Done\r\n");
-	
+
 }
 
 //###################################################################################################################
@@ -900,7 +900,7 @@ static void spi_setup(void)
   gpio_set_output_options(W25_SPI_SCK_PORT,   GPIO_OTYPE_PP, GPIO_OSPEED_25MHZ, W25_SPI_SCK);
   gpio_set_output_options(W25_SPI_MOSI_PORT,  GPIO_OTYPE_PP, GPIO_OSPEED_25MHZ, W25_SPI_MOSI);
   gpio_set_output_options(W25_SPI_NSS_PORT,   GPIO_OTYPE_PP, GPIO_OSPEED_25MHZ, W25_SPI_NSS);
-  
+
   // Set NSS pin high
   gpio_set(W25_SPI_NSS_PORT, W25_SPI_NSS);
 
@@ -909,10 +909,10 @@ static void spi_setup(void)
 
   gpio_set_af(W25_SPI_SCK_PORT,   W25_SPI_AF, W25_SPI_SCK);
   gpio_set_af(W25_SPI_MOSI_PORT,  W25_SPI_AF, W25_SPI_MOSI);
-  
+
   // Init SPI
   rcc_periph_clock_enable(W25_SPI_RCC);
-  rcc_periph_reset_pulse(W25_SPI_RST); 
+  rcc_periph_reset_pulse(W25_SPI_RST);
   spi_disable(W25_SPI);
   spi_init_master(W25_SPI, SPI_CR1_BAUDRATE_FPCLK_DIV_2,
                     SPI_CR1_CPOL_CLK_TO_0_WHEN_IDLE, SPI_CR1_CPHA_CLK_TRANSITION_1,

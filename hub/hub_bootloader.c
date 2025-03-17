@@ -19,7 +19,7 @@
 
 #include <libopencm3/stm32/crc.h>
 
-#include "common/board_defs.h"
+#include "config/board_defs.h"
 #include "common/memory.h"
 #include "common/timers.h"
 #include "common/log.h"

@@ -4,7 +4,7 @@
  * @author  Richard Davies
  * @date    27/Dec/2020
  * @brief   Hub Source File
- *  
+ *
  ******************************************************************************
  */
 
@@ -19,7 +19,7 @@
 
 #include "common/aes.h"
 #include "common/battery.h"
-#include "common/board_defs.h"
+#include "config/board_defs.h"
 #include "common/log.h"
 #include "common/memory.h"
 #include "common/reset.h"
@@ -47,7 +47,7 @@
 // TODO
 // Http post with ssl, logging
 
-/** @addtogroup HUB_FILE 
+/** @addtogroup HUB_FILE
  * @{
  */
 
@@ -79,7 +79,7 @@ typedef enum
 	NET_NUM_STATES,
 } net_state_t;
 
-/** @addtogroup HUB_INT 
+/** @addtogroup HUB_INT
  * @{
  */
 
@@ -294,7 +294,7 @@ void add_sensor(uint32_t dev_id)
 
 void rem_sensor(uint32_t dev_id)
 {
-	sensor_t *sensor = get_sensor_by_id(dev_id); 
+	sensor_t *sensor = get_sensor_by_id(dev_id);
 	if (sensor != NULL)
 	{
 		sensor->active = false;
@@ -498,7 +498,7 @@ static void hub(void)
 			}
 			hub_plugged_in = batt_is_plugged_in();
 		}
-		
+
 
 		// Check time?
 		if (RTC_ISR & RTC_ISR_WUTF)
@@ -713,7 +713,7 @@ static void net_task(void)
 
 		serial_printf(".check\n");
 		append_check();
-		
+
 		serial_printf(".get sensors\n");
 		net_buf_append_printf("&sensors=get");
 
@@ -887,7 +887,7 @@ static void parse_net_response(void)
 			upgrade_to_version = _atoi((const char **)&str);
 			serial_printf(".Upgrade to v%u\n", upgrade_to_version);
 		}
-		
+
 		// Sensor list
 		str = strstr(net_buf, "sensors=");
 		if (str != NULL)

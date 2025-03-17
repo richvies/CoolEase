@@ -4,7 +4,7 @@
  * @author  Richard Davies
  * @date    27/Dec/2020
  * @brief   Sensor Source File
- *  
+ *
  ******************************************************************************
  */
 
@@ -21,7 +21,7 @@
 
 #include "common/aes.h"
 #include "common/battery.h"
-#include "common/board_defs.h"
+#include "config/board_defs.h"
 #include "common/aes.h"
 #include "common/reset.h"
 #include "common/memory.h"
@@ -36,14 +36,14 @@
 #include "sensor/sensor_test.h"
 #include "sensor/sensor.h"
 
-/** @addtogroup SENSOR_FILE 
+/** @addtogroup SENSOR_FILE
  * @{
  */
 
 #define VERSION 100
 #define SENSOR_SLEEP_TIME 5
 
-/** @addtogroup SENSOR_INT 
+/** @addtogroup SENSOR_INT
  * @{
  */
 
@@ -133,7 +133,7 @@ int main(void)
 	// 	// Was on purpose
 	// 	if (mem_read_bkp_reg(IWDG_MAGIC_REG) == IWDG_MAGIC_VALUE)
 	// 	{
-	// 		bad_reboot = false; 
+	// 		bad_reboot = false;
 
 	// 		// Go back to standby
 	// 		log_printf("IWDG back to sleep\n");
@@ -276,7 +276,7 @@ static void sensor(void)
 			report_pend = false;
 			report_wait = 569 + (xorshift32() & 0x3F);
 			serial_printf("%us\n", report_wait);
-		
+
 			deinit();
 			set_gpio_for_standby();
 		}
@@ -423,7 +423,7 @@ void rtc_isr(void)
 
 	timers_pet_dogs();
 	report_timer += SENSOR_SLEEP_TIME;
-	 
+
 	if (report_timer > report_wait)
 	{
 		report_pend = true;

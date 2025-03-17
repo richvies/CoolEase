@@ -183,10 +183,10 @@ extern app_info_t *app_info;
 extern log_t *log_file;
 
 
-#ifdef _HUB
-#include "hub/board_defs.h"
+#ifdef COOLEASE_DEVICE_HUB
+#include "hub_defs.h"
 #else
-#include "sensor/board_defs.h"
+#include "sensor_defs.h"
 #endif
 
 void clock_setup_msi_2mhz(void);

@@ -3,7 +3,7 @@
 #include <libopencm3/stm32/i2c.h>
 #include <libopencm3/stm32/flash.h>
 
-#include "common/board_defs.h"
+#include "config/board_defs.h"
 #include "common/timers.h"
 #include "sensor/tmp112.h"
 #include "common/log.h"
@@ -60,13 +60,13 @@ void tmp112_read_temperature(int16_t* readings, uint8_t num_readings)
 	    // Select temperature register
 	    uint8_t select_temp[1] = {TMP112_SEL_TEMP_REG};
         i2c_transfer(TEMP_I2C, TMP112_I2C_ADDRESS, select_temp, 1, NULL, 0);
-		
+
         // Each reading is made up of two 8 bit values
 		uint8_t reading_msb_lsb[2] = {0,0};
 
 		// Read temperature register and return msb/ lsb of measurement
 		i2c_transfer(TEMP_I2C, TMP112_I2C_ADDRESS, NULL, 0, reading_msb_lsb, 2);
-		
+
 		// Convert to degrees celcius and store in array
 		int32_t temp = reading_msb_lsb[0] << 24 | reading_msb_lsb[1] << 16;
         temp = temp >> 20;
@@ -113,10 +113,10 @@ static void tmp112_i2c_setup(void)
 
 	gpio_mode_setup(TEMP_I2C_SCL_PORT, GPIO_MODE_AF, GPIO_PUPD_PULLUP, TEMP_I2C_SCL);
 	gpio_mode_setup(TEMP_I2C_SDA_PORT, GPIO_MODE_AF, GPIO_PUPD_PULLUP, TEMP_I2C_SDA);
-	
+
 	gpio_set_output_options(TEMP_I2C_SCL_PORT, GPIO_OTYPE_OD, GPIO_OSPEED_2MHZ, TEMP_I2C_SCL);
 	gpio_set_output_options(TEMP_I2C_SDA_PORT, GPIO_OTYPE_OD, GPIO_OSPEED_2MHZ, TEMP_I2C_SDA);
-	
+
 	gpio_set_af(TEMP_I2C_SCL_PORT, TEMP_I2C_AF, TEMP_I2C_SCL);
 	gpio_set_af(TEMP_I2C_SDA_PORT, TEMP_I2C_AF, TEMP_I2C_SDA);
 
@@ -124,8 +124,8 @@ static void tmp112_i2c_setup(void)
 	i2c_peripheral_disable(TEMP_I2C);
 	i2c_clear_stop(TEMP_I2C);
 	// i2c_set_speed(TEMP_I2C, i2c_speed_sm_100k, (uint32_t)rcc_apb1_frequency/1000000);
-	
-    // 2Mhz input, so tpresc = 500ns 
+
+    // 2Mhz input, so tpresc = 500ns
     i2c_set_prescaler(TEMP_I2C, 0);
     i2c_set_scl_low_period(TEMP_I2C, 10-1); // 5usecs
     i2c_set_scl_high_period(TEMP_I2C, 8-1); // 4usecs
@@ -137,31 +137,31 @@ static void tmp112_i2c_setup(void)
 static void i2c_transfer(uint32_t i2c, uint8_t addr, uint8_t *w, size_t wn, uint8_t *r, size_t rn)
  {
     /*  waiting for busy is unnecessary. read the RM */
-    if (wn) 
+    if (wn)
 	{
         i2c_set_7bit_address(i2c, addr);
         i2c_set_write_transfer_dir(i2c);
         i2c_set_bytes_to_transfer(i2c, wn);
 
-        if (rn) 
+        if (rn)
 		{
             i2c_disable_autoend(i2c);
-        } 
-		else 
+        }
+		else
 		{
             i2c_enable_autoend(i2c);
         }
-            
+
 		i2c_send_start(i2c);
 
-        while (wn--) 
-		{	
+        while (wn--)
+		{
 			timers_delay_microseconds(1);
 			TIMEOUT(100000, "TMP I2C:", ((wn << 16) | *w), i2c_transmit_int_status(i2c), ;, ;);
 			// timers_timeout_init();
-			// while (!timers_timeout(100000, "TMP I2C", (wn << 16) | *w)) 
-			// {         
-			// 	if (i2c_transmit_int_status(i2c)) 
+			// while (!timers_timeout(100000, "TMP I2C", (wn << 16) | *w))
+			// {
+			// 	if (i2c_transmit_int_status(i2c))
 			// 	{
             //        	break;
             //     }
@@ -173,13 +173,13 @@ static void i2c_transfer(uint32_t i2c, uint8_t addr, uint8_t *w, size_t wn, uint
         /* not entirely sure this is really necessary.
          * RM implies it will stall until it can write out the later bits
          */
-        if (rn) 
+        if (rn)
 		{
             while (!i2c_transfer_complete(i2c));
         }
     }
 
-    if (rn) 
+    if (rn)
 	{
         /* Setting transfer properties */
         i2c_set_7bit_address(i2c, addr);
@@ -190,11 +190,10 @@ static void i2c_transfer(uint32_t i2c, uint8_t addr, uint8_t *w, size_t wn, uint
         /* important to do it afterwards to do a proper repeated start! */
         i2c_enable_autoend(i2c);
 
-        for (size_t i = 0; i < rn; i++) 
+        for (size_t i = 0; i < rn; i++)
 		{
 			TIMEOUT(100000, "TMP I2C Recv:", (rn << 16), i2c_received_data(i2c), ;, ;);
             r[i] = i2c_get_data(i2c);
         }
     }
  }
- 

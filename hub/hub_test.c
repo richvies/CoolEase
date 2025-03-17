@@ -4,7 +4,7 @@
  * @author  Richard Davies
  * @date    27/Dec/2020
  * @brief   Hub testing Source File
- *  
+ *
  ******************************************************************************
  */
 
@@ -28,7 +28,7 @@
 
 #include "common/aes.h"
 #include "common/battery.h"
-#include "common/board_defs.h"
+#include "config/board_defs.h"
 #include "common/aes.h"
 #include "common/reset.h"
 #include "common/rfm.h"
@@ -41,7 +41,7 @@
 #include "hub/sim.h"
 #include "hub/hub.h"
 
-/** @addtogroup HUB_TEST_FILE 
+/** @addtogroup HUB_TEST_FILE
  * @{
  */
 
@@ -242,7 +242,7 @@ void test_revceiver_basic(void)
 			{
 				continue;
 			}
-			
+
 			sensor_t *sensor = get_sensor_by_id(packet->data.device_number);
 
 			if (sensor == NULL)

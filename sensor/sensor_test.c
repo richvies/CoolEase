@@ -4,7 +4,7 @@
  * @author  Richard Davies
  * @date    27/Dec/2020
  * @brief   Sensor testing Source File
- *  
+ *
  ******************************************************************************
  */
 
@@ -28,7 +28,7 @@
 
 #include "common/aes.h"
 #include "common/battery.h"
-#include "common/board_defs.h"
+#include "config/board_defs.h"
 #include "common/aes.h"
 #include "common/reset.h"
 #include "common/rfm.h"
@@ -42,11 +42,11 @@
 #include "sensor/si7051.h"
 #include "sensor/tmp112.h"
 
-/** @addtogroup SENSOR_TEST_FILE 
+/** @addtogroup SENSOR_TEST_FILE
  * @{
  */
 
-/** @addtogroup SENSOR_TEST_INT 
+/** @addtogroup SENSOR_TEST_INT
  * @{
  */
 /** @} */
@@ -79,7 +79,7 @@ void test_si7051(uint8_t num_readings)
 
 		for(int i = 0; i < num_readings; i++)
 			log_printf("Temp %i: %i Deg C\n", i+1, readings[i]);
-			
+
 		timers_delay_milliseconds(1000);
 	}
 }
@@ -98,7 +98,7 @@ void test_tmp112(uint8_t num_readings)
 
 		for(int i = 0; i < num_readings; i++)
 			log_printf("Temp %i: %i Deg C\n", i+1, readings[i]);
-			
+
 		timers_delay_milliseconds(1000);
 	}
 }
@@ -225,7 +225,7 @@ void test_sensor_rf_vs_temp_cal(void)
 		}
 	}
 	// Only calc avg if num_readings > 0
-	if(num_readings) 
+	if(num_readings)
 	{
 		temp_avg = sum/num_readings;
 	}

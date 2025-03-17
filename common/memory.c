@@ -4,7 +4,7 @@
  * @author  Richard Davies
  * @date    29/Dec/2020
  * @brief   Memory Source File
- *  
+ *
  ******************************************************************************
  */
 
@@ -21,11 +21,11 @@
 #include <libopencm3/stm32/rtc.h>
 
 #include "common/aes.h"
-#include "common/board_defs.h"
+#include "config/board_defs.h"
 #include "common/log.h"
 #include "common/timers.h"
 
-/** @addtogroup MEMORY_FILE 
+/** @addtogroup MEMORY_FILE
  * @{
  */
 
@@ -41,7 +41,7 @@
 
 
 
-/** @addtogroup MEMORY_INT 
+/** @addtogroup MEMORY_INT
  * @{
  */
 
@@ -127,7 +127,7 @@ bool mem_eeprom_write_half_word(uint32_t address, uint16_t data)
 {
     if( !(address >= EEPROM_START && address < EEPROM_END) )
         return false;
-    
+
     if (MMIO16(address) == data)
         return true;
 
@@ -183,7 +183,7 @@ bool mem_flash_erase_page(uint32_t address)
 
     // Check page aligned
     if (address & 0x7F)
-        return false; 
+        return false;
 
     num_tries = 0;
     while ((false == ret) && (num_tries < 3))
@@ -253,7 +253,7 @@ bool mem_flash_write_word(uint32_t address, uint32_t data)
         }
 
     }
-    
+
     flash_lock();
 
     if ((ret) && (FLASH_SR & FLASH_SR_EOP))
@@ -267,7 +267,7 @@ bool mem_flash_write_word(uint32_t address, uint32_t data)
         log_printf("MEM: ERR flash write hp fail\n");
     }
 
-    return ret; 
+    return ret;
 }
 
 
@@ -320,7 +320,7 @@ int16_t mem_get_reading(uint32_t reading_num)
 
 void mem_wipe_log(void)
 {
-    
+
 }
 
 void mem_get_log(char log[EEPROM_LOG_SIZE])
@@ -337,7 +337,7 @@ void mem_print_log(void)
     for(uint16_t i = 0; i < EEPROM_LOG_SIZE; i++)
     {
         serial_printf("%c", MMIO8(EEPROM_LOG_BASE + i));
-    }   
+    }
     serial_printf("LOG END\n");
 }
 
@@ -354,7 +354,7 @@ void mem_get_aes_key(uint8_t *aes_key)
         aes_key[(i * 4) + 1]    = tmp >> 8;
         aes_key[(i * 4) + 2]    = tmp >> 16;
         aes_key[(i * 4) + 3]    = tmp >> 24;
-    } 
+    }
 }
 
 void mem_set_aes_key(uint8_t *aes_key)
@@ -371,7 +371,7 @@ void mem_set_aes_key(uint8_t *aes_key)
         eeprom_program_word(aes_key_add + (i * 4), tmp);
 
         tmp = 0;
-    } 
+    }
 }
 
 void mem_get_aes_key_exp(uint8_t *aes_key_exp)
@@ -386,7 +386,7 @@ void mem_get_aes_key_exp(uint8_t *aes_key_exp)
         aes_key_exp[(i * 4) + 1]    = tmp >> 8;
         aes_key_exp[(i * 4) + 2]    = tmp >> 16;
         aes_key_exp[(i * 4) + 3]    = tmp >> 24;
-    } 
+    }
 }
 
 void mem_set_aes_key_exp(uint8_t *aes_key_exp)
@@ -403,7 +403,7 @@ void mem_set_aes_key_exp(uint8_t *aes_key_exp)
         eeprom_program_word(aes_key_exp_add + (i * 4), tmp);
 
         tmp = 0;
-    } 
+    }
 }
 
 void mem_wipe_readings(void)
@@ -482,7 +482,7 @@ static _RAM bool mem_flash_do_page_erase(uint32_t address)
         {
             break;
         }
-        
+
         --counter;
     }
 
@@ -538,7 +538,7 @@ static _RAM bool mem_flash_do_write_half_page(uint32_t address, uint32_t data[FL
         }
         --counter;
     }
-    
+
     if ((ret) && (FLASH_SR & FLASH_SR_EOP))
     {
         //completed without incident

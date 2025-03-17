@@ -4,7 +4,7 @@
  * @author  Richard Davies
  * @date    27/Dec/2020
  * @brief   Cusb Source File
- *  
+ *
  ******************************************************************************
  */
 
@@ -32,11 +32,11 @@
 #include <libopencm3/usb/hid.h>
 
 #include "common/log.h"
-#include "common/board_defs.h"
+#include "config/board_defs.h"
 #include "common/memory.h"
 #include "common/bootloader_utils.h"
 
-/** @addtogroup CUSB_FILE 
+/** @addtogroup CUSB_FILE
  * @{
  */
 
@@ -45,7 +45,7 @@
 /*////////////////////////////////////////////////////////////////////////////*/
 
 /** @addtogroup CUSB_CFG
- * 
+ *
  * - Device
  * - Configuration
  * - Interface
@@ -53,7 +53,7 @@
  * - Strings
  * - HID Function
  * - Report
- * 
+ *
  * @{
  */
 
@@ -182,7 +182,7 @@ static const struct usb_endpoint_descriptor hid_interface_endpoints[] =
         }};
 
 /** @brief HID Report Descriptor
- * 
+ *
  * The data below is an HID report descriptor. The first byte in each item
  * indicates the number of bytes that follow in the lower two bits. The next two
  * bits indicate the type of the item. The remaining four bits indicate the tag.
@@ -300,7 +300,7 @@ static const struct usb_config_descriptor cfg_desc =
 
 /** @} */
 
-/** @addtogroup CUSB_INT 
+/** @addtogroup CUSB_INT
  * @{
  */
 
@@ -344,8 +344,8 @@ static uint8_t usbd_control_buffer[128];
 
 #define HID_REPORT_SIZE_BYTES 64U
 #define HID_REPORT_SIZE_WORDS 16U
-/** @brief HID Report buffers 
- * 
+/** @brief HID Report buffers
+ *
  * Buffer used for all HID in & out transactions
  */
 union
@@ -386,31 +386,31 @@ static void cusb_clock_init(void);
 static void cusb_reset_callback(void);
 
 /** @brief HID configuration init callback
- * 
+ *
  * Called by libopencm3 - usb_standard_set_configuration() to initialize HID configuration
  * - Initializes endpoints, IN (0x01) & OUT (0x81), and
  * sets the IN & OUT transaction callbacks @ref hid_report_callback()
- * - Sets control request callback @ref hid_control_request() 
+ * - Sets control request callback @ref hid_control_request()
  * which is called by libopencm3 usb_control.c functions
  */
 static void hid_set_config(usbd_device *dev, uint16_t wValue);
 
-/** @brief HID Control Callback 
- * 
+/** @brief HID Control Callback
+ *
  * Links hid report descriptor to usbd
  */
 static enum usbd_request_return_codes hid_control_request(usbd_device *dev, struct usb_setup_data *req, uint8_t **buf, uint16_t *len,
                                                           void (**complete)(usbd_device *, struct usb_setup_data *));
 
-/** @brief HID Out Resport Callback 
- * 
+/** @brief HID Out Resport Callback
+ *
  * Called when out report received packet received
  * i.e. when usb CTR interrupt received and transaction type is OUT
  */
 static void hid_out_report_callback(usbd_device *dev, uint8_t ea);
 
-/** @brief HID In Resport Callback 
- * 
+/** @brief HID In Resport Callback
+ *
  * Called when in report received packet received
  * i.e. when usb CTR interrupt and transaction type is IN
  */
@@ -669,7 +669,7 @@ static void hid_out_report_callback(usbd_device *dev, uint8_t ea)
         case CMD_RESET:
             usb_state = USB_CONNECTED;
 
-            serial_printf("Reset\n"); 
+            serial_printf("Reset\n");
             break;
 
         // Get Log
@@ -681,7 +681,7 @@ static void hid_out_report_callback(usbd_device *dev, uint8_t ea)
             uint8_t buf[HID_REPORT_SIZE_BYTES] = "Start IN\n";
             usbd_ep_write_packet(dev, ea, buf, HID_REPORT_SIZE_BYTES);
 
-            serial_printf("Get Log\n"); 
+            serial_printf("Get Log\n");
             break;
 
         // Setup for programming
@@ -725,7 +725,7 @@ static void hid_out_report_callback(usbd_device *dev, uint8_t ea)
 
             serial_printf("Prog End\n");
             break;
-        
+
         case CMD_PRINT_START:
             usb_state = USB_PRINT;
 
@@ -756,7 +756,7 @@ static void hid_out_report_callback(usbd_device *dev, uint8_t ea)
 
         case CMD_END:
             cusb_end();
-            
+
             serial_printf("End\n");
             break;
 

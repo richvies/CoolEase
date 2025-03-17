@@ -4,7 +4,7 @@
  * @author  Richard Davies
  * @date    30/Dec/2020
  * @brief   Log Source File
- *  
+ *
  ******************************************************************************
  */
 
@@ -24,7 +24,7 @@
 #include <libopencm3/stm32/usart.h>
 #include <libopencm3/stm32/flash.h>
 
-#include "common/board_defs.h"
+#include "config/board_defs.h"
 #include "common/memory.h"
 #include "common/printf.h"
 #include "common/log.h"
@@ -34,11 +34,11 @@
 #include "hub/cusb.h"
 #endif
 
-/** @addtogroup LOG_FILE 
+/** @addtogroup LOG_FILE
  * @{
  */
 
-/** @addtogroup LOG_INT 
+/** @addtogroup LOG_INT
  * @{
  */
 
@@ -274,10 +274,10 @@ static void usart_end(void)
 	nvic_clear_pending_irq(SPF_USART_NVIC);
 	nvic_disable_irq(SPF_USART_NVIC);
 	usart_disable_rx_interrupt(SPF_USART);
-	
+
 	gpio_mode_setup(SPF_USART_RX_PORT, GPIO_MODE_ANALOG, GPIO_PUPD_NONE, SPF_USART_RX);
 	gpio_mode_setup(SPF_USART_TX_PORT, GPIO_MODE_ANALOG, GPIO_PUPD_NONE, SPF_USART_TX);
-	
+
 	usart_disable(SPF_USART);
 	rcc_periph_reset_pulse(SPF_USART_RCC_RST);
 	rcc_periph_clock_disable(SPF_USART_RCC);

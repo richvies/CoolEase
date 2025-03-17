@@ -4,20 +4,20 @@
  * @author  Richard Davies
  * @date    29/Dec/2020
  * @brief   Memory Header File
- *  
+ *
  * @defgroup   MEMORY_FILE  Memory
- * @brief      
- * 
+ * @brief
+ *
  * Read and write to eeprom and flash is working 12/29/2020
- * 
- * @note     
- * 
+ *
+ * @note
+ *
  * @{
  * @defgroup   MEMORY_API  Memory API
- * @brief      
- * 
+ * @brief
+ *
  * @defgroup   MEMORY_INT  Memory Internal
- * @brief      
+ * @brief
  * @}
  ******************************************************************************
  */
@@ -30,10 +30,10 @@
 /*////////////////////////////////////////////////////////////////////////////*/
 
 #include <stdint.h>
-#include <libopencm3/stm32/flash.h>     
-#include <libopencm3/stm32/rcc.h>  
+#include <libopencm3/stm32/flash.h>
+#include <libopencm3/stm32/rcc.h>
 
-#include "common/board_defs.h"
+#include "config/board_defs.h"
 
 
 #ifdef __cplusplus
@@ -99,4 +99,4 @@ uint32_t mem_read_bkp_reg(uint8_t reg);
 }
 #endif
 
-#endif // MEMORY_H 
+#endif // MEMORY_H

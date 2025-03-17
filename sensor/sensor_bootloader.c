@@ -4,7 +4,7 @@
  * @author  Richard Davies
  * @date    25/Dec/2020
  * @brief   Sensor Bootloader Source File
- *  
+ *
  ******************************************************************************
  */
 
@@ -17,7 +17,7 @@
 #include "common/aes.h"
 #include "common/battery.h"
 #include "common/bootloader_utils.h"
-#include "common/board_defs.h"
+#include "config/board_defs.h"
 #include "common/aes.h"
 #include "common/reset.h"
 #include "common/rf_scan.h"
@@ -30,11 +30,11 @@
 #include "sensor/si7051.h"
 #include "sensor/sensor_test.h"
 
-/** @addtogroup SENSOR_BOOTLOADER_FILE 
+/** @addtogroup SENSOR_BOOTLOADER_FILE
  * @{
  */
 
-/** @addtogroup SENSOR_BOOTLOADER_INT 
+/** @addtogroup SENSOR_BOOTLOADER_INT
  * @{
  */
 

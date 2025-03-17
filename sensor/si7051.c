@@ -5,7 +5,7 @@
 #include <libopencm3/stm32/rtc.h>
 
 #include "sensor/si7051.h"
-#include "common/board_defs.h"
+#include "config/board_defs.h"
 
 // Helper functions for setting up i2c communication
 static void si7051_clock_setup(void);
@@ -47,7 +47,7 @@ void si7051_read_temperature(int16_t* readings, uint8_t num_readings)
 	{
 		// Transfer measure command and return msb/ lsb of measurement
 		i2c_transfer7(TEMP_I2C, SI7051_I2C_ADDRESS, cmd, 1, reading_msb_lsb, 2);
-		
+
 		// Convert to degrees celcius and store in array
 		uint32_t temp = reading_msb_lsb[0] << 24 | reading_msb_lsb[1] << 16;
 		temp = temp >> 16;
@@ -96,18 +96,18 @@ static void si7051_i2c_setup(void)
 
 	gpio_mode_setup(TEMP_I2C_SCL_PORT, GPIO_MODE_AF, GPIO_PUPD_NONE, TEMP_I2C_SCL);
 	gpio_mode_setup(TEMP_I2C_SDA_PORT, GPIO_MODE_AF, GPIO_PUPD_NONE, TEMP_I2C_SDA);
-	
+
 	gpio_set_output_options(TEMP_I2C_SCL_PORT, GPIO_OTYPE_OD, GPIO_OSPEED_2MHZ, TEMP_I2C_SCL);
 	gpio_set_output_options(TEMP_I2C_SDA_PORT, GPIO_OTYPE_OD, GPIO_OSPEED_2MHZ, TEMP_I2C_SDA);
-	
+
 	gpio_set_af(TEMP_I2C_SCL_PORT, TEMP_I2C_AF, TEMP_I2C_SCL);
 	gpio_set_af(TEMP_I2C_SDA_PORT, TEMP_I2C_AF, TEMP_I2C_SDA);
 
 	i2c_peripheral_disable(TEMP_I2C);
 	i2c_clear_stop(TEMP_I2C);
 	// i2c_set_speed(I2C1, i2c_speed_sm_100k, (uint32_t)rcc_apb1_frequency/1000000);
-	
-    // 2Mhz input, so tpresc = 500ns 
+
+    // 2Mhz input, so tpresc = 500ns
     i2c_set_prescaler(TEMP_I2C, 0);
     i2c_set_scl_low_period(TEMP_I2C, 10-1); // 5usecs
     i2c_set_scl_high_period(TEMP_I2C, 8-1); // 4usecs

@@ -4,7 +4,7 @@
  * @author  Richard Davies
  * @date    25/Dec/2020
  * @brief   Rfm Source File
- *  
+ *
  ******************************************************************************
  */
 
@@ -29,7 +29,7 @@
 #include <libopencm3/stm32/syscfg.h>
 #include <libopencm3/cm3/nvic.h>
 
-#include "common/board_defs.h"
+#include "config/board_defs.h"
 #include "common/log.h"
 #include "common/timers.h"
 
@@ -50,7 +50,7 @@
 #define spi_chip_deselect() gpio_set(RFM_SPI_NSS_PORT, RFM_SPI_NSS)
 
 /** @brief  Stalls until RFM IO Pin 0 is asserted high
- * 
+ *
  * RFM is setup to assert this pin upon succesful transmission of a packet.
  * See @ref rfm_transmit_packet()
  */
@@ -116,9 +116,9 @@ static inline void set_sleep_mode(void);
 /*////////////////////////////////////////////////////////////////////////////*/
 
 /** @brief Initialize radio module
- *     
+ *
  * Initializes the clock and spi peripheral
- * Resets the radio and configures for LORA    
+ * Resets the radio and configures for LORA
  */
 void rfm_init(void)
 {
@@ -147,7 +147,7 @@ void rfm_init(void)
   gpio_set(RFM_RESET_PORT, RFM_RESET);
 
   spi_chip_deselect();
-  
+
   rfm_reset();
 }
 
@@ -395,11 +395,11 @@ uint8_t rfm_get_num_packets(void)
 }
 
 /** @brief Transmit packet
- * 
+ *
  * Clears buffers, enables interrupt, writes packet data and enters TX mode\n
  * RFM interrupt on IO0 is asserted on susccesful transmitssion\n
  * Enters sleep mode when complete.
- * 
+ *
  * @param   packet rfm packet to send @ref rfm_packet_t
  * @retval  bool true if transmitted succesfully, false if timeout
  */
@@ -522,9 +522,9 @@ static void spi_setup(void)
 }
 
 /** @brief SPI Read Register
- * 
+ *
  * Reads a register from the rfm
- * 
+ *
  * @param reg Register to read
  * @retval Value read from register
  */

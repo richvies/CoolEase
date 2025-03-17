@@ -4,7 +4,7 @@
  * @author  Richard Davies
  * @date    04/Jan/2021
  * @brief   Sim Source File
- *  
+ *
  ******************************************************************************
  */
 
@@ -24,13 +24,13 @@
 #include <libopencm3/cm3/nvic.h>
 #include <libopencm3/cm3/cortex.h>
 
-#include "common/board_defs.h"
+#include "config/board_defs.h"
 #include "common/log.h"
 #include "common/memory.h"
 #include "common/timers.h"
 #include "common/printf.h"
 
-/** @addtogroup SIM_FILE 
+/** @addtogroup SIM_FILE
  * @{
  */
 
@@ -80,7 +80,7 @@
 // HTTP
 #define HTTP_ENABLE_SSL AT + HTTPSSL = 1
 
-/** @addtogroup SIM_INT 
+/** @addtogroup SIM_INT
  * @{
  */
 
@@ -142,8 +142,8 @@ static sim_state_t exec_command(const char *cmd_str, uint32_t timeout_ms);
 static sim_state_t set_param(const char *cmd_str, const char *val_str, uint32_t timeout_ms);
 static sim_state_t wait_command(const char *wait_str, uint32_t timeout_ms);
 
-/** @brief Wait until correct response received or timeout 
- * 
+/** @brief Wait until correct response received or timeout
+ *
  * Check response + timeout
  */
 static bool wait_and_check_response(uint32_t timeout_ms, const char *expected_response);
@@ -162,10 +162,10 @@ static bool timeout(void);
 
 static sim_state_t reset_and_wait_ready(void);
 /** @brief Repeatedly send AT command until SIM autbauding kicks in i.e. "OK" received
- * 
+ *
  * Recommended pg.29 SIM800_Hardware Design_V1.10.pdf
  * 100ms timeout for each attempt
- * 
+ *
  */
 static sim_state_t try_autobaud(void);
 static sim_state_t disable_echo(void);

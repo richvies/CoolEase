@@ -16,7 +16,7 @@
 
 #include "common/aes.h"
 #include "common/battery.h"
-#include "common/board_defs.h"
+#include "config/board_defs.h"
 #include "common/aes.h"
 #include "common/reset.h"
 #include "common/rf_scan.h"

@@ -4,20 +4,20 @@
  * @author  Richard Davies
  * @date    26/Dec/2020
  * @brief   Testing Header File
- *  
+ *
  * @defgroup   TEST_FILE  Testing
- * @brief      
- * 
+ * @brief
+ *
  * Description
- * 
- * @note     
- * 
+ *
+ * @note
+ *
  * @{
  * @defgroup   TEST_API  Testing API
- * @brief      
- * 
+ * @brief
+ *
  * @defgroup   TEST_INT  Testing Internal
- * @brief      
+ * @brief
  * @}
  ******************************************************************************
  */
@@ -33,7 +33,7 @@
 #include <stdbool.h>
 #include <stdlib.h>
 
-#include "common/board_defs.h"
+#include "config/board_defs.h"
 
 #ifdef __cplusplus
 extern "C" {
@@ -124,4 +124,4 @@ void test_spf_tx(void);
 
 /** @} */
 
-#endif // TEST_H 
+#endif // TEST_H

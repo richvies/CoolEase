@@ -4,20 +4,20 @@
  * @author  Richard Davies
  * @date    18/Jan/2021
  * @brief   Hub Header File
- *  
+ *
  * @defgroup   HUB_FILE  Hub
- * @brief      
- * 
+ * @brief
+ *
  * Description
- * 
- * @note     
- * 
+ *
+ * @note
+ *
  * @{
  * @defgroup   HUB_API  Hub API
- * @brief      
- * 
+ * @brief
+ *
  * @defgroup   HUB_INT  Hub Internal
- * @brief      
+ * @brief
  * @}
  ******************************************************************************
  */
@@ -33,7 +33,7 @@
 #include <stdbool.h>
 #include <stddef.h>
 
-#include "common/board_defs.h"
+#include "config/board_defs.h"
 #include "common/log.h"
 #include "common/memory.h"
 

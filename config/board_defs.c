@@ -2,7 +2,7 @@
 #include <libopencm3/stm32/gpio.h>
 #include <libopencm3/stm32/flash.h>
 
-#include "common/board_defs.h"
+#include "config/board_defs.h"
 #include "common/timers.h"
 
 #include <stdint.h>
@@ -15,7 +15,7 @@ log_t *log_file = ((log_t *)(EEPROM_LOG_BASE));
 
 enum rcc_osc sys_clk = RCC_MSI;
 
-void clock_setup_msi_2mhz(void) 
+void clock_setup_msi_2mhz(void)
 {
 	// Enable MSI Osc 2.097Mhz
 	rcc_osc_on(RCC_MSI);
@@ -45,7 +45,7 @@ void clock_setup_msi_2mhz(void)
 	sys_clk = RCC_MSI;
 }
 
-void clock_setup_hsi_16mhz(void) 
+void clock_setup_hsi_16mhz(void)
 {
 	// Enable MSI Osc 16MHz
 	rcc_osc_on(RCC_HSI16);
