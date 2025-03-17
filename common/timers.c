@@ -1,13 +1,13 @@
 #include "common/timers.h"
 
+#include <libopencm3/stm32/exti.h>
+#include <libopencm3/stm32/gpio.h>
+#include <libopencm3/stm32/iwdg.h>
+#include <libopencm3/stm32/lptimer.h>
+#include <libopencm3/stm32/pwr.h>
 #include <libopencm3/stm32/rcc.h>
 #include <libopencm3/stm32/rtc.h>
-#include <libopencm3/stm32/iwdg.h>
-#include <libopencm3/stm32/pwr.h>
 #include <libopencm3/stm32/timer.h>
-#include <libopencm3/stm32/lptimer.h>
-#include <libopencm3/stm32/gpio.h>
-#include <libopencm3/stm32/exti.h>
 
 #include <libopencm3/cm3/nvic.h>
 #include <libopencm3/cm3/scb.h>
@@ -16,17 +16,17 @@
 
 #include "common/aes.h"
 #include "common/battery.h"
-#include "config/board_defs.h"
-#include "common/aes.h"
+#include "common/log.h"
 #include "common/reset.h"
 #include "common/rf_scan.h"
 #include "common/rfm.h"
-#include "common/log.h"
 #include "common/test.h"
 #include "common/timers.h"
+#include "config/board_defs.h"
 
 // Problems
-// LPTIM counter update using lptim_irq means it must have higher priority than every other irq otherwise calls to delay_ inside an irq will hang
+// LPTIM counter update using lptim_irq means it must have higher priority than
+// every other irq otherwise calls to delay_ inside an irq will hang
 
 static uint16_t timeout_timer = 0;
 static uint32_t timeout_counter = 0;
@@ -36,22 +36,19 @@ static uint32_t millis_counter = 0;
 static uint32_t timers_measure_lsi_freq(void);
 
 // Start Low Speed Oscillator and Configure RTC to wakeup device
-void timers_rtc_init(void)
-{
+void timers_rtc_init(void) {
     // Check if rtc already initialized
-    if (RTC_ISR & RTC_ISR_INITS)
-    {
+    if (RTC_ISR & RTC_ISR_INITS) {
         serial_printf("RTC: Init\n");
-    }
-    else
-    {
+    } else {
         log_printf("RTC: Not init\n");
 
         // Enable PWR clock and disable write protection
         // RCC_CSR Write protected. Must come before turning on LSI/ LSE clocks
         timers_rtc_unlock();
 
-        // Start low speed internal oscillator ≈ 40kHz. And wait until it is ready
+        // Start low speed internal oscillator ≈ 40kHz. And wait until it is
+        // ready
         rcc_osc_on(RCC_LSI);
         rcc_wait_for_osc_ready(RCC_LSI);
 
@@ -70,8 +67,7 @@ void timers_rtc_init(void)
 
         // Set RTC initialization mode
         RTC_ISR |= RTC_ISR_INIT;
-        while (!((RTC_ISR) & (RTC_ISR_INITF)))
-        {
+        while (!((RTC_ISR) & (RTC_ISR_INITF))) {
         }
 
         // Set RTC prescaler
@@ -90,8 +86,8 @@ void timers_rtc_init(void)
     }
 }
 
-void timers_rtc_set_time(uint8_t year, uint8_t month, uint8_t day, uint8_t hours, uint8_t mins, uint8_t secs)
-{
+void timers_rtc_set_time(uint8_t year, uint8_t month, uint8_t day,
+                         uint8_t hours, uint8_t mins, uint8_t secs) {
     // Enable PWR clock and disable write protection
     timers_rtc_unlock();
 
@@ -114,8 +110,7 @@ void timers_rtc_set_time(uint8_t year, uint8_t month, uint8_t day, uint8_t hours
 
     // Set RTC initialization mode
     RTC_ISR |= RTC_ISR_INIT;
-    while (!((RTC_ISR) & (RTC_ISR_INITF)))
-    {
+    while (!((RTC_ISR) & (RTC_ISR_INITF))) {
     }
 
     RTC_TR = tr;
@@ -131,8 +126,7 @@ void timers_rtc_set_time(uint8_t year, uint8_t month, uint8_t day, uint8_t hours
     timers_rtc_lock();
 }
 
-void timers_set_wakeup_time(uint32_t wakeup_time)
-{
+void timers_set_wakeup_time(uint32_t wakeup_time) {
     timers_rtc_unlock();
 
     // Configure & enable wakeup timer/ interrupt
@@ -142,15 +136,13 @@ void timers_set_wakeup_time(uint32_t wakeup_time)
     timers_rtc_lock();
 }
 
-void timers_clear_wakeup_flag(void)
-{
+void timers_clear_wakeup_flag(void) {
     timers_rtc_unlock();
     rtc_clear_wakeup_flag();
     timers_rtc_lock();
 }
 
-void timers_enable_wut_interrupt(void)
-{
+void timers_enable_wut_interrupt(void) {
     timers_rtc_unlock();
     RTC_CR |= RTC_CR_WUTIE;
     timers_rtc_lock();
@@ -165,8 +157,7 @@ void timers_enable_wut_interrupt(void)
     nvic_enable_irq(NVIC_RTC_IRQ);
 }
 
-void timers_disable_wut_interrupt(void)
-{
+void timers_disable_wut_interrupt(void) {
     timers_rtc_unlock();
     RTC_CR &= ~RTC_CR_WUTIE;
     timers_rtc_lock();
@@ -178,22 +169,19 @@ void timers_disable_wut_interrupt(void)
     nvic_disable_irq(NVIC_RTC_IRQ);
 }
 
-void timers_rtc_unlock(void)
-{
+void timers_rtc_unlock(void) {
     rcc_periph_clock_enable(RCC_PWR);
     pwr_disable_backup_domain_write_protect();
     rtc_unlock();
 }
 
-void timers_rtc_lock(void)
-{
+void timers_rtc_lock(void) {
     rcc_periph_clock_enable(RCC_PWR);
     pwr_enable_backup_domain_write_protect();
     rtc_lock();
 }
 
-static uint32_t timers_measure_lsi_freq(void)
-{
+static uint32_t timers_measure_lsi_freq(void) {
     // TIM21 on APB2
     rcc_periph_clock_enable(RCC_TIM21);
     rcc_periph_reset_pulse(RST_TIM21);
@@ -206,7 +194,8 @@ static uint32_t timers_measure_lsi_freq(void)
     TIM_CR1(TIM21) |= TIM_CR1_CEN;
 
     // CC1 input capture mode, 8 prescale, 8 sample filter
-    TIM_CCMR1(TIM21) |= TIM_CCMR1_CC1S_IN_TI1 | TIM_CCMR1_IC1PSC_8 | TIM_CCMR1_IC1F_CK_INT_N_8;
+    TIM_CCMR1(TIM21) |=
+        TIM_CCMR1_CC1S_IN_TI1 | TIM_CCMR1_IC1PSC_8 | TIM_CCMR1_IC1F_CK_INT_N_8;
 
     // Select LSI capture
     TIM21_OR |= TIM21_OR_TI1_RMP_LSI;
@@ -216,14 +205,11 @@ static uint32_t timers_measure_lsi_freq(void)
 
     // Wait for captures
     uint32_t count = 0;
-    while (!(TIM_SR(TIM21) & TIM_SR_CC1IF))
-    {
+    while (!(TIM_SR(TIM21) & TIM_SR_CC1IF)) {
     };
     uint16_t time = TIM_CCR1(TIM21);
-    for (uint16_t i = 0; i < 10; i++)
-    {
-        while (!(TIM_SR(TIM21) & TIM_SR_CC1IF))
-        {
+    for (uint16_t i = 0; i < 10; i++) {
+        while (!(TIM_SR(TIM21) & TIM_SR_CC1IF)) {
         };
         count += (uint16_t)(TIM_CCR1(TIM21) - time);
         time = TIM_CCR1(TIM21);
@@ -243,8 +229,7 @@ static uint32_t timers_measure_lsi_freq(void)
     return freq;
 }
 
-void timers_lptim_init(void)
-{
+void timers_lptim_init(void) {
     // Internal clock = APB1
     rcc_set_peripheral_clk_sel(LPTIM1, RCC_CCIPR_LPTIM1SEL_APB);
 
@@ -258,10 +243,8 @@ void timers_lptim_init(void)
 
     // Find best prescaler for 1us clock
     uint8_t freq_mhz = rcc_apb1_frequency / 1000000;
-    for (uint8_t i = 0; i < 8; i++)
-    {
-        if (freq_mhz <= (1 << i))
-        {
+    for (uint8_t i = 0; i < 8; i++) {
+        if (freq_mhz <= (1 << i)) {
             lptimer_set_prescaler(LPTIM1, (i << LPTIM_CFGR_PRESC_SHIFT));
             break;
         }
@@ -290,8 +273,7 @@ void timers_lptim_init(void)
     lptimer_start_counter(LPTIM1, LPTIM_CR_CNTSTRT);
 }
 
-void timers_lptim_end(void)
-{
+void timers_lptim_end(void) {
     exti_disable_request(EXTI29);
     nvic_disable_irq(NVIC_LPTIM1_IRQ);
 
@@ -301,38 +283,27 @@ void timers_lptim_end(void)
     rcc_periph_clock_disable(RCC_LPTIM1);
 }
 
-uint32_t timers_micros(void)
-{
-    return (micros_counter + LPTIM1_CNT);
-}
+uint32_t timers_micros(void) { return (micros_counter + LPTIM1_CNT); }
 
-uint32_t timers_millis(void)
-{
-    return millis_counter;
-}
+uint32_t timers_millis(void) { return millis_counter; }
 
-void timers_delay_microseconds(uint32_t delay_microseconds)
-{
+void timers_delay_microseconds(uint32_t delay_microseconds) {
     uint32_t curr_time = timers_micros();
 
-    while ((timers_micros() - curr_time) < delay_microseconds)
-    {
+    while ((timers_micros() - curr_time) < delay_microseconds) {
     }
 }
 
-void timers_delay_milliseconds(uint32_t delay_milliseconds)
-{
+void timers_delay_milliseconds(uint32_t delay_milliseconds) {
     uint32_t curr_time = timers_millis();
 
-    while ((timers_millis() - curr_time) < delay_milliseconds)
-    {
+    while ((timers_millis() - curr_time) < delay_milliseconds) {
         // serial_printf("%u\n", timers_micros());
         // serial_printf("%u\n\n", timers_millis());
     }
 }
 
-void timers_tim6_init(void)
-{
+void timers_tim6_init(void) {
     rcc_periph_clock_enable(RCC_TIM6);
     rcc_periph_reset_pulse(RST_TIM6);
     timer_disable_counter(TIM6);
@@ -342,8 +313,7 @@ void timers_tim6_init(void)
 }
 
 // Start independant watchdog timer
-void timers_iwdg_init(uint32_t period)
-{
+void timers_iwdg_init(uint32_t period) {
     timers_rtc_unlock();
 
     // Start low speed internal oscillator ≈ 40kHz. And wait until it is ready
@@ -357,14 +327,10 @@ void timers_iwdg_init(uint32_t period)
 }
 
 // Reset independant and window watchdog timers
-void timers_pet_dogs(void)
-{
-    iwdg_reset();
-}
+void timers_pet_dogs(void) { iwdg_reset(); }
 
 // Enter standby mode. Vrefint disabled (ULP bit)
-void timers_enter_standby(void)
-{
+void timers_enter_standby(void) {
     pwr_disable_backup_domain_write_protect();
 
     // Cortex deepsleep - stop & standy modes
@@ -383,31 +349,26 @@ void timers_enter_standby(void)
 }
 
 // Timout functions
-void timers_timeout_init(void)
-{
+void timers_timeout_init(void) {
     timeout_counter = 0;
     // timeout_counter     = 2140483648;
     timeout_timer = timers_micros();
 }
 
-bool timers_timeout(uint32_t time_microseconds, char *msg, uint32_t data)
-{
+bool timers_timeout(uint32_t time_microseconds, char* msg, uint32_t data) {
     timeout_counter += (uint16_t)(timers_micros() - timeout_timer);
     timeout_timer = timers_micros();
 
     // log_printf("%u\n", timeout_counter);
 
-    if (timeout_counter > time_microseconds)
-    {
+    if (timeout_counter > time_microseconds) {
         log_printf("Timeout %s %08X\n", msg, data);
         return true;
-    }
-    else
+    } else
         return false;
 }
 
-void lptim1_isr(void)
-{
+void lptim1_isr(void) {
     // Clear all flags
     LPTIM1_ICR = 0xFFFFFFFF;
     micros_counter += 1000;

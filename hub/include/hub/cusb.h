@@ -4,21 +4,21 @@
  * @author  Richard Davies
  * @date    25/Dec/2020
  * @brief   Hub USB driver header file
- *  
+ *
  * @defgroup    CUSB_FILE  Cusb
  * @brief       Hub USB HID driver
- * 
+ *
  * Manages the USB Device
- * 
- * @note     
- * 
+ *
+ * @note
+ *
  * @{
  * @defgroup   CUSB_API  Cusb API
  * @brief      Programming interface and key macros
- * 
+ *
  * @defgroup   CUSB_INT  Cusb Internal
  * @brief      Static Vars, Functions & Internal Macros
- * 
+ *
  * @defgroup   CUSB_CFG  Cusb Configuration
  * @brief      USB HID descriptors
  * @}
@@ -35,8 +35,8 @@
 #include <stdbool.h>
 #include <stdint.h>
 
-#include "common/memory.h"
 #include "common/log.h"
+#include "common/memory.h"
 
 #ifdef __cplusplus
 extern "C" {
@@ -50,7 +50,6 @@ extern "C" {
 // Exported Variables
 /*////////////////////////////////////////////////////////////////////////////*/
 
-
 /*////////////////////////////////////////////////////////////////////////////*/
 // Exported Function Declarations
 /*////////////////////////////////////////////////////////////////////////////*/
@@ -61,10 +60,10 @@ void cusb_init(void);
 void cusb_end(void);
 
 /** @brief True if usb state is CONNECTED
- * 
- * Set by hid config callback after 
+ *
+ * Set by hid config callback after
  * host has requested HID configuration
- * 
+ *
  * @ref usb_state \n
  * @ref hid_set_config()
  */
@@ -90,4 +89,4 @@ void cusb_hook_hid_in_report(void);
 }
 #endif
 
-#endif // CUSB_H 
+#endif // CUSB_H

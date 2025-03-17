@@ -29,12 +29,11 @@
 // Includes
 /*////////////////////////////////////////////////////////////////////////////*/
 
-#include <stdint.h>
 #include <libopencm3/stm32/flash.h>
 #include <libopencm3/stm32/rcc.h>
+#include <stdint.h>
 
 #include "config/board_defs.h"
-
 
 #ifdef __cplusplus
 extern "C" {
@@ -49,7 +48,6 @@ extern "C" {
 // Flash programmed by word or half page
 // EEPROM programmed by word, half word or byte
 
-
 /*////////////////////////////////////////////////////////////////////////////*/
 // Exported Variables
 /*////////////////////////////////////////////////////////////////////////////*/
@@ -63,11 +61,11 @@ void mem_init(void);
 bool mem_eeprom_write_word(uint32_t address, uint32_t data);
 bool mem_eeprom_write_half_word(uint32_t address, uint16_t data);
 bool mem_eeprom_write_byte(uint32_t address, uint8_t data);
-bool mem_eeprom_write_word_ptr(uint32_t *ptr, uint32_t data);
+bool mem_eeprom_write_word_ptr(uint32_t* ptr, uint32_t data);
 
 bool mem_flash_erase_page(uint32_t address);
 bool mem_flash_write_word(uint32_t address, uint32_t data);
-bool mem_flash_write_half_page(uint32_t address, uint32_t *data);
+bool mem_flash_write_half_page(uint32_t address, uint32_t* data);
 
 void mem_save_reading(int16_t reading);
 
@@ -82,16 +80,15 @@ void mem_get_log(char log[EEPROM_LOG_SIZE]);
 void mem_wipe_log(void);
 void mem_print_log(void);
 
-void mem_get_aes_key(uint8_t *aes_key);
-void mem_set_aes_key(uint8_t *aes_key);
-void mem_get_aes_key_exp(uint8_t *aes_key_exp);
-void mem_set_aes_key_exp(uint8_t *aes_key_exp);
+void mem_get_aes_key(uint8_t* aes_key);
+void mem_set_aes_key(uint8_t* aes_key);
+void mem_get_aes_key_exp(uint8_t* aes_key_exp);
+void mem_set_aes_key_exp(uint8_t* aes_key_exp);
 
 void mem_wipe_readings(void);
 
-void mem_program_bkp_reg(uint8_t reg, uint32_t data);
+void     mem_program_bkp_reg(uint8_t reg, uint32_t data);
 uint32_t mem_read_bkp_reg(uint8_t reg);
-
 
 /** @} */
 

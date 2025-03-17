@@ -4,20 +4,20 @@
  * @author  Richard Davies
  * @date    20/Jan/2021
  * @brief   Battery Header File
- *  
+ *
  * @defgroup   BATTERY_FILE  Battery
- * @brief      
- * 
+ * @brief
+ *
  * Description
- * 
- * @note     
- * 
+ *
+ * @note
+ *
  * @{
  * @defgroup   BATTERY_API  Battery API
- * @brief      
- * 
+ * @brief
+ *
  * @defgroup   BATTERY_INT  Battery Internal
- * @brief      
+ * @brief
  * @}
  ******************************************************************************
  */
@@ -29,13 +29,12 @@
 // Includes
 /*////////////////////////////////////////////////////////////////////////////*/
 
-#include <stdint.h>
 #include <stdbool.h>
 #include <stddef.h>
+#include <stdint.h>
 
 #include "common/log.h"
 #include "common/memory.h"
-
 
 #ifdef __cplusplus
 extern "C" {
@@ -44,9 +43,6 @@ extern "C" {
 /** @addtogroup BATTERY_API
  * @{
  */
-
-
-
 
 /*////////////////////////////////////////////////////////////////////////////*/
 // Exported Function Declarations
@@ -67,7 +63,6 @@ bool batt_is_ready(void);
 
 uint16_t batt_get_batt_voltage(void);
 uint16_t batt_get_pwr_voltage(void);
-
 
 /** @} */
 

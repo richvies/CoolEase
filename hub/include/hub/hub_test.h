@@ -4,20 +4,20 @@
  * @author  Richard Davies
  * @date    27/Dec/2020
  * @brief   Hub_test Header File
- *  
+ *
  * @defgroup   HUB_TEST_FILE  Hub_test
- * @brief      
- * 
+ * @brief
+ *
  * Description
- * 
- * @note     
- * 
+ *
+ * @note
+ *
  * @{
  * @defgroup   HUB_TEST_API  Hub_test API
- * @brief      
- * 
+ * @brief
+ *
  * @defgroup   HUB_TEST_INT  Hub_test Internal
- * @brief      
+ * @brief
  * @}
  ******************************************************************************
  */
@@ -29,8 +29,8 @@
 // Includes
 /*////////////////////////////////////////////////////////////////////////////*/
 
-#include <stdint.h>
 #include <stdbool.h>
+#include <stdint.h>
 
 #ifdef __cplusplus
 extern "C" {
@@ -72,11 +72,10 @@ void test_sim_post(void);
 void test_sim_tcip_get(void);
 void test_sim_send_sms(void);
 
-
 /** @} */
 
 #ifdef __cplusplus
 }
 #endif
 
-#endif // HUB_TEST_H 
+#endif // HUB_TEST_H

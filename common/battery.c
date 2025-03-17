@@ -14,23 +14,23 @@
 
 #include "common/battery.h"
 
+#include <libopencm3/cm3/nvic.h>
 #include <libopencm3/stm32/adc.h>
-#include <libopencm3/stm32/gpio.h>
-#include <libopencm3/stm32/rcc.h>
-#include <libopencm3/stm32/pwr.h>
-#include <libopencm3/stm32/flash.h>
-#include <libopencm3/stm32/syscfg.h>
 #include <libopencm3/stm32/dma.h>
 #include <libopencm3/stm32/exti.h>
-#include <libopencm3/cm3/nvic.h>
+#include <libopencm3/stm32/flash.h>
+#include <libopencm3/stm32/gpio.h>
+#include <libopencm3/stm32/pwr.h>
+#include <libopencm3/stm32/rcc.h>
+#include <libopencm3/stm32/syscfg.h>
 
 #include "common/log.h"
-#include "config/board_defs.h"
 #include "common/timers.h"
+#include "config/board_defs.h"
 
 #ifdef _HUB
 #define NUM_VOLTAGES 2
-#define PWR_VOLTAGE 0
+#define PWR_VOLTAGE  0
 #define BATT_VOLTAGE 1
 #else
 #define NUM_VOLTAGES 1
@@ -39,18 +39,18 @@
 
 #define ADC_CCR_LFMEN (1 << 25)
 
-#define ADC_CCR_PRESC_SHIFT 18
-#define ADC_CCR_PRESC (0xF << ADC_CCR_PRESC_SHIFT)
-#define ADC_CCR_PRESC_NODIV (0 << ADC_CCR_PRESC_SHIFT)
-#define ADC_CCR_PRESC_DIV2 (1 << ADC_CCR_PRESC_SHIFT)
-#define ADC_CCR_PRESC_DIV4 (2 << ADC_CCR_PRESC_SHIFT)
-#define ADC_CCR_PRESC_DIV6 (3 << ADC_CCR_PRESC_SHIFT)
-#define ADC_CCR_PRESC_DIV8 (4 << ADC_CCR_PRESC_SHIFT)
-#define ADC_CCR_PRESC_DIV10 (5 << ADC_CCR_PRESC_SHIFT)
-#define ADC_CCR_PRESC_DIV12 (6 << ADC_CCR_PRESC_SHIFT)
-#define ADC_CCR_PRESC_DIV16 (7 << ADC_CCR_PRESC_SHIFT)
-#define ADC_CCR_PRESC_DIV32 (8 << ADC_CCR_PRESC_SHIFT)
-#define ADC_CCR_PRESC_DIV64 (9 << ADC_CCR_PRESC_SHIFT)
+#define ADC_CCR_PRESC_SHIFT  18
+#define ADC_CCR_PRESC        (0xF << ADC_CCR_PRESC_SHIFT)
+#define ADC_CCR_PRESC_NODIV  (0 << ADC_CCR_PRESC_SHIFT)
+#define ADC_CCR_PRESC_DIV2   (1 << ADC_CCR_PRESC_SHIFT)
+#define ADC_CCR_PRESC_DIV4   (2 << ADC_CCR_PRESC_SHIFT)
+#define ADC_CCR_PRESC_DIV6   (3 << ADC_CCR_PRESC_SHIFT)
+#define ADC_CCR_PRESC_DIV8   (4 << ADC_CCR_PRESC_SHIFT)
+#define ADC_CCR_PRESC_DIV10  (5 << ADC_CCR_PRESC_SHIFT)
+#define ADC_CCR_PRESC_DIV12  (6 << ADC_CCR_PRESC_SHIFT)
+#define ADC_CCR_PRESC_DIV16  (7 << ADC_CCR_PRESC_SHIFT)
+#define ADC_CCR_PRESC_DIV32  (8 << ADC_CCR_PRESC_SHIFT)
+#define ADC_CCR_PRESC_DIV64  (9 << ADC_CCR_PRESC_SHIFT)
 #define ADC_CCR_PRESC_DIV128 (10 << ADC_CCR_PRESC_SHIFT)
 #define ADC_CCR_PRESC_DIV256 (11 << ADC_CCR_PRESC_SHIFT)
 
@@ -58,8 +58,7 @@
 
 #define BATT_LAG_MS 10000
 
-typedef enum
-{
+typedef enum {
     BATT_INIT = 0,
     BATT_PLUGGED_IN,
     BATT_PLUGGED_OUT,
@@ -77,9 +76,9 @@ typedef enum
 // Static Variables
 /*////////////////////////////////////////////////////////////////////////////*/
 
-static uint16_t adc_vals[3] = {0, 0, 0};
-static bool plugged_in = true;
-static uint16_t batt_voltages[NUM_VOLTAGES];
+static uint16_t     adc_vals[3] = {0, 0, 0};
+static bool         plugged_in = true;
+static uint16_t     batt_voltages[NUM_VOLTAGES];
 static batt_state_t state = BATT_INIT;
 
 /*////////////////////////////////////////////////////////////////////////////*/
@@ -96,8 +95,7 @@ static batt_state_t state = BATT_INIT;
 // Exported Function Definitions
 /*////////////////////////////////////////////////////////////////////////////*/
 
-void batt_init(void)
-{
+void batt_init(void) {
     // Disable Interrupt
     nvic_disable_irq(NVIC_DMA1_CHANNEL1_IRQ);
 
@@ -106,8 +104,7 @@ void batt_init(void)
 
     // Start/ wait for voltage reference, enable buffer to adc
     SYSCFG_CFGR3 |= SYSCFG_CFGR3_EN_VREFINT;
-    while (!(SYSCFG_CFGR3 & SYSCFG_CFGR3_VREFINT_RDYF))
-    {
+    while (!(SYSCFG_CFGR3 & SYSCFG_CFGR3_VREFINT_RDYF)) {
     }
     SYSCFG_CFGR3 |= SYSCFG_CFGR3_ENBUF_VREFINT_ADC;
 
@@ -117,8 +114,7 @@ void batt_init(void)
 
     // Clock config
     uint32_t adc_freq;
-    if (sys_clk == RCC_HSI16)
-    {
+    if (sys_clk == RCC_HSI16) {
         // Set clock to HSI clk
         ADC_CFGR2(ADC1) &= ~ADC_CFGR2_CKMODE;
 
@@ -127,9 +123,7 @@ void batt_init(void)
         ADC_CCR(ADC1) |= ADC_CCR_PRESC_DIV32;
 
         adc_freq = 16000000 / 32;
-    }
-    else
-    {
+    } else {
         // Set clock to APB clk / 4
         ADC_CFGR2(ADC1) &= ~ADC_CFGR2_CKMODE;
         ADC_CFGR2(ADC1) |= ADC_CFGR2_CKMODE_PCLK_DIV4;
@@ -137,12 +131,9 @@ void batt_init(void)
     }
 
     // Enable low frequency below 2.8MHz, pg.297 of ref
-    if (adc_freq < 2800000)
-    {
+    if (adc_freq < 2800000) {
         ADC_CCR(ADC1) |= ADC_CCR_LFMEN;
-    }
-    else
-    {
+    } else {
         ADC_CCR(ADC1) &= ~ADC_CCR_LFMEN;
     }
 
@@ -165,7 +156,8 @@ void batt_init(void)
 
     // Enable analog pins
     rcc_periph_clock_enable(RCC_GPIOA);
-    gpio_mode_setup(BATT_SENS_PORT, GPIO_MODE_ANALOG, GPIO_PUPD_NONE, BATT_SENS);
+    gpio_mode_setup(BATT_SENS_PORT, GPIO_MODE_ANALOG, GPIO_PUPD_NONE,
+                    BATT_SENS);
 
     // Set channels to convert
     ADC_CHSELR(ADC1) |= (1 << ADC_CHANNEL_VREF);
@@ -179,8 +171,7 @@ void batt_init(void)
     log_printf("Batt Init\n");
 }
 
-void batt_end(void)
-{
+void batt_end(void) {
     // Disable Interrupts
     nvic_disable_irq(NVIC_DMA1_CHANNEL1_IRQ);
 
@@ -197,26 +188,23 @@ void batt_end(void)
     SYSCFG_CFGR3 &= ~SYSCFG_CFGR3_ENBUF_VREFINT_ADC;
 }
 
-void batt_set_voltage_scale(uint8_t scale)
-{
+void batt_set_voltage_scale(uint8_t scale) {
     rcc_periph_clock_enable(RCC_PWR);
 
     // Poll VOSF bit of in PWR_CSR
-    while (PWR_CSR & PWR_CSR_VOSF)
-    {
+    while (PWR_CSR & PWR_CSR_VOSF) {
     }
 
-    // Configure the voltage scaling range by setting the VOS[1:0] bits in the PWR_CR register
+    // Configure the voltage scaling range by setting the VOS[1:0] bits in the
+    // PWR_CR register
     pwr_set_vos_scale(scale);
 
     // Poll VOSF bit of in PWR_CSR register
-    while (PWR_CSR & PWR_CSR_VOSF)
-    {
+    while (PWR_CSR & PWR_CSR_VOSF) {
     }
 }
 
-void batt_set_low_power_run(void)
-{
+void batt_set_low_power_run(void) {
     rcc_periph_clock_enable(RCC_PWR);
 
     // Set LPRUN & LPSDSR bits in PWR_CR register
@@ -246,33 +234,28 @@ void batt_set_low_power_run(void)
     rcc_periph_clock_disable(RCC_PWR);
 }
 
-void batt_calculate_voltages(void)
-{
+void batt_calculate_voltages(void) {
     // Calculate batt_voltages
-    for (uint8_t i = 0; i < NUM_VOLTAGES; i++)
-    {
-        batt_voltages[i] = ((uint32_t)300 * ST_VREFINT_CAL * adc_vals[i + 1]) / (adc_vals[0] * 4095);
+    for (uint8_t i = 0; i < NUM_VOLTAGES; i++) {
+        batt_voltages[i] = ((uint32_t)300 * ST_VREFINT_CAL * adc_vals[i + 1]) /
+                           (adc_vals[0] * 4095);
     }
 
 // For Hub : Measured voltage is half of actual
 #ifdef _HUB
-    for (uint8_t i = 0; i < NUM_VOLTAGES; i++)
-    {
+    for (uint8_t i = 0; i < NUM_VOLTAGES; i++) {
         batt_voltages[i] = batt_voltages[i] * 2;
     }
 #endif
 }
 
-void batt_update_voltages(void)
-{
+void batt_update_voltages(void) {
     static uint32_t timer;
     timer = timers_millis();
 
     ADC_CR(ADC1) |= ADC_CR_ADSTP;
-    while (!(ADC_CR(ADC1) & ADC_CR_ADSTP))
-    {
-        if (timers_millis() - timer > 2000)
-        {
+    while (!(ADC_CR(ADC1) & ADC_CR_ADSTP)) {
+        if (timers_millis() - timer > 2000) {
             log_printf("ERR: ADC Stop Timeout\n");
             return;
         }
@@ -281,12 +264,9 @@ void batt_update_voltages(void)
 
     // Start conversions
     adc_start_conversion_regular(ADC1);
-    for (uint8_t i = 0; i < NUM_VOLTAGES + 1; i++)
-    {
-        while (!adc_eoc(ADC1))
-        {
-            if (timers_millis() - timer > 5000)
-            {
+    for (uint8_t i = 0; i < NUM_VOLTAGES + 1; i++) {
+        while (!adc_eoc(ADC1)) {
+            if (timers_millis() - timer > 5000) {
                 log_printf("ERR: ADC Conv Timeout\n");
                 return;
             }
@@ -297,11 +277,9 @@ void batt_update_voltages(void)
     batt_calculate_voltages();
 }
 
-void batt_enable_interrupt(void)
-{
+void batt_enable_interrupt(void) {
     ADC_CR(ADC1) |= ADC_CR_ADSTP;
-    while (!(ADC_CR(ADC1) & ADC_CR_ADSTP))
-    {
+    while (!(ADC_CR(ADC1) & ADC_CR_ADSTP)) {
     }
     adc_set_continuous_conversion_mode(ADC1);
 
@@ -338,8 +316,7 @@ void batt_enable_interrupt(void)
     adc_start_conversion_regular(ADC1);
 }
 
-void batt_disable_interrupt(void)
-{
+void batt_disable_interrupt(void) {
     adc_disable_dma(ADC1);
     adc_disable_dma_circular_mode(ADC1);
 
@@ -348,13 +325,9 @@ void batt_disable_interrupt(void)
     nvic_disable_irq(NVIC_DMA1_CHANNEL1_IRQ);
 }
 
-uint16_t batt_get_batt_voltage(void)
-{
-    return batt_voltages[BATT_VOLTAGE];
-}
+uint16_t batt_get_batt_voltage(void) { return batt_voltages[BATT_VOLTAGE]; }
 
-uint16_t batt_get_pwr_voltage(void)
-{
+uint16_t batt_get_pwr_voltage(void) {
 #ifdef _HUB
     return batt_voltages[PWR_VOLTAGE];
 #else
@@ -407,14 +380,12 @@ uint8_t batt_get_voltage(void)
 }
 */
 
-bool batt_is_plugged_in(void)
-{
+bool batt_is_plugged_in(void) {
     // return (state == BATT_PLUGGED_IN);
     return true;
 }
 
-bool batt_is_ready(void)
-{
+bool batt_is_ready(void) {
     // return (state != BATT_INIT);
     return true;
 }
@@ -430,28 +401,26 @@ bool batt_is_ready(void)
 
 /** @} */
 
-void dma1_channel1_isr(void)
-{
-    static uint32_t timer = 0;
+void dma1_channel1_isr(void) {
+    static uint32_t     timer = 0;
     static batt_state_t last_state = BATT_INIT;
     static batt_state_t curr_state = BATT_INIT;
 
-    dma_clear_interrupt_flags(DMA1, DMA_CHANNEL1, DMA_TEIF | DMA_TCIF | DMA_HTIF | DMA_GIF);
+    dma_clear_interrupt_flags(DMA1, DMA_CHANNEL1,
+                              DMA_TEIF | DMA_TCIF | DMA_HTIF | DMA_GIF);
 
     batt_calculate_voltages();
 
-    curr_state = (batt_get_pwr_voltage() >= batt_get_batt_voltage()) ? BATT_PLUGGED_IN : BATT_PLUGGED_OUT;
+    curr_state = (batt_get_pwr_voltage() >= batt_get_batt_voltage())
+                     ? BATT_PLUGGED_IN
+                     : BATT_PLUGGED_OUT;
 
     // if state changed since last check
-    if (curr_state != last_state)
-    {
+    if (curr_state != last_state) {
         timer = timers_millis();
-    }
-    else
-    {
+    } else {
         // update state after lag
-        if ((state != curr_state) && (timers_millis() - timer > BATT_LAG_MS))
-        {
+        if ((state != curr_state) && (timers_millis() - timer > BATT_LAG_MS)) {
             state = curr_state;
         }
     }

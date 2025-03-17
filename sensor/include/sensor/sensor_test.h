@@ -4,20 +4,20 @@
  * @author  Richard Davies
  * @date    27/Dec/2020
  * @brief   Sensor_test Header File
- *  
+ *
  * @defgroup   SENSOR_TEST_FILE  Sensor_test
- * @brief      
- * 
+ * @brief
+ *
  * Description
- * 
- * @note     
- * 
+ *
+ * @note
+ *
  * @{
  * @defgroup   SENSOR_TEST_API  Sensor_test API
- * @brief      
- * 
+ * @brief
+ *
  * @defgroup   SENSOR_TEST_INT  Sensor_test Internal
- * @brief      
+ * @brief
  * @}
  ******************************************************************************
  */
@@ -31,7 +31,6 @@
 
 #include <stdint.h>
 
-
 #ifdef __cplusplus
 extern "C" {
 #endif
@@ -44,18 +43,16 @@ extern "C" {
 // Exported Variables
 /*////////////////////////////////////////////////////////////////////////////*/
 
-
-
 /*////////////////////////////////////////////////////////////////////////////*/
 // Exported Function Declarations
 /*////////////////////////////////////////////////////////////////////////////*/
-
 
 void test_sensor(uint32_t dev_id);
 void test_si7051(uint8_t num_readings);
 void test_tmp112(uint8_t num_readings);
 
-/** @brief Sends temperature followed by 1 second high signal. This is recorded for calibrating rf frequency vs temperature - to keep center at 868MHz */
+/** @brief Sends temperature followed by 1 second high signal. This is recorded
+ * for calibrating rf frequency vs temperature - to keep center at 868MHz */
 void test_sensor_rf_vs_temp_cal(void);
 
 void test_sensor_standby(uint32_t standby_time);

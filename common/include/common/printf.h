@@ -10,10 +10,10 @@
 // to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
 // copies of the Software, and to permit persons to whom the Software is
 // furnished to do so, subject to the following conditions:
-// 
+//
 // The above copyright notice and this permission notice shall be included in
 // all copies or substantial portions of the Software.
-// 
+//
 // THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
 // IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
 // FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
@@ -22,7 +22,8 @@
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 // THE SOFTWARE.
 //
-// \brief Tiny printf, sprintf and snprintf implementation, optimized for speed on
+// \brief Tiny printf, sprintf and snprintf implementation, optimized for speed
+// on
 //        embedded systems with a very limited resources.
 //        Use this instead of bloated standard/newlib printf.
 //        These routines are thread safe and reentrant.
@@ -33,31 +34,28 @@
 #define _PRINTF_H_
 
 #include <stdarg.h>
+#include <stdbool.h>
 #include <stddef.h>
 #include <stdint.h>
-#include <stdbool.h>
-
 
 #ifdef __cplusplus
 extern "C" {
 #endif
 
-
 /**
- * Output a character to a custom device like UART, used by the printf() function
- * This function is declared here only. You have to write your custom implementation somewhere
- * \param character Character to output
+ * Output a character to a custom device like UART, used by the printf()
+ * function This function is declared here only. You have to write your custom
+ * implementation somewhere \param character Character to output
  */
 
 // output function type
 typedef void (*out_fct_type)(char character);
-uint32_t fnprintf(out_fct_type out, const char *format, va_list va);
-uint32_t _atoi(const char **str);
-bool _is_digit(char ch);
+uint32_t fnprintf(out_fct_type out, const char* format, va_list va);
+uint32_t _atoi(const char** str);
+bool     _is_digit(char ch);
 
 #ifdef __cplusplus
 }
 #endif
 
-
-#endif  // _PRINTF_H_
+#endif // _PRINTF_H_

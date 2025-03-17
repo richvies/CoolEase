@@ -17,18 +17,17 @@
 #include "common/aes.h"
 #include "common/battery.h"
 #include "common/bootloader_utils.h"
-#include "config/board_defs.h"
-#include "common/aes.h"
+#include "common/log.h"
 #include "common/reset.h"
 #include "common/rf_scan.h"
 #include "common/rfm.h"
-#include "common/log.h"
 #include "common/test.h"
 #include "common/timers.h"
+#include "config/board_defs.h"
 
-#include "sensor/tmp112.h"
-#include "sensor/si7051.h"
 #include "sensor/sensor_test.h"
+#include "sensor/si7051.h"
+#include "sensor/tmp112.h"
 
 /** @addtogroup SENSOR_BOOTLOADER_FILE
  * @{
@@ -38,8 +37,8 @@
  * @{
  */
 
-#define VERSION 100
-#define BACKUP_VERSION 100
+#define VERSION         100
+#define BACKUP_VERSION  100
 #define BIN_HEADER_SIZE 64
 
 /*////////////////////////////////////////////////////////////////////////////*/
@@ -63,88 +62,83 @@ static void deinit(void);
 // Exported Function Definitions
 /*////////////////////////////////////////////////////////////////////////////*/
 
-int main(void)
-{
-	init();
-	boot_init();
+int main(void) {
+    init();
+    boot_init();
 
-	// If first power on
-	if (boot_info->init_key != BOOT_INIT_KEY2)
-	{
-		BOOT_LOG("First App Check\n");
+    // If first power on
+    if (boot_info->init_key != BOOT_INIT_KEY2) {
+        BOOT_LOG("First App Check\n");
 
-		serial_printf(".Boot: %8u\n", VERSION);
+        serial_printf(".Boot: %8u\n", VERSION);
 
-		mem_eeprom_write_word_ptr(&boot_info->app_ok_key, 0);
-		mem_eeprom_write_word_ptr(&boot_info->app_num_fail_runs, 0);
-		mem_eeprom_write_word_ptr(&boot_info->app_num_iwdg_reset, 0);
+        mem_eeprom_write_word_ptr(&boot_info->app_ok_key, 0);
+        mem_eeprom_write_word_ptr(&boot_info->app_num_fail_runs, 0);
+        mem_eeprom_write_word_ptr(&boot_info->app_num_iwdg_reset, 0);
 
-		// Set initialized
-		mem_eeprom_write_word_ptr(&boot_info->init_key, BOOT_INIT_KEY2);
-	}
+        // Set initialized
+        mem_eeprom_write_word_ptr(&boot_info->init_key, BOOT_INIT_KEY2);
+    }
 
-	// Setup eeprom for first run of new app
-	if (boot_info->app_init_key != BOOT_APP_INIT_KEY)
-	{
-		BOOT_LOG("Setup App\n");
+    // Setup eeprom for first run of new app
+    if (boot_info->app_init_key != BOOT_APP_INIT_KEY) {
+        BOOT_LOG("Setup App\n");
 
-		// Boot Info
-		mem_eeprom_write_word_ptr(&boot_info->app_ok_key, 0);
-		mem_eeprom_write_word_ptr(&boot_info->app_num_fail_runs, 0);
-		mem_eeprom_write_word_ptr(&boot_info->app_num_iwdg_reset, 0);
+        // Boot Info
+        mem_eeprom_write_word_ptr(&boot_info->app_ok_key, 0);
+        mem_eeprom_write_word_ptr(&boot_info->app_num_fail_runs, 0);
+        mem_eeprom_write_word_ptr(&boot_info->app_num_iwdg_reset, 0);
 
-		mem_eeprom_write_word_ptr(&boot_info->app_version, 0);
-		mem_eeprom_write_word_ptr(&boot_info->app_update_version, 0);
-		mem_eeprom_write_word_ptr(&boot_info->app_previous_version, 0);
+        mem_eeprom_write_word_ptr(&boot_info->app_version, 0);
+        mem_eeprom_write_word_ptr(&boot_info->app_update_version, 0);
+        mem_eeprom_write_word_ptr(&boot_info->app_previous_version, 0);
 
-		// Shared Info
-		mem_eeprom_write_word_ptr(&shared_info->boot_version, VERSION);
-		mem_eeprom_write_word_ptr(&shared_info->upg_pending, 0);
-		mem_eeprom_write_word_ptr(&shared_info->upg_flags, boot_info->upg_flags);
+        // Shared Info
+        mem_eeprom_write_word_ptr(&shared_info->boot_version, VERSION);
+        mem_eeprom_write_word_ptr(&shared_info->upg_pending, 0);
+        mem_eeprom_write_word_ptr(&shared_info->upg_flags,
+                                  boot_info->upg_flags);
 
-		mem_eeprom_write_word_ptr(&shared_info->app_ok_key, 0);
-		mem_eeprom_write_word_ptr(&shared_info->app_curr_version, 0);
-		mem_eeprom_write_word_ptr(&shared_info->app_next_version, 0);
+        mem_eeprom_write_word_ptr(&shared_info->app_ok_key, 0);
+        mem_eeprom_write_word_ptr(&shared_info->app_curr_version, 0);
+        mem_eeprom_write_word_ptr(&shared_info->app_next_version, 0);
 
-		// App Info
-		mem_eeprom_write_word_ptr(&app_info->init_key, 0);
-		mem_eeprom_write_word_ptr(&app_info->dev_id, boot_info->dev_id);
-		mem_eeprom_write_word_ptr(&app_info->registered_key, 0);
+        // App Info
+        mem_eeprom_write_word_ptr(&app_info->init_key, 0);
+        mem_eeprom_write_word_ptr(&app_info->dev_id, boot_info->dev_id);
+        mem_eeprom_write_word_ptr(&app_info->registered_key, 0);
 
-		uint8_t *u8ptr = NULL;
+        uint8_t* u8ptr = NULL;
 
-		for (uint8_t i = 0; i < sizeof(app_info->aes_key); i++)
-		{
-			u8ptr = &app_info->aes_key[i];
-			mem_eeprom_write_byte((uint32_t)u8ptr, boot_info->aes_key[i]);
-		}
+        for (uint8_t i = 0; i < sizeof(app_info->aes_key); i++) {
+            u8ptr = &app_info->aes_key[i];
+            mem_eeprom_write_byte((uint32_t)u8ptr, boot_info->aes_key[i]);
+        }
 
-		for (uint8_t i = 0; i < sizeof(app_info->pwd); i++)
-		{
-			u8ptr = (uint8_t *)&app_info->pwd[i];
-			mem_eeprom_write_byte((uint32_t)u8ptr, boot_info->pwd[i]);
-		}
+        for (uint8_t i = 0; i < sizeof(app_info->pwd); i++) {
+            u8ptr = (uint8_t*)&app_info->pwd[i];
+            mem_eeprom_write_byte((uint32_t)u8ptr, boot_info->pwd[i]);
+        }
 
-		mem_eeprom_write_word_ptr(&boot_info->app_init_key, BOOT_APP_INIT_KEY);
-	}
+        mem_eeprom_write_word_ptr(&boot_info->app_init_key, BOOT_APP_INIT_KEY);
+    }
 
-	BOOT_LOG("Jump %8x\n\n----------\n\n", boot_info->vtor);
+    BOOT_LOG("Jump %8x\n\n----------\n\n", boot_info->vtor);
 
-	// serial print finish
-	timers_delay_milliseconds(500);
+    // serial print finish
+    timers_delay_milliseconds(500);
 
-	// Deinit peripherals
-	deinit();
+    // Deinit peripherals
+    deinit();
 
-	// Run Application
-	timers_pet_dogs();
-	boot_jump_to_application(boot_info->vtor);
+    // Run Application
+    timers_pet_dogs();
+    boot_jump_to_application(boot_info->vtor);
 
-	for (;;)
-	{
-		serial_printf("Sensor Bootloader Loop\n\n");
-		__asm__("nop");
-	}
+    for (;;) {
+        serial_printf("Sensor Bootloader Loop\n\n");
+        __asm__("nop");
+    }
 
     return 0;
 }
@@ -159,22 +153,20 @@ int main(void)
 // Static Function Definitions
 /*////////////////////////////////////////////////////////////////////////////*/
 
-static void init(void)
-{
-	clock_setup_msi_2mhz();
-	timers_lptim_init();
+static void init(void) {
+    clock_setup_msi_2mhz();
+    timers_lptim_init();
     log_init();
 
-	flash_led(40, 3);
+    flash_led(40, 3);
 }
 
-static void deinit(void)
-{
-	log_end();
-	timers_lptim_end();
-	rcc_periph_clock_disable(RCC_GPIOA);
-	rcc_periph_clock_disable(RCC_GPIOB);
-	clock_setup_msi_2mhz();
+static void deinit(void) {
+    log_end();
+    timers_lptim_end();
+    rcc_periph_clock_disable(RCC_GPIOA);
+    rcc_periph_clock_disable(RCC_GPIOB);
+    clock_setup_msi_2mhz();
 }
 
 /** @} */

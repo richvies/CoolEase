@@ -43,7 +43,7 @@
 //     	exti_select_source(EXTI2, GPIOA);
 // 		exti_set_trigger(EXTI2, EXTI_TRIGGER_FALLING);
 // 		exti_enable_request(EXTI2);
-    	
+
 // 		nvic_enable_irq(NVIC_EXTI2_3_IRQ);
 //     	nvic_set_priority(NVIC_EXTI2_3_IRQ, IRQ_PRIORITY_RFM);
 // 	}
@@ -51,11 +51,11 @@
 // 	{
 // 		timer_clear_flag(TIM2, TIM_SR_UIF);
 // 		timer_enable_irq(TIM2, TIM_DIER_UIE);
-		
+
 // 		nvic_enable_irq(NVIC_TIM2_IRQ);
 // 		nvic_set_priority(NVIC_TIM2_IRQ, IRQ_PRIORITY_RFM);
 // 	}
-	
+
 // }
 
 // void rfs_next(void)
@@ -66,7 +66,8 @@
 // 		// Get received packet and print info to serial
 // 		if(rfm_get_packet(&packet))
 // 		{
-// 			//log_printf("Received: %i Channel: %i Test: %i ", packet.length, packet.data.buffer[0], packet.data.buffer[1]);
+// 			//log_printf("Received: %i Channel: %i Test: %i ", packet.length,
+// packet.data.buffer[0], packet.data.buffer[1]);
 // 			//log_printf("RSSI: %i LQI: %i\n", packet.rssi, packet.lqi);
 
 // 			_putchar(packet.data.buffer[0]);
@@ -102,14 +103,15 @@
 // 		// Put next test channel and number into packet for receiver to update
 // 		packet.data.buffer[2] = channel_number;
 // 		packet.data.buffer[3] = test_number;
-		
+
 // 		// Set packet length
 // 		packet.length = 4;
 
 // 		rfm_transmit_packet(packet);
 
 // 		// Print test information to serial
-// 		/*log_printf("Sending Channel: %i Test: %i ", packet.data.buffer[0], packet.data.buffer[1]);
+// 		/*log_printf("Sending Channel: %i Test: %i ", packet.data.buffer[0],
+// packet.data.buffer[1]);
 
 // 		if(rfm_transmit_packet(packet))
 // 			log_printf("Success\n");

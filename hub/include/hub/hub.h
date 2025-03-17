@@ -29,14 +29,13 @@
 // Includes
 /*////////////////////////////////////////////////////////////////////////////*/
 
-#include <stdint.h>
 #include <stdbool.h>
 #include <stddef.h>
+#include <stdint.h>
 
-#include "config/board_defs.h"
 #include "common/log.h"
 #include "common/memory.h"
-
+#include "config/board_defs.h"
 
 #ifdef __cplusplus
 extern "C" {
@@ -50,16 +49,15 @@ extern "C" {
 // Exported Variables
 /*////////////////////////////////////////////////////////////////////////////*/
 
-
 /*////////////////////////////////////////////////////////////////////////////*/
 // Exported Function Declarations
 /*////////////////////////////////////////////////////////////////////////////*/
 
-sensor_t *get_sensor_by_id(uint32_t dev_id);
-void clean_sensors(void);
-void add_sensor(uint32_t dev_id);
-void rem_sensor(uint32_t dev_id);
-void print_sensors(void);
+sensor_t* get_sensor_by_id(uint32_t dev_id);
+void      clean_sensors(void);
+void      add_sensor(uint32_t dev_id);
+void      rem_sensor(uint32_t dev_id);
+void      print_sensors(void);
 
 /** @} */
 

@@ -29,8 +29,8 @@
 // Includes
 /*////////////////////////////////////////////////////////////////////////////*/
 
-#include <stdint.h>
 #include <stdbool.h>
+#include <stdint.h>
 #include <stdlib.h>
 
 #include "config/board_defs.h"
@@ -43,11 +43,11 @@ extern "C" {
  * @{
  */
 
-#define DEV_NUM_CHIP		(uint32_t)0x0000001B
-#define DEV_NUM_PCB		    (uint32_t)~DEV_NUM_CHIP
+#define DEV_NUM_CHIP (uint32_t)0x0000001B
+#define DEV_NUM_PCB  (uint32_t) ~DEV_NUM_CHIP
 
-void test_init(const char *test_name);
-void print_aes_key(app_info_t *app_info);
+void test_init(const char* test_name);
+void print_aes_key(app_info_t* app_info);
 
 /*////////////////////////////////////////////////////////////////////////////*/
 // Memory tests
@@ -71,7 +71,6 @@ void test_boot_jump_to_application(uint32_t address);
 void test_boot_verify_checksum(void);
 void test_crc(void);
 
-
 /*////////////////////////////////////////////////////////////////////////////*/
 // RFM tests
 /*////////////////////////////////////////////////////////////////////////////*/
@@ -79,7 +78,6 @@ void test_crc(void);
 void test_rf(void);
 void test_rf_listen(void);
 void test_rfm(void);
-
 
 /*////////////////////////////////////////////////////////////////////////////*/
 // Timer tests
@@ -92,7 +90,6 @@ void test_tim6(void);
 
 void test_micros(void);
 void test_millis(void);
-
 
 void test_lptim(void);
 void test_wakeup(void);
@@ -117,10 +114,9 @@ void test_batt_interrupt(void);
 // Other tests
 /*////////////////////////////////////////////////////////////////////////////*/
 
-void test_encryption(uint8_t *key);
+void test_encryption(uint8_t* key);
 void test_analog_watchdog(void);
 void test_spf_tx(void);
-
 
 /** @} */
 
