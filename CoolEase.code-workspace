@@ -14,6 +14,13 @@
 		"python.defaultInterpreterPath": "${workspaceFolder}/.venv",
 		"ruff.interpreter": [
 			"/home/rick/.local/share/mise/shims/python"
-		]
+		],
+		"files.associations": {
+			"*.inc": "makefile",
+			"*.log": "log",
+			".clang-format": "yaml",
+			".clangd": "yaml",
+			"log.h": "c"
+		}
 	}
 }
