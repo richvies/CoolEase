@@ -4,7 +4,7 @@
  * @author  Richard Davies
  * @date    25/Dec/2020
  * @brief   Hub Bootloader Source File
- *  
+ *
  ******************************************************************************
  */
 
@@ -31,11 +31,11 @@
 #include "hub/w25qxx.h"
 #include "hub/sim.h"
 
-/** @addtogroup HUB_BOOTLOADER_FILE 
+/** @addtogroup HUB_BOOTLOADER_FILE
  * @{
  */
 
-/** @addtogroup HUB_BOOTLOADER_INT 
+/** @addtogroup HUB_BOOTLOADER_INT
  * @{
  */
 
@@ -849,7 +849,7 @@ static bool check_bin(void)
 	bool ret = false;
 
 	// Fix: Sim seems to append \0A to resopnse for some reason
-	if ((sim800.http.response_size - BIN_HEADER_SIZE) % FLASH_HALF_PAGE_SIZE == 1)
+	if ((sim800.http.response_size - BIN_HEADER_SIZE) % FLASH_HALF_PAGE_SIZE_BYTES == 1)
 	{
 		--sim800.http.response_size;
 	}
@@ -883,7 +883,7 @@ static bool check_bin(void)
 		BOOT_SET_UPG_FLAG(UPG_FLAG_NO_BIN_ERR);
 	}
 	// Check bin size is an integer multiple of flash half pages
-	else if ((sim800.http.response_size - BIN_HEADER_SIZE) % FLASH_HALF_PAGE_SIZE != 0)
+	else if ((sim800.http.response_size - BIN_HEADER_SIZE) % FLASH_HALF_PAGE_SIZE_BYTES != 0)
 	{
 		serial_printf(".Not int half page\n");
 		BOOT_SET_UPG_FLAG(UPG_FLAG_BIN_SIZE_WRONG);
@@ -917,7 +917,7 @@ static bool check_crc(uint32_t expected)
 	if (file_size)
 	{
 		// Todo: make sure num half pages is an even integer, otherwise will program garbage at end
-		uint16_t num_half_pages = ((file_size - 1) / (FLASH_HALF_PAGE_SIZE)) + 1;
+		uint16_t num_half_pages = ((file_size - 1) / (FLASH_HALF_PAGE_SIZE_BYTES)) + 1;
 
 		// Initialize CRC Peripheral
 		rcc_periph_clock_enable(RCC_CRC);
@@ -936,14 +936,14 @@ static bool check_crc(uint32_t expected)
 			// this automatically deals with endianness
 			union
 			{
-				uint8_t buf8[FLASH_HALF_PAGE_SIZE];
-				uint32_t buf32[(FLASH_HALF_PAGE_SIZE) / 4];
+				uint8_t buf8[FLASH_HALF_PAGE_SIZE_BYTES];
+				uint32_t buf32[(FLASH_HALF_PAGE_SIZE_BYTES) / 4];
 			} half_page;
 
 			// HTTPREAD command & get number of bytes read
 			// 		*number of bytes returned may be less than requested depending how many are left in file
 			// 		SIM800 signifies how many bytes are returned
-			if (sim_http_read_response(BIN_HEADER_SIZE + (n * FLASH_HALF_PAGE_SIZE), FLASH_HALF_PAGE_SIZE, half_page.buf8) != 64)
+			if (sim_http_read_response(BIN_HEADER_SIZE + (n * FLASH_HALF_PAGE_SIZE_BYTES), FLASH_HALF_PAGE_SIZE_BYTES, half_page.buf8) != 64)
 			{
 				log_printf(".sim resp not 64 bytes\n");
 				return false;
@@ -975,7 +975,7 @@ static bool program_bin(void)
 	if (file_size)
 	{
 		// make sure num half pages is an even integer, otherwise will program garbage at end
-		uint16_t num_half_pages = ((file_size - 1) / (FLASH_HALF_PAGE_SIZE)) + 1;
+		uint16_t num_half_pages = ((file_size - 1) / (FLASH_HALF_PAGE_SIZE_BYTES)) + 1;
 
 		serial_printf(".%i half pages\n", num_half_pages);
 
@@ -1004,20 +1004,20 @@ static bool program_bin(void)
 			// this automatically deals with endianness
 			union
 			{
-				uint8_t buf8[FLASH_HALF_PAGE_SIZE];
-				uint32_t buf32[(FLASH_HALF_PAGE_SIZE) / 4];
+				uint8_t buf8[FLASH_HALF_PAGE_SIZE_BYTES];
+				uint32_t buf32[(FLASH_HALF_PAGE_SIZE_BYTES) / 4];
 			} half_page;
 
 			// HTTPREAD command & get number of bytes read
 			// 		*number of bytes returned may be less than requested depending how many are left in file
 			// 		SIM800 signifies how many bytes are returned
-			uint8_t num_bytes = sim_http_read_response(BIN_HEADER_SIZE + (n * FLASH_HALF_PAGE_SIZE), (FLASH_HALF_PAGE_SIZE), half_page.buf8);
+			uint8_t num_bytes = sim_http_read_response(BIN_HEADER_SIZE + (n * FLASH_HALF_PAGE_SIZE_BYTES), (FLASH_HALF_PAGE_SIZE_BYTES), half_page.buf8);
 
-			serial_printf("..%8x\n", FLASH_APP_ADDRESS + (n * FLASH_HALF_PAGE_SIZE));
+			serial_printf("..%8x\n", FLASH_APP_ADDRESS + (n * FLASH_HALF_PAGE_SIZE_BYTES));
 			timers_delay_milliseconds(10);
 
 			// Program half page
-			if (false == mem_flash_write_half_page(FLASH_APP_ADDRESS + (n * FLASH_HALF_PAGE_SIZE), half_page.buf32))
+			if (false == mem_flash_write_half_page(FLASH_APP_ADDRESS + (n * FLASH_HALF_PAGE_SIZE_BYTES), half_page.buf32))
 			{
 				serial_printf("..fail\n");
 				return false;

@@ -20,12 +20,12 @@ extern enum rcc_osc sys_clk;
 
 #define FLASH_PAGE_SIZE     	128U
 #define FLASH_NUM_PAGES     	512U
-#define FLASH_HALF_PAGE_SIZE	(FLASH_PAGE_SIZE / 2)
+#define FLASH_HALF_PAGE_SIZE_BYTES	(FLASH_PAGE_SIZE / 2)
 
-#define FLASH_START         	0x08000000U                    
-#define FLASH_APP_ADDRESS     	0x08008000U  
-#define FLASH_APP_END       	0x08010000U       
-#define FLASH_END           	0x08010000U   
+#define FLASH_START         	0x08000000U
+#define FLASH_APP_ADDRESS     	0x08008000U
+#define FLASH_APP_END       	0x08010000U
+#define FLASH_END           	0x08010000U
 
 #define FLASH_BOOT_ADDRESS    	0x08000000U
 #define FLASH_APP_ADDRESS       0x08008000U
@@ -46,7 +46,7 @@ extern enum rcc_osc sys_clk;
 #define EEPROM_LOG_SIZE             1024U
 #define EEPROM_SHARED_INFO_SIZE     64U
 
-// Check EEPROM memory large enough 
+// Check EEPROM memory large enough
 #if ((EEPROM_SHARED_INFO_SIZE + EEPROM_BOOT_INFO_SIZE + EEPROM_APP_INFO_SIZE + EEPROM_LOG_SIZE) > EEPROM_SIZE)
 #warning "EEPROM: Data does not fit"
 #endif
@@ -56,8 +56,8 @@ extern enum rcc_osc sys_clk;
 #define EEPROM_BOOT_INFO_END       		(EEPROM_BOOT_INFO_BASE + EEPROM_BOOT_INFO_SIZE)
 
 // Device information
-#define EEPROM_APP_INFO_BASE            EEPROM_BOOT_INFO_END          
-#define EEPROM_APP_INFO_END             (EEPROM_APP_INFO_BASE + EEPROM_APP_INFO_SIZE) 
+#define EEPROM_APP_INFO_BASE            EEPROM_BOOT_INFO_END
+#define EEPROM_APP_INFO_END             (EEPROM_APP_INFO_BASE + EEPROM_APP_INFO_SIZE)
 
 // Logging
 #define EEPROM_LOG_BASE                 EEPROM_APP_INFO_END
@@ -108,12 +108,12 @@ extern enum rcc_osc sys_clk;
 
 typedef struct
 {
-	uint32_t boot_version;	
+	uint32_t boot_version;
 	uint32_t upg_pending;
 	uint32_t upg_flags;
 
 	uint32_t app_ok_key;
-	uint32_t app_curr_version;	
+	uint32_t app_curr_version;
 	uint32_t app_next_version;
 } shared_info_t;
 
@@ -141,10 +141,10 @@ typedef struct
 	uint32_t upg_done;
 	uint32_t upg_state;
 	uint32_t upg_flags;
-	
+
 	uint32_t upg_version_to_download;
-	uint32_t upg_num_recovery_attempts;	
-	
+	uint32_t upg_num_recovery_attempts;
+
 	uint32_t app_init_key;
 	uint32_t app_ok_key;
 	uint32_t app_num_iwdg_reset;
@@ -171,7 +171,7 @@ typedef struct
 	uint8_t log[];
 } log_t;
 
-// Uncomment to check size 
+// Uncomment to check size
 // uint32_t size = sizeof(shared_info_t);
 // uint32_t size = sizeof(boot_info_t);
 // uint32_t size = sizeof(app_info_t);
