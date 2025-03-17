@@ -1,0 +1,10 @@
+[tools]
+cmake = "latest"
+gcc-arm-none-eabi = "latest"
+ninja = "latest"
+python = "3.10"
+ruff = "latest"
+uv = "latest"
+
+[env]
+'_'.python.venv = { create = true, path = ".venv" }
