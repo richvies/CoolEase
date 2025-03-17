@@ -9,6 +9,9 @@ uv = "latest"
 [env]
 '_'.python.venv = { create = true, path = ".venv" }
 
+[tasks.install-ceedling]
+run = "gem install ceedling"
+
 [tasks.clang-format]
 run = 'find common sensor hub -name "*.c" -o -name "*.h" | xargs clang-format -i'
 
