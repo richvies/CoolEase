@@ -46,8 +46,6 @@
 // Static Variables
 /*////////////////////////////////////////////////////////////////////////////*/
 
-static char spf_cmd[64];
-
 // Vars used during normal operation
 static uint16_t write_index;
 static uint16_t read_index;

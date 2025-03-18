@@ -82,8 +82,8 @@ void test_hub(void) {
     // DEV_NUM_CHIP) 		continue; 	else
     // 	{
     // 		recv_msg_num = received_packet.data[RFM_PACKET_MSG_NUM_1] << 8 |
-    // received_packet.data[RFM_PACKET_MSG_NUM_0]; 		prev_msg_num = recv_msg_num;
-    // 		start_msg_num = recv_msg_num;
+    // received_packet.data[RFM_PACKET_MSG_NUM_0]; 		prev_msg_num =
+    // recv_msg_num; 		start_msg_num = recv_msg_num;
     // 		mem_update_msg_num(prev_msg_num);
     // 		log_printf("First Message Number: %i, %i, %i\n", recv_msg_num,
     // prev_msg_num, mem_get_msg_num()); 		recv = true;
@@ -118,8 +118,8 @@ void test_hub(void) {
     // 		log_printf("Power: %i\n", received_packet.data[RFM_PACKET_POWER]);
 
     // 		uint16_t battery = ((received_packet.data[RFM_PACKET_BATTERY_1] <<
-    // 8) | received_packet.data[RFM_PACKET_BATTERY_0]); 		log_printf("Battery:
-    // %uV\n", battery);
+    // 8) | received_packet.data[RFM_PACKET_BATTERY_0]);
+    // log_printf("Battery: %uV\n", battery);
 
     // 		log_printf("Packet RSSI: %i dbm\n", received_packet.rssi);
     // 		log_printf("Packet SNR: %i dB\n", received_packet.snr);
@@ -128,14 +128,15 @@ void test_hub(void) {
     // received_packet.data[RFM_PACKET_MSG_NUM_1] << 8 |
     // received_packet.data[RFM_PACKET_MSG_NUM_2] << 16 |
     // received_packet.data[RFM_PACKET_MSG_NUM_3] << 24; 		prev_msg_num =
-    // mem_get_msg_num(); 		log_printf("Message Number: %i\n", recv_msg_num);
+    // mem_get_msg_num(); 		log_printf("Message Number: %i\n",
+    // recv_msg_num);
 
     // 		if(recv_msg_num != ++prev_msg_num)
     // 			log_printf("Missed Message %i\n", prev_msg_num);
 
     // 		int16_t temp = received_packet.data[RFM_PACKET_TEMP_1] << 8 |
-    // received_packet.data[RFM_PACKET_TEMP_0]; 		log_printf("Temperature: %i\n",
-    // temp);
+    // received_packet.data[RFM_PACKET_TEMP_0]; 		log_printf("Temperature:
+    // %i\n", temp);
 
     // 		total_packets = recv_msg_num - start_msg_num;
 
@@ -191,8 +192,8 @@ void test_hub_rf_vs_temp_cal(void) {
             packet = rfm_get_next_packet();
             uint16_t timer2 = timers_micros();
 
-            // serial_printf("Packet Received\n");
-            // serial_printf("%i us\n", (uint16_t)(timer2 - timer));
+            serial_printf("Packet Received\n");
+            serial_printf("%i us\n", (uint16_t)(timer2 - timer));
 
             if (packet->data.device_number != 0xAD7503BF) {
                 // serial_printf("Wrong Dev Num\n");
@@ -233,8 +234,8 @@ void test_revceiver_basic(void) {
             packet = rfm_get_next_packet();
             uint16_t timer2 = timers_micros();
 
-            // serial_printf("Packet Received\n");
-            // serial_printf("%i us\n", (uint16_t)(timer2 - timer));
+            serial_printf("Packet Received\n");
+            serial_printf("%i us\n", (uint16_t)(timer2 - timer));
 
             aes_ecb_decrypt(packet->data.buffer);
 
@@ -268,7 +269,6 @@ void test_receiver(uint32_t dev_id) {
     test_init("test_receiver()");
 
     // Sensors
-    uint8_t  num_sensors = 3;
     sensor_t sensors[3];
     (void)sensors;
 
@@ -482,8 +482,6 @@ void test_sim_end(void) {
 void test_sim_serial_passthrough(void) {
     test_init("test_sim_serial_passthrough()");
 
-    static uint8_t state = 0;
-
     while (!test_sim_init())
         ;
 
@@ -493,12 +491,8 @@ void test_sim_serial_passthrough(void) {
 void test_sim_timestamp(void) {
     test_init("test_sim_timestamp()");
 
-    static uint8_t state = 0;
-
     while (!test_sim_init())
         ;
-
-    uint8_t* timestamp = sim_get_timestamp();
 
     serial_printf("Test Done\n");
 
@@ -527,41 +521,40 @@ void test_sim(void) {
     int8_t   rssi[3] = {1, 1, 1};
 
     for (;;) {
-        // // Create Sim Message
-        // uint8_t sim_buf[256];
-        // uint8_t sim_idx = 0;
-        // sim_buf[sim_idx++] = dev_id >> 24;
-        // sim_buf[sim_idx++] = dev_id >> 16;
-        // sim_buf[sim_idx++] = dev_id >> 8;
-        // sim_buf[sim_idx++] = dev_id;
+        // Create Sim Message
+        uint8_t sim_buf[256];
+        uint8_t sim_idx = 0;
+        sim_buf[sim_idx++] = dev_id >> 24;
+        sim_buf[sim_idx++] = dev_id >> 16;
+        sim_buf[sim_idx++] = dev_id >> 8;
+        sim_buf[sim_idx++] = dev_id;
 
-        // for (uint8_t i = 0; i < num_vals; i++)
-        // {
-        // 	sim_buf[sim_idx++] = ids[i] >> 24;
-        // 	sim_buf[sim_idx++] = ids[i] >> 16;
-        // 	sim_buf[sim_idx++] = ids[i] >> 8;
-        // 	sim_buf[sim_idx++] = ids[i];
-        // 	sim_buf[sim_idx++] = temps[i] >> 8;
-        // 	sim_buf[sim_idx++] = temps[i];
-        // 	sim_buf[sim_idx++] = battery[i] >> 8;
-        // 	sim_buf[sim_idx++] = battery[i];
-        // 	sim_buf[sim_idx++] = total_packets[i] >> 24;
-        // 	sim_buf[sim_idx++] = total_packets[i] >> 16;
-        // 	sim_buf[sim_idx++] = total_packets[i] >> 8;
-        // 	sim_buf[sim_idx++] = total_packets[i];
-        // 	sim_buf[sim_idx++] = ok_packets[i] >> 24;
-        // 	sim_buf[sim_idx++] = ok_packets[i] >> 16;
-        // 	sim_buf[sim_idx++] = ok_packets[i] >> 8;
-        // 	sim_buf[sim_idx++] = ok_packets[i];
-        // 	sim_buf[sim_idx++] = rssi[i] >> 8;
-        // 	sim_buf[sim_idx++] = rssi[i];
-        // }
+        for (uint8_t i = 0; i < num_vals; i++) {
+            sim_buf[sim_idx++] = ids[i] >> 24;
+            sim_buf[sim_idx++] = ids[i] >> 16;
+            sim_buf[sim_idx++] = ids[i] >> 8;
+            sim_buf[sim_idx++] = ids[i];
+            sim_buf[sim_idx++] = temps[i] >> 8;
+            sim_buf[sim_idx++] = temps[i];
+            sim_buf[sim_idx++] = battery[i] >> 8;
+            sim_buf[sim_idx++] = battery[i];
+            sim_buf[sim_idx++] = total_packets[i] >> 24;
+            sim_buf[sim_idx++] = total_packets[i] >> 16;
+            sim_buf[sim_idx++] = total_packets[i] >> 8;
+            sim_buf[sim_idx++] = total_packets[i];
+            sim_buf[sim_idx++] = ok_packets[i] >> 24;
+            sim_buf[sim_idx++] = ok_packets[i] >> 16;
+            sim_buf[sim_idx++] = ok_packets[i] >> 8;
+            sim_buf[sim_idx++] = ok_packets[i];
+            sim_buf[sim_idx++] = rssi[i] >> 8;
+            sim_buf[sim_idx++] = rssi[i];
+        }
 
         // Send Data
         sim_init();
         sim_register_to_network();
 
-        // sim_send_data(sim_buf, sim_idx);
+        sim_printf("%s\r\n", sim_buf);
 
         log_printf("Sent\n\n");
 
@@ -651,7 +644,6 @@ void test_sim_get_request_version(void) {
             uint32_t num_bytes =
                 sim_http_read_response(0, sim800.http.response_size, buf);
 
-            uint32_t timer = timers_millis();
             // SIM800 now returns that number of bytes
             for (uint32_t i = 0; i < num_bytes; i++) {
                 serial_printf("%c", (char)buf[i]);
@@ -713,7 +705,6 @@ void test_sim_post(void) {
             uint32_t num_bytes =
                 sim_http_read_response(0, sim800.http.response_size, buf);
 
-            uint32_t timer = timers_millis();
             // SIM800 now returns that number of bytes
             for (uint32_t i = 0; i < num_bytes; i++) {
                 serial_printf("%c", (char)buf[i]);

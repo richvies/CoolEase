@@ -77,7 +77,6 @@ typedef enum {
 /*////////////////////////////////////////////////////////////////////////////*/
 
 static uint16_t     adc_vals[3] = {0, 0, 0};
-static bool         plugged_in = true;
 static uint16_t     batt_voltages[NUM_VOLTAGES];
 static batt_state_t state = BATT_INIT;
 

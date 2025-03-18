@@ -69,9 +69,7 @@ static bool verify_half_page_checksum(uint32_t data[16], uint32_t expected);
 /*////////////////////////////////////////////////////////////////////////////*/
 
 void boot_init(void) {
-    uint32_t* mem_eeprom_write_word_ptrNULL;
-    uint8_t*  u8ptr = NULL;
-    uint32_t  val = 0;
+    uint32_t val = 0;
 
     log_printf("**********\nStart\n**********\n");
 
@@ -311,8 +309,7 @@ uint32_t boot_get_half_page_checksum(uint32_t data[16]) {
 // Static Function Definitions
 /*////////////////////////////////////////////////////////////////////////////*/
 
-static bool verify_half_page_checksum(uint32_t data[FLASH_PAGE_SIZE / 2],
-                                      uint32_t expected) {
+static bool verify_half_page_checksum(uint32_t data[16], uint32_t expected) {
     // log_printf("boot_verify_checksum\n");
 
     // for(uint16_t i = 0; i < 16; i++)

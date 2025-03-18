@@ -252,9 +252,8 @@ static const struct usb_interface_descriptor hid_interface = {
     // The interface subclass for an HID device is used to indicate of this is a
     // mouse or keyboard that is boot mode capable (1) or not (0).
     .bInterfaceSubClass = 0, // Not a boot mode mouse or keyboard.
-    .bInterfaceProtocol =
-        0, // Since subclass is zero then this must be too.
-           // A string representing this interface. Zero means not provided.
+    .bInterfaceProtocol = 0, // Since subclass is zero then this must be too.
+    // A string representing this interface. Zero means not provided.
     .iInterface = USB_INTERFACE_IDX,
     // The header ends here.
 
@@ -725,6 +724,7 @@ static void hid_out_report_callback(usbd_device* dev, uint8_t ea) {
     }
 
     uint32_t command = hid_out_report.command;
+    serial_printf("command: %d", command);
 }
 
 /*////////////////////////////////////////////////////////////////////////////*/

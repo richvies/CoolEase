@@ -91,7 +91,6 @@ static uint8_t  num_sensors;
 
 static char     net_buf[1536];
 static uint16_t net_buf_idx = 0;
-static uint32_t post_len;
 
 static bool     log_upload_pending;
 static bool     pwr_upload_pending;
@@ -333,10 +332,7 @@ static void update_sensor_list(const char* list_start, const uint32_t len) {
 
     // IDs ascii to int
     while ((i < len) && (*(list_start++) == ',')) {
-        const char* tmp = list_start;
-
         list[i] = _atoi((const char**)&list_start);
-
         ++i;
     }
 
@@ -443,6 +439,7 @@ static void hub(void) {
     // Todo
     // Get timestamp from sim
     uint32_t timestamp = get_timestamp();
+    serial_printf("got timestamp %d", timestamp);
 
     // Init rtc, one hour wakeup flag for logging & checking software
     timers_rtc_init();
@@ -802,7 +799,6 @@ static void clear_upload_pending(void) {
 }
 
 static void parse_net_response(void) {
-    uint32_t i = 0;
     uint32_t sensor_list_len = 0;
     uint32_t num_bytes = 0;
 

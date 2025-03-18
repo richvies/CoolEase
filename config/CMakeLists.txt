@@ -26,7 +26,7 @@ target_compile_options(${CONFIG_LIB} PUBLIC
   $<$<CONFIG:Debug>:-Og>
   $<$<CONFIG:Release>:-Os>
   $<$<CONFIG:Debug>:-DDEBUG>
-  -Wno-all
+  -Wall
   -Wextra
   -Wimplicit-function-declaration
   -Wredundant-decls

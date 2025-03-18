@@ -46,7 +46,6 @@
 // Static Variables
 /*////////////////////////////////////////////////////////////////////////////*/
 
-static uint32_t log_add = EEPROM_LOG_BASE;
 static uint32_t next_reading_add = READINGS_START;
 
 // Other device information saved in EEPROM
@@ -63,7 +62,9 @@ static uint32_t msg_num = 0;
 /*////////////////////////////////////////////////////////////////////////////*/
 
 static _RAM bool mem_flash_do_page_erase(uint32_t address);
-static _RAM bool mem_flash_do_write_half_page(uint32_t address, uint32_t* data);
+static _RAM bool
+mem_flash_do_write_half_page(uint32_t address,
+                             uint32_t data[FLASH_PAGE_SIZE / 2]);
 
 /** @} */
 

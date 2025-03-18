@@ -932,8 +932,8 @@ static bool check_crc(uint32_t expected) {
 
             // HTTPREAD command & get number of bytes read
             // 		*number of bytes returned may be less than requested
-            // depending how many are left in file 		SIM800 signifies how many
-            // bytes are returned
+            // depending how many are left in file 		SIM800 signifies how
+            // many bytes are returned
             if (sim_http_read_response(
                     BIN_HEADER_SIZE + (n * FLASH_HALF_PAGE_SIZE_BYTES),
                     FLASH_HALF_PAGE_SIZE_BYTES, half_page.buf8) != 64) {
@@ -999,11 +999,13 @@ static bool program_bin(void) {
 
             // HTTPREAD command & get number of bytes read
             // 		*number of bytes returned may be less than requested
-            // depending how many are left in file 		SIM800 signifies how many
-            // bytes are returned
+            // depending how many are left in file 		SIM800 signifies how
+            // many bytes are returned
             uint8_t num_bytes = sim_http_read_response(
                 BIN_HEADER_SIZE + (n * FLASH_HALF_PAGE_SIZE_BYTES),
                 (FLASH_HALF_PAGE_SIZE_BYTES), half_page.buf8);
+
+            serial_printf("read %d bytes", num_bytes);
 
             serial_printf("..%8x\n",
                           FLASH_APP_ADDRESS + (n * FLASH_HALF_PAGE_SIZE_BYTES));

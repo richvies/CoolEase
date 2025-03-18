@@ -167,7 +167,7 @@ uint32_t fnprintf(out_fct_type out, const char* format, va_list va) {
             uint32_t    l = _strnlen_s(p, PRINTF_MAX_STR_LEN);
 
             // string output
-            while (*p != 0) {
+            while ((*p != 0) && (l--)) {
                 out(*(p++));
                 idx++;
             }

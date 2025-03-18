@@ -285,7 +285,6 @@ void test_crc(void) {
 
     // data = ['0x12', '0x34', '0x56', '0x78'] in Python
     uint32_t data[2] = {0x12345678, 0x24681357};
-    uint32_t res;
     int      i;
 
     // uint32_t data2[16] = {0X03020100, 0X07060504};

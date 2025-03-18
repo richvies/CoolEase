@@ -118,8 +118,6 @@ static char reply_buf[SIM_BUFFER_SIZE];
 // year, month, day, hours, mins, secs
 static uint8_t timestamp[6] = {0, 0, 0, 0, 0, 0};
 
-static const char base_url_str[] = "http://cooleasetest.000webhostapp.com/";
-
 static uint32_t _timer = 0;
 static uint32_t _timeout_ms = 0;
 
