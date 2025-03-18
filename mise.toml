@@ -5,6 +5,7 @@ ninja = "latest"
 python = "3.10"
 ruff = "latest"
 uv = "latest"
+ruby = "latest"
 
 [env]
 '_'.python.venv = { create = true, path = ".venv" }
