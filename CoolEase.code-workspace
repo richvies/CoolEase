@@ -29,7 +29,14 @@
 			"log.h": "c",
 			"rcc.h": "c",
 			"syscfg.h": "c",
-			"bootloader_utils.h": "c"
+			"bootloader_utils.h": "c",
+			"compare": "c",
+			"stdbool.h": "c",
+			"printf.h": "c",
+			"stdarg.h": "c",
+			"system_error": "cpp",
+			"unity.h": "c",
+			"cmock.h": "c"
 		}
 	}
 }

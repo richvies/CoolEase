@@ -1,0 +1,307 @@
+:project:
+  :which_ceedling: gem
+  :ceedling_version: 1.0.1
+
+  :use_mocks: TRUE
+  :use_test_preprocessor: :none  # :none, :mocks, :tests, or :all
+  :use_deep_preprocessor: :none  # :none, :mocks, :tests, or :all
+  :use_backtrace: :simple        # :none, :simple, or :gdb
+  :use_decorators: :auto         # :auto, :all, or :none
+
+  :build_root: build/ceedling
+  :test_file_prefix: test_
+  :default_tasks:
+    - test:all
+
+  :test_threads: 8
+  :compile_threads: 8
+
+  :release_build: FALSE
+
+:mixins:
+  :enabled: []
+  :load_paths: []
+
+:test_build:
+  :use_assembly: FALSE
+
+:release_build:
+  :output: test.out
+  :use_assembly: FALSE
+  :artifacts: []
+
+:plugins:
+  :enabled:
+    - module_generator
+    - gcov
+    - fff
+    - compile_commands_json_db
+    #- command_hooks
+
+    - report_tests_pretty_stdout
+    #- report_build_warnings_log
+    #- report_tests_gtestlike_stdout
+    #- report_tests_log_factory
+    #- report_tests_raw_output_log
+
+:report_tests_log_factory:
+  :reports:
+    - json
+    - junit
+    - cppunit
+    - html
+
+:extension:
+  :executable: .out
+
+:paths:
+  :test:
+    - common/test/*
+  :source:
+    - common/*
+  :include:
+    - common/include/*
+  :support:
+    - common/test/support/*
+  :libraries: []
+
+:defines:
+  :test:
+  :release: []
+  :use_test_definition: FALSE
+
+:cmock:
+  :plugins:
+    - :ignore
+    - :callback
+  :verbosity:  2
+  :when_no_prototypes:  :warn
+
+  # File configuration
+  :skeleton_path:  ''              # Subdirectory to store stubs when generated (default: '')
+  :mock_prefix:  'mock_'           # Prefix to append to filenames for mocks
+  :mock_suffix:  ''                # Suffix to append to filenames for mocks
+
+  # Parser configuration
+  :strippables:  ['(?:__attribute__\s*\([ (]*.*?[ )]*\)+)']
+  :attributes:
+     - __ramfunc
+     - __irq
+     - __fiq
+     - register
+     - extern
+  :c_calling_conventions:
+     - __stdcall
+     - __cdecl
+     - __fastcall
+  :treat_externs:  :exclude        # the options being :include or :exclud
+  :treat_inlines:  :exclude        # the options being :include or :exclud
+
+  # Type handling configuration
+  #:unity_helper_path: ''          # specify a string of where to find a unity_helper.h file to discover custom type assertions
+  :treat_as:                       # optionally add additional types to map custom types
+    uint8:    HEX8
+    uint16:   HEX16
+    uint32:   UINT32
+    int8:     INT8
+    bool:     UINT8
+  #:treat_as_array:  {}            # hint to cmock that these types are pointers to something
+  #:treat_as_void:  []             # hint to cmock that these types are actually aliases of void
+  :memcmp_if_unknown:  true        # allow cmock to use the memory comparison assertions for unknown types
+  :when_ptr:  :compare_data        # hint to cmock how to handle pointers in general, the options being :compare_ptr, :compare_data, or :smart
+
+  # Mock generation configuration
+  :weak:  ''                       # Symbol to use to declare weak functions
+  :enforce_strict_ordering: true   # Do we want cmock to enforce ordering of all function calls?
+  :fail_on_unexpected_calls: true  # Do we want cmock to fail when it encounters a function call that wasn't expected?
+  :callback_include_count: true    # Do we want cmock to include the number of calls to this callback, when using callbacks?
+  :callback_after_arg_check: false # Do we want cmock to enforce an argument check first when using a callback?
+  #:includes: []                   # You can add additional includes here, or specify the location with the options below
+  #:includes_h_pre_orig_header: []
+  #:includes_h_post_orig_header: []
+  #:includes_c_pre_header:  []
+  #:includes_c_post_header:  []
+  #:array_size_type:  []            # Specify a type or types that should be used for array lengths
+  #:array_size_name:  'size|len'    # Specify a name or names that CMock might automatically recognize as the length of an array
+  :exclude_setjmp_h:  false        # Don't use setjmp when running CMock. Note that this might result in late reporting or out-of-order failures.
+
+:unity:
+  :defines:
+    - UNITY_INCLUDE_FLOAT
+    - UNITY_INCLUDE_DOUBLE
+
+:environment:
+
+:libraries:
+  :placement: :end
+  :flag: "-l${1}"
+  :path_flag: "-L ${1}"
+  :system: []
+  :test: []
+  :release: []
+
+################################################################
+# PLUGIN CONFIGURATION
+################################################################
+
+# Add -gcov to the plugins list to make sure of the gcov plugin
+# You will need to have gcov and gcovr both installed to make it work.
+# For more information on these options, see docs in plugins/gcov
+:gcov:
+  :summaries: TRUE                # Enable simple coverage summaries to console after tests
+  :report_task: FALSE             # Disabled dedicated report generation task (this enables automatic report generation)
+  :utilities:
+    - gcovr           # Use gcovr to create the specified reports (default).
+    #- ReportGenerator # Use ReportGenerator to create the specified reports.
+  :reports: # Specify one or more reports to generate.
+    # Make an HTML summary report.
+    - HtmlBasic
+    # - HtmlDetailed
+    # - Text
+    # - Cobertura
+    # - SonarQube
+    # - JSON
+    # - HtmlInline
+    # - HtmlInlineAzure
+    # - HtmlInlineAzureDark
+    # - HtmlChart
+    # - MHtml
+    # - Badges
+    # - CsvSummary
+    # - Latex
+    # - LatexSummary
+    # - PngChart
+    # - TeamCitySummary
+    # - lcov
+    # - Xml
+    # - XmlSummary
+  :gcovr:
+    # :html_artifact_filename: TestCoverageReport.html
+    # :html_title: Test Coverage Report
+    :html_medium_threshold: 75
+    :html_high_threshold: 90
+    # :html_absolute_paths: TRUE
+    # :html_encoding: UTF-8
+
+# :module_generator:
+#   :naming: :snake #options: :bumpy, :camel, :caps, or :snake
+#   :includes:
+#     :tst: []
+#     :src: []
+#   :boilerplates:
+#     :src: ""
+#     :inc: ""
+#     :tst: ""
+
+# :dependencies:
+#   :libraries:
+#     - :name: WolfSSL
+#       :source_path:   third_party/wolfssl/source
+#       :build_path:    third_party/wolfssl/build
+#       :artifact_path: third_party/wolfssl/install
+#       :fetch:
+#         :method: :zip
+#         :source: \\shared_drive\third_party_libs\wolfssl\wolfssl-4.2.0.zip
+#       :environment:
+#         - CFLAGS+=-DWOLFSSL_DTLS_ALLOW_FUTURE
+#       :build:
+#         - "autoreconf -i"
+#         - "./configure --enable-tls13 --enable-singlethreaded"
+#         - make
+#         - make install
+#       :artifacts:
+#         :static_libraries:
+#           - lib/wolfssl.a
+#         :dynamic_libraries:
+#           - lib/wolfssl.so
+#         :includes:
+#           - include/**
+
+# :command_hooks:
+#   :pre_mock_preprocess:
+#   :post_mock_preprocess:
+#   :pre_test_preprocess:
+#   :post_test_preprocess:
+#   :pre_mock_generate:
+#   :post_mock_generate:
+#   :pre_runner_generate:
+#   :post_runner_generate:
+#   :pre_compile_execute:
+#   :post_compile_execute:
+#   :pre_link_execute:
+#   :post_link_execute:
+#   :pre_test_fixture_execute:
+#   :post_test_fixture_execute:
+#   :pre_test:
+#   :post_test:
+#   :pre_release:
+#   :post_release:
+#   :pre_build:
+#   :post_build:
+#   :post_error:
+
+################################################################
+# TOOLCHAIN CONFIGURATION
+################################################################
+
+#:tools:
+# Ceedling defaults to using gcc for compiling, linking, etc.
+# As [:tools] is blank, gcc will be used (so long as it's in your system path)
+# See documentation to configure a given toolchain for use
+# :tools:
+#   :test_compiler:
+#     :executable:
+#     :arguments: []
+#     :name:
+#     :optional: FALSE
+#   :test_linker:
+#     :executable:
+#     :arguments: []
+#     :name:
+#     :optional: FALSE
+#   :test_assembler:
+#     :executable:
+#     :arguments: []
+#     :name:
+#     :optional: FALSE
+#   :test_fixture:
+#     :executable:
+#     :arguments: []
+#     :name:
+#     :optional: FALSE
+#   :test_includes_preprocessor:
+#     :executable:
+#     :arguments: []
+#     :name:
+#     :optional: FALSE
+#   :test_file_preprocessor:
+#     :executable:
+#     :arguments: []
+#     :name:
+#     :optional: FALSE
+#   :test_file_preprocessor_directives:
+#     :executable:
+#     :arguments: []
+#     :name:
+#     :optional: FALSE
+#   :release_compiler:
+#     :executable:
+#     :arguments: []
+#     :name:
+#     :optional: FALSE
+#   :release_linker:
+#     :executable:
+#     :arguments: []
+#     :name:
+#     :optional: FALSE
+#   :release_assembler:
+#     :executable:
+#     :arguments: []
+#     :name:
+#     :optional: FALSE
+#   :release_dependencies_generator:
+#     :executable:
+#     :arguments: []
+#     :name:
+#     :optional: FALSE
+...
