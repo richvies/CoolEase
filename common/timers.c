@@ -283,9 +283,13 @@ void timers_lptim_end(void) {
     rcc_periph_clock_disable(RCC_LPTIM1);
 }
 
-uint32_t timers_micros(void) { return (micros_counter + LPTIM1_CNT); }
+uint32_t timers_micros(void) {
+    return (micros_counter + LPTIM1_CNT);
+}
 
-uint32_t timers_millis(void) { return millis_counter; }
+uint32_t timers_millis(void) {
+    return millis_counter;
+}
 
 void timers_delay_microseconds(uint32_t delay_microseconds) {
     uint32_t curr_time = timers_micros();
@@ -327,7 +331,9 @@ void timers_iwdg_init(uint32_t period) {
 }
 
 // Reset independant and window watchdog timers
-void timers_pet_dogs(void) { iwdg_reset(); }
+void timers_pet_dogs(void) {
+    iwdg_reset();
+}
 
 // Enter standby mode. Vrefint disabled (ULP bit)
 void timers_enter_standby(void) {

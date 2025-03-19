@@ -464,11 +464,17 @@ bool cusb_connected(void) {
     return ((usb_state >= USB_CONNECTED) ? true : false);
 }
 
-bool cusb_reset(void) { return ((usb_state == USB_RESET) ? true : false); }
+bool cusb_reset(void) {
+    return ((usb_state == USB_RESET) ? true : false);
+}
 
-bool cusb_plugged_in(void) { return usb_plugged_in; }
+bool cusb_plugged_in(void) {
+    return usb_plugged_in;
+}
 
-void cusb_poll(void) { usbd_poll(usbd_dev); }
+void cusb_poll(void) {
+    usbd_poll(usbd_dev);
+}
 
 void cusb_send(char character) {
     if (usb_state == USB_PRINT) {
@@ -731,9 +737,12 @@ static void hid_out_report_callback(usbd_device* dev, uint8_t ea) {
 // Hook Function Weak Definitions
 /*////////////////////////////////////////////////////////////////////////////*/
 
-void __attribute__((weak)) cusb_hook_reset(void) {}
-void __attribute__((weak)) cusb_hook_hid_out_report(void) {}
-void __attribute__((weak)) cusb_hook_hid_in_report(void) {}
+void __attribute__((weak)) cusb_hook_reset(void) {
+}
+void __attribute__((weak)) cusb_hook_hid_out_report(void) {
+}
+void __attribute__((weak)) cusb_hook_hid_in_report(void) {
+}
 
 /*////////////////////////////////////////////////////////////////////////////*/
 // USB Interrupt

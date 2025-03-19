@@ -837,7 +837,9 @@ static bool net_task(void) {
     return net_finish;
 }
 
-static void net_fallback(void) { net_state = net_fallback_state; }
+static void net_fallback(void) {
+    net_state = net_fallback_state;
+}
 
 static bool check_bin(void) {
     log_printf("Check Bin\n");

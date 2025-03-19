@@ -97,7 +97,13 @@
 
 sim800_t sim800;
 
-enum cmd_type { CMD_TEST = 0, CMD_READ, CMD_WRITE, CMD_EXEC, CMD_WAIT };
+enum cmd_type {
+    CMD_TEST = 0,
+    CMD_READ,
+    CMD_WRITE,
+    CMD_EXEC,
+    CMD_WAIT
+};
 
 #define SIM_BUFFER_SIZE 64U
 
@@ -548,7 +554,9 @@ static void timeout_init(uint32_t timeout_ms) {
     _timer = timers_millis();
 }
 
-static bool timeout(void) { return ((timers_millis() - _timer) > _timeout_ms); }
+static bool timeout(void) {
+    return ((timers_millis() - _timer) > _timeout_ms);
+}
 
 void sim_print_state(sim_state_t res) {
     switch (res) {
@@ -1039,7 +1047,9 @@ static sim_state_t try_autobaud(void) {
     return res;
 }
 
-static sim_state_t disable_echo(void) { return exec_command("E0", 1000); }
+static sim_state_t disable_echo(void) {
+    return exec_command("E0", 1000);
+}
 
 static sim_state_t config_saved_params(void) {
     static uint8_t state = 0;
@@ -1117,7 +1127,9 @@ static sim_state_t toggle_bearer(bool open) {
 // Device information
 /*////////////////////////////////////////////////////////////////////////////*/
 
-void sim_print_capabilities(void) { sim_printf("at+gcap"); }
+void sim_print_capabilities(void) {
+    sim_printf("at+gcap");
+}
 
 /*////////////////////////////////////////////////////////////////////////////*/
 // HTTP
@@ -1391,7 +1403,9 @@ sim_state_t sim_http_post_enter_data(uint32_t size, uint32_t time) {
     return res;
 }
 
-sim_state_t sim_http_post(void) { return http_action(1); }
+sim_state_t sim_http_post(void) {
+    return http_action(1);
+}
 
 uint32_t sim_http_read_response(uint32_t address, uint32_t buf_size,
                                 uint8_t* buf) {
@@ -1635,7 +1649,9 @@ static void usart_setup(void) {
     nvic_enable_irq(SIM_USART_NVIC);
 }
 
-static void clear_rx_buf(void) { sim_rx_tail = sim_rx_head; }
+static void clear_rx_buf(void) {
+    sim_rx_tail = sim_rx_head;
+}
 
 static void _putchar(char character) {
     bool done = false;

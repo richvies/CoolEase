@@ -107,7 +107,9 @@ void log_printf(const char* format, ...) {
     va_end(va);
 }
 
-void log_error(uint16_t error) { log_printf("LError %4x\n", error); }
+void log_error(uint16_t error) {
+    log_printf("LError %4x\n", error);
+}
 
 uint8_t log_get_byte(uint16_t index) {
     uint8_t byte;
@@ -137,9 +139,13 @@ uint8_t log_read(void) {
     return byte;
 }
 
-void log_read_reset(void) { read_index = write_index; }
+void log_read_reset(void) {
+    read_index = write_index;
+}
 
-uint16_t log_size(void) { return LOG_SIZE; }
+uint16_t log_size(void) {
+    return LOG_SIZE;
+}
 
 void log_erase(void) {
     serial_printf("Log Erase Start: %8x\n", &(log_file->log[0]));
@@ -351,7 +357,9 @@ SPF_ISR() {
 }
 
 #ifdef _HUB
-static void _putchar_usb(char character) { cusb_send(character); }
+static void _putchar_usb(char character) {
+    cusb_send(character);
+}
 #endif // _HUB
 #endif // DEBUG
 

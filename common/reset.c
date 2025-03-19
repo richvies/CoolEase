@@ -43,4 +43,6 @@ void reset_save_flags(void) {
     RCC_CSR |= RCC_CSR_RMVF;
 }
 
-uint32_t reset_get_flags(void) { return mem_read_bkp_reg(BKUP_RESET_FLAGS); }
+uint32_t reset_get_flags(void) {
+    return mem_read_bkp_reg(BKUP_RESET_FLAGS);
+}

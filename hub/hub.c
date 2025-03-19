@@ -847,7 +847,9 @@ static void parse_net_response(void) {
 }
 
 ///
-static bool check_pending(void) { return check_upload_pending; }
+static bool check_pending(void) {
+    return check_upload_pending;
+}
 
 static uint8_t temps_pending(void) {
     uint8_t res = 0;
@@ -860,9 +862,13 @@ static uint8_t temps_pending(void) {
     return res;
 }
 
-static bool log_pending(void) { return log_upload_pending; }
+static bool log_pending(void) {
+    return log_upload_pending;
+}
 
-static bool pwr_pending(void) { return pwr_upload_pending; }
+static bool pwr_pending(void) {
+    return pwr_upload_pending;
+}
 
 ///
 static void append_check(void) {

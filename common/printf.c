@@ -202,7 +202,9 @@ uint32_t fnprintf(out_fct_type out, const char* format, va_list va) {
     return idx;
 }
 
-bool _is_digit(char ch) { return (ch >= '0') && (ch <= '9'); }
+bool _is_digit(char ch) {
+    return (ch >= '0') && (ch <= '9');
+}
 
 uint32_t _atoi(const char** str) {
     uint32_t i = 0U;

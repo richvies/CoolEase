@@ -324,7 +324,9 @@ void batt_disable_interrupt(void) {
     nvic_disable_irq(NVIC_DMA1_CHANNEL1_IRQ);
 }
 
-uint16_t batt_get_batt_voltage(void) { return batt_voltages[BATT_VOLTAGE]; }
+uint16_t batt_get_batt_voltage(void) {
+    return batt_voltages[BATT_VOLTAGE];
+}
 
 uint16_t batt_get_pwr_voltage(void) {
 #ifdef _HUB

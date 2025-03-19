@@ -291,11 +291,13 @@ void rfm_config_for_gfsk(void) {
 }
 
 void rfm_set_power(int8_t power, uint8_t ramp_time) {
-    if (power > 20) power = 20;
+    if (power > 20)
+        power = 20;
     // else if( power < -3 )
     //     power = -3;
 
-    if (ramp_time > 0x0F) ramp_time = 0x0F;
+    if (ramp_time > 0x0F)
+        ramp_time = 0x0F;
 
     // Pout = 2 + OutputPower (+3dBm if DAC enabled)
     spi_write_single(RFM_REG_4D_PA_DAC,
@@ -321,7 +323,9 @@ void rfm_reset_stats(void) {
     // spi_transfer(RFM_CMD_RESET_STATS, NULL, 0, NULL, 0);
 }
 
-uint8_t rfm_get_version(void) { return spi_read_single(RFM_REG_42_VERSION); }
+uint8_t rfm_get_version(void) {
+    return spi_read_single(RFM_REG_42_VERSION);
+}
 
 void rfm_start_listening(void) {
     // Go to standby mode
@@ -588,7 +592,8 @@ static void spi_write_single(uint8_t reg, uint8_t data) {
 
     // log_printf("%02x : %02x\n", reg, data);
 
-    if (reg == RFM_REG_12_IRQ_FLAGS) return;
+    if (reg == RFM_REG_12_IRQ_FLAGS)
+        return;
 
     TIMEOUT(10000, "RFM SPI Write", ((reg << 16) | data), (curr_data == data), ;
             , timers_delay_microseconds(100);

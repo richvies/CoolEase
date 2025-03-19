@@ -281,7 +281,8 @@ void w25_EraseSector(uint32_t SectorAddr) {
     spi_chip_select();
     timers_delay_microseconds(1);
     spi_xfer(W25_SPI, 0x20);
-    if (w25.ID >= W25Q256) spi_xfer(W25_SPI, (SectorAddr & 0xFF000000) >> 24);
+    if (w25.ID >= W25Q256)
+        spi_xfer(W25_SPI, (SectorAddr & 0xFF000000) >> 24);
     spi_xfer(W25_SPI, (SectorAddr & 0xFF0000) >> 16);
     spi_xfer(W25_SPI, (SectorAddr & 0xFF00) >> 8);
     spi_xfer(W25_SPI, SectorAddr & 0xFF);
@@ -305,7 +306,8 @@ void w25_EraseBlock(uint32_t BlockAddr) {
     spi_chip_select();
     timers_delay_microseconds(1);
     spi_xfer(W25_SPI, 0xD8);
-    if (w25.ID >= W25Q256) spi_xfer(W25_SPI, (BlockAddr & 0xFF000000) >> 24);
+    if (w25.ID >= W25Q256)
+        spi_xfer(W25_SPI, (BlockAddr & 0xFF000000) >> 24);
     spi_xfer(W25_SPI, (BlockAddr & 0xFF0000) >> 16);
     spi_xfer(W25_SPI, (BlockAddr & 0xFF00) >> 8);
     spi_xfer(W25_SPI, BlockAddr & 0xFF);
@@ -587,7 +589,8 @@ void w25_WritePage(uint8_t* pBuffer, uint32_t Page_Address,
     timers_delay_microseconds(1);
     spi_xfer(W25_SPI, 0x02);
     Page_Address = (Page_Address * w25.PageSize) + OffsetInByte;
-    if (w25.ID >= W25Q256) spi_xfer(W25_SPI, (Page_Address & 0xFF000000) >> 24);
+    if (w25.ID >= W25Q256)
+        spi_xfer(W25_SPI, (Page_Address & 0xFF000000) >> 24);
     spi_xfer(W25_SPI, (Page_Address & 0xFF0000) >> 16);
     spi_xfer(W25_SPI, (Page_Address & 0xFF00) >> 8);
     spi_xfer(W25_SPI, Page_Address & 0xFF);
@@ -718,7 +721,8 @@ void w25_ReadBytes(uint8_t* pBuffer, uint32_t ReadAddr,
     spi_chip_select();
     timers_delay_microseconds(1);
     spi_xfer(W25_SPI, 0x0B);
-    if (w25.ID >= W25Q256) spi_xfer(W25_SPI, (ReadAddr & 0xFF000000) >> 24);
+    if (w25.ID >= W25Q256)
+        spi_xfer(W25_SPI, (ReadAddr & 0xFF000000) >> 24);
     spi_xfer(W25_SPI, (ReadAddr & 0xFF0000) >> 16);
     spi_xfer(W25_SPI, (ReadAddr & 0xFF00) >> 8);
     spi_xfer(W25_SPI, ReadAddr & 0xFF);
@@ -761,7 +765,8 @@ void w25_ReadPage(uint8_t* pBuffer, uint32_t Page_Address,
     spi_chip_select();
     timers_delay_microseconds(1);
     spi_xfer(W25_SPI, 0x0B);
-    if (w25.ID >= W25Q256) spi_xfer(W25_SPI, (Page_Address & 0xFF000000) >> 24);
+    if (w25.ID >= W25Q256)
+        spi_xfer(W25_SPI, (Page_Address & 0xFF000000) >> 24);
     spi_xfer(W25_SPI, (Page_Address & 0xFF0000) >> 16);
     spi_xfer(W25_SPI, (Page_Address & 0xFF00) >> 8);
     spi_xfer(W25_SPI, Page_Address & 0xFF);
