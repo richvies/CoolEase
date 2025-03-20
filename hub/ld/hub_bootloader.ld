@@ -8,13 +8,13 @@ _min_stack_size = 0x400;    /* required amount of stack  */
 MEMORY
 {
     ram (rwx) : ORIGIN = 0x20000000, LENGTH = 8K
-    rom (rx) : ORIGIN = 0x08000000, LENGTH = 32K
+    rom (rx) : ORIGIN = 0x08000000, LENGTH = 64K
 }
 SECTIONS
 {
     /* Flash Data  */
     /* Vector table, code & readonly data  */
-    .text : 
+    .text :
     {
         *(.vectors)
         *(.text*)
@@ -22,16 +22,16 @@ SECTIONS
         *(.rodata*)
         . = ALIGN(4);
     } >rom
-    
+
     /* C/C++ initialization  */
-    .preinit_array : 
+    .preinit_array :
     {
         . = ALIGN(4);
         __preinit_array_start = .;
         KEEP (*(.preinit_array))
         __preinit_array_end = .;
     } >rom
-    .init_array : 
+    .init_array :
     {
         . = ALIGN(4);
         __init_array_start = .;
@@ -49,11 +49,11 @@ SECTIONS
 
     /* Arm frame table and indexs apparently for stack unwinding */
     /* Can probably get rid of it  */
-    .ARM.extab : 
+    .ARM.extab :
     {
         *(.ARM.extab*)
     } >rom
-    .ARM.exidx : 
+    .ARM.exidx :
     {
         __exidx_start = .;
         *(.ARM.exidx*)
@@ -67,7 +67,7 @@ SECTIONS
 
     /* RAM Data  */
     /* Initialized data cpoied to RAM  */
-    .data : 
+    .data :
     {
         /* Start address of data in flash  */
         _data = .;
@@ -77,9 +77,9 @@ SECTIONS
     } >ram AT >rom
     /* Address in RAM to load data  */
     _data_loadaddr = LOADADDR(.data);
-    
+
     /* Uninitialized data zero'd section of RAM  */
-    .bss : 
+    .bss :
     {
         *(.bss*)
         *(COMMON)
@@ -101,7 +101,7 @@ SECTIONS
         . = ALIGN(8);
     } >ram
 
-    /DISCARD/ : { *(.eh_frame) }
+    /*/DISCARD/ : { *(.eh_frame) }*/
 
     /* Remove information from the standard libraries  */
     /DISCARD/ :
