@@ -1,6 +1,6 @@
 /**
  ******************************************************************************
- * @file    testing.c
+ * @file    test.c
  * @author  Richard Davies
  * @date    26/Dec/2020
  * @brief   Testing Source File

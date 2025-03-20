@@ -1,0 +1,61 @@
+name: Generate and deploy Doxygen docs to gh-pages branch
+
+on:
+  push:
+    branches:
+      - production
+      - develop
+    tags: 'v*'
+
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+    environment: gh-pages
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Install Dependencies
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y doxygen graphviz rsync
+
+      - name: Update version number in Doxyfile
+        env:
+          REF_NAME: ${{ github.ref_name }}
+          TYPE: ${{ github.ref_type }}
+        run: |
+          if [[ ${TYPE} == "tag" ]]; then
+            VERSION=${REF_NAME}
+          else
+            COMMIT=$(git rev-parse --short HEAD)
+            VERSION=${REF_NAME}-${COMMIT}
+          fi
+          echo "setting doxygen project number to ${VERSION}"
+          sed -i "s/PROJECT_NUMBER         =/PROJECT_NUMBER         = ${VERSION}/g" docs/doxygen/Doxyfile
+
+      - name: Generate Doxygen documentation
+        run: doxygen docs/doxygen/Doxyfile
+
+      - name: Configure SSH client
+        run: |
+          mkdir -p ~/.ssh
+          echo "${PROJ_ACT_TOKEN}" > ~/.ssh/id_ed25519
+          chmod 600 ~/.ssh/id_ed25519
+          cat ~/.ssh/id_ed25519
+          ssh-keyscan github.com >> ~/.ssh/known_hosts
+          git config --global user.email "richvies@gmail.com"
+          git config --global user.name "rick-l480"
+
+
+      - name: Deploy to GitHub Pages
+        uses: JamesIves/github-pages-deploy-action@v4
+        with:
+          folder: docs/doxygen/generated/html
+          branch: gh-pages
+          target-folder: ${{ github.ref_name }}
+          clean: true
+          ssh-key: true
+          git-config-email: richvies@gmail.com
+          git-config-name: rick-l480
+

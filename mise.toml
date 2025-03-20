@@ -11,6 +11,7 @@ ruby = "latest"
 '_'.python.venv = { create = true, path = ".venv" }
 
 [settings]
+ruby.ruby_install = true
 experimental = true
 
 [hooks.enter]
@@ -48,3 +49,15 @@ run = "rm -rf build"
 [tasks.ffclean]
 depends = "fclean"
 run = "make -C libopencm3 clean"
+
+[tasks.gen-docs]
+run = '''
+rm -rf docs/doxygen/generated
+doxygen docs/doxygen/Doxyfile
+'''
+
+[tasks.run-tests]
+run = "ceedling test:all"
+
+[tasks.act-push]
+run = 'act push --env PROJ_ACT_TOKEN="{{ env.PROJ_ACT_TOKEN }}"'

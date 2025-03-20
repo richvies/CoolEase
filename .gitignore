@@ -19,3 +19,5 @@ build
 .ccls-cache
 __pycache__
 mise.local.toml
+docs/doxygen/generated
+uv.lock
