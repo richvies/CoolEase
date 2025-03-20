@@ -2,7 +2,6 @@ name: Ceedling Tests
 
 on:
   push:
-    branches: '*'
     branches-ignore: [production, develop]
   pull_request:
     branches: [production, develop]
