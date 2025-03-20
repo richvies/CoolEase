@@ -1,6 +1,9 @@
 <map id="hub/include/hub/hub_test.h" name="hub/include/hub/hub_test.h">
-<area shape="rect" id="node1" title="Hub_test Header File." alt="" coords="119,5,273,47"/>
-<area shape="rect" id="node2" href="$hub_8c.html" title="Hub Source File." alt="" coords="5,95,91,121"/>
-<area shape="rect" id="node3" href="$hub__bootloader_8c.html" title="Hub Bootloader Source File." alt="" coords="115,95,277,121"/>
-<area shape="rect" id="node4" href="$hub__test_8c.html" title="Hub testing Source File." alt="" coords="301,95,419,121"/>
+<area shape="rect" id="Node000001" title="Hub_test Header File." alt="" coords="119,5,273,45"/>
+<area shape="rect" id="Node000002" href="$hub_8c.html" title="Hub Source File." alt="" coords="5,93,91,119"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="150,54,71,96,69,91,147,49"/>
+<area shape="rect" id="Node000003" href="$hub__bootloader_8c.html" title="Hub Bootloader Source File." alt="" coords="115,93,277,119"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="199,59,199,93,193,93,193,59"/>
+<area shape="rect" id="Node000004" href="$hub__test_8c.html" title="Hub testing Source File." alt="" coords="301,93,419,119"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="249,49,337,91,335,96,246,54"/>
 </map>

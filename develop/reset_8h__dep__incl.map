@@ -1,12 +1,21 @@
 <map id="common/include/common/reset.h" name="common/include/common/reset.h">
-<area shape="rect" id="node1" title=" " alt="" coords="607,5,798,47"/>
-<area shape="rect" id="node2" href="$hub_8c.html" title="Hub Source File." alt="" coords="5,95,91,121"/>
-<area shape="rect" id="node3" href="$hub__test_8c.html" title="Hub testing Source File." alt="" coords="115,95,232,121"/>
-<area shape="rect" id="node4" href="$sensor_8c.html" title="Sensor Source File." alt="" coords="256,95,379,121"/>
-<area shape="rect" id="node5" href="$sensor__bootloader_8c.html" title="Sensor Bootloader Source File." alt="" coords="403,95,602,121"/>
-<area shape="rect" id="node6" href="$sensor__test_8c.html" title="Sensor testing Source File." alt="" coords="625,95,780,121"/>
-<area shape="rect" id="node7" href="$bootloader__utils_8c.html" title="Bootloader_utils Source File." alt="" coords="805,95,1003,121"/>
-<area shape="rect" id="node8" href="$reset_8c.html" title=" " alt="" coords="1027,95,1154,121"/>
-<area shape="rect" id="node9" href="$test_8c.html" title="Testing Source File." alt="" coords="1178,95,1297,121"/>
-<area shape="rect" id="node10" href="$timers_8c.html" title=" " alt="" coords="1320,95,1456,121"/>
+<area shape="rect" id="Node000001" title=" " alt="" coords="628,5,819,45"/>
+<area shape="rect" id="Node000002" href="$bootloader__utils_8c.html" title="Bootloader_utils Source File." alt="" coords="5,93,204,119"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="615,43,195,96,195,91,614,38"/>
+<area shape="rect" id="Node000003" href="$reset_8c.html" title=" " alt="" coords="228,93,355,119"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="615,49,355,96,354,91,614,44"/>
+<area shape="rect" id="Node000004" href="$test_8c.html" title="Testing Source File." alt="" coords="379,93,497,119"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="643,52,480,96,479,91,641,46"/>
+<area shape="rect" id="Node000005" href="$timers_8c.html" title=" " alt="" coords="521,93,657,119"/>
+<area shape="poly" id="edge4_Node000001_Node000005" title=" " alt="" coords="680,55,610,95,607,91,678,50"/>
+<area shape="rect" id="Node000006" href="$hub_8c.html" title="Hub Source File." alt="" coords="681,93,766,119"/>
+<area shape="poly" id="edge5_Node000001_Node000006" title=" " alt="" coords="726,59,726,93,721,93,721,59"/>
+<area shape="rect" id="Node000007" href="$hub__test_8c.html" title="Hub testing Source File." alt="" coords="790,93,907,119"/>
+<area shape="poly" id="edge6_Node000001_Node000007" title=" " alt="" coords="767,51,832,91,829,95,764,55"/>
+<area shape="rect" id="Node000008" href="$sensor_8c.html" title="Sensor Source File." alt="" coords="931,93,1054,119"/>
+<area shape="poly" id="edge7_Node000001_Node000008" title=" " alt="" coords="802,47,954,91,953,96,800,52"/>
+<area shape="rect" id="Node000009" href="$sensor__bootloader_8c.html" title="Sensor Bootloader Source File." alt="" coords="1079,93,1277,119"/>
+<area shape="poly" id="edge8_Node000001_Node000009" title=" " alt="" coords="833,43,1112,91,1111,96,832,48"/>
+<area shape="rect" id="Node000010" href="$sensor__test_8c.html" title="Sensor testing Source File." alt="" coords="1301,93,1455,119"/>
+<area shape="poly" id="edge9_Node000001_Node000010" title=" " alt="" coords="833,37,1290,91,1301,92,1300,97,1290,96,832,42"/>
 </map>

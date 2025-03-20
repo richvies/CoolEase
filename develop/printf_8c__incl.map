@@ -1,8 +1,15 @@
 <map id="common/printf.c" name="common/printf.c">
-<area shape="rect" id="node1" title=" " alt="" coords="108,5,236,32"/>
-<area shape="rect" id="node2" href="$printf_8h.html" title=" " alt="" coords="107,80,237,107"/>
-<area shape="rect" id="node4" title=" " alt="" coords="5,155,88,181"/>
-<area shape="rect" id="node6" title=" " alt="" coords="310,155,381,181"/>
-<area shape="rect" id="node3" title=" " alt="" coords="112,155,187,181"/>
-<area shape="rect" id="node5" title=" " alt="" coords="211,155,285,181"/>
+<area shape="rect" id="Node000001" title=" " alt="" coords="108,5,236,31"/>
+<area shape="rect" id="Node000002" href="$printf_8h.html" title=" " alt="" coords="107,79,237,104"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="175,31,175,65,169,65,169,31"/>
+<area shape="rect" id="Node000004" title=" " alt="" coords="5,152,88,177"/>
+<area shape="poly" id="edge6_Node000001_Node000004" title=" " alt="" coords="155,33,127,54,98,80,76,111,60,141,55,138,72,108,94,77,123,49,152,29"/>
+<area shape="rect" id="Node000006" title=" " alt="" coords="310,152,381,177"/>
+<area shape="poly" id="edge7_Node000001_Node000006" title=" " alt="" coords="189,29,251,77,324,140,321,144,248,81,186,33"/>
+<area shape="rect" id="Node000003" title=" " alt="" coords="112,152,187,177"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="171,105,160,140,155,138,166,104"/>
+<area shape="poly" id="edge3_Node000002_Node000004" title=" " alt="" coords="153,106,80,147,78,143,151,102"/>
+<area shape="rect" id="Node000005" title=" " alt="" coords="211,152,285,177"/>
+<area shape="poly" id="edge4_Node000002_Node000005" title=" " alt="" coords="186,102,227,141,224,144,182,106"/>
+<area shape="poly" id="edge5_Node000002_Node000006" title=" " alt="" coords="201,102,305,144,303,149,199,106"/>
 </map>

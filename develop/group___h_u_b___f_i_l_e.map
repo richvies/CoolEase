@@ -1,5 +1,5 @@
 <map id="Hub" name="Hub">
-<area shape="rect" id="node1" title="Description." alt="" coords="5,31,53,56"/>
-<area shape="rect" id="node2" href="$group___h_u_b___a_p_i.html" title=" " alt="" coords="116,5,189,31"/>
-<area shape="rect" id="node3" href="$group___h_u_b___i_n_t.html" title=" " alt="" coords="101,55,204,80"/>
+<area shape="rect" id="Node000002" href="$group___h_u_b___a_p_i.html" title=" " alt="" coords="116,5,189,31"/>
+<area shape="rect" id="Node000001" title="Description." alt="" coords="5,31,53,56"/>
+<area shape="rect" id="Node000003" href="$group___h_u_b___i_n_t.html" title=" " alt="" coords="101,55,204,80"/>
 </map>

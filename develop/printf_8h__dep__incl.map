@@ -1,9 +1,15 @@
 <map id="common/include/common/printf.h" name="common/include/common/printf.h">
-<area shape="rect" id="node1" title=" " alt="" coords="310,5,501,47"/>
-<area shape="rect" id="node2" href="$hub_8c.html" title="Hub Source File." alt="" coords="5,95,91,121"/>
-<area shape="rect" id="node3" href="$hub__bootloader_8c.html" title="Hub Bootloader Source File." alt="" coords="115,95,277,121"/>
-<area shape="rect" id="node4" href="$sim_8c.html" title="Sim Source File." alt="" coords="301,95,387,121"/>
-<area shape="rect" id="node5" href="$log_8c.html" title="Log Source File." alt="" coords="411,95,525,121"/>
-<area shape="rect" id="node6" href="$printf_8c.html" title=" " alt="" coords="549,95,677,121"/>
-<area shape="rect" id="node7" href="$test__printf_8c.html" title=" " alt="" coords="701,95,891,121"/>
+<area shape="rect" id="Node000001" title=" " alt="" coords="375,5,566,45"/>
+<area shape="rect" id="Node000002" href="$log_8c.html" title="Log Source File." alt="" coords="5,93,120,119"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="362,50,121,96,120,91,361,45"/>
+<area shape="rect" id="Node000003" href="$printf_8c.html" title=" " alt="" coords="144,93,272,119"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="395,52,247,96,246,91,394,47"/>
+<area shape="rect" id="Node000004" href="$test__printf_8c.html" title=" " alt="" coords="296,93,485,119"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="443,57,405,95,401,91,440,53"/>
+<area shape="rect" id="Node000005" href="$hub_8c.html" title="Hub Source File." alt="" coords="509,93,595,119"/>
+<area shape="poly" id="edge4_Node000001_Node000005" title=" " alt="" coords="502,53,542,91,538,95,498,57"/>
+<area shape="rect" id="Node000006" href="$hub__bootloader_8c.html" title="Hub Bootloader Source File." alt="" coords="619,93,781,119"/>
+<area shape="poly" id="edge5_Node000001_Node000006" title=" " alt="" coords="539,47,667,91,666,96,537,52"/>
+<area shape="rect" id="Node000007" href="$sim_8c.html" title="Sim Source File." alt="" coords="805,93,891,119"/>
+<area shape="poly" id="edge6_Node000001_Node000007" title=" " alt="" coords="575,46,794,91,806,93,804,98,793,96,574,51"/>
 </map>

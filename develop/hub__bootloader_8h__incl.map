@@ -1,10 +1,18 @@
 <map id="hub/include/hub/hub_bootloader.h" name="hub/include/hub/hub_bootloader.h">
-<area shape="rect" id="node1" title="Hub Bootloader Header File." alt="" coords="49,5,202,47"/>
-<area shape="rect" id="node2" href="$bootloader__utils_8h.html" title="Bootloader_utils Header File." alt="" coords="25,95,225,121"/>
-<area shape="rect" id="node3" title=" " alt="" coords="5,169,88,196"/>
-<area shape="rect" id="node4" title=" " alt="" coords="69,244,139,271"/>
-<area shape="rect" id="node5" href="$memory_8h.html" title="Memory Header File." alt="" coords="185,169,333,196"/>
-<area shape="rect" id="node6" title=" " alt="" coords="163,244,354,271"/>
-<area shape="rect" id="node7" title=" " alt="" coords="379,244,557,271"/>
-<area shape="rect" id="node8" title=" " alt="" coords="581,244,731,271"/>
+<area shape="rect" id="Node000001" title="Hub Bootloader Header File." alt="" coords="49,5,202,45"/>
+<area shape="rect" id="Node000002" href="$bootloader__utils_8h.html" title="Bootloader_utils Header File." alt="" coords="25,93,225,119"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="128,46,128,79,123,79,123,46"/>
+<area shape="rect" id="Node000003" title=" " alt="" coords="5,167,88,192"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="114,121,71,159,68,156,111,117"/>
+<area shape="rect" id="Node000004" title=" " alt="" coords="69,240,139,265"/>
+<area shape="poly" id="edge3_Node000002_Node000004" title=" " alt="" coords="126,120,110,227,105,226,121,119"/>
+<area shape="rect" id="Node000005" href="$memory_8h.html" title="Memory Header File." alt="" coords="185,167,333,192"/>
+<area shape="poly" id="edge4_Node000002_Node000005" title=" " alt="" coords="148,116,226,158,224,162,146,121"/>
+<area shape="poly" id="edge7_Node000005_Node000004" title=" " alt="" coords="235,194,143,237,141,232,233,190"/>
+<area shape="rect" id="Node000006" title=" " alt="" coords="163,240,354,265"/>
+<area shape="poly" id="edge5_Node000005_Node000006" title=" " alt="" coords="261,192,261,226,256,226,256,192"/>
+<area shape="rect" id="Node000007" title=" " alt="" coords="379,240,557,265"/>
+<area shape="poly" id="edge6_Node000005_Node000007" title=" " alt="" coords="293,189,422,233,420,238,291,195"/>
+<area shape="rect" id="Node000008" title=" " alt="" coords="581,240,731,265"/>
+<area shape="poly" id="edge8_Node000005_Node000008" title=" " alt="" coords="323,189,579,235,578,240,322,195"/>
 </map>

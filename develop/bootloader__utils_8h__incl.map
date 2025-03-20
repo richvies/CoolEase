@@ -1,9 +1,16 @@
 <map id="common/include/common/bootloader_utils.h" name="common/include/common/bootloader_utils.h">
-<area shape="rect" id="node1" title="Bootloader_utils Header File." alt="" coords="30,5,221,47"/>
-<area shape="rect" id="node2" title=" " alt="" coords="5,95,88,121"/>
-<area shape="rect" id="node3" title=" " alt="" coords="69,169,139,196"/>
-<area shape="rect" id="node4" href="$memory_8h.html" title="Memory Header File." alt="" coords="185,95,333,121"/>
-<area shape="rect" id="node5" title=" " alt="" coords="163,169,354,196"/>
-<area shape="rect" id="node6" title=" " alt="" coords="379,169,557,196"/>
-<area shape="rect" id="node7" title=" " alt="" coords="581,169,731,196"/>
+<area shape="rect" id="Node000001" title="Bootloader_utils Header File." alt="" coords="30,5,221,45"/>
+<area shape="rect" id="Node000002" title=" " alt="" coords="5,93,88,119"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="108,47,70,85,66,82,104,44"/>
+<area shape="rect" id="Node000003" title=" " alt="" coords="69,167,139,192"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="125,46,110,153,105,153,120,45"/>
+<area shape="rect" id="Node000004" href="$memory_8h.html" title="Memory Header File." alt="" coords="185,93,333,119"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="159,43,229,84,226,89,156,48"/>
+<area shape="poly" id="edge6_Node000004_Node000003" title=" " alt="" coords="235,121,143,163,141,158,233,116"/>
+<area shape="rect" id="Node000005" title=" " alt="" coords="163,167,354,192"/>
+<area shape="poly" id="edge4_Node000004_Node000005" title=" " alt="" coords="261,119,261,153,256,153,256,119"/>
+<area shape="rect" id="Node000006" title=" " alt="" coords="379,167,557,192"/>
+<area shape="poly" id="edge5_Node000004_Node000006" title=" " alt="" coords="293,116,422,160,420,165,291,121"/>
+<area shape="rect" id="Node000007" title=" " alt="" coords="581,167,731,192"/>
+<area shape="poly" id="edge7_Node000004_Node000007" title=" " alt="" coords="323,116,579,162,578,167,322,121"/>
 </map>

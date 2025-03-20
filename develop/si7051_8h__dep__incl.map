@@ -1,7 +1,11 @@
 <map id="sensor/include/sensor/si7051.h" name="sensor/include/sensor/si7051.h">
-<area shape="rect" id="node1" title=" " alt="" coords="271,5,433,47"/>
-<area shape="rect" id="node2" href="$sensor_8c.html" title="Sensor Source File." alt="" coords="5,95,128,121"/>
-<area shape="rect" id="node3" href="$sensor__bootloader_8c.html" title="Sensor Bootloader Source File." alt="" coords="153,95,351,121"/>
-<area shape="rect" id="node4" href="$sensor__test_8c.html" title="Sensor testing Source File." alt="" coords="375,95,529,121"/>
-<area shape="rect" id="node5" href="$si7051_8c.html" title=" " alt="" coords="553,95,676,121"/>
+<area shape="rect" id="Node000001" title=" " alt="" coords="271,5,433,45"/>
+<area shape="rect" id="Node000002" href="$sensor_8c.html" title="Sensor Source File." alt="" coords="5,93,128,119"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="271,52,109,96,108,91,270,46"/>
+<area shape="rect" id="Node000003" href="$sensor__bootloader_8c.html" title="Sensor Bootloader Source File." alt="" coords="153,93,351,119"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="319,56,269,95,265,91,315,52"/>
+<area shape="rect" id="Node000004" href="$sensor__test_8c.html" title="Sensor testing Source File." alt="" coords="375,93,529,119"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="389,52,439,91,435,95,385,56"/>
+<area shape="rect" id="Node000005" href="$si7051_8c.html" title=" " alt="" coords="553,93,676,119"/>
+<area shape="poly" id="edge4_Node000001_Node000005" title=" " alt="" coords="429,47,577,91,576,96,427,52"/>
 </map>
