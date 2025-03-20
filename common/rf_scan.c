@@ -1,17 +1,17 @@
-// #include "common/rf_scan.h"
+#include "common/rf_scan.h"
 
-// #include <libopencm3/stm32/gpio.h>
-// #include <libopencm3/stm32/exti.h>
-// #include <libopencm3/cm3/nvic.h>
-// #include <libopencm3/stm32/timer.h>
+#include <libopencm3/cm3/nvic.h>
+#include <libopencm3/stm32/exti.h>
+#include <libopencm3/stm32/gpio.h>
+#include <libopencm3/stm32/timer.h>
 
-// #include "common/rfm.h"
-// #include "common/log.h"
-// #include "common/timers.h"
+#include "common/log.h"
+#include "common/rfm.h"
+#include "common/timers.h"
 
-// static uint8_t channel_number = 0;
-// static uint8_t test_number = 0;
-// static bool receiver = false;
+static uint8_t channel_number = 0;
+static uint8_t test_number = 0;
+static bool    receiver = false;
 
 // /*void exti0_1_isr(void)
 // {
@@ -25,38 +25,34 @@
 // 	rfs_next();
 // }
 
-// void rfs_init(bool r, uint8_t power)
-// {
-// 	rfm_init();
+void rfs_init(bool r, uint8_t power) {
+    rfm_init();
+    (void)power;
 
-// 	rfm_set_tx_pa_table_index(power);
+    // rfm_set_tx_pa_table_index(power);
 
-// 	log_printf("%c", 255);
+    log_printf("%c", 255);
 
-// 	channel_number = 0;
-// 	test_number = 0;
-// 	receiver = r;
+    channel_number = 0;
+    test_number = 0;
+    receiver = r;
 
-// 	if(receiver)
-// 	{
-// 		exti_reset_request(EXTI2);
-//     	exti_select_source(EXTI2, GPIOA);
-// 		exti_set_trigger(EXTI2, EXTI_TRIGGER_FALLING);
-// 		exti_enable_request(EXTI2);
+    if (receiver) {
+        exti_reset_request(EXTI2);
+        exti_select_source(EXTI2, GPIOA);
+        exti_set_trigger(EXTI2, EXTI_TRIGGER_FALLING);
+        exti_enable_request(EXTI2);
 
-// 		nvic_enable_irq(NVIC_EXTI2_3_IRQ);
-//     	nvic_set_priority(NVIC_EXTI2_3_IRQ, IRQ_PRIORITY_RFM);
-// 	}
-// 	else
-// 	{
-// 		timer_clear_flag(TIM2, TIM_SR_UIF);
-// 		timer_enable_irq(TIM2, TIM_DIER_UIE);
+        nvic_enable_irq(NVIC_EXTI2_3_IRQ);
+        nvic_set_priority(NVIC_EXTI2_3_IRQ, IRQ_PRIORITY_RFM);
+    } else {
+        timer_clear_flag(TIM2, TIM_SR_UIF);
+        timer_enable_irq(TIM2, TIM_DIER_UIE);
 
-// 		nvic_enable_irq(NVIC_TIM2_IRQ);
-// 		nvic_set_priority(NVIC_TIM2_IRQ, IRQ_PRIORITY_RFM);
-// 	}
-
-// }
+        nvic_enable_irq(NVIC_TIM2_IRQ);
+        nvic_set_priority(NVIC_TIM2_IRQ, IRQ_PRIORITY_RFM);
+    }
+}
 
 // void rfs_next(void)
 // {
