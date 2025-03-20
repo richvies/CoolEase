@@ -1,0 +1,11 @@
+<map id="sensor/si7051.c" name="sensor/si7051.c">
+<area shape="rect" id="node1" title=" " alt="" coords="662,5,785,32"/>
+<area shape="rect" id="node2" title=" " alt="" coords="5,80,196,107"/>
+<area shape="rect" id="node3" title=" " alt="" coords="221,80,407,107"/>
+<area shape="rect" id="node4" title=" " alt="" coords="431,80,610,107"/>
+<area shape="rect" id="node5" title=" " alt="" coords="634,80,813,107"/>
+<area shape="rect" id="node6" title=" " alt="" coords="837,80,1013,107"/>
+<area shape="rect" id="node7" title=" " alt="" coords="1037,80,1186,107"/>
+<area shape="rect" id="node8" href="$si7051_8h.html" title=" " alt="" coords="1211,80,1335,107"/>
+<area shape="rect" id="node9" title=" " alt="" coords="1237,155,1308,181"/>
+</map>

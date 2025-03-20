@@ -1,0 +1,7 @@
+<map id="hub/include/hub/cusb.h" name="hub/include/hub/cusb.h">
+<area shape="rect" id="node1" title="Hub USB driver header file." alt="" coords="151,5,321,32"/>
+<area shape="rect" id="node2" href="$cusb_8c.html" title="Cusb Source File." alt="" coords="5,80,96,107"/>
+<area shape="rect" id="node3" href="$hub_8c.html" title="Hub Source File." alt="" coords="120,80,205,107"/>
+<area shape="rect" id="node4" href="$hub__bootloader_8c.html" title="Hub Bootloader Source File." alt="" coords="230,80,391,107"/>
+<area shape="rect" id="node5" href="$hub__test_8c.html" title="Hub testing Source File." alt="" coords="416,80,533,107"/>
+</map>
