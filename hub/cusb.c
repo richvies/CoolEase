@@ -284,8 +284,8 @@ static const struct usb_config_descriptor cfg_desc = {
     .bConfigurationValue = 1,
     .iConfiguration = USB_CONFIGURATION_IDX,
     .bmAttributes =
-        0b10000000,   /**< Bit flags. 7: Must be set to 1. 6: Self Powered. 5:
-                         Supports remote wakeup. 4-0: Must be set to 0.*/
+        (1 << 7),     /**< Bit flags. 7: Must be set to 1. 6: Self Powered. 5:
+                 Supports remote wakeup. 4-0: Must be set to 0.*/
     .bMaxPower = 200, /**< mA / 2 */
     .interface = interfaces,
 };
