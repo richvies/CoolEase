@@ -40,13 +40,18 @@ jobs:
       - name: Configure SSH client
         run: |
           mkdir -p ~/.ssh
-          echo "${PROJ_ACT_TOKEN}" > ~/.ssh/id_ed25519
+          if [ -n "$ACT" ]; then
+            echo "Using local token for act"
+            echo "${PROJ_ACT_TOKEN}" > ~/.ssh/id_ed25519
+          else
+          echo "Using GitHub token"
+          echo "${{ secrets.DEPLOY_SSH_KEY }}" > ~/.ssh/id_ed25519
+          fi
           chmod 600 ~/.ssh/id_ed25519
           cat ~/.ssh/id_ed25519
           ssh-keyscan github.com >> ~/.ssh/known_hosts
           git config --global user.email "richvies@gmail.com"
           git config --global user.name "rick-l480"
-
 
       - name: Deploy to GitHub Pages
         uses: JamesIves/github-pages-deploy-action@v4
