@@ -160,7 +160,7 @@ void boot_jump_to_application(uint32_t address) {
     __asm__("msr msp, %0" : : "r"(MMIO32(address)));
 
     // Get start address of program
-    void (*start)(void) = (void*)MMIO32(address + 4);
+    void (*start)(void) = (void (*)(void))MMIO32(address + 4);
 
     start();
 
