@@ -37,7 +37,8 @@
 			"system_error": "cpp",
 			"unity.h": "c",
 			"cmock.h": "c",
-			"test_helper.h": "c"
+			"test_helper.h": "c",
+			"crs.h": "c"
 		}
 	}
 }
