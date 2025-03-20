@@ -2,12 +2,13 @@ name: Ceedling Tests
 
 on:
   push:
-    branches: [ main ]
+    branches: '*'
+    branches-ignore: [production, develop]
   pull_request:
-    branches: [ main ]
+    branches: [production, develop]
 
 jobs:
-  test:
+  run-tests:
     runs-on: ubuntu-latest
 
     steps:
@@ -16,12 +17,10 @@ jobs:
     - name: Set up Ruby
       uses: ruby/setup-ruby@v1
       with:
-        ruby-version: '3.0'
+        ruby-version: '3.4'
 
     - name: Install Ceedling
-      run: |
-        gem install ceedling
+      run: gem install ceedling
 
     - name: Run Ceedling tests
-      run: |
-        ceedling test:all
+      run: ceedling test:all
