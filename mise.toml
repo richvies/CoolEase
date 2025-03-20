@@ -32,7 +32,7 @@ unset PROJ_OLD_PS1
 run = "gem install ceedling"
 
 [tasks.clang-format]
-run = 'find common sensor hub -name "*.c" -o -name "*.h" | xargs clang-format -i'
+run = 'find config common sensor hub -name "*.c" -o -name "*.h" | xargs clang-format -i'
 
 [tasks.reconfigure]
 alias = "rconf"

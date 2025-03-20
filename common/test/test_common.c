@@ -12,8 +12,6 @@
 // Includes
 /*////////////////////////////////////////////////////////////////////////////*/
 
-#include <common/test.h>
-
 #include <stdbool.h>
 #include <string.h>
 
@@ -713,7 +711,7 @@ void test_voltage_scale(uint8_t scale) {
     rfm_init();
     rfm_end();
 
-    // #ifdef _HUB
+    // #ifdef COOLEASE_DEVICE_HUB
     // sim_init();
     // sim_end();
 
@@ -742,7 +740,7 @@ void test_low_power_run(void) {
     rfm_init();
     rfm_end();
 
-    // #ifdef _HUB
+    // #ifdef COOLEASE_DEVICE_HUB
     // sim_init();
     // sim_end();
 

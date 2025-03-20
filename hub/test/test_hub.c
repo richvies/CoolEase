@@ -1,6 +1,6 @@
 /**
  ******************************************************************************
- * @file    hub_test.c
+ * @file    test_hub.c
  * @author  Richard Davies
  * @date    27/Dec/2020
  * @brief   Hub testing Source File
@@ -12,7 +12,7 @@
 // Includes
 /*////////////////////////////////////////////////////////////////////////////*/
 
-#include "hub/hub_test.h"
+#include "hub_test.h"
 
 #include <stdbool.h>
 #include <stdint.h>

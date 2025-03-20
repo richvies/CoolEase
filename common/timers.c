@@ -18,9 +18,7 @@
 #include "common/battery.h"
 #include "common/log.h"
 #include "common/reset.h"
-#include "common/rf_scan.h"
 #include "common/rfm.h"
-#include "common/test.h"
 #include "common/timers.h"
 #include "config/board_defs.h"
 

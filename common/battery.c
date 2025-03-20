@@ -28,7 +28,7 @@
 #include "common/timers.h"
 #include "config/board_defs.h"
 
-#ifdef _HUB
+#ifdef COOLEASE_DEVICE_HUB
 #define NUM_VOLTAGES 2
 #define PWR_VOLTAGE  0
 #define BATT_VOLTAGE 1
@@ -162,7 +162,7 @@ void batt_init(void) {
     ADC_CHSELR(ADC1) |= (1 << ADC_CHANNEL_VREF);
     ADC_CHSELR(ADC1) |= (1 << 0);
 
-#ifdef _HUB
+#ifdef COOLEASE_DEVICE_HUB
     gpio_mode_setup(PWR_SENS_PORT, GPIO_MODE_ANALOG, GPIO_PUPD_NONE, PWR_SENS);
     ADC_CHSELR(ADC1) |= (1 << 1);
 #endif
@@ -241,7 +241,7 @@ void batt_calculate_voltages(void) {
     }
 
 // For Hub : Measured voltage is half of actual
-#ifdef _HUB
+#ifdef COOLEASE_DEVICE_HUB
     for (uint8_t i = 0; i < NUM_VOLTAGES; i++) {
         batt_voltages[i] = batt_voltages[i] * 2;
     }
@@ -329,7 +329,7 @@ uint16_t batt_get_batt_voltage(void) {
 }
 
 uint16_t batt_get_pwr_voltage(void) {
-#ifdef _HUB
+#ifdef COOLEASE_DEVICE_HUB
     return batt_voltages[PWR_VOLTAGE];
 #else
     return 0;

@@ -30,7 +30,7 @@
 #include "common/timers.h"
 #include "config/board_defs.h"
 
-#ifdef _HUB
+#ifdef COOLEASE_DEVICE_HUB
 #include "hub/cusb.h"
 #endif
 
@@ -63,7 +63,7 @@ static void _putchar_mem(char character);
 static void usart_setup(void);
 static void usart_end(void);
 static void _putchar_spf(char character);
-#ifdef _HUB
+#ifdef COOLEASE_DEVICE_HUB
 static void _putchar_usb(char character);
 #endif
 #endif
@@ -179,6 +179,14 @@ void log_erase_backup(void) {
     }
 }
 
+void print_aes_key(app_info_t* info) {
+    serial_printf("AES Key:");
+    for (uint8_t i = 0; i < 16; i++) {
+        serial_printf(" %2x", info->aes_key[i]);
+    }
+    serial_printf("\n");
+}
+
 /** @} */
 
 /** @addtogroup LOG_INT
@@ -194,7 +202,7 @@ static void _putchar_main(char character) {
 
 #ifdef DEBUG
     _putchar_spf(character);
-#ifdef _HUB
+#ifdef COOLEASE_DEVICE_HUB
     _putchar_usb(character);
 #endif
 #endif
@@ -356,11 +364,11 @@ SPF_ISR() {
     }
 }
 
-#ifdef _HUB
+#ifdef COOLEASE_DEVICE_HUB
 static void _putchar_usb(char character) {
     cusb_send(character);
 }
-#endif // _HUB
+#endif // COOLEASE_DEVICE_HUB
 #endif // DEBUG
 
 /** @} */

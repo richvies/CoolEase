@@ -32,6 +32,8 @@
 #include <stdbool.h>
 #include <stdint.h>
 
+#include "board_defs.h"
+
 #ifdef __cplusplus
 extern "C" {
 #endif
@@ -111,6 +113,8 @@ void     log_erase_backup(void);
 void serial_printf(const char* format, ...);
 bool serial_available(void);
 char serial_read(void);
+
+void print_aes_key(app_info_t* info);
 
 /** @} */
 

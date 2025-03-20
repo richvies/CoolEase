@@ -1,5 +1,3 @@
-#include "common/rf_scan.h"
-
 #include <libopencm3/cm3/nvic.h>
 #include <libopencm3/stm32/exti.h>
 #include <libopencm3/stm32/gpio.h>
@@ -12,6 +10,9 @@
 static uint8_t channel_number = 0;
 static uint8_t test_number = 0;
 static bool    receiver = false;
+
+// #define RECEIVER 		true
+// #define TRANSMITTER		false
 
 // /*void exti0_1_isr(void)
 // {

@@ -38,7 +38,11 @@
 			"unity.h": "c",
 			"cmock.h": "c",
 			"test_helper.h": "c",
-			"crs.h": "c"
+			"crs.h": "c",
+			"reset.h": "c",
+			"rf_scan.h": "c",
+			"memory.h": "c",
+			"board_defs.h": "c"
 		}
 	}
 }

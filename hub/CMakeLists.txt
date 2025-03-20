@@ -12,7 +12,7 @@ set(HUB_INCLUDE "${CMAKE_CURRENT_LIST_DIR}/include")
 
 add_subdirectory(../common ${CMAKE_CURRENT_BINARY_DIR}/common)
 
-set(C_SOURCES "cusb.c" "hub_test.c" "sim.c" "w25qxx.c")
+set(C_SOURCES "cusb.c" "sim.c" "w25qxx.c")
 
 # TODO: common requires cusb headers so must pass back
 target_include_directories(${COMMON_LIB} PRIVATE ${HUB_INCLUDE})
@@ -39,16 +39,16 @@ add_custom_target(${APP}.lss ALL
 # Hub bootloader
 ################################################################################
 
-set(C_SOURCES_BOOTLOADER "hub_bootloader.c" ${C_SOURCES})
-add_executable(${BOOTLOADER} ${C_SOURCES_BOOTLOADER})
+# set(C_SOURCES_BOOTLOADER "hub_bootloader.c" ${C_SOURCES})
+# add_executable(${BOOTLOADER} ${C_SOURCES_BOOTLOADER})
 
-target_include_directories(${BOOTLOADER} PRIVATE ${HUB_INCLUDE})
-target_link_libraries(${BOOTLOADER} PRIVATE ${COMMON_LIB})
-target_link_options(${BOOTLOADER} PRIVATE -T${BOOTLOADER_LINKER_SCRIPT})
+# target_include_directories(${BOOTLOADER} PRIVATE ${HUB_INCLUDE})
+# target_link_libraries(${BOOTLOADER} PRIVATE ${COMMON_LIB})
+# target_link_options(${BOOTLOADER} PRIVATE -T${BOOTLOADER_LINKER_SCRIPT})
 
-add_custom_target(${BOOTLOADER}.lss ALL
-  DEPENDS $<TARGET_FILE:${BOOTLOADER}>
-  COMMAND ${CMAKE_COMMAND} -E echo "Generating ${BOOTLOADER}.lss from ${BOOTLOADER}.elf"
-  COMMAND arm-none-eabi-objdump -S $<TARGET_FILE:${BOOTLOADER}>.elf >
-  $<TARGET_FILE:${BOOTLOADER}>.lss
-)
+# add_custom_target(${BOOTLOADER}.lss ALL
+#   DEPENDS $<TARGET_FILE:${BOOTLOADER}>
+#   COMMAND ${CMAKE_COMMAND} -E echo "Generating ${BOOTLOADER}.lss from ${BOOTLOADER}.elf"
+#   COMMAND arm-none-eabi-objdump -S $<TARGET_FILE:${BOOTLOADER}>.elf >
+#   $<TARGET_FILE:${BOOTLOADER}>.lss
+# )
