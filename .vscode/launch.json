@@ -2,6 +2,20 @@
   "version": "0.2.0",
   "configurations": [
     {
+      "name": "Launch cortex debug",
+      "type": "cortex-debug",
+      "armToolchainPath": "/home/rick/.local/share/mise/installs/gcc-arm-none-eabi/14.2.Rel1/bin",
+      "cpu": "cortex-m3",
+      "executable": "build/Debug/hub/hub_Debug.elf",
+      "runToEntryPoint": "main",
+      "request": "launch",
+      "gdbPath": "/home/rick/.local/share/mise/installs/gcc-arm-none-eabi/14.2.Rel1/bin/arm-none-eabi-gdb",
+      "svdFile": "Tools/OpenOCD/STM32L052.svd",
+      "stlinkPath": "/usr/bin/stlink-server",
+      "showDevDebugOutput": "raw",
+      "servertype": "stutil"
+    },
+    {
       "name": "Hub debug",
       "type": "cortex-debug",
       "request": "launch",

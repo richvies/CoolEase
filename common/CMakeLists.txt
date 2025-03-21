@@ -13,6 +13,9 @@ add_library(${COMMON_LIB} STATIC
   # rfm.c
   fake_rfm.c
   timers.c
+  syscalls.c
+  sysmem.c
+  startup.c
 )
 
 target_include_directories(${COMMON_LIB} PUBLIC ${COMMON_INCLUDE})

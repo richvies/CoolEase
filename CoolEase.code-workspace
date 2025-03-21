@@ -42,7 +42,9 @@
 			"reset.h": "c",
 			"rf_scan.h": "c",
 			"memory.h": "c",
-			"board_defs.h": "c"
-		}
+			"board_defs.h": "c",
+			"vector.h": "c"
+		},
+		"cortex-debug.variableUseNaturalFormat": true
 	}
 }

@@ -22,12 +22,10 @@
 #include "common/log.h"
 #include "common/memory.h"
 #include "common/printf.h"
-#include "common/test.h"
 #include "common/timers.h"
 #include "config/board_defs.h"
 
 #include "hub/cusb.h"
-#include "hub/hub_test.h"
 #include "hub/sim.h"
 #include "hub/w25qxx.h"
 

@@ -209,7 +209,7 @@ static void _putchar_main(char character) {
 }
 
 static void _putchar_mem(char character) {
-    mem_eeprom_write_byte((uint32_t) & (log_file->log[write_index]), character);
+    mem_eeprom_write_byte((uint32_t)&(log_file->log[write_index]), character);
 
     write_index = (write_index + 1) % LOG_SIZE;
 }
