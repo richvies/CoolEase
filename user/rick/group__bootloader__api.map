@@ -1,0 +1,6 @@
+<map id="Bootloader Interface" name="Bootloader Interface">
+<area shape="rect" id="node1" href="$group__sensor.html" title=" " alt="" coords="13,5,79,31"/>
+<area shape="rect" id="node4" title="Hub bootloader functionality and interfaces." alt="" coords="135,55,289,80"/>
+<area shape="rect" id="node2" href="$group__hub.html" title="Hub module for sensor management." alt="" coords="22,55,70,80"/>
+<area shape="rect" id="node3" href="$group__common.html" title=" " alt="" coords="5,104,87,129"/>
+</map>

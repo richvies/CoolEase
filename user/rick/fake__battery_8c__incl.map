@@ -1,0 +1,12 @@
+<map id="common/fake_battery.c" name="common/fake_battery.c">
+<area shape="rect" id="node1" title=" " alt="" coords="135,5,310,32"/>
+<area shape="rect" id="node2" title=" " alt="" coords="5,155,88,181"/>
+<area shape="rect" id="node3" title=" " alt="" coords="67,80,141,107"/>
+<area shape="rect" id="node4" title=" " alt="" coords="261,155,331,181"/>
+<area shape="rect" id="node5" href="$log_8h.html" title="Logging System Header File." alt="" coords="165,80,280,107"/>
+<area shape="rect" id="node7" href="$memory_8h.html" title="Memory Management Header File." alt="" coords="377,80,525,107"/>
+<area shape="rect" id="node6" title=" " alt="" coords="129,155,236,181"/>
+<area shape="rect" id="node8" title=" " alt="" coords="355,155,546,181"/>
+<area shape="rect" id="node9" title=" " alt="" coords="571,155,749,181"/>
+<area shape="rect" id="node10" title=" " alt="" coords="773,155,923,181"/>
+</map>

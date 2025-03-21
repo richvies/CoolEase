@@ -1,0 +1,21 @@
+<map id="sensor/sensor_bootloader.c" name="sensor/sensor_bootloader.c">
+<area shape="rect" id="node1" title="Sensor Bootloader Source File." alt="" coords="745,5,943,32"/>
+<area shape="rect" id="node2" href="$sensor__bootloader_8h.html" title="Sensor Bootloader Header File." alt="" coords="5,80,205,107"/>
+<area shape="rect" id="node3" href="$aes_8h.html" title="AES Encryption Module Header File." alt="" coords="1261,155,1379,181"/>
+<area shape="rect" id="node5" href="$battery_8h.html" title="Battery Management Header File." alt="" coords="281,80,421,107"/>
+<area shape="rect" id="node8" href="$log_8h.html" title="Logging System Header File." alt="" coords="96,155,211,181"/>
+<area shape="rect" id="node13" title=" " alt="" coords="759,229,908,256"/>
+<area shape="rect" id="node14" href="$bootloader__utils_8h.html" title="Bootloader Utilities Header File." alt="" coords="607,80,807,107"/>
+<area shape="rect" id="node15" href="$reset_8h.html" title="System Reset Management Header File." alt="" coords="1005,155,1133,181"/>
+<area shape="rect" id="node16" href="$rfm_8h.html" title="Radio Frequency Module Header File." alt="" coords="761,155,879,181"/>
+<area shape="rect" id="node17" href="$timers_8h.html" title="Timing and Power Management Header File." alt="" coords="445,80,582,107"/>
+<area shape="rect" id="node18" href="$si7051_8h.html" title="SI7051 Temperature Sensor Driver Header File." alt="" coords="1006,80,1130,107"/>
+<area shape="rect" id="node19" href="$tmp112_8h.html" title="TMP112 Temperature Sensor Driver Header File." alt="" coords="1155,80,1285,107"/>
+<area shape="rect" id="node4" title=" " alt="" coords="933,229,1003,256"/>
+<area shape="rect" id="node6" title=" " alt="" coords="233,229,316,256"/>
+<area shape="rect" id="node7" title=" " alt="" coords="285,155,360,181"/>
+<area shape="rect" id="node10" href="$memory_8h.html" title="Memory Management Header File." alt="" coords="486,155,634,181"/>
+<area shape="rect" id="node9" title=" " alt="" coords="100,229,207,256"/>
+<area shape="rect" id="node11" title=" " alt="" coords="341,229,531,256"/>
+<area shape="rect" id="node12" title=" " alt="" coords="556,229,735,256"/>
+</map>

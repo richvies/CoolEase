@@ -1,0 +1,8 @@
+<map id="Testing" name="Testing">
+<area shape="rect" id="node1" href="$group__common__test.html" title="Test functions for common module components." alt="" coords="121,5,292,31"/>
+<area shape="rect" id="node2" href="$group__sensor__test.html" title="Test functions for Sensor device." alt="" coords="155,55,258,80"/>
+<area shape="rect" id="node3" title=" " alt="" coords="5,104,73,129"/>
+<area shape="rect" id="node4" href="$group__rf__test.html" title="Test functions for radio frequency module." alt="" coords="133,104,281,129"/>
+<area shape="rect" id="node5" href="$group__hub__test.html" title="Test functions for Hub device." alt="" coords="164,153,249,179"/>
+<area shape="rect" id="node6" href="$group__printf__test.html" title="Test functions for printf implementation." alt="" coords="159,203,254,228"/>
+</map>

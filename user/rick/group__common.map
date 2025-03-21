@@ -1,0 +1,12 @@
+<map id="Common" name="Common">
+<area shape="rect" id="node1" href="$group__memory__api.html" title="Flash and EEPROM access and management functionality." alt="" coords="166,5,333,31"/>
+<area shape="rect" id="node2" href="$group__log__api.html" title="System logging and error reporting functionality." alt="" coords="213,55,286,80"/>
+<area shape="rect" id="node3" href="$group__battery__api.html" title="Battery monitoring and power management functionality." alt="" coords="169,104,329,129"/>
+<area shape="rect" id="node4" href="$group__reset__api.html" title="System reset and reboot functionality." alt="" coords="175,153,324,179"/>
+<area shape="rect" id="node5" href="$group__rfm__api.html" title="RFM95 LoRa radio module driver and interface." alt="" coords="194,203,305,228"/>
+<area shape="rect" id="node6" title=" " alt="" coords="5,203,87,228"/>
+<area shape="rect" id="node7" href="$group__bootloader__api.html" title="Hub bootloader functionality and interfaces." alt="" coords="172,252,327,277"/>
+<area shape="rect" id="node8" href="$group__crypto__api.html" title="Encryption and security&#45;related functionality." alt="" coords="194,301,305,327"/>
+<area shape="rect" id="node9" href="$group__printf__api.html" title="Lightweight printf implementation for embedded systems." alt="" coords="181,351,318,376"/>
+<area shape="rect" id="node10" href="$group__timers__api.html" title="System timing, delays, and power management functionality." alt="" coords="135,400,364,425"/>
+</map>

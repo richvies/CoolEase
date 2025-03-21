@@ -1,0 +1,7 @@
+<map id="sensor/include/sensor/si7051.h" name="sensor/include/sensor/si7051.h">
+<area shape="rect" id="node1" title="SI7051 Temperature Sensor Driver Header File." alt="" coords="263,5,425,47"/>
+<area shape="rect" id="node2" href="$sensor_8c.html" title="Sensor Source File." alt="" coords="5,95,128,121"/>
+<area shape="rect" id="node3" href="$sensor__bootloader_8c.html" title="Sensor Bootloader Source File." alt="" coords="153,95,351,121"/>
+<area shape="rect" id="node4" href="$si7051_8c.html" title=" " alt="" coords="376,95,499,121"/>
+<area shape="rect" id="node5" href="$test__sensor_8c.html" title=" " alt="" coords="523,95,706,121"/>
+</map>

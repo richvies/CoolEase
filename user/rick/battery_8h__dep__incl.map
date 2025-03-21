@@ -1,0 +1,11 @@
+<map id="common/include/common/battery.h" name="common/include/common/battery.h">
+<area shape="rect" id="node1" title="Battery Management Header File." alt="" coords="543,5,734,47"/>
+<area shape="rect" id="node2" href="$hub_8c.html" title="Hub Source File." alt="" coords="5,95,91,121"/>
+<area shape="rect" id="node3" href="$test__hub_8c.html" title="Hub testing Source File." alt="" coords="115,95,261,121"/>
+<area shape="rect" id="node4" href="$sensor_8c.html" title="Sensor Source File." alt="" coords="285,95,408,121"/>
+<area shape="rect" id="node5" href="$sensor__bootloader_8c.html" title="Sensor Bootloader Source File." alt="" coords="433,95,631,121"/>
+<area shape="rect" id="node6" href="$test__sensor_8c.html" title=" " alt="" coords="655,95,838,121"/>
+<area shape="rect" id="node7" href="$battery_8c.html" title="Battery Source File." alt="" coords="863,95,1001,121"/>
+<area shape="rect" id="node8" href="$test__common_8c.html" title="Common Module Testing Source File." alt="" coords="1026,95,1238,121"/>
+<area shape="rect" id="node9" href="$timers_8c.html" title=" " alt="" coords="1261,95,1397,121"/>
+</map>

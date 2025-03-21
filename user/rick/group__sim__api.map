@@ -1,0 +1,4 @@
+<map id="SIM800 Interface" name="SIM800 Interface">
+<area shape="rect" id="node1" href="$group__hub.html" title="Hub module for sensor management." alt="" coords="5,5,53,31"/>
+<area shape="rect" id="node2" title="Cellular modem (SIM800) communication and control interface." alt="" coords="101,5,233,31"/>
+</map>

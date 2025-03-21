@@ -1,0 +1,4 @@
+<map id="TMP112 Temperature Sensor" name="TMP112 Temperature Sensor">
+<area shape="rect" id="node1" title="TMP112 digital temperature sensor driver." alt="" coords="212,5,372,45"/>
+<area shape="rect" id="node2" href="$group__temperature__api.html" title="Temperature sensor drivers and interfaces." alt="" coords="5,13,164,38"/>
+</map>

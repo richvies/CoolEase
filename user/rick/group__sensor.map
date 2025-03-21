@@ -1,0 +1,6 @@
+<map id="Sensor" name="Sensor">
+<area shape="rect" id="node1" title=" " alt="" coords="5,55,72,80"/>
+<area shape="rect" id="node2" href="$group__temperature__api.html" title="Temperature sensor drivers and interfaces." alt="" coords="120,5,279,31"/>
+<area shape="rect" id="node3" href="$group__bootloader__api.html" title="Hub bootloader functionality and interfaces." alt="" coords="122,55,277,80"/>
+<area shape="rect" id="node4" href="$group__sensor__api.html" title="Core sensor functionality and interfaces." alt="" coords="135,104,263,129"/>
+</map>
