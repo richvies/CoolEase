@@ -8,10 +8,6 @@
  ******************************************************************************
  */
 
-/*////////////////////////////////////////////////////////////////////////////*/
-// Includes
-/*////////////////////////////////////////////////////////////////////////////*/
-
 #include <stdint.h>
 
 #include "common/bootloader_utils.h"
@@ -28,11 +24,11 @@
 #include "common/reset.h"
 #include "common/timers.h"
 
-/** @addtogroup BOOTLOADER_UTILS_FILE
+/** @addtogroup common
  * @{
  */
 
-/** @addtogroup BOOTLOADER_UTILS_INT
+/** @addtogroup bootloader_api
  * @{
  */
 
@@ -48,25 +44,7 @@
     (RCC_CSR_WWDGRSTF | RCC_CSR_IWDGRSTF | RCC_CSR_SFTRSTF | RCC_CSR_PINRSTF | \
      RCC_CSR_FWRSTF)
 
-/*////////////////////////////////////////////////////////////////////////////*/
-// Static Variables
-/*////////////////////////////////////////////////////////////////////////////*/
-
-/*////////////////////////////////////////////////////////////////////////////*/
-// Static Function Declarations
-/*////////////////////////////////////////////////////////////////////////////*/
-
 static bool verify_half_page_checksum(uint32_t data[16], uint32_t expected);
-
-/** @} */
-
-/** @addtogroup BOOTLOADER_UTILS_API
- * @{
- */
-
-/*////////////////////////////////////////////////////////////////////////////*/
-// Exported Function Definitions
-/*////////////////////////////////////////////////////////////////////////////*/
 
 void boot_init(void) {
     uint32_t val = 0;
@@ -298,16 +276,6 @@ uint32_t boot_get_half_page_checksum(uint32_t data[16]) {
 
     return crc;
 }
-
-/** @} */
-
-/** @addtogroup BOOTLOADER_UTILS_INT
- * @{
- */
-
-/*////////////////////////////////////////////////////////////////////////////*/
-// Static Function Definitions
-/*////////////////////////////////////////////////////////////////////////////*/
 
 static bool verify_half_page_checksum(uint32_t data[16], uint32_t expected) {
     // log_printf("boot_verify_checksum\n");

@@ -1,16 +1,26 @@
 /**
  ******************************************************************************
- * @file    test.c
+ * @file    test_common.c
  * @author  Richard Davies
  * @date    26/Dec/2020
- * @brief   Testing Source File
+ * @brief   Common Module Testing Source File
  *
+ * @defgroup testing Testing
+ * @{
+ *   @defgroup common_test Common Module Tests
+ *   @brief    Test functions for common module components
+ *
+ *   This file contains test functions for various components in the common
+ *   module, including:
+ *   - Memory operations (Flash and EEPROM)
+ *   - Bootloader utilities
+ *   - Radio module
+ *   - Timers and power management
+ *   - Battery monitoring
+ *   - Encryption
+ * @}
  ******************************************************************************
  */
-
-/*////////////////////////////////////////////////////////////////////////////*/
-// Includes
-/*////////////////////////////////////////////////////////////////////////////*/
 
 #include <stdbool.h>
 #include <string.h>
@@ -35,18 +45,24 @@
 #include "common/timers.h"
 #include "config/board_defs.h"
 
-/** @addtogroup common
+/** @addtogroup testing
  * @{
  */
 
-/** @addtogroup common_test_api
+/** @addtogroup common_test
  * @{
  */
 
-/*////////////////////////////////////////////////////////////////////////////*/
-// Utils
-/*////////////////////////////////////////////////////////////////////////////*/
+/**
+ * @name Test Utilities
+ * @{
+ */
 
+/**
+ * @brief Initialize a test with header output
+ * @param test_name Name of the test to display
+ * @return None
+ */
 void test_init(const char* test_name) {
     for (uint32_t i = 0; i < 10000; i++) {
         __asm__("nop");
@@ -55,6 +71,11 @@ void test_init(const char* test_name) {
     serial_printf("%s\n------------------\n\n", test_name);
 }
 
+/**
+ * @brief Print AES key information
+ * @param info Application information structure containing AES key
+ * @return None
+ */
 void print_aes_key(app_info_t* info) {
     serial_printf("AES Key:");
     for (uint8_t i = 0; i < 16; i++) {
@@ -62,11 +83,19 @@ void print_aes_key(app_info_t* info) {
     }
     serial_printf("\n");
 }
+/** @} */
 
-/*////////////////////////////////////////////////////////////////////////////*/
-// Memory tests
-/*////////////////////////////////////////////////////////////////////////////*/
+/**
+ * @name Memory Tests
+ * @{
+ */
 
+/**
+ * @brief Test memory write and read operations
+ *
+ * Tests both EEPROM and Flash memory write/read functionality
+ * @return None
+ */
 void test_mem_write_read(void) {
     test_init("test_mem_write_read()");
 
@@ -92,13 +121,15 @@ void test_mem_write_read(void) {
                   MMIO32(flash_address + 4));
     serial_printf("Programming %08x %08x\n", flash_data[0], flash_data[1]);
     mem_flash_write_half_page(flash_address, flash_data);
-    // serial_printf("Programming %08x\n", flash_data[1]);
-    // mem_flash_write_word(flash_address, flash_data[1]);
     serial_printf("Flash End: %08x : %08x\n%08x : %08x\n", flash_address,
                   MMIO32(flash_address), flash_address + 4,
                   MMIO32(flash_address + 4));
 }
 
+/**
+ * @brief Test EEPROM device and message number storage
+ * @return None
+ */
 void test_eeprom(void) {
     test_init("test_eeprom()");
 
@@ -114,6 +145,10 @@ void test_eeprom(void) {
     }
 }
 
+/**
+ * @brief Test EEPROM read operations and display contents
+ * @return None
+ */
 void test_eeprom_read(void) {
     test_init("test_eeprom_read()");
 
@@ -131,6 +166,10 @@ void test_eeprom_read(void) {
     }
 }
 
+/**
+ * @brief Test EEPROM AES key storage and expansion
+ * @return None
+ */
 void test_eeprom_keys(void) {
     test_init("test_eeprom_keys()");
 
@@ -164,6 +203,10 @@ void test_eeprom_keys(void) {
     }
 }
 
+/**
+ * @brief Test EEPROM wipe functionality
+ * @return None
+ */
 void test_eeprom_wipe(void) {
     test_init("test_eeprom_wipe()");
 
@@ -193,6 +236,10 @@ void test_eeprom_wipe(void) {
     serial_printf("Done\n");
 }
 
+/**
+ * @brief Test resetting EEPROM values
+ * @return None
+ */
 void test_reset_eeprom(void) {
     test_init("test_reset_eeprom()");
 
@@ -209,6 +256,10 @@ void test_reset_eeprom(void) {
     serial_printf("Done\n");
 }
 
+/**
+ * @brief Test log functionality
+ * @return None
+ */
 void test_log(void) {
     test_init("test_log()");
 
@@ -225,6 +276,10 @@ void test_log(void) {
     }
 }
 
+/**
+ * @brief Test backup register operations
+ * @return None
+ */
 void test_bkp_reg(void) {
     for (uint8_t i = 0; i < 5; i++) {
         mem_program_bkp_reg(i, i + 7);
@@ -232,15 +287,21 @@ void test_bkp_reg(void) {
         serial_printf("BKP %u : %u\n", i, mem_read_bkp_reg(i));
     }
 }
+/** @} */
 
-/*////////////////////////////////////////////////////////////////////////////*/
-// Bootloader util tests
-/*////////////////////////////////////////////////////////////////////////////*/
+/**
+ * @name Bootloader Utility Tests
+ * @{
+ */
 
-/** @brief Test jumping to user defined address
+/**
+ * @brief Test jumping to a user-defined address
  *
- * @ref boot_jump_to_application()
- * Updates VTOR, stack pointer and calls fn(address+4) i.e.reset handler()
+ * Tests boot_jump_to_application() which updates VTOR, stack pointer
+ * and calls the reset handler at the specified address
+ *
+ * @param address Address to jump to
+ * @return None
  */
 void test_boot_jump_to_application(uint32_t address) {
     test_init("test_boot_jump_to_application()");
@@ -249,6 +310,10 @@ void test_boot_jump_to_application(uint32_t address) {
     boot_jump_to_application(address);
 }
 
+/**
+ * @brief Test checksum verification
+ * @return None
+ */
 void test_boot_verify_checksum(void) {
     test_init("test_boot_verify_checksum()");
 
@@ -267,6 +332,12 @@ void test_boot_verify_checksum(void) {
     }
 }
 
+/**
+ * @brief Test CRC calculation functionality
+ *
+ * Tests various CRC configurations to find the one that matches zlib
+ * @return None
+ */
 void test_crc(void) {
     test_init("test_crc()");
 
@@ -434,14 +505,6 @@ void test_crc(void) {
 
     // Test 13
     crc_reset();
-    CRC_INIT = 0xFFFFFFFF;
-    crc_set_reverse_input(CRC_CR_REV_IN_HALF);
-    crc_reverse_output_enable();
-    for (i = 0; i < 2; i++) {
-        CRC_DR = data[i];
-    };
-    serial_printf("Init: 0xFFFFFFFF Rev In Half Out Enable = %8x != %8x\n",
-                  CRC_DR, ~CRC_DR);
 
     // Test 14
     crc_reset();
@@ -480,11 +543,19 @@ void test_crc(void) {
     crc_reset();
     rcc_periph_clock_disable(RCC_CRC);
 }
+/** @} */
 
-/*////////////////////////////////////////////////////////////////////////////*/
-// RFM tests
-/*////////////////////////////////////////////////////////////////////////////*/
+/**
+ * @name RFM Tests
+ * @{
+ */
 
+/**
+ * @brief Test radio transmission and reception
+ *
+ * Configures the radio for LoRa mode and tests both transmit and receive
+ * @return None
+ */
 void test_rf(void) {
     test_init("test_rf()");
 
@@ -525,6 +596,10 @@ void test_rf(void) {
     }
 }
 
+/**
+ * @brief Test radio reception in listen mode
+ * @return None
+ */
 void test_rf_listen(void) {
     test_init("test_rf_listen()");
 
@@ -555,6 +630,10 @@ void test_rf_listen(void) {
     }
 }
 
+/**
+ * @brief Test radio continuous transmission
+ * @return None
+ */
 void test_rfm(void) {
     test_init("test_rfm()");
 
@@ -563,11 +642,17 @@ void test_rfm(void) {
                         RFM_SPREADING_FACTOR_128CPS, true, -5);
     rfm_set_tx_continuous();
 }
+/** @} */
 
-/*////////////////////////////////////////////////////////////////////////////*/
-// Timer tests
-/*////////////////////////////////////////////////////////////////////////////*/
+/**
+ * @name Timer Tests
+ * @{
+ */
 
+/**
+ * @brief Test real-time clock functionality
+ * @return None
+ */
 void test_rtc(void) {
     test_init("test_rtc()");
     timers_rtc_init();
@@ -592,6 +677,10 @@ void test_rtc(void) {
     }
 }
 
+/**
+ * @brief Test RTC wakeup functionality
+ * @return None
+ */
 void test_rtc_wakeup(void) {
     test_init("test_rtc_wakeup()");
 
@@ -609,6 +698,10 @@ void test_rtc_wakeup(void) {
     }
 }
 
+/**
+ * @brief Test low-power timer functionality
+ * @return None
+ */
 void test_lptim(void) {
     test_init("test_lptim()");
 
@@ -620,6 +713,10 @@ void test_lptim(void) {
     }
 }
 
+/**
+ * @brief Test microsecond delay functionality
+ * @return None
+ */
 void test_micros(void) {
     test_init("test_micros()");
 
@@ -632,6 +729,10 @@ void test_micros(void) {
     }
 }
 
+/**
+ * @brief Test millisecond delay functionality
+ * @return None
+ */
 void test_millis(void) {
     test_init("test_millis()");
 
@@ -644,6 +745,10 @@ void test_millis(void) {
     }
 }
 
+/**
+ * @brief Test TIM6 timer functionality
+ * @return None
+ */
 void test_tim6(void) {
     test_init("test_tim6()");
 
@@ -656,6 +761,10 @@ void test_tim6(void) {
     }
 }
 
+/**
+ * @brief Test wakeup functionality
+ * @return None
+ */
 void test_wakeup(void) {
     test_init("test_wakeup()");
 
@@ -668,6 +777,10 @@ void test_wakeup(void) {
     serial_printf("Power = %uV\n", batt_get_pwr_voltage());
 }
 
+/**
+ * @brief Test timeout functionality
+ * @return true if test passes
+ */
 bool test_timers_timeout(void) {
     test_init("test_timeout()");
 
@@ -683,11 +796,18 @@ bool test_timers_timeout(void) {
 
     return true;
 }
+/** @} */
 
-/*////////////////////////////////////////////////////////////////////////////*/
-// Low Power tests
-/*////////////////////////////////////////////////////////////////////////////*/
+/**
+ * @name Low Power Tests
+ * @{
+ */
 
+/**
+ * @brief Test standby mode
+ * @param standby_time Time in seconds to remain in standby
+ * @return None
+ */
 void test_standby(uint32_t standby_time) {
     test_init("test_standby()");
 
@@ -705,20 +825,16 @@ void test_standby(uint32_t standby_time) {
     timers_enter_standby();
 }
 
+/**
+ * @brief Test voltage scaling
+ * @param scale Voltage scale value
+ * @return None
+ */
 void test_voltage_scale(uint8_t scale) {
     test_init("test_voltage_scale()");
 
     rfm_init();
     rfm_end();
-
-    // #ifdef COOLEASE_DEVICE_HUB
-    // sim_init();
-    // sim_end();
-
-    // #else
-    // // tmp112_init();
-    // // tmp112_end();
-    // #endif
 
     serial_printf("Testing Voltage Scaling\n");
     serial_printf("Current Scaling: %08x\n", PWR_CR);
@@ -734,38 +850,34 @@ void test_voltage_scale(uint8_t scale) {
     }
 }
 
+/**
+ * @brief Test low power run mode
+ * @return None
+ */
 void test_low_power_run(void) {
     test_init("test_low_power_run()");
 
     rfm_init();
     rfm_end();
 
-    // #ifdef COOLEASE_DEVICE_HUB
-    // sim_init();
-    // sim_end();
-
-    // #else
-    // // tmp112_init();
-    // // tmp112_end();
-    // #endif
-
     serial_printf("Testing Low Power Run\n");
-
-    // rcc_periph_clock_enable(RCC_GPIOA);
-    // gpio_mode_setup(GPIOA, GPIO_MODE_INPUT, GPIO_PUPD_NONE, GPIO0 | GPIO1 |
-    // GPIO4 | GPIO7 | GPIO9 | GPIO10 | GPIO13 | GPIO14);
-    // rcc_periph_clock_disable(RCC_GPIOA);
 
     batt_set_low_power_run();
 
     for (;;) {
     }
 }
+/** @} */
 
-/*////////////////////////////////////////////////////////////////////////////*/
-// Battery
-/*////////////////////////////////////////////////////////////////////////////*/
+/**
+ * @name Battery Tests
+ * @{
+ */
 
+/**
+ * @brief Test battery voltage monitoring
+ * @return None
+ */
 void test_batt_update_voltages(void) {
     test_init("test_adc_voltages()");
 
@@ -779,6 +891,10 @@ void test_batt_update_voltages(void) {
     }
 }
 
+/**
+ * @brief Test battery monitoring interrupt
+ * @return None
+ */
 void test_batt_interrupt(void) {
     test_init("test_adc_voltages()");
 
@@ -791,11 +907,18 @@ void test_batt_interrupt(void) {
         timers_delay_milliseconds(1000);
     }
 }
+/** @} */
 
-/*////////////////////////////////////////////////////////////////////////////*/
-// Other tests
-/*////////////////////////////////////////////////////////////////////////////*/
+/**
+ * @name Other Tests
+ * @{
+ */
 
+/**
+ * @brief Test AES encryption
+ * @param key Encryption key (16 bytes)
+ * @return None
+ */
 void test_encryption(uint8_t* key) {
     test_init("test_encryption()");
 
@@ -817,6 +940,10 @@ void test_encryption(uint8_t* key) {
     serial_printf("Dec: %s\n", data);
 }
 
+/**
+ * @brief Test analog watchdog functionality
+ * @return None
+ */
 void test_analog_watchdog(void) {
     test_init("test_analog_watchdog()");
 
@@ -828,23 +955,10 @@ void test_analog_watchdog(void) {
     }
 }
 
-// Init: 0xFFFFFFFF Rev In None Out Disable = 0X4E780056 != 0XB187FFA9
-// Init: 0x00000000 Rev In None Out Disable = 0X277CBB0F != 0XD88344F0
-// Init: 0xFFFFFFFF Rev In Byte Out Disable = 0X8A0F7668 != 0X75F08997
-// Init: 0x00000000 Rev In Byte Out Disable = 0XE30BCD31 != 0X1CF432CE
-// Init: 0xFFFFFFFF Rev In Half Out Disable = 0X357FD5D1 != 0XCA802A2E
-// Init: 0x00000000 Rev In Half Out Disable = 0X5C7B6E88 != 0XA3849177
-// Init: 0xFFFFFFFF Rev In Word Out Disable = 0XD41BDC9F != 0X2BE42360
-// Init: 0x00000000 Rev In Word Out Disable = 0XBD1F67C6 != 0X42E09839
-// Init: 0xFFFFFFFF Rev In None Out Enable = 0X6A001E72 != 0X95FFE18D
-// Init: 0x00000000 Rev In None Out Enable = 0XF0DD3EE4 != 0X0F22C11B
-// Init: 0xFFFFFFFF Rev In Byte Out Enable = 0X166EF051 != 0XE9910FAE
-// Init: 0x00000000 Rev In Byte Out Enable = 0X8CB3D0C7 != 0X734C2F38
-// Init: 0xFFFFFFFF Rev In Half Out Enable = 0X8BABFEAC != 0X74540153
-// Init: 0x00000000 Rev In Half Out Enable = 0X1176DE3A != 0XEE8921C5
-// Init: 0xFFFFFFFF Rev In Word Out Disable = 0XF93BD82B != 0X06C427D4
-// Init: 0x00000000 Rev In Word Out Disable = 0X63E6F8BD != 0X9C190742
-
+/**
+ * @brief Test serial port transmission
+ * @return None
+ */
 void test_spf_tx(void) {
     test_init("test_spf_tx()");
 
@@ -856,21 +970,26 @@ void test_spf_tx(void) {
     }
 }
 
-/*////////////////////////////////////////////////////////////////////////////*/
-// Interrupts
-/*////////////////////////////////////////////////////////////////////////////*/
-
+/**
+ * @brief NMI exception handler
+ * @return None
+ */
 void nmi_handler(void) {
     log_printf("nmi\n");
     while (1) {
     }
 }
 
+/**
+ * @brief Hard fault exception handler
+ * @return None
+ */
 void hard_fault_handler(void) {
     log_printf("hard fault\n");
     while (1) {
     }
 }
+/** @} */
 
-/** @} */
-/** @} */
+/** @} */ /* End of common_test group */
+/** @} */ /* End of testing group */

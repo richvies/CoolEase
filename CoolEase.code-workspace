@@ -46,7 +46,11 @@
 			"memory.h": "c",
 			"board_defs.h": "c",
 			"vector.h": "c",
-			"sim.h": "c"
+			"sim.h": "c",
+			"cusb.h": "c",
+			"aes.h": "c",
+			"timers.h": "c",
+			"crc.h": "c"
 		},
 		"cortex-debug.variableUseNaturalFormat": true
 	}

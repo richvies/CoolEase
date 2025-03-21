@@ -9,6 +9,27 @@
  * @{
  *   @defgroup sim_api SIM800 Interface
  *   @brief    Cellular modem (SIM800) communication and control interface
+ *
+ *   The SIM800 module provides a comprehensive interface for controlling and
+ *   communicating with the SIM800 cellular modem. It supports HTTP, TCP, and
+ *   SMS operations, as well as network registration and bearer management.
+ *
+ *   @section sim_dependencies Dependencies
+ *   This module depends on several other components:
+ *   - @ref log_api "Logging module" - For error reporting and debug output
+ *   - @ref printf_api "Printf module" - For formatted string handling
+ *   - @ref serial_api "Serial module" - For communication with host
+ *   - @ref timers_api "Timers module" - For timing operations and delays
+ *   - @ref memory_api "Memory module" - For memory management functions
+ *
+ *   @section sim_usage Usage
+ *   Typical usage flow:
+ *   1. Initialize the module with sim_init()
+ *   2. Register to network with sim_register_to_network()
+ *   3. Open bearer connection with sim_open_bearer()
+ *   4. Perform HTTP/TCP operations
+ *   5. Close bearer with sim_close_bearer()
+ *   6. End operations with sim_end()
  * @}
  ******************************************************************************
  */

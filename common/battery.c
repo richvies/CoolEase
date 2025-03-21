@@ -8,10 +8,6 @@
  ******************************************************************************
  */
 
-/*////////////////////////////////////////////////////////////////////////////*/
-// Includes
-/*////////////////////////////////////////////////////////////////////////////*/
-
 #include "common/battery.h"
 
 #include <libopencm3/cm3/nvic.h>
@@ -27,6 +23,14 @@
 #include "common/log.h"
 #include "common/timers.h"
 #include "config/board_defs.h"
+
+/** @addtogroup common
+ * @{
+ */
+
+/** @addtogroup battery_api
+ * @{
+ */
 
 #ifdef COOLEASE_DEVICE_HUB
 #define NUM_VOLTAGES 2
@@ -64,35 +68,9 @@ typedef enum {
     BATT_PLUGGED_OUT,
 } batt_state_t;
 
-/** @addtogroup BATTERY_FILE
- * @{
- */
-
-/** @addtogroup BATTERY_INT
- * @{
- */
-
-/*////////////////////////////////////////////////////////////////////////////*/
-// Static Variables
-/*////////////////////////////////////////////////////////////////////////////*/
-
 static uint16_t     adc_vals[3] = {0, 0, 0};
 static uint16_t     batt_voltages[NUM_VOLTAGES];
 static batt_state_t state = BATT_INIT;
-
-/*////////////////////////////////////////////////////////////////////////////*/
-// Static Function Declarations
-/*////////////////////////////////////////////////////////////////////////////*/
-
-/** @} */
-
-/** @addtogroup BATTERY_API
- * @{
- */
-
-/*////////////////////////////////////////////////////////////////////////////*/
-// Exported Function Definitions
-/*////////////////////////////////////////////////////////////////////////////*/
 
 void batt_init(void) {
     // Disable Interrupt
@@ -390,17 +368,6 @@ bool batt_is_ready(void) {
     // return (state != BATT_INIT);
     return true;
 }
-/** @} */
-
-/** @addtogroup BATTERY_INT
- * @{
- */
-
-/*////////////////////////////////////////////////////////////////////////////*/
-// Static Function Definitions
-/*////////////////////////////////////////////////////////////////////////////*/
-
-/** @} */
 
 void dma1_channel1_isr(void) {
     static uint32_t     timer = 0;

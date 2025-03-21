@@ -14,10 +14,6 @@
 // spi_read_single(RFM_REG_10_FIFO_RX_CURRENT_ADDR)); instead of clearing buffer
 // all the time
 
-/*////////////////////////////////////////////////////////////////////////////*/
-// Includes
-/*////////////////////////////////////////////////////////////////////////////*/
-
 #include "common/rfm.h"
 
 #include <stdbool.h>
@@ -35,12 +31,12 @@
 #include "common/timers.h"
 #include "config/board_defs.h"
 
-/** @addtogroup  RFM_FILE
+/** @addtogroup common
  * @{
  */
 
-/** @addtogroup  RFM_INT
- *  @{
+/** @addtogroup rfm_api RFM
+ * @{
  */
 
 /** @brief  Set RFM NSS Pin. Start SPI transaction
@@ -58,16 +54,6 @@
  */
 #define wait_rf_io_0_high() while (!(gpio_get(RFM_IO_0_PORT, RFM_IO_0)))
 
-/** @} */
-
-/** @addtogroup  RFM_INT
- * @{
- */
-
-/*////////////////////////////////////////////////////////////////////////////*/
-// Static Variables
-/*////////////////////////////////////////////////////////////////////////////*/
-
 /** @brief Signals if automatic CRC checking is currently enabled on the RFM */
 static bool    crc_on = false;
 static uint8_t random_data[16] = {0, 1, 0, 1, 0, 1, 0, 1,
@@ -78,16 +64,6 @@ static uint8_t packets_head = 0;
 static uint8_t packets_tail = 0;
 // static uint8_t packets_read = 0;
 static rfm_packet_t packets_buf[PACKETS_BUF_SIZE];
-
-/** @} */
-
-/** @addtogroup  RFM_INT
- * @{
- */
-
-/*////////////////////////////////////////////////////////////////////////////*/
-// Static Function Declarations
-/*////////////////////////////////////////////////////////////////////////////*/
 
 static void           spi_setup(void);
 static uint8_t        spi_read_single(uint8_t reg);
@@ -107,16 +83,6 @@ static inline void    set_standby_mode(void);
 static inline void    set_tx_mode(void);
 static inline void    set_rx_mode(void);
 static inline void    set_sleep_mode(void);
-
-/** @} */
-
-/** @addtogroup    RFM_API
- * @{
- */
-
-/*////////////////////////////////////////////////////////////////////////////*/
-// Exported Function Definitions
-/*////////////////////////////////////////////////////////////////////////////*/
 
 /** @brief Initialize radio module
  *
@@ -492,16 +458,6 @@ void rfm_clear_tx_continuous(void) {
                   ~RFM_TX_CONTINUOUS_MODE);
 }
 
-/** @} */
-
-/** @addtogroup RFM_INT
- * @{
- */
-
-/*////////////////////////////////////////////////////////////////////////////*/
-// Static Function Definitions
-/*////////////////////////////////////////////////////////////////////////////*/
-
 static void spi_setup(void) {
     // Set GPIO Mode
     gpio_mode_setup(RFM_SPI_MISO_PORT, GPIO_MODE_AF, GPIO_PUPD_NONE,
@@ -738,16 +694,6 @@ static inline void set_sleep_mode(void) {
                      (spi_read_single(RFM_REG_01_OP_MODE) & ~RFM_MODE) |
                          RFM_MODE_SLEEP);
 }
-
-/** @} */
-
-/** @addtogroup  RFM_API
- *  @{
- */
-
-/*////////////////////////////////////////////////////////////////////////////*/
-// Interrupts
-/*////////////////////////////////////////////////////////////////////////////*/
 
 void exti4_15_isr(void) {
     // uint16_t timer = timers_micros();

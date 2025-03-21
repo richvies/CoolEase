@@ -1,52 +1,46 @@
 /**
-******************************************************************************
-* @file    sensor_bootloader.h
-* @author  Richard Davies
-* @date    25/Dec/2020
-* @brief   Sensor Bootloader Header File
-*
-* @defgroup   SENSOR_BOOTLOADER_FILE  Bootloader
-* @brief
-*
-* Description
-*
-* @note
-*
-* @{
-* @defgroup   SENSOR_BOOTLOADER_API  Bootloader API
-* @brief
-*
-* @defgroup   SENSOR_BOOTLOADER_INT  Bootloader Internal
-* @brief
-* @}
-******************************************************************************
-*/
+ ******************************************************************************
+ * @file    sensor_bootloader.h
+ * @author  Richard Davies
+ * @date    25/Dec/2020
+ * @brief   Sensor Bootloader Header File
+ *
+ * @defgroup sensor Sensor
+ * @{
+ *   @defgroup bootloader_api Bootloader Interface
+ *   @brief    Sensor bootloader functionality and interfaces
+ *
+ *   The sensor bootloader provides firmware update capabilities for sensor
+ *   devices. It handles the secure boot process and firmware verification.
+ * @}
+ ******************************************************************************
+ */
 
 #ifndef SENSOR_BOOTLOADER_H
 #define SENSOR_BOOTLOADER_H
 
-/*////////////////////////////////////////////////////////////////////////////*/
 // Includes
-/*////////////////////////////////////////////////////////////////////////////*/
 
 #ifdef __cplusplus
 extern "C" {
 #endif
 
-/** @addtogroup SENSOR_BOOTLOADER_API
+/** @addtogroup sensor
  * @{
  */
 
-/*////////////////////////////////////////////////////////////////////////////*/
-// Exported Variables
-/*////////////////////////////////////////////////////////////////////////////*/
+/** @addtogroup bootloader_api
+ * @{
+ */
 
+/**
+ * @brief Bootloader version number
+ */
 #define VERSION 100
 
-/*////////////////////////////////////////////////////////////////////////////*/
-// Exported Function Declarations
-/*////////////////////////////////////////////////////////////////////////////*/
+// Add bootloader API functions here
 
+/** @} */
 /** @} */
 
 #ifdef __cplusplus

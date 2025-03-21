@@ -8,10 +8,6 @@
  ******************************************************************************
  */
 
-/*////////////////////////////////////////////////////////////////////////////*/
-// Includes
-/*////////////////////////////////////////////////////////////////////////////*/
-
 #include "hub/sim.h"
 
 #include <stdbool.h>
@@ -37,7 +33,6 @@
 /** @addtogroup sim_api
  * @{
  */
-
 
 #define PRINT_CMD(type, cmd, val)                                              \
     serial_printf("%s: %s %s\n",                                               \
@@ -88,10 +83,6 @@
 
 // HTTP
 #define HTTP_ENABLE_SSL AT + HTTPSSL = 1
-
-/*////////////////////////////////////////////////////////////////////////////*/
-// Static Variables
-/*////////////////////////////////////////////////////////////////////////////*/
 
 #define RX_TIMEOUT_MS     100
 #define QUICK_RESPONSE_MS 100
@@ -195,7 +186,6 @@ static void usart_setup(void);
 static void clear_rx_buf(void);
 static void _putchar(char character);
 static void print_timestamp(void);
-
 
 /*////////////////////////////////////////////////////////////////////////////*/
 // Comms
@@ -1555,10 +1545,6 @@ bool sim_send_sms(const char* phone_number, const char* msg_str) {
     return result;
 }
 
-/*////////////////////////////////////////////////////////////////////////////*/
-// Static Function Definitions
-/*////////////////////////////////////////////////////////////////////////////*/
-
 static void reset(void) {
     serial_printf("SIM: Reset\n");
     mcu_setup();
@@ -1692,10 +1678,6 @@ static void print_timestamp(void) {
     }
     serial_printf("\n");
 }
-
-/*////////////////////////////////////////////////////////////////////////////*/
-// Interrupts
-/*////////////////////////////////////////////////////////////////////////////*/
 
 SIM_ISR() {
     // serial_printf("Sim ISR: %8x\n", USART2_ISR);

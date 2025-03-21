@@ -5,12 +5,14 @@
  * @date    27/Dec/2020
  * @brief   Sensor testing Source File
  *
+ * @defgroup testing Testing
+ * @{
+ *   @defgroup sensor_test Sensor Tests
+ *   @brief    Test functions for Sensor device
+ *
+ * @}
  ******************************************************************************
  */
-
-/*////////////////////////////////////////////////////////////////////////////*/
-// Includes
-/*////////////////////////////////////////////////////////////////////////////*/
 
 #include <stdbool.h>
 #include <stdint.h>
@@ -37,11 +39,11 @@
 #include "sensor/si7051.h"
 #include "sensor/tmp112.h"
 
-/** @addtogroup sensor
+/** @addtogroup testing
  * @{
  */
 
-/** @addtogroup sensor_test_api
+/** @addtogroup sensor_test Sensor Tests
  * @{
  */
 
@@ -274,10 +276,6 @@ void test_sensor_standby(uint32_t standby_time) {
     set_gpio_for_standby();
     timers_enter_standby();
 }
-
-/*////////////////////////////////////////////////////////////////////////////*/
-// Static Function Definitions
-/*////////////////////////////////////////////////////////////////////////////*/
 
 /** @} */
 

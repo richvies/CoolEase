@@ -5,14 +5,15 @@
  * @date    27/Dec/2020
  * @brief   Hub testing Source File
  *
+ * @defgroup testing Testing
+ * @{
+ *   @defgroup hub_test Hub Tests
+ *   @brief    Test functions for Hub device
+ *
+ *   This file contains test functions for the Hub device,
+ * @}
  ******************************************************************************
  */
-
-/*////////////////////////////////////////////////////////////////////////////*/
-// Includes
-/*////////////////////////////////////////////////////////////////////////////*/
-
-#include "hub_test.h"
 
 #include <stdbool.h>
 #include <stdint.h>
@@ -31,7 +32,6 @@
 #include "common/memory.h"
 #include "common/reset.h"
 #include "common/rfm.h"
-#include "common/test.h"
 #include "common/timers.h"
 #include "config/board_defs.h"
 
@@ -39,11 +39,11 @@
 #include "hub/hub.h"
 #include "hub/sim.h"
 
-/** @addtogroup hub
+/** @addtogroup testing
  * @{
  */
 
-/** @addtogroup hub_test_api
+/** @addtogroup hub_test
  * @{
  */
 

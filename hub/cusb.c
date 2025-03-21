@@ -277,10 +277,6 @@ static const struct usb_config_descriptor cfg_desc = {
     .interface = interfaces,
 };
 
-/*////////////////////////////////////////////////////////////////////////////*/
-// Static Variables
-/*////////////////////////////////////////////////////////////////////////////*/
-
 /** @brief USB device handle */
 static usbd_device* usbd_dev;
 
@@ -339,10 +335,6 @@ union {
 
 } hid_in_report;
 
-/*////////////////////////////////////////////////////////////////////////////*/
-// Static Function Declarations
-/*////////////////////////////////////////////////////////////////////////////*/
-
 /** @brief Setup CPU and peripheral clocks for usb */
 static void cusb_clock_init(void);
 
@@ -385,10 +377,6 @@ static void hid_out_report_callback(usbd_device* dev, uint8_t ea);
  * i.e. when usb CTR interrupt and transaction type is IN
  */
 static void hid_in_report_callback(usbd_device* dev, uint8_t ea);
-
-/*////////////////////////////////////////////////////////////////////////////*/
-// Exported Function Definitions
-/*////////////////////////////////////////////////////////////////////////////*/
 
 void cusb_init(void) {
     if (usb_state == USB_OFF) {
@@ -456,10 +444,6 @@ void cusb_send(char character) {
         usbd_ep_write_packet(usbd_dev, ENDPOINT_HID_IN, &character, 1);
     }
 }
-
-/*////////////////////////////////////////////////////////////////////////////*/
-// Static Function Definitions
-/*////////////////////////////////////////////////////////////////////////////*/
 
 /* HSI16 must be sys_clk */
 static void cusb_clock_init(void) {

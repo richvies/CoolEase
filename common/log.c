@@ -8,10 +8,6 @@
  ******************************************************************************
  */
 
-/*////////////////////////////////////////////////////////////////////////////*/
-// Includes
-/*////////////////////////////////////////////////////////////////////////////*/
-
 #include <stdlib.h>
 #include <string.h>
 
@@ -34,27 +30,19 @@
 #include "hub/cusb.h"
 #endif
 
-/** @addtogroup LOG_FILE
+/** @addtogroup common
  * @{
  */
 
-/** @addtogroup LOG_INT
+/** @addtogroup log_api
  * @{
  */
-
-/*////////////////////////////////////////////////////////////////////////////*/
-// Static Variables
-/*////////////////////////////////////////////////////////////////////////////*/
 
 // Vars used during normal operation
 static uint16_t write_index;
 static uint16_t read_index;
 
 #define LOG_SIZE (EEPROM_LOG_SIZE - 8)
-
-/*////////////////////////////////////////////////////////////////////////////*/
-// Static Function Declarations
-/*////////////////////////////////////////////////////////////////////////////*/
 
 static void _putchar_main(char character);
 static void _putchar_mem(char character);
@@ -67,16 +55,6 @@ static void _putchar_spf(char character);
 static void _putchar_usb(char character);
 #endif
 #endif
-
-/** @} */
-
-/** @addtogroup LOG_API
- * @{
- */
-
-/*////////////////////////////////////////////////////////////////////////////*/
-// Exported Function Definitions
-/*////////////////////////////////////////////////////////////////////////////*/
 
 void log_init(void) {
     write_index = log_file->idx % LOG_SIZE;
@@ -186,16 +164,6 @@ void print_aes_key(app_info_t* info) {
     }
     serial_printf("\n");
 }
-
-/** @} */
-
-/** @addtogroup LOG_INT
- * @{
- */
-
-/*////////////////////////////////////////////////////////////////////////////*/
-// Static Function Definitions
-/*////////////////////////////////////////////////////////////////////////////*/
 
 static void _putchar_main(char character) {
     _putchar_mem(character);

@@ -8,6 +8,18 @@
 #include "config/board_defs.h"
 #include "sensor/tmp112.h"
 
+/** @addtogroup sensor
+ * @{
+ */
+
+/** @addtogroup temperature_api
+ * @{
+ */
+
+/** @addtogroup tmp112_api
+ * @{
+ */
+
 // Helper functions for setting up i2c communication
 static void tmp112_clock_setup(void);
 static void tmp112_i2c_setup(void);
@@ -195,3 +207,7 @@ static void i2c_transfer(uint32_t i2c, uint8_t addr, uint8_t* w, size_t wn,
         }
     }
 }
+
+/** @} */ /* End of tmp112_api group */
+/** @} */ /* End of temperature_api group */
+/** @} */ /* End of sensor group */
