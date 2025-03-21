@@ -39,11 +39,11 @@
 #include "hub/hub.h"
 #include "hub/sim.h"
 
-/** @addtogroup HUB_TEST_FILE
+/** @addtogroup hub
  * @{
  */
 
-/** @addtogroup HUB_TEST_API
+/** @addtogroup hub_test_api
  * @{
  */
 

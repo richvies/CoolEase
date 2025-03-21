@@ -30,6 +30,14 @@
 #include "hub/cusb.h"
 #include "hub/sim.h"
 
+/** @addtogroup hub
+ * @{
+ */
+
+/** @addtogroup hub_apis
+ * @{
+ */
+
 #define VERSION                   101
 #define HUB_CHECK_TIME_S          60
 #define HUB_LOG_TIME_S            3600
@@ -40,13 +48,6 @@
 #define NET_LOG                                                                \
     log_printf("NET: ");                                                       \
     log_printf
-
-// TODO
-// Http post with ssl, logging
-
-/** @addtogroup HUB_FILE
- * @{
- */
 
 typedef enum {
     NET_0 = 0,
@@ -74,10 +75,6 @@ typedef enum {
     NET_ERROR,
     NET_NUM_STATES,
 } net_state_t;
-
-/** @addtogroup HUB_INT
- * @{
- */
 
 static bool hub_plugged_in;
 
@@ -131,13 +128,6 @@ static void     net_buf_clear(void);
 static uint32_t net_buf_append_printf(const char* format, ...);
 static void     _putchar_buffer(char character);
 
-/** @} */
-
-/** @addtogroup HUB_API
- * @{
- */
-
-//
 int main(void) {
     init();
 
@@ -362,12 +352,6 @@ static void update_sensor_list(const char* list_start, const uint32_t len) {
 
     // print_sensors();
 }
-
-/** @} */
-
-/** @addtogroup HUB_INT
- * @{
- */
 
 //
 static void init(void) {

@@ -8,10 +8,6 @@
  ******************************************************************************
  */
 
-/*////////////////////////////////////////////////////////////////////////////*/
-// Includes
-/*////////////////////////////////////////////////////////////////////////////*/
-
 #include "hub/cusb.h"
 
 #include <stdbool.h>
@@ -36,26 +32,17 @@
 #include "common/memory.h"
 #include "config/board_defs.h"
 
-/** @addtogroup CUSB_FILE
+/** @addtogroup hub
+ * @{
+ */
+
+/** @addtogroup cusb_api
  * @{
  */
 
 /*////////////////////////////////////////////////////////////////////////////*/
 // USB Configuration & Descriptors
 /*////////////////////////////////////////////////////////////////////////////*/
-
-/** @addtogroup CUSB_CFG
- *
- * - Device
- * - Configuration
- * - Interface
- * - Endpoints
- * - Strings
- * - HID Function
- * - Report
- *
- * @{
- */
 
 /** @brief Interfaces used */
 enum dev_interfaces {
@@ -290,12 +277,6 @@ static const struct usb_config_descriptor cfg_desc = {
     .interface = interfaces,
 };
 
-/** @} */
-
-/** @addtogroup CUSB_INT
- * @{
- */
-
 /*////////////////////////////////////////////////////////////////////////////*/
 // Static Variables
 /*////////////////////////////////////////////////////////////////////////////*/
@@ -405,12 +386,6 @@ static void hid_out_report_callback(usbd_device* dev, uint8_t ea);
  */
 static void hid_in_report_callback(usbd_device* dev, uint8_t ea);
 
-/** @} */
-
-/** @addtogroup CUSB_API
- * @{
- */
-
 /*////////////////////////////////////////////////////////////////////////////*/
 // Exported Function Definitions
 /*////////////////////////////////////////////////////////////////////////////*/
@@ -481,12 +456,6 @@ void cusb_send(char character) {
         usbd_ep_write_packet(usbd_dev, ENDPOINT_HID_IN, &character, 1);
     }
 }
-
-/** @} */
-
-/** @addtogroup CUSB_INT
- * @{
- */
 
 /*////////////////////////////////////////////////////////////////////////////*/
 // Static Function Definitions
@@ -815,4 +784,5 @@ void usb_isr(void) {
 }
 
 /** @} */
+
 /** @} */

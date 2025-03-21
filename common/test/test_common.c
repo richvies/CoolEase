@@ -35,11 +35,11 @@
 #include "common/timers.h"
 #include "config/board_defs.h"
 
-/** @addtogroup TEST_FILE
+/** @addtogroup common
  * @{
  */
 
-/** @addtogroup TEST_API
+/** @addtogroup common_test_api
  * @{
  */
 

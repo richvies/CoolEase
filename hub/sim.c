@@ -30,9 +30,14 @@
 #include "common/timers.h"
 #include "config/board_defs.h"
 
-/** @addtogroup SIM_FILE
+/** @addtogroup hub
  * @{
  */
+
+/** @addtogroup sim_api
+ * @{
+ */
+
 
 #define PRINT_CMD(type, cmd, val)                                              \
     serial_printf("%s: %s %s\n",                                               \
@@ -83,10 +88,6 @@
 
 // HTTP
 #define HTTP_ENABLE_SSL AT + HTTPSSL = 1
-
-/** @addtogroup SIM_INT
- * @{
- */
 
 /*////////////////////////////////////////////////////////////////////////////*/
 // Static Variables
@@ -195,11 +196,6 @@ static void clear_rx_buf(void);
 static void _putchar(char character);
 static void print_timestamp(void);
 
-/** @} */
-
-/** @addtogroup SIM_API
- * @{
- */
 
 /*////////////////////////////////////////////////////////////////////////////*/
 // Comms
@@ -1559,12 +1555,6 @@ bool sim_send_sms(const char* phone_number, const char* msg_str) {
     return result;
 }
 
-/** @} */
-
-/** @addtogroup SIM_INT
- * @{
- */
-
 /*////////////////////////////////////////////////////////////////////////////*/
 // Static Function Definitions
 /*////////////////////////////////////////////////////////////////////////////*/
@@ -1703,12 +1693,6 @@ static void print_timestamp(void) {
     serial_printf("\n");
 }
 
-/** @} */
-
-/** @addtogroup SIM_API
- * @{
- */
-
 /*////////////////////////////////////////////////////////////////////////////*/
 // Interrupts
 /*////////////////////////////////////////////////////////////////////////////*/
@@ -1746,4 +1730,5 @@ SIM_ISR() {
 }
 
 /** @} */
+
 /** @} */

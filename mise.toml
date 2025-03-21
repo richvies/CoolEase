@@ -54,6 +54,7 @@ run = "make -C libopencm3 clean"
 run = '''
 rm -rf docs/doxygen/generated
 doxygen docs/doxygen/Doxyfile
+google-chrome docs/doxygen/generated/html/index.html
 '''
 
 [tasks.run-tests]

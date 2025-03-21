@@ -29,11 +29,11 @@
 #include "hub/sim.h"
 #include "hub/w25qxx.h"
 
-/** @addtogroup HUB_BOOTLOADER_FILE
+/** @addtogroup hub
  * @{
  */
 
-/** @addtogroup HUB_BOOTLOADER_INT
+/** @addtogroup bootloader_api
  * @{
  */
 
@@ -134,12 +134,6 @@ static void     prepare_msg(msg_type_e msg_type);
 static void     sim_buf_clear(void);
 static uint32_t sim_buf_append_printf(const char* format, ...);
 static void     _putchar_buffer(char character);
-
-/** @} */
-
-/** @addtogroup HUB_BOOTLOADER_API
- * @{
- */
 
 int main(void) {
     init();
@@ -654,12 +648,6 @@ int main(void) {
     return 0;
 }
 
-/** @} */
-
-/** @addtogroup HUB_BOOTLOADER_INT
- * @{
- */
-
 static void init(void) {
     clock_setup_hsi_16mhz();
     timers_lptim_init();
@@ -1049,4 +1037,5 @@ static void _putchar_buffer(char character) {
 }
 
 /** @} */
+
 /** @} */

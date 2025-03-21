@@ -45,7 +45,8 @@
 			"rf_scan.h": "c",
 			"memory.h": "c",
 			"board_defs.h": "c",
-			"vector.h": "c"
+			"vector.h": "c",
+			"sim.h": "c"
 		},
 		"cortex-debug.variableUseNaturalFormat": true
 	}

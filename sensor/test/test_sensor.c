@@ -12,8 +12,6 @@
 // Includes
 /*////////////////////////////////////////////////////////////////////////////*/
 
-#include "sensor/sensor_test.h"
-
 #include <stdbool.h>
 #include <stdint.h>
 #include <string.h>
@@ -31,7 +29,6 @@
 #include "common/memory.h"
 #include "common/reset.h"
 #include "common/rfm.h"
-#include "common/test.h"
 #include "common/timers.h"
 #include "config/board_defs.h"
 
@@ -40,16 +37,11 @@
 #include "sensor/si7051.h"
 #include "sensor/tmp112.h"
 
-/** @addtogroup SENSOR_TEST_FILE
+/** @addtogroup sensor
  * @{
  */
 
-/** @addtogroup SENSOR_TEST_INT
- * @{
- */
-/** @} */
-
-/** @addtogroup SENSOR_TEST_API
+/** @addtogroup sensor_test_api
  * @{
  */
 
@@ -283,15 +275,10 @@ void test_sensor_standby(uint32_t standby_time) {
     timers_enter_standby();
 }
 
-/** @} */
-
-/** @addtogroup SENSOR_TEST_INT
- * @{
- */
-
 /*////////////////////////////////////////////////////////////////////////////*/
 // Static Function Definitions
 /*////////////////////////////////////////////////////////////////////////////*/
 
 /** @} */
+
 /** @} */

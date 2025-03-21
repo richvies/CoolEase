@@ -21,6 +21,14 @@
 #define spi_chip_select()   gpio_clear(W25_SPI_NSS_PORT, W25_SPI_NSS)
 #define spi_chip_deselect() gpio_set(W25_SPI_NSS_PORT, W25_SPI_NSS)
 
+/** @addtogroup hub
+ * @{
+ */
+
+/** @addtogroup flash_api
+ * @{
+ */
+
 w25_t w25;
 
 static void spi_setup(void);
@@ -899,3 +907,7 @@ static void spi_setup(void) {
         SPI_CR1_CPHA_CLK_TRANSITION_1, SPI_CR1_DFF_8BIT, SPI_CR1_MSBFIRST);
     spi_enable(W25_SPI);
 }
+
+/** @} */
+
+/** @} */
