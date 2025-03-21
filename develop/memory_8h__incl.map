@@ -1,5 +1,5 @@
 <map id="common/include/common/memory.h" name="common/include/common/memory.h">
-<area shape="rect" id="Node000001" title="Memory Header File." alt="" coords="289,5,480,45"/>
+<area shape="rect" id="Node000001" title="Memory Management Header File." alt="" coords="289,5,480,45"/>
 <area shape="rect" id="Node000002" title=" " alt="" coords="5,93,196,119"/>
 <area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="317,48,156,92,154,87,316,43"/>
 <area shape="rect" id="Node000003" title=" " alt="" coords="221,93,399,119"/>

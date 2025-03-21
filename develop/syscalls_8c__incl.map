@@ -1,0 +1,19 @@
+<map id="common/syscalls.c" name="common/syscalls.c">
+<area shape="rect" id="Node000001" title="Minimal System calls file." alt="" coords="309,5,456,31"/>
+<area shape="rect" id="Node000002" title=" " alt="" coords="5,79,91,104"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="329,33,105,81,104,76,328,28"/>
+<area shape="rect" id="Node000003" title=" " alt="" coords="115,79,186,104"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="346,33,200,78,198,73,345,28"/>
+<area shape="rect" id="Node000004" title=" " alt="" coords="210,79,278,104"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="362,33,280,75,278,70,359,28"/>
+<area shape="rect" id="Node000005" title=" " alt="" coords="303,79,369,104"/>
+<area shape="poly" id="edge4_Node000001_Node000005" title=" " alt="" coords="377,32,353,69,349,66,373,30"/>
+<area shape="rect" id="Node000006" title=" " alt="" coords="394,79,467,104"/>
+<area shape="poly" id="edge5_Node000001_Node000006" title=" " alt="" coords="393,30,418,66,413,69,388,33"/>
+<area shape="rect" id="Node000007" title=" " alt="" coords="492,79,556,104"/>
+<area shape="poly" id="edge6_Node000001_Node000007" title=" " alt="" coords="407,28,490,70,488,75,404,33"/>
+<area shape="rect" id="Node000008" title=" " alt="" coords="580,79,671,104"/>
+<area shape="poly" id="edge7_Node000001_Node000008" title=" " alt="" coords="422,28,574,72,572,77,421,33"/>
+<area shape="rect" id="Node000009" title=" " alt="" coords="695,79,793,104"/>
+<area shape="poly" id="edge8_Node000001_Node000009" title=" " alt="" coords="441,28,682,75,681,80,440,33"/>
+</map>

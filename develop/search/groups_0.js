@@ -1,4 +1,6 @@
 var searchData=
 [
-  ['api_0',['api',['../group___b_a_t_t_e_r_y___a_p_i.html',1,'Battery API'],['../group___h_u_b___b_o_o_t_l_o_a_d_e_r___a_p_i.html',1,'Bootloader API'],['../group___s_e_n_s_o_r___b_o_o_t_l_o_a_d_e_r___a_p_i.html',1,'Bootloader API'],['../group___b_o_o_t_l_o_a_d_e_r___u_t_i_l_s___a_p_i.html',1,'Bootloader_utils API'],['../group___c_u_s_b___a_p_i.html',1,'Cusb API'],['../group___h_u_b___a_p_i.html',1,'Hub API'],['../group___h_u_b___t_e_s_t___a_p_i.html',1,'Hub_test API'],['../group___l_o_g___a_p_i.html',1,'Log API'],['../group___m_e_m_o_r_y___a_p_i.html',1,'Memory API'],['../group___r_f_m___a_p_i.html',1,'RFM API'],['../group___s_e_n_s_o_r___a_p_i.html',1,'Sensor API'],['../group___s_e_n_s_o_r___t_e_s_t___a_p_i.html',1,'Sensor_test API'],['../group___s_i_m___a_p_i.html',1,'Sim API'],['../group___t_e_s_t___a_p_i.html',1,'Testing API'],['../group___t_i_m_e_r_s___a_p_i.html',1,'Timers API']]]
+  ['aes_20encryption_0',['AES Encryption',['../group__aes__api.html',1,'']]],
+  ['and_20power_20management_1',['Timing and Power Management',['../group__timers__api.html',1,'']]],
+  ['apis_2',['Hub APIs',['../group__hub__apis.html',1,'']]]
 ];

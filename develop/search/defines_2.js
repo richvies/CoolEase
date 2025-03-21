@@ -1,5 +1,5 @@
 var searchData=
 [
-  ['getsboxinvert_0',['getSBoxInvert',['../aes_8c.html#a4223d41bc5587f9c0b6e499004403967',1,'aes.c']]],
-  ['getsboxvalue_1',['getSBoxValue',['../aes_8c.html#a5e1678341a98f95d48365ed9ccaa3586',1,'aes.c']]]
+  ['spi_5fchip_5fdeselect_0',['spi_chip_deselect',['../w25qxx_8c.html#a6abbade827ea980e386bc08a8a3b495e',1,'w25qxx.c']]],
+  ['spi_5fchip_5fselect_1',['spi_chip_select',['../w25qxx_8c.html#a19f2e44beda998f03b70130991ba913d',1,'w25qxx.c']]]
 ];

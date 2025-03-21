@@ -21,7 +21,7 @@
  <tbody>
  <tr id="projectrow">
   <td id="projectalign">
-   <div id="projectname">CoolEase<span id="projectnumber">&#160;develop-acc8581</span>
+   <div id="projectname">CoolEase<span id="projectnumber">&#160;develop-eabc6b5</span>
    </div>
    <div id="projectbrief">Remote Temperature Monitor</div>
   </td>
@@ -82,39 +82,56 @@ $(document).ready(function() { init_codefold(0); });
   <div class="headertitle"><div class="title">tmp112.h</div></div>
 </div><!--header-->
 <div class="contents">
-<a href="tmp112_8h.html">Go to the documentation of this file.</a><div class="fragment"><div class="line"><a id="l00001" name="l00001"></a><span class="lineno">    1</span><span class="preprocessor">#ifndef TMP112_H</span></div>
-<div class="line"><a id="l00002" name="l00002"></a><span class="lineno">    2</span><span class="preprocessor">#define TMP112_H</span></div>
-<div class="line"><a id="l00003" name="l00003"></a><span class="lineno">    3</span> </div>
-<div class="line"><a id="l00004" name="l00004"></a><span class="lineno">    4</span><span class="preprocessor">#include &lt;stdint.h&gt;</span></div>
-<div class="line"><a id="l00005" name="l00005"></a><span class="lineno">    5</span> </div>
-<div class="line"><a id="l00006" name="l00006"></a><span class="lineno"><a class="line" href="tmp112_8h.html#a224d7fb24e2b65745920a665d4a4eb8e">    6</a></span><span class="preprocessor">#define TMP112_I2C_ADDRESS 0x49</span></div>
-<div class="line"><a id="l00007" name="l00007"></a><span class="lineno">    7</span> </div>
-<div class="line"><a id="l00008" name="l00008"></a><span class="lineno"><a class="line" href="tmp112_8h.html#aa927dab6504f74cefc28936c18619a84">    8</a></span><span class="preprocessor">#define TMP112_SEL_TEMP_REG   0x00</span></div>
-<div class="line"><a id="l00009" name="l00009"></a><span class="lineno"><a class="line" href="tmp112_8h.html#abcb2030d5735993c4f448dfef8e247bd">    9</a></span><span class="preprocessor">#define TMP112_SEL_CONFIG_REG 0x01</span></div>
-<div class="line"><a id="l00010" name="l00010"></a><span class="lineno">   10</span> </div>
-<div class="line"><a id="l00011" name="l00011"></a><span class="lineno"><a class="line" href="tmp112_8h.html#a8eead227967b2b1a0ecbdccc5ba85fbf">   11</a></span><span class="preprocessor">#define TMP112_CONFIG_OS_MSB 0XE1</span></div>
-<div class="line"><a id="l00012" name="l00012"></a><span class="lineno"><a class="line" href="tmp112_8h.html#a889086ff4be67ae74106ec2bd1451229">   12</a></span><span class="preprocessor">#define TMP112_CONFIG_OS_LSB 0XA0</span></div>
-<div class="line"><a id="l00013" name="l00013"></a><span class="lineno">   13</span> </div>
-<div class="line"><a id="l00014" name="l00014"></a><span class="lineno"><a class="line" href="tmp112_8h.html#a6ad2b79051be4f18761b64308b10ebb6">   14</a></span><span class="preprocessor">#define TMP112_CONFIG_CM_MSB 0X60</span></div>
-<div class="line"><a id="l00015" name="l00015"></a><span class="lineno"><a class="line" href="tmp112_8h.html#a7f75d447b67d853d6c7670d344510c56">   15</a></span><span class="preprocessor">#define TMP112_CONFIG_CM_LSB 0XA0</span></div>
-<div class="line"><a id="l00016" name="l00016"></a><span class="lineno">   16</span> </div>
-<div class="line"><a id="l00017" name="l00017"></a><span class="lineno"><a class="line" href="tmp112_8h.html#a0bb8e2e4f3f812d92d69754c6ea24600">   17</a></span><span class="preprocessor">#define TMP112_GEN_CALL_ADDR 0X00</span></div>
-<div class="line"><a id="l00018" name="l00018"></a><span class="lineno"><a class="line" href="tmp112_8h.html#a9536420db87442f6692f4fcd0dbb387b">   18</a></span><span class="preprocessor">#define TMP112_RESET_CMD     0X06</span></div>
-<div class="line"><a id="l00019" name="l00019"></a><span class="lineno">   19</span> </div>
-<div class="line"><a id="l00020" name="l00020"></a><span class="lineno">   20</span><span class="keywordtype">void</span> <a class="code hl_function" href="tmp112_8h.html#a5931f5b3204ec45e73d23ca558657c08">tmp112_init</a>(<span class="keywordtype">void</span>);</div>
-<div class="line"><a id="l00021" name="l00021"></a><span class="lineno">   21</span><span class="keywordtype">void</span> <a class="code hl_function" href="tmp112_8h.html#aad3c5f9aa9739d1383c62c4f2f5f80d6">tmp112_end</a>(<span class="keywordtype">void</span>);</div>
-<div class="line"><a id="l00022" name="l00022"></a><span class="lineno">   22</span><span class="keywordtype">void</span> <a class="code hl_function" href="tmp112_8h.html#ad0e06b101f04ed0c699ffc93385cdf82">tmp112_reset</a>(<span class="keywordtype">void</span>);</div>
-<div class="line"><a id="l00023" name="l00023"></a><span class="lineno">   23</span><span class="keywordtype">void</span> <a class="code hl_function" href="tmp112_8h.html#a41ef1d275de1f1ff9da68c8f3d8551e0">tmp112_read_temperature</a>(int16_t* readings, uint8_t num_readings);</div>
-<div class="line"><a id="l00024" name="l00024"></a><span class="lineno">   24</span> </div>
-<div class="line"><a id="l00025" name="l00025"></a><span class="lineno">   25</span><span class="preprocessor">#endif</span></div>
-<div class="ttc" id="atmp112_8h_html_a41ef1d275de1f1ff9da68c8f3d8551e0"><div class="ttname"><a href="tmp112_8h.html#a41ef1d275de1f1ff9da68c8f3d8551e0">tmp112_read_temperature</a></div><div class="ttdeci">void tmp112_read_temperature(int16_t *readings, uint8_t num_readings)</div><div class="ttdef"><b>Definition</b> <a href="tmp112_8c_source.html#l00049">tmp112.c:49</a></div></div>
-<div class="ttc" id="atmp112_8h_html_a5931f5b3204ec45e73d23ca558657c08"><div class="ttname"><a href="tmp112_8h.html#a5931f5b3204ec45e73d23ca558657c08">tmp112_init</a></div><div class="ttdeci">void tmp112_init(void)</div><div class="ttdef"><b>Definition</b> <a href="tmp112_8c_source.html#l00017">tmp112.c:17</a></div></div>
-<div class="ttc" id="atmp112_8h_html_aad3c5f9aa9739d1383c62c4f2f5f80d6"><div class="ttname"><a href="tmp112_8h.html#aad3c5f9aa9739d1383c62c4f2f5f80d6">tmp112_end</a></div><div class="ttdeci">void tmp112_end(void)</div><div class="ttdef"><b>Definition</b> <a href="tmp112_8c_source.html#l00024">tmp112.c:24</a></div></div>
-<div class="ttc" id="atmp112_8h_html_ad0e06b101f04ed0c699ffc93385cdf82"><div class="ttname"><a href="tmp112_8h.html#ad0e06b101f04ed0c699ffc93385cdf82">tmp112_reset</a></div><div class="ttdeci">void tmp112_reset(void)</div><div class="ttdef"><b>Definition</b> <a href="tmp112_8c_source.html#l00042">tmp112.c:42</a></div></div>
+<a href="tmp112_8h.html">Go to the documentation of this file.</a><div class="fragment"><div class="line"><a id="l00001" name="l00001"></a><span class="lineno">    1</span> </div>
+<div class="line"><a id="l00019" name="l00019"></a><span class="lineno">   19</span><span class="preprocessor">#ifndef TMP112_H</span></div>
+<div class="line"><a id="l00020" name="l00020"></a><span class="lineno">   20</span><span class="preprocessor">#define TMP112_H</span></div>
+<div class="line"><a id="l00021" name="l00021"></a><span class="lineno">   21</span> </div>
+<div class="line"><a id="l00022" name="l00022"></a><span class="lineno">   22</span><span class="preprocessor">#include &lt;stdint.h&gt;</span></div>
+<div class="line"><a id="l00023" name="l00023"></a><span class="lineno">   23</span> </div>
+<div class="line"><a id="l00024" name="l00024"></a><span class="lineno">   24</span><span class="preprocessor">#ifdef __cplusplus</span></div>
+<div class="line"><a id="l00025" name="l00025"></a><span class="lineno">   25</span><span class="keyword">extern</span> <span class="stringliteral">&quot;C&quot;</span> {</div>
+<div class="line"><a id="l00026" name="l00026"></a><span class="lineno">   26</span><span class="preprocessor">#endif</span></div>
+<div class="line"><a id="l00027" name="l00027"></a><span class="lineno">   27</span> </div>
+<div class="line"><a id="l00043" name="l00043"></a><span class="lineno"><a class="line" href="group__tmp112__api.html#ga224d7fb24e2b65745920a665d4a4eb8e">   43</a></span><span class="preprocessor">#define TMP112_I2C_ADDRESS 0x49</span></div>
+<div class="line"><a id="l00044" name="l00044"></a><span class="lineno">   44</span> </div>
+<div class="line"><a id="l00048" name="l00048"></a><span class="lineno"><a class="line" href="group__tmp112__api.html#gaa927dab6504f74cefc28936c18619a84">   48</a></span><span class="preprocessor">#define TMP112_SEL_TEMP_REG 0x00</span></div>
+<div class="line"><a id="l00049" name="l00049"></a><span class="lineno">   49</span> </div>
+<div class="line"><a id="l00053" name="l00053"></a><span class="lineno"><a class="line" href="group__tmp112__api.html#gabcb2030d5735993c4f448dfef8e247bd">   53</a></span><span class="preprocessor">#define TMP112_SEL_CONFIG_REG 0x01</span></div>
+<div class="line"><a id="l00054" name="l00054"></a><span class="lineno">   54</span> </div>
+<div class="line"><a id="l00058" name="l00058"></a><span class="lineno"><a class="line" href="group__tmp112__api.html#ga8eead227967b2b1a0ecbdccc5ba85fbf">   58</a></span><span class="preprocessor">#define TMP112_CONFIG_OS_MSB 0XE1</span></div>
+<div class="line"><a id="l00059" name="l00059"></a><span class="lineno">   59</span> </div>
+<div class="line"><a id="l00063" name="l00063"></a><span class="lineno"><a class="line" href="group__tmp112__api.html#ga889086ff4be67ae74106ec2bd1451229">   63</a></span><span class="preprocessor">#define TMP112_CONFIG_OS_LSB 0XA0</span></div>
+<div class="line"><a id="l00064" name="l00064"></a><span class="lineno">   64</span> </div>
+<div class="line"><a id="l00068" name="l00068"></a><span class="lineno"><a class="line" href="group__tmp112__api.html#ga6ad2b79051be4f18761b64308b10ebb6">   68</a></span><span class="preprocessor">#define TMP112_CONFIG_CM_MSB 0X60</span></div>
+<div class="line"><a id="l00069" name="l00069"></a><span class="lineno">   69</span> </div>
+<div class="line"><a id="l00073" name="l00073"></a><span class="lineno"><a class="line" href="group__tmp112__api.html#ga7f75d447b67d853d6c7670d344510c56">   73</a></span><span class="preprocessor">#define TMP112_CONFIG_CM_LSB 0XA0</span></div>
+<div class="line"><a id="l00074" name="l00074"></a><span class="lineno">   74</span> </div>
+<div class="line"><a id="l00078" name="l00078"></a><span class="lineno"><a class="line" href="group__tmp112__api.html#ga0bb8e2e4f3f812d92d69754c6ea24600">   78</a></span><span class="preprocessor">#define TMP112_GEN_CALL_ADDR 0X00</span></div>
+<div class="line"><a id="l00079" name="l00079"></a><span class="lineno">   79</span> </div>
+<div class="line"><a id="l00083" name="l00083"></a><span class="lineno"><a class="line" href="group__tmp112__api.html#ga9536420db87442f6692f4fcd0dbb387b">   83</a></span><span class="preprocessor">#define TMP112_RESET_CMD 0X06</span></div>
+<div class="line"><a id="l00084" name="l00084"></a><span class="lineno">   84</span> </div>
+<div class="line"><a id="l00089" name="l00089"></a><span class="lineno">   89</span><span class="keywordtype">void</span> <a class="code hl_function" href="group__tmp112__api.html#ga5931f5b3204ec45e73d23ca558657c08">tmp112_init</a>(<span class="keywordtype">void</span>);</div>
+<div class="line"><a id="l00090" name="l00090"></a><span class="lineno">   90</span> </div>
+<div class="line"><a id="l00095" name="l00095"></a><span class="lineno">   95</span><span class="keywordtype">void</span> <a class="code hl_function" href="group__tmp112__api.html#gaad3c5f9aa9739d1383c62c4f2f5f80d6">tmp112_end</a>(<span class="keywordtype">void</span>);</div>
+<div class="line"><a id="l00096" name="l00096"></a><span class="lineno">   96</span> </div>
+<div class="line"><a id="l00101" name="l00101"></a><span class="lineno">  101</span><span class="keywordtype">void</span> <a class="code hl_function" href="group__tmp112__api.html#gad0e06b101f04ed0c699ffc93385cdf82">tmp112_reset</a>(<span class="keywordtype">void</span>);</div>
+<div class="line"><a id="l00102" name="l00102"></a><span class="lineno">  102</span> </div>
+<div class="line"><a id="l00109" name="l00109"></a><span class="lineno">  109</span><span class="keywordtype">void</span> <a class="code hl_function" href="group__tmp112__api.html#ga41ef1d275de1f1ff9da68c8f3d8551e0">tmp112_read_temperature</a>(int16_t* readings, uint8_t num_readings);</div>
+<div class="line"><a id="l00110" name="l00110"></a><span class="lineno">  110</span> </div>
+ <span class="comment">/* End of tmp112_api group */</span> <span class="comment">/* End of temperature_api group */</span> <span class="comment">/* End of sensor group */</span><div class="line"><a id="l00114" name="l00114"></a><span class="lineno">  114</span> </div>
+<div class="line"><a id="l00115" name="l00115"></a><span class="lineno">  115</span><span class="preprocessor">#ifdef __cplusplus</span></div>
+<div class="line"><a id="l00116" name="l00116"></a><span class="lineno">  116</span>}</div>
+<div class="line"><a id="l00117" name="l00117"></a><span class="lineno">  117</span><span class="preprocessor">#endif</span></div>
+<div class="line"><a id="l00118" name="l00118"></a><span class="lineno">  118</span> </div>
+<div class="line"><a id="l00119" name="l00119"></a><span class="lineno">  119</span><span class="preprocessor">#endif </span><span class="comment">/* TMP112_H */</span><span class="preprocessor"></span></div>
+<div class="ttc" id="agroup__tmp112__api_html_ga41ef1d275de1f1ff9da68c8f3d8551e0"><div class="ttname"><a href="group__tmp112__api.html#ga41ef1d275de1f1ff9da68c8f3d8551e0">tmp112_read_temperature</a></div><div class="ttdeci">void tmp112_read_temperature(int16_t *readings, uint8_t num_readings)</div><div class="ttdoc">Read temperature measurements from the TMP112 sensor.</div><div class="ttdef"><b>Definition</b> <a href="tmp112_8c_source.html#l00061">tmp112.c:61</a></div></div>
+<div class="ttc" id="agroup__tmp112__api_html_ga5931f5b3204ec45e73d23ca558657c08"><div class="ttname"><a href="group__tmp112__api.html#ga5931f5b3204ec45e73d23ca558657c08">tmp112_init</a></div><div class="ttdeci">void tmp112_init(void)</div><div class="ttdoc">Initialize the TMP112 temperature sensor.</div><div class="ttdef"><b>Definition</b> <a href="tmp112_8c_source.html#l00029">tmp112.c:29</a></div></div>
+<div class="ttc" id="agroup__tmp112__api_html_gaad3c5f9aa9739d1383c62c4f2f5f80d6"><div class="ttname"><a href="group__tmp112__api.html#gaad3c5f9aa9739d1383c62c4f2f5f80d6">tmp112_end</a></div><div class="ttdeci">void tmp112_end(void)</div><div class="ttdoc">Terminate TMP112 operations.</div><div class="ttdef"><b>Definition</b> <a href="tmp112_8c_source.html#l00036">tmp112.c:36</a></div></div>
+<div class="ttc" id="agroup__tmp112__api_html_gad0e06b101f04ed0c699ffc93385cdf82"><div class="ttname"><a href="group__tmp112__api.html#gad0e06b101f04ed0c699ffc93385cdf82">tmp112_reset</a></div><div class="ttdeci">void tmp112_reset(void)</div><div class="ttdoc">Reset the TMP112 sensor to default state.</div><div class="ttdef"><b>Definition</b> <a href="tmp112_8c_source.html#l00054">tmp112.c:54</a></div></div>
 </div><!-- fragment --></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Thu Mar 20 2025 05:49:15 for CoolEase by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8
+Generated on Fri Mar 21 2025 10:20:20 for CoolEase by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8
 </small></address>
 </body>
 </html>

@@ -21,7 +21,7 @@
  <tbody>
  <tr id="projectrow">
   <td id="projectalign">
-   <div id="projectname">CoolEase<span id="projectnumber">&#160;develop-acc8581</span>
+   <div id="projectname">CoolEase<span id="projectnumber">&#160;develop-eabc6b5</span>
    </div>
    <div id="projectbrief">Remote Temperature Monitor</div>
   </td>
@@ -82,31 +82,45 @@ $(document).ready(function() { init_codefold(0); });
   <div class="headertitle"><div class="title">aes.h</div></div>
 </div><!--header-->
 <div class="contents">
-<a href="aes_8h.html">Go to the documentation of this file.</a><div class="fragment"><div class="line"><a id="l00001" name="l00001"></a><span class="lineno">    1</span><span class="preprocessor">#ifndef AES_H</span></div>
-<div class="line"><a id="l00002" name="l00002"></a><span class="lineno">    2</span><span class="preprocessor">#define AES_H</span></div>
-<div class="line"><a id="l00003" name="l00003"></a><span class="lineno">    3</span> </div>
-<div class="line"><a id="l00004" name="l00004"></a><span class="lineno">    4</span><span class="preprocessor">#include &lt;stdint.h&gt;</span></div>
-<div class="line"><a id="l00005" name="l00005"></a><span class="lineno">    5</span> </div>
-<div class="line"><a id="l00006" name="l00006"></a><span class="lineno"><a class="line" href="aes_8h.html#ada62b7b09dab0d7ef92c04364b16b5b5">    6</a></span><span class="preprocessor">#define AES_BLOCKLEN 16 </span><span class="comment">// Block length in bytes - AES is 128b block only</span></div>
-<div class="line"><a id="l00007" name="l00007"></a><span class="lineno">    7</span> </div>
-<div class="line"><a id="l00008" name="l00008"></a><span class="lineno"><a class="line" href="aes_8h.html#ac62474b957a4a66dd6fd9b3730ca4ccb">    8</a></span><span class="preprocessor">#define AES_KEY_LEN      16 </span><span class="comment">// Key length in bytes</span></div>
-<div class="line"><a id="l00009" name="l00009"></a><span class="lineno"><a class="line" href="aes_8h.html#a089ff1ad87c1dc8583da9cfdf02d011e">    9</a></span><span class="preprocessor">#define AES_KEY_EXP_SIZE 176</span></div>
-<div class="line"><a id="l00010" name="l00010"></a><span class="lineno">   10</span> </div>
-<div class="line"><a id="l00011" name="l00011"></a><span class="lineno">   11</span><span class="keywordtype">void</span> <a class="code hl_function" href="aes_8h.html#a2ebb4b2205d1934f06ac14331b55f517">aes_init</a>(uint8_t key[16]);</div>
-<div class="line"><a id="l00012" name="l00012"></a><span class="lineno">   12</span><span class="keywordtype">void</span> <a class="code hl_function" href="aes_8h.html#aebc1b17d8257697569a23da4fc136846">aes_ecb_encrypt</a>(uint8_t* <a class="code hl_variable" href="cusb_8c.html#ac098a8c9b9141e843bf7cb9a0b9710c1">buf</a>);</div>
-<div class="line"><a id="l00013" name="l00013"></a><span class="lineno">   13</span><span class="keywordtype">void</span> <a class="code hl_function" href="aes_8h.html#a99d253b8fe6560ebd0a7d753d38a9db6">aes_ecb_decrypt</a>(uint8_t* <a class="code hl_variable" href="cusb_8c.html#ac098a8c9b9141e843bf7cb9a0b9710c1">buf</a>);</div>
-<div class="line"><a id="l00014" name="l00014"></a><span class="lineno">   14</span><span class="keywordtype">void</span> <a class="code hl_function" href="aes_8h.html#ade8575bdd4aa6c6156068b76047f9811">aes_generate_random</a>(uint8_t* <a class="code hl_variable" href="cusb_8c.html#ac098a8c9b9141e843bf7cb9a0b9710c1">buf</a>, uint8_t len);</div>
-<div class="line"><a id="l00015" name="l00015"></a><span class="lineno">   15</span> </div>
-<div class="line"><a id="l00016" name="l00016"></a><span class="lineno">   16</span><span class="preprocessor">#endif </span><span class="comment">// _AES_H_</span></div>
-<div class="ttc" id="aaes_8h_html_a2ebb4b2205d1934f06ac14331b55f517"><div class="ttname"><a href="aes_8h.html#a2ebb4b2205d1934f06ac14331b55f517">aes_init</a></div><div class="ttdeci">void aes_init(uint8_t key[16])</div><div class="ttdef"><b>Definition</b> <a href="aes_8c_source.html#l00426">aes.c:426</a></div></div>
-<div class="ttc" id="aaes_8h_html_a99d253b8fe6560ebd0a7d753d38a9db6"><div class="ttname"><a href="aes_8h.html#a99d253b8fe6560ebd0a7d753d38a9db6">aes_ecb_decrypt</a></div><div class="ttdeci">void aes_ecb_decrypt(uint8_t *buf)</div><div class="ttdef"><b>Definition</b> <a href="aes_8c_source.html#l00440">aes.c:440</a></div></div>
-<div class="ttc" id="aaes_8h_html_ade8575bdd4aa6c6156068b76047f9811"><div class="ttname"><a href="aes_8h.html#ade8575bdd4aa6c6156068b76047f9811">aes_generate_random</a></div><div class="ttdeci">void aes_generate_random(uint8_t *buf, uint8_t len)</div><div class="ttdef"><b>Definition</b> <a href="aes_8c_source.html#l00446">aes.c:446</a></div></div>
-<div class="ttc" id="aaes_8h_html_aebc1b17d8257697569a23da4fc136846"><div class="ttname"><a href="aes_8h.html#aebc1b17d8257697569a23da4fc136846">aes_ecb_encrypt</a></div><div class="ttdeci">void aes_ecb_encrypt(uint8_t *buf)</div><div class="ttdef"><b>Definition</b> <a href="aes_8c_source.html#l00434">aes.c:434</a></div></div>
-<div class="ttc" id="acusb_8c_html_ac098a8c9b9141e843bf7cb9a0b9710c1"><div class="ttname"><a href="cusb_8c.html#ac098a8c9b9141e843bf7cb9a0b9710c1">buf</a></div><div class="ttdeci">uint32_t buf[HID_REPORT_SIZE_WORDS]</div><div class="ttdef"><b>Definition</b> <a href="cusb_8c_source.html#l00342">cusb.c:342</a></div></div>
+<a href="aes_8h.html">Go to the documentation of this file.</a><div class="fragment"><div class="line"><a id="l00001" name="l00001"></a><span class="lineno">    1</span> </div>
+<div class="line"><a id="l00019" name="l00019"></a><span class="lineno">   19</span><span class="preprocessor">#ifndef AES_H</span></div>
+<div class="line"><a id="l00020" name="l00020"></a><span class="lineno">   20</span><span class="preprocessor">#define AES_H</span></div>
+<div class="line"><a id="l00021" name="l00021"></a><span class="lineno">   21</span> </div>
+<div class="line"><a id="l00022" name="l00022"></a><span class="lineno">   22</span><span class="preprocessor">#include &lt;stdint.h&gt;</span></div>
+<div class="line"><a id="l00023" name="l00023"></a><span class="lineno">   23</span> </div>
+<div class="line"><a id="l00024" name="l00024"></a><span class="lineno">   24</span><span class="preprocessor">#ifdef __cplusplus</span></div>
+<div class="line"><a id="l00025" name="l00025"></a><span class="lineno">   25</span><span class="keyword">extern</span> <span class="stringliteral">&quot;C&quot;</span> {</div>
+<div class="line"><a id="l00026" name="l00026"></a><span class="lineno">   26</span><span class="preprocessor">#endif</span></div>
+<div class="line"><a id="l00027" name="l00027"></a><span class="lineno">   27</span> </div>
+<div class="line"><a id="l00043" name="l00043"></a><span class="lineno"><a class="line" href="group__aes__api.html#gada62b7b09dab0d7ef92c04364b16b5b5">   43</a></span><span class="preprocessor">#define AES_BLOCKLEN 16</span></div>
+<div class="line"><a id="l00044" name="l00044"></a><span class="lineno">   44</span> </div>
+<div class="line"><a id="l00048" name="l00048"></a><span class="lineno"><a class="line" href="group__aes__api.html#gac62474b957a4a66dd6fd9b3730ca4ccb">   48</a></span><span class="preprocessor">#define AES_KEY_LEN 16</span></div>
+<div class="line"><a id="l00049" name="l00049"></a><span class="lineno">   49</span> </div>
+<div class="line"><a id="l00053" name="l00053"></a><span class="lineno"><a class="line" href="group__aes__api.html#ga089ff1ad87c1dc8583da9cfdf02d011e">   53</a></span><span class="preprocessor">#define AES_KEY_EXP_SIZE 176</span></div>
+<div class="line"><a id="l00054" name="l00054"></a><span class="lineno">   54</span> </div>
+<div class="line"><a id="l00060" name="l00060"></a><span class="lineno">   60</span><span class="keywordtype">void</span> <a class="code hl_function" href="group__aes__api.html#ga2ebb4b2205d1934f06ac14331b55f517">aes_init</a>(uint8_t key[16]);</div>
+<div class="line"><a id="l00061" name="l00061"></a><span class="lineno">   61</span> </div>
+<div class="line"><a id="l00067" name="l00067"></a><span class="lineno">   67</span><span class="keywordtype">void</span> <a class="code hl_function" href="group__aes__api.html#gaebc1b17d8257697569a23da4fc136846">aes_ecb_encrypt</a>(uint8_t* <a class="code hl_variable" href="cusb_8c.html#ac098a8c9b9141e843bf7cb9a0b9710c1">buf</a>);</div>
+<div class="line"><a id="l00068" name="l00068"></a><span class="lineno">   68</span> </div>
+<div class="line"><a id="l00074" name="l00074"></a><span class="lineno">   74</span><span class="keywordtype">void</span> <a class="code hl_function" href="group__aes__api.html#ga99d253b8fe6560ebd0a7d753d38a9db6">aes_ecb_decrypt</a>(uint8_t* <a class="code hl_variable" href="cusb_8c.html#ac098a8c9b9141e843bf7cb9a0b9710c1">buf</a>);</div>
+<div class="line"><a id="l00075" name="l00075"></a><span class="lineno">   75</span> </div>
+<div class="line"><a id="l00082" name="l00082"></a><span class="lineno">   82</span><span class="keywordtype">void</span> <a class="code hl_function" href="group__aes__api.html#gade8575bdd4aa6c6156068b76047f9811">aes_generate_random</a>(uint8_t* <a class="code hl_variable" href="cusb_8c.html#ac098a8c9b9141e843bf7cb9a0b9710c1">buf</a>, uint8_t len);</div>
+<div class="line"><a id="l00083" name="l00083"></a><span class="lineno">   83</span> </div>
+ <span class="comment">/* End of aes_api group */</span> <span class="comment">/* End of crypto_api group */</span> <span class="comment">/* End of common group */</span><div class="line"><a id="l00087" name="l00087"></a><span class="lineno">   87</span> </div>
+<div class="line"><a id="l00088" name="l00088"></a><span class="lineno">   88</span><span class="preprocessor">#ifdef __cplusplus</span></div>
+<div class="line"><a id="l00089" name="l00089"></a><span class="lineno">   89</span>}</div>
+<div class="line"><a id="l00090" name="l00090"></a><span class="lineno">   90</span><span class="preprocessor">#endif</span></div>
+<div class="line"><a id="l00091" name="l00091"></a><span class="lineno">   91</span> </div>
+<div class="line"><a id="l00092" name="l00092"></a><span class="lineno">   92</span><span class="preprocessor">#endif </span><span class="comment">// AES_H</span></div>
+<div class="ttc" id="acusb_8c_html_ac098a8c9b9141e843bf7cb9a0b9710c1"><div class="ttname"><a href="cusb_8c.html#ac098a8c9b9141e843bf7cb9a0b9710c1">buf</a></div><div class="ttdeci">uint32_t buf[HID_REPORT_SIZE_WORDS]</div><div class="ttdef"><b>Definition</b> <a href="cusb_8c_source.html#l00319">cusb.c:319</a></div></div>
+<div class="ttc" id="agroup__aes__api_html_ga2ebb4b2205d1934f06ac14331b55f517"><div class="ttname"><a href="group__aes__api.html#ga2ebb4b2205d1934f06ac14331b55f517">aes_init</a></div><div class="ttdeci">void aes_init(uint8_t key[16])</div><div class="ttdoc">Initialize AES encryption with the provided key.</div><div class="ttdef"><b>Definition</b> <a href="aes_8c_source.html#l00435">aes.c:435</a></div></div>
+<div class="ttc" id="agroup__aes__api_html_ga99d253b8fe6560ebd0a7d753d38a9db6"><div class="ttname"><a href="group__aes__api.html#ga99d253b8fe6560ebd0a7d753d38a9db6">aes_ecb_decrypt</a></div><div class="ttdeci">void aes_ecb_decrypt(uint8_t *buf)</div><div class="ttdoc">Decrypt a block using AES-ECB mode.</div><div class="ttdef"><b>Definition</b> <a href="aes_8c_source.html#l00449">aes.c:449</a></div></div>
+<div class="ttc" id="agroup__aes__api_html_gade8575bdd4aa6c6156068b76047f9811"><div class="ttname"><a href="group__aes__api.html#gade8575bdd4aa6c6156068b76047f9811">aes_generate_random</a></div><div class="ttdeci">void aes_generate_random(uint8_t *buf, uint8_t len)</div><div class="ttdoc">Generate cryptographically secure random bytes.</div><div class="ttdef"><b>Definition</b> <a href="aes_8c_source.html#l00455">aes.c:455</a></div></div>
+<div class="ttc" id="agroup__aes__api_html_gaebc1b17d8257697569a23da4fc136846"><div class="ttname"><a href="group__aes__api.html#gaebc1b17d8257697569a23da4fc136846">aes_ecb_encrypt</a></div><div class="ttdeci">void aes_ecb_encrypt(uint8_t *buf)</div><div class="ttdoc">Encrypt a block using AES-ECB mode.</div><div class="ttdef"><b>Definition</b> <a href="aes_8c_source.html#l00443">aes.c:443</a></div></div>
 </div><!-- fragment --></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Thu Mar 20 2025 05:49:15 for CoolEase by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8
+Generated on Fri Mar 21 2025 10:20:20 for CoolEase by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8
 </small></address>
 </body>
 </html>

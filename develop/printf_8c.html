@@ -21,7 +21,7 @@
  <tbody>
  <tr id="projectrow">
   <td id="projectalign">
-   <div id="projectname">CoolEase<span id="projectnumber">&#160;develop-acc8581</span>
+   <div id="projectname">CoolEase<span id="projectnumber">&#160;develop-eabc6b5</span>
    </div>
    <div id="projectbrief">Remote Temperature Monitor</div>
   </td>
@@ -89,7 +89,7 @@ Include dependency graph for printf.c:</div>
 <div class="center"><img src="printf_8c__incl.png" border="0" usemap="#acommon_2printf_8c" alt=""/></div>
 <map name="acommon_2printf_8c" id="acommon_2printf_8c">
 <area shape="rect" title=" " alt="" coords="108,5,236,31"/>
-<area shape="rect" href="printf_8h.html" title=" " alt="" coords="107,79,237,104"/>
+<area shape="rect" href="printf_8h.html" title="Lightweight printf implementation." alt="" coords="107,79,237,104"/>
 <area shape="poly" title=" " alt="" coords="175,31,175,65,169,65,169,31"/>
 <area shape="rect" title=" " alt="" coords="5,152,88,177"/>
 <area shape="poly" title=" " alt="" coords="155,33,127,54,98,80,76,111,60,141,55,138,72,108,94,77,123,49,152,29"/>
@@ -108,232 +108,31 @@ Include dependency graph for printf.c:</div>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="define-members" name="define-members"></a>
 Macros</h2></td></tr>
-<tr class="memitem:a4278b980717163a8ef983ce3fbf0b9db" id="r_a4278b980717163a8ef983ce3fbf0b9db"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="printf_8c.html#a4278b980717163a8ef983ce3fbf0b9db">PRINTF_NTOA_BUFFER_SIZE</a>&#160;&#160;&#160;32</td></tr>
-<tr class="separator:a4278b980717163a8ef983ce3fbf0b9db"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aed09d46fa1c0666626a96be4e50dd032" id="r_aed09d46fa1c0666626a96be4e50dd032"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="printf_8c.html#aed09d46fa1c0666626a96be4e50dd032">PRINTF_MAX_STR_LEN</a>&#160;&#160;&#160;1024</td></tr>
-<tr class="separator:aed09d46fa1c0666626a96be4e50dd032"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga4278b980717163a8ef983ce3fbf0b9db" id="r_ga4278b980717163a8ef983ce3fbf0b9db"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__printf__api.html#ga4278b980717163a8ef983ce3fbf0b9db">PRINTF_NTOA_BUFFER_SIZE</a>&#160;&#160;&#160;32</td></tr>
+<tr class="separator:ga4278b980717163a8ef983ce3fbf0b9db"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gaed09d46fa1c0666626a96be4e50dd032" id="r_gaed09d46fa1c0666626a96be4e50dd032"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__printf__api.html#gaed09d46fa1c0666626a96be4e50dd032">PRINTF_MAX_STR_LEN</a>&#160;&#160;&#160;1024</td></tr>
+<tr class="separator:gaed09d46fa1c0666626a96be4e50dd032"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="func-members" name="func-members"></a>
 Functions</h2></td></tr>
-<tr class="memitem:aabf1349d56fc564244bb4f0b296e9505" id="r_aabf1349d56fc564244bb4f0b296e9505"><td class="memItemLeft" align="right" valign="top">static uint32_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="printf_8c.html#aabf1349d56fc564244bb4f0b296e9505">_strnlen_s</a> (const char *str, uint32_t maxsize)</td></tr>
-<tr class="separator:aabf1349d56fc564244bb4f0b296e9505"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:af35948cc587f96f5a3cd0a169b96c379" id="r_af35948cc587f96f5a3cd0a169b96c379"><td class="memItemLeft" align="right" valign="top">static uint32_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="printf_8c.html#af35948cc587f96f5a3cd0a169b96c379">_ntoa_format</a> (<a class="el" href="printf_8h.html#a0f103da436a675bb6f53565c5144dc65">out_fct_type</a> out, uint32_t value, uint32_t base, uint32_t width, bool negative)</td></tr>
-<tr class="separator:af35948cc587f96f5a3cd0a169b96c379"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a7929c46dcdbb8a4807f26525cda33a9d" id="r_a7929c46dcdbb8a4807f26525cda33a9d"><td class="memItemLeft" align="right" valign="top">uint32_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="printf_8c.html#a7929c46dcdbb8a4807f26525cda33a9d">fnprintf</a> (<a class="el" href="printf_8h.html#a0f103da436a675bb6f53565c5144dc65">out_fct_type</a> out, const char *format, va_list va)</td></tr>
-<tr class="separator:a7929c46dcdbb8a4807f26525cda33a9d"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a14ddb74d329a74778ca6df14015ba172" id="r_a14ddb74d329a74778ca6df14015ba172"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="printf_8c.html#a14ddb74d329a74778ca6df14015ba172">_is_digit</a> (char ch)</td></tr>
-<tr class="separator:a14ddb74d329a74778ca6df14015ba172"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a0e1d309a61b275b12e86f4c35bff7217" id="r_a0e1d309a61b275b12e86f4c35bff7217"><td class="memItemLeft" align="right" valign="top">uint32_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="printf_8c.html#a0e1d309a61b275b12e86f4c35bff7217">_atoi</a> (const char **str)</td></tr>
-<tr class="separator:a0e1d309a61b275b12e86f4c35bff7217"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gaabf1349d56fc564244bb4f0b296e9505" id="r_gaabf1349d56fc564244bb4f0b296e9505"><td class="memItemLeft" align="right" valign="top">static uint32_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__printf__api.html#gaabf1349d56fc564244bb4f0b296e9505">_strnlen_s</a> (const char *str, uint32_t maxsize)</td></tr>
+<tr class="separator:gaabf1349d56fc564244bb4f0b296e9505"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gaf35948cc587f96f5a3cd0a169b96c379" id="r_gaf35948cc587f96f5a3cd0a169b96c379"><td class="memItemLeft" align="right" valign="top">static uint32_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__printf__api.html#gaf35948cc587f96f5a3cd0a169b96c379">_ntoa_format</a> (<a class="el" href="group__printf__api.html#ga0f103da436a675bb6f53565c5144dc65">out_fct_type</a> out, uint32_t value, uint32_t base, uint32_t width, bool negative)</td></tr>
+<tr class="separator:gaf35948cc587f96f5a3cd0a169b96c379"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga7929c46dcdbb8a4807f26525cda33a9d" id="r_ga7929c46dcdbb8a4807f26525cda33a9d"><td class="memItemLeft" align="right" valign="top">uint32_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__printf__api.html#ga7929c46dcdbb8a4807f26525cda33a9d">fnprintf</a> (<a class="el" href="group__printf__api.html#ga0f103da436a675bb6f53565c5144dc65">out_fct_type</a> out, const char *format, va_list va)</td></tr>
+<tr class="memdesc:ga7929c46dcdbb8a4807f26525cda33a9d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Format and output a string using a custom output function.  <br /></td></tr>
+<tr class="separator:ga7929c46dcdbb8a4807f26525cda33a9d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga14ddb74d329a74778ca6df14015ba172" id="r_ga14ddb74d329a74778ca6df14015ba172"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__printf__api.html#ga14ddb74d329a74778ca6df14015ba172">_is_digit</a> (char ch)</td></tr>
+<tr class="memdesc:ga14ddb74d329a74778ca6df14015ba172"><td class="mdescLeft">&#160;</td><td class="mdescRight">Check if a character is a digit.  <br /></td></tr>
+<tr class="separator:ga14ddb74d329a74778ca6df14015ba172"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga0e1d309a61b275b12e86f4c35bff7217" id="r_ga0e1d309a61b275b12e86f4c35bff7217"><td class="memItemLeft" align="right" valign="top">uint32_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__printf__api.html#ga0e1d309a61b275b12e86f4c35bff7217">_atoi</a> (const char **str)</td></tr>
+<tr class="memdesc:ga0e1d309a61b275b12e86f4c35bff7217"><td class="mdescLeft">&#160;</td><td class="mdescRight">Convert a string to an integer.  <br /></td></tr>
+<tr class="separator:ga0e1d309a61b275b12e86f4c35bff7217"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
-<h2 class="groupheader">Macro Definition Documentation</h2>
-<a id="aed09d46fa1c0666626a96be4e50dd032" name="aed09d46fa1c0666626a96be4e50dd032"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#aed09d46fa1c0666626a96be4e50dd032">&#9670;&#160;</a></span>PRINTF_MAX_STR_LEN</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">#define PRINTF_MAX_STR_LEN&#160;&#160;&#160;1024</td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p class="definition">Definition at line <a class="el" href="printf_8c_source.html#l00044">44</a> of file <a class="el" href="printf_8c_source.html">printf.c</a>.</p>
-
-</div>
-</div>
-<a id="a4278b980717163a8ef983ce3fbf0b9db" name="a4278b980717163a8ef983ce3fbf0b9db"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a4278b980717163a8ef983ce3fbf0b9db">&#9670;&#160;</a></span>PRINTF_NTOA_BUFFER_SIZE</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">#define PRINTF_NTOA_BUFFER_SIZE&#160;&#160;&#160;32</td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p class="definition">Definition at line <a class="el" href="printf_8c_source.html#l00042">42</a> of file <a class="el" href="printf_8c_source.html">printf.c</a>.</p>
-
-</div>
-</div>
-<h2 class="groupheader">Function Documentation</h2>
-<a id="a0e1d309a61b275b12e86f4c35bff7217" name="a0e1d309a61b275b12e86f4c35bff7217"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a0e1d309a61b275b12e86f4c35bff7217">&#9670;&#160;</a></span>_atoi()</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">uint32_t _atoi </td>
-          <td>(</td>
-          <td class="paramtype">const char **&#160;</td>
-          <td class="paramname"><em>str</em></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p class="definition">Definition at line <a class="el" href="printf_8c_source.html#l00209">209</a> of file <a class="el" href="printf_8c_source.html">printf.c</a>.</p>
-
-</div>
-</div>
-<a id="a14ddb74d329a74778ca6df14015ba172" name="a14ddb74d329a74778ca6df14015ba172"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a14ddb74d329a74778ca6df14015ba172">&#9670;&#160;</a></span>_is_digit()</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">bool _is_digit </td>
-          <td>(</td>
-          <td class="paramtype">char&#160;</td>
-          <td class="paramname"><em>ch</em></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p class="definition">Definition at line <a class="el" href="printf_8c_source.html#l00205">205</a> of file <a class="el" href="printf_8c_source.html">printf.c</a>.</p>
-
-</div>
-</div>
-<a id="af35948cc587f96f5a3cd0a169b96c379" name="af35948cc587f96f5a3cd0a169b96c379"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#af35948cc587f96f5a3cd0a169b96c379">&#9670;&#160;</a></span>_ntoa_format()</h2>
-
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">static uint32_t _ntoa_format </td>
-          <td>(</td>
-          <td class="paramtype"><a class="el" href="printf_8h.html#a0f103da436a675bb6f53565c5144dc65">out_fct_type</a>&#160;</td>
-          <td class="paramname"><em>out</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">uint32_t&#160;</td>
-          <td class="paramname"><em>value</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">uint32_t&#160;</td>
-          <td class="paramname"><em>base</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">uint32_t&#160;</td>
-          <td class="paramname"><em>width</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">bool&#160;</td>
-          <td class="paramname"><em>negative</em>&#160;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td></td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">static</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-
-<p class="definition">Definition at line <a class="el" href="printf_8c_source.html#l00062">62</a> of file <a class="el" href="printf_8c_source.html">printf.c</a>.</p>
-
-</div>
-</div>
-<a id="aabf1349d56fc564244bb4f0b296e9505" name="aabf1349d56fc564244bb4f0b296e9505"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#aabf1349d56fc564244bb4f0b296e9505">&#9670;&#160;</a></span>_strnlen_s()</h2>
-
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">static uint32_t _strnlen_s </td>
-          <td>(</td>
-          <td class="paramtype">const char *&#160;</td>
-          <td class="paramname"><em>str</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">uint32_t&#160;</td>
-          <td class="paramname"><em>maxsize</em>&#160;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td></td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">static</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-
-<p class="definition">Definition at line <a class="el" href="printf_8c_source.html#l00051">51</a> of file <a class="el" href="printf_8c_source.html">printf.c</a>.</p>
-
-</div>
-</div>
-<a id="a7929c46dcdbb8a4807f26525cda33a9d" name="a7929c46dcdbb8a4807f26525cda33a9d"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a7929c46dcdbb8a4807f26525cda33a9d">&#9670;&#160;</a></span>fnprintf()</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">uint32_t fnprintf </td>
-          <td>(</td>
-          <td class="paramtype"><a class="el" href="printf_8h.html#a0f103da436a675bb6f53565c5144dc65">out_fct_type</a>&#160;</td>
-          <td class="paramname"><em>out</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">const char *&#160;</td>
-          <td class="paramname"><em>format</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">va_list&#160;</td>
-          <td class="paramname"><em>va</em>&#160;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p class="definition">Definition at line <a class="el" href="printf_8c_source.html#l00101">101</a> of file <a class="el" href="printf_8c_source.html">printf.c</a>.</p>
-
-</div>
-</div>
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Thu Mar 20 2025 05:49:15 for CoolEase by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8
+Generated on Fri Mar 21 2025 10:20:20 for CoolEase by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8
 </small></address>
 </body>
 </html>

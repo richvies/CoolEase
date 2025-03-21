@@ -1,7 +1,7 @@
 <map id="sensor/include/sensor/sensor.h" name="sensor/include/sensor/sensor.h">
-<area shape="rect" id="Node000001" title="Sensor Header File." alt="" coords="67,5,229,45"/>
+<area shape="rect" id="Node000001" title="Sensor Module Header File." alt="" coords="73,5,236,45"/>
 <area shape="rect" id="Node000002" href="$sensor_8c.html" title="Sensor Source File." alt="" coords="5,93,128,119"/>
-<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="120,57,81,95,77,91,116,53"/>
-<area shape="rect" id="Node000003" href="$sensor__test_8c.html" title="Sensor testing Source File." alt="" coords="152,93,307,119"/>
-<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="180,53,219,91,215,95,176,57"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="125,57,82,95,78,91,121,53"/>
+<area shape="rect" id="Node000003" href="$test__sensor_8c.html" title=" " alt="" coords="153,93,335,119"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="188,52,232,91,229,95,185,56"/>
 </map>

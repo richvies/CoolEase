@@ -1,4 +1,5 @@
 var searchData=
 [
-  ['internal_0',['internal',['../group___b_a_t_t_e_r_y___i_n_t.html',1,'Battery Internal'],['../group___h_u_b___b_o_o_t_l_o_a_d_e_r___i_n_t.html',1,'Bootloader Internal'],['../group___s_e_n_s_o_r___b_o_o_t_l_o_a_d_e_r___i_n_t.html',1,'Bootloader Internal'],['../group___b_o_o_t_l_o_a_d_e_r___u_t_i_l_s___i_n_t.html',1,'Bootloader_utils Internal'],['../group___c_u_s_b___i_n_t.html',1,'Cusb Internal'],['../group___h_u_b___i_n_t.html',1,'Hub Internal'],['../group___h_u_b___t_e_s_t___i_n_t.html',1,'Hub_test Internal'],['../group___l_o_g___i_n_t.html',1,'Log Internal'],['../group___m_e_m_o_r_y___i_n_t.html',1,'Memory Internal'],['../group___r_f_m___i_n_t.html',1,'RFM Internal'],['../group___s_e_n_s_o_r___i_n_t.html',1,'Sensor Internal'],['../group___s_e_n_s_o_r___t_e_s_t___i_n_t.html',1,'Sensor_test Internal'],['../group___s_i_m___i_n_t.html',1,'Sim Internal'],['../group___t_e_s_t___i_n_t.html',1,'Testing Internal'],['../group___t_i_m_e_r_s___i_n_t.html',1,'Timers Internal']]]
+  ['flash_20memory_20interface_0',['Flash Memory Interface',['../group__flash__api.html',1,'']]],
+  ['formatted_20output_1',['Formatted Output',['../group__printf__api.html',1,'']]]
 ];

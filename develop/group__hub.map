@@ -1,0 +1,8 @@
+<map id="Hub" name="Hub">
+<area shape="rect" id="Node000004" href="$group__bootloader__api.html" title="Hub bootloader functionality and interfaces." alt="" coords="113,5,267,31"/>
+<area shape="rect" id="Node000002" href="$group__cusb__api.html" title="Hub USB HID driver interface for device management." alt="" coords="129,55,251,80"/>
+<area shape="rect" id="Node000006" href="$group__flash__api.html" title="W25Q series SPI flash memory driver interface." alt="" coords="101,104,279,129"/>
+<area shape="rect" id="Node000001" title="Hub module for sensor management." alt="" coords="5,104,53,129"/>
+<area shape="rect" id="Node000003" href="$group__hub__apis.html" title="Public interfaces for sensor management." alt="" coords="150,153,230,179"/>
+<area shape="rect" id="Node000005" href="$group__sim__api.html" title="Cellular modem (SIM800) communication and control interface." alt="" coords="124,203,256,228"/>
+</map>

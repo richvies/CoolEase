@@ -21,7 +21,7 @@
  <tbody>
  <tr id="projectrow">
   <td id="projectalign">
-   <div id="projectname">CoolEase<span id="projectnumber">&#160;develop-acc8581</span>
+   <div id="projectname">CoolEase<span id="projectnumber">&#160;develop-eabc6b5</span>
    </div>
    <div id="projectbrief">Remote Temperature Monitor</div>
   </td>
@@ -83,468 +83,449 @@ $(document).ready(function() { init_codefold(0); });
 </div><!--header-->
 <div class="contents">
 <a href="battery_8c.html">Go to the documentation of this file.</a><div class="fragment"><div class="line"><a id="l00001" name="l00001"></a><span class="lineno">    1</span> </div>
-<div class="line"><a id="l00011" name="l00011"></a><span class="lineno">   11</span><span class="comment">/*////////////////////////////////////////////////////////////////////////////*/</span></div>
-<div class="line"><a id="l00012" name="l00012"></a><span class="lineno">   12</span><span class="comment">// Includes</span></div>
-<div class="line"><a id="l00013" name="l00013"></a><span class="lineno">   13</span><span class="comment">/*////////////////////////////////////////////////////////////////////////////*/</span></div>
-<div class="line"><a id="l00014" name="l00014"></a><span class="lineno">   14</span> </div>
-<div class="line"><a id="l00015" name="l00015"></a><span class="lineno">   15</span><span class="preprocessor">#include &quot;<a class="code" href="battery_8h.html">common/battery.h</a>&quot;</span></div>
-<div class="line"><a id="l00016" name="l00016"></a><span class="lineno">   16</span> </div>
-<div class="line"><a id="l00017" name="l00017"></a><span class="lineno">   17</span><span class="preprocessor">#include &lt;libopencm3/cm3/nvic.h&gt;</span></div>
-<div class="line"><a id="l00018" name="l00018"></a><span class="lineno">   18</span><span class="preprocessor">#include &lt;libopencm3/stm32/adc.h&gt;</span></div>
-<div class="line"><a id="l00019" name="l00019"></a><span class="lineno">   19</span><span class="preprocessor">#include &lt;libopencm3/stm32/dma.h&gt;</span></div>
-<div class="line"><a id="l00020" name="l00020"></a><span class="lineno">   20</span><span class="preprocessor">#include &lt;libopencm3/stm32/exti.h&gt;</span></div>
-<div class="line"><a id="l00021" name="l00021"></a><span class="lineno">   21</span><span class="preprocessor">#include &lt;libopencm3/stm32/flash.h&gt;</span></div>
-<div class="line"><a id="l00022" name="l00022"></a><span class="lineno">   22</span><span class="preprocessor">#include &lt;libopencm3/stm32/gpio.h&gt;</span></div>
-<div class="line"><a id="l00023" name="l00023"></a><span class="lineno">   23</span><span class="preprocessor">#include &lt;libopencm3/stm32/pwr.h&gt;</span></div>
-<div class="line"><a id="l00024" name="l00024"></a><span class="lineno">   24</span><span class="preprocessor">#include &lt;libopencm3/stm32/rcc.h&gt;</span></div>
-<div class="line"><a id="l00025" name="l00025"></a><span class="lineno">   25</span><span class="preprocessor">#include &lt;libopencm3/stm32/syscfg.h&gt;</span></div>
+<div class="line"><a id="l00011" name="l00011"></a><span class="lineno">   11</span><span class="preprocessor">#include &quot;<a class="code" href="battery_8h.html">common/battery.h</a>&quot;</span></div>
+<div class="line"><a id="l00012" name="l00012"></a><span class="lineno">   12</span> </div>
+<div class="line"><a id="l00013" name="l00013"></a><span class="lineno">   13</span><span class="preprocessor">#include &lt;libopencm3/cm3/nvic.h&gt;</span></div>
+<div class="line"><a id="l00014" name="l00014"></a><span class="lineno">   14</span><span class="preprocessor">#include &lt;libopencm3/stm32/adc.h&gt;</span></div>
+<div class="line"><a id="l00015" name="l00015"></a><span class="lineno">   15</span><span class="preprocessor">#include &lt;libopencm3/stm32/dma.h&gt;</span></div>
+<div class="line"><a id="l00016" name="l00016"></a><span class="lineno">   16</span><span class="preprocessor">#include &lt;libopencm3/stm32/exti.h&gt;</span></div>
+<div class="line"><a id="l00017" name="l00017"></a><span class="lineno">   17</span><span class="preprocessor">#include &lt;libopencm3/stm32/flash.h&gt;</span></div>
+<div class="line"><a id="l00018" name="l00018"></a><span class="lineno">   18</span><span class="preprocessor">#include &lt;libopencm3/stm32/gpio.h&gt;</span></div>
+<div class="line"><a id="l00019" name="l00019"></a><span class="lineno">   19</span><span class="preprocessor">#include &lt;libopencm3/stm32/pwr.h&gt;</span></div>
+<div class="line"><a id="l00020" name="l00020"></a><span class="lineno">   20</span><span class="preprocessor">#include &lt;libopencm3/stm32/rcc.h&gt;</span></div>
+<div class="line"><a id="l00021" name="l00021"></a><span class="lineno">   21</span><span class="preprocessor">#include &lt;libopencm3/stm32/syscfg.h&gt;</span></div>
+<div class="line"><a id="l00022" name="l00022"></a><span class="lineno">   22</span> </div>
+<div class="line"><a id="l00023" name="l00023"></a><span class="lineno">   23</span><span class="preprocessor">#include &quot;<a class="code" href="log_8h.html">common/log.h</a>&quot;</span></div>
+<div class="line"><a id="l00024" name="l00024"></a><span class="lineno">   24</span><span class="preprocessor">#include &quot;<a class="code" href="timers_8h.html">common/timers.h</a>&quot;</span></div>
+<div class="line"><a id="l00025" name="l00025"></a><span class="lineno">   25</span><span class="preprocessor">#include &quot;config/board_defs.h&quot;</span></div>
 <div class="line"><a id="l00026" name="l00026"></a><span class="lineno">   26</span> </div>
-<div class="line"><a id="l00027" name="l00027"></a><span class="lineno">   27</span><span class="preprocessor">#include &quot;<a class="code" href="log_8h.html">common/log.h</a>&quot;</span></div>
-<div class="line"><a id="l00028" name="l00028"></a><span class="lineno">   28</span><span class="preprocessor">#include &quot;<a class="code" href="timers_8h.html">common/timers.h</a>&quot;</span></div>
-<div class="line"><a id="l00029" name="l00029"></a><span class="lineno">   29</span><span class="preprocessor">#include &quot;config/board_defs.h&quot;</span></div>
-<div class="line"><a id="l00030" name="l00030"></a><span class="lineno">   30</span> </div>
-<div class="line"><a id="l00031" name="l00031"></a><span class="lineno">   31</span><span class="preprocessor">#ifdef _HUB</span></div>
-<div class="line"><a id="l00032" name="l00032"></a><span class="lineno">   32</span><span class="preprocessor">#define NUM_VOLTAGES 2</span></div>
-<div class="line"><a id="l00033" name="l00033"></a><span class="lineno">   33</span><span class="preprocessor">#define PWR_VOLTAGE  0</span></div>
-<div class="line"><a id="l00034" name="l00034"></a><span class="lineno">   34</span><span class="preprocessor">#define BATT_VOLTAGE 1</span></div>
-<div class="line"><a id="l00035" name="l00035"></a><span class="lineno">   35</span><span class="preprocessor">#else</span></div>
-<div class="line"><a id="l00036" name="l00036"></a><span class="lineno"><a class="line" href="battery_8c.html#af1bc8b24896c36914f52907197a0e87a">   36</a></span><span class="preprocessor">#define NUM_VOLTAGES 1</span></div>
-<div class="line"><a id="l00037" name="l00037"></a><span class="lineno"><a class="line" href="battery_8c.html#afd1d97582ddd87bf66f3a428f1b003db">   37</a></span><span class="preprocessor">#define BATT_VOLTAGE 0</span></div>
-<div class="line"><a id="l00038" name="l00038"></a><span class="lineno">   38</span><span class="preprocessor">#endif</span></div>
-<div class="line"><a id="l00039" name="l00039"></a><span class="lineno">   39</span> </div>
-<div class="line"><a id="l00040" name="l00040"></a><span class="lineno"><a class="line" href="battery_8c.html#a749582e7b291b726615c67975e92644d">   40</a></span><span class="preprocessor">#define ADC_CCR_LFMEN (1 &lt;&lt; 25)</span></div>
-<div class="line"><a id="l00041" name="l00041"></a><span class="lineno">   41</span> </div>
-<div class="line"><a id="l00042" name="l00042"></a><span class="lineno"><a class="line" href="battery_8c.html#a53990c512e1546fc494b3b2637e9516d">   42</a></span><span class="preprocessor">#define ADC_CCR_PRESC_SHIFT  18</span></div>
-<div class="line"><a id="l00043" name="l00043"></a><span class="lineno"><a class="line" href="battery_8c.html#a163968c55b1756d3880add05e08e452f">   43</a></span><span class="preprocessor">#define ADC_CCR_PRESC        (0xF &lt;&lt; ADC_CCR_PRESC_SHIFT)</span></div>
-<div class="line"><a id="l00044" name="l00044"></a><span class="lineno"><a class="line" href="battery_8c.html#acb8bb9b07febf2ddb0cc422b765dfca3">   44</a></span><span class="preprocessor">#define ADC_CCR_PRESC_NODIV  (0 &lt;&lt; ADC_CCR_PRESC_SHIFT)</span></div>
-<div class="line"><a id="l00045" name="l00045"></a><span class="lineno"><a class="line" href="battery_8c.html#a87ccacdb2dc4ffe0971296594877bd4b">   45</a></span><span class="preprocessor">#define ADC_CCR_PRESC_DIV2   (1 &lt;&lt; ADC_CCR_PRESC_SHIFT)</span></div>
-<div class="line"><a id="l00046" name="l00046"></a><span class="lineno"><a class="line" href="battery_8c.html#a855968bc10e7bb1cb98c1b9ef6b2d9da">   46</a></span><span class="preprocessor">#define ADC_CCR_PRESC_DIV4   (2 &lt;&lt; ADC_CCR_PRESC_SHIFT)</span></div>
-<div class="line"><a id="l00047" name="l00047"></a><span class="lineno"><a class="line" href="battery_8c.html#a3443e3ad7d33029c30ed53362aaa0476">   47</a></span><span class="preprocessor">#define ADC_CCR_PRESC_DIV6   (3 &lt;&lt; ADC_CCR_PRESC_SHIFT)</span></div>
-<div class="line"><a id="l00048" name="l00048"></a><span class="lineno"><a class="line" href="battery_8c.html#a22baa85c10263bce79f6c75792866cee">   48</a></span><span class="preprocessor">#define ADC_CCR_PRESC_DIV8   (4 &lt;&lt; ADC_CCR_PRESC_SHIFT)</span></div>
-<div class="line"><a id="l00049" name="l00049"></a><span class="lineno"><a class="line" href="battery_8c.html#a707f8ec8c09d88bf15fc51dd30ec91b8">   49</a></span><span class="preprocessor">#define ADC_CCR_PRESC_DIV10  (5 &lt;&lt; ADC_CCR_PRESC_SHIFT)</span></div>
-<div class="line"><a id="l00050" name="l00050"></a><span class="lineno"><a class="line" href="battery_8c.html#ab8f8662377685eb2e56c139f50206b6e">   50</a></span><span class="preprocessor">#define ADC_CCR_PRESC_DIV12  (6 &lt;&lt; ADC_CCR_PRESC_SHIFT)</span></div>
-<div class="line"><a id="l00051" name="l00051"></a><span class="lineno"><a class="line" href="battery_8c.html#a6cf103c9b764cd631d4936eda3775f14">   51</a></span><span class="preprocessor">#define ADC_CCR_PRESC_DIV16  (7 &lt;&lt; ADC_CCR_PRESC_SHIFT)</span></div>
-<div class="line"><a id="l00052" name="l00052"></a><span class="lineno"><a class="line" href="battery_8c.html#a44bc4f267ccbaee0dde09e40bc845693">   52</a></span><span class="preprocessor">#define ADC_CCR_PRESC_DIV32  (8 &lt;&lt; ADC_CCR_PRESC_SHIFT)</span></div>
-<div class="line"><a id="l00053" name="l00053"></a><span class="lineno"><a class="line" href="battery_8c.html#a3d6f9bd58bc313defe9126b48e40bc84">   53</a></span><span class="preprocessor">#define ADC_CCR_PRESC_DIV64  (9 &lt;&lt; ADC_CCR_PRESC_SHIFT)</span></div>
-<div class="line"><a id="l00054" name="l00054"></a><span class="lineno"><a class="line" href="battery_8c.html#afa48dc74b31212e79da204206f981566">   54</a></span><span class="preprocessor">#define ADC_CCR_PRESC_DIV128 (10 &lt;&lt; ADC_CCR_PRESC_SHIFT)</span></div>
-<div class="line"><a id="l00055" name="l00055"></a><span class="lineno"><a class="line" href="battery_8c.html#ae17610073089a84f237b4debc107a897">   55</a></span><span class="preprocessor">#define ADC_CCR_PRESC_DIV256 (11 &lt;&lt; ADC_CCR_PRESC_SHIFT)</span></div>
-<div class="line"><a id="l00056" name="l00056"></a><span class="lineno">   56</span> </div>
-<div class="line"><a id="l00057" name="l00057"></a><span class="lineno"><a class="line" href="battery_8c.html#a5be7ae16a57665a53f3efce3f8aeb493">   57</a></span><span class="preprocessor">#define ADC_CR_ADVREGEN (1 &lt;&lt; 28)</span></div>
-<div class="line"><a id="l00058" name="l00058"></a><span class="lineno">   58</span> </div>
-<div class="line"><a id="l00059" name="l00059"></a><span class="lineno"><a class="line" href="battery_8c.html#a1bc4f2d6d49c6147fc4eec6c4ef6f858">   59</a></span><span class="preprocessor">#define BATT_LAG_MS 10000</span></div>
+<div class="line"><a id="l00035" name="l00035"></a><span class="lineno">   35</span><span class="preprocessor">#ifdef COOLEASE_DEVICE_HUB</span></div>
+<div class="line"><a id="l00036" name="l00036"></a><span class="lineno">   36</span><span class="preprocessor">#define NUM_VOLTAGES 2</span></div>
+<div class="line"><a id="l00037" name="l00037"></a><span class="lineno">   37</span><span class="preprocessor">#define PWR_VOLTAGE  0</span></div>
+<div class="line"><a id="l00038" name="l00038"></a><span class="lineno">   38</span><span class="preprocessor">#define BATT_VOLTAGE 1</span></div>
+<div class="line"><a id="l00039" name="l00039"></a><span class="lineno">   39</span><span class="preprocessor">#else</span></div>
+<div class="line"><a id="l00040" name="l00040"></a><span class="lineno"><a class="line" href="group__battery__api.html#gaf1bc8b24896c36914f52907197a0e87a">   40</a></span><span class="preprocessor">#define NUM_VOLTAGES 1</span></div>
+<div class="line"><a id="l00041" name="l00041"></a><span class="lineno"><a class="line" href="group__battery__api.html#gafd1d97582ddd87bf66f3a428f1b003db">   41</a></span><span class="preprocessor">#define BATT_VOLTAGE 0</span></div>
+<div class="line"><a id="l00042" name="l00042"></a><span class="lineno">   42</span><span class="preprocessor">#endif</span></div>
+<div class="line"><a id="l00043" name="l00043"></a><span class="lineno">   43</span> </div>
+<div class="line"><a id="l00044" name="l00044"></a><span class="lineno"><a class="line" href="group__battery__api.html#ga749582e7b291b726615c67975e92644d">   44</a></span><span class="preprocessor">#define ADC_CCR_LFMEN (1 &lt;&lt; 25)</span></div>
+<div class="line"><a id="l00045" name="l00045"></a><span class="lineno">   45</span> </div>
+<div class="line"><a id="l00046" name="l00046"></a><span class="lineno"><a class="line" href="group__battery__api.html#ga53990c512e1546fc494b3b2637e9516d">   46</a></span><span class="preprocessor">#define ADC_CCR_PRESC_SHIFT  18</span></div>
+<div class="line"><a id="l00047" name="l00047"></a><span class="lineno"><a class="line" href="group__battery__api.html#ga163968c55b1756d3880add05e08e452f">   47</a></span><span class="preprocessor">#define ADC_CCR_PRESC        (0xF &lt;&lt; ADC_CCR_PRESC_SHIFT)</span></div>
+<div class="line"><a id="l00048" name="l00048"></a><span class="lineno"><a class="line" href="group__battery__api.html#gacb8bb9b07febf2ddb0cc422b765dfca3">   48</a></span><span class="preprocessor">#define ADC_CCR_PRESC_NODIV  (0 &lt;&lt; ADC_CCR_PRESC_SHIFT)</span></div>
+<div class="line"><a id="l00049" name="l00049"></a><span class="lineno"><a class="line" href="group__battery__api.html#ga87ccacdb2dc4ffe0971296594877bd4b">   49</a></span><span class="preprocessor">#define ADC_CCR_PRESC_DIV2   (1 &lt;&lt; ADC_CCR_PRESC_SHIFT)</span></div>
+<div class="line"><a id="l00050" name="l00050"></a><span class="lineno"><a class="line" href="group__battery__api.html#ga855968bc10e7bb1cb98c1b9ef6b2d9da">   50</a></span><span class="preprocessor">#define ADC_CCR_PRESC_DIV4   (2 &lt;&lt; ADC_CCR_PRESC_SHIFT)</span></div>
+<div class="line"><a id="l00051" name="l00051"></a><span class="lineno"><a class="line" href="group__battery__api.html#ga3443e3ad7d33029c30ed53362aaa0476">   51</a></span><span class="preprocessor">#define ADC_CCR_PRESC_DIV6   (3 &lt;&lt; ADC_CCR_PRESC_SHIFT)</span></div>
+<div class="line"><a id="l00052" name="l00052"></a><span class="lineno"><a class="line" href="group__battery__api.html#ga22baa85c10263bce79f6c75792866cee">   52</a></span><span class="preprocessor">#define ADC_CCR_PRESC_DIV8   (4 &lt;&lt; ADC_CCR_PRESC_SHIFT)</span></div>
+<div class="line"><a id="l00053" name="l00053"></a><span class="lineno"><a class="line" href="group__battery__api.html#ga707f8ec8c09d88bf15fc51dd30ec91b8">   53</a></span><span class="preprocessor">#define ADC_CCR_PRESC_DIV10  (5 &lt;&lt; ADC_CCR_PRESC_SHIFT)</span></div>
+<div class="line"><a id="l00054" name="l00054"></a><span class="lineno"><a class="line" href="group__battery__api.html#gab8f8662377685eb2e56c139f50206b6e">   54</a></span><span class="preprocessor">#define ADC_CCR_PRESC_DIV12  (6 &lt;&lt; ADC_CCR_PRESC_SHIFT)</span></div>
+<div class="line"><a id="l00055" name="l00055"></a><span class="lineno"><a class="line" href="group__battery__api.html#ga6cf103c9b764cd631d4936eda3775f14">   55</a></span><span class="preprocessor">#define ADC_CCR_PRESC_DIV16  (7 &lt;&lt; ADC_CCR_PRESC_SHIFT)</span></div>
+<div class="line"><a id="l00056" name="l00056"></a><span class="lineno"><a class="line" href="group__battery__api.html#ga44bc4f267ccbaee0dde09e40bc845693">   56</a></span><span class="preprocessor">#define ADC_CCR_PRESC_DIV32  (8 &lt;&lt; ADC_CCR_PRESC_SHIFT)</span></div>
+<div class="line"><a id="l00057" name="l00057"></a><span class="lineno"><a class="line" href="group__battery__api.html#ga3d6f9bd58bc313defe9126b48e40bc84">   57</a></span><span class="preprocessor">#define ADC_CCR_PRESC_DIV64  (9 &lt;&lt; ADC_CCR_PRESC_SHIFT)</span></div>
+<div class="line"><a id="l00058" name="l00058"></a><span class="lineno"><a class="line" href="group__battery__api.html#gafa48dc74b31212e79da204206f981566">   58</a></span><span class="preprocessor">#define ADC_CCR_PRESC_DIV128 (10 &lt;&lt; ADC_CCR_PRESC_SHIFT)</span></div>
+<div class="line"><a id="l00059" name="l00059"></a><span class="lineno"><a class="line" href="group__battery__api.html#gae17610073089a84f237b4debc107a897">   59</a></span><span class="preprocessor">#define ADC_CCR_PRESC_DIV256 (11 &lt;&lt; ADC_CCR_PRESC_SHIFT)</span></div>
 <div class="line"><a id="l00060" name="l00060"></a><span class="lineno">   60</span> </div>
-<div class="foldopen" id="foldopen00061" data-start="{" data-end="};">
-<div class="line"><a id="l00061" name="l00061"></a><span class="lineno"><a class="line" href="battery_8c.html#a24914a3261e55c8855e08a30a73f45c6">   61</a></span><span class="keyword">typedef</span> <span class="keyword">enum</span> {</div>
-<div class="line"><a id="l00062" name="l00062"></a><span class="lineno"><a class="line" href="battery_8c.html#a24914a3261e55c8855e08a30a73f45c6a3f10a904d13177fc85611ab4fd500d37">   62</a></span>    <a class="code hl_enumvalue" href="battery_8c.html#a24914a3261e55c8855e08a30a73f45c6a3f10a904d13177fc85611ab4fd500d37">BATT_INIT</a> = 0,</div>
-<div class="line"><a id="l00063" name="l00063"></a><span class="lineno"><a class="line" href="battery_8c.html#a24914a3261e55c8855e08a30a73f45c6a3aa03a3960ee30d61623c4caa1cb562e">   63</a></span>    <a class="code hl_enumvalue" href="battery_8c.html#a24914a3261e55c8855e08a30a73f45c6a3aa03a3960ee30d61623c4caa1cb562e">BATT_PLUGGED_IN</a>,</div>
-<div class="line"><a id="l00064" name="l00064"></a><span class="lineno"><a class="line" href="battery_8c.html#a24914a3261e55c8855e08a30a73f45c6a6ee9c8facac3a01d005f56e0330cd33b">   64</a></span>    <a class="code hl_enumvalue" href="battery_8c.html#a24914a3261e55c8855e08a30a73f45c6a6ee9c8facac3a01d005f56e0330cd33b">BATT_PLUGGED_OUT</a>,</div>
-<div class="line"><a id="l00065" name="l00065"></a><span class="lineno">   65</span>} <a class="code hl_enumeration" href="battery_8c.html#a24914a3261e55c8855e08a30a73f45c6">batt_state_t</a>;</div>
+<div class="line"><a id="l00061" name="l00061"></a><span class="lineno"><a class="line" href="group__battery__api.html#ga5be7ae16a57665a53f3efce3f8aeb493">   61</a></span><span class="preprocessor">#define ADC_CR_ADVREGEN (1 &lt;&lt; 28)</span></div>
+<div class="line"><a id="l00062" name="l00062"></a><span class="lineno">   62</span> </div>
+<div class="line"><a id="l00063" name="l00063"></a><span class="lineno"><a class="line" href="group__battery__api.html#ga1bc4f2d6d49c6147fc4eec6c4ef6f858">   63</a></span><span class="preprocessor">#define BATT_LAG_MS 10000</span></div>
+<div class="line"><a id="l00064" name="l00064"></a><span class="lineno">   64</span> </div>
+<div class="foldopen" id="foldopen00065" data-start="{" data-end="};">
+<div class="line"><a id="l00065" name="l00065"></a><span class="lineno"><a class="line" href="group__battery__api.html#ga24914a3261e55c8855e08a30a73f45c6">   65</a></span><span class="keyword">typedef</span> <span class="keyword">enum</span> {</div>
+<div class="line"><a id="l00066" name="l00066"></a><span class="lineno"><a class="line" href="group__battery__api.html#gga24914a3261e55c8855e08a30a73f45c6a3f10a904d13177fc85611ab4fd500d37">   66</a></span>    <a class="code hl_enumvalue" href="group__battery__api.html#gga24914a3261e55c8855e08a30a73f45c6a3f10a904d13177fc85611ab4fd500d37">BATT_INIT</a> = 0,</div>
+<div class="line"><a id="l00067" name="l00067"></a><span class="lineno"><a class="line" href="group__battery__api.html#gga24914a3261e55c8855e08a30a73f45c6a3aa03a3960ee30d61623c4caa1cb562e">   67</a></span>    <a class="code hl_enumvalue" href="group__battery__api.html#gga24914a3261e55c8855e08a30a73f45c6a3aa03a3960ee30d61623c4caa1cb562e">BATT_PLUGGED_IN</a>,</div>
+<div class="line"><a id="l00068" name="l00068"></a><span class="lineno"><a class="line" href="group__battery__api.html#gga24914a3261e55c8855e08a30a73f45c6a6ee9c8facac3a01d005f56e0330cd33b">   68</a></span>    <a class="code hl_enumvalue" href="group__battery__api.html#gga24914a3261e55c8855e08a30a73f45c6a6ee9c8facac3a01d005f56e0330cd33b">BATT_PLUGGED_OUT</a>,</div>
+<div class="line"><a id="l00069" name="l00069"></a><span class="lineno">   69</span>} <a class="code hl_enumeration" href="group__battery__api.html#ga24914a3261e55c8855e08a30a73f45c6">batt_state_t</a>;</div>
 </div>
-<div class="line"><a id="l00066" name="l00066"></a><span class="lineno">   66</span> </div>
-<div class="line"><a id="l00075" name="l00075"></a><span class="lineno">   75</span><span class="comment">/*////////////////////////////////////////////////////////////////////////////*/</span></div>
-<div class="line"><a id="l00076" name="l00076"></a><span class="lineno">   76</span><span class="comment">// Static Variables</span></div>
-<div class="line"><a id="l00077" name="l00077"></a><span class="lineno">   77</span><span class="comment">/*////////////////////////////////////////////////////////////////////////////*/</span></div>
+<div class="line"><a id="l00070" name="l00070"></a><span class="lineno">   70</span> </div>
+<div class="line"><a id="l00071" name="l00071"></a><span class="lineno"><a class="line" href="group__battery__api.html#ga6d788c2fe189afc53efa449a936574d4">   71</a></span><span class="keyword">static</span> uint16_t     <a class="code hl_variable" href="group__battery__api.html#ga6d788c2fe189afc53efa449a936574d4">adc_vals</a>[3] = {0, 0, 0};</div>
+<div class="line"><a id="l00072" name="l00072"></a><span class="lineno"><a class="line" href="group__battery__api.html#ga6ce6d95d1e9ba4ae85466b512f92cfac">   72</a></span><span class="keyword">static</span> uint16_t     <a class="code hl_variable" href="group__battery__api.html#ga6ce6d95d1e9ba4ae85466b512f92cfac">batt_voltages</a>[<a class="code hl_define" href="group__battery__api.html#gaf1bc8b24896c36914f52907197a0e87a">NUM_VOLTAGES</a>];</div>
+<div class="line"><a id="l00073" name="l00073"></a><span class="lineno"><a class="line" href="group__battery__api.html#ga3b88c08e61c4e6a3edebaccbbe515f27">   73</a></span><span class="keyword">static</span> <a class="code hl_enumeration" href="group__battery__api.html#ga24914a3261e55c8855e08a30a73f45c6">batt_state_t</a> <a class="code hl_variable" href="group__battery__api.html#ga3b88c08e61c4e6a3edebaccbbe515f27">state</a> = <a class="code hl_enumvalue" href="group__battery__api.html#gga24914a3261e55c8855e08a30a73f45c6a3f10a904d13177fc85611ab4fd500d37">BATT_INIT</a>;</div>
+<div class="line"><a id="l00074" name="l00074"></a><span class="lineno">   74</span> </div>
+<div class="foldopen" id="foldopen00075" data-start="{" data-end="}">
+<div class="line"><a id="l00075" name="l00075"></a><span class="lineno"><a class="line" href="group__battery__api.html#ga74ef535cae048523c75ec8824e23d901">   75</a></span><span class="keywordtype">void</span> <a class="code hl_function" href="group__battery__api.html#ga74ef535cae048523c75ec8824e23d901">batt_init</a>(<span class="keywordtype">void</span>) {</div>
+<div class="line"><a id="l00076" name="l00076"></a><span class="lineno">   76</span>    <span class="comment">// Disable Interrupt</span></div>
+<div class="line"><a id="l00077" name="l00077"></a><span class="lineno">   77</span>    nvic_disable_irq(NVIC_DMA1_CHANNEL1_IRQ);</div>
 <div class="line"><a id="l00078" name="l00078"></a><span class="lineno">   78</span> </div>
-<div class="line"><a id="l00079" name="l00079"></a><span class="lineno"><a class="line" href="group___b_a_t_t_e_r_y___i_n_t.html#ga6d788c2fe189afc53efa449a936574d4">   79</a></span><span class="keyword">static</span> uint16_t     <a class="code hl_variable" href="group___b_a_t_t_e_r_y___i_n_t.html#ga6d788c2fe189afc53efa449a936574d4">adc_vals</a>[3] = {0, 0, 0};</div>
-<div class="line"><a id="l00080" name="l00080"></a><span class="lineno"><a class="line" href="group___b_a_t_t_e_r_y___i_n_t.html#ga6ce6d95d1e9ba4ae85466b512f92cfac">   80</a></span><span class="keyword">static</span> uint16_t     <a class="code hl_variable" href="group___b_a_t_t_e_r_y___i_n_t.html#ga6ce6d95d1e9ba4ae85466b512f92cfac">batt_voltages</a>[<a class="code hl_define" href="battery_8c.html#af1bc8b24896c36914f52907197a0e87a">NUM_VOLTAGES</a>];</div>
-<div class="line"><a id="l00081" name="l00081"></a><span class="lineno"><a class="line" href="group___b_a_t_t_e_r_y___i_n_t.html#ga3b88c08e61c4e6a3edebaccbbe515f27">   81</a></span><span class="keyword">static</span> <a class="code hl_enumeration" href="battery_8c.html#a24914a3261e55c8855e08a30a73f45c6">batt_state_t</a> <a class="code hl_variable" href="group___b_a_t_t_e_r_y___i_n_t.html#ga3b88c08e61c4e6a3edebaccbbe515f27">state</a> = <a class="code hl_enumvalue" href="battery_8c.html#a24914a3261e55c8855e08a30a73f45c6a3f10a904d13177fc85611ab4fd500d37">BATT_INIT</a>;</div>
-<div class="line"><a id="l00082" name="l00082"></a><span class="lineno">   82</span> </div>
-<div class="line"><a id="l00083" name="l00083"></a><span class="lineno">   83</span><span class="comment">/*////////////////////////////////////////////////////////////////////////////*/</span></div>
-<div class="line"><a id="l00084" name="l00084"></a><span class="lineno">   84</span><span class="comment">// Static Function Declarations</span></div>
-<div class="line"><a id="l00085" name="l00085"></a><span class="lineno">   85</span><span class="comment">/*////////////////////////////////////////////////////////////////////////////*/</span></div>
-<div class="line"><a id="l00086" name="l00086"></a><span class="lineno">   86</span> </div>
-<div class="line"><a id="l00093" name="l00093"></a><span class="lineno">   93</span><span class="comment">/*////////////////////////////////////////////////////////////////////////////*/</span></div>
-<div class="line"><a id="l00094" name="l00094"></a><span class="lineno">   94</span><span class="comment">// Exported Function Definitions</span></div>
-<div class="line"><a id="l00095" name="l00095"></a><span class="lineno">   95</span><span class="comment">/*////////////////////////////////////////////////////////////////////////////*/</span></div>
-<div class="line"><a id="l00096" name="l00096"></a><span class="lineno">   96</span> </div>
-<div class="foldopen" id="foldopen00097" data-start="{" data-end="}">
-<div class="line"><a id="l00097" name="l00097"></a><span class="lineno"><a class="line" href="group___b_a_t_t_e_r_y___a_p_i.html#ga74ef535cae048523c75ec8824e23d901">   97</a></span><span class="keywordtype">void</span> <a class="code hl_function" href="group___b_a_t_t_e_r_y___a_p_i.html#ga74ef535cae048523c75ec8824e23d901">batt_init</a>(<span class="keywordtype">void</span>) {</div>
-<div class="line"><a id="l00098" name="l00098"></a><span class="lineno">   98</span>    <span class="comment">// Disable Interrupt</span></div>
-<div class="line"><a id="l00099" name="l00099"></a><span class="lineno">   99</span>    nvic_disable_irq(NVIC_DMA1_CHANNEL1_IRQ);</div>
-<div class="line"><a id="l00100" name="l00100"></a><span class="lineno">  100</span> </div>
-<div class="line"><a id="l00101" name="l00101"></a><span class="lineno">  101</span>    <span class="comment">// Config Vrefint</span></div>
-<div class="line"><a id="l00102" name="l00102"></a><span class="lineno">  102</span>    rcc_periph_clock_enable(RCC_SYSCFG);</div>
-<div class="line"><a id="l00103" name="l00103"></a><span class="lineno">  103</span> </div>
-<div class="line"><a id="l00104" name="l00104"></a><span class="lineno">  104</span>    <span class="comment">// Start/ wait for voltage reference, enable buffer to adc</span></div>
-<div class="line"><a id="l00105" name="l00105"></a><span class="lineno">  105</span>    SYSCFG_CFGR3 |= SYSCFG_CFGR3_EN_VREFINT;</div>
-<div class="line"><a id="l00106" name="l00106"></a><span class="lineno">  106</span>    <span class="keywordflow">while</span> (!(SYSCFG_CFGR3 &amp; SYSCFG_CFGR3_VREFINT_RDYF)) {</div>
-<div class="line"><a id="l00107" name="l00107"></a><span class="lineno">  107</span>    }</div>
-<div class="line"><a id="l00108" name="l00108"></a><span class="lineno">  108</span>    SYSCFG_CFGR3 |= SYSCFG_CFGR3_ENBUF_VREFINT_ADC;</div>
+<div class="line"><a id="l00079" name="l00079"></a><span class="lineno">   79</span>    <span class="comment">// Config Vrefint</span></div>
+<div class="line"><a id="l00080" name="l00080"></a><span class="lineno">   80</span>    rcc_periph_clock_enable(RCC_SYSCFG);</div>
+<div class="line"><a id="l00081" name="l00081"></a><span class="lineno">   81</span> </div>
+<div class="line"><a id="l00082" name="l00082"></a><span class="lineno">   82</span>    <span class="comment">// Start/ wait for voltage reference, enable buffer to adc</span></div>
+<div class="line"><a id="l00083" name="l00083"></a><span class="lineno">   83</span>    SYSCFG_CFGR3 |= SYSCFG_CFGR3_EN_VREFINT;</div>
+<div class="line"><a id="l00084" name="l00084"></a><span class="lineno">   84</span>    <span class="keywordflow">while</span> (!(SYSCFG_CFGR3 &amp; SYSCFG_CFGR3_VREFINT_RDYF)) {</div>
+<div class="line"><a id="l00085" name="l00085"></a><span class="lineno">   85</span>    }</div>
+<div class="line"><a id="l00086" name="l00086"></a><span class="lineno">   86</span>    SYSCFG_CFGR3 |= SYSCFG_CFGR3_ENBUF_VREFINT_ADC;</div>
+<div class="line"><a id="l00087" name="l00087"></a><span class="lineno">   87</span> </div>
+<div class="line"><a id="l00088" name="l00088"></a><span class="lineno">   88</span>    <span class="comment">// Enable adc clock and calibrate</span></div>
+<div class="line"><a id="l00089" name="l00089"></a><span class="lineno">   89</span>    rcc_periph_clock_enable(RCC_ADC1);</div>
+<div class="line"><a id="l00090" name="l00090"></a><span class="lineno">   90</span>    rcc_periph_reset_pulse(RST_ADC1);</div>
+<div class="line"><a id="l00091" name="l00091"></a><span class="lineno">   91</span> </div>
+<div class="line"><a id="l00092" name="l00092"></a><span class="lineno">   92</span>    <span class="comment">// Clock config</span></div>
+<div class="line"><a id="l00093" name="l00093"></a><span class="lineno">   93</span>    uint32_t adc_freq;</div>
+<div class="line"><a id="l00094" name="l00094"></a><span class="lineno">   94</span>    <span class="keywordflow">if</span> (sys_clk == RCC_HSI16) {</div>
+<div class="line"><a id="l00095" name="l00095"></a><span class="lineno">   95</span>        <span class="comment">// Set clock to HSI clk</span></div>
+<div class="line"><a id="l00096" name="l00096"></a><span class="lineno">   96</span>        ADC_CFGR2(ADC1) &amp;= ~ADC_CFGR2_CKMODE;</div>
+<div class="line"><a id="l00097" name="l00097"></a><span class="lineno">   97</span> </div>
+<div class="line"><a id="l00098" name="l00098"></a><span class="lineno">   98</span>        <span class="comment">// Set prescaler 32</span></div>
+<div class="line"><a id="l00099" name="l00099"></a><span class="lineno">   99</span>        ADC_CCR(ADC1) &amp;= ~ADC_CCR_PRESC;</div>
+<div class="line"><a id="l00100" name="l00100"></a><span class="lineno">  100</span>        ADC_CCR(ADC1) |= <a class="code hl_define" href="group__battery__api.html#ga44bc4f267ccbaee0dde09e40bc845693">ADC_CCR_PRESC_DIV32</a>;</div>
+<div class="line"><a id="l00101" name="l00101"></a><span class="lineno">  101</span> </div>
+<div class="line"><a id="l00102" name="l00102"></a><span class="lineno">  102</span>        adc_freq = 16000000 / 32;</div>
+<div class="line"><a id="l00103" name="l00103"></a><span class="lineno">  103</span>    } <span class="keywordflow">else</span> {</div>
+<div class="line"><a id="l00104" name="l00104"></a><span class="lineno">  104</span>        <span class="comment">// Set clock to APB clk / 4</span></div>
+<div class="line"><a id="l00105" name="l00105"></a><span class="lineno">  105</span>        ADC_CFGR2(ADC1) &amp;= ~ADC_CFGR2_CKMODE;</div>
+<div class="line"><a id="l00106" name="l00106"></a><span class="lineno">  106</span>        ADC_CFGR2(ADC1) |= ADC_CFGR2_CKMODE_PCLK_DIV4;</div>
+<div class="line"><a id="l00107" name="l00107"></a><span class="lineno">  107</span>        adc_freq = rcc_apb2_frequency / 4;</div>
+<div class="line"><a id="l00108" name="l00108"></a><span class="lineno">  108</span>    }</div>
 <div class="line"><a id="l00109" name="l00109"></a><span class="lineno">  109</span> </div>
-<div class="line"><a id="l00110" name="l00110"></a><span class="lineno">  110</span>    <span class="comment">// Enable adc clock and calibrate</span></div>
-<div class="line"><a id="l00111" name="l00111"></a><span class="lineno">  111</span>    rcc_periph_clock_enable(RCC_ADC1);</div>
-<div class="line"><a id="l00112" name="l00112"></a><span class="lineno">  112</span>    rcc_periph_reset_pulse(RST_ADC1);</div>
-<div class="line"><a id="l00113" name="l00113"></a><span class="lineno">  113</span> </div>
-<div class="line"><a id="l00114" name="l00114"></a><span class="lineno">  114</span>    <span class="comment">// Clock config</span></div>
-<div class="line"><a id="l00115" name="l00115"></a><span class="lineno">  115</span>    uint32_t adc_freq;</div>
-<div class="line"><a id="l00116" name="l00116"></a><span class="lineno">  116</span>    <span class="keywordflow">if</span> (sys_clk == RCC_HSI16) {</div>
-<div class="line"><a id="l00117" name="l00117"></a><span class="lineno">  117</span>        <span class="comment">// Set clock to HSI clk</span></div>
-<div class="line"><a id="l00118" name="l00118"></a><span class="lineno">  118</span>        ADC_CFGR2(ADC1) &amp;= ~ADC_CFGR2_CKMODE;</div>
-<div class="line"><a id="l00119" name="l00119"></a><span class="lineno">  119</span> </div>
-<div class="line"><a id="l00120" name="l00120"></a><span class="lineno">  120</span>        <span class="comment">// Set prescaler 32</span></div>
-<div class="line"><a id="l00121" name="l00121"></a><span class="lineno">  121</span>        ADC_CCR(ADC1) &amp;= ~ADC_CCR_PRESC;</div>
-<div class="line"><a id="l00122" name="l00122"></a><span class="lineno">  122</span>        ADC_CCR(ADC1) |= <a class="code hl_define" href="battery_8c.html#a44bc4f267ccbaee0dde09e40bc845693">ADC_CCR_PRESC_DIV32</a>;</div>
+<div class="line"><a id="l00110" name="l00110"></a><span class="lineno">  110</span>    <span class="comment">// Enable low frequency below 2.8MHz, pg.297 of ref</span></div>
+<div class="line"><a id="l00111" name="l00111"></a><span class="lineno">  111</span>    <span class="keywordflow">if</span> (adc_freq &lt; 2800000) {</div>
+<div class="line"><a id="l00112" name="l00112"></a><span class="lineno">  112</span>        ADC_CCR(ADC1) |= <a class="code hl_define" href="group__battery__api.html#ga749582e7b291b726615c67975e92644d">ADC_CCR_LFMEN</a>;</div>
+<div class="line"><a id="l00113" name="l00113"></a><span class="lineno">  113</span>    } <span class="keywordflow">else</span> {</div>
+<div class="line"><a id="l00114" name="l00114"></a><span class="lineno">  114</span>        ADC_CCR(ADC1) &amp;= ~ADC_CCR_LFMEN;</div>
+<div class="line"><a id="l00115" name="l00115"></a><span class="lineno">  115</span>    }</div>
+<div class="line"><a id="l00116" name="l00116"></a><span class="lineno">  116</span> </div>
+<div class="line"><a id="l00117" name="l00117"></a><span class="lineno">  117</span>    <span class="comment">// Power off &amp; calibrate</span></div>
+<div class="line"><a id="l00118" name="l00118"></a><span class="lineno">  118</span>    adc_power_off(ADC1);</div>
+<div class="line"><a id="l00119" name="l00119"></a><span class="lineno">  119</span>    adc_calibrate(ADC1);</div>
+<div class="line"><a id="l00120" name="l00120"></a><span class="lineno">  120</span> </div>
+<div class="line"><a id="l00121" name="l00121"></a><span class="lineno">  121</span>    <span class="comment">// Highest sampling time. 160.5 for l051 (239.5 for l052)</span></div>
+<div class="line"><a id="l00122" name="l00122"></a><span class="lineno">  122</span>    ADC_SMPR1(ADC1) |= ADC_SMPR_SMP_160DOT5CYC;</div>
 <div class="line"><a id="l00123" name="l00123"></a><span class="lineno">  123</span> </div>
-<div class="line"><a id="l00124" name="l00124"></a><span class="lineno">  124</span>        adc_freq = 16000000 / 32;</div>
-<div class="line"><a id="l00125" name="l00125"></a><span class="lineno">  125</span>    } <span class="keywordflow">else</span> {</div>
-<div class="line"><a id="l00126" name="l00126"></a><span class="lineno">  126</span>        <span class="comment">// Set clock to APB clk / 4</span></div>
-<div class="line"><a id="l00127" name="l00127"></a><span class="lineno">  127</span>        ADC_CFGR2(ADC1) &amp;= ~ADC_CFGR2_CKMODE;</div>
-<div class="line"><a id="l00128" name="l00128"></a><span class="lineno">  128</span>        ADC_CFGR2(ADC1) |= ADC_CFGR2_CKMODE_PCLK_DIV4;</div>
-<div class="line"><a id="l00129" name="l00129"></a><span class="lineno">  129</span>        adc_freq = rcc_apb2_frequency / 4;</div>
-<div class="line"><a id="l00130" name="l00130"></a><span class="lineno">  130</span>    }</div>
-<div class="line"><a id="l00131" name="l00131"></a><span class="lineno">  131</span> </div>
-<div class="line"><a id="l00132" name="l00132"></a><span class="lineno">  132</span>    <span class="comment">// Enable low frequency below 2.8MHz, pg.297 of ref</span></div>
-<div class="line"><a id="l00133" name="l00133"></a><span class="lineno">  133</span>    <span class="keywordflow">if</span> (adc_freq &lt; 2800000) {</div>
-<div class="line"><a id="l00134" name="l00134"></a><span class="lineno">  134</span>        ADC_CCR(ADC1) |= <a class="code hl_define" href="battery_8c.html#a749582e7b291b726615c67975e92644d">ADC_CCR_LFMEN</a>;</div>
-<div class="line"><a id="l00135" name="l00135"></a><span class="lineno">  135</span>    } <span class="keywordflow">else</span> {</div>
-<div class="line"><a id="l00136" name="l00136"></a><span class="lineno">  136</span>        ADC_CCR(ADC1) &amp;= ~ADC_CCR_LFMEN;</div>
-<div class="line"><a id="l00137" name="l00137"></a><span class="lineno">  137</span>    }</div>
+<div class="line"><a id="l00124" name="l00124"></a><span class="lineno">  124</span>    <span class="comment">// Reverse scan direction so that VREF is always first conversion</span></div>
+<div class="line"><a id="l00125" name="l00125"></a><span class="lineno">  125</span>    ADC_CFGR1(ADC1) |= ADC_CFGR1_SCANDIR;</div>
+<div class="line"><a id="l00126" name="l00126"></a><span class="lineno">  126</span> </div>
+<div class="line"><a id="l00127" name="l00127"></a><span class="lineno">  127</span>    <span class="comment">// Enable voltage reference</span></div>
+<div class="line"><a id="l00128" name="l00128"></a><span class="lineno">  128</span>    adc_enable_vrefint();</div>
+<div class="line"><a id="l00129" name="l00129"></a><span class="lineno">  129</span> </div>
+<div class="line"><a id="l00130" name="l00130"></a><span class="lineno">  130</span>    <span class="comment">// Turn on ADC</span></div>
+<div class="line"><a id="l00131" name="l00131"></a><span class="lineno">  131</span>    adc_power_on(ADC1);</div>
+<div class="line"><a id="l00132" name="l00132"></a><span class="lineno">  132</span>    <a class="code hl_function" href="group__timers__api.html#ga6e9cc03544579f4d7f8c7f987b917308">timers_delay_microseconds</a>(1000);</div>
+<div class="line"><a id="l00133" name="l00133"></a><span class="lineno">  133</span> </div>
+<div class="line"><a id="l00134" name="l00134"></a><span class="lineno">  134</span>    <span class="comment">// Enable analog pins</span></div>
+<div class="line"><a id="l00135" name="l00135"></a><span class="lineno">  135</span>    rcc_periph_clock_enable(RCC_GPIOA);</div>
+<div class="line"><a id="l00136" name="l00136"></a><span class="lineno">  136</span>    gpio_mode_setup(BATT_SENS_PORT, GPIO_MODE_ANALOG, GPIO_PUPD_NONE,</div>
+<div class="line"><a id="l00137" name="l00137"></a><span class="lineno">  137</span>                    BATT_SENS);</div>
 <div class="line"><a id="l00138" name="l00138"></a><span class="lineno">  138</span> </div>
-<div class="line"><a id="l00139" name="l00139"></a><span class="lineno">  139</span>    <span class="comment">// Power off &amp; calibrate</span></div>
-<div class="line"><a id="l00140" name="l00140"></a><span class="lineno">  140</span>    adc_power_off(ADC1);</div>
-<div class="line"><a id="l00141" name="l00141"></a><span class="lineno">  141</span>    adc_calibrate(ADC1);</div>
+<div class="line"><a id="l00139" name="l00139"></a><span class="lineno">  139</span>    <span class="comment">// Set channels to convert</span></div>
+<div class="line"><a id="l00140" name="l00140"></a><span class="lineno">  140</span>    ADC_CHSELR(ADC1) |= (1 &lt;&lt; ADC_CHANNEL_VREF);</div>
+<div class="line"><a id="l00141" name="l00141"></a><span class="lineno">  141</span>    ADC_CHSELR(ADC1) |= (1 &lt;&lt; 0);</div>
 <div class="line"><a id="l00142" name="l00142"></a><span class="lineno">  142</span> </div>
-<div class="line"><a id="l00143" name="l00143"></a><span class="lineno">  143</span>    <span class="comment">// Highest sampling time. 160.5 for l051 (239.5 for l052)</span></div>
-<div class="line"><a id="l00144" name="l00144"></a><span class="lineno">  144</span>    ADC_SMPR1(ADC1) |= ADC_SMPR_SMP_160DOT5CYC;</div>
-<div class="line"><a id="l00145" name="l00145"></a><span class="lineno">  145</span> </div>
-<div class="line"><a id="l00146" name="l00146"></a><span class="lineno">  146</span>    <span class="comment">// Reverse scan direction so that VREF is always first conversion</span></div>
-<div class="line"><a id="l00147" name="l00147"></a><span class="lineno">  147</span>    ADC_CFGR1(ADC1) |= ADC_CFGR1_SCANDIR;</div>
-<div class="line"><a id="l00148" name="l00148"></a><span class="lineno">  148</span> </div>
-<div class="line"><a id="l00149" name="l00149"></a><span class="lineno">  149</span>    <span class="comment">// Enable voltage reference</span></div>
-<div class="line"><a id="l00150" name="l00150"></a><span class="lineno">  150</span>    adc_enable_vrefint();</div>
-<div class="line"><a id="l00151" name="l00151"></a><span class="lineno">  151</span> </div>
-<div class="line"><a id="l00152" name="l00152"></a><span class="lineno">  152</span>    <span class="comment">// Turn on ADC</span></div>
-<div class="line"><a id="l00153" name="l00153"></a><span class="lineno">  153</span>    adc_power_on(ADC1);</div>
-<div class="line"><a id="l00154" name="l00154"></a><span class="lineno">  154</span>    <a class="code hl_function" href="group___t_i_m_e_r_s___a_p_i.html#ga6e9cc03544579f4d7f8c7f987b917308">timers_delay_microseconds</a>(1000);</div>
-<div class="line"><a id="l00155" name="l00155"></a><span class="lineno">  155</span> </div>
-<div class="line"><a id="l00156" name="l00156"></a><span class="lineno">  156</span>    <span class="comment">// Enable analog pins</span></div>
-<div class="line"><a id="l00157" name="l00157"></a><span class="lineno">  157</span>    rcc_periph_clock_enable(RCC_GPIOA);</div>
-<div class="line"><a id="l00158" name="l00158"></a><span class="lineno">  158</span>    gpio_mode_setup(BATT_SENS_PORT, GPIO_MODE_ANALOG, GPIO_PUPD_NONE,</div>
-<div class="line"><a id="l00159" name="l00159"></a><span class="lineno">  159</span>                    BATT_SENS);</div>
+<div class="line"><a id="l00143" name="l00143"></a><span class="lineno">  143</span><span class="preprocessor">#ifdef COOLEASE_DEVICE_HUB</span></div>
+<div class="line"><a id="l00144" name="l00144"></a><span class="lineno">  144</span>    gpio_mode_setup(PWR_SENS_PORT, GPIO_MODE_ANALOG, GPIO_PUPD_NONE, PWR_SENS);</div>
+<div class="line"><a id="l00145" name="l00145"></a><span class="lineno">  145</span>    ADC_CHSELR(ADC1) |= (1 &lt;&lt; 1);</div>
+<div class="line"><a id="l00146" name="l00146"></a><span class="lineno">  146</span><span class="preprocessor">#endif</span></div>
+<div class="line"><a id="l00147" name="l00147"></a><span class="lineno">  147</span> </div>
+<div class="line"><a id="l00148" name="l00148"></a><span class="lineno">  148</span>    <a class="code hl_function" href="group__log__api.html#ga4fff2f266fd439fbb104ddb5d7f61533">log_printf</a>(<span class="stringliteral">&quot;Batt Init\n&quot;</span>);</div>
+<div class="line"><a id="l00149" name="l00149"></a><span class="lineno">  149</span>}</div>
+</div>
+<div class="line"><a id="l00150" name="l00150"></a><span class="lineno">  150</span> </div>
+<div class="foldopen" id="foldopen00151" data-start="{" data-end="}">
+<div class="line"><a id="l00151" name="l00151"></a><span class="lineno"><a class="line" href="group__battery__api.html#gafccda6c10ac01d4b0faf913fb5963502">  151</a></span><span class="keywordtype">void</span> <a class="code hl_function" href="group__battery__api.html#gafccda6c10ac01d4b0faf913fb5963502">batt_end</a>(<span class="keywordtype">void</span>) {</div>
+<div class="line"><a id="l00152" name="l00152"></a><span class="lineno">  152</span>    <span class="comment">// Disable Interrupts</span></div>
+<div class="line"><a id="l00153" name="l00153"></a><span class="lineno">  153</span>    nvic_disable_irq(NVIC_DMA1_CHANNEL1_IRQ);</div>
+<div class="line"><a id="l00154" name="l00154"></a><span class="lineno">  154</span> </div>
+<div class="line"><a id="l00155" name="l00155"></a><span class="lineno">  155</span>    adc_power_off(ADC1);</div>
+<div class="line"><a id="l00156" name="l00156"></a><span class="lineno">  156</span>    adc_disable_vrefint();</div>
+<div class="line"><a id="l00157" name="l00157"></a><span class="lineno">  157</span> </div>
+<div class="line"><a id="l00158" name="l00158"></a><span class="lineno">  158</span>    <span class="comment">// Turn off ADC Regulator</span></div>
+<div class="line"><a id="l00159" name="l00159"></a><span class="lineno">  159</span>    ADC_CR(ADC1) &amp;= ~ADC_CR_ADVREGEN;</div>
 <div class="line"><a id="l00160" name="l00160"></a><span class="lineno">  160</span> </div>
-<div class="line"><a id="l00161" name="l00161"></a><span class="lineno">  161</span>    <span class="comment">// Set channels to convert</span></div>
-<div class="line"><a id="l00162" name="l00162"></a><span class="lineno">  162</span>    ADC_CHSELR(ADC1) |= (1 &lt;&lt; ADC_CHANNEL_VREF);</div>
-<div class="line"><a id="l00163" name="l00163"></a><span class="lineno">  163</span>    ADC_CHSELR(ADC1) |= (1 &lt;&lt; 0);</div>
-<div class="line"><a id="l00164" name="l00164"></a><span class="lineno">  164</span> </div>
-<div class="line"><a id="l00165" name="l00165"></a><span class="lineno">  165</span><span class="preprocessor">#ifdef _HUB</span></div>
-<div class="line"><a id="l00166" name="l00166"></a><span class="lineno">  166</span>    gpio_mode_setup(PWR_SENS_PORT, GPIO_MODE_ANALOG, GPIO_PUPD_NONE, PWR_SENS);</div>
-<div class="line"><a id="l00167" name="l00167"></a><span class="lineno">  167</span>    ADC_CHSELR(ADC1) |= (1 &lt;&lt; 1);</div>
-<div class="line"><a id="l00168" name="l00168"></a><span class="lineno">  168</span><span class="preprocessor">#endif</span></div>
-<div class="line"><a id="l00169" name="l00169"></a><span class="lineno">  169</span> </div>
-<div class="line"><a id="l00170" name="l00170"></a><span class="lineno">  170</span>    <a class="code hl_function" href="group___l_o_g___a_p_i.html#ga4fff2f266fd439fbb104ddb5d7f61533">log_printf</a>(<span class="stringliteral">&quot;Batt Init\n&quot;</span>);</div>
-<div class="line"><a id="l00171" name="l00171"></a><span class="lineno">  171</span>}</div>
+<div class="line"><a id="l00161" name="l00161"></a><span class="lineno">  161</span>    rcc_periph_reset_pulse(RST_ADC1);</div>
+<div class="line"><a id="l00162" name="l00162"></a><span class="lineno">  162</span>    rcc_periph_clock_disable(RCC_ADC1);</div>
+<div class="line"><a id="l00163" name="l00163"></a><span class="lineno">  163</span> </div>
+<div class="line"><a id="l00164" name="l00164"></a><span class="lineno">  164</span>    <span class="comment">// Disable VRef Buffer</span></div>
+<div class="line"><a id="l00165" name="l00165"></a><span class="lineno">  165</span>    SYSCFG_CFGR3 &amp;= ~SYSCFG_CFGR3_ENBUF_VREFINT_ADC;</div>
+<div class="line"><a id="l00166" name="l00166"></a><span class="lineno">  166</span>}</div>
 </div>
-<div class="line"><a id="l00172" name="l00172"></a><span class="lineno">  172</span> </div>
-<div class="foldopen" id="foldopen00173" data-start="{" data-end="}">
-<div class="line"><a id="l00173" name="l00173"></a><span class="lineno"><a class="line" href="group___b_a_t_t_e_r_y___a_p_i.html#gafccda6c10ac01d4b0faf913fb5963502">  173</a></span><span class="keywordtype">void</span> <a class="code hl_function" href="group___b_a_t_t_e_r_y___a_p_i.html#gafccda6c10ac01d4b0faf913fb5963502">batt_end</a>(<span class="keywordtype">void</span>) {</div>
-<div class="line"><a id="l00174" name="l00174"></a><span class="lineno">  174</span>    <span class="comment">// Disable Interrupts</span></div>
-<div class="line"><a id="l00175" name="l00175"></a><span class="lineno">  175</span>    nvic_disable_irq(NVIC_DMA1_CHANNEL1_IRQ);</div>
-<div class="line"><a id="l00176" name="l00176"></a><span class="lineno">  176</span> </div>
-<div class="line"><a id="l00177" name="l00177"></a><span class="lineno">  177</span>    adc_power_off(ADC1);</div>
-<div class="line"><a id="l00178" name="l00178"></a><span class="lineno">  178</span>    adc_disable_vrefint();</div>
-<div class="line"><a id="l00179" name="l00179"></a><span class="lineno">  179</span> </div>
-<div class="line"><a id="l00180" name="l00180"></a><span class="lineno">  180</span>    <span class="comment">// Turn off ADC Regulator</span></div>
-<div class="line"><a id="l00181" name="l00181"></a><span class="lineno">  181</span>    ADC_CR(ADC1) &amp;= ~ADC_CR_ADVREGEN;</div>
-<div class="line"><a id="l00182" name="l00182"></a><span class="lineno">  182</span> </div>
-<div class="line"><a id="l00183" name="l00183"></a><span class="lineno">  183</span>    rcc_periph_reset_pulse(RST_ADC1);</div>
-<div class="line"><a id="l00184" name="l00184"></a><span class="lineno">  184</span>    rcc_periph_clock_disable(RCC_ADC1);</div>
-<div class="line"><a id="l00185" name="l00185"></a><span class="lineno">  185</span> </div>
-<div class="line"><a id="l00186" name="l00186"></a><span class="lineno">  186</span>    <span class="comment">// Disable VRef Buffer</span></div>
-<div class="line"><a id="l00187" name="l00187"></a><span class="lineno">  187</span>    SYSCFG_CFGR3 &amp;= ~SYSCFG_CFGR3_ENBUF_VREFINT_ADC;</div>
-<div class="line"><a id="l00188" name="l00188"></a><span class="lineno">  188</span>}</div>
+<div class="line"><a id="l00167" name="l00167"></a><span class="lineno">  167</span> </div>
+<div class="foldopen" id="foldopen00168" data-start="{" data-end="}">
+<div class="line"><a id="l00168" name="l00168"></a><span class="lineno"><a class="line" href="group__battery__api.html#gab70aa864f9333d92f632f4dd59446a5b">  168</a></span><span class="keywordtype">void</span> <a class="code hl_function" href="group__battery__api.html#gab70aa864f9333d92f632f4dd59446a5b">batt_set_voltage_scale</a>(uint8_t scale) {</div>
+<div class="line"><a id="l00169" name="l00169"></a><span class="lineno">  169</span>    rcc_periph_clock_enable(RCC_PWR);</div>
+<div class="line"><a id="l00170" name="l00170"></a><span class="lineno">  170</span> </div>
+<div class="line"><a id="l00171" name="l00171"></a><span class="lineno">  171</span>    <span class="comment">// Poll VOSF bit of in PWR_CSR</span></div>
+<div class="line"><a id="l00172" name="l00172"></a><span class="lineno">  172</span>    <span class="keywordflow">while</span> (PWR_CSR &amp; PWR_CSR_VOSF) {</div>
+<div class="line"><a id="l00173" name="l00173"></a><span class="lineno">  173</span>    }</div>
+<div class="line"><a id="l00174" name="l00174"></a><span class="lineno">  174</span> </div>
+<div class="line"><a id="l00175" name="l00175"></a><span class="lineno">  175</span>    <span class="comment">// Configure the voltage scaling range by setting the VOS[1:0] bits in the</span></div>
+<div class="line"><a id="l00176" name="l00176"></a><span class="lineno">  176</span>    <span class="comment">// PWR_CR register</span></div>
+<div class="line"><a id="l00177" name="l00177"></a><span class="lineno">  177</span>    pwr_set_vos_scale(scale);</div>
+<div class="line"><a id="l00178" name="l00178"></a><span class="lineno">  178</span> </div>
+<div class="line"><a id="l00179" name="l00179"></a><span class="lineno">  179</span>    <span class="comment">// Poll VOSF bit of in PWR_CSR register</span></div>
+<div class="line"><a id="l00180" name="l00180"></a><span class="lineno">  180</span>    <span class="keywordflow">while</span> (PWR_CSR &amp; PWR_CSR_VOSF) {</div>
+<div class="line"><a id="l00181" name="l00181"></a><span class="lineno">  181</span>    }</div>
+<div class="line"><a id="l00182" name="l00182"></a><span class="lineno">  182</span>}</div>
 </div>
-<div class="line"><a id="l00189" name="l00189"></a><span class="lineno">  189</span> </div>
-<div class="foldopen" id="foldopen00190" data-start="{" data-end="}">
-<div class="line"><a id="l00190" name="l00190"></a><span class="lineno"><a class="line" href="group___b_a_t_t_e_r_y___a_p_i.html#gab70aa864f9333d92f632f4dd59446a5b">  190</a></span><span class="keywordtype">void</span> <a class="code hl_function" href="group___b_a_t_t_e_r_y___a_p_i.html#gab70aa864f9333d92f632f4dd59446a5b">batt_set_voltage_scale</a>(uint8_t scale) {</div>
-<div class="line"><a id="l00191" name="l00191"></a><span class="lineno">  191</span>    rcc_periph_clock_enable(RCC_PWR);</div>
-<div class="line"><a id="l00192" name="l00192"></a><span class="lineno">  192</span> </div>
-<div class="line"><a id="l00193" name="l00193"></a><span class="lineno">  193</span>    <span class="comment">// Poll VOSF bit of in PWR_CSR</span></div>
-<div class="line"><a id="l00194" name="l00194"></a><span class="lineno">  194</span>    <span class="keywordflow">while</span> (PWR_CSR &amp; PWR_CSR_VOSF) {</div>
-<div class="line"><a id="l00195" name="l00195"></a><span class="lineno">  195</span>    }</div>
-<div class="line"><a id="l00196" name="l00196"></a><span class="lineno">  196</span> </div>
-<div class="line"><a id="l00197" name="l00197"></a><span class="lineno">  197</span>    <span class="comment">// Configure the voltage scaling range by setting the VOS[1:0] bits in the</span></div>
-<div class="line"><a id="l00198" name="l00198"></a><span class="lineno">  198</span>    <span class="comment">// PWR_CR register</span></div>
-<div class="line"><a id="l00199" name="l00199"></a><span class="lineno">  199</span>    pwr_set_vos_scale(scale);</div>
-<div class="line"><a id="l00200" name="l00200"></a><span class="lineno">  200</span> </div>
-<div class="line"><a id="l00201" name="l00201"></a><span class="lineno">  201</span>    <span class="comment">// Poll VOSF bit of in PWR_CSR register</span></div>
-<div class="line"><a id="l00202" name="l00202"></a><span class="lineno">  202</span>    <span class="keywordflow">while</span> (PWR_CSR &amp; PWR_CSR_VOSF) {</div>
-<div class="line"><a id="l00203" name="l00203"></a><span class="lineno">  203</span>    }</div>
-<div class="line"><a id="l00204" name="l00204"></a><span class="lineno">  204</span>}</div>
-</div>
+<div class="line"><a id="l00183" name="l00183"></a><span class="lineno">  183</span> </div>
+<div class="foldopen" id="foldopen00184" data-start="{" data-end="}">
+<div class="line"><a id="l00184" name="l00184"></a><span class="lineno"><a class="line" href="group__battery__api.html#gaf4ac3c31321cf201d797ab82ce0587a3">  184</a></span><span class="keywordtype">void</span> <a class="code hl_function" href="group__battery__api.html#gaf4ac3c31321cf201d797ab82ce0587a3">batt_set_low_power_run</a>(<span class="keywordtype">void</span>) {</div>
+<div class="line"><a id="l00185" name="l00185"></a><span class="lineno">  185</span>    rcc_periph_clock_enable(RCC_PWR);</div>
+<div class="line"><a id="l00186" name="l00186"></a><span class="lineno">  186</span> </div>
+<div class="line"><a id="l00187" name="l00187"></a><span class="lineno">  187</span>    <span class="comment">// Set LPRUN &amp; LPSDSR bits in PWR_CR register</span></div>
+<div class="line"><a id="l00188" name="l00188"></a><span class="lineno">  188</span>    PWR_CR |= PWR_CR_LPSDSR;</div>
+<div class="line"><a id="l00189" name="l00189"></a><span class="lineno">  189</span>    PWR_CR |= PWR_CR_LPRUN;</div>
+<div class="line"><a id="l00190" name="l00190"></a><span class="lineno">  190</span> </div>
+<div class="line"><a id="l00191" name="l00191"></a><span class="lineno">  191</span>    <span class="comment">// Enable MSI Osc 2.097Mhz</span></div>
+<div class="line"><a id="l00192" name="l00192"></a><span class="lineno">  192</span>    rcc_osc_on(RCC_MSI);</div>
+<div class="line"><a id="l00193" name="l00193"></a><span class="lineno">  193</span>    rcc_wait_for_osc_ready(RCC_MSI);</div>
+<div class="line"><a id="l00194" name="l00194"></a><span class="lineno">  194</span> </div>
+<div class="line"><a id="l00195" name="l00195"></a><span class="lineno">  195</span>    <span class="comment">// Set MSI to 65.536kHz</span></div>
+<div class="line"><a id="l00196" name="l00196"></a><span class="lineno">  196</span>    rcc_set_msi_range(0);</div>
+<div class="line"><a id="l00197" name="l00197"></a><span class="lineno">  197</span> </div>
+<div class="line"><a id="l00198" name="l00198"></a><span class="lineno">  198</span>    <span class="comment">// Set prescalers for AHB, APB1, APB2</span></div>
+<div class="line"><a id="l00199" name="l00199"></a><span class="lineno">  199</span>    rcc_set_hpre(RCC_CFGR_HPRE_NODIV);   <span class="comment">// AHB -&gt; 65.536kHz</span></div>
+<div class="line"><a id="l00200" name="l00200"></a><span class="lineno">  200</span>    rcc_set_ppre1(RCC_CFGR_PPRE1_NODIV); <span class="comment">// APB1 -&gt; 65.536kHz</span></div>
+<div class="line"><a id="l00201" name="l00201"></a><span class="lineno">  201</span>    rcc_set_ppre2(RCC_CFGR_PPRE2_NODIV); <span class="comment">// APB2 -&gt; 65.536kHz</span></div>
+<div class="line"><a id="l00202" name="l00202"></a><span class="lineno">  202</span> </div>
+<div class="line"><a id="l00203" name="l00203"></a><span class="lineno">  203</span>    <span class="comment">// Set flash, 65.536kHz -&gt; 0 waitstates</span></div>
+<div class="line"><a id="l00204" name="l00204"></a><span class="lineno">  204</span>    flash_set_ws(FLASH_ACR_LATENCY_0WS);</div>
 <div class="line"><a id="l00205" name="l00205"></a><span class="lineno">  205</span> </div>
-<div class="foldopen" id="foldopen00206" data-start="{" data-end="}">
-<div class="line"><a id="l00206" name="l00206"></a><span class="lineno"><a class="line" href="group___b_a_t_t_e_r_y___a_p_i.html#gaf4ac3c31321cf201d797ab82ce0587a3">  206</a></span><span class="keywordtype">void</span> <a class="code hl_function" href="group___b_a_t_t_e_r_y___a_p_i.html#gaf4ac3c31321cf201d797ab82ce0587a3">batt_set_low_power_run</a>(<span class="keywordtype">void</span>) {</div>
-<div class="line"><a id="l00207" name="l00207"></a><span class="lineno">  207</span>    rcc_periph_clock_enable(RCC_PWR);</div>
-<div class="line"><a id="l00208" name="l00208"></a><span class="lineno">  208</span> </div>
-<div class="line"><a id="l00209" name="l00209"></a><span class="lineno">  209</span>    <span class="comment">// Set LPRUN &amp; LPSDSR bits in PWR_CR register</span></div>
-<div class="line"><a id="l00210" name="l00210"></a><span class="lineno">  210</span>    PWR_CR |= PWR_CR_LPSDSR;</div>
-<div class="line"><a id="l00211" name="l00211"></a><span class="lineno">  211</span>    PWR_CR |= PWR_CR_LPRUN;</div>
-<div class="line"><a id="l00212" name="l00212"></a><span class="lineno">  212</span> </div>
-<div class="line"><a id="l00213" name="l00213"></a><span class="lineno">  213</span>    <span class="comment">// Enable MSI Osc 2.097Mhz</span></div>
-<div class="line"><a id="l00214" name="l00214"></a><span class="lineno">  214</span>    rcc_osc_on(RCC_MSI);</div>
-<div class="line"><a id="l00215" name="l00215"></a><span class="lineno">  215</span>    rcc_wait_for_osc_ready(RCC_MSI);</div>
-<div class="line"><a id="l00216" name="l00216"></a><span class="lineno">  216</span> </div>
-<div class="line"><a id="l00217" name="l00217"></a><span class="lineno">  217</span>    <span class="comment">// Set MSI to 65.536kHz</span></div>
-<div class="line"><a id="l00218" name="l00218"></a><span class="lineno">  218</span>    rcc_set_msi_range(0);</div>
-<div class="line"><a id="l00219" name="l00219"></a><span class="lineno">  219</span> </div>
-<div class="line"><a id="l00220" name="l00220"></a><span class="lineno">  220</span>    <span class="comment">// Set prescalers for AHB, APB1, APB2</span></div>
-<div class="line"><a id="l00221" name="l00221"></a><span class="lineno">  221</span>    rcc_set_hpre(RCC_CFGR_HPRE_NODIV);   <span class="comment">// AHB -&gt; 65.536kHz</span></div>
-<div class="line"><a id="l00222" name="l00222"></a><span class="lineno">  222</span>    rcc_set_ppre1(RCC_CFGR_PPRE1_NODIV); <span class="comment">// APB1 -&gt; 65.536kHz</span></div>
-<div class="line"><a id="l00223" name="l00223"></a><span class="lineno">  223</span>    rcc_set_ppre2(RCC_CFGR_PPRE2_NODIV); <span class="comment">// APB2 -&gt; 65.536kHz</span></div>
-<div class="line"><a id="l00224" name="l00224"></a><span class="lineno">  224</span> </div>
-<div class="line"><a id="l00225" name="l00225"></a><span class="lineno">  225</span>    <span class="comment">// Set flash, 65.536kHz -&gt; 0 waitstates</span></div>
-<div class="line"><a id="l00226" name="l00226"></a><span class="lineno">  226</span>    flash_set_ws(FLASH_ACR_LATENCY_0WS);</div>
-<div class="line"><a id="l00227" name="l00227"></a><span class="lineno">  227</span> </div>
-<div class="line"><a id="l00228" name="l00228"></a><span class="lineno">  228</span>    <span class="comment">// Set Peripheral Clock Frequencies used</span></div>
-<div class="line"><a id="l00229" name="l00229"></a><span class="lineno">  229</span>    rcc_ahb_frequency = 65536;</div>
-<div class="line"><a id="l00230" name="l00230"></a><span class="lineno">  230</span>    rcc_apb1_frequency = 65536;</div>
-<div class="line"><a id="l00231" name="l00231"></a><span class="lineno">  231</span>    rcc_apb2_frequency = 65536;</div>
+<div class="line"><a id="l00206" name="l00206"></a><span class="lineno">  206</span>    <span class="comment">// Set Peripheral Clock Frequencies used</span></div>
+<div class="line"><a id="l00207" name="l00207"></a><span class="lineno">  207</span>    rcc_ahb_frequency = 65536;</div>
+<div class="line"><a id="l00208" name="l00208"></a><span class="lineno">  208</span>    rcc_apb1_frequency = 65536;</div>
+<div class="line"><a id="l00209" name="l00209"></a><span class="lineno">  209</span>    rcc_apb2_frequency = 65536;</div>
+<div class="line"><a id="l00210" name="l00210"></a><span class="lineno">  210</span> </div>
+<div class="line"><a id="l00211" name="l00211"></a><span class="lineno">  211</span>    rcc_periph_clock_disable(RCC_PWR);</div>
+<div class="line"><a id="l00212" name="l00212"></a><span class="lineno">  212</span>}</div>
+</div>
+<div class="line"><a id="l00213" name="l00213"></a><span class="lineno">  213</span> </div>
+<div class="foldopen" id="foldopen00214" data-start="{" data-end="}">
+<div class="line"><a id="l00214" name="l00214"></a><span class="lineno"><a class="line" href="group__battery__api.html#ga6bd50ebd22ca8d400869cc9f3cb07810">  214</a></span><span class="keywordtype">void</span> <a class="code hl_function" href="group__battery__api.html#ga6bd50ebd22ca8d400869cc9f3cb07810">batt_calculate_voltages</a>(<span class="keywordtype">void</span>) {</div>
+<div class="line"><a id="l00215" name="l00215"></a><span class="lineno">  215</span>    <span class="comment">// Calculate batt_voltages</span></div>
+<div class="line"><a id="l00216" name="l00216"></a><span class="lineno">  216</span>    <span class="keywordflow">for</span> (uint8_t i = 0; i &lt; <a class="code hl_define" href="group__battery__api.html#gaf1bc8b24896c36914f52907197a0e87a">NUM_VOLTAGES</a>; i++) {</div>
+<div class="line"><a id="l00217" name="l00217"></a><span class="lineno">  217</span>        <a class="code hl_variable" href="group__battery__api.html#ga6ce6d95d1e9ba4ae85466b512f92cfac">batt_voltages</a>[i] = ((uint32_t)300 * ST_VREFINT_CAL * <a class="code hl_variable" href="group__battery__api.html#ga6d788c2fe189afc53efa449a936574d4">adc_vals</a>[i + 1]) /</div>
+<div class="line"><a id="l00218" name="l00218"></a><span class="lineno">  218</span>                           (<a class="code hl_variable" href="group__battery__api.html#ga6d788c2fe189afc53efa449a936574d4">adc_vals</a>[0] * 4095);</div>
+<div class="line"><a id="l00219" name="l00219"></a><span class="lineno">  219</span>    }</div>
+<div class="line"><a id="l00220" name="l00220"></a><span class="lineno">  220</span> </div>
+<div class="line"><a id="l00221" name="l00221"></a><span class="lineno">  221</span><span class="comment">// For Hub : Measured voltage is half of actual</span></div>
+<div class="line"><a id="l00222" name="l00222"></a><span class="lineno">  222</span><span class="preprocessor">#ifdef COOLEASE_DEVICE_HUB</span></div>
+<div class="line"><a id="l00223" name="l00223"></a><span class="lineno">  223</span>    <span class="keywordflow">for</span> (uint8_t i = 0; i &lt; <a class="code hl_define" href="group__battery__api.html#gaf1bc8b24896c36914f52907197a0e87a">NUM_VOLTAGES</a>; i++) {</div>
+<div class="line"><a id="l00224" name="l00224"></a><span class="lineno">  224</span>        <a class="code hl_variable" href="group__battery__api.html#ga6ce6d95d1e9ba4ae85466b512f92cfac">batt_voltages</a>[i] = <a class="code hl_variable" href="group__battery__api.html#ga6ce6d95d1e9ba4ae85466b512f92cfac">batt_voltages</a>[i] * 2;</div>
+<div class="line"><a id="l00225" name="l00225"></a><span class="lineno">  225</span>    }</div>
+<div class="line"><a id="l00226" name="l00226"></a><span class="lineno">  226</span><span class="preprocessor">#endif</span></div>
+<div class="line"><a id="l00227" name="l00227"></a><span class="lineno">  227</span>}</div>
+</div>
+<div class="line"><a id="l00228" name="l00228"></a><span class="lineno">  228</span> </div>
+<div class="foldopen" id="foldopen00229" data-start="{" data-end="}">
+<div class="line"><a id="l00229" name="l00229"></a><span class="lineno"><a class="line" href="group__battery__api.html#ga9b243d544affdb2fc07050868206af24">  229</a></span><span class="keywordtype">void</span> <a class="code hl_function" href="group__battery__api.html#ga9b243d544affdb2fc07050868206af24">batt_update_voltages</a>(<span class="keywordtype">void</span>) {</div>
+<div class="line"><a id="l00230" name="l00230"></a><span class="lineno">  230</span>    <span class="keyword">static</span> uint32_t timer;</div>
+<div class="line"><a id="l00231" name="l00231"></a><span class="lineno">  231</span>    timer = <a class="code hl_function" href="group__timers__api.html#ga9c4643be9a297c1743fc505c87d0e36d">timers_millis</a>();</div>
 <div class="line"><a id="l00232" name="l00232"></a><span class="lineno">  232</span> </div>
-<div class="line"><a id="l00233" name="l00233"></a><span class="lineno">  233</span>    rcc_periph_clock_disable(RCC_PWR);</div>
-<div class="line"><a id="l00234" name="l00234"></a><span class="lineno">  234</span>}</div>
+<div class="line"><a id="l00233" name="l00233"></a><span class="lineno">  233</span>    ADC_CR(ADC1) |= ADC_CR_ADSTP;</div>
+<div class="line"><a id="l00234" name="l00234"></a><span class="lineno">  234</span>    <span class="keywordflow">while</span> (!(ADC_CR(ADC1) &amp; ADC_CR_ADSTP)) {</div>
+<div class="line"><a id="l00235" name="l00235"></a><span class="lineno">  235</span>        <span class="keywordflow">if</span> (<a class="code hl_function" href="group__timers__api.html#ga9c4643be9a297c1743fc505c87d0e36d">timers_millis</a>() - timer &gt; 2000) {</div>
+<div class="line"><a id="l00236" name="l00236"></a><span class="lineno">  236</span>            <a class="code hl_function" href="group__log__api.html#ga4fff2f266fd439fbb104ddb5d7f61533">log_printf</a>(<span class="stringliteral">&quot;ERR: ADC Stop Timeout\n&quot;</span>);</div>
+<div class="line"><a id="l00237" name="l00237"></a><span class="lineno">  237</span>            <span class="keywordflow">return</span>;</div>
+<div class="line"><a id="l00238" name="l00238"></a><span class="lineno">  238</span>        }</div>
+<div class="line"><a id="l00239" name="l00239"></a><span class="lineno">  239</span>    }</div>
+<div class="line"><a id="l00240" name="l00240"></a><span class="lineno">  240</span>    adc_set_single_conversion_mode(ADC1);</div>
+<div class="line"><a id="l00241" name="l00241"></a><span class="lineno">  241</span> </div>
+<div class="line"><a id="l00242" name="l00242"></a><span class="lineno">  242</span>    <span class="comment">// Start conversions</span></div>
+<div class="line"><a id="l00243" name="l00243"></a><span class="lineno">  243</span>    adc_start_conversion_regular(ADC1);</div>
+<div class="line"><a id="l00244" name="l00244"></a><span class="lineno">  244</span>    <span class="keywordflow">for</span> (uint8_t i = 0; i &lt; <a class="code hl_define" href="group__battery__api.html#gaf1bc8b24896c36914f52907197a0e87a">NUM_VOLTAGES</a> + 1; i++) {</div>
+<div class="line"><a id="l00245" name="l00245"></a><span class="lineno">  245</span>        <span class="keywordflow">while</span> (!adc_eoc(ADC1)) {</div>
+<div class="line"><a id="l00246" name="l00246"></a><span class="lineno">  246</span>            <span class="keywordflow">if</span> (<a class="code hl_function" href="group__timers__api.html#ga9c4643be9a297c1743fc505c87d0e36d">timers_millis</a>() - timer &gt; 5000) {</div>
+<div class="line"><a id="l00247" name="l00247"></a><span class="lineno">  247</span>                <a class="code hl_function" href="group__log__api.html#ga4fff2f266fd439fbb104ddb5d7f61533">log_printf</a>(<span class="stringliteral">&quot;ERR: ADC Conv Timeout\n&quot;</span>);</div>
+<div class="line"><a id="l00248" name="l00248"></a><span class="lineno">  248</span>                <span class="keywordflow">return</span>;</div>
+<div class="line"><a id="l00249" name="l00249"></a><span class="lineno">  249</span>            }</div>
+<div class="line"><a id="l00250" name="l00250"></a><span class="lineno">  250</span>        }</div>
+<div class="line"><a id="l00251" name="l00251"></a><span class="lineno">  251</span>        <a class="code hl_variable" href="group__battery__api.html#ga6d788c2fe189afc53efa449a936574d4">adc_vals</a>[i] = adc_read_regular(ADC1);</div>
+<div class="line"><a id="l00252" name="l00252"></a><span class="lineno">  252</span>    }</div>
+<div class="line"><a id="l00253" name="l00253"></a><span class="lineno">  253</span> </div>
+<div class="line"><a id="l00254" name="l00254"></a><span class="lineno">  254</span>    <a class="code hl_function" href="group__battery__api.html#ga6bd50ebd22ca8d400869cc9f3cb07810">batt_calculate_voltages</a>();</div>
+<div class="line"><a id="l00255" name="l00255"></a><span class="lineno">  255</span>}</div>
 </div>
-<div class="line"><a id="l00235" name="l00235"></a><span class="lineno">  235</span> </div>
-<div class="foldopen" id="foldopen00236" data-start="{" data-end="}">
-<div class="line"><a id="l00236" name="l00236"></a><span class="lineno"><a class="line" href="group___b_a_t_t_e_r_y___a_p_i.html#ga6bd50ebd22ca8d400869cc9f3cb07810">  236</a></span><span class="keywordtype">void</span> <a class="code hl_function" href="group___b_a_t_t_e_r_y___a_p_i.html#ga6bd50ebd22ca8d400869cc9f3cb07810">batt_calculate_voltages</a>(<span class="keywordtype">void</span>) {</div>
-<div class="line"><a id="l00237" name="l00237"></a><span class="lineno">  237</span>    <span class="comment">// Calculate batt_voltages</span></div>
-<div class="line"><a id="l00238" name="l00238"></a><span class="lineno">  238</span>    <span class="keywordflow">for</span> (uint8_t i = 0; i &lt; <a class="code hl_define" href="battery_8c.html#af1bc8b24896c36914f52907197a0e87a">NUM_VOLTAGES</a>; i++) {</div>
-<div class="line"><a id="l00239" name="l00239"></a><span class="lineno">  239</span>        <a class="code hl_variable" href="group___b_a_t_t_e_r_y___i_n_t.html#ga6ce6d95d1e9ba4ae85466b512f92cfac">batt_voltages</a>[i] = ((uint32_t)300 * ST_VREFINT_CAL * <a class="code hl_variable" href="group___b_a_t_t_e_r_y___i_n_t.html#ga6d788c2fe189afc53efa449a936574d4">adc_vals</a>[i + 1]) /</div>
-<div class="line"><a id="l00240" name="l00240"></a><span class="lineno">  240</span>                           (<a class="code hl_variable" href="group___b_a_t_t_e_r_y___i_n_t.html#ga6d788c2fe189afc53efa449a936574d4">adc_vals</a>[0] * 4095);</div>
-<div class="line"><a id="l00241" name="l00241"></a><span class="lineno">  241</span>    }</div>
-<div class="line"><a id="l00242" name="l00242"></a><span class="lineno">  242</span> </div>
-<div class="line"><a id="l00243" name="l00243"></a><span class="lineno">  243</span><span class="comment">// For Hub : Measured voltage is half of actual</span></div>
-<div class="line"><a id="l00244" name="l00244"></a><span class="lineno">  244</span><span class="preprocessor">#ifdef _HUB</span></div>
-<div class="line"><a id="l00245" name="l00245"></a><span class="lineno">  245</span>    <span class="keywordflow">for</span> (uint8_t i = 0; i &lt; <a class="code hl_define" href="battery_8c.html#af1bc8b24896c36914f52907197a0e87a">NUM_VOLTAGES</a>; i++) {</div>
-<div class="line"><a id="l00246" name="l00246"></a><span class="lineno">  246</span>        <a class="code hl_variable" href="group___b_a_t_t_e_r_y___i_n_t.html#ga6ce6d95d1e9ba4ae85466b512f92cfac">batt_voltages</a>[i] = <a class="code hl_variable" href="group___b_a_t_t_e_r_y___i_n_t.html#ga6ce6d95d1e9ba4ae85466b512f92cfac">batt_voltages</a>[i] * 2;</div>
-<div class="line"><a id="l00247" name="l00247"></a><span class="lineno">  247</span>    }</div>
-<div class="line"><a id="l00248" name="l00248"></a><span class="lineno">  248</span><span class="preprocessor">#endif</span></div>
-<div class="line"><a id="l00249" name="l00249"></a><span class="lineno">  249</span>}</div>
-</div>
-<div class="line"><a id="l00250" name="l00250"></a><span class="lineno">  250</span> </div>
-<div class="foldopen" id="foldopen00251" data-start="{" data-end="}">
-<div class="line"><a id="l00251" name="l00251"></a><span class="lineno"><a class="line" href="group___b_a_t_t_e_r_y___a_p_i.html#ga9b243d544affdb2fc07050868206af24">  251</a></span><span class="keywordtype">void</span> <a class="code hl_function" href="group___b_a_t_t_e_r_y___a_p_i.html#ga9b243d544affdb2fc07050868206af24">batt_update_voltages</a>(<span class="keywordtype">void</span>) {</div>
-<div class="line"><a id="l00252" name="l00252"></a><span class="lineno">  252</span>    <span class="keyword">static</span> uint32_t timer;</div>
-<div class="line"><a id="l00253" name="l00253"></a><span class="lineno">  253</span>    timer = <a class="code hl_function" href="group___t_i_m_e_r_s___a_p_i.html#ga9c4643be9a297c1743fc505c87d0e36d">timers_millis</a>();</div>
-<div class="line"><a id="l00254" name="l00254"></a><span class="lineno">  254</span> </div>
-<div class="line"><a id="l00255" name="l00255"></a><span class="lineno">  255</span>    ADC_CR(ADC1) |= ADC_CR_ADSTP;</div>
-<div class="line"><a id="l00256" name="l00256"></a><span class="lineno">  256</span>    <span class="keywordflow">while</span> (!(ADC_CR(ADC1) &amp; ADC_CR_ADSTP)) {</div>
-<div class="line"><a id="l00257" name="l00257"></a><span class="lineno">  257</span>        <span class="keywordflow">if</span> (<a class="code hl_function" href="group___t_i_m_e_r_s___a_p_i.html#ga9c4643be9a297c1743fc505c87d0e36d">timers_millis</a>() - timer &gt; 2000) {</div>
-<div class="line"><a id="l00258" name="l00258"></a><span class="lineno">  258</span>            <a class="code hl_function" href="group___l_o_g___a_p_i.html#ga4fff2f266fd439fbb104ddb5d7f61533">log_printf</a>(<span class="stringliteral">&quot;ERR: ADC Stop Timeout\n&quot;</span>);</div>
-<div class="line"><a id="l00259" name="l00259"></a><span class="lineno">  259</span>            <span class="keywordflow">return</span>;</div>
-<div class="line"><a id="l00260" name="l00260"></a><span class="lineno">  260</span>        }</div>
-<div class="line"><a id="l00261" name="l00261"></a><span class="lineno">  261</span>    }</div>
-<div class="line"><a id="l00262" name="l00262"></a><span class="lineno">  262</span>    adc_set_single_conversion_mode(ADC1);</div>
-<div class="line"><a id="l00263" name="l00263"></a><span class="lineno">  263</span> </div>
-<div class="line"><a id="l00264" name="l00264"></a><span class="lineno">  264</span>    <span class="comment">// Start conversions</span></div>
-<div class="line"><a id="l00265" name="l00265"></a><span class="lineno">  265</span>    adc_start_conversion_regular(ADC1);</div>
-<div class="line"><a id="l00266" name="l00266"></a><span class="lineno">  266</span>    <span class="keywordflow">for</span> (uint8_t i = 0; i &lt; <a class="code hl_define" href="battery_8c.html#af1bc8b24896c36914f52907197a0e87a">NUM_VOLTAGES</a> + 1; i++) {</div>
-<div class="line"><a id="l00267" name="l00267"></a><span class="lineno">  267</span>        <span class="keywordflow">while</span> (!adc_eoc(ADC1)) {</div>
-<div class="line"><a id="l00268" name="l00268"></a><span class="lineno">  268</span>            <span class="keywordflow">if</span> (<a class="code hl_function" href="group___t_i_m_e_r_s___a_p_i.html#ga9c4643be9a297c1743fc505c87d0e36d">timers_millis</a>() - timer &gt; 5000) {</div>
-<div class="line"><a id="l00269" name="l00269"></a><span class="lineno">  269</span>                <a class="code hl_function" href="group___l_o_g___a_p_i.html#ga4fff2f266fd439fbb104ddb5d7f61533">log_printf</a>(<span class="stringliteral">&quot;ERR: ADC Conv Timeout\n&quot;</span>);</div>
-<div class="line"><a id="l00270" name="l00270"></a><span class="lineno">  270</span>                <span class="keywordflow">return</span>;</div>
-<div class="line"><a id="l00271" name="l00271"></a><span class="lineno">  271</span>            }</div>
-<div class="line"><a id="l00272" name="l00272"></a><span class="lineno">  272</span>        }</div>
-<div class="line"><a id="l00273" name="l00273"></a><span class="lineno">  273</span>        <a class="code hl_variable" href="group___b_a_t_t_e_r_y___i_n_t.html#ga6d788c2fe189afc53efa449a936574d4">adc_vals</a>[i] = adc_read_regular(ADC1);</div>
-<div class="line"><a id="l00274" name="l00274"></a><span class="lineno">  274</span>    }</div>
+<div class="line"><a id="l00256" name="l00256"></a><span class="lineno">  256</span> </div>
+<div class="foldopen" id="foldopen00257" data-start="{" data-end="}">
+<div class="line"><a id="l00257" name="l00257"></a><span class="lineno"><a class="line" href="group__battery__api.html#ga49184eb31da78a82b862ac5c6bbd8099">  257</a></span><span class="keywordtype">void</span> <a class="code hl_function" href="group__battery__api.html#ga49184eb31da78a82b862ac5c6bbd8099">batt_enable_interrupt</a>(<span class="keywordtype">void</span>) {</div>
+<div class="line"><a id="l00258" name="l00258"></a><span class="lineno">  258</span>    ADC_CR(ADC1) |= ADC_CR_ADSTP;</div>
+<div class="line"><a id="l00259" name="l00259"></a><span class="lineno">  259</span>    <span class="keywordflow">while</span> (!(ADC_CR(ADC1) &amp; ADC_CR_ADSTP)) {</div>
+<div class="line"><a id="l00260" name="l00260"></a><span class="lineno">  260</span>    }</div>
+<div class="line"><a id="l00261" name="l00261"></a><span class="lineno">  261</span>    adc_set_continuous_conversion_mode(ADC1);</div>
+<div class="line"><a id="l00262" name="l00262"></a><span class="lineno">  262</span> </div>
+<div class="line"><a id="l00263" name="l00263"></a><span class="lineno">  263</span>    adc_enable_dma(ADC1);</div>
+<div class="line"><a id="l00264" name="l00264"></a><span class="lineno">  264</span>    adc_enable_dma_circular_mode(ADC1);</div>
+<div class="line"><a id="l00265" name="l00265"></a><span class="lineno">  265</span> </div>
+<div class="line"><a id="l00266" name="l00266"></a><span class="lineno">  266</span>    <span class="comment">// Setup DMA</span></div>
+<div class="line"><a id="l00267" name="l00267"></a><span class="lineno">  267</span>    rcc_periph_clock_enable(RCC_DMA);</div>
+<div class="line"><a id="l00268" name="l00268"></a><span class="lineno">  268</span>    dma_channel_reset(DMA1, 1);</div>
+<div class="line"><a id="l00269" name="l00269"></a><span class="lineno">  269</span> </div>
+<div class="line"><a id="l00270" name="l00270"></a><span class="lineno">  270</span>    dma_enable_circular_mode(DMA1, 1);</div>
+<div class="line"><a id="l00271" name="l00271"></a><span class="lineno">  271</span> </div>
+<div class="line"><a id="l00272" name="l00272"></a><span class="lineno">  272</span>    dma_set_read_from_peripheral(DMA1, 1);</div>
+<div class="line"><a id="l00273" name="l00273"></a><span class="lineno">  273</span>    dma_set_number_of_data(DMA1, 1, <a class="code hl_define" href="group__battery__api.html#gaf1bc8b24896c36914f52907197a0e87a">NUM_VOLTAGES</a> + 1);</div>
+<div class="line"><a id="l00274" name="l00274"></a><span class="lineno">  274</span>    dma_set_priority(DMA1, 1, DMA_CCR_PL_VERY_HIGH);</div>
 <div class="line"><a id="l00275" name="l00275"></a><span class="lineno">  275</span> </div>
-<div class="line"><a id="l00276" name="l00276"></a><span class="lineno">  276</span>    <a class="code hl_function" href="group___b_a_t_t_e_r_y___a_p_i.html#ga6bd50ebd22ca8d400869cc9f3cb07810">batt_calculate_voltages</a>();</div>
-<div class="line"><a id="l00277" name="l00277"></a><span class="lineno">  277</span>}</div>
-</div>
-<div class="line"><a id="l00278" name="l00278"></a><span class="lineno">  278</span> </div>
-<div class="foldopen" id="foldopen00279" data-start="{" data-end="}">
-<div class="line"><a id="l00279" name="l00279"></a><span class="lineno"><a class="line" href="group___b_a_t_t_e_r_y___a_p_i.html#ga49184eb31da78a82b862ac5c6bbd8099">  279</a></span><span class="keywordtype">void</span> <a class="code hl_function" href="group___b_a_t_t_e_r_y___a_p_i.html#ga49184eb31da78a82b862ac5c6bbd8099">batt_enable_interrupt</a>(<span class="keywordtype">void</span>) {</div>
-<div class="line"><a id="l00280" name="l00280"></a><span class="lineno">  280</span>    ADC_CR(ADC1) |= ADC_CR_ADSTP;</div>
-<div class="line"><a id="l00281" name="l00281"></a><span class="lineno">  281</span>    <span class="keywordflow">while</span> (!(ADC_CR(ADC1) &amp; ADC_CR_ADSTP)) {</div>
-<div class="line"><a id="l00282" name="l00282"></a><span class="lineno">  282</span>    }</div>
-<div class="line"><a id="l00283" name="l00283"></a><span class="lineno">  283</span>    adc_set_continuous_conversion_mode(ADC1);</div>
-<div class="line"><a id="l00284" name="l00284"></a><span class="lineno">  284</span> </div>
-<div class="line"><a id="l00285" name="l00285"></a><span class="lineno">  285</span>    adc_enable_dma(ADC1);</div>
-<div class="line"><a id="l00286" name="l00286"></a><span class="lineno">  286</span>    adc_enable_dma_circular_mode(ADC1);</div>
+<div class="line"><a id="l00276" name="l00276"></a><span class="lineno">  276</span>    dma_set_peripheral_address(DMA1, 1, (uint32_t)&amp;ADC_DR(ADC1));</div>
+<div class="line"><a id="l00277" name="l00277"></a><span class="lineno">  277</span>    dma_set_peripheral_size(DMA1, 1, DMA_CCR_PSIZE_32BIT);</div>
+<div class="line"><a id="l00278" name="l00278"></a><span class="lineno">  278</span>    dma_disable_peripheral_increment_mode(DMA1, 1);</div>
+<div class="line"><a id="l00279" name="l00279"></a><span class="lineno">  279</span> </div>
+<div class="line"><a id="l00280" name="l00280"></a><span class="lineno">  280</span>    dma_set_memory_address(DMA1, 1, (uint32_t)<a class="code hl_variable" href="group__battery__api.html#ga6d788c2fe189afc53efa449a936574d4">adc_vals</a>);</div>
+<div class="line"><a id="l00281" name="l00281"></a><span class="lineno">  281</span>    dma_set_memory_size(DMA1, 1, DMA_CCR_MSIZE_16BIT);</div>
+<div class="line"><a id="l00282" name="l00282"></a><span class="lineno">  282</span>    dma_enable_memory_increment_mode(DMA1, 1);</div>
+<div class="line"><a id="l00283" name="l00283"></a><span class="lineno">  283</span> </div>
+<div class="line"><a id="l00284" name="l00284"></a><span class="lineno">  284</span>    dma_enable_transfer_complete_interrupt(DMA1, DMA_CHANNEL1);</div>
+<div class="line"><a id="l00285" name="l00285"></a><span class="lineno">  285</span> </div>
+<div class="line"><a id="l00286" name="l00286"></a><span class="lineno">  286</span>    dma_enable_channel(DMA1, 1);</div>
 <div class="line"><a id="l00287" name="l00287"></a><span class="lineno">  287</span> </div>
-<div class="line"><a id="l00288" name="l00288"></a><span class="lineno">  288</span>    <span class="comment">// Setup DMA</span></div>
-<div class="line"><a id="l00289" name="l00289"></a><span class="lineno">  289</span>    rcc_periph_clock_enable(RCC_DMA);</div>
-<div class="line"><a id="l00290" name="l00290"></a><span class="lineno">  290</span>    dma_channel_reset(DMA1, 1);</div>
+<div class="line"><a id="l00288" name="l00288"></a><span class="lineno">  288</span>    <span class="comment">// Enable interrupt. Low priority</span></div>
+<div class="line"><a id="l00289" name="l00289"></a><span class="lineno">  289</span>    nvic_enable_irq(NVIC_DMA1_CHANNEL1_IRQ);</div>
+<div class="line"><a id="l00290" name="l00290"></a><span class="lineno">  290</span>    nvic_set_priority(NVIC_DMA1_CHANNEL1_IRQ, IRQ_PRIORITY_BATT);</div>
 <div class="line"><a id="l00291" name="l00291"></a><span class="lineno">  291</span> </div>
-<div class="line"><a id="l00292" name="l00292"></a><span class="lineno">  292</span>    dma_enable_circular_mode(DMA1, 1);</div>
-<div class="line"><a id="l00293" name="l00293"></a><span class="lineno">  293</span> </div>
-<div class="line"><a id="l00294" name="l00294"></a><span class="lineno">  294</span>    dma_set_read_from_peripheral(DMA1, 1);</div>
-<div class="line"><a id="l00295" name="l00295"></a><span class="lineno">  295</span>    dma_set_number_of_data(DMA1, 1, <a class="code hl_define" href="battery_8c.html#af1bc8b24896c36914f52907197a0e87a">NUM_VOLTAGES</a> + 1);</div>
-<div class="line"><a id="l00296" name="l00296"></a><span class="lineno">  296</span>    dma_set_priority(DMA1, 1, DMA_CCR_PL_VERY_HIGH);</div>
-<div class="line"><a id="l00297" name="l00297"></a><span class="lineno">  297</span> </div>
-<div class="line"><a id="l00298" name="l00298"></a><span class="lineno">  298</span>    dma_set_peripheral_address(DMA1, 1, (uint32_t)&amp;ADC_DR(ADC1));</div>
-<div class="line"><a id="l00299" name="l00299"></a><span class="lineno">  299</span>    dma_set_peripheral_size(DMA1, 1, DMA_CCR_PSIZE_32BIT);</div>
-<div class="line"><a id="l00300" name="l00300"></a><span class="lineno">  300</span>    dma_disable_peripheral_increment_mode(DMA1, 1);</div>
+<div class="line"><a id="l00292" name="l00292"></a><span class="lineno">  292</span>    <span class="comment">// Start conversions</span></div>
+<div class="line"><a id="l00293" name="l00293"></a><span class="lineno">  293</span>    adc_start_conversion_regular(ADC1);</div>
+<div class="line"><a id="l00294" name="l00294"></a><span class="lineno">  294</span>}</div>
+</div>
+<div class="line"><a id="l00295" name="l00295"></a><span class="lineno">  295</span> </div>
+<div class="foldopen" id="foldopen00296" data-start="{" data-end="}">
+<div class="line"><a id="l00296" name="l00296"></a><span class="lineno"><a class="line" href="group__battery__api.html#ga3986a1e569a68da36d79f738ee242eab">  296</a></span><span class="keywordtype">void</span> <a class="code hl_function" href="group__battery__api.html#ga3986a1e569a68da36d79f738ee242eab">batt_disable_interrupt</a>(<span class="keywordtype">void</span>) {</div>
+<div class="line"><a id="l00297" name="l00297"></a><span class="lineno">  297</span>    adc_disable_dma(ADC1);</div>
+<div class="line"><a id="l00298" name="l00298"></a><span class="lineno">  298</span>    adc_disable_dma_circular_mode(ADC1);</div>
+<div class="line"><a id="l00299" name="l00299"></a><span class="lineno">  299</span> </div>
+<div class="line"><a id="l00300" name="l00300"></a><span class="lineno">  300</span>    dma_channel_reset(DMA1, DMA_CHANNEL1);</div>
 <div class="line"><a id="l00301" name="l00301"></a><span class="lineno">  301</span> </div>
-<div class="line"><a id="l00302" name="l00302"></a><span class="lineno">  302</span>    dma_set_memory_address(DMA1, 1, (uint32_t)<a class="code hl_variable" href="group___b_a_t_t_e_r_y___i_n_t.html#ga6d788c2fe189afc53efa449a936574d4">adc_vals</a>);</div>
-<div class="line"><a id="l00303" name="l00303"></a><span class="lineno">  303</span>    dma_set_memory_size(DMA1, 1, DMA_CCR_MSIZE_16BIT);</div>
-<div class="line"><a id="l00304" name="l00304"></a><span class="lineno">  304</span>    dma_enable_memory_increment_mode(DMA1, 1);</div>
-<div class="line"><a id="l00305" name="l00305"></a><span class="lineno">  305</span> </div>
-<div class="line"><a id="l00306" name="l00306"></a><span class="lineno">  306</span>    dma_enable_transfer_complete_interrupt(DMA1, DMA_CHANNEL1);</div>
-<div class="line"><a id="l00307" name="l00307"></a><span class="lineno">  307</span> </div>
-<div class="line"><a id="l00308" name="l00308"></a><span class="lineno">  308</span>    dma_enable_channel(DMA1, 1);</div>
-<div class="line"><a id="l00309" name="l00309"></a><span class="lineno">  309</span> </div>
-<div class="line"><a id="l00310" name="l00310"></a><span class="lineno">  310</span>    <span class="comment">// Enable interrupt. Low priority</span></div>
-<div class="line"><a id="l00311" name="l00311"></a><span class="lineno">  311</span>    nvic_enable_irq(NVIC_DMA1_CHANNEL1_IRQ);</div>
-<div class="line"><a id="l00312" name="l00312"></a><span class="lineno">  312</span>    nvic_set_priority(NVIC_DMA1_CHANNEL1_IRQ, IRQ_PRIORITY_BATT);</div>
-<div class="line"><a id="l00313" name="l00313"></a><span class="lineno">  313</span> </div>
-<div class="line"><a id="l00314" name="l00314"></a><span class="lineno">  314</span>    <span class="comment">// Start conversions</span></div>
-<div class="line"><a id="l00315" name="l00315"></a><span class="lineno">  315</span>    adc_start_conversion_regular(ADC1);</div>
-<div class="line"><a id="l00316" name="l00316"></a><span class="lineno">  316</span>}</div>
+<div class="line"><a id="l00302" name="l00302"></a><span class="lineno">  302</span>    nvic_disable_irq(NVIC_DMA1_CHANNEL1_IRQ);</div>
+<div class="line"><a id="l00303" name="l00303"></a><span class="lineno">  303</span>}</div>
 </div>
-<div class="line"><a id="l00317" name="l00317"></a><span class="lineno">  317</span> </div>
-<div class="foldopen" id="foldopen00318" data-start="{" data-end="}">
-<div class="line"><a id="l00318" name="l00318"></a><span class="lineno"><a class="line" href="group___b_a_t_t_e_r_y___a_p_i.html#ga3986a1e569a68da36d79f738ee242eab">  318</a></span><span class="keywordtype">void</span> <a class="code hl_function" href="group___b_a_t_t_e_r_y___a_p_i.html#ga3986a1e569a68da36d79f738ee242eab">batt_disable_interrupt</a>(<span class="keywordtype">void</span>) {</div>
-<div class="line"><a id="l00319" name="l00319"></a><span class="lineno">  319</span>    adc_disable_dma(ADC1);</div>
-<div class="line"><a id="l00320" name="l00320"></a><span class="lineno">  320</span>    adc_disable_dma_circular_mode(ADC1);</div>
-<div class="line"><a id="l00321" name="l00321"></a><span class="lineno">  321</span> </div>
-<div class="line"><a id="l00322" name="l00322"></a><span class="lineno">  322</span>    dma_channel_reset(DMA1, DMA_CHANNEL1);</div>
-<div class="line"><a id="l00323" name="l00323"></a><span class="lineno">  323</span> </div>
-<div class="line"><a id="l00324" name="l00324"></a><span class="lineno">  324</span>    nvic_disable_irq(NVIC_DMA1_CHANNEL1_IRQ);</div>
-<div class="line"><a id="l00325" name="l00325"></a><span class="lineno">  325</span>}</div>
+<div class="line"><a id="l00304" name="l00304"></a><span class="lineno">  304</span> </div>
+<div class="foldopen" id="foldopen00305" data-start="{" data-end="}">
+<div class="line"><a id="l00305" name="l00305"></a><span class="lineno"><a class="line" href="group__battery__api.html#gab2cec09017de01449439e2d93f958584">  305</a></span>uint16_t <a class="code hl_function" href="group__battery__api.html#gab2cec09017de01449439e2d93f958584">batt_get_batt_voltage</a>(<span class="keywordtype">void</span>) {</div>
+<div class="line"><a id="l00306" name="l00306"></a><span class="lineno">  306</span>    <span class="keywordflow">return</span> <a class="code hl_variable" href="group__battery__api.html#ga6ce6d95d1e9ba4ae85466b512f92cfac">batt_voltages</a>[<a class="code hl_define" href="group__battery__api.html#gafd1d97582ddd87bf66f3a428f1b003db">BATT_VOLTAGE</a>];</div>
+<div class="line"><a id="l00307" name="l00307"></a><span class="lineno">  307</span>}</div>
 </div>
-<div class="line"><a id="l00326" name="l00326"></a><span class="lineno">  326</span> </div>
-<div class="foldopen" id="foldopen00327" data-start="{" data-end="}">
-<div class="line"><a id="l00327" name="l00327"></a><span class="lineno"><a class="line" href="group___b_a_t_t_e_r_y___a_p_i.html#gab2cec09017de01449439e2d93f958584">  327</a></span>uint16_t <a class="code hl_function" href="group___b_a_t_t_e_r_y___a_p_i.html#gab2cec09017de01449439e2d93f958584">batt_get_batt_voltage</a>(<span class="keywordtype">void</span>) {</div>
-<div class="line"><a id="l00328" name="l00328"></a><span class="lineno">  328</span>    <span class="keywordflow">return</span> <a class="code hl_variable" href="group___b_a_t_t_e_r_y___i_n_t.html#ga6ce6d95d1e9ba4ae85466b512f92cfac">batt_voltages</a>[<a class="code hl_define" href="battery_8c.html#afd1d97582ddd87bf66f3a428f1b003db">BATT_VOLTAGE</a>];</div>
-<div class="line"><a id="l00329" name="l00329"></a><span class="lineno">  329</span>}</div>
+<div class="line"><a id="l00308" name="l00308"></a><span class="lineno">  308</span> </div>
+<div class="foldopen" id="foldopen00309" data-start="{" data-end="}">
+<div class="line"><a id="l00309" name="l00309"></a><span class="lineno"><a class="line" href="group__battery__api.html#ga50c7e2976224f53637f19928614679b2">  309</a></span>uint16_t <a class="code hl_function" href="group__battery__api.html#ga50c7e2976224f53637f19928614679b2">batt_get_pwr_voltage</a>(<span class="keywordtype">void</span>) {</div>
+<div class="line"><a id="l00310" name="l00310"></a><span class="lineno">  310</span><span class="preprocessor">#ifdef COOLEASE_DEVICE_HUB</span></div>
+<div class="line"><a id="l00311" name="l00311"></a><span class="lineno">  311</span>    <span class="keywordflow">return</span> <a class="code hl_variable" href="group__battery__api.html#ga6ce6d95d1e9ba4ae85466b512f92cfac">batt_voltages</a>[PWR_VOLTAGE];</div>
+<div class="line"><a id="l00312" name="l00312"></a><span class="lineno">  312</span><span class="preprocessor">#else</span></div>
+<div class="line"><a id="l00313" name="l00313"></a><span class="lineno">  313</span>    <span class="keywordflow">return</span> 0;</div>
+<div class="line"><a id="l00314" name="l00314"></a><span class="lineno">  314</span><span class="preprocessor">#endif</span></div>
+<div class="line"><a id="l00315" name="l00315"></a><span class="lineno">  315</span>}</div>
 </div>
-<div class="line"><a id="l00330" name="l00330"></a><span class="lineno">  330</span> </div>
-<div class="foldopen" id="foldopen00331" data-start="{" data-end="}">
-<div class="line"><a id="l00331" name="l00331"></a><span class="lineno"><a class="line" href="group___b_a_t_t_e_r_y___a_p_i.html#ga50c7e2976224f53637f19928614679b2">  331</a></span>uint16_t <a class="code hl_function" href="group___b_a_t_t_e_r_y___a_p_i.html#ga50c7e2976224f53637f19928614679b2">batt_get_pwr_voltage</a>(<span class="keywordtype">void</span>) {</div>
-<div class="line"><a id="l00332" name="l00332"></a><span class="lineno">  332</span><span class="preprocessor">#ifdef _HUB</span></div>
-<div class="line"><a id="l00333" name="l00333"></a><span class="lineno">  333</span>    <span class="keywordflow">return</span> <a class="code hl_variable" href="group___b_a_t_t_e_r_y___i_n_t.html#ga6ce6d95d1e9ba4ae85466b512f92cfac">batt_voltages</a>[PWR_VOLTAGE];</div>
-<div class="line"><a id="l00334" name="l00334"></a><span class="lineno">  334</span><span class="preprocessor">#else</span></div>
-<div class="line"><a id="l00335" name="l00335"></a><span class="lineno">  335</span>    <span class="keywordflow">return</span> 0;</div>
-<div class="line"><a id="l00336" name="l00336"></a><span class="lineno">  336</span><span class="preprocessor">#endif</span></div>
-<div class="line"><a id="l00337" name="l00337"></a><span class="lineno">  337</span>}</div>
-</div>
-<div class="line"><a id="l00338" name="l00338"></a><span class="lineno">  338</span> </div>
-<div class="line"><a id="l00339" name="l00339"></a><span class="lineno">  339</span><span class="comment">/*</span></div>
-<div class="line"><a id="l00340" name="l00340"></a><span class="lineno">  340</span><span class="comment">uint8_t batt_get_voltage(void)</span></div>
-<div class="line"><a id="l00341" name="l00341"></a><span class="lineno">  341</span><span class="comment">{</span></div>
-<div class="line"><a id="l00342" name="l00342"></a><span class="lineno">  342</span><span class="comment">    uint8_t voltage = 137;</span></div>
-<div class="line"><a id="l00343" name="l00343"></a><span class="lineno">  343</span><span class="comment"></span> </div>
-<div class="line"><a id="l00344" name="l00344"></a><span class="lineno">  344</span><span class="comment">    pwr_enable_power_voltage_detect(PWR_CR_PLS_2V2);</span></div>
-<div class="line"><a id="l00345" name="l00345"></a><span class="lineno">  345</span><span class="comment">    if(pwr_voltage_high())</span></div>
-<div class="line"><a id="l00346" name="l00346"></a><span class="lineno">  346</span><span class="comment">        voltage = 2;</span></div>
-<div class="line"><a id="l00347" name="l00347"></a><span class="lineno">  347</span><span class="comment"></span> </div>
-<div class="line"><a id="l00348" name="l00348"></a><span class="lineno">  348</span><span class="comment">    pwr_enable_power_voltage_detect(PWR_CR_PLS_2V3);</span></div>
-<div class="line"><a id="l00349" name="l00349"></a><span class="lineno">  349</span><span class="comment">    if(pwr_voltage_high())</span></div>
-<div class="line"><a id="l00350" name="l00350"></a><span class="lineno">  350</span><span class="comment">        voltage = 3;</span></div>
-<div class="line"><a id="l00351" name="l00351"></a><span class="lineno">  351</span><span class="comment"></span> </div>
-<div class="line"><a id="l00352" name="l00352"></a><span class="lineno">  352</span><span class="comment">    pwr_enable_power_voltage_detect(PWR_CR_PLS_2V4);</span></div>
-<div class="line"><a id="l00353" name="l00353"></a><span class="lineno">  353</span><span class="comment">    if(pwr_voltage_high())</span></div>
-<div class="line"><a id="l00354" name="l00354"></a><span class="lineno">  354</span><span class="comment">        voltage = 4;</span></div>
+<div class="line"><a id="l00316" name="l00316"></a><span class="lineno">  316</span> </div>
+<div class="line"><a id="l00317" name="l00317"></a><span class="lineno">  317</span><span class="comment">/*</span></div>
+<div class="line"><a id="l00318" name="l00318"></a><span class="lineno">  318</span><span class="comment">uint8_t batt_get_voltage(void)</span></div>
+<div class="line"><a id="l00319" name="l00319"></a><span class="lineno">  319</span><span class="comment">{</span></div>
+<div class="line"><a id="l00320" name="l00320"></a><span class="lineno">  320</span><span class="comment">    uint8_t voltage = 137;</span></div>
+<div class="line"><a id="l00321" name="l00321"></a><span class="lineno">  321</span><span class="comment"></span> </div>
+<div class="line"><a id="l00322" name="l00322"></a><span class="lineno">  322</span><span class="comment">    pwr_enable_power_voltage_detect(PWR_CR_PLS_2V2);</span></div>
+<div class="line"><a id="l00323" name="l00323"></a><span class="lineno">  323</span><span class="comment">    if(pwr_voltage_high())</span></div>
+<div class="line"><a id="l00324" name="l00324"></a><span class="lineno">  324</span><span class="comment">        voltage = 2;</span></div>
+<div class="line"><a id="l00325" name="l00325"></a><span class="lineno">  325</span><span class="comment"></span> </div>
+<div class="line"><a id="l00326" name="l00326"></a><span class="lineno">  326</span><span class="comment">    pwr_enable_power_voltage_detect(PWR_CR_PLS_2V3);</span></div>
+<div class="line"><a id="l00327" name="l00327"></a><span class="lineno">  327</span><span class="comment">    if(pwr_voltage_high())</span></div>
+<div class="line"><a id="l00328" name="l00328"></a><span class="lineno">  328</span><span class="comment">        voltage = 3;</span></div>
+<div class="line"><a id="l00329" name="l00329"></a><span class="lineno">  329</span><span class="comment"></span> </div>
+<div class="line"><a id="l00330" name="l00330"></a><span class="lineno">  330</span><span class="comment">    pwr_enable_power_voltage_detect(PWR_CR_PLS_2V4);</span></div>
+<div class="line"><a id="l00331" name="l00331"></a><span class="lineno">  331</span><span class="comment">    if(pwr_voltage_high())</span></div>
+<div class="line"><a id="l00332" name="l00332"></a><span class="lineno">  332</span><span class="comment">        voltage = 4;</span></div>
+<div class="line"><a id="l00333" name="l00333"></a><span class="lineno">  333</span><span class="comment"></span> </div>
+<div class="line"><a id="l00334" name="l00334"></a><span class="lineno">  334</span><span class="comment">    pwr_enable_power_voltage_detect(PWR_CR_PLS_2V5);</span></div>
+<div class="line"><a id="l00335" name="l00335"></a><span class="lineno">  335</span><span class="comment">    if(pwr_voltage_high())</span></div>
+<div class="line"><a id="l00336" name="l00336"></a><span class="lineno">  336</span><span class="comment">        voltage = 5;</span></div>
+<div class="line"><a id="l00337" name="l00337"></a><span class="lineno">  337</span><span class="comment"></span> </div>
+<div class="line"><a id="l00338" name="l00338"></a><span class="lineno">  338</span><span class="comment">    pwr_enable_power_voltage_detect(PWR_CR_PLS_2V6);</span></div>
+<div class="line"><a id="l00339" name="l00339"></a><span class="lineno">  339</span><span class="comment">    if(pwr_voltage_high())</span></div>
+<div class="line"><a id="l00340" name="l00340"></a><span class="lineno">  340</span><span class="comment">        voltage = 6;</span></div>
+<div class="line"><a id="l00341" name="l00341"></a><span class="lineno">  341</span><span class="comment"></span> </div>
+<div class="line"><a id="l00342" name="l00342"></a><span class="lineno">  342</span><span class="comment">    pwr_enable_power_voltage_detect(PWR_CR_PLS_2V7);</span></div>
+<div class="line"><a id="l00343" name="l00343"></a><span class="lineno">  343</span><span class="comment">    if(pwr_voltage_high())</span></div>
+<div class="line"><a id="l00344" name="l00344"></a><span class="lineno">  344</span><span class="comment">        voltage = 7;</span></div>
+<div class="line"><a id="l00345" name="l00345"></a><span class="lineno">  345</span><span class="comment"></span> </div>
+<div class="line"><a id="l00346" name="l00346"></a><span class="lineno">  346</span><span class="comment">    pwr_enable_power_voltage_detect(PWR_CR_PLS_2V8);</span></div>
+<div class="line"><a id="l00347" name="l00347"></a><span class="lineno">  347</span><span class="comment">    if(pwr_voltage_high())</span></div>
+<div class="line"><a id="l00348" name="l00348"></a><span class="lineno">  348</span><span class="comment">        voltage = 8;</span></div>
+<div class="line"><a id="l00349" name="l00349"></a><span class="lineno">  349</span><span class="comment"></span> </div>
+<div class="line"><a id="l00350" name="l00350"></a><span class="lineno">  350</span><span class="comment">    pwr_enable_power_voltage_detect(PWR_CR_PLS_2V9);</span></div>
+<div class="line"><a id="l00351" name="l00351"></a><span class="lineno">  351</span><span class="comment">    if(pwr_voltage_high())</span></div>
+<div class="line"><a id="l00352" name="l00352"></a><span class="lineno">  352</span><span class="comment">        voltage = 9;</span></div>
+<div class="line"><a id="l00353" name="l00353"></a><span class="lineno">  353</span><span class="comment"></span> </div>
+<div class="line"><a id="l00354" name="l00354"></a><span class="lineno">  354</span><span class="comment"></span> </div>
 <div class="line"><a id="l00355" name="l00355"></a><span class="lineno">  355</span><span class="comment"></span> </div>
-<div class="line"><a id="l00356" name="l00356"></a><span class="lineno">  356</span><span class="comment">    pwr_enable_power_voltage_detect(PWR_CR_PLS_2V5);</span></div>
-<div class="line"><a id="l00357" name="l00357"></a><span class="lineno">  357</span><span class="comment">    if(pwr_voltage_high())</span></div>
-<div class="line"><a id="l00358" name="l00358"></a><span class="lineno">  358</span><span class="comment">        voltage = 5;</span></div>
-<div class="line"><a id="l00359" name="l00359"></a><span class="lineno">  359</span><span class="comment"></span> </div>
-<div class="line"><a id="l00360" name="l00360"></a><span class="lineno">  360</span><span class="comment">    pwr_enable_power_voltage_detect(PWR_CR_PLS_2V6);</span></div>
-<div class="line"><a id="l00361" name="l00361"></a><span class="lineno">  361</span><span class="comment">    if(pwr_voltage_high())</span></div>
-<div class="line"><a id="l00362" name="l00362"></a><span class="lineno">  362</span><span class="comment">        voltage = 6;</span></div>
-<div class="line"><a id="l00363" name="l00363"></a><span class="lineno">  363</span><span class="comment"></span> </div>
-<div class="line"><a id="l00364" name="l00364"></a><span class="lineno">  364</span><span class="comment">    pwr_enable_power_voltage_detect(PWR_CR_PLS_2V7);</span></div>
-<div class="line"><a id="l00365" name="l00365"></a><span class="lineno">  365</span><span class="comment">    if(pwr_voltage_high())</span></div>
-<div class="line"><a id="l00366" name="l00366"></a><span class="lineno">  366</span><span class="comment">        voltage = 7;</span></div>
-<div class="line"><a id="l00367" name="l00367"></a><span class="lineno">  367</span><span class="comment"></span> </div>
-<div class="line"><a id="l00368" name="l00368"></a><span class="lineno">  368</span><span class="comment">    pwr_enable_power_voltage_detect(PWR_CR_PLS_2V8);</span></div>
-<div class="line"><a id="l00369" name="l00369"></a><span class="lineno">  369</span><span class="comment">    if(pwr_voltage_high())</span></div>
-<div class="line"><a id="l00370" name="l00370"></a><span class="lineno">  370</span><span class="comment">        voltage = 8;</span></div>
-<div class="line"><a id="l00371" name="l00371"></a><span class="lineno">  371</span><span class="comment"></span> </div>
-<div class="line"><a id="l00372" name="l00372"></a><span class="lineno">  372</span><span class="comment">    pwr_enable_power_voltage_detect(PWR_CR_PLS_2V9);</span></div>
-<div class="line"><a id="l00373" name="l00373"></a><span class="lineno">  373</span><span class="comment">    if(pwr_voltage_high())</span></div>
-<div class="line"><a id="l00374" name="l00374"></a><span class="lineno">  374</span><span class="comment">        voltage = 9;</span></div>
-<div class="line"><a id="l00375" name="l00375"></a><span class="lineno">  375</span><span class="comment"></span> </div>
-<div class="line"><a id="l00376" name="l00376"></a><span class="lineno">  376</span><span class="comment"></span> </div>
-<div class="line"><a id="l00377" name="l00377"></a><span class="lineno">  377</span><span class="comment"></span> </div>
-<div class="line"><a id="l00378" name="l00378"></a><span class="lineno">  378</span><span class="comment">    pwr_disable_power_voltage_detect();</span></div>
-<div class="line"><a id="l00379" name="l00379"></a><span class="lineno">  379</span><span class="comment"></span> </div>
-<div class="line"><a id="l00380" name="l00380"></a><span class="lineno">  380</span><span class="comment">    return voltage;</span></div>
-<div class="line"><a id="l00381" name="l00381"></a><span class="lineno">  381</span><span class="comment">}</span></div>
-<div class="line"><a id="l00382" name="l00382"></a><span class="lineno">  382</span><span class="comment">*/</span></div>
-<div class="line"><a id="l00383" name="l00383"></a><span class="lineno">  383</span> </div>
-<div class="foldopen" id="foldopen00384" data-start="{" data-end="}">
-<div class="line"><a id="l00384" name="l00384"></a><span class="lineno"><a class="line" href="group___b_a_t_t_e_r_y___a_p_i.html#ga9b66439504fbf94849d8828992303801">  384</a></span><span class="keywordtype">bool</span> <a class="code hl_function" href="group___b_a_t_t_e_r_y___a_p_i.html#ga9b66439504fbf94849d8828992303801">batt_is_plugged_in</a>(<span class="keywordtype">void</span>) {</div>
-<div class="line"><a id="l00385" name="l00385"></a><span class="lineno">  385</span>    <span class="comment">// return (state == BATT_PLUGGED_IN);</span></div>
-<div class="line"><a id="l00386" name="l00386"></a><span class="lineno">  386</span>    <span class="keywordflow">return</span> <span class="keyword">true</span>;</div>
-<div class="line"><a id="l00387" name="l00387"></a><span class="lineno">  387</span>}</div>
+<div class="line"><a id="l00356" name="l00356"></a><span class="lineno">  356</span><span class="comment">    pwr_disable_power_voltage_detect();</span></div>
+<div class="line"><a id="l00357" name="l00357"></a><span class="lineno">  357</span><span class="comment"></span> </div>
+<div class="line"><a id="l00358" name="l00358"></a><span class="lineno">  358</span><span class="comment">    return voltage;</span></div>
+<div class="line"><a id="l00359" name="l00359"></a><span class="lineno">  359</span><span class="comment">}</span></div>
+<div class="line"><a id="l00360" name="l00360"></a><span class="lineno">  360</span><span class="comment">*/</span></div>
+<div class="line"><a id="l00361" name="l00361"></a><span class="lineno">  361</span> </div>
+<div class="foldopen" id="foldopen00362" data-start="{" data-end="}">
+<div class="line"><a id="l00362" name="l00362"></a><span class="lineno"><a class="line" href="group__battery__api.html#ga9b66439504fbf94849d8828992303801">  362</a></span><span class="keywordtype">bool</span> <a class="code hl_function" href="group__battery__api.html#ga9b66439504fbf94849d8828992303801">batt_is_plugged_in</a>(<span class="keywordtype">void</span>) {</div>
+<div class="line"><a id="l00363" name="l00363"></a><span class="lineno">  363</span>    <span class="comment">// return (state == BATT_PLUGGED_IN);</span></div>
+<div class="line"><a id="l00364" name="l00364"></a><span class="lineno">  364</span>    <span class="keywordflow">return</span> <span class="keyword">true</span>;</div>
+<div class="line"><a id="l00365" name="l00365"></a><span class="lineno">  365</span>}</div>
 </div>
-<div class="line"><a id="l00388" name="l00388"></a><span class="lineno">  388</span> </div>
-<div class="foldopen" id="foldopen00389" data-start="{" data-end="}">
-<div class="line"><a id="l00389" name="l00389"></a><span class="lineno"><a class="line" href="group___b_a_t_t_e_r_y___a_p_i.html#ga9831fc5228bf2253ed6189352cab2d40">  389</a></span><span class="keywordtype">bool</span> <a class="code hl_function" href="group___b_a_t_t_e_r_y___a_p_i.html#ga9831fc5228bf2253ed6189352cab2d40">batt_is_ready</a>(<span class="keywordtype">void</span>) {</div>
-<div class="line"><a id="l00390" name="l00390"></a><span class="lineno">  390</span>    <span class="comment">// return (state != BATT_INIT);</span></div>
-<div class="line"><a id="l00391" name="l00391"></a><span class="lineno">  391</span>    <span class="keywordflow">return</span> <span class="keyword">true</span>;</div>
-<div class="line"><a id="l00392" name="l00392"></a><span class="lineno">  392</span>}</div>
+<div class="line"><a id="l00366" name="l00366"></a><span class="lineno">  366</span> </div>
+<div class="foldopen" id="foldopen00367" data-start="{" data-end="}">
+<div class="line"><a id="l00367" name="l00367"></a><span class="lineno"><a class="line" href="group__battery__api.html#ga9831fc5228bf2253ed6189352cab2d40">  367</a></span><span class="keywordtype">bool</span> <a class="code hl_function" href="group__battery__api.html#ga9831fc5228bf2253ed6189352cab2d40">batt_is_ready</a>(<span class="keywordtype">void</span>) {</div>
+<div class="line"><a id="l00368" name="l00368"></a><span class="lineno">  368</span>    <span class="comment">// return (state != BATT_INIT);</span></div>
+<div class="line"><a id="l00369" name="l00369"></a><span class="lineno">  369</span>    <span class="keywordflow">return</span> <span class="keyword">true</span>;</div>
+<div class="line"><a id="l00370" name="l00370"></a><span class="lineno">  370</span>}</div>
 </div>
-<div class="line"><a id="l00399" name="l00399"></a><span class="lineno">  399</span><span class="comment">/*////////////////////////////////////////////////////////////////////////////*/</span></div>
-<div class="line"><a id="l00400" name="l00400"></a><span class="lineno">  400</span><span class="comment">// Static Function Definitions</span></div>
-<div class="line"><a id="l00401" name="l00401"></a><span class="lineno">  401</span><span class="comment">/*////////////////////////////////////////////////////////////////////////////*/</span></div>
-<div class="line"><a id="l00402" name="l00402"></a><span class="lineno">  402</span> </div>
-<div class="foldopen" id="foldopen00405" data-start="{" data-end="}">
-<div class="line"><a id="l00405" name="l00405"></a><span class="lineno"><a class="line" href="group___b_a_t_t_e_r_y___f_i_l_e.html#ga8e3d66f43880efbd56cc2f68347b9b19">  405</a></span><span class="keywordtype">void</span> <a class="code hl_function" href="group___b_a_t_t_e_r_y___f_i_l_e.html#ga8e3d66f43880efbd56cc2f68347b9b19">dma1_channel1_isr</a>(<span class="keywordtype">void</span>) {</div>
-<div class="line"><a id="l00406" name="l00406"></a><span class="lineno">  406</span>    <span class="keyword">static</span> uint32_t     timer = 0;</div>
-<div class="line"><a id="l00407" name="l00407"></a><span class="lineno">  407</span>    <span class="keyword">static</span> <a class="code hl_enumeration" href="battery_8c.html#a24914a3261e55c8855e08a30a73f45c6">batt_state_t</a> last_state = <a class="code hl_enumvalue" href="battery_8c.html#a24914a3261e55c8855e08a30a73f45c6a3f10a904d13177fc85611ab4fd500d37">BATT_INIT</a>;</div>
-<div class="line"><a id="l00408" name="l00408"></a><span class="lineno">  408</span>    <span class="keyword">static</span> <a class="code hl_enumeration" href="battery_8c.html#a24914a3261e55c8855e08a30a73f45c6">batt_state_t</a> curr_state = <a class="code hl_enumvalue" href="battery_8c.html#a24914a3261e55c8855e08a30a73f45c6a3f10a904d13177fc85611ab4fd500d37">BATT_INIT</a>;</div>
-<div class="line"><a id="l00409" name="l00409"></a><span class="lineno">  409</span> </div>
-<div class="line"><a id="l00410" name="l00410"></a><span class="lineno">  410</span>    dma_clear_interrupt_flags(DMA1, DMA_CHANNEL1,</div>
-<div class="line"><a id="l00411" name="l00411"></a><span class="lineno">  411</span>                              DMA_TEIF | DMA_TCIF | DMA_HTIF | DMA_GIF);</div>
-<div class="line"><a id="l00412" name="l00412"></a><span class="lineno">  412</span> </div>
-<div class="line"><a id="l00413" name="l00413"></a><span class="lineno">  413</span>    <a class="code hl_function" href="group___b_a_t_t_e_r_y___a_p_i.html#ga6bd50ebd22ca8d400869cc9f3cb07810">batt_calculate_voltages</a>();</div>
-<div class="line"><a id="l00414" name="l00414"></a><span class="lineno">  414</span> </div>
-<div class="line"><a id="l00415" name="l00415"></a><span class="lineno">  415</span>    curr_state = (<a class="code hl_function" href="group___b_a_t_t_e_r_y___a_p_i.html#ga50c7e2976224f53637f19928614679b2">batt_get_pwr_voltage</a>() &gt;= <a class="code hl_function" href="group___b_a_t_t_e_r_y___a_p_i.html#gab2cec09017de01449439e2d93f958584">batt_get_batt_voltage</a>())</div>
-<div class="line"><a id="l00416" name="l00416"></a><span class="lineno">  416</span>                     ? <a class="code hl_enumvalue" href="battery_8c.html#a24914a3261e55c8855e08a30a73f45c6a3aa03a3960ee30d61623c4caa1cb562e">BATT_PLUGGED_IN</a></div>
-<div class="line"><a id="l00417" name="l00417"></a><span class="lineno">  417</span>                     : <a class="code hl_enumvalue" href="battery_8c.html#a24914a3261e55c8855e08a30a73f45c6a6ee9c8facac3a01d005f56e0330cd33b">BATT_PLUGGED_OUT</a>;</div>
-<div class="line"><a id="l00418" name="l00418"></a><span class="lineno">  418</span> </div>
-<div class="line"><a id="l00419" name="l00419"></a><span class="lineno">  419</span>    <span class="comment">// if state changed since last check</span></div>
-<div class="line"><a id="l00420" name="l00420"></a><span class="lineno">  420</span>    <span class="keywordflow">if</span> (curr_state != last_state) {</div>
-<div class="line"><a id="l00421" name="l00421"></a><span class="lineno">  421</span>        timer = <a class="code hl_function" href="group___t_i_m_e_r_s___a_p_i.html#ga9c4643be9a297c1743fc505c87d0e36d">timers_millis</a>();</div>
-<div class="line"><a id="l00422" name="l00422"></a><span class="lineno">  422</span>    } <span class="keywordflow">else</span> {</div>
-<div class="line"><a id="l00423" name="l00423"></a><span class="lineno">  423</span>        <span class="comment">// update state after lag</span></div>
-<div class="line"><a id="l00424" name="l00424"></a><span class="lineno">  424</span>        <span class="keywordflow">if</span> ((<a class="code hl_variable" href="group___b_a_t_t_e_r_y___i_n_t.html#ga3b88c08e61c4e6a3edebaccbbe515f27">state</a> != curr_state) &amp;&amp; (<a class="code hl_function" href="group___t_i_m_e_r_s___a_p_i.html#ga9c4643be9a297c1743fc505c87d0e36d">timers_millis</a>() - timer &gt; <a class="code hl_define" href="battery_8c.html#a1bc4f2d6d49c6147fc4eec6c4ef6f858">BATT_LAG_MS</a>)) {</div>
-<div class="line"><a id="l00425" name="l00425"></a><span class="lineno">  425</span>            <a class="code hl_variable" href="group___b_a_t_t_e_r_y___i_n_t.html#ga3b88c08e61c4e6a3edebaccbbe515f27">state</a> = curr_state;</div>
-<div class="line"><a id="l00426" name="l00426"></a><span class="lineno">  426</span>        }</div>
-<div class="line"><a id="l00427" name="l00427"></a><span class="lineno">  427</span>    }</div>
-<div class="line"><a id="l00428" name="l00428"></a><span class="lineno">  428</span> </div>
-<div class="line"><a id="l00429" name="l00429"></a><span class="lineno">  429</span>    last_state = curr_state;</div>
-<div class="line"><a id="l00430" name="l00430"></a><span class="lineno">  430</span>}</div>
+<div class="line"><a id="l00371" name="l00371"></a><span class="lineno">  371</span> </div>
+<div class="foldopen" id="foldopen00372" data-start="{" data-end="}">
+<div class="line"><a id="l00372" name="l00372"></a><span class="lineno"><a class="line" href="group__battery__api.html#ga8e3d66f43880efbd56cc2f68347b9b19">  372</a></span><span class="keywordtype">void</span> <a class="code hl_function" href="group__battery__api.html#ga8e3d66f43880efbd56cc2f68347b9b19">dma1_channel1_isr</a>(<span class="keywordtype">void</span>) {</div>
+<div class="line"><a id="l00373" name="l00373"></a><span class="lineno">  373</span>    <span class="keyword">static</span> uint32_t     timer = 0;</div>
+<div class="line"><a id="l00374" name="l00374"></a><span class="lineno">  374</span>    <span class="keyword">static</span> <a class="code hl_enumeration" href="group__battery__api.html#ga24914a3261e55c8855e08a30a73f45c6">batt_state_t</a> last_state = <a class="code hl_enumvalue" href="group__battery__api.html#gga24914a3261e55c8855e08a30a73f45c6a3f10a904d13177fc85611ab4fd500d37">BATT_INIT</a>;</div>
+<div class="line"><a id="l00375" name="l00375"></a><span class="lineno">  375</span>    <span class="keyword">static</span> <a class="code hl_enumeration" href="group__battery__api.html#ga24914a3261e55c8855e08a30a73f45c6">batt_state_t</a> curr_state = <a class="code hl_enumvalue" href="group__battery__api.html#gga24914a3261e55c8855e08a30a73f45c6a3f10a904d13177fc85611ab4fd500d37">BATT_INIT</a>;</div>
+<div class="line"><a id="l00376" name="l00376"></a><span class="lineno">  376</span> </div>
+<div class="line"><a id="l00377" name="l00377"></a><span class="lineno">  377</span>    dma_clear_interrupt_flags(DMA1, DMA_CHANNEL1,</div>
+<div class="line"><a id="l00378" name="l00378"></a><span class="lineno">  378</span>                              DMA_TEIF | DMA_TCIF | DMA_HTIF | DMA_GIF);</div>
+<div class="line"><a id="l00379" name="l00379"></a><span class="lineno">  379</span> </div>
+<div class="line"><a id="l00380" name="l00380"></a><span class="lineno">  380</span>    <a class="code hl_function" href="group__battery__api.html#ga6bd50ebd22ca8d400869cc9f3cb07810">batt_calculate_voltages</a>();</div>
+<div class="line"><a id="l00381" name="l00381"></a><span class="lineno">  381</span> </div>
+<div class="line"><a id="l00382" name="l00382"></a><span class="lineno">  382</span>    curr_state = (<a class="code hl_function" href="group__battery__api.html#ga50c7e2976224f53637f19928614679b2">batt_get_pwr_voltage</a>() &gt;= <a class="code hl_function" href="group__battery__api.html#gab2cec09017de01449439e2d93f958584">batt_get_batt_voltage</a>())</div>
+<div class="line"><a id="l00383" name="l00383"></a><span class="lineno">  383</span>                     ? <a class="code hl_enumvalue" href="group__battery__api.html#gga24914a3261e55c8855e08a30a73f45c6a3aa03a3960ee30d61623c4caa1cb562e">BATT_PLUGGED_IN</a></div>
+<div class="line"><a id="l00384" name="l00384"></a><span class="lineno">  384</span>                     : <a class="code hl_enumvalue" href="group__battery__api.html#gga24914a3261e55c8855e08a30a73f45c6a6ee9c8facac3a01d005f56e0330cd33b">BATT_PLUGGED_OUT</a>;</div>
+<div class="line"><a id="l00385" name="l00385"></a><span class="lineno">  385</span> </div>
+<div class="line"><a id="l00386" name="l00386"></a><span class="lineno">  386</span>    <span class="comment">// if state changed since last check</span></div>
+<div class="line"><a id="l00387" name="l00387"></a><span class="lineno">  387</span>    <span class="keywordflow">if</span> (curr_state != last_state) {</div>
+<div class="line"><a id="l00388" name="l00388"></a><span class="lineno">  388</span>        timer = <a class="code hl_function" href="group__timers__api.html#ga9c4643be9a297c1743fc505c87d0e36d">timers_millis</a>();</div>
+<div class="line"><a id="l00389" name="l00389"></a><span class="lineno">  389</span>    } <span class="keywordflow">else</span> {</div>
+<div class="line"><a id="l00390" name="l00390"></a><span class="lineno">  390</span>        <span class="comment">// update state after lag</span></div>
+<div class="line"><a id="l00391" name="l00391"></a><span class="lineno">  391</span>        <span class="keywordflow">if</span> ((<a class="code hl_variable" href="group__battery__api.html#ga3b88c08e61c4e6a3edebaccbbe515f27">state</a> != curr_state) &amp;&amp; (<a class="code hl_function" href="group__timers__api.html#ga9c4643be9a297c1743fc505c87d0e36d">timers_millis</a>() - timer &gt; <a class="code hl_define" href="group__battery__api.html#ga1bc4f2d6d49c6147fc4eec6c4ef6f858">BATT_LAG_MS</a>)) {</div>
+<div class="line"><a id="l00392" name="l00392"></a><span class="lineno">  392</span>            <a class="code hl_variable" href="group__battery__api.html#ga3b88c08e61c4e6a3edebaccbbe515f27">state</a> = curr_state;</div>
+<div class="line"><a id="l00393" name="l00393"></a><span class="lineno">  393</span>        }</div>
+<div class="line"><a id="l00394" name="l00394"></a><span class="lineno">  394</span>    }</div>
+<div class="line"><a id="l00395" name="l00395"></a><span class="lineno">  395</span> </div>
+<div class="line"><a id="l00396" name="l00396"></a><span class="lineno">  396</span>    last_state = curr_state;</div>
+<div class="line"><a id="l00397" name="l00397"></a><span class="lineno">  397</span>}</div>
 </div>
-<div class="line"><a id="l00431" name="l00431"></a><span class="lineno">  431</span> </div>
-<div class="ttc" id="abattery_8c_html_a1bc4f2d6d49c6147fc4eec6c4ef6f858"><div class="ttname"><a href="battery_8c.html#a1bc4f2d6d49c6147fc4eec6c4ef6f858">BATT_LAG_MS</a></div><div class="ttdeci">#define BATT_LAG_MS</div><div class="ttdef"><b>Definition</b> <a href="battery_8c_source.html#l00059">battery.c:59</a></div></div>
-<div class="ttc" id="abattery_8c_html_a24914a3261e55c8855e08a30a73f45c6"><div class="ttname"><a href="battery_8c.html#a24914a3261e55c8855e08a30a73f45c6">batt_state_t</a></div><div class="ttdeci">batt_state_t</div><div class="ttdef"><b>Definition</b> <a href="battery_8c_source.html#l00061">battery.c:61</a></div></div>
-<div class="ttc" id="abattery_8c_html_a24914a3261e55c8855e08a30a73f45c6a3aa03a3960ee30d61623c4caa1cb562e"><div class="ttname"><a href="battery_8c.html#a24914a3261e55c8855e08a30a73f45c6a3aa03a3960ee30d61623c4caa1cb562e">BATT_PLUGGED_IN</a></div><div class="ttdeci">@ BATT_PLUGGED_IN</div><div class="ttdef"><b>Definition</b> <a href="battery_8c_source.html#l00063">battery.c:63</a></div></div>
-<div class="ttc" id="abattery_8c_html_a24914a3261e55c8855e08a30a73f45c6a3f10a904d13177fc85611ab4fd500d37"><div class="ttname"><a href="battery_8c.html#a24914a3261e55c8855e08a30a73f45c6a3f10a904d13177fc85611ab4fd500d37">BATT_INIT</a></div><div class="ttdeci">@ BATT_INIT</div><div class="ttdef"><b>Definition</b> <a href="battery_8c_source.html#l00062">battery.c:62</a></div></div>
-<div class="ttc" id="abattery_8c_html_a24914a3261e55c8855e08a30a73f45c6a6ee9c8facac3a01d005f56e0330cd33b"><div class="ttname"><a href="battery_8c.html#a24914a3261e55c8855e08a30a73f45c6a6ee9c8facac3a01d005f56e0330cd33b">BATT_PLUGGED_OUT</a></div><div class="ttdeci">@ BATT_PLUGGED_OUT</div><div class="ttdef"><b>Definition</b> <a href="battery_8c_source.html#l00064">battery.c:64</a></div></div>
-<div class="ttc" id="abattery_8c_html_a44bc4f267ccbaee0dde09e40bc845693"><div class="ttname"><a href="battery_8c.html#a44bc4f267ccbaee0dde09e40bc845693">ADC_CCR_PRESC_DIV32</a></div><div class="ttdeci">#define ADC_CCR_PRESC_DIV32</div><div class="ttdef"><b>Definition</b> <a href="battery_8c_source.html#l00052">battery.c:52</a></div></div>
-<div class="ttc" id="abattery_8c_html_a749582e7b291b726615c67975e92644d"><div class="ttname"><a href="battery_8c.html#a749582e7b291b726615c67975e92644d">ADC_CCR_LFMEN</a></div><div class="ttdeci">#define ADC_CCR_LFMEN</div><div class="ttdef"><b>Definition</b> <a href="battery_8c_source.html#l00040">battery.c:40</a></div></div>
-<div class="ttc" id="abattery_8c_html_af1bc8b24896c36914f52907197a0e87a"><div class="ttname"><a href="battery_8c.html#af1bc8b24896c36914f52907197a0e87a">NUM_VOLTAGES</a></div><div class="ttdeci">#define NUM_VOLTAGES</div><div class="ttdef"><b>Definition</b> <a href="battery_8c_source.html#l00036">battery.c:36</a></div></div>
-<div class="ttc" id="abattery_8c_html_afd1d97582ddd87bf66f3a428f1b003db"><div class="ttname"><a href="battery_8c.html#afd1d97582ddd87bf66f3a428f1b003db">BATT_VOLTAGE</a></div><div class="ttdeci">#define BATT_VOLTAGE</div><div class="ttdef"><b>Definition</b> <a href="battery_8c_source.html#l00037">battery.c:37</a></div></div>
-<div class="ttc" id="abattery_8h_html"><div class="ttname"><a href="battery_8h.html">battery.h</a></div><div class="ttdoc">Battery Header File.</div></div>
-<div class="ttc" id="agroup___b_a_t_t_e_r_y___a_p_i_html_ga3986a1e569a68da36d79f738ee242eab"><div class="ttname"><a href="group___b_a_t_t_e_r_y___a_p_i.html#ga3986a1e569a68da36d79f738ee242eab">batt_disable_interrupt</a></div><div class="ttdeci">void batt_disable_interrupt(void)</div><div class="ttdef"><b>Definition</b> <a href="battery_8c_source.html#l00318">battery.c:318</a></div></div>
-<div class="ttc" id="agroup___b_a_t_t_e_r_y___a_p_i_html_ga49184eb31da78a82b862ac5c6bbd8099"><div class="ttname"><a href="group___b_a_t_t_e_r_y___a_p_i.html#ga49184eb31da78a82b862ac5c6bbd8099">batt_enable_interrupt</a></div><div class="ttdeci">void batt_enable_interrupt(void)</div><div class="ttdef"><b>Definition</b> <a href="battery_8c_source.html#l00279">battery.c:279</a></div></div>
-<div class="ttc" id="agroup___b_a_t_t_e_r_y___a_p_i_html_ga50c7e2976224f53637f19928614679b2"><div class="ttname"><a href="group___b_a_t_t_e_r_y___a_p_i.html#ga50c7e2976224f53637f19928614679b2">batt_get_pwr_voltage</a></div><div class="ttdeci">uint16_t batt_get_pwr_voltage(void)</div><div class="ttdef"><b>Definition</b> <a href="battery_8c_source.html#l00331">battery.c:331</a></div></div>
-<div class="ttc" id="agroup___b_a_t_t_e_r_y___a_p_i_html_ga6bd50ebd22ca8d400869cc9f3cb07810"><div class="ttname"><a href="group___b_a_t_t_e_r_y___a_p_i.html#ga6bd50ebd22ca8d400869cc9f3cb07810">batt_calculate_voltages</a></div><div class="ttdeci">void batt_calculate_voltages(void)</div><div class="ttdef"><b>Definition</b> <a href="battery_8c_source.html#l00236">battery.c:236</a></div></div>
-<div class="ttc" id="agroup___b_a_t_t_e_r_y___a_p_i_html_ga74ef535cae048523c75ec8824e23d901"><div class="ttname"><a href="group___b_a_t_t_e_r_y___a_p_i.html#ga74ef535cae048523c75ec8824e23d901">batt_init</a></div><div class="ttdeci">void batt_init(void)</div><div class="ttdef"><b>Definition</b> <a href="battery_8c_source.html#l00097">battery.c:97</a></div></div>
-<div class="ttc" id="agroup___b_a_t_t_e_r_y___a_p_i_html_ga9831fc5228bf2253ed6189352cab2d40"><div class="ttname"><a href="group___b_a_t_t_e_r_y___a_p_i.html#ga9831fc5228bf2253ed6189352cab2d40">batt_is_ready</a></div><div class="ttdeci">bool batt_is_ready(void)</div><div class="ttdef"><b>Definition</b> <a href="battery_8c_source.html#l00389">battery.c:389</a></div></div>
-<div class="ttc" id="agroup___b_a_t_t_e_r_y___a_p_i_html_ga9b243d544affdb2fc07050868206af24"><div class="ttname"><a href="group___b_a_t_t_e_r_y___a_p_i.html#ga9b243d544affdb2fc07050868206af24">batt_update_voltages</a></div><div class="ttdeci">void batt_update_voltages(void)</div><div class="ttdef"><b>Definition</b> <a href="battery_8c_source.html#l00251">battery.c:251</a></div></div>
-<div class="ttc" id="agroup___b_a_t_t_e_r_y___a_p_i_html_ga9b66439504fbf94849d8828992303801"><div class="ttname"><a href="group___b_a_t_t_e_r_y___a_p_i.html#ga9b66439504fbf94849d8828992303801">batt_is_plugged_in</a></div><div class="ttdeci">bool batt_is_plugged_in(void)</div><div class="ttdef"><b>Definition</b> <a href="battery_8c_source.html#l00384">battery.c:384</a></div></div>
-<div class="ttc" id="agroup___b_a_t_t_e_r_y___a_p_i_html_gab2cec09017de01449439e2d93f958584"><div class="ttname"><a href="group___b_a_t_t_e_r_y___a_p_i.html#gab2cec09017de01449439e2d93f958584">batt_get_batt_voltage</a></div><div class="ttdeci">uint16_t batt_get_batt_voltage(void)</div><div class="ttdef"><b>Definition</b> <a href="battery_8c_source.html#l00327">battery.c:327</a></div></div>
-<div class="ttc" id="agroup___b_a_t_t_e_r_y___a_p_i_html_gab70aa864f9333d92f632f4dd59446a5b"><div class="ttname"><a href="group___b_a_t_t_e_r_y___a_p_i.html#gab70aa864f9333d92f632f4dd59446a5b">batt_set_voltage_scale</a></div><div class="ttdeci">void batt_set_voltage_scale(uint8_t scale)</div><div class="ttdef"><b>Definition</b> <a href="battery_8c_source.html#l00190">battery.c:190</a></div></div>
-<div class="ttc" id="agroup___b_a_t_t_e_r_y___a_p_i_html_gaf4ac3c31321cf201d797ab82ce0587a3"><div class="ttname"><a href="group___b_a_t_t_e_r_y___a_p_i.html#gaf4ac3c31321cf201d797ab82ce0587a3">batt_set_low_power_run</a></div><div class="ttdeci">void batt_set_low_power_run(void)</div><div class="ttdef"><b>Definition</b> <a href="battery_8c_source.html#l00206">battery.c:206</a></div></div>
-<div class="ttc" id="agroup___b_a_t_t_e_r_y___a_p_i_html_gafccda6c10ac01d4b0faf913fb5963502"><div class="ttname"><a href="group___b_a_t_t_e_r_y___a_p_i.html#gafccda6c10ac01d4b0faf913fb5963502">batt_end</a></div><div class="ttdeci">void batt_end(void)</div><div class="ttdef"><b>Definition</b> <a href="battery_8c_source.html#l00173">battery.c:173</a></div></div>
-<div class="ttc" id="agroup___b_a_t_t_e_r_y___f_i_l_e_html_ga8e3d66f43880efbd56cc2f68347b9b19"><div class="ttname"><a href="group___b_a_t_t_e_r_y___f_i_l_e.html#ga8e3d66f43880efbd56cc2f68347b9b19">dma1_channel1_isr</a></div><div class="ttdeci">void dma1_channel1_isr(void)</div><div class="ttdef"><b>Definition</b> <a href="battery_8c_source.html#l00405">battery.c:405</a></div></div>
-<div class="ttc" id="agroup___b_a_t_t_e_r_y___i_n_t_html_ga3b88c08e61c4e6a3edebaccbbe515f27"><div class="ttname"><a href="group___b_a_t_t_e_r_y___i_n_t.html#ga3b88c08e61c4e6a3edebaccbbe515f27">state</a></div><div class="ttdeci">static batt_state_t state</div><div class="ttdef"><b>Definition</b> <a href="battery_8c_source.html#l00081">battery.c:81</a></div></div>
-<div class="ttc" id="agroup___b_a_t_t_e_r_y___i_n_t_html_ga6ce6d95d1e9ba4ae85466b512f92cfac"><div class="ttname"><a href="group___b_a_t_t_e_r_y___i_n_t.html#ga6ce6d95d1e9ba4ae85466b512f92cfac">batt_voltages</a></div><div class="ttdeci">static uint16_t batt_voltages[NUM_VOLTAGES]</div><div class="ttdef"><b>Definition</b> <a href="battery_8c_source.html#l00080">battery.c:80</a></div></div>
-<div class="ttc" id="agroup___b_a_t_t_e_r_y___i_n_t_html_ga6d788c2fe189afc53efa449a936574d4"><div class="ttname"><a href="group___b_a_t_t_e_r_y___i_n_t.html#ga6d788c2fe189afc53efa449a936574d4">adc_vals</a></div><div class="ttdeci">static uint16_t adc_vals[3]</div><div class="ttdef"><b>Definition</b> <a href="battery_8c_source.html#l00079">battery.c:79</a></div></div>
-<div class="ttc" id="agroup___l_o_g___a_p_i_html_ga4fff2f266fd439fbb104ddb5d7f61533"><div class="ttname"><a href="group___l_o_g___a_p_i.html#ga4fff2f266fd439fbb104ddb5d7f61533">log_printf</a></div><div class="ttdeci">void log_printf(const char *format,...)</div><div class="ttdef"><b>Definition</b> <a href="log_8c_source.html#l00103">log.c:103</a></div></div>
-<div class="ttc" id="agroup___t_i_m_e_r_s___a_p_i_html_ga6e9cc03544579f4d7f8c7f987b917308"><div class="ttname"><a href="group___t_i_m_e_r_s___a_p_i.html#ga6e9cc03544579f4d7f8c7f987b917308">timers_delay_microseconds</a></div><div class="ttdeci">void timers_delay_microseconds(uint32_t delay_microseconds)</div><div class="ttdef"><b>Definition</b> <a href="timers_8c_source.html#l00294">timers.c:294</a></div></div>
-<div class="ttc" id="agroup___t_i_m_e_r_s___a_p_i_html_ga9c4643be9a297c1743fc505c87d0e36d"><div class="ttname"><a href="group___t_i_m_e_r_s___a_p_i.html#ga9c4643be9a297c1743fc505c87d0e36d">timers_millis</a></div><div class="ttdeci">uint32_t timers_millis(void)</div><div class="ttdef"><b>Definition</b> <a href="timers_8c_source.html#l00290">timers.c:290</a></div></div>
-<div class="ttc" id="alog_8h_html"><div class="ttname"><a href="log_8h.html">log.h</a></div><div class="ttdoc">Log Header File.</div></div>
-<div class="ttc" id="atimers_8h_html"><div class="ttname"><a href="timers_8h.html">timers.h</a></div><div class="ttdoc">Timers Header File.</div></div>
+<div class="line"><a id="l00398" name="l00398"></a><span class="lineno">  398</span> </div>
+<div class="ttc" id="abattery_8h_html"><div class="ttname"><a href="battery_8h.html">battery.h</a></div><div class="ttdoc">Battery Management Header File.</div></div>
+<div class="ttc" id="agroup__battery__api_html_ga1bc4f2d6d49c6147fc4eec6c4ef6f858"><div class="ttname"><a href="group__battery__api.html#ga1bc4f2d6d49c6147fc4eec6c4ef6f858">BATT_LAG_MS</a></div><div class="ttdeci">#define BATT_LAG_MS</div><div class="ttdef"><b>Definition</b> <a href="battery_8c_source.html#l00063">battery.c:63</a></div></div>
+<div class="ttc" id="agroup__battery__api_html_ga24914a3261e55c8855e08a30a73f45c6"><div class="ttname"><a href="group__battery__api.html#ga24914a3261e55c8855e08a30a73f45c6">batt_state_t</a></div><div class="ttdeci">batt_state_t</div><div class="ttdef"><b>Definition</b> <a href="battery_8c_source.html#l00065">battery.c:65</a></div></div>
+<div class="ttc" id="agroup__battery__api_html_ga3986a1e569a68da36d79f738ee242eab"><div class="ttname"><a href="group__battery__api.html#ga3986a1e569a68da36d79f738ee242eab">batt_disable_interrupt</a></div><div class="ttdeci">void batt_disable_interrupt(void)</div><div class="ttdoc">Disable battery monitoring interrupt.</div><div class="ttdef"><b>Definition</b> <a href="battery_8c_source.html#l00296">battery.c:296</a></div></div>
+<div class="ttc" id="agroup__battery__api_html_ga3b88c08e61c4e6a3edebaccbbe515f27"><div class="ttname"><a href="group__battery__api.html#ga3b88c08e61c4e6a3edebaccbbe515f27">state</a></div><div class="ttdeci">static batt_state_t state</div><div class="ttdef"><b>Definition</b> <a href="battery_8c_source.html#l00073">battery.c:73</a></div></div>
+<div class="ttc" id="agroup__battery__api_html_ga44bc4f267ccbaee0dde09e40bc845693"><div class="ttname"><a href="group__battery__api.html#ga44bc4f267ccbaee0dde09e40bc845693">ADC_CCR_PRESC_DIV32</a></div><div class="ttdeci">#define ADC_CCR_PRESC_DIV32</div><div class="ttdef"><b>Definition</b> <a href="battery_8c_source.html#l00056">battery.c:56</a></div></div>
+<div class="ttc" id="agroup__battery__api_html_ga49184eb31da78a82b862ac5c6bbd8099"><div class="ttname"><a href="group__battery__api.html#ga49184eb31da78a82b862ac5c6bbd8099">batt_enable_interrupt</a></div><div class="ttdeci">void batt_enable_interrupt(void)</div><div class="ttdoc">Enable battery monitoring interrupt.</div><div class="ttdef"><b>Definition</b> <a href="battery_8c_source.html#l00257">battery.c:257</a></div></div>
+<div class="ttc" id="agroup__battery__api_html_ga50c7e2976224f53637f19928614679b2"><div class="ttname"><a href="group__battery__api.html#ga50c7e2976224f53637f19928614679b2">batt_get_pwr_voltage</a></div><div class="ttdeci">uint16_t batt_get_pwr_voltage(void)</div><div class="ttdoc">Get the current power supply voltage.</div><div class="ttdef"><b>Definition</b> <a href="battery_8c_source.html#l00309">battery.c:309</a></div></div>
+<div class="ttc" id="agroup__battery__api_html_ga6bd50ebd22ca8d400869cc9f3cb07810"><div class="ttname"><a href="group__battery__api.html#ga6bd50ebd22ca8d400869cc9f3cb07810">batt_calculate_voltages</a></div><div class="ttdeci">void batt_calculate_voltages(void)</div><div class="ttdoc">Calculate battery and power supply voltages.</div><div class="ttdef"><b>Definition</b> <a href="battery_8c_source.html#l00214">battery.c:214</a></div></div>
+<div class="ttc" id="agroup__battery__api_html_ga6ce6d95d1e9ba4ae85466b512f92cfac"><div class="ttname"><a href="group__battery__api.html#ga6ce6d95d1e9ba4ae85466b512f92cfac">batt_voltages</a></div><div class="ttdeci">static uint16_t batt_voltages[NUM_VOLTAGES]</div><div class="ttdef"><b>Definition</b> <a href="battery_8c_source.html#l00072">battery.c:72</a></div></div>
+<div class="ttc" id="agroup__battery__api_html_ga6d788c2fe189afc53efa449a936574d4"><div class="ttname"><a href="group__battery__api.html#ga6d788c2fe189afc53efa449a936574d4">adc_vals</a></div><div class="ttdeci">static uint16_t adc_vals[3]</div><div class="ttdef"><b>Definition</b> <a href="battery_8c_source.html#l00071">battery.c:71</a></div></div>
+<div class="ttc" id="agroup__battery__api_html_ga749582e7b291b726615c67975e92644d"><div class="ttname"><a href="group__battery__api.html#ga749582e7b291b726615c67975e92644d">ADC_CCR_LFMEN</a></div><div class="ttdeci">#define ADC_CCR_LFMEN</div><div class="ttdef"><b>Definition</b> <a href="battery_8c_source.html#l00044">battery.c:44</a></div></div>
+<div class="ttc" id="agroup__battery__api_html_ga74ef535cae048523c75ec8824e23d901"><div class="ttname"><a href="group__battery__api.html#ga74ef535cae048523c75ec8824e23d901">batt_init</a></div><div class="ttdeci">void batt_init(void)</div><div class="ttdoc">Initialize the battery monitoring system.</div><div class="ttdef"><b>Definition</b> <a href="battery_8c_source.html#l00075">battery.c:75</a></div></div>
+<div class="ttc" id="agroup__battery__api_html_ga8e3d66f43880efbd56cc2f68347b9b19"><div class="ttname"><a href="group__battery__api.html#ga8e3d66f43880efbd56cc2f68347b9b19">dma1_channel1_isr</a></div><div class="ttdeci">void dma1_channel1_isr(void)</div><div class="ttdef"><b>Definition</b> <a href="battery_8c_source.html#l00372">battery.c:372</a></div></div>
+<div class="ttc" id="agroup__battery__api_html_ga9831fc5228bf2253ed6189352cab2d40"><div class="ttname"><a href="group__battery__api.html#ga9831fc5228bf2253ed6189352cab2d40">batt_is_ready</a></div><div class="ttdeci">bool batt_is_ready(void)</div><div class="ttdoc">Check if battery monitoring system is ready.</div><div class="ttdef"><b>Definition</b> <a href="battery_8c_source.html#l00367">battery.c:367</a></div></div>
+<div class="ttc" id="agroup__battery__api_html_ga9b243d544affdb2fc07050868206af24"><div class="ttname"><a href="group__battery__api.html#ga9b243d544affdb2fc07050868206af24">batt_update_voltages</a></div><div class="ttdeci">void batt_update_voltages(void)</div><div class="ttdoc">Update voltage readings from ADC.</div><div class="ttdef"><b>Definition</b> <a href="battery_8c_source.html#l00229">battery.c:229</a></div></div>
+<div class="ttc" id="agroup__battery__api_html_ga9b66439504fbf94849d8828992303801"><div class="ttname"><a href="group__battery__api.html#ga9b66439504fbf94849d8828992303801">batt_is_plugged_in</a></div><div class="ttdeci">bool batt_is_plugged_in(void)</div><div class="ttdoc">Check if external power is connected.</div><div class="ttdef"><b>Definition</b> <a href="battery_8c_source.html#l00362">battery.c:362</a></div></div>
+<div class="ttc" id="agroup__battery__api_html_gab2cec09017de01449439e2d93f958584"><div class="ttname"><a href="group__battery__api.html#gab2cec09017de01449439e2d93f958584">batt_get_batt_voltage</a></div><div class="ttdeci">uint16_t batt_get_batt_voltage(void)</div><div class="ttdoc">Get the current battery voltage.</div><div class="ttdef"><b>Definition</b> <a href="battery_8c_source.html#l00305">battery.c:305</a></div></div>
+<div class="ttc" id="agroup__battery__api_html_gab70aa864f9333d92f632f4dd59446a5b"><div class="ttname"><a href="group__battery__api.html#gab70aa864f9333d92f632f4dd59446a5b">batt_set_voltage_scale</a></div><div class="ttdeci">void batt_set_voltage_scale(uint8_t scale)</div><div class="ttdoc">Set the voltage scale for power management.</div><div class="ttdef"><b>Definition</b> <a href="battery_8c_source.html#l00168">battery.c:168</a></div></div>
+<div class="ttc" id="agroup__battery__api_html_gaf1bc8b24896c36914f52907197a0e87a"><div class="ttname"><a href="group__battery__api.html#gaf1bc8b24896c36914f52907197a0e87a">NUM_VOLTAGES</a></div><div class="ttdeci">#define NUM_VOLTAGES</div><div class="ttdef"><b>Definition</b> <a href="battery_8c_source.html#l00040">battery.c:40</a></div></div>
+<div class="ttc" id="agroup__battery__api_html_gaf4ac3c31321cf201d797ab82ce0587a3"><div class="ttname"><a href="group__battery__api.html#gaf4ac3c31321cf201d797ab82ce0587a3">batt_set_low_power_run</a></div><div class="ttdeci">void batt_set_low_power_run(void)</div><div class="ttdoc">Enter low power run mode.</div><div class="ttdef"><b>Definition</b> <a href="battery_8c_source.html#l00184">battery.c:184</a></div></div>
+<div class="ttc" id="agroup__battery__api_html_gafccda6c10ac01d4b0faf913fb5963502"><div class="ttname"><a href="group__battery__api.html#gafccda6c10ac01d4b0faf913fb5963502">batt_end</a></div><div class="ttdeci">void batt_end(void)</div><div class="ttdoc">Terminate battery monitoring operations.</div><div class="ttdef"><b>Definition</b> <a href="battery_8c_source.html#l00151">battery.c:151</a></div></div>
+<div class="ttc" id="agroup__battery__api_html_gafd1d97582ddd87bf66f3a428f1b003db"><div class="ttname"><a href="group__battery__api.html#gafd1d97582ddd87bf66f3a428f1b003db">BATT_VOLTAGE</a></div><div class="ttdeci">#define BATT_VOLTAGE</div><div class="ttdef"><b>Definition</b> <a href="battery_8c_source.html#l00041">battery.c:41</a></div></div>
+<div class="ttc" id="agroup__battery__api_html_gga24914a3261e55c8855e08a30a73f45c6a3aa03a3960ee30d61623c4caa1cb562e"><div class="ttname"><a href="group__battery__api.html#gga24914a3261e55c8855e08a30a73f45c6a3aa03a3960ee30d61623c4caa1cb562e">BATT_PLUGGED_IN</a></div><div class="ttdeci">@ BATT_PLUGGED_IN</div><div class="ttdef"><b>Definition</b> <a href="battery_8c_source.html#l00067">battery.c:67</a></div></div>
+<div class="ttc" id="agroup__battery__api_html_gga24914a3261e55c8855e08a30a73f45c6a3f10a904d13177fc85611ab4fd500d37"><div class="ttname"><a href="group__battery__api.html#gga24914a3261e55c8855e08a30a73f45c6a3f10a904d13177fc85611ab4fd500d37">BATT_INIT</a></div><div class="ttdeci">@ BATT_INIT</div><div class="ttdef"><b>Definition</b> <a href="battery_8c_source.html#l00066">battery.c:66</a></div></div>
+<div class="ttc" id="agroup__battery__api_html_gga24914a3261e55c8855e08a30a73f45c6a6ee9c8facac3a01d005f56e0330cd33b"><div class="ttname"><a href="group__battery__api.html#gga24914a3261e55c8855e08a30a73f45c6a6ee9c8facac3a01d005f56e0330cd33b">BATT_PLUGGED_OUT</a></div><div class="ttdeci">@ BATT_PLUGGED_OUT</div><div class="ttdef"><b>Definition</b> <a href="battery_8c_source.html#l00068">battery.c:68</a></div></div>
+<div class="ttc" id="agroup__log__api_html_ga4fff2f266fd439fbb104ddb5d7f61533"><div class="ttname"><a href="group__log__api.html#ga4fff2f266fd439fbb104ddb5d7f61533">log_printf</a></div><div class="ttdeci">void log_printf(const char *format,...)</div><div class="ttdoc">Log a formatted message.</div><div class="ttdef"><b>Definition</b> <a href="log_8c_source.html#l00081">log.c:81</a></div></div>
+<div class="ttc" id="agroup__timers__api_html_ga6e9cc03544579f4d7f8c7f987b917308"><div class="ttname"><a href="group__timers__api.html#ga6e9cc03544579f4d7f8c7f987b917308">timers_delay_microseconds</a></div><div class="ttdeci">void timers_delay_microseconds(uint32_t delay_microseconds)</div><div class="ttdoc">Delay for a specified number of microseconds.</div><div class="ttdef"><b>Definition</b> <a href="timers_8c_source.html#l00300">timers.c:300</a></div></div>
+<div class="ttc" id="agroup__timers__api_html_ga9c4643be9a297c1743fc505c87d0e36d"><div class="ttname"><a href="group__timers__api.html#ga9c4643be9a297c1743fc505c87d0e36d">timers_millis</a></div><div class="ttdeci">uint32_t timers_millis(void)</div><div class="ttdoc">Get the current millisecond counter value.</div><div class="ttdef"><b>Definition</b> <a href="timers_8c_source.html#l00296">timers.c:296</a></div></div>
+<div class="ttc" id="alog_8h_html"><div class="ttname"><a href="log_8h.html">log.h</a></div><div class="ttdoc">Logging System Header File.</div></div>
+<div class="ttc" id="atimers_8h_html"><div class="ttname"><a href="timers_8h.html">timers.h</a></div><div class="ttdoc">Timing and Power Management Header File.</div></div>
 </div><!-- fragment --></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Thu Mar 20 2025 05:49:15 for CoolEase by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8
+Generated on Fri Mar 21 2025 10:20:20 for CoolEase by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8
 </small></address>
 </body>
 </html>

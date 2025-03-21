@@ -1,14 +1,10 @@
 var searchData=
 [
-  ['packet_5fdata_5fe_0',['packet_data_e',['../structrfm__packet__s.html#a9ae95bd3855411b3925b931cb4eb845a',1,'rfm_packet_s']]],
-  ['packets_5fbuf_1',['packets_buf',['../group___r_f_m___i_n_t.html#gae6ab7b888e14ad67ae8498f8982d329b',1,'rfm.c']]],
-  ['packets_5fhead_2',['packets_head',['../group___r_f_m___i_n_t.html#gacf69de31467b3d7db5d05e442de76f9b',1,'rfm.c']]],
-  ['packets_5ftail_3',['packets_tail',['../group___r_f_m___i_n_t.html#gaae376aa0bc6a2d4b0f17bd075bd169c9',1,'rfm.c']]],
-  ['page_5fnum_4',['page_num',['../group___c_u_s_b___i_n_t.html#gaa2412ae5552d083c0161084d94866cdd',1,'@0::@4::page_num'],['../group___c_u_s_b___i_n_t.html#ga004ddae9658b869fe778da7a087fcd3e',1,'@1::@5::page_num'],['../cusb_8c.html#a6bc4de0cf7d05058f1f29ed60890a573',1,'page_num:&#160;cusb.c']]],
-  ['pagecount_5',['PageCount',['../structw25__t.html#abe564f33eb4ba937836cc8f43862375b',1,'w25_t']]],
-  ['pagesize_6',['PageSize',['../structw25__t.html#a0767f217e70fbf98c7d28e1496e4f30f',1,'w25_t']]],
-  ['param_5fbuf_7',['param_buf',['../group___s_i_m___i_n_t.html#gab3cd2624417ecfb5e0959b2397406133',1,'sim.c']]],
-  ['power_8',['power',['../structrfm__packet__s.html#ad3a6f7c8a005755bd2b2eadbea34e172',1,'rfm_packet_s']]],
-  ['pwr_5fappended_9',['pwr_appended',['../group___h_u_b___i_n_t.html#gaeb6b600320b8009f0bb69e3de5fe6ad5',1,'hub.c']]],
-  ['pwr_5fupload_5fpending_10',['pwr_upload_pending',['../group___h_u_b___i_n_t.html#ga82cbd76a530adba7fc7ef37153584dc3',1,'hub.c']]]
+  ['net_5fbuf_0',['net_buf',['../group__hub__apis.html#ga9bdd7a99293c7e89fce8af69ec5cf9ca',1,'hub.c']]],
+  ['net_5fbuf_5fidx_1',['net_buf_idx',['../group__hub__apis.html#ga89427e919ab54408c1d9fc83a44ebeb4',1,'hub.c']]],
+  ['net_5ffallback_5fstate_2',['net_fallback_state',['../group__bootloader__api.html#ga273101e089020a26206a2f2f717de4c1',1,'hub_bootloader.c']]],
+  ['net_5fnext_5fstate_3',['net_next_state',['../group__bootloader__api.html#gacf077166e56a7464ee8a9a6f6b068359',1,'hub_bootloader.c']]],
+  ['net_5fstate_4',['net_state',['../group__bootloader__api.html#gaa9c1605228344174df5cfd22fcf9a729',1,'hub_bootloader.c']]],
+  ['next_5freading_5fadd_5',['next_reading_add',['../group__memory__api.html#ga407057c105825070ba7d8e53df26897c',1,'memory.c']]],
+  ['num_5fsensors_6',['num_sensors',['../group__hub__apis.html#gaed328bcd9e1159e203f461f58961e8a3',1,'hub.c']]]
 ];

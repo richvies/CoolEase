@@ -1,6 +1,6 @@
 <map id="common/printf.c" name="common/printf.c">
 <area shape="rect" id="Node000001" title=" " alt="" coords="108,5,236,31"/>
-<area shape="rect" id="Node000002" href="$printf_8h.html" title=" " alt="" coords="107,79,237,104"/>
+<area shape="rect" id="Node000002" href="$printf_8h.html" title="Lightweight printf implementation." alt="" coords="107,79,237,104"/>
 <area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="175,31,175,65,169,65,169,31"/>
 <area shape="rect" id="Node000004" title=" " alt="" coords="5,152,88,177"/>
 <area shape="poly" id="edge6_Node000001_Node000004" title=" " alt="" coords="155,33,127,54,98,80,76,111,60,141,55,138,72,108,94,77,123,49,152,29"/>

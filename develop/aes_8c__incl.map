@@ -1,14 +1,16 @@
 <map id="common/aes.c" name="common/aes.c">
 <area shape="rect" id="Node000001" title=" " alt="" coords="125,5,242,31"/>
-<area shape="rect" id="Node000002" href="$aes_8h.html" title=" " alt="" coords="5,79,124,104"/>
+<area shape="rect" id="Node000002" href="$aes_8h.html" title="AES Encryption Module Header File." alt="" coords="5,79,124,104"/>
 <area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="166,33,97,74,95,69,163,28"/>
 <area shape="rect" id="Node000004" title=" " alt="" coords="148,79,219,104"/>
 <area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="186,31,186,65,181,65,181,31"/>
-<area shape="rect" id="Node000005" href="$log_8h.html" title="Log Header File." alt="" coords="243,79,358,104"/>
+<area shape="rect" id="Node000005" href="$log_8h.html" title="Logging System Header File." alt="" coords="243,79,358,104"/>
 <area shape="poly" id="edge4_Node000001_Node000005" title=" " alt="" coords="204,28,271,69,268,74,201,33"/>
-<area shape="rect" id="Node000003" title=" " alt="" coords="97,152,168,177"/>
-<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="78,102,114,140,110,144,74,106"/>
-<area shape="poly" id="edge6_Node000005_Node000003" title=" " alt="" coords="275,106,174,149,172,144,273,102"/>
-<area shape="rect" id="Node000006" title=" " alt="" coords="259,152,342,177"/>
-<area shape="poly" id="edge5_Node000005_Node000006" title=" " alt="" coords="303,104,303,138,298,138,298,104"/>
+<area shape="rect" id="Node000003" title=" " alt="" coords="96,152,167,177"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="78,103,113,140,109,144,74,106"/>
+<area shape="poly" id="edge6_Node000005_Node000003" title=" " alt="" coords="274,106,173,149,171,144,272,102"/>
+<area shape="rect" id="Node000006" title=" " alt="" coords="199,152,282,177"/>
+<area shape="poly" id="edge5_Node000005_Node000006" title=" " alt="" coords="293,106,261,143,257,140,289,103"/>
+<area shape="rect" id="Node000007" title=" " alt="" coords="306,152,413,177"/>
+<area shape="poly" id="edge7_Node000005_Node000007" title=" " alt="" coords="312,103,343,140,339,143,308,106"/>
 </map>

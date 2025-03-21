@@ -21,7 +21,7 @@
  <tbody>
  <tr id="projectrow">
   <td id="projectalign">
-   <div id="projectname">CoolEase<span id="projectnumber">&#160;develop-acc8581</span>
+   <div id="projectname">CoolEase<span id="projectnumber">&#160;develop-eabc6b5</span>
    </div>
    <div id="projectbrief">Remote Temperature Monitor</div>
   </td>
@@ -82,6 +82,9 @@ $(function() {
   <div class="headertitle"><div class="title">w25qxx.h File Reference</div></div>
 </div><!--header-->
 <div class="contents">
+
+<p>W25Q Flash Memory Driver Header File.  
+<a href="#details">More...</a></p>
 <div class="textblock"><code>#include &lt;stdbool.h&gt;</code><br />
 <code>#include &lt;stdint.h&gt;</code><br />
 </div><div class="textblock"><div class="dynheader">
@@ -89,7 +92,7 @@ Include dependency graph for w25qxx.h:</div>
 <div class="dyncontent">
 <div class="center"><img src="w25qxx_8h__incl.png" border="0" usemap="#ahub_2include_2hub_2w25qxx_8h" alt=""/></div>
 <map name="ahub_2include_2hub_2w25qxx_8h" id="ahub_2include_2hub_2w25qxx_8h">
-<area shape="rect" title=" " alt="" coords="5,5,197,31"/>
+<area shape="rect" title="W25Q Flash Memory Driver Header File." alt="" coords="5,5,197,31"/>
 <area shape="rect" title=" " alt="" coords="9,79,92,104"/>
 <area shape="poly" title=" " alt="" coords="95,33,69,69,65,66,91,29"/>
 <area shape="rect" title=" " alt="" coords="117,79,187,104"/>
@@ -101,7 +104,7 @@ This graph shows which files directly or indirectly include this file:</div>
 <div class="dyncontent">
 <div class="center"><img src="w25qxx_8h__dep__incl.png" border="0" usemap="#ahub_2include_2hub_2w25qxx_8hdep" alt=""/></div>
 <map name="ahub_2include_2hub_2w25qxx_8hdep" id="ahub_2include_2hub_2w25qxx_8hdep">
-<area shape="rect" title=" " alt="" coords="70,5,262,31"/>
+<area shape="rect" title="W25Q Flash Memory Driver Header File." alt="" coords="70,5,262,31"/>
 <area shape="rect" href="hub__bootloader_8c.html" title="Hub Bootloader Source File." alt="" coords="5,79,167,104"/>
 <area shape="poly" title=" " alt="" coords="145,42,101,80,97,76,141,38"/>
 <area shape="rect" href="w25qxx_8c.html" title=" " alt="" coords="191,79,303,104"/>
@@ -114,936 +117,132 @@ This graph shows which files directly or indirectly include this file:</div>
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="nested-classes" name="nested-classes"></a>
 Data Structures</h2></td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structw25__t.html">w25_t</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Flash memory device structure.  <a href="structw25__t.html#details">More...</a><br /></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="enum-members" name="enum-members"></a>
 Enumerations</h2></td></tr>
-<tr class="memitem:a10918b7f10dfb01e83d73b1de4ee2f12" id="r_a10918b7f10dfb01e83d73b1de4ee2f12"><td class="memItemLeft" align="right" valign="top">enum &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="w25qxx_8h.html#a10918b7f10dfb01e83d73b1de4ee2f12">W25_ID_t</a> { <br />
-&#160;&#160;<a class="el" href="w25qxx_8h.html#a10918b7f10dfb01e83d73b1de4ee2f12a4a006ed1d98e57621d631e5ac99bb8fa">W25Q10</a> = 1
-, <a class="el" href="w25qxx_8h.html#a10918b7f10dfb01e83d73b1de4ee2f12a5fd73a2be1c5eda560cad6bc59d1a6a6">W25Q20</a>
-, <a class="el" href="w25qxx_8h.html#a10918b7f10dfb01e83d73b1de4ee2f12aaf6ffc27ae2250b2dbc5d6d509c4cef0">W25Q40</a>
-, <a class="el" href="w25qxx_8h.html#a10918b7f10dfb01e83d73b1de4ee2f12a1ad4f72437de5f26cb7b212d4d91e7c2">W25Q80</a>
+<tr class="memitem:ga10918b7f10dfb01e83d73b1de4ee2f12" id="r_ga10918b7f10dfb01e83d73b1de4ee2f12"><td class="memItemLeft" align="right" valign="top">enum &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__flash__api.html#ga10918b7f10dfb01e83d73b1de4ee2f12">W25_ID_t</a> { <br />
+&#160;&#160;<a class="el" href="group__flash__api.html#gga10918b7f10dfb01e83d73b1de4ee2f12a4a006ed1d98e57621d631e5ac99bb8fa">W25Q10</a> = 1
+, <a class="el" href="group__flash__api.html#gga10918b7f10dfb01e83d73b1de4ee2f12a5fd73a2be1c5eda560cad6bc59d1a6a6">W25Q20</a>
+, <a class="el" href="group__flash__api.html#gga10918b7f10dfb01e83d73b1de4ee2f12aaf6ffc27ae2250b2dbc5d6d509c4cef0">W25Q40</a>
+, <a class="el" href="group__flash__api.html#gga10918b7f10dfb01e83d73b1de4ee2f12a1ad4f72437de5f26cb7b212d4d91e7c2">W25Q80</a>
 , <br />
-&#160;&#160;<a class="el" href="w25qxx_8h.html#a10918b7f10dfb01e83d73b1de4ee2f12a66acb81a2d520a7d92ce1d37210c6435">W25Q16</a>
-, <a class="el" href="w25qxx_8h.html#a10918b7f10dfb01e83d73b1de4ee2f12a4fdad551be6485441db5951f196db7cb">W25Q32</a>
-, <a class="el" href="w25qxx_8h.html#a10918b7f10dfb01e83d73b1de4ee2f12a3ea98b2b3e06afa29441c51548bbb16e">W25Q64</a>
-, <a class="el" href="w25qxx_8h.html#a10918b7f10dfb01e83d73b1de4ee2f12a75afcbe71906d3884f4fcc119c1cabd5">W25Q128</a>
+&#160;&#160;<a class="el" href="group__flash__api.html#gga10918b7f10dfb01e83d73b1de4ee2f12a66acb81a2d520a7d92ce1d37210c6435">W25Q16</a>
+, <a class="el" href="group__flash__api.html#gga10918b7f10dfb01e83d73b1de4ee2f12a4fdad551be6485441db5951f196db7cb">W25Q32</a>
+, <a class="el" href="group__flash__api.html#gga10918b7f10dfb01e83d73b1de4ee2f12a3ea98b2b3e06afa29441c51548bbb16e">W25Q64</a>
+, <a class="el" href="group__flash__api.html#gga10918b7f10dfb01e83d73b1de4ee2f12a75afcbe71906d3884f4fcc119c1cabd5">W25Q128</a>
 , <br />
-&#160;&#160;<a class="el" href="w25qxx_8h.html#a10918b7f10dfb01e83d73b1de4ee2f12ab6db6bd31731e4e95040e8d47f0e45ca">W25Q256</a>
-, <a class="el" href="w25qxx_8h.html#a10918b7f10dfb01e83d73b1de4ee2f12a5bd3078157449d9ba4ed74f94e5f6eb0">W25Q512</a>
+&#160;&#160;<a class="el" href="group__flash__api.html#gga10918b7f10dfb01e83d73b1de4ee2f12ab6db6bd31731e4e95040e8d47f0e45ca">W25Q256</a>
+, <a class="el" href="group__flash__api.html#gga10918b7f10dfb01e83d73b1de4ee2f12a5bd3078157449d9ba4ed74f94e5f6eb0">W25Q512</a>
 <br />
  }</td></tr>
-<tr class="separator:a10918b7f10dfb01e83d73b1de4ee2f12"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memdesc:ga10918b7f10dfb01e83d73b1de4ee2f12"><td class="mdescLeft">&#160;</td><td class="mdescRight">Flash memory chip identifier enumeration.  <a href="group__flash__api.html#ga10918b7f10dfb01e83d73b1de4ee2f12">More...</a><br /></td></tr>
+<tr class="separator:ga10918b7f10dfb01e83d73b1de4ee2f12"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="func-members" name="func-members"></a>
 Functions</h2></td></tr>
-<tr class="memitem:a25f35ac447bbd611ed7684f920a90c2a" id="r_a25f35ac447bbd611ed7684f920a90c2a"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="w25qxx_8h.html#a25f35ac447bbd611ed7684f920a90c2a">w25_Init</a> (void)</td></tr>
-<tr class="separator:a25f35ac447bbd611ed7684f920a90c2a"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a6496ac869d939380f51d4697149e7446" id="r_a6496ac869d939380f51d4697149e7446"><td class="memItemLeft" align="right" valign="top">uint32_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="w25qxx_8h.html#a6496ac869d939380f51d4697149e7446">w25_ReadID</a> (void)</td></tr>
-<tr class="separator:a6496ac869d939380f51d4697149e7446"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a21c9a374eeb3f346beb31ff905b9ec83" id="r_a21c9a374eeb3f346beb31ff905b9ec83"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="w25qxx_8h.html#a21c9a374eeb3f346beb31ff905b9ec83">w25_ReadUniqID</a> (void)</td></tr>
-<tr class="separator:a21c9a374eeb3f346beb31ff905b9ec83"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ac071864fac69adbe4345c6e93113c4d5" id="r_ac071864fac69adbe4345c6e93113c4d5"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="w25qxx_8h.html#ac071864fac69adbe4345c6e93113c4d5">w25_WriteEnable</a> (void)</td></tr>
-<tr class="separator:ac071864fac69adbe4345c6e93113c4d5"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a1ca2afc1c4c5e76b03b7180b7a19ce52" id="r_a1ca2afc1c4c5e76b03b7180b7a19ce52"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="w25qxx_8h.html#a1ca2afc1c4c5e76b03b7180b7a19ce52">w25_WriteDisable</a> (void)</td></tr>
-<tr class="separator:a1ca2afc1c4c5e76b03b7180b7a19ce52"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a9f98d3f482da7bb5cb3c1c952861e06e" id="r_a9f98d3f482da7bb5cb3c1c952861e06e"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="w25qxx_8h.html#a9f98d3f482da7bb5cb3c1c952861e06e">w25_WaitForWriteEnd</a> (void)</td></tr>
-<tr class="separator:a9f98d3f482da7bb5cb3c1c952861e06e"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a590b48264f172204e2f3004f161ec87a" id="r_a590b48264f172204e2f3004f161ec87a"><td class="memItemLeft" align="right" valign="top">uint8_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="w25qxx_8h.html#a590b48264f172204e2f3004f161ec87a">w25_ReadStatusRegister</a> (uint8_t SelectStatusRegister_1_2_3)</td></tr>
-<tr class="separator:a590b48264f172204e2f3004f161ec87a"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aecf30541806c5187d42b2dfb16342595" id="r_aecf30541806c5187d42b2dfb16342595"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="w25qxx_8h.html#aecf30541806c5187d42b2dfb16342595">w25_WriteStatusRegister</a> (uint8_t SelectStatusRegister_1_2_3, uint8_t Data)</td></tr>
-<tr class="separator:aecf30541806c5187d42b2dfb16342595"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a207bf5e9633a22dca0729ccc9636bdb9" id="r_a207bf5e9633a22dca0729ccc9636bdb9"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="w25qxx_8h.html#a207bf5e9633a22dca0729ccc9636bdb9">w25_EraseChip</a> (void)</td></tr>
-<tr class="separator:a207bf5e9633a22dca0729ccc9636bdb9"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a1521ce8b5d33062298173889d8d7e7d0" id="r_a1521ce8b5d33062298173889d8d7e7d0"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="w25qxx_8h.html#a1521ce8b5d33062298173889d8d7e7d0">w25_EraseSector</a> (uint32_t SectorAddr)</td></tr>
-<tr class="separator:a1521ce8b5d33062298173889d8d7e7d0"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a42a3566da042af312033016f3cf5e95d" id="r_a42a3566da042af312033016f3cf5e95d"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="w25qxx_8h.html#a42a3566da042af312033016f3cf5e95d">w25_EraseBlock</a> (uint32_t BlockAddr)</td></tr>
-<tr class="separator:a42a3566da042af312033016f3cf5e95d"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a54de76e862fbc7447847c26f3167a2db" id="r_a54de76e862fbc7447847c26f3167a2db"><td class="memItemLeft" align="right" valign="top">uint32_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="w25qxx_8h.html#a54de76e862fbc7447847c26f3167a2db">w25_PageToSector</a> (uint32_t PageAddress)</td></tr>
-<tr class="separator:a54de76e862fbc7447847c26f3167a2db"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:af23cf132d48fa4dae00a7045a283df76" id="r_af23cf132d48fa4dae00a7045a283df76"><td class="memItemLeft" align="right" valign="top">uint32_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="w25qxx_8h.html#af23cf132d48fa4dae00a7045a283df76">w25_PageToBlock</a> (uint32_t PageAddress)</td></tr>
-<tr class="separator:af23cf132d48fa4dae00a7045a283df76"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ae7cc437e87c8e0a7c38ae9ba13622b13" id="r_ae7cc437e87c8e0a7c38ae9ba13622b13"><td class="memItemLeft" align="right" valign="top">uint32_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="w25qxx_8h.html#ae7cc437e87c8e0a7c38ae9ba13622b13">w25_SectorToBlock</a> (uint32_t SectorAddress)</td></tr>
-<tr class="separator:ae7cc437e87c8e0a7c38ae9ba13622b13"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aa71ac15ba2a37184807c9ffd2dc39217" id="r_aa71ac15ba2a37184807c9ffd2dc39217"><td class="memItemLeft" align="right" valign="top">uint32_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="w25qxx_8h.html#aa71ac15ba2a37184807c9ffd2dc39217">w25_SectorToPage</a> (uint32_t SectorAddress)</td></tr>
-<tr class="separator:aa71ac15ba2a37184807c9ffd2dc39217"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ac1971e669409e5047e901df02351a9da" id="r_ac1971e669409e5047e901df02351a9da"><td class="memItemLeft" align="right" valign="top">uint32_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="w25qxx_8h.html#ac1971e669409e5047e901df02351a9da">w25_BlockToPage</a> (uint32_t BlockAddress)</td></tr>
-<tr class="separator:ac1971e669409e5047e901df02351a9da"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a1b46313b4349ac0f79e199832d9aa57d" id="r_a1b46313b4349ac0f79e199832d9aa57d"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="w25qxx_8h.html#a1b46313b4349ac0f79e199832d9aa57d">w25_IsEmptyPage</a> (uint32_t Page_Address, uint32_t OffsetInByte, uint32_t NumByteToCheck_up_to_PageSize)</td></tr>
-<tr class="separator:a1b46313b4349ac0f79e199832d9aa57d"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a6177d5168c3fef2215aebad9b13bc1d1" id="r_a6177d5168c3fef2215aebad9b13bc1d1"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="w25qxx_8h.html#a6177d5168c3fef2215aebad9b13bc1d1">w25_IsEmptySector</a> (uint32_t Sector_Address, uint32_t OffsetInByte, uint32_t NumByteToCheck_up_to_SectorSize)</td></tr>
-<tr class="separator:a6177d5168c3fef2215aebad9b13bc1d1"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a1098d36a84b154cb9299686c43798a5f" id="r_a1098d36a84b154cb9299686c43798a5f"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="w25qxx_8h.html#a1098d36a84b154cb9299686c43798a5f">w25_IsEmptyBlock</a> (uint32_t Block_Address, uint32_t OffsetInByte, uint32_t NumByteToCheck_up_to_BlockSize)</td></tr>
-<tr class="separator:a1098d36a84b154cb9299686c43798a5f"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ab9e66fad85a12cfd18c255bcda55795c" id="r_ab9e66fad85a12cfd18c255bcda55795c"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="w25qxx_8h.html#ab9e66fad85a12cfd18c255bcda55795c">w25_WriteByte</a> (uint8_t pBuffer, uint32_t Bytes_Address)</td></tr>
-<tr class="separator:ab9e66fad85a12cfd18c255bcda55795c"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a9ebf945c43e1ccc869ab442113810520" id="r_a9ebf945c43e1ccc869ab442113810520"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="w25qxx_8h.html#a9ebf945c43e1ccc869ab442113810520">w25_WritePage</a> (uint8_t *pBuffer, uint32_t Page_Address, uint32_t OffsetInByte, uint32_t NumByteToWrite_up_to_PageSize)</td></tr>
-<tr class="separator:a9ebf945c43e1ccc869ab442113810520"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a7d8f42f9939eb71d5be28f657a1e95c3" id="r_a7d8f42f9939eb71d5be28f657a1e95c3"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="w25qxx_8h.html#a7d8f42f9939eb71d5be28f657a1e95c3">w25_WriteSector</a> (uint8_t *pBuffer, uint32_t Sector_Address, uint32_t OffsetInByte, uint32_t NumByteToWrite_up_to_SectorSize)</td></tr>
-<tr class="separator:a7d8f42f9939eb71d5be28f657a1e95c3"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a95eb44379007a87bfe87286659545361" id="r_a95eb44379007a87bfe87286659545361"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="w25qxx_8h.html#a95eb44379007a87bfe87286659545361">w25_WriteBlock</a> (uint8_t *pBuffer, uint32_t Block_Address, uint32_t OffsetInByte, uint32_t NumByteToWrite_up_to_BlockSize)</td></tr>
-<tr class="separator:a95eb44379007a87bfe87286659545361"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aeb79f53178c142e41c95356bc0ccd4ff" id="r_aeb79f53178c142e41c95356bc0ccd4ff"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="w25qxx_8h.html#aeb79f53178c142e41c95356bc0ccd4ff">w25_ReadByte</a> (uint8_t *pBuffer, uint32_t Bytes_Address)</td></tr>
-<tr class="separator:aeb79f53178c142e41c95356bc0ccd4ff"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ac0fdad4b9d39251cd379d9b3f544ef04" id="r_ac0fdad4b9d39251cd379d9b3f544ef04"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="w25qxx_8h.html#ac0fdad4b9d39251cd379d9b3f544ef04">w25_ReadBytes</a> (uint8_t *pBuffer, uint32_t ReadAddr, uint32_t NumByteToRead)</td></tr>
-<tr class="separator:ac0fdad4b9d39251cd379d9b3f544ef04"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aa7fa1645693957c722a2c1609f2cc222" id="r_aa7fa1645693957c722a2c1609f2cc222"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="w25qxx_8h.html#aa7fa1645693957c722a2c1609f2cc222">w25_ReadPage</a> (uint8_t *pBuffer, uint32_t Page_Address, uint32_t OffsetInByte, uint32_t NumByteToRead_up_to_PageSize)</td></tr>
-<tr class="separator:aa7fa1645693957c722a2c1609f2cc222"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a0362e1a6fdd978990f35b5198e947897" id="r_a0362e1a6fdd978990f35b5198e947897"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="w25qxx_8h.html#a0362e1a6fdd978990f35b5198e947897">w25_ReadSector</a> (uint8_t *pBuffer, uint32_t Sector_Address, uint32_t OffsetInByte, uint32_t NumByteToRead_up_to_SectorSize)</td></tr>
-<tr class="separator:a0362e1a6fdd978990f35b5198e947897"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aef2d0e02c34e93afbae0bb3b36840ad7" id="r_aef2d0e02c34e93afbae0bb3b36840ad7"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="w25qxx_8h.html#aef2d0e02c34e93afbae0bb3b36840ad7">w25_ReadBlock</a> (uint8_t *pBuffer, uint32_t Block_Address, uint32_t OffsetInByte, uint32_t NumByteToRead_up_to_BlockSize)</td></tr>
-<tr class="separator:aef2d0e02c34e93afbae0bb3b36840ad7"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga25f35ac447bbd611ed7684f920a90c2a" id="r_ga25f35ac447bbd611ed7684f920a90c2a"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__flash__api.html#ga25f35ac447bbd611ed7684f920a90c2a">w25_Init</a> (void)</td></tr>
+<tr class="memdesc:ga25f35ac447bbd611ed7684f920a90c2a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Initialize flash memory device.  <br /></td></tr>
+<tr class="separator:ga25f35ac447bbd611ed7684f920a90c2a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga6496ac869d939380f51d4697149e7446" id="r_ga6496ac869d939380f51d4697149e7446"><td class="memItemLeft" align="right" valign="top">uint32_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__flash__api.html#ga6496ac869d939380f51d4697149e7446">w25_ReadID</a> (void)</td></tr>
+<tr class="memdesc:ga6496ac869d939380f51d4697149e7446"><td class="mdescLeft">&#160;</td><td class="mdescRight">Read flash memory device ID.  <br /></td></tr>
+<tr class="separator:ga6496ac869d939380f51d4697149e7446"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga21c9a374eeb3f346beb31ff905b9ec83" id="r_ga21c9a374eeb3f346beb31ff905b9ec83"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__flash__api.html#ga21c9a374eeb3f346beb31ff905b9ec83">w25_ReadUniqID</a> (void)</td></tr>
+<tr class="memdesc:ga21c9a374eeb3f346beb31ff905b9ec83"><td class="mdescLeft">&#160;</td><td class="mdescRight">Read unique ID from flash memory.  <br /></td></tr>
+<tr class="separator:ga21c9a374eeb3f346beb31ff905b9ec83"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gac071864fac69adbe4345c6e93113c4d5" id="r_gac071864fac69adbe4345c6e93113c4d5"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__flash__api.html#gac071864fac69adbe4345c6e93113c4d5">w25_WriteEnable</a> (void)</td></tr>
+<tr class="memdesc:gac071864fac69adbe4345c6e93113c4d5"><td class="mdescLeft">&#160;</td><td class="mdescRight">Enable write operations.  <br /></td></tr>
+<tr class="separator:gac071864fac69adbe4345c6e93113c4d5"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga1ca2afc1c4c5e76b03b7180b7a19ce52" id="r_ga1ca2afc1c4c5e76b03b7180b7a19ce52"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__flash__api.html#ga1ca2afc1c4c5e76b03b7180b7a19ce52">w25_WriteDisable</a> (void)</td></tr>
+<tr class="memdesc:ga1ca2afc1c4c5e76b03b7180b7a19ce52"><td class="mdescLeft">&#160;</td><td class="mdescRight">Disable write operations.  <br /></td></tr>
+<tr class="separator:ga1ca2afc1c4c5e76b03b7180b7a19ce52"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga9f98d3f482da7bb5cb3c1c952861e06e" id="r_ga9f98d3f482da7bb5cb3c1c952861e06e"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__flash__api.html#ga9f98d3f482da7bb5cb3c1c952861e06e">w25_WaitForWriteEnd</a> (void)</td></tr>
+<tr class="memdesc:ga9f98d3f482da7bb5cb3c1c952861e06e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Wait for write operation to complete.  <br /></td></tr>
+<tr class="separator:ga9f98d3f482da7bb5cb3c1c952861e06e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga590b48264f172204e2f3004f161ec87a" id="r_ga590b48264f172204e2f3004f161ec87a"><td class="memItemLeft" align="right" valign="top">uint8_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__flash__api.html#ga590b48264f172204e2f3004f161ec87a">w25_ReadStatusRegister</a> (uint8_t SelectStatusRegister_1_2_3)</td></tr>
+<tr class="memdesc:ga590b48264f172204e2f3004f161ec87a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Read status register.  <br /></td></tr>
+<tr class="separator:ga590b48264f172204e2f3004f161ec87a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gaecf30541806c5187d42b2dfb16342595" id="r_gaecf30541806c5187d42b2dfb16342595"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__flash__api.html#gaecf30541806c5187d42b2dfb16342595">w25_WriteStatusRegister</a> (uint8_t SelectStatusRegister_1_2_3, uint8_t Data)</td></tr>
+<tr class="memdesc:gaecf30541806c5187d42b2dfb16342595"><td class="mdescLeft">&#160;</td><td class="mdescRight">Write to status register.  <br /></td></tr>
+<tr class="separator:gaecf30541806c5187d42b2dfb16342595"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga207bf5e9633a22dca0729ccc9636bdb9" id="r_ga207bf5e9633a22dca0729ccc9636bdb9"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__flash__api.html#ga207bf5e9633a22dca0729ccc9636bdb9">w25_EraseChip</a> (void)</td></tr>
+<tr class="memdesc:ga207bf5e9633a22dca0729ccc9636bdb9"><td class="mdescLeft">&#160;</td><td class="mdescRight">Erase entire chip.  <br /></td></tr>
+<tr class="separator:ga207bf5e9633a22dca0729ccc9636bdb9"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga1521ce8b5d33062298173889d8d7e7d0" id="r_ga1521ce8b5d33062298173889d8d7e7d0"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__flash__api.html#ga1521ce8b5d33062298173889d8d7e7d0">w25_EraseSector</a> (uint32_t SectorAddr)</td></tr>
+<tr class="memdesc:ga1521ce8b5d33062298173889d8d7e7d0"><td class="mdescLeft">&#160;</td><td class="mdescRight">Erase a sector.  <br /></td></tr>
+<tr class="separator:ga1521ce8b5d33062298173889d8d7e7d0"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga42a3566da042af312033016f3cf5e95d" id="r_ga42a3566da042af312033016f3cf5e95d"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__flash__api.html#ga42a3566da042af312033016f3cf5e95d">w25_EraseBlock</a> (uint32_t BlockAddr)</td></tr>
+<tr class="memdesc:ga42a3566da042af312033016f3cf5e95d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Erase a block.  <br /></td></tr>
+<tr class="separator:ga42a3566da042af312033016f3cf5e95d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga54de76e862fbc7447847c26f3167a2db" id="r_ga54de76e862fbc7447847c26f3167a2db"><td class="memItemLeft" align="right" valign="top">uint32_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__flash__api.html#ga54de76e862fbc7447847c26f3167a2db">w25_PageToSector</a> (uint32_t PageAddress)</td></tr>
+<tr class="memdesc:ga54de76e862fbc7447847c26f3167a2db"><td class="mdescLeft">&#160;</td><td class="mdescRight">Convert page address to sector address.  <br /></td></tr>
+<tr class="separator:ga54de76e862fbc7447847c26f3167a2db"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gaf23cf132d48fa4dae00a7045a283df76" id="r_gaf23cf132d48fa4dae00a7045a283df76"><td class="memItemLeft" align="right" valign="top">uint32_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__flash__api.html#gaf23cf132d48fa4dae00a7045a283df76">w25_PageToBlock</a> (uint32_t PageAddress)</td></tr>
+<tr class="memdesc:gaf23cf132d48fa4dae00a7045a283df76"><td class="mdescLeft">&#160;</td><td class="mdescRight">Convert page address to block address.  <br /></td></tr>
+<tr class="separator:gaf23cf132d48fa4dae00a7045a283df76"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gae7cc437e87c8e0a7c38ae9ba13622b13" id="r_gae7cc437e87c8e0a7c38ae9ba13622b13"><td class="memItemLeft" align="right" valign="top">uint32_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__flash__api.html#gae7cc437e87c8e0a7c38ae9ba13622b13">w25_SectorToBlock</a> (uint32_t SectorAddress)</td></tr>
+<tr class="memdesc:gae7cc437e87c8e0a7c38ae9ba13622b13"><td class="mdescLeft">&#160;</td><td class="mdescRight">Convert sector address to block address.  <br /></td></tr>
+<tr class="separator:gae7cc437e87c8e0a7c38ae9ba13622b13"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gaa71ac15ba2a37184807c9ffd2dc39217" id="r_gaa71ac15ba2a37184807c9ffd2dc39217"><td class="memItemLeft" align="right" valign="top">uint32_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__flash__api.html#gaa71ac15ba2a37184807c9ffd2dc39217">w25_SectorToPage</a> (uint32_t SectorAddress)</td></tr>
+<tr class="memdesc:gaa71ac15ba2a37184807c9ffd2dc39217"><td class="mdescLeft">&#160;</td><td class="mdescRight">Convert sector address to page address.  <br /></td></tr>
+<tr class="separator:gaa71ac15ba2a37184807c9ffd2dc39217"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gac1971e669409e5047e901df02351a9da" id="r_gac1971e669409e5047e901df02351a9da"><td class="memItemLeft" align="right" valign="top">uint32_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__flash__api.html#gac1971e669409e5047e901df02351a9da">w25_BlockToPage</a> (uint32_t BlockAddress)</td></tr>
+<tr class="memdesc:gac1971e669409e5047e901df02351a9da"><td class="mdescLeft">&#160;</td><td class="mdescRight">Convert block address to page address.  <br /></td></tr>
+<tr class="separator:gac1971e669409e5047e901df02351a9da"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga1b46313b4349ac0f79e199832d9aa57d" id="r_ga1b46313b4349ac0f79e199832d9aa57d"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__flash__api.html#ga1b46313b4349ac0f79e199832d9aa57d">w25_IsEmptyPage</a> (uint32_t Page_Address, uint32_t OffsetInByte, uint32_t NumByteToCheck_up_to_PageSize)</td></tr>
+<tr class="memdesc:ga1b46313b4349ac0f79e199832d9aa57d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Check if a page is empty.  <br /></td></tr>
+<tr class="separator:ga1b46313b4349ac0f79e199832d9aa57d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga6177d5168c3fef2215aebad9b13bc1d1" id="r_ga6177d5168c3fef2215aebad9b13bc1d1"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__flash__api.html#ga6177d5168c3fef2215aebad9b13bc1d1">w25_IsEmptySector</a> (uint32_t Sector_Address, uint32_t OffsetInByte, uint32_t NumByteToCheck_up_to_SectorSize)</td></tr>
+<tr class="memdesc:ga6177d5168c3fef2215aebad9b13bc1d1"><td class="mdescLeft">&#160;</td><td class="mdescRight">Check if a sector is empty.  <br /></td></tr>
+<tr class="separator:ga6177d5168c3fef2215aebad9b13bc1d1"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga1098d36a84b154cb9299686c43798a5f" id="r_ga1098d36a84b154cb9299686c43798a5f"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__flash__api.html#ga1098d36a84b154cb9299686c43798a5f">w25_IsEmptyBlock</a> (uint32_t Block_Address, uint32_t OffsetInByte, uint32_t NumByteToCheck_up_to_BlockSize)</td></tr>
+<tr class="memdesc:ga1098d36a84b154cb9299686c43798a5f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Check if a block is empty.  <br /></td></tr>
+<tr class="separator:ga1098d36a84b154cb9299686c43798a5f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gab9e66fad85a12cfd18c255bcda55795c" id="r_gab9e66fad85a12cfd18c255bcda55795c"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__flash__api.html#gab9e66fad85a12cfd18c255bcda55795c">w25_WriteByte</a> (uint8_t pBuffer, uint32_t Bytes_Address)</td></tr>
+<tr class="memdesc:gab9e66fad85a12cfd18c255bcda55795c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Write a single byte.  <br /></td></tr>
+<tr class="separator:gab9e66fad85a12cfd18c255bcda55795c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga9ebf945c43e1ccc869ab442113810520" id="r_ga9ebf945c43e1ccc869ab442113810520"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__flash__api.html#ga9ebf945c43e1ccc869ab442113810520">w25_WritePage</a> (uint8_t *pBuffer, uint32_t Page_Address, uint32_t OffsetInByte, uint32_t NumByteToWrite_up_to_PageSize)</td></tr>
+<tr class="memdesc:ga9ebf945c43e1ccc869ab442113810520"><td class="mdescLeft">&#160;</td><td class="mdescRight">Write data to a page.  <br /></td></tr>
+<tr class="separator:ga9ebf945c43e1ccc869ab442113810520"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga7d8f42f9939eb71d5be28f657a1e95c3" id="r_ga7d8f42f9939eb71d5be28f657a1e95c3"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__flash__api.html#ga7d8f42f9939eb71d5be28f657a1e95c3">w25_WriteSector</a> (uint8_t *pBuffer, uint32_t Sector_Address, uint32_t OffsetInByte, uint32_t NumByteToWrite_up_to_SectorSize)</td></tr>
+<tr class="memdesc:ga7d8f42f9939eb71d5be28f657a1e95c3"><td class="mdescLeft">&#160;</td><td class="mdescRight">Write data to a sector.  <br /></td></tr>
+<tr class="separator:ga7d8f42f9939eb71d5be28f657a1e95c3"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga95eb44379007a87bfe87286659545361" id="r_ga95eb44379007a87bfe87286659545361"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__flash__api.html#ga95eb44379007a87bfe87286659545361">w25_WriteBlock</a> (uint8_t *pBuffer, uint32_t Block_Address, uint32_t OffsetInByte, uint32_t NumByteToWrite_up_to_BlockSize)</td></tr>
+<tr class="memdesc:ga95eb44379007a87bfe87286659545361"><td class="mdescLeft">&#160;</td><td class="mdescRight">Write data to a block.  <br /></td></tr>
+<tr class="separator:ga95eb44379007a87bfe87286659545361"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gaeb79f53178c142e41c95356bc0ccd4ff" id="r_gaeb79f53178c142e41c95356bc0ccd4ff"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__flash__api.html#gaeb79f53178c142e41c95356bc0ccd4ff">w25_ReadByte</a> (uint8_t *pBuffer, uint32_t Bytes_Address)</td></tr>
+<tr class="memdesc:gaeb79f53178c142e41c95356bc0ccd4ff"><td class="mdescLeft">&#160;</td><td class="mdescRight">Read a single byte.  <br /></td></tr>
+<tr class="separator:gaeb79f53178c142e41c95356bc0ccd4ff"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gac0fdad4b9d39251cd379d9b3f544ef04" id="r_gac0fdad4b9d39251cd379d9b3f544ef04"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__flash__api.html#gac0fdad4b9d39251cd379d9b3f544ef04">w25_ReadBytes</a> (uint8_t *pBuffer, uint32_t ReadAddr, uint32_t NumByteToRead)</td></tr>
+<tr class="memdesc:gac0fdad4b9d39251cd379d9b3f544ef04"><td class="mdescLeft">&#160;</td><td class="mdescRight">Read multiple bytes.  <br /></td></tr>
+<tr class="separator:gac0fdad4b9d39251cd379d9b3f544ef04"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gaa7fa1645693957c722a2c1609f2cc222" id="r_gaa7fa1645693957c722a2c1609f2cc222"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__flash__api.html#gaa7fa1645693957c722a2c1609f2cc222">w25_ReadPage</a> (uint8_t *pBuffer, uint32_t Page_Address, uint32_t OffsetInByte, uint32_t NumByteToRead_up_to_PageSize)</td></tr>
+<tr class="memdesc:gaa7fa1645693957c722a2c1609f2cc222"><td class="mdescLeft">&#160;</td><td class="mdescRight">Read data from a page.  <br /></td></tr>
+<tr class="separator:gaa7fa1645693957c722a2c1609f2cc222"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga0362e1a6fdd978990f35b5198e947897" id="r_ga0362e1a6fdd978990f35b5198e947897"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__flash__api.html#ga0362e1a6fdd978990f35b5198e947897">w25_ReadSector</a> (uint8_t *pBuffer, uint32_t Sector_Address, uint32_t OffsetInByte, uint32_t NumByteToRead_up_to_SectorSize)</td></tr>
+<tr class="memdesc:ga0362e1a6fdd978990f35b5198e947897"><td class="mdescLeft">&#160;</td><td class="mdescRight">Read data from a sector.  <br /></td></tr>
+<tr class="separator:ga0362e1a6fdd978990f35b5198e947897"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gaef2d0e02c34e93afbae0bb3b36840ad7" id="r_gaef2d0e02c34e93afbae0bb3b36840ad7"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__flash__api.html#gaef2d0e02c34e93afbae0bb3b36840ad7">w25_ReadBlock</a> (uint8_t *pBuffer, uint32_t Block_Address, uint32_t OffsetInByte, uint32_t NumByteToRead_up_to_BlockSize)</td></tr>
+<tr class="memdesc:gaef2d0e02c34e93afbae0bb3b36840ad7"><td class="mdescLeft">&#160;</td><td class="mdescRight">Read data from a block.  <br /></td></tr>
+<tr class="separator:gaef2d0e02c34e93afbae0bb3b36840ad7"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="var-members" name="var-members"></a>
 Variables</h2></td></tr>
-<tr class="memitem:a4d22808bf2bc6b6d5e5b8db79da7291d" id="r_a4d22808bf2bc6b6d5e5b8db79da7291d"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structw25__t.html">w25_t</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="w25qxx_8h.html#a4d22808bf2bc6b6d5e5b8db79da7291d">w25</a></td></tr>
-<tr class="separator:a4d22808bf2bc6b6d5e5b8db79da7291d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga4d22808bf2bc6b6d5e5b8db79da7291d" id="r_ga4d22808bf2bc6b6d5e5b8db79da7291d"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structw25__t.html">w25_t</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__flash__api.html#ga4d22808bf2bc6b6d5e5b8db79da7291d">w25</a></td></tr>
+<tr class="memdesc:ga4d22808bf2bc6b6d5e5b8db79da7291d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Global flash memory device instance.  <br /></td></tr>
+<tr class="separator:ga4d22808bf2bc6b6d5e5b8db79da7291d"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
-<h2 class="groupheader">Enumeration Type Documentation</h2>
-<a id="a10918b7f10dfb01e83d73b1de4ee2f12" name="a10918b7f10dfb01e83d73b1de4ee2f12"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a10918b7f10dfb01e83d73b1de4ee2f12">&#9670;&#160;</a></span>W25_ID_t</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">enum <a class="el" href="w25qxx_8h.html#a10918b7f10dfb01e83d73b1de4ee2f12">W25_ID_t</a></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-<table class="fieldtable">
-<tr><th colspan="2">Enumerator</th></tr><tr><td class="fieldname"><a id="a10918b7f10dfb01e83d73b1de4ee2f12a4a006ed1d98e57621d631e5ac99bb8fa" name="a10918b7f10dfb01e83d73b1de4ee2f12a4a006ed1d98e57621d631e5ac99bb8fa"></a>W25Q10&#160;</td><td class="fielddoc"></td></tr>
-<tr><td class="fieldname"><a id="a10918b7f10dfb01e83d73b1de4ee2f12a5fd73a2be1c5eda560cad6bc59d1a6a6" name="a10918b7f10dfb01e83d73b1de4ee2f12a5fd73a2be1c5eda560cad6bc59d1a6a6"></a>W25Q20&#160;</td><td class="fielddoc"></td></tr>
-<tr><td class="fieldname"><a id="a10918b7f10dfb01e83d73b1de4ee2f12aaf6ffc27ae2250b2dbc5d6d509c4cef0" name="a10918b7f10dfb01e83d73b1de4ee2f12aaf6ffc27ae2250b2dbc5d6d509c4cef0"></a>W25Q40&#160;</td><td class="fielddoc"></td></tr>
-<tr><td class="fieldname"><a id="a10918b7f10dfb01e83d73b1de4ee2f12a1ad4f72437de5f26cb7b212d4d91e7c2" name="a10918b7f10dfb01e83d73b1de4ee2f12a1ad4f72437de5f26cb7b212d4d91e7c2"></a>W25Q80&#160;</td><td class="fielddoc"></td></tr>
-<tr><td class="fieldname"><a id="a10918b7f10dfb01e83d73b1de4ee2f12a66acb81a2d520a7d92ce1d37210c6435" name="a10918b7f10dfb01e83d73b1de4ee2f12a66acb81a2d520a7d92ce1d37210c6435"></a>W25Q16&#160;</td><td class="fielddoc"></td></tr>
-<tr><td class="fieldname"><a id="a10918b7f10dfb01e83d73b1de4ee2f12a4fdad551be6485441db5951f196db7cb" name="a10918b7f10dfb01e83d73b1de4ee2f12a4fdad551be6485441db5951f196db7cb"></a>W25Q32&#160;</td><td class="fielddoc"></td></tr>
-<tr><td class="fieldname"><a id="a10918b7f10dfb01e83d73b1de4ee2f12a3ea98b2b3e06afa29441c51548bbb16e" name="a10918b7f10dfb01e83d73b1de4ee2f12a3ea98b2b3e06afa29441c51548bbb16e"></a>W25Q64&#160;</td><td class="fielddoc"></td></tr>
-<tr><td class="fieldname"><a id="a10918b7f10dfb01e83d73b1de4ee2f12a75afcbe71906d3884f4fcc119c1cabd5" name="a10918b7f10dfb01e83d73b1de4ee2f12a75afcbe71906d3884f4fcc119c1cabd5"></a>W25Q128&#160;</td><td class="fielddoc"></td></tr>
-<tr><td class="fieldname"><a id="a10918b7f10dfb01e83d73b1de4ee2f12ab6db6bd31731e4e95040e8d47f0e45ca" name="a10918b7f10dfb01e83d73b1de4ee2f12ab6db6bd31731e4e95040e8d47f0e45ca"></a>W25Q256&#160;</td><td class="fielddoc"></td></tr>
-<tr><td class="fieldname"><a id="a10918b7f10dfb01e83d73b1de4ee2f12a5bd3078157449d9ba4ed74f94e5f6eb0" name="a10918b7f10dfb01e83d73b1de4ee2f12a5bd3078157449d9ba4ed74f94e5f6eb0"></a>W25Q512&#160;</td><td class="fielddoc"></td></tr>
-</table>
-
-<p class="definition">Definition at line <a class="el" href="w25qxx_8h_source.html#l00007">7</a> of file <a class="el" href="w25qxx_8h_source.html">w25qxx.h</a>.</p>
-
-</div>
-</div>
-<h2 class="groupheader">Function Documentation</h2>
-<a id="ac1971e669409e5047e901df02351a9da" name="ac1971e669409e5047e901df02351a9da"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ac1971e669409e5047e901df02351a9da">&#9670;&#160;</a></span>w25_BlockToPage()</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">uint32_t w25_BlockToPage </td>
-          <td>(</td>
-          <td class="paramtype">uint32_t&#160;</td>
-          <td class="paramname"><em>BlockAddress</em></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p class="definition">Definition at line <a class="el" href="w25qxx_8c_source.html#l00337">337</a> of file <a class="el" href="w25qxx_8c_source.html">w25qxx.c</a>.</p>
-
-</div>
-</div>
-<a id="a42a3566da042af312033016f3cf5e95d" name="a42a3566da042af312033016f3cf5e95d"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a42a3566da042af312033016f3cf5e95d">&#9670;&#160;</a></span>w25_EraseBlock()</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">void w25_EraseBlock </td>
-          <td>(</td>
-          <td class="paramtype">uint32_t&#160;</td>
-          <td class="paramname"><em>BlockAddr</em></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p class="definition">Definition at line <a class="el" href="w25qxx_8c_source.html#l00297">297</a> of file <a class="el" href="w25qxx_8c_source.html">w25qxx.c</a>.</p>
-
-</div>
-</div>
-<a id="a207bf5e9633a22dca0729ccc9636bdb9" name="a207bf5e9633a22dca0729ccc9636bdb9"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a207bf5e9633a22dca0729ccc9636bdb9">&#9670;&#160;</a></span>w25_EraseChip()</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">void w25_EraseChip </td>
-          <td>(</td>
-          <td class="paramtype">void&#160;</td>
-          <td class="paramname"></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p class="definition">Definition at line <a class="el" href="w25qxx_8c_source.html#l00245">245</a> of file <a class="el" href="w25qxx_8c_source.html">w25qxx.c</a>.</p>
-
-</div>
-</div>
-<a id="a1521ce8b5d33062298173889d8d7e7d0" name="a1521ce8b5d33062298173889d8d7e7d0"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a1521ce8b5d33062298173889d8d7e7d0">&#9670;&#160;</a></span>w25_EraseSector()</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">void w25_EraseSector </td>
-          <td>(</td>
-          <td class="paramtype">uint32_t&#160;</td>
-          <td class="paramname"><em>SectorAddr</em></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p class="definition">Definition at line <a class="el" href="w25qxx_8c_source.html#l00272">272</a> of file <a class="el" href="w25qxx_8c_source.html">w25qxx.c</a>.</p>
-
-</div>
-</div>
-<a id="a25f35ac447bbd611ed7684f920a90c2a" name="a25f35ac447bbd611ed7684f920a90c2a"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a25f35ac447bbd611ed7684f920a90c2a">&#9670;&#160;</a></span>w25_Init()</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">bool w25_Init </td>
-          <td>(</td>
-          <td class="paramtype">void&#160;</td>
-          <td class="paramname"></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p class="definition">Definition at line <a class="el" href="w25qxx_8c_source.html#l00028">28</a> of file <a class="el" href="w25qxx_8c_source.html">w25qxx.c</a>.</p>
-
-</div>
-</div>
-<a id="a1098d36a84b154cb9299686c43798a5f" name="a1098d36a84b154cb9299686c43798a5f"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a1098d36a84b154cb9299686c43798a5f">&#9670;&#160;</a></span>w25_IsEmptyBlock()</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">bool w25_IsEmptyBlock </td>
-          <td>(</td>
-          <td class="paramtype">uint32_t&#160;</td>
-          <td class="paramname"><em>Block_Address</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">uint32_t&#160;</td>
-          <td class="paramname"><em>OffsetInByte</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">uint32_t&#160;</td>
-          <td class="paramname"><em>NumByteToCheck_up_to_BlockSize</em>&#160;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p class="definition">Definition at line <a class="el" href="w25qxx_8c_source.html#l00474">474</a> of file <a class="el" href="w25qxx_8c_source.html">w25qxx.c</a>.</p>
-
-</div>
-</div>
-<a id="a1b46313b4349ac0f79e199832d9aa57d" name="a1b46313b4349ac0f79e199832d9aa57d"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a1b46313b4349ac0f79e199832d9aa57d">&#9670;&#160;</a></span>w25_IsEmptyPage()</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">bool w25_IsEmptyPage </td>
-          <td>(</td>
-          <td class="paramtype">uint32_t&#160;</td>
-          <td class="paramname"><em>Page_Address</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">uint32_t&#160;</td>
-          <td class="paramname"><em>OffsetInByte</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">uint32_t&#160;</td>
-          <td class="paramname"><em>NumByteToCheck_up_to_PageSize</em>&#160;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p class="definition">Definition at line <a class="el" href="w25qxx_8c_source.html#l00343">343</a> of file <a class="el" href="w25qxx_8c_source.html">w25qxx.c</a>.</p>
-
-</div>
-</div>
-<a id="a6177d5168c3fef2215aebad9b13bc1d1" name="a6177d5168c3fef2215aebad9b13bc1d1"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a6177d5168c3fef2215aebad9b13bc1d1">&#9670;&#160;</a></span>w25_IsEmptySector()</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">bool w25_IsEmptySector </td>
-          <td>(</td>
-          <td class="paramtype">uint32_t&#160;</td>
-          <td class="paramname"><em>Sector_Address</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">uint32_t&#160;</td>
-          <td class="paramname"><em>OffsetInByte</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">uint32_t&#160;</td>
-          <td class="paramname"><em>NumByteToCheck_up_to_SectorSize</em>&#160;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p class="definition">Definition at line <a class="el" href="w25qxx_8c_source.html#l00409">409</a> of file <a class="el" href="w25qxx_8c_source.html">w25qxx.c</a>.</p>
-
-</div>
-</div>
-<a id="af23cf132d48fa4dae00a7045a283df76" name="af23cf132d48fa4dae00a7045a283df76"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#af23cf132d48fa4dae00a7045a283df76">&#9670;&#160;</a></span>w25_PageToBlock()</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">uint32_t w25_PageToBlock </td>
-          <td>(</td>
-          <td class="paramtype">uint32_t&#160;</td>
-          <td class="paramname"><em>PageAddress</em></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p class="definition">Definition at line <a class="el" href="w25qxx_8c_source.html#l00328">328</a> of file <a class="el" href="w25qxx_8c_source.html">w25qxx.c</a>.</p>
-
-</div>
-</div>
-<a id="a54de76e862fbc7447847c26f3167a2db" name="a54de76e862fbc7447847c26f3167a2db"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a54de76e862fbc7447847c26f3167a2db">&#9670;&#160;</a></span>w25_PageToSector()</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">uint32_t w25_PageToSector </td>
-          <td>(</td>
-          <td class="paramtype">uint32_t&#160;</td>
-          <td class="paramname"><em>PageAddress</em></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p class="definition">Definition at line <a class="el" href="w25qxx_8c_source.html#l00325">325</a> of file <a class="el" href="w25qxx_8c_source.html">w25qxx.c</a>.</p>
-
-</div>
-</div>
-<a id="aef2d0e02c34e93afbae0bb3b36840ad7" name="aef2d0e02c34e93afbae0bb3b36840ad7"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#aef2d0e02c34e93afbae0bb3b36840ad7">&#9670;&#160;</a></span>w25_ReadBlock()</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">void w25_ReadBlock </td>
-          <td>(</td>
-          <td class="paramtype">uint8_t *&#160;</td>
-          <td class="paramname"><em>pBuffer</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">uint32_t&#160;</td>
-          <td class="paramname"><em>Block_Address</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">uint32_t&#160;</td>
-          <td class="paramname"><em>OffsetInByte</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">uint32_t&#160;</td>
-          <td class="paramname"><em>NumByteToRead_up_to_BlockSize</em>&#160;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p class="definition">Definition at line <a class="el" href="w25qxx_8c_source.html#l00827">827</a> of file <a class="el" href="w25qxx_8c_source.html">w25qxx.c</a>.</p>
-
-</div>
-</div>
-<a id="aeb79f53178c142e41c95356bc0ccd4ff" name="aeb79f53178c142e41c95356bc0ccd4ff"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#aeb79f53178c142e41c95356bc0ccd4ff">&#9670;&#160;</a></span>w25_ReadByte()</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">void w25_ReadByte </td>
-          <td>(</td>
-          <td class="paramtype">uint8_t *&#160;</td>
-          <td class="paramname"><em>pBuffer</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">uint32_t&#160;</td>
-          <td class="paramname"><em>Bytes_Address</em>&#160;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p class="definition">Definition at line <a class="el" href="w25qxx_8c_source.html#l00687">687</a> of file <a class="el" href="w25qxx_8c_source.html">w25qxx.c</a>.</p>
-
-</div>
-</div>
-<a id="ac0fdad4b9d39251cd379d9b3f544ef04" name="ac0fdad4b9d39251cd379d9b3f544ef04"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ac0fdad4b9d39251cd379d9b3f544ef04">&#9670;&#160;</a></span>w25_ReadBytes()</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">void w25_ReadBytes </td>
-          <td>(</td>
-          <td class="paramtype">uint8_t *&#160;</td>
-          <td class="paramname"><em>pBuffer</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">uint32_t&#160;</td>
-          <td class="paramname"><em>ReadAddr</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">uint32_t&#160;</td>
-          <td class="paramname"><em>NumByteToRead</em>&#160;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p class="definition">Definition at line <a class="el" href="w25qxx_8c_source.html#l00711">711</a> of file <a class="el" href="w25qxx_8c_source.html">w25qxx.c</a>.</p>
-
-</div>
-</div>
-<a id="a6496ac869d939380f51d4697149e7446" name="a6496ac869d939380f51d4697149e7446"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a6496ac869d939380f51d4697149e7446">&#9670;&#160;</a></span>w25_ReadID()</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">uint32_t w25_ReadID </td>
-          <td>(</td>
-          <td class="paramtype">void&#160;</td>
-          <td class="paramname"></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p class="definition">Definition at line <a class="el" href="w25qxx_8c_source.html#l00127">127</a> of file <a class="el" href="w25qxx_8c_source.html">w25qxx.c</a>.</p>
-
-</div>
-</div>
-<a id="aa7fa1645693957c722a2c1609f2cc222" name="aa7fa1645693957c722a2c1609f2cc222"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#aa7fa1645693957c722a2c1609f2cc222">&#9670;&#160;</a></span>w25_ReadPage()</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">void w25_ReadPage </td>
-          <td>(</td>
-          <td class="paramtype">uint8_t *&#160;</td>
-          <td class="paramname"><em>pBuffer</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">uint32_t&#160;</td>
-          <td class="paramname"><em>Page_Address</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">uint32_t&#160;</td>
-          <td class="paramname"><em>OffsetInByte</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">uint32_t&#160;</td>
-          <td class="paramname"><em>NumByteToRead_up_to_PageSize</em>&#160;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p class="definition">Definition at line <a class="el" href="w25qxx_8c_source.html#l00749">749</a> of file <a class="el" href="w25qxx_8c_source.html">w25qxx.c</a>.</p>
-
-</div>
-</div>
-<a id="a0362e1a6fdd978990f35b5198e947897" name="a0362e1a6fdd978990f35b5198e947897"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a0362e1a6fdd978990f35b5198e947897">&#9670;&#160;</a></span>w25_ReadSector()</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">void w25_ReadSector </td>
-          <td>(</td>
-          <td class="paramtype">uint8_t *&#160;</td>
-          <td class="paramname"><em>pBuffer</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">uint32_t&#160;</td>
-          <td class="paramname"><em>Sector_Address</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">uint32_t&#160;</td>
-          <td class="paramname"><em>OffsetInByte</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">uint32_t&#160;</td>
-          <td class="paramname"><em>NumByteToRead_up_to_SectorSize</em>&#160;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p class="definition">Definition at line <a class="el" href="w25qxx_8c_source.html#l00793">793</a> of file <a class="el" href="w25qxx_8c_source.html">w25qxx.c</a>.</p>
-
-</div>
-</div>
-<a id="a590b48264f172204e2f3004f161ec87a" name="a590b48264f172204e2f3004f161ec87a"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a590b48264f172204e2f3004f161ec87a">&#9670;&#160;</a></span>w25_ReadStatusRegister()</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">uint8_t w25_ReadStatusRegister </td>
-          <td>(</td>
-          <td class="paramtype">uint8_t&#160;</td>
-          <td class="paramname"><em>SelectStatusRegister_1_2_3</em></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p class="definition">Definition at line <a class="el" href="w25qxx_8c_source.html#l00197">197</a> of file <a class="el" href="w25qxx_8c_source.html">w25qxx.c</a>.</p>
-
-</div>
-</div>
-<a id="a21c9a374eeb3f346beb31ff905b9ec83" name="a21c9a374eeb3f346beb31ff905b9ec83"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a21c9a374eeb3f346beb31ff905b9ec83">&#9670;&#160;</a></span>w25_ReadUniqID()</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">void w25_ReadUniqID </td>
-          <td>(</td>
-          <td class="paramtype">void&#160;</td>
-          <td class="paramname"></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p class="definition">Definition at line <a class="el" href="w25qxx_8c_source.html#l00145">145</a> of file <a class="el" href="w25qxx_8c_source.html">w25qxx.c</a>.</p>
-
-</div>
-</div>
-<a id="ae7cc437e87c8e0a7c38ae9ba13622b13" name="ae7cc437e87c8e0a7c38ae9ba13622b13"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ae7cc437e87c8e0a7c38ae9ba13622b13">&#9670;&#160;</a></span>w25_SectorToBlock()</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">uint32_t w25_SectorToBlock </td>
-          <td>(</td>
-          <td class="paramtype">uint32_t&#160;</td>
-          <td class="paramname"><em>SectorAddress</em></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p class="definition">Definition at line <a class="el" href="w25qxx_8c_source.html#l00331">331</a> of file <a class="el" href="w25qxx_8c_source.html">w25qxx.c</a>.</p>
-
-</div>
-</div>
-<a id="aa71ac15ba2a37184807c9ffd2dc39217" name="aa71ac15ba2a37184807c9ffd2dc39217"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#aa71ac15ba2a37184807c9ffd2dc39217">&#9670;&#160;</a></span>w25_SectorToPage()</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">uint32_t w25_SectorToPage </td>
-          <td>(</td>
-          <td class="paramtype">uint32_t&#160;</td>
-          <td class="paramname"><em>SectorAddress</em></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p class="definition">Definition at line <a class="el" href="w25qxx_8c_source.html#l00334">334</a> of file <a class="el" href="w25qxx_8c_source.html">w25qxx.c</a>.</p>
-
-</div>
-</div>
-<a id="a9f98d3f482da7bb5cb3c1c952861e06e" name="a9f98d3f482da7bb5cb3c1c952861e06e"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a9f98d3f482da7bb5cb3c1c952861e06e">&#9670;&#160;</a></span>w25_WaitForWriteEnd()</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">void w25_WaitForWriteEnd </td>
-          <td>(</td>
-          <td class="paramtype">void&#160;</td>
-          <td class="paramname"></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p class="definition">Definition at line <a class="el" href="w25qxx_8c_source.html#l00180">180</a> of file <a class="el" href="w25qxx_8c_source.html">w25qxx.c</a>.</p>
-
-</div>
-</div>
-<a id="a95eb44379007a87bfe87286659545361" name="a95eb44379007a87bfe87286659545361"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a95eb44379007a87bfe87286659545361">&#9670;&#160;</a></span>w25_WriteBlock()</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">void w25_WriteBlock </td>
-          <td>(</td>
-          <td class="paramtype">uint8_t *&#160;</td>
-          <td class="paramname"><em>pBuffer</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">uint32_t&#160;</td>
-          <td class="paramname"><em>Block_Address</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">uint32_t&#160;</td>
-          <td class="paramname"><em>OffsetInByte</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">uint32_t&#160;</td>
-          <td class="paramname"><em>NumByteToWrite_up_to_BlockSize</em>&#160;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p class="definition">Definition at line <a class="el" href="w25qxx_8c_source.html#l00651">651</a> of file <a class="el" href="w25qxx_8c_source.html">w25qxx.c</a>.</p>
-
-</div>
-</div>
-<a id="ab9e66fad85a12cfd18c255bcda55795c" name="ab9e66fad85a12cfd18c255bcda55795c"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ab9e66fad85a12cfd18c255bcda55795c">&#9670;&#160;</a></span>w25_WriteByte()</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">void w25_WriteByte </td>
-          <td>(</td>
-          <td class="paramtype">uint8_t&#160;</td>
-          <td class="paramname"><em>pBuffer</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">uint32_t&#160;</td>
-          <td class="paramname"><em>Bytes_Address</em>&#160;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p class="definition">Definition at line <a class="el" href="w25qxx_8c_source.html#l00544">544</a> of file <a class="el" href="w25qxx_8c_source.html">w25qxx.c</a>.</p>
-
-</div>
-</div>
-<a id="a1ca2afc1c4c5e76b03b7180b7a19ce52" name="a1ca2afc1c4c5e76b03b7180b7a19ce52"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a1ca2afc1c4c5e76b03b7180b7a19ce52">&#9670;&#160;</a></span>w25_WriteDisable()</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">void w25_WriteDisable </td>
-          <td>(</td>
-          <td class="paramtype">void&#160;</td>
-          <td class="paramname"></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p class="definition">Definition at line <a class="el" href="w25qxx_8c_source.html#l00172">172</a> of file <a class="el" href="w25qxx_8c_source.html">w25qxx.c</a>.</p>
-
-</div>
-</div>
-<a id="ac071864fac69adbe4345c6e93113c4d5" name="ac071864fac69adbe4345c6e93113c4d5"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ac071864fac69adbe4345c6e93113c4d5">&#9670;&#160;</a></span>w25_WriteEnable()</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">void w25_WriteEnable </td>
-          <td>(</td>
-          <td class="paramtype">void&#160;</td>
-          <td class="paramname"></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p class="definition">Definition at line <a class="el" href="w25qxx_8c_source.html#l00163">163</a> of file <a class="el" href="w25qxx_8c_source.html">w25qxx.c</a>.</p>
-
-</div>
-</div>
-<a id="a9ebf945c43e1ccc869ab442113810520" name="a9ebf945c43e1ccc869ab442113810520"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a9ebf945c43e1ccc869ab442113810520">&#9670;&#160;</a></span>w25_WritePage()</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">void w25_WritePage </td>
-          <td>(</td>
-          <td class="paramtype">uint8_t *&#160;</td>
-          <td class="paramname"><em>pBuffer</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">uint32_t&#160;</td>
-          <td class="paramname"><em>Page_Address</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">uint32_t&#160;</td>
-          <td class="paramname"><em>OffsetInByte</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">uint32_t&#160;</td>
-          <td class="paramname"><em>NumByteToWrite_up_to_PageSize</em>&#160;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p class="definition">Definition at line <a class="el" href="w25qxx_8c_source.html#l00571">571</a> of file <a class="el" href="w25qxx_8c_source.html">w25qxx.c</a>.</p>
-
-</div>
-</div>
-<a id="a7d8f42f9939eb71d5be28f657a1e95c3" name="a7d8f42f9939eb71d5be28f657a1e95c3"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a7d8f42f9939eb71d5be28f657a1e95c3">&#9670;&#160;</a></span>w25_WriteSector()</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">void w25_WriteSector </td>
-          <td>(</td>
-          <td class="paramtype">uint8_t *&#160;</td>
-          <td class="paramname"><em>pBuffer</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">uint32_t&#160;</td>
-          <td class="paramname"><em>Sector_Address</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">uint32_t&#160;</td>
-          <td class="paramname"><em>OffsetInByte</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">uint32_t&#160;</td>
-          <td class="paramname"><em>NumByteToWrite_up_to_SectorSize</em>&#160;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p class="definition">Definition at line <a class="el" href="w25qxx_8c_source.html#l00617">617</a> of file <a class="el" href="w25qxx_8c_source.html">w25qxx.c</a>.</p>
-
-</div>
-</div>
-<a id="aecf30541806c5187d42b2dfb16342595" name="aecf30541806c5187d42b2dfb16342595"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#aecf30541806c5187d42b2dfb16342595">&#9670;&#160;</a></span>w25_WriteStatusRegister()</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">void w25_WriteStatusRegister </td>
-          <td>(</td>
-          <td class="paramtype">uint8_t&#160;</td>
-          <td class="paramname"><em>SelectStatusRegister_1_2_3</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">uint8_t&#160;</td>
-          <td class="paramname"><em>Data</em>&#160;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p class="definition">Definition at line <a class="el" href="w25qxx_8c_source.html#l00222">222</a> of file <a class="el" href="w25qxx_8c_source.html">w25qxx.c</a>.</p>
-
-</div>
-</div>
-<h2 class="groupheader">Variable Documentation</h2>
-<a id="a4d22808bf2bc6b6d5e5b8db79da7291d" name="a4d22808bf2bc6b6d5e5b8db79da7291d"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a4d22808bf2bc6b6d5e5b8db79da7291d">&#9670;&#160;</a></span>w25</h2>
-
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname"><a class="el" href="structw25__t.html">w25_t</a> w25</td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">extern</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-
-<p class="definition">Definition at line <a class="el" href="w25qxx_8c_source.html#l00024">24</a> of file <a class="el" href="w25qxx_8c_source.html">w25qxx.c</a>.</p>
-
-</div>
-</div>
-</div><!-- contents -->
+<a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
+<div class="textblock"><p>W25Q Flash Memory Driver Header File. </p>
+<dl class="section author"><dt>Author</dt><dd>Richard Davies </dd></dl>
+<dl class="section date"><dt>Date</dt><dd>04/Jan/2021  </dd></dl>
+
+<p class="definition">Definition in file <a class="el" href="w25qxx_8h_source.html">w25qxx.h</a>.</p>
+</div></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Thu Mar 20 2025 05:49:15 for CoolEase by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8
+Generated on Fri Mar 21 2025 10:20:20 for CoolEase by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8
 </small></address>
 </body>
 </html>

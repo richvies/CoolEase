@@ -1,10 +1,10 @@
 <map id="common/include/common/printf.h" name="common/include/common/printf.h">
-<area shape="rect" id="Node000001" title=" " alt="" coords="375,5,566,45"/>
+<area shape="rect" id="Node000001" title="Lightweight printf implementation." alt="" coords="375,5,566,45"/>
 <area shape="rect" id="Node000002" href="$log_8c.html" title="Log Source File." alt="" coords="5,93,120,119"/>
 <area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="362,50,121,96,120,91,361,45"/>
 <area shape="rect" id="Node000003" href="$printf_8c.html" title=" " alt="" coords="144,93,272,119"/>
 <area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="395,52,247,96,246,91,394,47"/>
-<area shape="rect" id="Node000004" href="$test__printf_8c.html" title=" " alt="" coords="296,93,485,119"/>
+<area shape="rect" id="Node000004" href="$test__printf_8c.html" title="Printf Testing Source File." alt="" coords="296,93,485,119"/>
 <area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="443,57,405,95,401,91,440,53"/>
 <area shape="rect" id="Node000005" href="$hub_8c.html" title="Hub Source File." alt="" coords="509,93,595,119"/>
 <area shape="poly" id="edge4_Node000001_Node000005" title=" " alt="" coords="502,53,542,91,538,95,498,57"/>

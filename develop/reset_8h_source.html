@@ -21,7 +21,7 @@
  <tbody>
  <tr id="projectrow">
   <td id="projectalign">
-   <div id="projectname">CoolEase<span id="projectnumber">&#160;develop-acc8581</span>
+   <div id="projectname">CoolEase<span id="projectnumber">&#160;develop-eabc6b5</span>
    </div>
    <div id="projectbrief">Remote Temperature Monitor</div>
   </td>
@@ -82,23 +82,35 @@ $(document).ready(function() { init_codefold(0); });
   <div class="headertitle"><div class="title">reset.h</div></div>
 </div><!--header-->
 <div class="contents">
-<a href="reset_8h.html">Go to the documentation of this file.</a><div class="fragment"><div class="line"><a id="l00001" name="l00001"></a><span class="lineno">    1</span><span class="preprocessor">#ifndef RESET_H</span></div>
-<div class="line"><a id="l00002" name="l00002"></a><span class="lineno">    2</span><span class="preprocessor">#define RESET_H</span></div>
-<div class="line"><a id="l00003" name="l00003"></a><span class="lineno">    3</span> </div>
-<div class="line"><a id="l00004" name="l00004"></a><span class="lineno">    4</span><span class="preprocessor">#include &lt;stdint.h&gt;</span></div>
-<div class="line"><a id="l00005" name="l00005"></a><span class="lineno">    5</span> </div>
-<div class="line"><a id="l00006" name="l00006"></a><span class="lineno">    6</span><span class="keywordtype">void</span>     <a class="code hl_function" href="reset_8h.html#ad07e4f3aa8f4568574a4ea578ba1fc02">reset_print_cause</a>(<span class="keywordtype">void</span>);</div>
-<div class="line"><a id="l00007" name="l00007"></a><span class="lineno">    7</span><span class="keywordtype">void</span>     <a class="code hl_function" href="reset_8h.html#aaa9ad2c5aafcf40dfef3013d5eee1c45">reset_save_flags</a>(<span class="keywordtype">void</span>);</div>
-<div class="line"><a id="l00008" name="l00008"></a><span class="lineno">    8</span>uint32_t <a class="code hl_function" href="reset_8h.html#a6b2b8d8676ab8ad2815c34d13acad489">reset_get_flags</a>(<span class="keywordtype">void</span>);</div>
-<div class="line"><a id="l00009" name="l00009"></a><span class="lineno">    9</span> </div>
-<div class="line"><a id="l00010" name="l00010"></a><span class="lineno">   10</span><span class="preprocessor">#endif</span></div>
-<div class="ttc" id="areset_8h_html_a6b2b8d8676ab8ad2815c34d13acad489"><div class="ttname"><a href="reset_8h.html#a6b2b8d8676ab8ad2815c34d13acad489">reset_get_flags</a></div><div class="ttdeci">uint32_t reset_get_flags(void)</div><div class="ttdef"><b>Definition</b> <a href="reset_8c_source.html#l00046">reset.c:46</a></div></div>
-<div class="ttc" id="areset_8h_html_aaa9ad2c5aafcf40dfef3013d5eee1c45"><div class="ttname"><a href="reset_8h.html#aaa9ad2c5aafcf40dfef3013d5eee1c45">reset_save_flags</a></div><div class="ttdeci">void reset_save_flags(void)</div><div class="ttdef"><b>Definition</b> <a href="reset_8c_source.html#l00041">reset.c:41</a></div></div>
-<div class="ttc" id="areset_8h_html_ad07e4f3aa8f4568574a4ea578ba1fc02"><div class="ttname"><a href="reset_8h.html#ad07e4f3aa8f4568574a4ea578ba1fc02">reset_print_cause</a></div><div class="ttdeci">void reset_print_cause(void)</div><div class="ttdef"><b>Definition</b> <a href="reset_8c_source.html#l00013">reset.c:13</a></div></div>
+<a href="reset_8h.html">Go to the documentation of this file.</a><div class="fragment"><div class="line"><a id="l00001" name="l00001"></a><span class="lineno">    1</span> </div>
+<div class="line"><a id="l00015" name="l00015"></a><span class="lineno">   15</span><span class="preprocessor">#ifndef RESET_H</span></div>
+<div class="line"><a id="l00016" name="l00016"></a><span class="lineno">   16</span><span class="preprocessor">#define RESET_H</span></div>
+<div class="line"><a id="l00017" name="l00017"></a><span class="lineno">   17</span> </div>
+<div class="line"><a id="l00018" name="l00018"></a><span class="lineno">   18</span><span class="preprocessor">#include &lt;stdint.h&gt;</span></div>
+<div class="line"><a id="l00019" name="l00019"></a><span class="lineno">   19</span> </div>
+<div class="line"><a id="l00020" name="l00020"></a><span class="lineno">   20</span><span class="preprocessor">#ifdef __cplusplus</span></div>
+<div class="line"><a id="l00021" name="l00021"></a><span class="lineno">   21</span><span class="keyword">extern</span> <span class="stringliteral">&quot;C&quot;</span> {</div>
+<div class="line"><a id="l00022" name="l00022"></a><span class="lineno">   22</span><span class="preprocessor">#endif</span></div>
+<div class="line"><a id="l00023" name="l00023"></a><span class="lineno">   23</span> </div>
+<div class="line"><a id="l00036" name="l00036"></a><span class="lineno">   36</span><span class="keywordtype">void</span> <a class="code hl_function" href="group__reset__api.html#gad07e4f3aa8f4568574a4ea578ba1fc02">reset_print_cause</a>(<span class="keywordtype">void</span>);</div>
+<div class="line"><a id="l00037" name="l00037"></a><span class="lineno">   37</span> </div>
+<div class="line"><a id="l00042" name="l00042"></a><span class="lineno">   42</span><span class="keywordtype">void</span> <a class="code hl_function" href="group__reset__api.html#gaaa9ad2c5aafcf40dfef3013d5eee1c45">reset_save_flags</a>(<span class="keywordtype">void</span>);</div>
+<div class="line"><a id="l00043" name="l00043"></a><span class="lineno">   43</span> </div>
+<div class="line"><a id="l00048" name="l00048"></a><span class="lineno">   48</span>uint32_t <a class="code hl_function" href="group__reset__api.html#ga6b2b8d8676ab8ad2815c34d13acad489">reset_get_flags</a>(<span class="keywordtype">void</span>);</div>
+<div class="line"><a id="l00049" name="l00049"></a><span class="lineno">   49</span> </div>
+ <span class="comment">/* End of reset_api group */</span> <span class="comment">/* End of common group */</span><div class="line"><a id="l00052" name="l00052"></a><span class="lineno">   52</span> </div>
+<div class="line"><a id="l00053" name="l00053"></a><span class="lineno">   53</span><span class="preprocessor">#ifdef __cplusplus</span></div>
+<div class="line"><a id="l00054" name="l00054"></a><span class="lineno">   54</span>}</div>
+<div class="line"><a id="l00055" name="l00055"></a><span class="lineno">   55</span><span class="preprocessor">#endif</span></div>
+<div class="line"><a id="l00056" name="l00056"></a><span class="lineno">   56</span> </div>
+<div class="line"><a id="l00057" name="l00057"></a><span class="lineno">   57</span><span class="preprocessor">#endif </span><span class="comment">// RESET_H</span></div>
+<div class="ttc" id="agroup__reset__api_html_ga6b2b8d8676ab8ad2815c34d13acad489"><div class="ttname"><a href="group__reset__api.html#ga6b2b8d8676ab8ad2815c34d13acad489">reset_get_flags</a></div><div class="ttdeci">uint32_t reset_get_flags(void)</div><div class="ttdoc">Get the current reset flags.</div><div class="ttdef"><b>Definition</b> <a href="reset_8c_source.html#l00054">reset.c:54</a></div></div>
+<div class="ttc" id="agroup__reset__api_html_gaaa9ad2c5aafcf40dfef3013d5eee1c45"><div class="ttname"><a href="group__reset__api.html#gaaa9ad2c5aafcf40dfef3013d5eee1c45">reset_save_flags</a></div><div class="ttdeci">void reset_save_flags(void)</div><div class="ttdoc">Save current reset flags to persistent storage.</div><div class="ttdef"><b>Definition</b> <a href="reset_8c_source.html#l00049">reset.c:49</a></div></div>
+<div class="ttc" id="agroup__reset__api_html_gad07e4f3aa8f4568574a4ea578ba1fc02"><div class="ttname"><a href="group__reset__api.html#gad07e4f3aa8f4568574a4ea578ba1fc02">reset_print_cause</a></div><div class="ttdeci">void reset_print_cause(void)</div><div class="ttdoc">Print the cause of the last system reset.</div><div class="ttdef"><b>Definition</b> <a href="reset_8c_source.html#l00021">reset.c:21</a></div></div>
 </div><!-- fragment --></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Thu Mar 20 2025 05:49:15 for CoolEase by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8
+Generated on Fri Mar 21 2025 10:20:20 for CoolEase by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8
 </small></address>
 </body>
 </html>

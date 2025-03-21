@@ -1,10 +1,10 @@
 <map id="common/include/common/bootloader_utils.h" name="common/include/common/bootloader_utils.h">
-<area shape="rect" id="Node000001" title="Bootloader_utils Header File." alt="" coords="30,5,221,45"/>
+<area shape="rect" id="Node000001" title="Bootloader Utilities Header File." alt="" coords="30,5,221,45"/>
 <area shape="rect" id="Node000002" title=" " alt="" coords="5,93,88,119"/>
 <area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="108,47,70,85,66,82,104,44"/>
 <area shape="rect" id="Node000003" title=" " alt="" coords="69,167,139,192"/>
 <area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="125,46,110,153,105,153,120,45"/>
-<area shape="rect" id="Node000004" href="$memory_8h.html" title="Memory Header File." alt="" coords="185,93,333,119"/>
+<area shape="rect" id="Node000004" href="$memory_8h.html" title="Memory Management Header File." alt="" coords="185,93,333,119"/>
 <area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="159,43,229,84,226,89,156,48"/>
 <area shape="poly" id="edge6_Node000004_Node000003" title=" " alt="" coords="235,121,143,163,141,158,233,116"/>
 <area shape="rect" id="Node000005" title=" " alt="" coords="163,167,354,192"/>

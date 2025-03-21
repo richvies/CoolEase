@@ -21,7 +21,7 @@
  <tbody>
  <tr id="projectrow">
   <td id="projectalign">
-   <div id="projectname">CoolEase<span id="projectnumber">&#160;develop-acc8581</span>
+   <div id="projectname">CoolEase<span id="projectnumber">&#160;develop-eabc6b5</span>
    </div>
    <div id="projectbrief">Remote Temperature Monitor</div>
   </td>
@@ -74,14 +74,11 @@ $(function() {
 </div>
 </div><!-- top -->
 <div class="header">
-  <div class="summary">
-<a href="#define-members">Macros</a> &#124;
-<a href="#func-members">Functions</a>  </div>
   <div class="headertitle"><div class="title">timers.h File Reference</div></div>
 </div><!--header-->
 <div class="contents">
 
-<p>Timers Header File.  
+<p>Timing and Power Management Header File.  
 <a href="#details">More...</a></p>
 <div class="textblock"><code>#include &lt;stdbool.h&gt;</code><br />
 <code>#include &lt;stddef.h&gt;</code><br />
@@ -93,26 +90,28 @@ Include dependency graph for timers.h:</div>
 <div class="dyncontent">
 <div class="center"><img src="timers_8h__incl.png" border="0" usemap="#acommon_2include_2common_2timers_8h" alt=""/></div>
 <map name="acommon_2include_2common_2timers_8h" id="acommon_2include_2common_2timers_8h">
-<area shape="rect" title="Timers Header File." alt="" coords="83,5,274,45"/>
-<area shape="rect" title=" " alt="" coords="16,167,98,192"/>
-<area shape="poly" title=" " alt="" coords="84,46,44,65,27,78,13,95,8,110,12,125,35,156,30,159,7,128,3,110,8,92,23,74,41,60,82,41"/>
-<area shape="rect" title=" " alt="" coords="22,93,97,119"/>
-<area shape="poly" title=" " alt="" coords="151,48,90,88,87,84,148,43"/>
-<area shape="rect" title=" " alt="" coords="168,167,239,192"/>
-<area shape="poly" title=" " alt="" coords="209,44,232,65,250,92,253,110,249,128,229,158,225,155,244,126,248,110,245,94,228,68,205,47"/>
-<area shape="rect" href="log_8h.html" title="Log Header File." alt="" coords="121,93,236,119"/>
-<area shape="poly" title=" " alt="" coords="181,46,181,79,176,79,176,46"/>
-<area shape="rect" href="memory_8h.html" title="Memory Header File." alt="" coords="311,93,459,119"/>
-<area shape="poly" title=" " alt="" coords="229,43,343,86,341,91,227,48"/>
-<area shape="poly" title=" " alt="" coords="160,121,90,162,87,157,158,116"/>
-<area shape="poly" title=" " alt="" coords="185,118,198,153,193,155,180,120"/>
-<area shape="poly" title=" " alt="" coords="357,121,247,164,245,159,355,116"/>
-<area shape="rect" title=" " alt="" coords="263,167,454,192"/>
-<area shape="poly" title=" " alt="" coords="383,120,370,155,365,153,378,118"/>
-<area shape="rect" title=" " alt="" coords="478,167,657,192"/>
-<area shape="poly" title=" " alt="" coords="415,116,526,159,524,164,413,121"/>
-<area shape="rect" title=" " alt="" coords="681,167,830,192"/>
-<area shape="poly" title=" " alt="" coords="445,116,683,161,682,167,444,121"/>
+<area shape="rect" title="Timing and Power Management Header File." alt="" coords="127,5,318,45"/>
+<area shape="rect" title=" " alt="" coords="5,167,88,192"/>
+<area shape="poly" title=" " alt="" coords="128,47,89,66,71,79,57,95,50,108,46,123,45,153,40,153,41,122,45,106,52,92,68,75,86,62,126,42"/>
+<area shape="rect" title=" " alt="" coords="67,93,141,119"/>
+<area shape="poly" title=" " alt="" coords="195,48,134,88,131,84,192,43"/>
+<area shape="rect" title=" " alt="" coords="261,167,331,192"/>
+<area shape="poly" title=" " alt="" coords="253,43,276,65,294,92,302,123,302,153,297,153,297,124,290,94,272,68,249,47"/>
+<area shape="rect" href="log_8h.html" title="Logging System Header File." alt="" coords="165,93,280,119"/>
+<area shape="poly" title=" " alt="" coords="225,46,225,79,220,79,220,46"/>
+<area shape="rect" href="memory_8h.html" title="Memory Management Header File." alt="" coords="377,93,525,119"/>
+<area shape="poly" title=" " alt="" coords="278,43,405,86,403,91,276,48"/>
+<area shape="poly" title=" " alt="" coords="195,121,89,164,87,159,193,116"/>
+<area shape="poly" title=" " alt="" coords="237,117,276,155,272,159,233,121"/>
+<area shape="rect" title=" " alt="" coords="129,167,236,192"/>
+<area shape="poly" title=" " alt="" coords="218,120,198,156,194,153,214,118"/>
+<area shape="poly" title=" " alt="" coords="427,121,335,163,333,158,425,116"/>
+<area shape="rect" title=" " alt="" coords="355,167,546,192"/>
+<area shape="poly" title=" " alt="" coords="453,119,453,153,448,153,448,119"/>
+<area shape="rect" title=" " alt="" coords="571,167,749,192"/>
+<area shape="poly" title=" " alt="" coords="485,116,614,160,612,165,483,121"/>
+<area shape="rect" title=" " alt="" coords="773,167,923,192"/>
+<area shape="poly" title=" " alt="" coords="515,116,771,162,770,167,514,121"/>
 </map>
 </div>
 </div><div class="textblock"><div class="dynheader">
@@ -120,41 +119,43 @@ This graph shows which files directly or indirectly include this file:</div>
 <div class="dyncontent">
 <div class="center"><img src="timers_8h__dep__incl.png" border="0" usemap="#acommon_2include_2common_2timers_8hdep" alt=""/></div>
 <map name="acommon_2include_2common_2timers_8hdep" id="acommon_2include_2common_2timers_8hdep">
-<area shape="rect" title="Timers Header File." alt="" coords="1243,5,1434,45"/>
+<area shape="rect" title="Timing and Power Management Header File." alt="" coords="1458,5,1649,45"/>
 <area shape="rect" href="battery_8c.html" title="Battery Source File." alt="" coords="5,93,144,119"/>
-<area shape="poly" title=" " alt="" coords="1230,32,763,52,461,71,156,96,145,97,144,92,156,91,461,65,762,47,1230,27"/>
+<area shape="poly" title=" " alt="" coords="1444,31,1211,37,891,49,526,68,156,96,145,97,144,92,156,91,526,62,891,43,1211,32,1444,26"/>
 <area shape="rect" href="bootloader__utils_8c.html" title="Bootloader_utils Source File." alt="" coords="169,93,367,119"/>
-<area shape="poly" title=" " alt="" coords="1230,36,854,60,380,96,368,97,367,92,380,91,853,55,1229,30"/>
+<area shape="poly" title=" " alt="" coords="1444,34,981,57,682,75,380,96,368,97,367,92,380,91,682,69,981,51,1444,29"/>
 <area shape="rect" href="log_8c.html" title="Log Source File." alt="" coords="392,93,507,119"/>
-<area shape="poly" title=" " alt="" coords="1230,35,911,58,715,75,519,96,507,98,506,92,518,91,714,69,910,52,1230,30"/>
+<area shape="poly" title=" " alt="" coords="1444,33,1037,53,779,71,519,96,507,97,506,92,518,91,778,66,1036,47,1444,28"/>
 <area shape="rect" href="memory_8c.html" title="Memory Source File." alt="" coords="531,93,677,119"/>
-<area shape="poly" title=" " alt="" coords="1230,40,690,96,678,97,677,92,689,91,1229,34"/>
+<area shape="poly" title=" " alt="" coords="1445,36,1107,59,690,96,678,97,677,92,689,91,1107,54,1444,30"/>
 <area shape="rect" href="reset_8c.html" title=" " alt="" coords="702,93,829,119"/>
-<area shape="poly" title=" " alt="" coords="1230,43,842,96,829,98,828,92,841,91,1230,38"/>
+<area shape="poly" title=" " alt="" coords="1444,38,1170,61,842,96,829,98,828,92,841,91,1170,56,1444,32"/>
 <area shape="rect" href="rfm_8c.html" title="Rfm Source File." alt="" coords="853,93,971,119"/>
-<area shape="poly" title=" " alt="" coords="1230,49,972,96,971,91,1229,44"/>
-<area shape="rect" href="test_8c.html" title="Testing Source File." alt="" coords="994,93,1113,119"/>
-<area shape="poly" title=" " alt="" coords="1258,52,1096,96,1094,91,1256,46"/>
-<area shape="rect" href="timers_8c.html" title=" " alt="" coords="1136,93,1272,119"/>
-<area shape="poly" title=" " alt="" coords="1296,55,1225,95,1223,91,1293,50"/>
-<area shape="rect" href="hub_8c.html" title="Hub Source File." alt="" coords="1296,93,1381,119"/>
-<area shape="poly" title=" " alt="" coords="1341,59,1341,93,1336,93,1336,59"/>
-<area shape="rect" href="hub__bootloader_8c.html" title="Hub Bootloader Source File." alt="" coords="1406,93,1567,119"/>
-<area shape="poly" title=" " alt="" coords="1387,49,1466,91,1464,96,1385,54"/>
-<area shape="rect" href="hub__test_8c.html" title="Hub testing Source File." alt="" coords="1592,93,1709,119"/>
-<area shape="poly" title=" " alt="" coords="1427,46,1606,91,1604,96,1426,51"/>
-<area shape="rect" href="sim_8c.html" title="Sim Source File." alt="" coords="1733,93,1819,119"/>
-<area shape="poly" title=" " alt="" coords="1448,42,1722,91,1734,93,1733,98,1721,96,1447,47"/>
-<area shape="rect" href="w25qxx_8c.html" title=" " alt="" coords="1843,93,1955,119"/>
-<area shape="poly" title=" " alt="" coords="1448,38,1831,91,1843,93,1842,98,1830,96,1447,43"/>
-<area shape="rect" href="sensor_8c.html" title="Sensor Source File." alt="" coords="1979,93,2101,119"/>
-<area shape="poly" title=" " alt="" coords="1448,34,1686,58,1967,91,1979,92,1978,98,1966,96,1686,63,1447,39"/>
-<area shape="rect" href="sensor__bootloader_8c.html" title="Sensor Bootloader Source File." alt="" coords="2126,93,2325,119"/>
-<area shape="poly" title=" " alt="" coords="1448,33,2114,91,2126,92,2126,97,2113,96,1448,38"/>
-<area shape="rect" href="sensor__test_8c.html" title="Sensor testing Source File." alt="" coords="2348,93,2503,119"/>
-<area shape="poly" title=" " alt="" coords="1448,29,1840,51,2088,69,2338,91,2348,92,2347,97,2337,96,2088,74,1840,57,1447,34"/>
-<area shape="rect" href="tmp112_8c.html" title=" " alt="" coords="2527,93,2657,119"/>
-<area shape="poly" title=" " alt="" coords="1448,27,1913,46,2212,65,2515,91,2527,92,2526,97,2514,96,2212,70,1913,52,1448,32"/>
+<area shape="poly" title=" " alt="" coords="1444,41,1230,64,982,96,971,97,971,92,981,91,1229,59,1444,35"/>
+<area shape="rect" href="test__common_8c.html" title="Common Module Testing Source File." alt="" coords="994,93,1206,119"/>
+<area shape="poly" title=" " alt="" coords="1445,48,1167,96,1166,91,1444,43"/>
+<area shape="rect" href="test__rf_8c.html" title="Radio Module Testing Source File." alt="" coords="1230,93,1394,119"/>
+<area shape="poly" title=" " alt="" coords="1484,52,1348,96,1346,91,1482,47"/>
+<area shape="rect" href="timers_8c.html" title=" " alt="" coords="1419,93,1555,119"/>
+<area shape="poly" title=" " alt="" coords="1530,58,1499,95,1495,91,1526,54"/>
+<area shape="rect" href="hub_8c.html" title="Hub Source File." alt="" coords="1579,93,1664,119"/>
+<area shape="poly" title=" " alt="" coords="1581,54,1613,91,1609,95,1577,58"/>
+<area shape="rect" href="hub__bootloader_8c.html" title="Hub Bootloader Source File." alt="" coords="1689,93,1850,119"/>
+<area shape="poly" title=" " alt="" coords="1619,48,1738,91,1737,96,1617,53"/>
+<area shape="rect" href="sim_8c.html" title="Sim Source File." alt="" coords="1875,93,1960,119"/>
+<area shape="poly" title=" " alt="" coords="1654,46,1875,93,1874,98,1653,51"/>
+<area shape="rect" href="test__hub_8c.html" title="Hub testing Source File." alt="" coords="1984,93,2131,119"/>
+<area shape="poly" title=" " alt="" coords="1663,41,1984,91,1984,96,1662,46"/>
+<area shape="rect" href="w25qxx_8c.html" title=" " alt="" coords="2155,93,2267,119"/>
+<area shape="poly" title=" " alt="" coords="1663,35,1885,58,2143,91,2155,92,2154,98,2142,96,1884,64,1662,40"/>
+<area shape="rect" href="sensor_8c.html" title="Sensor Source File." alt="" coords="2291,93,2413,119"/>
+<area shape="poly" title=" " alt="" coords="1663,32,1942,55,2279,91,2291,92,2290,98,2278,96,1942,61,1662,37"/>
+<area shape="rect" href="sensor__bootloader_8c.html" title="Sensor Bootloader Source File." alt="" coords="2438,93,2637,119"/>
+<area shape="poly" title=" " alt="" coords="1663,31,2003,56,2426,91,2438,92,2438,97,2425,96,2003,62,1662,37"/>
+<area shape="rect" href="test__sensor_8c.html" title=" " alt="" coords="2661,93,2843,119"/>
+<area shape="poly" title=" " alt="" coords="1663,29,2095,52,2371,69,2650,91,2660,92,2660,97,2649,96,2371,75,2094,57,1662,34"/>
+<area shape="rect" href="tmp112_8c.html" title=" " alt="" coords="2868,93,2999,119"/>
+<area shape="poly" title=" " alt="" coords="1662,26,2178,44,2515,63,2856,91,2868,92,2868,97,2856,96,2515,68,2177,49,1662,31"/>
 </map>
 </div>
 </div>
@@ -162,58 +163,88 @@ This graph shows which files directly or indirectly include this file:</div>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="define-members" name="define-members"></a>
 Macros</h2></td></tr>
-<tr class="memitem:gaf2cb34538b190c4aa4fe0d5a9c386102" id="r_gaf2cb34538b190c4aa4fe0d5a9c386102"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___t_i_m_e_r_s___a_p_i.html#gaf2cb34538b190c4aa4fe0d5a9c386102">WAIT_US</a>(cond,  <a class="el" href="group___s_i_m___i_n_t.html#ga3fbeb7e5730e465e2db5788a3cbaddc7">timeout</a>)</td></tr>
+<tr><td colspan="2"><div class="groupHeader">Timing Helper Macros</div></td></tr>
+<tr class="memitem:gaf2cb34538b190c4aa4fe0d5a9c386102" id="r_gaf2cb34538b190c4aa4fe0d5a9c386102"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__timers__api.html#gaf2cb34538b190c4aa4fe0d5a9c386102">WAIT_US</a>(cond,  <a class="el" href="group__sim__api.html#ga3fbeb7e5730e465e2db5788a3cbaddc7">timeout</a>)</td></tr>
+<tr class="memdesc:gaf2cb34538b190c4aa4fe0d5a9c386102"><td class="mdescLeft">&#160;</td><td class="mdescRight">Wait for a condition with microsecond timeout.  <br /></td></tr>
 <tr class="separator:gaf2cb34538b190c4aa4fe0d5a9c386102"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ga954d4a31d7558fe3217d9ac9d36a291f" id="r_ga954d4a31d7558fe3217d9ac9d36a291f"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___t_i_m_e_r_s___a_p_i.html#ga954d4a31d7558fe3217d9ac9d36a291f">WAIT_MS</a>(cond,  <a class="el" href="group___s_i_m___i_n_t.html#ga3fbeb7e5730e465e2db5788a3cbaddc7">timeout</a>)</td></tr>
+<tr class="memitem:ga954d4a31d7558fe3217d9ac9d36a291f" id="r_ga954d4a31d7558fe3217d9ac9d36a291f"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__timers__api.html#ga954d4a31d7558fe3217d9ac9d36a291f">WAIT_MS</a>(cond,  <a class="el" href="group__sim__api.html#ga3fbeb7e5730e465e2db5788a3cbaddc7">timeout</a>)</td></tr>
+<tr class="memdesc:ga954d4a31d7558fe3217d9ac9d36a291f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Wait for a condition with millisecond timeout.  <br /></td></tr>
 <tr class="separator:ga954d4a31d7558fe3217d9ac9d36a291f"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ga0d65d21a54ae6bfc23a1f8aa767fa786" id="r_ga0d65d21a54ae6bfc23a1f8aa767fa786"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___t_i_m_e_r_s___a_p_i.html#ga0d65d21a54ae6bfc23a1f8aa767fa786">TIMEOUT</a>(time,  print_str,  print_data,  break_condition,  if_code,  else_code)</td></tr>
+<tr class="memitem:ga0d65d21a54ae6bfc23a1f8aa767fa786" id="r_ga0d65d21a54ae6bfc23a1f8aa767fa786"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__timers__api.html#ga0d65d21a54ae6bfc23a1f8aa767fa786">TIMEOUT</a>(time,  print_str,  print_data,  break_condition,  if_code,  else_code)</td></tr>
+<tr class="memdesc:ga0d65d21a54ae6bfc23a1f8aa767fa786"><td class="mdescLeft">&#160;</td><td class="mdescRight">General timeout handling with break condition.  <br /></td></tr>
 <tr class="separator:ga0d65d21a54ae6bfc23a1f8aa767fa786"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="func-members" name="func-members"></a>
 Functions</h2></td></tr>
-<tr class="memitem:ga1535c2ffe84b5ffa3db435eaa18e40cf" id="r_ga1535c2ffe84b5ffa3db435eaa18e40cf"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___t_i_m_e_r_s___a_p_i.html#ga1535c2ffe84b5ffa3db435eaa18e40cf">timers_rtc_init</a> (void)</td></tr>
+<tr><td colspan="2"><div class="groupHeader">RTC Functions</div></td></tr>
+<tr class="memitem:ga1535c2ffe84b5ffa3db435eaa18e40cf" id="r_ga1535c2ffe84b5ffa3db435eaa18e40cf"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__timers__api.html#ga1535c2ffe84b5ffa3db435eaa18e40cf">timers_rtc_init</a> (void)</td></tr>
+<tr class="memdesc:ga1535c2ffe84b5ffa3db435eaa18e40cf"><td class="mdescLeft">&#160;</td><td class="mdescRight">Initialize the real-time clock.  <br /></td></tr>
 <tr class="separator:ga1535c2ffe84b5ffa3db435eaa18e40cf"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ga903f014ce380278011fcd42a7b1f2615" id="r_ga903f014ce380278011fcd42a7b1f2615"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___t_i_m_e_r_s___a_p_i.html#ga903f014ce380278011fcd42a7b1f2615">timers_rtc_set_time</a> (uint8_t year, uint8_t month, uint8_t day, uint8_t hours, uint8_t mins, uint8_t secs)</td></tr>
+<tr class="memitem:ga903f014ce380278011fcd42a7b1f2615" id="r_ga903f014ce380278011fcd42a7b1f2615"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__timers__api.html#ga903f014ce380278011fcd42a7b1f2615">timers_rtc_set_time</a> (uint8_t year, uint8_t month, uint8_t day, uint8_t hours, uint8_t mins, uint8_t secs)</td></tr>
+<tr class="memdesc:ga903f014ce380278011fcd42a7b1f2615"><td class="mdescLeft">&#160;</td><td class="mdescRight">Set the RTC time.  <br /></td></tr>
 <tr class="separator:ga903f014ce380278011fcd42a7b1f2615"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ga8f7bb2f7451ebc967f79bbbc3656decc" id="r_ga8f7bb2f7451ebc967f79bbbc3656decc"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___t_i_m_e_r_s___a_p_i.html#ga8f7bb2f7451ebc967f79bbbc3656decc">timers_set_wakeup_time</a> (uint32_t wakeup_time)</td></tr>
+<tr class="memitem:ga8f7bb2f7451ebc967f79bbbc3656decc" id="r_ga8f7bb2f7451ebc967f79bbbc3656decc"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__timers__api.html#ga8f7bb2f7451ebc967f79bbbc3656decc">timers_set_wakeup_time</a> (uint32_t wakeup_time)</td></tr>
+<tr class="memdesc:ga8f7bb2f7451ebc967f79bbbc3656decc"><td class="mdescLeft">&#160;</td><td class="mdescRight">Set the RTC wakeup time.  <br /></td></tr>
 <tr class="separator:ga8f7bb2f7451ebc967f79bbbc3656decc"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ga496d75faf684d46128d34ecf8896a21c" id="r_ga496d75faf684d46128d34ecf8896a21c"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___t_i_m_e_r_s___a_p_i.html#ga496d75faf684d46128d34ecf8896a21c">timers_clear_wakeup_flag</a> (void)</td></tr>
+<tr class="memitem:ga496d75faf684d46128d34ecf8896a21c" id="r_ga496d75faf684d46128d34ecf8896a21c"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__timers__api.html#ga496d75faf684d46128d34ecf8896a21c">timers_clear_wakeup_flag</a> (void)</td></tr>
+<tr class="memdesc:ga496d75faf684d46128d34ecf8896a21c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Clear the RTC wakeup flag.  <br /></td></tr>
 <tr class="separator:ga496d75faf684d46128d34ecf8896a21c"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ga7786000870d844c0cef8c579c89f4212" id="r_ga7786000870d844c0cef8c579c89f4212"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___t_i_m_e_r_s___a_p_i.html#ga7786000870d844c0cef8c579c89f4212">timers_enable_wut_interrupt</a> (void)</td></tr>
+<tr class="memitem:ga7786000870d844c0cef8c579c89f4212" id="r_ga7786000870d844c0cef8c579c89f4212"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__timers__api.html#ga7786000870d844c0cef8c579c89f4212">timers_enable_wut_interrupt</a> (void)</td></tr>
+<tr class="memdesc:ga7786000870d844c0cef8c579c89f4212"><td class="mdescLeft">&#160;</td><td class="mdescRight">Enable the RTC wakeup timer interrupt.  <br /></td></tr>
 <tr class="separator:ga7786000870d844c0cef8c579c89f4212"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ga44fa947ab411160be138e29a1764d1e4" id="r_ga44fa947ab411160be138e29a1764d1e4"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___t_i_m_e_r_s___a_p_i.html#ga44fa947ab411160be138e29a1764d1e4">timers_disable_wut_interrupt</a> (void)</td></tr>
+<tr class="memitem:ga44fa947ab411160be138e29a1764d1e4" id="r_ga44fa947ab411160be138e29a1764d1e4"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__timers__api.html#ga44fa947ab411160be138e29a1764d1e4">timers_disable_wut_interrupt</a> (void)</td></tr>
+<tr class="memdesc:ga44fa947ab411160be138e29a1764d1e4"><td class="mdescLeft">&#160;</td><td class="mdescRight">Disable the RTC wakeup timer interrupt.  <br /></td></tr>
 <tr class="separator:ga44fa947ab411160be138e29a1764d1e4"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ga6355a0d752932254b6ddc138650799ff" id="r_ga6355a0d752932254b6ddc138650799ff"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___t_i_m_e_r_s___a_p_i.html#ga6355a0d752932254b6ddc138650799ff">timers_rtc_unlock</a> (void)</td></tr>
+<tr class="memitem:ga6355a0d752932254b6ddc138650799ff" id="r_ga6355a0d752932254b6ddc138650799ff"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__timers__api.html#ga6355a0d752932254b6ddc138650799ff">timers_rtc_unlock</a> (void)</td></tr>
+<tr class="memdesc:ga6355a0d752932254b6ddc138650799ff"><td class="mdescLeft">&#160;</td><td class="mdescRight">Unlock RTC registers for modification.  <br /></td></tr>
 <tr class="separator:ga6355a0d752932254b6ddc138650799ff"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ga10460c6b4e01c76ff9f7ddd408b413ce" id="r_ga10460c6b4e01c76ff9f7ddd408b413ce"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___t_i_m_e_r_s___a_p_i.html#ga10460c6b4e01c76ff9f7ddd408b413ce">timers_rtc_lock</a> (void)</td></tr>
+<tr class="memitem:ga10460c6b4e01c76ff9f7ddd408b413ce" id="r_ga10460c6b4e01c76ff9f7ddd408b413ce"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__timers__api.html#ga10460c6b4e01c76ff9f7ddd408b413ce">timers_rtc_lock</a> (void)</td></tr>
+<tr class="memdesc:ga10460c6b4e01c76ff9f7ddd408b413ce"><td class="mdescLeft">&#160;</td><td class="mdescRight">Lock RTC registers to prevent modification.  <br /></td></tr>
 <tr class="separator:ga10460c6b4e01c76ff9f7ddd408b413ce"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ga2895f028adf625347af2779776708c7b" id="r_ga2895f028adf625347af2779776708c7b"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___t_i_m_e_r_s___a_p_i.html#ga2895f028adf625347af2779776708c7b">timers_lptim_init</a> (void)</td></tr>
+<tr><td colspan="2"><div class="groupHeader">Microsecond Timer Functions</div></td></tr>
+<tr class="memitem:ga2895f028adf625347af2779776708c7b" id="r_ga2895f028adf625347af2779776708c7b"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__timers__api.html#ga2895f028adf625347af2779776708c7b">timers_lptim_init</a> (void)</td></tr>
+<tr class="memdesc:ga2895f028adf625347af2779776708c7b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Initialize the low-power timer for microsecond counting.  <br /></td></tr>
 <tr class="separator:ga2895f028adf625347af2779776708c7b"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ga25495bda8b23ffa1a23ccd2a5c5413bc" id="r_ga25495bda8b23ffa1a23ccd2a5c5413bc"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___t_i_m_e_r_s___a_p_i.html#ga25495bda8b23ffa1a23ccd2a5c5413bc">timers_lptim_end</a> (void)</td></tr>
+<tr class="memitem:ga25495bda8b23ffa1a23ccd2a5c5413bc" id="r_ga25495bda8b23ffa1a23ccd2a5c5413bc"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__timers__api.html#ga25495bda8b23ffa1a23ccd2a5c5413bc">timers_lptim_end</a> (void)</td></tr>
+<tr class="memdesc:ga25495bda8b23ffa1a23ccd2a5c5413bc"><td class="mdescLeft">&#160;</td><td class="mdescRight">Terminate low-power timer operations.  <br /></td></tr>
 <tr class="separator:ga25495bda8b23ffa1a23ccd2a5c5413bc"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ga7593484e9542dbd2f2d45ad94bf4c5ad" id="r_ga7593484e9542dbd2f2d45ad94bf4c5ad"><td class="memItemLeft" align="right" valign="top">uint32_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___t_i_m_e_r_s___a_p_i.html#ga7593484e9542dbd2f2d45ad94bf4c5ad">timers_micros</a> (void)</td></tr>
+<tr class="memitem:ga7593484e9542dbd2f2d45ad94bf4c5ad" id="r_ga7593484e9542dbd2f2d45ad94bf4c5ad"><td class="memItemLeft" align="right" valign="top">uint32_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__timers__api.html#ga7593484e9542dbd2f2d45ad94bf4c5ad">timers_micros</a> (void)</td></tr>
+<tr class="memdesc:ga7593484e9542dbd2f2d45ad94bf4c5ad"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get the current microsecond counter value.  <br /></td></tr>
 <tr class="separator:ga7593484e9542dbd2f2d45ad94bf4c5ad"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ga9c4643be9a297c1743fc505c87d0e36d" id="r_ga9c4643be9a297c1743fc505c87d0e36d"><td class="memItemLeft" align="right" valign="top">uint32_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___t_i_m_e_r_s___a_p_i.html#ga9c4643be9a297c1743fc505c87d0e36d">timers_millis</a> (void)</td></tr>
+<tr class="memitem:ga9c4643be9a297c1743fc505c87d0e36d" id="r_ga9c4643be9a297c1743fc505c87d0e36d"><td class="memItemLeft" align="right" valign="top">uint32_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__timers__api.html#ga9c4643be9a297c1743fc505c87d0e36d">timers_millis</a> (void)</td></tr>
+<tr class="memdesc:ga9c4643be9a297c1743fc505c87d0e36d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get the current millisecond counter value.  <br /></td></tr>
 <tr class="separator:ga9c4643be9a297c1743fc505c87d0e36d"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ga6e9cc03544579f4d7f8c7f987b917308" id="r_ga6e9cc03544579f4d7f8c7f987b917308"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___t_i_m_e_r_s___a_p_i.html#ga6e9cc03544579f4d7f8c7f987b917308">timers_delay_microseconds</a> (uint32_t delay_microseconds)</td></tr>
+<tr class="memitem:ga6e9cc03544579f4d7f8c7f987b917308" id="r_ga6e9cc03544579f4d7f8c7f987b917308"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__timers__api.html#ga6e9cc03544579f4d7f8c7f987b917308">timers_delay_microseconds</a> (uint32_t delay_microseconds)</td></tr>
+<tr class="memdesc:ga6e9cc03544579f4d7f8c7f987b917308"><td class="mdescLeft">&#160;</td><td class="mdescRight">Delay for a specified number of microseconds.  <br /></td></tr>
 <tr class="separator:ga6e9cc03544579f4d7f8c7f987b917308"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ga86c515c63c987ea728d6336e35d0aaa3" id="r_ga86c515c63c987ea728d6336e35d0aaa3"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___t_i_m_e_r_s___a_p_i.html#ga86c515c63c987ea728d6336e35d0aaa3">timers_delay_milliseconds</a> (uint32_t delay_milliseconds)</td></tr>
+<tr class="memitem:ga86c515c63c987ea728d6336e35d0aaa3" id="r_ga86c515c63c987ea728d6336e35d0aaa3"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__timers__api.html#ga86c515c63c987ea728d6336e35d0aaa3">timers_delay_milliseconds</a> (uint32_t delay_milliseconds)</td></tr>
+<tr class="memdesc:ga86c515c63c987ea728d6336e35d0aaa3"><td class="mdescLeft">&#160;</td><td class="mdescRight">Delay for a specified number of milliseconds.  <br /></td></tr>
 <tr class="separator:ga86c515c63c987ea728d6336e35d0aaa3"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:gace45123851a9bf5d6918b11f7b27bd27" id="r_gace45123851a9bf5d6918b11f7b27bd27"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___t_i_m_e_r_s___a_p_i.html#gace45123851a9bf5d6918b11f7b27bd27">timers_tim6_init</a> (void)</td></tr>
+<tr><td colspan="2"><div class="groupHeader">Additional Timer Functions</div></td></tr>
+<tr class="memitem:gace45123851a9bf5d6918b11f7b27bd27" id="r_gace45123851a9bf5d6918b11f7b27bd27"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__timers__api.html#gace45123851a9bf5d6918b11f7b27bd27">timers_tim6_init</a> (void)</td></tr>
+<tr class="memdesc:gace45123851a9bf5d6918b11f7b27bd27"><td class="mdescLeft">&#160;</td><td class="mdescRight">Initialize TIM6 as a microsecond counter.  <br /></td></tr>
 <tr class="separator:gace45123851a9bf5d6918b11f7b27bd27"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ga70d8c762a26324af6f1e542717bc80ff" id="r_ga70d8c762a26324af6f1e542717bc80ff"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___t_i_m_e_r_s___a_p_i.html#ga70d8c762a26324af6f1e542717bc80ff">timers_iwdg_init</a> (uint32_t period)</td></tr>
+<tr><td colspan="2"><div class="groupHeader">Watchdog Functions</div></td></tr>
+<tr class="memitem:ga70d8c762a26324af6f1e542717bc80ff" id="r_ga70d8c762a26324af6f1e542717bc80ff"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__timers__api.html#ga70d8c762a26324af6f1e542717bc80ff">timers_iwdg_init</a> (uint32_t period)</td></tr>
+<tr class="memdesc:ga70d8c762a26324af6f1e542717bc80ff"><td class="mdescLeft">&#160;</td><td class="mdescRight">Initialize the independent watchdog timer.  <br /></td></tr>
 <tr class="separator:ga70d8c762a26324af6f1e542717bc80ff"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ga27ab5dabf9e5a9ee1d25be688f6dff0d" id="r_ga27ab5dabf9e5a9ee1d25be688f6dff0d"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___t_i_m_e_r_s___a_p_i.html#ga27ab5dabf9e5a9ee1d25be688f6dff0d">timers_pet_dogs</a> (void)</td></tr>
+<tr class="memitem:ga27ab5dabf9e5a9ee1d25be688f6dff0d" id="r_ga27ab5dabf9e5a9ee1d25be688f6dff0d"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__timers__api.html#ga27ab5dabf9e5a9ee1d25be688f6dff0d">timers_pet_dogs</a> (void)</td></tr>
+<tr class="memdesc:ga27ab5dabf9e5a9ee1d25be688f6dff0d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Reset (feed) the watchdog timers.  <br /></td></tr>
 <tr class="separator:ga27ab5dabf9e5a9ee1d25be688f6dff0d"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ga9fc2049c9b14c9c1129e883e6e83d039" id="r_ga9fc2049c9b14c9c1129e883e6e83d039"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___t_i_m_e_r_s___a_p_i.html#ga9fc2049c9b14c9c1129e883e6e83d039">timers_enter_standby</a> (void)</td></tr>
+<tr><td colspan="2"><div class="groupHeader">Power Management Functions</div></td></tr>
+<tr class="memitem:ga9fc2049c9b14c9c1129e883e6e83d039" id="r_ga9fc2049c9b14c9c1129e883e6e83d039"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__timers__api.html#ga9fc2049c9b14c9c1129e883e6e83d039">timers_enter_standby</a> (void)</td></tr>
+<tr class="memdesc:ga9fc2049c9b14c9c1129e883e6e83d039"><td class="mdescLeft">&#160;</td><td class="mdescRight">Enter standby (deep sleep) mode.  <br /></td></tr>
 <tr class="separator:ga9fc2049c9b14c9c1129e883e6e83d039"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:gafe9b8dd657c39585b88ce93266b8b171" id="r_gafe9b8dd657c39585b88ce93266b8b171"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___t_i_m_e_r_s___a_p_i.html#gafe9b8dd657c39585b88ce93266b8b171">timers_timeout_init</a> (void)</td></tr>
+<tr><td colspan="2"><div class="groupHeader">Timeout Functions</div></td></tr>
+<tr class="memitem:gafe9b8dd657c39585b88ce93266b8b171" id="r_gafe9b8dd657c39585b88ce93266b8b171"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__timers__api.html#gafe9b8dd657c39585b88ce93266b8b171">timers_timeout_init</a> (void)</td></tr>
+<tr class="memdesc:gafe9b8dd657c39585b88ce93266b8b171"><td class="mdescLeft">&#160;</td><td class="mdescRight">Initialize the timeout system.  <br /></td></tr>
 <tr class="separator:gafe9b8dd657c39585b88ce93266b8b171"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:gae3686f0638c2d1bb55930325327e5416" id="r_gae3686f0638c2d1bb55930325327e5416"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___t_i_m_e_r_s___a_p_i.html#gae3686f0638c2d1bb55930325327e5416">timers_timeout</a> (uint32_t time_microseconds, char *msg, uint32_t data)</td></tr>
+<tr class="memitem:gae3686f0638c2d1bb55930325327e5416" id="r_gae3686f0638c2d1bb55930325327e5416"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__timers__api.html#gae3686f0638c2d1bb55930325327e5416">timers_timeout</a> (uint32_t time_microseconds, char *msg, uint32_t data)</td></tr>
+<tr class="memdesc:gae3686f0638c2d1bb55930325327e5416"><td class="mdescLeft">&#160;</td><td class="mdescRight">Check if a timeout has occurred.  <br /></td></tr>
 <tr class="separator:gae3686f0638c2d1bb55930325327e5416"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
-<div class="textblock"><p>Timers Header File. </p>
+<div class="textblock"><p>Timing and Power Management Header File. </p>
 <dl class="section author"><dt>Author</dt><dd>Richard Davies </dd></dl>
 <dl class="section date"><dt>Date</dt><dd>20/Jan/2021  </dd></dl>
 
@@ -221,7 +252,7 @@ Functions</h2></td></tr>
 </div></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Thu Mar 20 2025 05:49:15 for CoolEase by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8
+Generated on Fri Mar 21 2025 10:20:20 for CoolEase by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8
 </small></address>
 </body>
 </html>

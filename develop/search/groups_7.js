@@ -1,6 +1,4 @@
 var searchData=
 [
-  ['memory_0',['Memory',['../group___m_e_m_o_r_y___f_i_l_e.html',1,'']]],
-  ['memory_20api_1',['Memory API',['../group___m_e_m_o_r_y___a_p_i.html',1,'']]],
-  ['memory_20internal_2',['Memory Internal',['../group___m_e_m_o_r_y___i_n_t.html',1,'']]]
+  ['interface_0',['interface',['../group__bootloader__api.html',1,'Bootloader Interface'],['../group__flash__api.html',1,'Flash Memory Interface'],['../group__sensor__api.html',1,'Sensor Interface'],['../group__sim__api.html',1,'SIM800 Interface']]]
 ];

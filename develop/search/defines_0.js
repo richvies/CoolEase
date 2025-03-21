@@ -1,22 +1,4 @@
 var searchData=
 [
-  ['adc_5fccr_5flfmen_0',['ADC_CCR_LFMEN',['../battery_8c.html#a749582e7b291b726615c67975e92644d',1,'battery.c']]],
-  ['adc_5fccr_5fpresc_1',['ADC_CCR_PRESC',['../battery_8c.html#a163968c55b1756d3880add05e08e452f',1,'battery.c']]],
-  ['adc_5fccr_5fpresc_5fdiv10_2',['ADC_CCR_PRESC_DIV10',['../battery_8c.html#a707f8ec8c09d88bf15fc51dd30ec91b8',1,'battery.c']]],
-  ['adc_5fccr_5fpresc_5fdiv12_3',['ADC_CCR_PRESC_DIV12',['../battery_8c.html#ab8f8662377685eb2e56c139f50206b6e',1,'battery.c']]],
-  ['adc_5fccr_5fpresc_5fdiv128_4',['ADC_CCR_PRESC_DIV128',['../battery_8c.html#afa48dc74b31212e79da204206f981566',1,'battery.c']]],
-  ['adc_5fccr_5fpresc_5fdiv16_5',['ADC_CCR_PRESC_DIV16',['../battery_8c.html#a6cf103c9b764cd631d4936eda3775f14',1,'battery.c']]],
-  ['adc_5fccr_5fpresc_5fdiv2_6',['ADC_CCR_PRESC_DIV2',['../battery_8c.html#a87ccacdb2dc4ffe0971296594877bd4b',1,'battery.c']]],
-  ['adc_5fccr_5fpresc_5fdiv256_7',['ADC_CCR_PRESC_DIV256',['../battery_8c.html#ae17610073089a84f237b4debc107a897',1,'battery.c']]],
-  ['adc_5fccr_5fpresc_5fdiv32_8',['ADC_CCR_PRESC_DIV32',['../battery_8c.html#a44bc4f267ccbaee0dde09e40bc845693',1,'battery.c']]],
-  ['adc_5fccr_5fpresc_5fdiv4_9',['ADC_CCR_PRESC_DIV4',['../battery_8c.html#a855968bc10e7bb1cb98c1b9ef6b2d9da',1,'battery.c']]],
-  ['adc_5fccr_5fpresc_5fdiv6_10',['ADC_CCR_PRESC_DIV6',['../battery_8c.html#a3443e3ad7d33029c30ed53362aaa0476',1,'battery.c']]],
-  ['adc_5fccr_5fpresc_5fdiv64_11',['ADC_CCR_PRESC_DIV64',['../battery_8c.html#a3d6f9bd58bc313defe9126b48e40bc84',1,'battery.c']]],
-  ['adc_5fccr_5fpresc_5fdiv8_12',['ADC_CCR_PRESC_DIV8',['../battery_8c.html#a22baa85c10263bce79f6c75792866cee',1,'battery.c']]],
-  ['adc_5fccr_5fpresc_5fnodiv_13',['ADC_CCR_PRESC_NODIV',['../battery_8c.html#acb8bb9b07febf2ddb0cc422b765dfca3',1,'battery.c']]],
-  ['adc_5fccr_5fpresc_5fshift_14',['ADC_CCR_PRESC_SHIFT',['../battery_8c.html#a53990c512e1546fc494b3b2637e9516d',1,'battery.c']]],
-  ['adc_5fcr_5fadvregen_15',['ADC_CR_ADVREGEN',['../battery_8c.html#a5be7ae16a57665a53f3efce3f8aeb493',1,'battery.c']]],
-  ['aes_5fblocklen_16',['AES_BLOCKLEN',['../aes_8h.html#ada62b7b09dab0d7ef92c04364b16b5b5',1,'aes.h']]],
-  ['aes_5fkey_5fexp_5fsize_17',['AES_KEY_EXP_SIZE',['../aes_8h.html#a089ff1ad87c1dc8583da9cfdf02d011e',1,'aes.h']]],
-  ['aes_5fkey_5flen_18',['AES_KEY_LEN',['../aes_8h.html#ac62474b957a4a66dd6fd9b3730ca4ccb',1,'aes.h']]]
+  ['battery_5fh_0',['BATTERY_H',['../fake__battery_8c.html#a2bae68715a6720ee0cb4e2062e5b3f76',1,'fake_battery.c']]]
 ];

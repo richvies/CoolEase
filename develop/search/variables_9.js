@@ -1,8 +1,8 @@
 var searchData=
 [
-  ['micros_5fcounter_0',['micros_counter',['../timers_8c.html#a613d1bb46262d77a3a6236e816e038be',1,'timers.c']]],
-  ['millis_5fcounter_1',['millis_counter',['../timers_8c.html#a999f427106aa44f9fb46d322552f4e1e',1,'timers.c']]],
-  ['msg_5fnum_2',['msg_num',['../group___m_e_m_o_r_y___i_n_t.html#ga068390377dc20b1fd6d6588b8b1c4713',1,'memory.c']]],
-  ['msg_5fnum_5fadd_3',['msg_num_add',['../group___m_e_m_o_r_y___i_n_t.html#ga98da1bbf9070d24558529687354523ce',1,'memory.c']]],
-  ['msg_5fnumber_4',['msg_number',['../structrfm__packet__s.html#af8b2c44a30f9b071c8565b93ad5138d0',1,'rfm_packet_s']]]
+  ['last_5fcommand_0',['last_command',['../group__cusb__api.html#ga7be38c1a07785c319559c07a59ff5a79',1,'@1::@5::last_command'],['../cusb_8c.html#afd3115118007fd17d377a3e9d3b9517c',1,'last_command:&#160;cusb.c']]],
+  ['lock_1',['Lock',['../structw25__t.html#ab123dc96cdd073715d8685aa4fb7da12',1,'w25_t']]],
+  ['log_5fappended_2',['log_appended',['../group__hub__apis.html#gafa058263d749c64936da8e118e9dff96',1,'hub.c']]],
+  ['log_5fcounter_3',['log_counter',['../group__hub__apis.html#gacaaa80a51bbcf66d0a835a9ea2e6355a',1,'hub.c']]],
+  ['log_5fupload_5fpending_4',['log_upload_pending',['../group__hub__apis.html#gad0aed1de565948ac52078479b083918f',1,'hub.c']]]
 ];

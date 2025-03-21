@@ -1,7 +1,7 @@
 <map id="sensor/include/sensor/sensor_bootloader.h" name="sensor/include/sensor/sensor_bootloader.h">
-<area shape="rect" id="Node000001" title="Sensor Bootloader Header File." alt="" coords="123,5,286,45"/>
+<area shape="rect" id="Node000001" title="Sensor Bootloader Header File." alt="" coords="130,5,293,45"/>
 <area shape="rect" id="Node000002" href="$sensor__bootloader_8c.html" title="Sensor Bootloader Source File." alt="" coords="5,93,204,119"/>
-<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="171,56,121,95,118,91,168,52"/>
-<area shape="rect" id="Node000003" href="$sensor__test_8c.html" title="Sensor testing Source File." alt="" coords="227,93,382,119"/>
-<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="241,52,291,91,288,95,238,56"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="176,56,122,95,119,91,173,51"/>
+<area shape="rect" id="Node000003" href="$test__sensor_8c.html" title=" " alt="" coords="228,93,411,119"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="250,51,305,91,302,95,247,56"/>
 </map>

@@ -21,7 +21,7 @@
  <tbody>
  <tr id="projectrow">
   <td id="projectalign">
-   <div id="projectname">CoolEase<span id="projectnumber">&#160;develop-acc8581</span>
+   <div id="projectname">CoolEase<span id="projectnumber">&#160;develop-eabc6b5</span>
    </div>
    <div id="projectbrief">Remote Temperature Monitor</div>
   </td>
@@ -83,70 +83,63 @@ $(document).ready(function() { init_codefold(0); });
 </div><!--header-->
 <div class="contents">
 <a href="bootloader__utils_8h.html">Go to the documentation of this file.</a><div class="fragment"><div class="line"><a id="l00001" name="l00001"></a><span class="lineno">    1</span> </div>
-<div class="line"><a id="l00025" name="l00025"></a><span class="lineno">   25</span><span class="preprocessor">#ifndef BOOTLOADER_UTILS_H</span></div>
-<div class="line"><a id="l00026" name="l00026"></a><span class="lineno">   26</span><span class="preprocessor">#define BOOTLOADER_UTILS_H</span></div>
-<div class="line"><a id="l00027" name="l00027"></a><span class="lineno">   27</span> </div>
-<div class="line"><a id="l00028" name="l00028"></a><span class="lineno">   28</span><span class="comment">/*////////////////////////////////////////////////////////////////////////////*/</span></div>
-<div class="line"><a id="l00029" name="l00029"></a><span class="lineno">   29</span><span class="comment">// Includes</span></div>
-<div class="line"><a id="l00030" name="l00030"></a><span class="lineno">   30</span><span class="comment">/*////////////////////////////////////////////////////////////////////////////*/</span></div>
-<div class="line"><a id="l00031" name="l00031"></a><span class="lineno">   31</span> </div>
-<div class="line"><a id="l00032" name="l00032"></a><span class="lineno">   32</span><span class="preprocessor">#include &lt;stdbool.h&gt;</span></div>
-<div class="line"><a id="l00033" name="l00033"></a><span class="lineno">   33</span><span class="preprocessor">#include &lt;stdint.h&gt;</span></div>
+<div class="line"><a id="l00022" name="l00022"></a><span class="lineno">   22</span><span class="preprocessor"> #ifndef BOOTLOADER_UTILS_H</span></div>
+<div class="line"><a id="l00023" name="l00023"></a><span class="lineno">   23</span><span class="preprocessor"> #define BOOTLOADER_UTILS_H</span></div>
+<div class="line"><a id="l00024" name="l00024"></a><span class="lineno">   24</span> </div>
+<div class="line"><a id="l00025" name="l00025"></a><span class="lineno">   25</span> <span class="comment">// Includes</span></div>
+<div class="line"><a id="l00026" name="l00026"></a><span class="lineno">   26</span><span class="preprocessor"> #include &lt;stdbool.h&gt;</span></div>
+<div class="line"><a id="l00027" name="l00027"></a><span class="lineno">   27</span><span class="preprocessor"> #include &lt;stdint.h&gt;</span></div>
+<div class="line"><a id="l00028" name="l00028"></a><span class="lineno">   28</span> </div>
+<div class="line"><a id="l00029" name="l00029"></a><span class="lineno">   29</span><span class="preprocessor"> #include &quot;<a class="code" href="memory_8h.html">common/memory.h</a>&quot;</span></div>
+<div class="line"><a id="l00030" name="l00030"></a><span class="lineno">   30</span> </div>
+<div class="line"><a id="l00031" name="l00031"></a><span class="lineno">   31</span><span class="preprocessor"> #ifdef __cplusplus</span></div>
+<div class="line"><a id="l00032" name="l00032"></a><span class="lineno">   32</span> <span class="keyword">extern</span> <span class="stringliteral">&quot;C&quot;</span> {</div>
+<div class="line"><a id="l00033" name="l00033"></a><span class="lineno">   33</span><span class="preprocessor"> #endif</span></div>
 <div class="line"><a id="l00034" name="l00034"></a><span class="lineno">   34</span> </div>
-<div class="line"><a id="l00035" name="l00035"></a><span class="lineno">   35</span><span class="preprocessor">#include &quot;<a class="code" href="memory_8h.html">common/memory.h</a>&quot;</span></div>
-<div class="line"><a id="l00036" name="l00036"></a><span class="lineno">   36</span> </div>
-<div class="line"><a id="l00037" name="l00037"></a><span class="lineno">   37</span><span class="preprocessor">#ifdef __cplusplus</span></div>
-<div class="line"><a id="l00038" name="l00038"></a><span class="lineno">   38</span><span class="keyword">extern</span> <span class="stringliteral">&quot;C&quot;</span> {</div>
-<div class="line"><a id="l00039" name="l00039"></a><span class="lineno">   39</span><span class="preprocessor">#endif</span></div>
-<div class="line"><a id="l00040" name="l00040"></a><span class="lineno">   40</span> </div>
-<div class="line"><a id="l00045" name="l00045"></a><span class="lineno">   45</span><span class="comment">/*////////////////////////////////////////////////////////////////////////////*/</span></div>
-<div class="line"><a id="l00046" name="l00046"></a><span class="lineno">   46</span><span class="comment">// Exported Variables</span></div>
-<div class="line"><a id="l00047" name="l00047"></a><span class="lineno">   47</span><span class="comment">/*////////////////////////////////////////////////////////////////////////////*/</span></div>
-<div class="line"><a id="l00048" name="l00048"></a><span class="lineno">   48</span> </div>
-<div class="line"><a id="l00049" name="l00049"></a><span class="lineno">   49</span><span class="comment">// Turn defines into functions, uses less memory for repeated strings</span></div>
-<div class="foldopen" id="foldopen00050" data-start="" data-end="">
-<div class="line"><a id="l00050" name="l00050"></a><span class="lineno"><a class="line" href="group___b_o_o_t_l_o_a_d_e_r___u_t_i_l_s___a_p_i.html#ga44097652068916fa40b7d9b46f32a3c7">   50</a></span><span class="preprocessor">#define BOOT_LOG                                                               \</span></div>
-<div class="line"><a id="l00051" name="l00051"></a><span class="lineno">   51</span><span class="preprocessor">    log_printf(&quot;BOOT: &quot;);                                                      \</span></div>
-<div class="line"><a id="l00052" name="l00052"></a><span class="lineno">   52</span><span class="preprocessor">    log_printf</span></div>
+<div class="foldopen" id="foldopen00048" data-start="" data-end="">
+<div class="line"><a id="l00048" name="l00048"></a><span class="lineno"><a class="line" href="group__bootloader__api.html#ga44097652068916fa40b7d9b46f32a3c7">   48</a></span><span class="preprocessor"> #define BOOT_LOG                                                               \</span></div>
+<div class="line"><a id="l00049" name="l00049"></a><span class="lineno">   49</span><span class="preprocessor">     log_printf(&quot;BOOT: &quot;);                                                      \</span></div>
+<div class="line"><a id="l00050" name="l00050"></a><span class="lineno">   50</span><span class="preprocessor">     log_printf</span></div>
 </div>
-<div class="line"><a id="l00053" name="l00053"></a><span class="lineno">   53</span> </div>
-<div class="line"><a id="l00054" name="l00054"></a><span class="lineno">   54</span><span class="comment">/*////////////////////////////////////////////////////////////////////////////*/</span></div>
-<div class="line"><a id="l00055" name="l00055"></a><span class="lineno">   55</span><span class="comment">// Exported Function Declarations</span></div>
-<div class="line"><a id="l00056" name="l00056"></a><span class="lineno">   56</span><span class="comment">/*////////////////////////////////////////////////////////////////////////////*/</span></div>
+<div class="line"><a id="l00051" name="l00051"></a><span class="lineno">   51</span> </div>
+<div class="line"><a id="l00056" name="l00056"></a><span class="lineno">   56</span> <span class="keywordtype">void</span> <a class="code hl_function" href="group__bootloader__api.html#gab14eb123f642e320218491d114b6418b">boot_init</a>(<span class="keywordtype">void</span>);</div>
 <div class="line"><a id="l00057" name="l00057"></a><span class="lineno">   57</span> </div>
-<div class="line"><a id="l00058" name="l00058"></a><span class="lineno">   58</span><span class="keywordtype">void</span> <a class="code hl_function" href="group___b_o_o_t_l_o_a_d_e_r___u_t_i_l_s___a_p_i.html#gab14eb123f642e320218491d114b6418b">boot_init</a>(<span class="keywordtype">void</span>);</div>
-<div class="line"><a id="l00059" name="l00059"></a><span class="lineno"><a class="line" href="group___b_o_o_t_l_o_a_d_e_r___u_t_i_l_s___a_p_i.html#ga6252b1935a7b8e2e6c14a969372929a2">   59</a></span><span class="keywordtype">void</span> <a class="code hl_function" href="group___b_o_o_t_l_o_a_d_e_r___u_t_i_l_s___a_p_i.html#ga6252b1935a7b8e2e6c14a969372929a2">boot_deinit</a>(<span class="keywordtype">void</span>);</div>
-<div class="line"><a id="l00060" name="l00060"></a><span class="lineno">   60</span><span class="keywordtype">void</span> <a class="code hl_function" href="group___b_o_o_t_l_o_a_d_e_r___u_t_i_l_s___a_p_i.html#gae9e4d81efbd526a6c67fd8f1f104d5b3">boot_jump_to_application</a>(uint32_t address);</div>
-<div class="line"><a id="l00061" name="l00061"></a><span class="lineno">   61</span><span class="keywordtype">void</span> <a class="code hl_function" href="group___b_o_o_t_l_o_a_d_e_r___u_t_i_l_s___a_p_i.html#gaa04987d2a6ae206865dc3257d9812fc2">boot_fallback</a>(<span class="keywordtype">void</span>);</div>
-<div class="line"><a id="l00062" name="l00062"></a><span class="lineno">   62</span> </div>
-<div class="line"><a id="l00063" name="l00063"></a><span class="lineno">   63</span><span class="keywordtype">bool</span> <a class="code hl_function" href="group___b_o_o_t_l_o_a_d_e_r___u_t_i_l_s___a_p_i.html#gad1ee38c60f2867b042ea10f27967d856">boot_program_half_page</a>(<span class="keywordtype">bool</span> lower, uint32_t crc_expected,</div>
-<div class="line"><a id="l00064" name="l00064"></a><span class="lineno">   64</span>                            uint32_t <a class="code hl_variable" href="cusb_8c.html#a6bc4de0cf7d05058f1f29ed60890a573">page_num</a>, uint32_t data[16]);</div>
-<div class="line"><a id="l00065" name="l00065"></a><span class="lineno">   65</span> </div>
-<div class="line"><a id="l00066" name="l00066"></a><span class="lineno">   66</span><span class="keywordtype">bool</span> <a class="code hl_function" href="group___b_o_o_t_l_o_a_d_e_r___u_t_i_l_s___a_p_i.html#ga153399560a9486547bc5bb4b7dcf252e">boot_program_application</a>(uint32_t* data, uint32_t start_address,</div>
-<div class="line"><a id="l00067" name="l00067"></a><span class="lineno">   67</span>                              uint32_t len, uint32_t crc);</div>
-<div class="line"><a id="l00068" name="l00068"></a><span class="lineno">   68</span><span class="keywordtype">bool</span> <a class="code hl_function" href="group___b_o_o_t_l_o_a_d_e_r___u_t_i_l_s___a_p_i.html#ga26bd7e0102d41443ee0aefe24260b86a">boot_verify_checksum</a>(uint32_t* data, uint32_t len, uint32_t expected);</div>
-<div class="line"><a id="l00069" name="l00069"></a><span class="lineno">   69</span> </div>
-<div class="line"><a id="l00070" name="l00070"></a><span class="lineno">   70</span>uint32_t <a class="code hl_function" href="group___b_o_o_t_l_o_a_d_e_r___u_t_i_l_s___a_p_i.html#gaa2e9f36142af2f77406b4c6343c6b014">boot_get_half_page_checksum</a>(uint32_t data[16]);</div>
-<div class="line"><a id="l00071" name="l00071"></a><span class="lineno">   71</span> </div>
-<div class="line"><a id="l00074" name="l00074"></a><span class="lineno">   74</span><span class="preprocessor">#ifdef __cplusplus</span></div>
-<div class="line"><a id="l00075" name="l00075"></a><span class="lineno">   75</span>}</div>
-<div class="line"><a id="l00076" name="l00076"></a><span class="lineno">   76</span><span class="preprocessor">#endif</span></div>
-<div class="line"><a id="l00077" name="l00077"></a><span class="lineno">   77</span> </div>
-<div class="line"><a id="l00078" name="l00078"></a><span class="lineno">   78</span><span class="preprocessor">#endif </span><span class="comment">// BOOTLOADER_UTILS_H</span></div>
-<div class="ttc" id="acusb_8c_html_a6bc4de0cf7d05058f1f29ed60890a573"><div class="ttname"><a href="cusb_8c.html#a6bc4de0cf7d05058f1f29ed60890a573">page_num</a></div><div class="ttdeci">uint32_t page_num</div><div class="ttdef"><b>Definition</b> <a href="cusb_8c_source.html#l00345">cusb.c:345</a></div></div>
-<div class="ttc" id="agroup___b_o_o_t_l_o_a_d_e_r___u_t_i_l_s___a_p_i_html_ga153399560a9486547bc5bb4b7dcf252e"><div class="ttname"><a href="group___b_o_o_t_l_o_a_d_e_r___u_t_i_l_s___a_p_i.html#ga153399560a9486547bc5bb4b7dcf252e">boot_program_application</a></div><div class="ttdeci">bool boot_program_application(uint32_t *data, uint32_t start_address, uint32_t len, uint32_t crc)</div><div class="ttdef"><b>Definition</b> <a href="bootloader__utils_8c_source.html#l00206">bootloader_utils.c:206</a></div></div>
-<div class="ttc" id="agroup___b_o_o_t_l_o_a_d_e_r___u_t_i_l_s___a_p_i_html_ga26bd7e0102d41443ee0aefe24260b86a"><div class="ttname"><a href="group___b_o_o_t_l_o_a_d_e_r___u_t_i_l_s___a_p_i.html#ga26bd7e0102d41443ee0aefe24260b86a">boot_verify_checksum</a></div><div class="ttdeci">bool boot_verify_checksum(uint32_t *data, uint32_t len, uint32_t expected)</div><div class="ttdef"><b>Definition</b> <a href="bootloader__utils_8c_source.html#l00262">bootloader_utils.c:262</a></div></div>
-<div class="ttc" id="agroup___b_o_o_t_l_o_a_d_e_r___u_t_i_l_s___a_p_i_html_ga6252b1935a7b8e2e6c14a969372929a2"><div class="ttname"><a href="group___b_o_o_t_l_o_a_d_e_r___u_t_i_l_s___a_p_i.html#ga6252b1935a7b8e2e6c14a969372929a2">boot_deinit</a></div><div class="ttdeci">void boot_deinit(void)</div></div>
-<div class="ttc" id="agroup___b_o_o_t_l_o_a_d_e_r___u_t_i_l_s___a_p_i_html_gaa04987d2a6ae206865dc3257d9812fc2"><div class="ttname"><a href="group___b_o_o_t_l_o_a_d_e_r___u_t_i_l_s___a_p_i.html#gaa04987d2a6ae206865dc3257d9812fc2">boot_fallback</a></div><div class="ttdeci">void boot_fallback(void)</div><div class="ttdef"><b>Definition</b> <a href="bootloader__utils_8c_source.html#l00173">bootloader_utils.c:173</a></div></div>
-<div class="ttc" id="agroup___b_o_o_t_l_o_a_d_e_r___u_t_i_l_s___a_p_i_html_gaa2e9f36142af2f77406b4c6343c6b014"><div class="ttname"><a href="group___b_o_o_t_l_o_a_d_e_r___u_t_i_l_s___a_p_i.html#gaa2e9f36142af2f77406b4c6343c6b014">boot_get_half_page_checksum</a></div><div class="ttdeci">uint32_t boot_get_half_page_checksum(uint32_t data[16])</div><div class="ttdef"><b>Definition</b> <a href="bootloader__utils_8c_source.html#l00284">bootloader_utils.c:284</a></div></div>
-<div class="ttc" id="agroup___b_o_o_t_l_o_a_d_e_r___u_t_i_l_s___a_p_i_html_gab14eb123f642e320218491d114b6418b"><div class="ttname"><a href="group___b_o_o_t_l_o_a_d_e_r___u_t_i_l_s___a_p_i.html#gab14eb123f642e320218491d114b6418b">boot_init</a></div><div class="ttdeci">void boot_init(void)</div><div class="ttdef"><b>Definition</b> <a href="bootloader__utils_8c_source.html#l00071">bootloader_utils.c:71</a></div></div>
-<div class="ttc" id="agroup___b_o_o_t_l_o_a_d_e_r___u_t_i_l_s___a_p_i_html_gad1ee38c60f2867b042ea10f27967d856"><div class="ttname"><a href="group___b_o_o_t_l_o_a_d_e_r___u_t_i_l_s___a_p_i.html#gad1ee38c60f2867b042ea10f27967d856">boot_program_half_page</a></div><div class="ttdeci">bool boot_program_half_page(bool lower, uint32_t crc_expected, uint32_t page_num, uint32_t data[16])</div><div class="ttdef"><b>Definition</b> <a href="bootloader__utils_8c_source.html#l00179">bootloader_utils.c:179</a></div></div>
-<div class="ttc" id="agroup___b_o_o_t_l_o_a_d_e_r___u_t_i_l_s___a_p_i_html_gae9e4d81efbd526a6c67fd8f1f104d5b3"><div class="ttname"><a href="group___b_o_o_t_l_o_a_d_e_r___u_t_i_l_s___a_p_i.html#gae9e4d81efbd526a6c67fd8f1f104d5b3">boot_jump_to_application</a></div><div class="ttdeci">void boot_jump_to_application(uint32_t address)</div><div class="ttdef"><b>Definition</b> <a href="bootloader__utils_8c_source.html#l00153">bootloader_utils.c:153</a></div></div>
-<div class="ttc" id="amemory_8h_html"><div class="ttname"><a href="memory_8h.html">memory.h</a></div><div class="ttdoc">Memory Header File.</div></div>
+<div class="line"><a id="l00062" name="l00062"></a><span class="lineno"><a class="line" href="group__bootloader__api.html#ga6252b1935a7b8e2e6c14a969372929a2">   62</a></span> <span class="keywordtype">void</span> <a class="code hl_function" href="group__bootloader__api.html#ga6252b1935a7b8e2e6c14a969372929a2">boot_deinit</a>(<span class="keywordtype">void</span>);</div>
+<div class="line"><a id="l00063" name="l00063"></a><span class="lineno">   63</span> </div>
+<div class="line"><a id="l00069" name="l00069"></a><span class="lineno">   69</span> <span class="keywordtype">void</span> <a class="code hl_function" href="group__bootloader__api.html#gae9e4d81efbd526a6c67fd8f1f104d5b3">boot_jump_to_application</a>(uint32_t address);</div>
+<div class="line"><a id="l00070" name="l00070"></a><span class="lineno">   70</span> </div>
+<div class="line"><a id="l00075" name="l00075"></a><span class="lineno">   75</span> <span class="keywordtype">void</span> <a class="code hl_function" href="group__bootloader__api.html#gaa04987d2a6ae206865dc3257d9812fc2">boot_fallback</a>(<span class="keywordtype">void</span>);</div>
+<div class="line"><a id="l00076" name="l00076"></a><span class="lineno">   76</span> </div>
+<div class="line"><a id="l00085" name="l00085"></a><span class="lineno">   85</span> <span class="keywordtype">bool</span> <a class="code hl_function" href="group__bootloader__api.html#gad1ee38c60f2867b042ea10f27967d856">boot_program_half_page</a>(<span class="keywordtype">bool</span> lower, uint32_t crc_expected,</div>
+<div class="line"><a id="l00086" name="l00086"></a><span class="lineno">   86</span>                             uint32_t <a class="code hl_variable" href="cusb_8c.html#a6bc4de0cf7d05058f1f29ed60890a573">page_num</a>, uint32_t data[16]);</div>
+<div class="line"><a id="l00087" name="l00087"></a><span class="lineno">   87</span> </div>
+<div class="line"><a id="l00096" name="l00096"></a><span class="lineno">   96</span> <span class="keywordtype">bool</span> <a class="code hl_function" href="group__bootloader__api.html#ga153399560a9486547bc5bb4b7dcf252e">boot_program_application</a>(uint32_t* data, uint32_t start_address,</div>
+<div class="line"><a id="l00097" name="l00097"></a><span class="lineno">   97</span>                               uint32_t len, uint32_t crc);</div>
+<div class="line"><a id="l00098" name="l00098"></a><span class="lineno">   98</span> </div>
+<div class="line"><a id="l00106" name="l00106"></a><span class="lineno">  106</span> <span class="keywordtype">bool</span> <a class="code hl_function" href="group__bootloader__api.html#ga26bd7e0102d41443ee0aefe24260b86a">boot_verify_checksum</a>(uint32_t* data, uint32_t len, uint32_t expected);</div>
+<div class="line"><a id="l00107" name="l00107"></a><span class="lineno">  107</span> </div>
+<div class="line"><a id="l00113" name="l00113"></a><span class="lineno">  113</span> uint32_t <a class="code hl_function" href="group__bootloader__api.html#gaa2e9f36142af2f77406b4c6343c6b014">boot_get_half_page_checksum</a>(uint32_t data[16]);</div>
+<div class="line"><a id="l00114" name="l00114"></a><span class="lineno">  114</span> </div>
+ <span class="comment">/* End of bootloader_api group */</span> <span class="comment">/* End of common group */</span><div class="line"><a id="l00117" name="l00117"></a><span class="lineno">  117</span> </div>
+<div class="line"><a id="l00118" name="l00118"></a><span class="lineno">  118</span><span class="preprocessor"> #ifdef __cplusplus</span></div>
+<div class="line"><a id="l00119" name="l00119"></a><span class="lineno">  119</span> }</div>
+<div class="line"><a id="l00120" name="l00120"></a><span class="lineno">  120</span><span class="preprocessor"> #endif</span></div>
+<div class="line"><a id="l00121" name="l00121"></a><span class="lineno">  121</span> </div>
+<div class="line"><a id="l00122" name="l00122"></a><span class="lineno">  122</span><span class="preprocessor"> #endif </span><span class="comment">// BOOTLOADER_UTILS_H</span></div>
+<div class="ttc" id="acusb_8c_html_a6bc4de0cf7d05058f1f29ed60890a573"><div class="ttname"><a href="cusb_8c.html#a6bc4de0cf7d05058f1f29ed60890a573">page_num</a></div><div class="ttdeci">uint32_t page_num</div><div class="ttdef"><b>Definition</b> <a href="cusb_8c_source.html#l00322">cusb.c:322</a></div></div>
+<div class="ttc" id="agroup__bootloader__api_html_ga153399560a9486547bc5bb4b7dcf252e"><div class="ttname"><a href="group__bootloader__api.html#ga153399560a9486547bc5bb4b7dcf252e">boot_program_application</a></div><div class="ttdeci">bool boot_program_application(uint32_t *data, uint32_t start_address, uint32_t len, uint32_t crc)</div><div class="ttdoc">Program a complete application to flash.</div><div class="ttdef"><b>Definition</b> <a href="bootloader__utils_8c_source.html#l00184">bootloader_utils.c:184</a></div></div>
+<div class="ttc" id="agroup__bootloader__api_html_ga26bd7e0102d41443ee0aefe24260b86a"><div class="ttname"><a href="group__bootloader__api.html#ga26bd7e0102d41443ee0aefe24260b86a">boot_verify_checksum</a></div><div class="ttdeci">bool boot_verify_checksum(uint32_t *data, uint32_t len, uint32_t expected)</div><div class="ttdoc">Verify data checksum.</div><div class="ttdef"><b>Definition</b> <a href="bootloader__utils_8c_source.html#l00240">bootloader_utils.c:240</a></div></div>
+<div class="ttc" id="agroup__bootloader__api_html_ga6252b1935a7b8e2e6c14a969372929a2"><div class="ttname"><a href="group__bootloader__api.html#ga6252b1935a7b8e2e6c14a969372929a2">boot_deinit</a></div><div class="ttdeci">void boot_deinit(void)</div><div class="ttdoc">Clean up and terminate bootloader operations.</div></div>
+<div class="ttc" id="agroup__bootloader__api_html_gaa04987d2a6ae206865dc3257d9812fc2"><div class="ttname"><a href="group__bootloader__api.html#gaa04987d2a6ae206865dc3257d9812fc2">boot_fallback</a></div><div class="ttdeci">void boot_fallback(void)</div><div class="ttdoc">Execute fallback procedure when boot fails.</div><div class="ttdef"><b>Definition</b> <a href="bootloader__utils_8c_source.html#l00151">bootloader_utils.c:151</a></div></div>
+<div class="ttc" id="agroup__bootloader__api_html_gaa2e9f36142af2f77406b4c6343c6b014"><div class="ttname"><a href="group__bootloader__api.html#gaa2e9f36142af2f77406b4c6343c6b014">boot_get_half_page_checksum</a></div><div class="ttdeci">uint32_t boot_get_half_page_checksum(uint32_t data[16])</div><div class="ttdoc">Calculate checksum for half page of data.</div><div class="ttdef"><b>Definition</b> <a href="bootloader__utils_8c_source.html#l00262">bootloader_utils.c:262</a></div></div>
+<div class="ttc" id="agroup__bootloader__api_html_gab14eb123f642e320218491d114b6418b"><div class="ttname"><a href="group__bootloader__api.html#gab14eb123f642e320218491d114b6418b">boot_init</a></div><div class="ttdeci">void boot_init(void)</div><div class="ttdoc">Initialize bootloader systems.</div><div class="ttdef"><b>Definition</b> <a href="bootloader__utils_8c_source.html#l00049">bootloader_utils.c:49</a></div></div>
+<div class="ttc" id="agroup__bootloader__api_html_gad1ee38c60f2867b042ea10f27967d856"><div class="ttname"><a href="group__bootloader__api.html#gad1ee38c60f2867b042ea10f27967d856">boot_program_half_page</a></div><div class="ttdeci">bool boot_program_half_page(bool lower, uint32_t crc_expected, uint32_t page_num, uint32_t data[16])</div><div class="ttdoc">Program half of a flash page.</div><div class="ttdef"><b>Definition</b> <a href="bootloader__utils_8c_source.html#l00157">bootloader_utils.c:157</a></div></div>
+<div class="ttc" id="agroup__bootloader__api_html_gae9e4d81efbd526a6c67fd8f1f104d5b3"><div class="ttname"><a href="group__bootloader__api.html#gae9e4d81efbd526a6c67fd8f1f104d5b3">boot_jump_to_application</a></div><div class="ttdeci">void boot_jump_to_application(uint32_t address)</div><div class="ttdoc">Jump to application at specified address.</div><div class="ttdef"><b>Definition</b> <a href="bootloader__utils_8c_source.html#l00131">bootloader_utils.c:131</a></div></div>
+<div class="ttc" id="amemory_8h_html"><div class="ttname"><a href="memory_8h.html">memory.h</a></div><div class="ttdoc">Memory Management Header File.</div></div>
 </div><!-- fragment --></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Thu Mar 20 2025 05:49:15 for CoolEase by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8
+Generated on Fri Mar 21 2025 10:20:20 for CoolEase by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8
 </small></address>
 </body>
 </html>

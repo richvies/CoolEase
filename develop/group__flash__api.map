@@ -1,0 +1,4 @@
+<map id="Flash Memory Interface" name="Flash Memory Interface">
+<area shape="rect" id="Node000001" title="W25Q series SPI flash memory driver interface." alt="" coords="101,5,279,31"/>
+<area shape="rect" id="Node000002" href="$group__hub.html" title="Hub module for sensor management." alt="" coords="5,5,53,31"/>
+</map>

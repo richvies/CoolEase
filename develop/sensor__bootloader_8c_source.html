@@ -21,7 +21,7 @@
  <tbody>
  <tr id="projectrow">
   <td id="projectalign">
-   <div id="projectname">CoolEase<span id="projectnumber">&#160;develop-acc8581</span>
+   <div id="projectname">CoolEase<span id="projectnumber">&#160;develop-eabc6b5</span>
    </div>
    <div id="projectbrief">Remote Temperature Monitor</div>
   </td>
@@ -83,186 +83,158 @@ $(document).ready(function() { init_codefold(0); });
 </div><!--header-->
 <div class="contents">
 <a href="sensor__bootloader_8c.html">Go to the documentation of this file.</a><div class="fragment"><div class="line"><a id="l00001" name="l00001"></a><span class="lineno">    1</span> </div>
-<div class="line"><a id="l00011" name="l00011"></a><span class="lineno">   11</span><span class="comment">/*////////////////////////////////////////////////////////////////////////////*/</span></div>
-<div class="line"><a id="l00012" name="l00012"></a><span class="lineno">   12</span><span class="comment">// Includes</span></div>
-<div class="line"><a id="l00013" name="l00013"></a><span class="lineno">   13</span><span class="comment">/*////////////////////////////////////////////////////////////////////////////*/</span></div>
-<div class="line"><a id="l00014" name="l00014"></a><span class="lineno">   14</span> </div>
-<div class="line"><a id="l00015" name="l00015"></a><span class="lineno">   15</span><span class="preprocessor">#include &quot;<a class="code" href="sensor__bootloader_8h.html">sensor/sensor_bootloader.h</a>&quot;</span></div>
-<div class="line"><a id="l00016" name="l00016"></a><span class="lineno">   16</span> </div>
-<div class="line"><a id="l00017" name="l00017"></a><span class="lineno">   17</span><span class="preprocessor">#include &quot;<a class="code" href="aes_8h.html">common/aes.h</a>&quot;</span></div>
-<div class="line"><a id="l00018" name="l00018"></a><span class="lineno">   18</span><span class="preprocessor">#include &quot;<a class="code" href="battery_8h.html">common/battery.h</a>&quot;</span></div>
-<div class="line"><a id="l00019" name="l00019"></a><span class="lineno">   19</span><span class="preprocessor">#include &quot;<a class="code" href="bootloader__utils_8h.html">common/bootloader_utils.h</a>&quot;</span></div>
-<div class="line"><a id="l00020" name="l00020"></a><span class="lineno">   20</span><span class="preprocessor">#include &quot;<a class="code" href="log_8h.html">common/log.h</a>&quot;</span></div>
-<div class="line"><a id="l00021" name="l00021"></a><span class="lineno">   21</span><span class="preprocessor">#include &quot;<a class="code" href="reset_8h.html">common/reset.h</a>&quot;</span></div>
-<div class="line"><a id="l00022" name="l00022"></a><span class="lineno">   22</span><span class="preprocessor">#include &quot;<a class="code" href="rf__scan_8h.html">common/rf_scan.h</a>&quot;</span></div>
-<div class="line"><a id="l00023" name="l00023"></a><span class="lineno">   23</span><span class="preprocessor">#include &quot;<a class="code" href="rfm_8h.html">common/rfm.h</a>&quot;</span></div>
-<div class="line"><a id="l00024" name="l00024"></a><span class="lineno">   24</span><span class="preprocessor">#include &quot;<a class="code" href="test_8h.html">common/test.h</a>&quot;</span></div>
-<div class="line"><a id="l00025" name="l00025"></a><span class="lineno">   25</span><span class="preprocessor">#include &quot;<a class="code" href="timers_8h.html">common/timers.h</a>&quot;</span></div>
-<div class="line"><a id="l00026" name="l00026"></a><span class="lineno">   26</span><span class="preprocessor">#include &quot;config/board_defs.h&quot;</span></div>
-<div class="line"><a id="l00027" name="l00027"></a><span class="lineno">   27</span> </div>
-<div class="line"><a id="l00028" name="l00028"></a><span class="lineno">   28</span><span class="preprocessor">#include &quot;<a class="code" href="sensor__test_8h.html">sensor/sensor_test.h</a>&quot;</span></div>
-<div class="line"><a id="l00029" name="l00029"></a><span class="lineno">   29</span><span class="preprocessor">#include &quot;<a class="code" href="si7051_8h.html">sensor/si7051.h</a>&quot;</span></div>
-<div class="line"><a id="l00030" name="l00030"></a><span class="lineno">   30</span><span class="preprocessor">#include &quot;<a class="code" href="tmp112_8h.html">sensor/tmp112.h</a>&quot;</span></div>
-<div class="line"><a id="l00031" name="l00031"></a><span class="lineno">   31</span> </div>
-<div class="line"><a id="l00040" name="l00040"></a><span class="lineno"><a class="line" href="group___s_e_n_s_o_r___b_o_o_t_l_o_a_d_e_r___i_n_t.html#ga1c6d5de492ac61ad29aec7aa9a436bbf">   40</a></span><span class="preprocessor">#define VERSION         100</span></div>
-<div class="line"><a id="l00041" name="l00041"></a><span class="lineno"><a class="line" href="group___s_e_n_s_o_r___b_o_o_t_l_o_a_d_e_r___i_n_t.html#gafc8829f597a6e68357cb01f3eb9c5cec">   41</a></span><span class="preprocessor">#define BACKUP_VERSION  100</span></div>
-<div class="line"><a id="l00042" name="l00042"></a><span class="lineno"><a class="line" href="group___s_e_n_s_o_r___b_o_o_t_l_o_a_d_e_r___i_n_t.html#gacb50ec8610865207a58fd084b315745f">   42</a></span><span class="preprocessor">#define BIN_HEADER_SIZE 64</span></div>
+<div class="line"><a id="l00011" name="l00011"></a><span class="lineno">   11</span><span class="preprocessor">#include &quot;<a class="code" href="sensor__bootloader_8h.html">sensor/sensor_bootloader.h</a>&quot;</span></div>
+<div class="line"><a id="l00012" name="l00012"></a><span class="lineno">   12</span> </div>
+<div class="line"><a id="l00013" name="l00013"></a><span class="lineno">   13</span><span class="preprocessor">#include &quot;<a class="code" href="aes_8h.html">common/aes.h</a>&quot;</span></div>
+<div class="line"><a id="l00014" name="l00014"></a><span class="lineno">   14</span><span class="preprocessor">#include &quot;<a class="code" href="battery_8h.html">common/battery.h</a>&quot;</span></div>
+<div class="line"><a id="l00015" name="l00015"></a><span class="lineno">   15</span><span class="preprocessor">#include &quot;<a class="code" href="bootloader__utils_8h.html">common/bootloader_utils.h</a>&quot;</span></div>
+<div class="line"><a id="l00016" name="l00016"></a><span class="lineno">   16</span><span class="preprocessor">#include &quot;<a class="code" href="log_8h.html">common/log.h</a>&quot;</span></div>
+<div class="line"><a id="l00017" name="l00017"></a><span class="lineno">   17</span><span class="preprocessor">#include &quot;<a class="code" href="reset_8h.html">common/reset.h</a>&quot;</span></div>
+<div class="line"><a id="l00018" name="l00018"></a><span class="lineno">   18</span><span class="preprocessor">#include &quot;<a class="code" href="rfm_8h.html">common/rfm.h</a>&quot;</span></div>
+<div class="line"><a id="l00019" name="l00019"></a><span class="lineno">   19</span><span class="preprocessor">#include &quot;<a class="code" href="timers_8h.html">common/timers.h</a>&quot;</span></div>
+<div class="line"><a id="l00020" name="l00020"></a><span class="lineno">   20</span><span class="preprocessor">#include &quot;config/board_defs.h&quot;</span></div>
+<div class="line"><a id="l00021" name="l00021"></a><span class="lineno">   21</span> </div>
+<div class="line"><a id="l00022" name="l00022"></a><span class="lineno">   22</span><span class="preprocessor">#include &quot;<a class="code" href="si7051_8h.html">sensor/si7051.h</a>&quot;</span></div>
+<div class="line"><a id="l00023" name="l00023"></a><span class="lineno">   23</span><span class="preprocessor">#include &quot;<a class="code" href="tmp112_8h.html">sensor/tmp112.h</a>&quot;</span></div>
+<div class="line"><a id="l00024" name="l00024"></a><span class="lineno">   24</span> </div>
+<div class="line"><a id="l00033" name="l00033"></a><span class="lineno"><a class="line" href="group__bootloader__api.html#ga1c6d5de492ac61ad29aec7aa9a436bbf">   33</a></span><span class="preprocessor">#define VERSION         100</span></div>
+<div class="line"><a id="l00034" name="l00034"></a><span class="lineno"><a class="line" href="group__bootloader__api.html#gafc8829f597a6e68357cb01f3eb9c5cec">   34</a></span><span class="preprocessor">#define BACKUP_VERSION  100</span></div>
+<div class="line"><a id="l00035" name="l00035"></a><span class="lineno"><a class="line" href="group__bootloader__api.html#gacb50ec8610865207a58fd084b315745f">   35</a></span><span class="preprocessor">#define BIN_HEADER_SIZE 64</span></div>
+<div class="line"><a id="l00036" name="l00036"></a><span class="lineno">   36</span> </div>
+<div class="line"><a id="l00037" name="l00037"></a><span class="lineno">   37</span><span class="keyword">static</span> <span class="keywordtype">void</span> <a class="code hl_function" href="sensor__bootloader_8c.html#ga17fb021b480a1f220d2579807fa2e398">init</a>(<span class="keywordtype">void</span>);</div>
+<div class="line"><a id="l00038" name="l00038"></a><span class="lineno">   38</span><span class="keyword">static</span> <span class="keywordtype">void</span> <a class="code hl_function" href="sensor__bootloader_8c.html#ga4ec2253d9622cef3d2997ef1fca4b6d7">deinit</a>(<span class="keywordtype">void</span>);</div>
+<div class="line"><a id="l00039" name="l00039"></a><span class="lineno">   39</span> </div>
+<div class="line"><a id="l00040" name="l00040"></a><span class="lineno">   40</span><span class="keywordtype">int</span> <a class="code hl_function" href="group__hub__apis.html#ga840291bc02cba5474a4cb46a9b9566fe">main</a>(<span class="keywordtype">void</span>) {</div>
+<div class="line"><a id="l00041" name="l00041"></a><span class="lineno">   41</span>    <a class="code hl_function" href="sensor__bootloader_8c.html#ga17fb021b480a1f220d2579807fa2e398">init</a>();</div>
+<div class="line"><a id="l00042" name="l00042"></a><span class="lineno">   42</span>    <a class="code hl_function" href="group__bootloader__api.html#gab14eb123f642e320218491d114b6418b">boot_init</a>();</div>
 <div class="line"><a id="l00043" name="l00043"></a><span class="lineno">   43</span> </div>
-<div class="line"><a id="l00044" name="l00044"></a><span class="lineno">   44</span><span class="comment">/*////////////////////////////////////////////////////////////////////////////*/</span></div>
-<div class="line"><a id="l00045" name="l00045"></a><span class="lineno">   45</span><span class="comment">// Static Variables</span></div>
-<div class="line"><a id="l00046" name="l00046"></a><span class="lineno">   46</span><span class="comment">/*////////////////////////////////////////////////////////////////////////////*/</span></div>
+<div class="line"><a id="l00044" name="l00044"></a><span class="lineno">   44</span>    <span class="comment">// If first power on</span></div>
+<div class="line"><a id="l00045" name="l00045"></a><span class="lineno">   45</span>    <span class="keywordflow">if</span> (boot_info-&gt;init_key != BOOT_INIT_KEY2) {</div>
+<div class="line"><a id="l00046" name="l00046"></a><span class="lineno">   46</span>        <a class="code hl_define" href="group__bootloader__api.html#ga44097652068916fa40b7d9b46f32a3c7">BOOT_LOG</a>(<span class="stringliteral">&quot;First App Check\n&quot;</span>);</div>
 <div class="line"><a id="l00047" name="l00047"></a><span class="lineno">   47</span> </div>
-<div class="line"><a id="l00048" name="l00048"></a><span class="lineno">   48</span><span class="comment">/*////////////////////////////////////////////////////////////////////////////*/</span></div>
-<div class="line"><a id="l00049" name="l00049"></a><span class="lineno">   49</span><span class="comment">// Static Function Declarations</span></div>
-<div class="line"><a id="l00050" name="l00050"></a><span class="lineno">   50</span><span class="comment">/*////////////////////////////////////////////////////////////////////////////*/</span></div>
-<div class="line"><a id="l00051" name="l00051"></a><span class="lineno">   51</span> </div>
-<div class="line"><a id="l00052" name="l00052"></a><span class="lineno">   52</span><span class="keyword">static</span> <span class="keywordtype">void</span> <a class="code hl_function" href="group___s_e_n_s_o_r___b_o_o_t_l_o_a_d_e_r___i_n_t.html#ga17fb021b480a1f220d2579807fa2e398">init</a>(<span class="keywordtype">void</span>);</div>
-<div class="line"><a id="l00053" name="l00053"></a><span class="lineno">   53</span><span class="keyword">static</span> <span class="keywordtype">void</span> <a class="code hl_function" href="group___s_e_n_s_o_r___b_o_o_t_l_o_a_d_e_r___i_n_t.html#ga4ec2253d9622cef3d2997ef1fca4b6d7">deinit</a>(<span class="keywordtype">void</span>);</div>
-<div class="line"><a id="l00054" name="l00054"></a><span class="lineno">   54</span> </div>
-<div class="line"><a id="l00061" name="l00061"></a><span class="lineno">   61</span><span class="comment">/*////////////////////////////////////////////////////////////////////////////*/</span></div>
-<div class="line"><a id="l00062" name="l00062"></a><span class="lineno">   62</span><span class="comment">// Exported Function Definitions</span></div>
-<div class="line"><a id="l00063" name="l00063"></a><span class="lineno">   63</span><span class="comment">/*////////////////////////////////////////////////////////////////////////////*/</span></div>
-<div class="line"><a id="l00064" name="l00064"></a><span class="lineno">   64</span> </div>
-<div class="foldopen" id="foldopen00065" data-start="{" data-end="}">
-<div class="line"><a id="l00065" name="l00065"></a><span class="lineno"><a class="line" href="group___s_e_n_s_o_r___b_o_o_t_l_o_a_d_e_r___a_p_i.html#ga840291bc02cba5474a4cb46a9b9566fe">   65</a></span><span class="keywordtype">int</span> <a class="code hl_function" href="group___s_e_n_s_o_r___b_o_o_t_l_o_a_d_e_r___a_p_i.html#ga840291bc02cba5474a4cb46a9b9566fe">main</a>(<span class="keywordtype">void</span>) {</div>
-<div class="line"><a id="l00066" name="l00066"></a><span class="lineno">   66</span>    <a class="code hl_function" href="group___s_e_n_s_o_r___b_o_o_t_l_o_a_d_e_r___i_n_t.html#ga17fb021b480a1f220d2579807fa2e398">init</a>();</div>
-<div class="line"><a id="l00067" name="l00067"></a><span class="lineno">   67</span>    <a class="code hl_function" href="group___b_o_o_t_l_o_a_d_e_r___u_t_i_l_s___a_p_i.html#gab14eb123f642e320218491d114b6418b">boot_init</a>();</div>
-<div class="line"><a id="l00068" name="l00068"></a><span class="lineno">   68</span> </div>
-<div class="line"><a id="l00069" name="l00069"></a><span class="lineno">   69</span>    <span class="comment">// If first power on</span></div>
-<div class="line"><a id="l00070" name="l00070"></a><span class="lineno">   70</span>    <span class="keywordflow">if</span> (boot_info-&gt;init_key != BOOT_INIT_KEY2) {</div>
-<div class="line"><a id="l00071" name="l00071"></a><span class="lineno">   71</span>        <a class="code hl_define" href="group___b_o_o_t_l_o_a_d_e_r___u_t_i_l_s___a_p_i.html#ga44097652068916fa40b7d9b46f32a3c7">BOOT_LOG</a>(<span class="stringliteral">&quot;First App Check\n&quot;</span>);</div>
-<div class="line"><a id="l00072" name="l00072"></a><span class="lineno">   72</span> </div>
-<div class="line"><a id="l00073" name="l00073"></a><span class="lineno">   73</span>        <a class="code hl_function" href="group___l_o_g___a_p_i.html#gae4f545d29e1faa30e5b27be12d4286d0">serial_printf</a>(<span class="stringliteral">&quot;.Boot: %8u\n&quot;</span>, <a class="code hl_define" href="group___s_e_n_s_o_r___b_o_o_t_l_o_a_d_e_r___i_n_t.html#ga1c6d5de492ac61ad29aec7aa9a436bbf">VERSION</a>);</div>
-<div class="line"><a id="l00074" name="l00074"></a><span class="lineno">   74</span> </div>
-<div class="line"><a id="l00075" name="l00075"></a><span class="lineno">   75</span>        <a class="code hl_function" href="group___m_e_m_o_r_y___a_p_i.html#ga86683c4905f4626d992b0f4568ea5dcd">mem_eeprom_write_word_ptr</a>(&amp;boot_info-&gt;app_ok_key, 0);</div>
-<div class="line"><a id="l00076" name="l00076"></a><span class="lineno">   76</span>        <a class="code hl_function" href="group___m_e_m_o_r_y___a_p_i.html#ga86683c4905f4626d992b0f4568ea5dcd">mem_eeprom_write_word_ptr</a>(&amp;boot_info-&gt;app_num_fail_runs, 0);</div>
-<div class="line"><a id="l00077" name="l00077"></a><span class="lineno">   77</span>        <a class="code hl_function" href="group___m_e_m_o_r_y___a_p_i.html#ga86683c4905f4626d992b0f4568ea5dcd">mem_eeprom_write_word_ptr</a>(&amp;boot_info-&gt;app_num_iwdg_reset, 0);</div>
-<div class="line"><a id="l00078" name="l00078"></a><span class="lineno">   78</span> </div>
-<div class="line"><a id="l00079" name="l00079"></a><span class="lineno">   79</span>        <span class="comment">// Set initialized</span></div>
-<div class="line"><a id="l00080" name="l00080"></a><span class="lineno">   80</span>        <a class="code hl_function" href="group___m_e_m_o_r_y___a_p_i.html#ga86683c4905f4626d992b0f4568ea5dcd">mem_eeprom_write_word_ptr</a>(&amp;boot_info-&gt;init_key, BOOT_INIT_KEY2);</div>
-<div class="line"><a id="l00081" name="l00081"></a><span class="lineno">   81</span>    }</div>
-<div class="line"><a id="l00082" name="l00082"></a><span class="lineno">   82</span> </div>
-<div class="line"><a id="l00083" name="l00083"></a><span class="lineno">   83</span>    <span class="comment">// Setup eeprom for first run of new app</span></div>
-<div class="line"><a id="l00084" name="l00084"></a><span class="lineno">   84</span>    <span class="keywordflow">if</span> (boot_info-&gt;app_init_key != BOOT_APP_INIT_KEY) {</div>
-<div class="line"><a id="l00085" name="l00085"></a><span class="lineno">   85</span>        <a class="code hl_define" href="group___b_o_o_t_l_o_a_d_e_r___u_t_i_l_s___a_p_i.html#ga44097652068916fa40b7d9b46f32a3c7">BOOT_LOG</a>(<span class="stringliteral">&quot;Setup App\n&quot;</span>);</div>
-<div class="line"><a id="l00086" name="l00086"></a><span class="lineno">   86</span> </div>
-<div class="line"><a id="l00087" name="l00087"></a><span class="lineno">   87</span>        <span class="comment">// Boot Info</span></div>
-<div class="line"><a id="l00088" name="l00088"></a><span class="lineno">   88</span>        <a class="code hl_function" href="group___m_e_m_o_r_y___a_p_i.html#ga86683c4905f4626d992b0f4568ea5dcd">mem_eeprom_write_word_ptr</a>(&amp;boot_info-&gt;app_ok_key, 0);</div>
-<div class="line"><a id="l00089" name="l00089"></a><span class="lineno">   89</span>        <a class="code hl_function" href="group___m_e_m_o_r_y___a_p_i.html#ga86683c4905f4626d992b0f4568ea5dcd">mem_eeprom_write_word_ptr</a>(&amp;boot_info-&gt;app_num_fail_runs, 0);</div>
-<div class="line"><a id="l00090" name="l00090"></a><span class="lineno">   90</span>        <a class="code hl_function" href="group___m_e_m_o_r_y___a_p_i.html#ga86683c4905f4626d992b0f4568ea5dcd">mem_eeprom_write_word_ptr</a>(&amp;boot_info-&gt;app_num_iwdg_reset, 0);</div>
-<div class="line"><a id="l00091" name="l00091"></a><span class="lineno">   91</span> </div>
-<div class="line"><a id="l00092" name="l00092"></a><span class="lineno">   92</span>        <a class="code hl_function" href="group___m_e_m_o_r_y___a_p_i.html#ga86683c4905f4626d992b0f4568ea5dcd">mem_eeprom_write_word_ptr</a>(&amp;boot_info-&gt;app_version, 0);</div>
-<div class="line"><a id="l00093" name="l00093"></a><span class="lineno">   93</span>        <a class="code hl_function" href="group___m_e_m_o_r_y___a_p_i.html#ga86683c4905f4626d992b0f4568ea5dcd">mem_eeprom_write_word_ptr</a>(&amp;boot_info-&gt;app_update_version, 0);</div>
-<div class="line"><a id="l00094" name="l00094"></a><span class="lineno">   94</span>        <a class="code hl_function" href="group___m_e_m_o_r_y___a_p_i.html#ga86683c4905f4626d992b0f4568ea5dcd">mem_eeprom_write_word_ptr</a>(&amp;boot_info-&gt;app_previous_version, 0);</div>
-<div class="line"><a id="l00095" name="l00095"></a><span class="lineno">   95</span> </div>
-<div class="line"><a id="l00096" name="l00096"></a><span class="lineno">   96</span>        <span class="comment">// Shared Info</span></div>
-<div class="line"><a id="l00097" name="l00097"></a><span class="lineno">   97</span>        <a class="code hl_function" href="group___m_e_m_o_r_y___a_p_i.html#ga86683c4905f4626d992b0f4568ea5dcd">mem_eeprom_write_word_ptr</a>(&amp;shared_info-&gt;boot_version, <a class="code hl_define" href="group___s_e_n_s_o_r___b_o_o_t_l_o_a_d_e_r___i_n_t.html#ga1c6d5de492ac61ad29aec7aa9a436bbf">VERSION</a>);</div>
-<div class="line"><a id="l00098" name="l00098"></a><span class="lineno">   98</span>        <a class="code hl_function" href="group___m_e_m_o_r_y___a_p_i.html#ga86683c4905f4626d992b0f4568ea5dcd">mem_eeprom_write_word_ptr</a>(&amp;shared_info-&gt;upg_pending, 0);</div>
-<div class="line"><a id="l00099" name="l00099"></a><span class="lineno">   99</span>        <a class="code hl_function" href="group___m_e_m_o_r_y___a_p_i.html#ga86683c4905f4626d992b0f4568ea5dcd">mem_eeprom_write_word_ptr</a>(&amp;shared_info-&gt;upg_flags,</div>
-<div class="line"><a id="l00100" name="l00100"></a><span class="lineno">  100</span>                                  boot_info-&gt;upg_flags);</div>
-<div class="line"><a id="l00101" name="l00101"></a><span class="lineno">  101</span> </div>
-<div class="line"><a id="l00102" name="l00102"></a><span class="lineno">  102</span>        <a class="code hl_function" href="group___m_e_m_o_r_y___a_p_i.html#ga86683c4905f4626d992b0f4568ea5dcd">mem_eeprom_write_word_ptr</a>(&amp;shared_info-&gt;app_ok_key, 0);</div>
-<div class="line"><a id="l00103" name="l00103"></a><span class="lineno">  103</span>        <a class="code hl_function" href="group___m_e_m_o_r_y___a_p_i.html#ga86683c4905f4626d992b0f4568ea5dcd">mem_eeprom_write_word_ptr</a>(&amp;shared_info-&gt;app_curr_version, 0);</div>
-<div class="line"><a id="l00104" name="l00104"></a><span class="lineno">  104</span>        <a class="code hl_function" href="group___m_e_m_o_r_y___a_p_i.html#ga86683c4905f4626d992b0f4568ea5dcd">mem_eeprom_write_word_ptr</a>(&amp;shared_info-&gt;app_next_version, 0);</div>
+<div class="line"><a id="l00048" name="l00048"></a><span class="lineno">   48</span>        <a class="code hl_function" href="group__log__api.html#gae4f545d29e1faa30e5b27be12d4286d0">serial_printf</a>(<span class="stringliteral">&quot;.Boot: %8u\n&quot;</span>, <a class="code hl_define" href="group__bootloader__api.html#ga1c6d5de492ac61ad29aec7aa9a436bbf">VERSION</a>);</div>
+<div class="line"><a id="l00049" name="l00049"></a><span class="lineno">   49</span> </div>
+<div class="line"><a id="l00050" name="l00050"></a><span class="lineno">   50</span>        <a class="code hl_function" href="group__memory__api.html#ga86683c4905f4626d992b0f4568ea5dcd">mem_eeprom_write_word_ptr</a>(&amp;boot_info-&gt;app_ok_key, 0);</div>
+<div class="line"><a id="l00051" name="l00051"></a><span class="lineno">   51</span>        <a class="code hl_function" href="group__memory__api.html#ga86683c4905f4626d992b0f4568ea5dcd">mem_eeprom_write_word_ptr</a>(&amp;boot_info-&gt;app_num_fail_runs, 0);</div>
+<div class="line"><a id="l00052" name="l00052"></a><span class="lineno">   52</span>        <a class="code hl_function" href="group__memory__api.html#ga86683c4905f4626d992b0f4568ea5dcd">mem_eeprom_write_word_ptr</a>(&amp;boot_info-&gt;app_num_iwdg_reset, 0);</div>
+<div class="line"><a id="l00053" name="l00053"></a><span class="lineno">   53</span> </div>
+<div class="line"><a id="l00054" name="l00054"></a><span class="lineno">   54</span>        <span class="comment">// Set initialized</span></div>
+<div class="line"><a id="l00055" name="l00055"></a><span class="lineno">   55</span>        <a class="code hl_function" href="group__memory__api.html#ga86683c4905f4626d992b0f4568ea5dcd">mem_eeprom_write_word_ptr</a>(&amp;boot_info-&gt;init_key, BOOT_INIT_KEY2);</div>
+<div class="line"><a id="l00056" name="l00056"></a><span class="lineno">   56</span>    }</div>
+<div class="line"><a id="l00057" name="l00057"></a><span class="lineno">   57</span> </div>
+<div class="line"><a id="l00058" name="l00058"></a><span class="lineno">   58</span>    <span class="comment">// Setup eeprom for first run of new app</span></div>
+<div class="line"><a id="l00059" name="l00059"></a><span class="lineno">   59</span>    <span class="keywordflow">if</span> (boot_info-&gt;app_init_key != BOOT_APP_INIT_KEY) {</div>
+<div class="line"><a id="l00060" name="l00060"></a><span class="lineno">   60</span>        <a class="code hl_define" href="group__bootloader__api.html#ga44097652068916fa40b7d9b46f32a3c7">BOOT_LOG</a>(<span class="stringliteral">&quot;Setup App\n&quot;</span>);</div>
+<div class="line"><a id="l00061" name="l00061"></a><span class="lineno">   61</span> </div>
+<div class="line"><a id="l00062" name="l00062"></a><span class="lineno">   62</span>        <span class="comment">// Boot Info</span></div>
+<div class="line"><a id="l00063" name="l00063"></a><span class="lineno">   63</span>        <a class="code hl_function" href="group__memory__api.html#ga86683c4905f4626d992b0f4568ea5dcd">mem_eeprom_write_word_ptr</a>(&amp;boot_info-&gt;app_ok_key, 0);</div>
+<div class="line"><a id="l00064" name="l00064"></a><span class="lineno">   64</span>        <a class="code hl_function" href="group__memory__api.html#ga86683c4905f4626d992b0f4568ea5dcd">mem_eeprom_write_word_ptr</a>(&amp;boot_info-&gt;app_num_fail_runs, 0);</div>
+<div class="line"><a id="l00065" name="l00065"></a><span class="lineno">   65</span>        <a class="code hl_function" href="group__memory__api.html#ga86683c4905f4626d992b0f4568ea5dcd">mem_eeprom_write_word_ptr</a>(&amp;boot_info-&gt;app_num_iwdg_reset, 0);</div>
+<div class="line"><a id="l00066" name="l00066"></a><span class="lineno">   66</span> </div>
+<div class="line"><a id="l00067" name="l00067"></a><span class="lineno">   67</span>        <a class="code hl_function" href="group__memory__api.html#ga86683c4905f4626d992b0f4568ea5dcd">mem_eeprom_write_word_ptr</a>(&amp;boot_info-&gt;app_version, 0);</div>
+<div class="line"><a id="l00068" name="l00068"></a><span class="lineno">   68</span>        <a class="code hl_function" href="group__memory__api.html#ga86683c4905f4626d992b0f4568ea5dcd">mem_eeprom_write_word_ptr</a>(&amp;boot_info-&gt;app_update_version, 0);</div>
+<div class="line"><a id="l00069" name="l00069"></a><span class="lineno">   69</span>        <a class="code hl_function" href="group__memory__api.html#ga86683c4905f4626d992b0f4568ea5dcd">mem_eeprom_write_word_ptr</a>(&amp;boot_info-&gt;app_previous_version, 0);</div>
+<div class="line"><a id="l00070" name="l00070"></a><span class="lineno">   70</span> </div>
+<div class="line"><a id="l00071" name="l00071"></a><span class="lineno">   71</span>        <span class="comment">// Shared Info</span></div>
+<div class="line"><a id="l00072" name="l00072"></a><span class="lineno">   72</span>        <a class="code hl_function" href="group__memory__api.html#ga86683c4905f4626d992b0f4568ea5dcd">mem_eeprom_write_word_ptr</a>(&amp;shared_info-&gt;boot_version, <a class="code hl_define" href="group__bootloader__api.html#ga1c6d5de492ac61ad29aec7aa9a436bbf">VERSION</a>);</div>
+<div class="line"><a id="l00073" name="l00073"></a><span class="lineno">   73</span>        <a class="code hl_function" href="group__memory__api.html#ga86683c4905f4626d992b0f4568ea5dcd">mem_eeprom_write_word_ptr</a>(&amp;shared_info-&gt;upg_pending, 0);</div>
+<div class="line"><a id="l00074" name="l00074"></a><span class="lineno">   74</span>        <a class="code hl_function" href="group__memory__api.html#ga86683c4905f4626d992b0f4568ea5dcd">mem_eeprom_write_word_ptr</a>(&amp;shared_info-&gt;upg_flags,</div>
+<div class="line"><a id="l00075" name="l00075"></a><span class="lineno">   75</span>                                  boot_info-&gt;upg_flags);</div>
+<div class="line"><a id="l00076" name="l00076"></a><span class="lineno">   76</span> </div>
+<div class="line"><a id="l00077" name="l00077"></a><span class="lineno">   77</span>        <a class="code hl_function" href="group__memory__api.html#ga86683c4905f4626d992b0f4568ea5dcd">mem_eeprom_write_word_ptr</a>(&amp;shared_info-&gt;app_ok_key, 0);</div>
+<div class="line"><a id="l00078" name="l00078"></a><span class="lineno">   78</span>        <a class="code hl_function" href="group__memory__api.html#ga86683c4905f4626d992b0f4568ea5dcd">mem_eeprom_write_word_ptr</a>(&amp;shared_info-&gt;app_curr_version, 0);</div>
+<div class="line"><a id="l00079" name="l00079"></a><span class="lineno">   79</span>        <a class="code hl_function" href="group__memory__api.html#ga86683c4905f4626d992b0f4568ea5dcd">mem_eeprom_write_word_ptr</a>(&amp;shared_info-&gt;app_next_version, 0);</div>
+<div class="line"><a id="l00080" name="l00080"></a><span class="lineno">   80</span> </div>
+<div class="line"><a id="l00081" name="l00081"></a><span class="lineno">   81</span>        <span class="comment">// App Info</span></div>
+<div class="line"><a id="l00082" name="l00082"></a><span class="lineno">   82</span>        <a class="code hl_function" href="group__memory__api.html#ga86683c4905f4626d992b0f4568ea5dcd">mem_eeprom_write_word_ptr</a>(&amp;app_info-&gt;init_key, 0);</div>
+<div class="line"><a id="l00083" name="l00083"></a><span class="lineno">   83</span>        <a class="code hl_function" href="group__memory__api.html#ga86683c4905f4626d992b0f4568ea5dcd">mem_eeprom_write_word_ptr</a>(&amp;app_info-&gt;dev_id, boot_info-&gt;dev_id);</div>
+<div class="line"><a id="l00084" name="l00084"></a><span class="lineno">   84</span>        <a class="code hl_function" href="group__memory__api.html#ga86683c4905f4626d992b0f4568ea5dcd">mem_eeprom_write_word_ptr</a>(&amp;app_info-&gt;registered_key, 0);</div>
+<div class="line"><a id="l00085" name="l00085"></a><span class="lineno">   85</span> </div>
+<div class="line"><a id="l00086" name="l00086"></a><span class="lineno">   86</span>        uint8_t* u8ptr = NULL;</div>
+<div class="line"><a id="l00087" name="l00087"></a><span class="lineno">   87</span> </div>
+<div class="line"><a id="l00088" name="l00088"></a><span class="lineno">   88</span>        <span class="keywordflow">for</span> (uint8_t i = 0; i &lt; <span class="keyword">sizeof</span>(app_info-&gt;aes_key); i++) {</div>
+<div class="line"><a id="l00089" name="l00089"></a><span class="lineno">   89</span>            u8ptr = &amp;app_info-&gt;aes_key[i];</div>
+<div class="line"><a id="l00090" name="l00090"></a><span class="lineno">   90</span>            <a class="code hl_function" href="group__memory__api.html#ga4ebbc83ce32824efb16e281ba575fb48">mem_eeprom_write_byte</a>((uint32_t)u8ptr, boot_info-&gt;aes_key[i]);</div>
+<div class="line"><a id="l00091" name="l00091"></a><span class="lineno">   91</span>        }</div>
+<div class="line"><a id="l00092" name="l00092"></a><span class="lineno">   92</span> </div>
+<div class="line"><a id="l00093" name="l00093"></a><span class="lineno">   93</span>        <span class="keywordflow">for</span> (uint8_t i = 0; i &lt; <span class="keyword">sizeof</span>(app_info-&gt;pwd); i++) {</div>
+<div class="line"><a id="l00094" name="l00094"></a><span class="lineno">   94</span>            u8ptr = (uint8_t*)&amp;app_info-&gt;pwd[i];</div>
+<div class="line"><a id="l00095" name="l00095"></a><span class="lineno">   95</span>            <a class="code hl_function" href="group__memory__api.html#ga4ebbc83ce32824efb16e281ba575fb48">mem_eeprom_write_byte</a>((uint32_t)u8ptr, boot_info-&gt;pwd[i]);</div>
+<div class="line"><a id="l00096" name="l00096"></a><span class="lineno">   96</span>        }</div>
+<div class="line"><a id="l00097" name="l00097"></a><span class="lineno">   97</span> </div>
+<div class="line"><a id="l00098" name="l00098"></a><span class="lineno">   98</span>        <a class="code hl_function" href="group__memory__api.html#ga86683c4905f4626d992b0f4568ea5dcd">mem_eeprom_write_word_ptr</a>(&amp;boot_info-&gt;app_init_key, BOOT_APP_INIT_KEY);</div>
+<div class="line"><a id="l00099" name="l00099"></a><span class="lineno">   99</span>    }</div>
+<div class="line"><a id="l00100" name="l00100"></a><span class="lineno">  100</span> </div>
+<div class="line"><a id="l00101" name="l00101"></a><span class="lineno">  101</span>    <a class="code hl_define" href="group__bootloader__api.html#ga44097652068916fa40b7d9b46f32a3c7">BOOT_LOG</a>(<span class="stringliteral">&quot;Jump %8x\n\n----------\n\n&quot;</span>, boot_info-&gt;vtor);</div>
+<div class="line"><a id="l00102" name="l00102"></a><span class="lineno">  102</span> </div>
+<div class="line"><a id="l00103" name="l00103"></a><span class="lineno">  103</span>    <span class="comment">// serial print finish</span></div>
+<div class="line"><a id="l00104" name="l00104"></a><span class="lineno">  104</span>    <a class="code hl_function" href="group__timers__api.html#ga86c515c63c987ea728d6336e35d0aaa3">timers_delay_milliseconds</a>(500);</div>
 <div class="line"><a id="l00105" name="l00105"></a><span class="lineno">  105</span> </div>
-<div class="line"><a id="l00106" name="l00106"></a><span class="lineno">  106</span>        <span class="comment">// App Info</span></div>
-<div class="line"><a id="l00107" name="l00107"></a><span class="lineno">  107</span>        <a class="code hl_function" href="group___m_e_m_o_r_y___a_p_i.html#ga86683c4905f4626d992b0f4568ea5dcd">mem_eeprom_write_word_ptr</a>(&amp;app_info-&gt;init_key, 0);</div>
-<div class="line"><a id="l00108" name="l00108"></a><span class="lineno">  108</span>        <a class="code hl_function" href="group___m_e_m_o_r_y___a_p_i.html#ga86683c4905f4626d992b0f4568ea5dcd">mem_eeprom_write_word_ptr</a>(&amp;app_info-&gt;dev_id, boot_info-&gt;dev_id);</div>
-<div class="line"><a id="l00109" name="l00109"></a><span class="lineno">  109</span>        <a class="code hl_function" href="group___m_e_m_o_r_y___a_p_i.html#ga86683c4905f4626d992b0f4568ea5dcd">mem_eeprom_write_word_ptr</a>(&amp;app_info-&gt;registered_key, 0);</div>
-<div class="line"><a id="l00110" name="l00110"></a><span class="lineno">  110</span> </div>
-<div class="line"><a id="l00111" name="l00111"></a><span class="lineno">  111</span>        uint8_t* u8ptr = NULL;</div>
+<div class="line"><a id="l00106" name="l00106"></a><span class="lineno">  106</span>    <span class="comment">// Deinit peripherals</span></div>
+<div class="line"><a id="l00107" name="l00107"></a><span class="lineno">  107</span>    <a class="code hl_function" href="sensor__bootloader_8c.html#ga4ec2253d9622cef3d2997ef1fca4b6d7">deinit</a>();</div>
+<div class="line"><a id="l00108" name="l00108"></a><span class="lineno">  108</span> </div>
+<div class="line"><a id="l00109" name="l00109"></a><span class="lineno">  109</span>    <span class="comment">// Run Application</span></div>
+<div class="line"><a id="l00110" name="l00110"></a><span class="lineno">  110</span>    <a class="code hl_function" href="group__timers__api.html#ga27ab5dabf9e5a9ee1d25be688f6dff0d">timers_pet_dogs</a>();</div>
+<div class="line"><a id="l00111" name="l00111"></a><span class="lineno">  111</span>    <a class="code hl_function" href="group__bootloader__api.html#gae9e4d81efbd526a6c67fd8f1f104d5b3">boot_jump_to_application</a>(boot_info-&gt;vtor);</div>
 <div class="line"><a id="l00112" name="l00112"></a><span class="lineno">  112</span> </div>
-<div class="line"><a id="l00113" name="l00113"></a><span class="lineno">  113</span>        <span class="keywordflow">for</span> (uint8_t i = 0; i &lt; <span class="keyword">sizeof</span>(app_info-&gt;aes_key); i++) {</div>
-<div class="line"><a id="l00114" name="l00114"></a><span class="lineno">  114</span>            u8ptr = &amp;app_info-&gt;aes_key[i];</div>
-<div class="line"><a id="l00115" name="l00115"></a><span class="lineno">  115</span>            <a class="code hl_function" href="group___m_e_m_o_r_y___a_p_i.html#ga4ebbc83ce32824efb16e281ba575fb48">mem_eeprom_write_byte</a>((uint32_t)u8ptr, boot_info-&gt;aes_key[i]);</div>
-<div class="line"><a id="l00116" name="l00116"></a><span class="lineno">  116</span>        }</div>
+<div class="line"><a id="l00113" name="l00113"></a><span class="lineno">  113</span>    <span class="keywordflow">for</span> (;;) {</div>
+<div class="line"><a id="l00114" name="l00114"></a><span class="lineno">  114</span>        <a class="code hl_function" href="group__log__api.html#gae4f545d29e1faa30e5b27be12d4286d0">serial_printf</a>(<span class="stringliteral">&quot;Sensor Bootloader Loop\n\n&quot;</span>);</div>
+<div class="line"><a id="l00115" name="l00115"></a><span class="lineno">  115</span>        __asm__(<span class="stringliteral">&quot;nop&quot;</span>);</div>
+<div class="line"><a id="l00116" name="l00116"></a><span class="lineno">  116</span>    }</div>
 <div class="line"><a id="l00117" name="l00117"></a><span class="lineno">  117</span> </div>
-<div class="line"><a id="l00118" name="l00118"></a><span class="lineno">  118</span>        <span class="keywordflow">for</span> (uint8_t i = 0; i &lt; <span class="keyword">sizeof</span>(app_info-&gt;pwd); i++) {</div>
-<div class="line"><a id="l00119" name="l00119"></a><span class="lineno">  119</span>            u8ptr = (uint8_t*)&amp;app_info-&gt;pwd[i];</div>
-<div class="line"><a id="l00120" name="l00120"></a><span class="lineno">  120</span>            <a class="code hl_function" href="group___m_e_m_o_r_y___a_p_i.html#ga4ebbc83ce32824efb16e281ba575fb48">mem_eeprom_write_byte</a>((uint32_t)u8ptr, boot_info-&gt;pwd[i]);</div>
-<div class="line"><a id="l00121" name="l00121"></a><span class="lineno">  121</span>        }</div>
-<div class="line"><a id="l00122" name="l00122"></a><span class="lineno">  122</span> </div>
-<div class="line"><a id="l00123" name="l00123"></a><span class="lineno">  123</span>        <a class="code hl_function" href="group___m_e_m_o_r_y___a_p_i.html#ga86683c4905f4626d992b0f4568ea5dcd">mem_eeprom_write_word_ptr</a>(&amp;boot_info-&gt;app_init_key, BOOT_APP_INIT_KEY);</div>
-<div class="line"><a id="l00124" name="l00124"></a><span class="lineno">  124</span>    }</div>
+<div class="line"><a id="l00118" name="l00118"></a><span class="lineno">  118</span>    <span class="keywordflow">return</span> 0;</div>
+<div class="line"><a id="l00119" name="l00119"></a><span class="lineno">  119</span>}</div>
+<div class="line"><a id="l00120" name="l00120"></a><span class="lineno">  120</span> </div>
+<div class="foldopen" id="foldopen00121" data-start="{" data-end="}">
+<div class="line"><a id="l00121" name="l00121"></a><span class="lineno"><a class="line" href="sensor__bootloader_8c.html#ga17fb021b480a1f220d2579807fa2e398">  121</a></span><span class="keyword">static</span> <span class="keywordtype">void</span> <a class="code hl_function" href="sensor__bootloader_8c.html#ga17fb021b480a1f220d2579807fa2e398">init</a>(<span class="keywordtype">void</span>) {</div>
+<div class="line"><a id="l00122" name="l00122"></a><span class="lineno">  122</span>    clock_setup_msi_2mhz();</div>
+<div class="line"><a id="l00123" name="l00123"></a><span class="lineno">  123</span>    <a class="code hl_function" href="group__timers__api.html#ga2895f028adf625347af2779776708c7b">timers_lptim_init</a>();</div>
+<div class="line"><a id="l00124" name="l00124"></a><span class="lineno">  124</span>    <a class="code hl_function" href="group__log__api.html#ga2508fad025e49f9746b6c178dce6917e">log_init</a>();</div>
 <div class="line"><a id="l00125" name="l00125"></a><span class="lineno">  125</span> </div>
-<div class="line"><a id="l00126" name="l00126"></a><span class="lineno">  126</span>    <a class="code hl_define" href="group___b_o_o_t_l_o_a_d_e_r___u_t_i_l_s___a_p_i.html#ga44097652068916fa40b7d9b46f32a3c7">BOOT_LOG</a>(<span class="stringliteral">&quot;Jump %8x\n\n----------\n\n&quot;</span>, boot_info-&gt;vtor);</div>
-<div class="line"><a id="l00127" name="l00127"></a><span class="lineno">  127</span> </div>
-<div class="line"><a id="l00128" name="l00128"></a><span class="lineno">  128</span>    <span class="comment">// serial print finish</span></div>
-<div class="line"><a id="l00129" name="l00129"></a><span class="lineno">  129</span>    <a class="code hl_function" href="group___t_i_m_e_r_s___a_p_i.html#ga86c515c63c987ea728d6336e35d0aaa3">timers_delay_milliseconds</a>(500);</div>
-<div class="line"><a id="l00130" name="l00130"></a><span class="lineno">  130</span> </div>
-<div class="line"><a id="l00131" name="l00131"></a><span class="lineno">  131</span>    <span class="comment">// Deinit peripherals</span></div>
-<div class="line"><a id="l00132" name="l00132"></a><span class="lineno">  132</span>    <a class="code hl_function" href="group___s_e_n_s_o_r___b_o_o_t_l_o_a_d_e_r___i_n_t.html#ga4ec2253d9622cef3d2997ef1fca4b6d7">deinit</a>();</div>
-<div class="line"><a id="l00133" name="l00133"></a><span class="lineno">  133</span> </div>
-<div class="line"><a id="l00134" name="l00134"></a><span class="lineno">  134</span>    <span class="comment">// Run Application</span></div>
-<div class="line"><a id="l00135" name="l00135"></a><span class="lineno">  135</span>    <a class="code hl_function" href="group___t_i_m_e_r_s___a_p_i.html#ga27ab5dabf9e5a9ee1d25be688f6dff0d">timers_pet_dogs</a>();</div>
-<div class="line"><a id="l00136" name="l00136"></a><span class="lineno">  136</span>    <a class="code hl_function" href="group___b_o_o_t_l_o_a_d_e_r___u_t_i_l_s___a_p_i.html#gae9e4d81efbd526a6c67fd8f1f104d5b3">boot_jump_to_application</a>(boot_info-&gt;vtor);</div>
-<div class="line"><a id="l00137" name="l00137"></a><span class="lineno">  137</span> </div>
-<div class="line"><a id="l00138" name="l00138"></a><span class="lineno">  138</span>    <span class="keywordflow">for</span> (;;) {</div>
-<div class="line"><a id="l00139" name="l00139"></a><span class="lineno">  139</span>        <a class="code hl_function" href="group___l_o_g___a_p_i.html#gae4f545d29e1faa30e5b27be12d4286d0">serial_printf</a>(<span class="stringliteral">&quot;Sensor Bootloader Loop\n\n&quot;</span>);</div>
-<div class="line"><a id="l00140" name="l00140"></a><span class="lineno">  140</span>        __asm__(<span class="stringliteral">&quot;nop&quot;</span>);</div>
-<div class="line"><a id="l00141" name="l00141"></a><span class="lineno">  141</span>    }</div>
-<div class="line"><a id="l00142" name="l00142"></a><span class="lineno">  142</span> </div>
-<div class="line"><a id="l00143" name="l00143"></a><span class="lineno">  143</span>    <span class="keywordflow">return</span> 0;</div>
-<div class="line"><a id="l00144" name="l00144"></a><span class="lineno">  144</span>}</div>
+<div class="line"><a id="l00126" name="l00126"></a><span class="lineno">  126</span>    flash_led(40, 3);</div>
+<div class="line"><a id="l00127" name="l00127"></a><span class="lineno">  127</span>}</div>
 </div>
-<div class="line"><a id="l00145" name="l00145"></a><span class="lineno">  145</span> </div>
-<div class="line"><a id="l00152" name="l00152"></a><span class="lineno">  152</span><span class="comment">/*////////////////////////////////////////////////////////////////////////////*/</span></div>
-<div class="line"><a id="l00153" name="l00153"></a><span class="lineno">  153</span><span class="comment">// Static Function Definitions</span></div>
-<div class="line"><a id="l00154" name="l00154"></a><span class="lineno">  154</span><span class="comment">/*////////////////////////////////////////////////////////////////////////////*/</span></div>
-<div class="line"><a id="l00155" name="l00155"></a><span class="lineno">  155</span> </div>
-<div class="foldopen" id="foldopen00156" data-start="{" data-end="}">
-<div class="line"><a id="l00156" name="l00156"></a><span class="lineno"><a class="line" href="group___s_e_n_s_o_r___b_o_o_t_l_o_a_d_e_r___i_n_t.html#ga17fb021b480a1f220d2579807fa2e398">  156</a></span><span class="keyword">static</span> <span class="keywordtype">void</span> <a class="code hl_function" href="group___s_e_n_s_o_r___b_o_o_t_l_o_a_d_e_r___i_n_t.html#ga17fb021b480a1f220d2579807fa2e398">init</a>(<span class="keywordtype">void</span>) {</div>
-<div class="line"><a id="l00157" name="l00157"></a><span class="lineno">  157</span>    clock_setup_msi_2mhz();</div>
-<div class="line"><a id="l00158" name="l00158"></a><span class="lineno">  158</span>    <a class="code hl_function" href="group___t_i_m_e_r_s___a_p_i.html#ga2895f028adf625347af2779776708c7b">timers_lptim_init</a>();</div>
-<div class="line"><a id="l00159" name="l00159"></a><span class="lineno">  159</span>    <a class="code hl_function" href="group___l_o_g___a_p_i.html#ga2508fad025e49f9746b6c178dce6917e">log_init</a>();</div>
-<div class="line"><a id="l00160" name="l00160"></a><span class="lineno">  160</span> </div>
-<div class="line"><a id="l00161" name="l00161"></a><span class="lineno">  161</span>    flash_led(40, 3);</div>
-<div class="line"><a id="l00162" name="l00162"></a><span class="lineno">  162</span>}</div>
+<div class="line"><a id="l00128" name="l00128"></a><span class="lineno">  128</span> </div>
+<div class="foldopen" id="foldopen00129" data-start="{" data-end="}">
+<div class="line"><a id="l00129" name="l00129"></a><span class="lineno"><a class="line" href="sensor__bootloader_8c.html#ga4ec2253d9622cef3d2997ef1fca4b6d7">  129</a></span><span class="keyword">static</span> <span class="keywordtype">void</span> <a class="code hl_function" href="sensor__bootloader_8c.html#ga4ec2253d9622cef3d2997ef1fca4b6d7">deinit</a>(<span class="keywordtype">void</span>) {</div>
+<div class="line"><a id="l00130" name="l00130"></a><span class="lineno">  130</span>    <a class="code hl_function" href="group__log__api.html#gab2c6faf6d03a5e0e458b683f1dc311fb">log_end</a>();</div>
+<div class="line"><a id="l00131" name="l00131"></a><span class="lineno">  131</span>    <a class="code hl_function" href="group__timers__api.html#ga25495bda8b23ffa1a23ccd2a5c5413bc">timers_lptim_end</a>();</div>
+<div class="line"><a id="l00132" name="l00132"></a><span class="lineno">  132</span>    rcc_periph_clock_disable(RCC_GPIOA);</div>
+<div class="line"><a id="l00133" name="l00133"></a><span class="lineno">  133</span>    rcc_periph_clock_disable(RCC_GPIOB);</div>
+<div class="line"><a id="l00134" name="l00134"></a><span class="lineno">  134</span>    clock_setup_msi_2mhz();</div>
+<div class="line"><a id="l00135" name="l00135"></a><span class="lineno">  135</span>}</div>
 </div>
-<div class="line"><a id="l00163" name="l00163"></a><span class="lineno">  163</span> </div>
-<div class="foldopen" id="foldopen00164" data-start="{" data-end="}">
-<div class="line"><a id="l00164" name="l00164"></a><span class="lineno"><a class="line" href="group___s_e_n_s_o_r___b_o_o_t_l_o_a_d_e_r___i_n_t.html#ga4ec2253d9622cef3d2997ef1fca4b6d7">  164</a></span><span class="keyword">static</span> <span class="keywordtype">void</span> <a class="code hl_function" href="group___s_e_n_s_o_r___b_o_o_t_l_o_a_d_e_r___i_n_t.html#ga4ec2253d9622cef3d2997ef1fca4b6d7">deinit</a>(<span class="keywordtype">void</span>) {</div>
-<div class="line"><a id="l00165" name="l00165"></a><span class="lineno">  165</span>    <a class="code hl_function" href="group___l_o_g___a_p_i.html#gab2c6faf6d03a5e0e458b683f1dc311fb">log_end</a>();</div>
-<div class="line"><a id="l00166" name="l00166"></a><span class="lineno">  166</span>    <a class="code hl_function" href="group___t_i_m_e_r_s___a_p_i.html#ga25495bda8b23ffa1a23ccd2a5c5413bc">timers_lptim_end</a>();</div>
-<div class="line"><a id="l00167" name="l00167"></a><span class="lineno">  167</span>    rcc_periph_clock_disable(RCC_GPIOA);</div>
-<div class="line"><a id="l00168" name="l00168"></a><span class="lineno">  168</span>    rcc_periph_clock_disable(RCC_GPIOB);</div>
-<div class="line"><a id="l00169" name="l00169"></a><span class="lineno">  169</span>    clock_setup_msi_2mhz();</div>
-<div class="line"><a id="l00170" name="l00170"></a><span class="lineno">  170</span>}</div>
-</div>
-<div class="line"><a id="l00171" name="l00171"></a><span class="lineno">  171</span> </div>
-<div class="ttc" id="aaes_8h_html"><div class="ttname"><a href="aes_8h.html">aes.h</a></div></div>
-<div class="ttc" id="abattery_8h_html"><div class="ttname"><a href="battery_8h.html">battery.h</a></div><div class="ttdoc">Battery Header File.</div></div>
-<div class="ttc" id="abootloader__utils_8h_html"><div class="ttname"><a href="bootloader__utils_8h.html">bootloader_utils.h</a></div><div class="ttdoc">Bootloader_utils Header File.</div></div>
-<div class="ttc" id="agroup___b_o_o_t_l_o_a_d_e_r___u_t_i_l_s___a_p_i_html_ga44097652068916fa40b7d9b46f32a3c7"><div class="ttname"><a href="group___b_o_o_t_l_o_a_d_e_r___u_t_i_l_s___a_p_i.html#ga44097652068916fa40b7d9b46f32a3c7">BOOT_LOG</a></div><div class="ttdeci">#define BOOT_LOG</div><div class="ttdef"><b>Definition</b> <a href="bootloader__utils_8h_source.html#l00050">bootloader_utils.h:50</a></div></div>
-<div class="ttc" id="agroup___b_o_o_t_l_o_a_d_e_r___u_t_i_l_s___a_p_i_html_gab14eb123f642e320218491d114b6418b"><div class="ttname"><a href="group___b_o_o_t_l_o_a_d_e_r___u_t_i_l_s___a_p_i.html#gab14eb123f642e320218491d114b6418b">boot_init</a></div><div class="ttdeci">void boot_init(void)</div><div class="ttdef"><b>Definition</b> <a href="bootloader__utils_8c_source.html#l00071">bootloader_utils.c:71</a></div></div>
-<div class="ttc" id="agroup___b_o_o_t_l_o_a_d_e_r___u_t_i_l_s___a_p_i_html_gae9e4d81efbd526a6c67fd8f1f104d5b3"><div class="ttname"><a href="group___b_o_o_t_l_o_a_d_e_r___u_t_i_l_s___a_p_i.html#gae9e4d81efbd526a6c67fd8f1f104d5b3">boot_jump_to_application</a></div><div class="ttdeci">void boot_jump_to_application(uint32_t address)</div><div class="ttdef"><b>Definition</b> <a href="bootloader__utils_8c_source.html#l00153">bootloader_utils.c:153</a></div></div>
-<div class="ttc" id="agroup___l_o_g___a_p_i_html_ga2508fad025e49f9746b6c178dce6917e"><div class="ttname"><a href="group___l_o_g___a_p_i.html#ga2508fad025e49f9746b6c178dce6917e">log_init</a></div><div class="ttdeci">void log_init(void)</div><div class="ttdef"><b>Definition</b> <a href="log_8c_source.html#l00081">log.c:81</a></div></div>
-<div class="ttc" id="agroup___l_o_g___a_p_i_html_gab2c6faf6d03a5e0e458b683f1dc311fb"><div class="ttname"><a href="group___l_o_g___a_p_i.html#gab2c6faf6d03a5e0e458b683f1dc311fb">log_end</a></div><div class="ttdeci">void log_end(void)</div><div class="ttdef"><b>Definition</b> <a href="log_8c_source.html#l00094">log.c:94</a></div></div>
-<div class="ttc" id="agroup___l_o_g___a_p_i_html_gae4f545d29e1faa30e5b27be12d4286d0"><div class="ttname"><a href="group___l_o_g___a_p_i.html#gae4f545d29e1faa30e5b27be12d4286d0">serial_printf</a></div><div class="ttdeci">void serial_printf(const char *format,...)</div></div>
-<div class="ttc" id="agroup___m_e_m_o_r_y___a_p_i_html_ga4ebbc83ce32824efb16e281ba575fb48"><div class="ttname"><a href="group___m_e_m_o_r_y___a_p_i.html#ga4ebbc83ce32824efb16e281ba575fb48">mem_eeprom_write_byte</a></div><div class="ttdeci">bool mem_eeprom_write_byte(uint32_t address, uint8_t data)</div><div class="ttdef"><b>Definition</b> <a href="memory_8c_source.html#l00142">memory.c:142</a></div></div>
-<div class="ttc" id="agroup___m_e_m_o_r_y___a_p_i_html_ga86683c4905f4626d992b0f4568ea5dcd"><div class="ttname"><a href="group___m_e_m_o_r_y___a_p_i.html#ga86683c4905f4626d992b0f4568ea5dcd">mem_eeprom_write_word_ptr</a></div><div class="ttdeci">bool mem_eeprom_write_word_ptr(uint32_t *ptr, uint32_t data)</div><div class="ttdef"><b>Definition</b> <a href="memory_8c_source.html#l00166">memory.c:166</a></div></div>
-<div class="ttc" id="agroup___s_e_n_s_o_r___b_o_o_t_l_o_a_d_e_r___a_p_i_html_ga840291bc02cba5474a4cb46a9b9566fe"><div class="ttname"><a href="group___s_e_n_s_o_r___b_o_o_t_l_o_a_d_e_r___a_p_i.html#ga840291bc02cba5474a4cb46a9b9566fe">main</a></div><div class="ttdeci">int main(void)</div><div class="ttdef"><b>Definition</b> <a href="sensor__bootloader_8c_source.html#l00065">sensor_bootloader.c:65</a></div></div>
-<div class="ttc" id="agroup___s_e_n_s_o_r___b_o_o_t_l_o_a_d_e_r___i_n_t_html_ga17fb021b480a1f220d2579807fa2e398"><div class="ttname"><a href="group___s_e_n_s_o_r___b_o_o_t_l_o_a_d_e_r___i_n_t.html#ga17fb021b480a1f220d2579807fa2e398">init</a></div><div class="ttdeci">static void init(void)</div><div class="ttdef"><b>Definition</b> <a href="sensor__bootloader_8c_source.html#l00156">sensor_bootloader.c:156</a></div></div>
-<div class="ttc" id="agroup___s_e_n_s_o_r___b_o_o_t_l_o_a_d_e_r___i_n_t_html_ga1c6d5de492ac61ad29aec7aa9a436bbf"><div class="ttname"><a href="group___s_e_n_s_o_r___b_o_o_t_l_o_a_d_e_r___i_n_t.html#ga1c6d5de492ac61ad29aec7aa9a436bbf">VERSION</a></div><div class="ttdeci">#define VERSION</div><div class="ttdef"><b>Definition</b> <a href="sensor__bootloader_8c_source.html#l00040">sensor_bootloader.c:40</a></div></div>
-<div class="ttc" id="agroup___s_e_n_s_o_r___b_o_o_t_l_o_a_d_e_r___i_n_t_html_ga4ec2253d9622cef3d2997ef1fca4b6d7"><div class="ttname"><a href="group___s_e_n_s_o_r___b_o_o_t_l_o_a_d_e_r___i_n_t.html#ga4ec2253d9622cef3d2997ef1fca4b6d7">deinit</a></div><div class="ttdeci">static void deinit(void)</div><div class="ttdef"><b>Definition</b> <a href="sensor__bootloader_8c_source.html#l00164">sensor_bootloader.c:164</a></div></div>
-<div class="ttc" id="agroup___t_i_m_e_r_s___a_p_i_html_ga25495bda8b23ffa1a23ccd2a5c5413bc"><div class="ttname"><a href="group___t_i_m_e_r_s___a_p_i.html#ga25495bda8b23ffa1a23ccd2a5c5413bc">timers_lptim_end</a></div><div class="ttdeci">void timers_lptim_end(void)</div><div class="ttdef"><b>Definition</b> <a href="timers_8c_source.html#l00276">timers.c:276</a></div></div>
-<div class="ttc" id="agroup___t_i_m_e_r_s___a_p_i_html_ga27ab5dabf9e5a9ee1d25be688f6dff0d"><div class="ttname"><a href="group___t_i_m_e_r_s___a_p_i.html#ga27ab5dabf9e5a9ee1d25be688f6dff0d">timers_pet_dogs</a></div><div class="ttdeci">void timers_pet_dogs(void)</div><div class="ttdef"><b>Definition</b> <a href="timers_8c_source.html#l00334">timers.c:334</a></div></div>
-<div class="ttc" id="agroup___t_i_m_e_r_s___a_p_i_html_ga2895f028adf625347af2779776708c7b"><div class="ttname"><a href="group___t_i_m_e_r_s___a_p_i.html#ga2895f028adf625347af2779776708c7b">timers_lptim_init</a></div><div class="ttdeci">void timers_lptim_init(void)</div><div class="ttdef"><b>Definition</b> <a href="timers_8c_source.html#l00232">timers.c:232</a></div></div>
-<div class="ttc" id="agroup___t_i_m_e_r_s___a_p_i_html_ga86c515c63c987ea728d6336e35d0aaa3"><div class="ttname"><a href="group___t_i_m_e_r_s___a_p_i.html#ga86c515c63c987ea728d6336e35d0aaa3">timers_delay_milliseconds</a></div><div class="ttdeci">void timers_delay_milliseconds(uint32_t delay_milliseconds)</div><div class="ttdef"><b>Definition</b> <a href="timers_8c_source.html#l00301">timers.c:301</a></div></div>
-<div class="ttc" id="alog_8h_html"><div class="ttname"><a href="log_8h.html">log.h</a></div><div class="ttdoc">Log Header File.</div></div>
-<div class="ttc" id="areset_8h_html"><div class="ttname"><a href="reset_8h.html">reset.h</a></div></div>
-<div class="ttc" id="arf__scan_8h_html"><div class="ttname"><a href="rf__scan_8h.html">rf_scan.h</a></div></div>
-<div class="ttc" id="arfm_8h_html"><div class="ttname"><a href="rfm_8h.html">rfm.h</a></div><div class="ttdoc">Rfm Header File.</div></div>
+<div class="line"><a id="l00136" name="l00136"></a><span class="lineno">  136</span> </div>
+<div class="ttc" id="aaes_8h_html"><div class="ttname"><a href="aes_8h.html">aes.h</a></div><div class="ttdoc">AES Encryption Module Header File.</div></div>
+<div class="ttc" id="abattery_8h_html"><div class="ttname"><a href="battery_8h.html">battery.h</a></div><div class="ttdoc">Battery Management Header File.</div></div>
+<div class="ttc" id="abootloader__utils_8h_html"><div class="ttname"><a href="bootloader__utils_8h.html">bootloader_utils.h</a></div><div class="ttdoc">Bootloader Utilities Header File.</div></div>
+<div class="ttc" id="agroup__bootloader__api_html_ga1c6d5de492ac61ad29aec7aa9a436bbf"><div class="ttname"><a href="group__bootloader__api.html#ga1c6d5de492ac61ad29aec7aa9a436bbf">VERSION</a></div><div class="ttdeci">#define VERSION</div><div class="ttdef"><b>Definition</b> <a href="sensor__bootloader_8c_source.html#l00033">sensor_bootloader.c:33</a></div></div>
+<div class="ttc" id="agroup__bootloader__api_html_ga44097652068916fa40b7d9b46f32a3c7"><div class="ttname"><a href="group__bootloader__api.html#ga44097652068916fa40b7d9b46f32a3c7">BOOT_LOG</a></div><div class="ttdeci">#define BOOT_LOG</div><div class="ttdoc">Bootloader logging macro.</div><div class="ttdef"><b>Definition</b> <a href="bootloader__utils_8h_source.html#l00048">bootloader_utils.h:48</a></div></div>
+<div class="ttc" id="agroup__bootloader__api_html_gab14eb123f642e320218491d114b6418b"><div class="ttname"><a href="group__bootloader__api.html#gab14eb123f642e320218491d114b6418b">boot_init</a></div><div class="ttdeci">void boot_init(void)</div><div class="ttdoc">Initialize bootloader systems.</div><div class="ttdef"><b>Definition</b> <a href="bootloader__utils_8c_source.html#l00049">bootloader_utils.c:49</a></div></div>
+<div class="ttc" id="agroup__bootloader__api_html_gae9e4d81efbd526a6c67fd8f1f104d5b3"><div class="ttname"><a href="group__bootloader__api.html#gae9e4d81efbd526a6c67fd8f1f104d5b3">boot_jump_to_application</a></div><div class="ttdeci">void boot_jump_to_application(uint32_t address)</div><div class="ttdoc">Jump to application at specified address.</div><div class="ttdef"><b>Definition</b> <a href="bootloader__utils_8c_source.html#l00131">bootloader_utils.c:131</a></div></div>
+<div class="ttc" id="agroup__hub__apis_html_ga840291bc02cba5474a4cb46a9b9566fe"><div class="ttname"><a href="group__hub__apis.html#ga840291bc02cba5474a4cb46a9b9566fe">main</a></div><div class="ttdeci">int main(void)</div><div class="ttdef"><b>Definition</b> <a href="hub_8c_source.html#l00127">hub.c:127</a></div></div>
+<div class="ttc" id="agroup__log__api_html_ga2508fad025e49f9746b6c178dce6917e"><div class="ttname"><a href="group__log__api.html#ga2508fad025e49f9746b6c178dce6917e">log_init</a></div><div class="ttdeci">void log_init(void)</div><div class="ttdoc">Initialize the logging system.</div><div class="ttdef"><b>Definition</b> <a href="log_8c_source.html#l00059">log.c:59</a></div></div>
+<div class="ttc" id="agroup__log__api_html_gab2c6faf6d03a5e0e458b683f1dc311fb"><div class="ttname"><a href="group__log__api.html#gab2c6faf6d03a5e0e458b683f1dc311fb">log_end</a></div><div class="ttdeci">void log_end(void)</div><div class="ttdoc">Terminate logging operations.</div><div class="ttdef"><b>Definition</b> <a href="log_8c_source.html#l00072">log.c:72</a></div></div>
+<div class="ttc" id="agroup__log__api_html_gae4f545d29e1faa30e5b27be12d4286d0"><div class="ttname"><a href="group__log__api.html#gae4f545d29e1faa30e5b27be12d4286d0">serial_printf</a></div><div class="ttdeci">void serial_printf(const char *format,...)</div><div class="ttdoc">Print formatted message to serial output.</div></div>
+<div class="ttc" id="agroup__memory__api_html_ga4ebbc83ce32824efb16e281ba575fb48"><div class="ttname"><a href="group__memory__api.html#ga4ebbc83ce32824efb16e281ba575fb48">mem_eeprom_write_byte</a></div><div class="ttdeci">bool mem_eeprom_write_byte(uint32_t address, uint8_t data)</div><div class="ttdoc">Write a byte to EEPROM.</div><div class="ttdef"><b>Definition</b> <a href="memory_8c_source.html#l00119">memory.c:119</a></div></div>
+<div class="ttc" id="agroup__memory__api_html_ga86683c4905f4626d992b0f4568ea5dcd"><div class="ttname"><a href="group__memory__api.html#ga86683c4905f4626d992b0f4568ea5dcd">mem_eeprom_write_word_ptr</a></div><div class="ttdeci">bool mem_eeprom_write_word_ptr(uint32_t *ptr, uint32_t data)</div><div class="ttdoc">Write a 32-bit word to EEPROM using a pointer.</div><div class="ttdef"><b>Definition</b> <a href="memory_8c_source.html#l00143">memory.c:143</a></div></div>
+<div class="ttc" id="agroup__timers__api_html_ga25495bda8b23ffa1a23ccd2a5c5413bc"><div class="ttname"><a href="group__timers__api.html#ga25495bda8b23ffa1a23ccd2a5c5413bc">timers_lptim_end</a></div><div class="ttdeci">void timers_lptim_end(void)</div><div class="ttdoc">Terminate low-power timer operations.</div><div class="ttdef"><b>Definition</b> <a href="timers_8c_source.html#l00282">timers.c:282</a></div></div>
+<div class="ttc" id="agroup__timers__api_html_ga27ab5dabf9e5a9ee1d25be688f6dff0d"><div class="ttname"><a href="group__timers__api.html#ga27ab5dabf9e5a9ee1d25be688f6dff0d">timers_pet_dogs</a></div><div class="ttdeci">void timers_pet_dogs(void)</div><div class="ttdoc">Reset (feed) the watchdog timers.</div><div class="ttdef"><b>Definition</b> <a href="timers_8c_source.html#l00340">timers.c:340</a></div></div>
+<div class="ttc" id="agroup__timers__api_html_ga2895f028adf625347af2779776708c7b"><div class="ttname"><a href="group__timers__api.html#ga2895f028adf625347af2779776708c7b">timers_lptim_init</a></div><div class="ttdeci">void timers_lptim_init(void)</div><div class="ttdoc">Initialize the low-power timer for microsecond counting.</div><div class="ttdef"><b>Definition</b> <a href="timers_8c_source.html#l00238">timers.c:238</a></div></div>
+<div class="ttc" id="agroup__timers__api_html_ga86c515c63c987ea728d6336e35d0aaa3"><div class="ttname"><a href="group__timers__api.html#ga86c515c63c987ea728d6336e35d0aaa3">timers_delay_milliseconds</a></div><div class="ttdeci">void timers_delay_milliseconds(uint32_t delay_milliseconds)</div><div class="ttdoc">Delay for a specified number of milliseconds.</div><div class="ttdef"><b>Definition</b> <a href="timers_8c_source.html#l00307">timers.c:307</a></div></div>
+<div class="ttc" id="alog_8h_html"><div class="ttname"><a href="log_8h.html">log.h</a></div><div class="ttdoc">Logging System Header File.</div></div>
+<div class="ttc" id="areset_8h_html"><div class="ttname"><a href="reset_8h.html">reset.h</a></div><div class="ttdoc">System Reset Management Header File.</div></div>
+<div class="ttc" id="arfm_8h_html"><div class="ttname"><a href="rfm_8h.html">rfm.h</a></div><div class="ttdoc">Radio Frequency Module Header File.</div></div>
+<div class="ttc" id="asensor__bootloader_8c_html_ga17fb021b480a1f220d2579807fa2e398"><div class="ttname"><a href="sensor__bootloader_8c.html#ga17fb021b480a1f220d2579807fa2e398">init</a></div><div class="ttdeci">static void init(void)</div><div class="ttdef"><b>Definition</b> <a href="sensor__bootloader_8c_source.html#l00121">sensor_bootloader.c:121</a></div></div>
+<div class="ttc" id="asensor__bootloader_8c_html_ga4ec2253d9622cef3d2997ef1fca4b6d7"><div class="ttname"><a href="sensor__bootloader_8c.html#ga4ec2253d9622cef3d2997ef1fca4b6d7">deinit</a></div><div class="ttdeci">static void deinit(void)</div><div class="ttdef"><b>Definition</b> <a href="sensor__bootloader_8c_source.html#l00129">sensor_bootloader.c:129</a></div></div>
 <div class="ttc" id="asensor__bootloader_8h_html"><div class="ttname"><a href="sensor__bootloader_8h.html">sensor_bootloader.h</a></div><div class="ttdoc">Sensor Bootloader Header File.</div></div>
-<div class="ttc" id="asensor__test_8h_html"><div class="ttname"><a href="sensor__test_8h.html">sensor_test.h</a></div><div class="ttdoc">Sensor_test Header File.</div></div>
-<div class="ttc" id="asi7051_8h_html"><div class="ttname"><a href="si7051_8h.html">si7051.h</a></div></div>
-<div class="ttc" id="atest_8h_html"><div class="ttname"><a href="test_8h.html">test.h</a></div><div class="ttdoc">Testing Header File.</div></div>
-<div class="ttc" id="atimers_8h_html"><div class="ttname"><a href="timers_8h.html">timers.h</a></div><div class="ttdoc">Timers Header File.</div></div>
-<div class="ttc" id="atmp112_8h_html"><div class="ttname"><a href="tmp112_8h.html">tmp112.h</a></div></div>
+<div class="ttc" id="asi7051_8h_html"><div class="ttname"><a href="si7051_8h.html">si7051.h</a></div><div class="ttdoc">SI7051 Temperature Sensor Driver Header File.</div></div>
+<div class="ttc" id="atimers_8h_html"><div class="ttname"><a href="timers_8h.html">timers.h</a></div><div class="ttdoc">Timing and Power Management Header File.</div></div>
+<div class="ttc" id="atmp112_8h_html"><div class="ttname"><a href="tmp112_8h.html">tmp112.h</a></div><div class="ttdoc">TMP112 Temperature Sensor Driver Header File.</div></div>
 </div><!-- fragment --></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Thu Mar 20 2025 05:49:15 for CoolEase by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8
+Generated on Fri Mar 21 2025 10:20:20 for CoolEase by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8
 </small></address>
 </body>
 </html>

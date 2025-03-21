@@ -1,91 +1,95 @@
 <map id="common/include/common/memory.h" name="common/include/common/memory.h">
-<area shape="rect" id="Node000001" title="Memory Header File." alt="" coords="818,5,1008,45"/>
-<area shape="rect" id="Node000002" href="$bootloader__utils_8c.html" title="Bootloader_utils Source File." alt="" coords="600,189,799,214"/>
-<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="868,54,807,95,751,147,711,190,707,187,747,143,803,91,865,50"/>
-<area shape="rect" id="Node000003" href="$battery_8h.html" title="Battery Header File." alt="" coords="1147,93,1338,133"/>
-<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="999,46,1171,91,1169,96,998,51"/>
-<area shape="rect" id="Node000005" href="$test_8c.html" title="Testing Source File." alt="" coords="1000,189,1119,214"/>
-<area shape="poly" id="edge39_Node000001_Node000005" title=" " alt="" coords="969,50,997,68,1022,92,1037,116,1049,143,1060,188,1055,189,1044,145,1033,119,1017,95,994,72,967,54"/>
-<area shape="rect" id="Node000007" href="$hub_8c.html" title="Hub Source File." alt="" coords="190,189,276,214"/>
-<area shape="poly" id="edge41_Node000001_Node000007" title=" " alt="" coords="804,35,654,44,490,57,351,74,303,85,276,96,257,116,246,142,236,189,231,188,241,140,253,113,273,91,301,80,350,69,490,52,654,38,803,29"/>
-<area shape="rect" id="Node000008" href="$hub__test_8c.html" title="Hub testing Source File." alt="" coords="300,189,417,214"/>
-<area shape="poly" id="edge43_Node000001_Node000008" title=" " alt="" coords="804,33,737,40,663,51,588,70,515,96,489,114,465,135,379,191,376,186,462,131,486,109,513,91,586,65,662,46,736,34,804,28"/>
-<area shape="rect" id="Node000009" href="$sensor_8c.html" title="Sensor Source File." alt="" coords="2172,189,2294,214"/>
-<area shape="poly" id="edge61_Node000001_Node000009" title=" " alt="" coords="1023,28,1352,47,1554,66,1756,91,1881,113,2004,139,2192,186,2190,191,2003,144,1880,118,1755,96,1553,71,1351,53,1022,33"/>
-<area shape="rect" id="Node000011" href="$sensor__test_8c.html" title="Sensor testing Source File." alt="" coords="2318,189,2473,214"/>
-<area shape="poly" id="edge62_Node000001_Node000011" title=" " alt="" coords="1022,23,1342,25,1749,33,1947,41,2119,53,2251,69,2297,79,2328,91,2353,112,2373,139,2394,187,2390,189,2368,142,2349,116,2325,96,2296,85,2250,75,2119,58,1946,46,1749,38,1342,30,1022,29"/>
-<area shape="rect" id="Node000012" href="$bootloader__utils_8h.html" title="Bootloader_utils Header File." alt="" coords="818,93,1008,133"/>
-<area shape="poly" id="edge11_Node000001_Node000012" title=" " alt="" coords="916,59,916,93,910,93,910,59"/>
-<area shape="rect" id="Node000013" href="$cusb_8c.html" title="Cusb Source File." alt="" coords="76,189,166,214"/>
-<area shape="poly" id="edge40_Node000001_Node000013" title=" " alt="" coords="804,29,595,33,352,42,238,51,141,62,69,77,45,86,31,95,24,107,24,119,30,132,40,144,69,168,100,186,97,191,66,172,36,148,25,134,19,120,19,106,27,92,42,81,67,72,140,57,237,45,351,37,595,27,804,24"/>
-<area shape="rect" id="Node000015" href="$hub__bootloader_8c.html" title="Hub Bootloader Source File." alt="" coords="374,269,535,295"/>
-<area shape="poly" id="edge42_Node000001_Node000015" title=" " alt="" coords="804,29,592,32,344,42,228,50,129,62,56,77,32,86,18,95,10,109,8,125,18,163,36,198,53,219,76,232,109,243,193,260,287,270,374,275,373,281,286,275,192,265,107,248,74,237,50,223,32,201,13,165,3,125,5,107,14,92,29,81,54,72,129,57,228,45,344,36,592,27,804,24"/>
-<area shape="rect" id="Node000016" href="$timers_8h.html" title="Timers Header File." alt="" coords="1554,93,1744,133"/>
-<area shape="poly" id="edge18_Node000001_Node000016" title=" " alt="" coords="1022,37,1553,98,1553,104,1022,42"/>
-<area shape="rect" id="Node000017" href="$log_8c.html" title="Log Source File." alt="" coords="2497,189,2612,214"/>
-<area shape="poly" id="edge36_Node000001_Node000017" title=" " alt="" coords="1022,26,1347,34,1764,47,2146,66,2284,78,2366,91,2419,111,2469,138,2541,186,2538,191,2466,142,2417,116,2364,96,2283,83,2145,71,1764,52,1347,39,1022,31"/>
-<area shape="rect" id="Node000018" href="$memory_8c.html" title="Memory Source File." alt="" coords="2636,189,2782,214"/>
-<area shape="poly" id="edge37_Node000001_Node000018" title=" " alt="" coords="1022,24,1331,28,1737,37,1944,46,2137,57,2303,72,2428,91,2505,111,2578,138,2687,186,2685,191,2576,143,2503,116,2427,96,2302,77,2137,62,1944,51,1737,43,1331,33,1022,30"/>
-<area shape="rect" id="Node000019" href="$reset_8c.html" title=" " alt="" coords="2807,189,2934,214"/>
-<area shape="poly" id="edge38_Node000001_Node000019" title=" " alt="" coords="1022,25,1345,30,1775,41,2200,61,2377,74,2511,91,2607,111,2701,138,2842,186,2840,191,2699,143,2606,116,2510,96,2376,80,2200,66,1775,47,1345,35,1022,30"/>
-<area shape="rect" id="Node000021" href="$sim_8c.html" title="Sim Source File." alt="" coords="492,189,577,214"/>
-<area shape="poly" id="edge57_Node000001_Node000021" title=" " alt="" coords="849,53,803,72,758,96,732,116,705,136,642,163,567,191,565,186,640,158,702,131,729,111,755,91,801,68,847,48"/>
-<area shape="rect" id="Node000024" href="$cusb_8h.html" title="Hub USB driver header file." alt="" coords="41,101,212,126"/>
-<area shape="poly" id="edge44_Node000001_Node000024" title=" " alt="" coords="804,37,542,60,231,96,185,103,185,98,230,91,542,55,803,32"/>
-<area shape="rect" id="Node000025" href="$hub_8h.html" title="Hub Header File." alt="" coords="286,101,452,126"/>
-<area shape="poly" id="edge49_Node000001_Node000025" title=" " alt="" coords="804,45,471,96,429,103,428,98,470,91,803,39"/>
-<area shape="rect" id="Node000026" href="$sim_8h.html" title="Sim Header File." alt="" coords="526,101,692,126"/>
-<area shape="poly" id="edge52_Node000001_Node000026" title=" " alt="" coords="834,52,650,103,649,98,832,46"/>
-<area shape="rect" id="Node000027" href="$sensor_8h.html" title="Sensor Header File." alt="" coords="2152,93,2314,133"/>
-<area shape="poly" id="edge58_Node000001_Node000027" title=" " alt="" coords="1022,31,2152,104,2151,109,1022,36"/>
-<area shape="rect" id="Node000004" href="$battery_8c.html" title="Battery Source File." alt="" coords="1366,189,1505,214"/>
-<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="1298,137,1411,186,1409,191,1296,141"/>
-<area shape="poly" id="edge4_Node000003_Node000005" title=" " alt="" coords="1191,142,1085,191,1083,186,1189,137"/>
-<area shape="rect" id="Node000006" href="$timers_8c.html" title=" " alt="" coords="1529,189,1665,214"/>
-<area shape="poly" id="edge5_Node000003_Node000006" title=" " alt="" coords="1334,134,1550,186,1549,191,1332,139"/>
-<area shape="poly" id="edge6_Node000003_Node000007" title=" " alt="" coords="1133,127,1020,136,813,145,652,145,574,147,491,153,398,165,288,184,263,191,261,186,287,179,397,159,491,148,574,142,651,140,813,139,1019,131,1133,122"/>
-<area shape="poly" id="edge7_Node000003_Node000008" title=" " alt="" coords="1133,126,480,184,418,193,417,187,479,179,1133,121"/>
-<area shape="poly" id="edge8_Node000003_Node000009" title=" " alt="" coords="1351,119,1811,149,2032,166,2160,179,2194,186,2193,191,2159,184,2032,171,1811,155,1351,124"/>
-<area shape="rect" id="Node000010" href="$sensor__bootloader_8c.html" title="Sensor Bootloader Source File." alt="" coords="1143,189,1342,214"/>
-<area shape="poly" id="edge9_Node000003_Node000010" title=" " alt="" coords="1245,147,1245,188,1240,188,1240,147"/>
-<area shape="poly" id="edge10_Node000003_Node000011" title=" " alt="" coords="1351,119,2307,179,2348,186,2347,191,2306,184,1351,124"/>
-<area shape="poly" id="edge12_Node000012_Node000002" title=" " alt="" coords="854,141,729,191,727,186,852,136"/>
-<area shape="poly" id="edge13_Node000012_Node000005" title=" " alt="" coords="958,138,1041,186,1039,191,956,143"/>
-<area shape="poly" id="edge17_Node000012_Node000010" title=" " alt="" coords="999,134,1199,186,1198,191,997,139"/>
-<area shape="poly" id="edge14_Node000012_Node000013" title=" " alt="" coords="804,127,179,184,152,191,151,186,178,179,803,122"/>
-<area shape="rect" id="Node000014" href="$hub__bootloader_8h.html" title="Hub Bootloader Header File." alt="" coords="823,181,976,221"/>
-<area shape="poly" id="edge15_Node000012_Node000014" title=" " alt="" coords="910,147,905,182,900,181,905,146"/>
-<area shape="poly" id="edge16_Node000014_Node000015" title=" " alt="" coords="810,224,528,272,527,267,809,219"/>
-<area shape="poly" id="edge20_Node000016_Node000002" title=" " alt="" coords="1540,125,1154,153,811,184,762,191,761,186,810,179,1154,148,1540,119"/>
-<area shape="poly" id="edge19_Node000016_Node000004" title=" " alt="" coords="1590,141,1465,191,1463,186,1588,136"/>
-<area shape="poly" id="edge25_Node000016_Node000005" title=" " alt="" coords="1540,127,1348,149,1131,184,1100,191,1098,186,1130,179,1347,144,1539,122"/>
-<area shape="poly" id="edge26_Node000016_Node000006" title=" " alt="" coords="1632,147,1606,190,1602,187,1628,144"/>
-<area shape="poly" id="edge27_Node000016_Node000007" title=" " alt="" coords="1540,125,1349,136,1187,142,1049,142,815,137,703,137,583,143,447,158,288,184,262,191,261,186,287,179,447,152,583,138,703,132,815,131,1049,136,1187,136,1349,131,1540,119"/>
-<area shape="poly" id="edge29_Node000016_Node000008" title=" " alt="" coords="1540,124,1349,136,1104,147,914,153,724,163,480,184,418,192,417,187,479,179,723,157,914,148,1104,142,1349,131,1540,119"/>
-<area shape="poly" id="edge32_Node000016_Node000009" title=" " alt="" coords="1758,122,1947,145,2160,179,2193,186,2191,191,2159,184,1946,150,1758,128"/>
-<area shape="poly" id="edge33_Node000016_Node000010" title=" " alt="" coords="1547,139,1297,191,1296,186,1546,134"/>
-<area shape="poly" id="edge34_Node000016_Node000011" title=" " alt="" coords="1758,120,2010,142,2158,158,2307,179,2346,186,2345,191,2306,184,2158,164,2009,147,1758,125"/>
-<area shape="poly" id="edge28_Node000016_Node000015" title=" " alt="" coords="1673,144,1682,163,1689,184,1689,205,1679,223,1661,231,1628,238,1520,250,1191,267,821,278,535,282,535,277,821,272,1191,262,1519,245,1627,233,1660,226,1675,219,1683,203,1683,185,1677,165,1668,146"/>
-<area shape="poly" id="edge21_Node000016_Node000017" title=" " alt="" coords="1758,114,1903,120,2085,132,2285,150,2485,179,2518,186,2516,191,2484,184,2285,156,2084,137,1903,125,1758,120"/>
-<area shape="poly" id="edge22_Node000016_Node000018" title=" " alt="" coords="1758,114,1926,120,2142,132,2382,151,2624,179,2663,186,2662,191,2623,184,2382,156,2142,137,1926,125,1758,120"/>
-<area shape="poly" id="edge23_Node000016_Node000019" title=" " alt="" coords="1758,116,2294,139,2584,158,2795,179,2830,186,2829,191,2794,184,2583,163,2294,145,1758,121"/>
-<area shape="rect" id="Node000020" href="$rfm_8c.html" title="Rfm Source File." alt="" coords="2030,189,2148,214"/>
-<area shape="poly" id="edge24_Node000016_Node000020" title=" " alt="" coords="1759,129,1884,151,2019,179,2049,186,2047,191,2018,184,1883,157,1758,135"/>
-<area shape="poly" id="edge30_Node000016_Node000021" title=" " alt="" coords="1540,124,588,184,563,191,561,186,587,179,1540,119"/>
-<area shape="rect" id="Node000022" href="$w25qxx_8c.html" title=" " alt="" coords="1740,189,1852,214"/>
-<area shape="poly" id="edge31_Node000016_Node000022" title=" " alt="" coords="1694,138,1777,186,1775,191,1692,143"/>
-<area shape="rect" id="Node000023" href="$tmp112_8c.html" title=" " alt="" coords="1876,189,2006,214"/>
-<area shape="poly" id="edge35_Node000016_Node000023" title=" " alt="" coords="1727,135,1903,186,1901,191,1725,140"/>
-<area shape="poly" id="edge46_Node000024_Node000007" title=" " alt="" coords="153,133,220,186,217,190,150,137"/>
-<area shape="poly" id="edge48_Node000024_Node000008" title=" " alt="" coords="171,128,328,186,326,191,169,133"/>
-<area shape="poly" id="edge45_Node000024_Node000013" title=" " alt="" coords="127,140,124,188,119,188,122,140"/>
-<area shape="poly" id="edge47_Node000024_Node000015" title=" " alt="" coords="102,137,82,156,66,178,58,200,60,210,66,220,85,235,115,247,195,264,287,274,374,278,373,283,287,279,194,270,113,252,83,239,62,223,55,212,53,199,61,175,78,152,98,133"/>
-<area shape="poly" id="edge50_Node000025_Node000007" title=" " alt="" coords="341,136,253,191,250,186,338,131"/>
-<area shape="poly" id="edge51_Node000025_Node000008" title=" " alt="" coords="368,140,362,188,357,188,363,140"/>
-<area shape="poly" id="edge53_Node000026_Node000007" title=" " alt="" coords="529,131,414,154,288,184,265,191,263,186,287,179,413,148,528,126"/>
-<area shape="poly" id="edge55_Node000026_Node000008" title=" " alt="" coords="563,133,393,191,391,186,561,128"/>
-<area shape="poly" id="edge54_Node000026_Node000015" title=" " alt="" coords="556,133,516,153,497,167,482,183,469,204,462,228,457,269,452,269,457,227,464,202,477,180,494,163,513,149,554,128"/>
-<area shape="poly" id="edge56_Node000026_Node000021" title=" " alt="" coords="592,138,547,190,543,186,588,135"/>
-<area shape="poly" id="edge59_Node000027_Node000009" title=" " alt="" coords="2236,147,2236,188,2230,188,2230,147"/>
-<area shape="poly" id="edge60_Node000027_Node000011" title=" " alt="" coords="2282,137,2375,186,2373,191,2279,142"/>
+<area shape="rect" id="Node000001" title="Memory Management Header File." alt="" coords="966,5,1156,45"/>
+<area shape="rect" id="Node000002" href="$bootloader__utils_8c.html" title="Bootloader_utils Source File." alt="" coords="780,189,979,214"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="954,49,918,68,888,95,878,118,874,144,879,188,874,189,869,144,873,117,884,92,914,63,952,44"/>
+<area shape="rect" id="Node000003" href="$fake__battery_8c.html" title=" " alt="" coords="2720,101,2895,126"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="1170,23,1440,25,1819,34,2257,54,2481,70,2701,91,2751,98,2750,103,2701,96,2481,75,2256,59,1819,39,1439,31,1170,29"/>
+<area shape="rect" id="Node000004" href="$battery_8h.html" title="Battery Management Header File." alt="" coords="1243,93,1434,133"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="1135,47,1278,91,1277,96,1134,52"/>
+<area shape="rect" id="Node000006" href="$test__common_8c.html" title="Common Module Testing Source File." alt="" coords="1003,189,1215,214"/>
+<area shape="poly" id="edge41_Node000001_Node000006" title=" " alt="" coords="1085,55,1103,93,1112,146,1112,188,1107,188,1107,146,1098,94,1080,58"/>
+<area shape="rect" id="Node000008" href="$hub_8c.html" title="Hub Source File." alt="" coords="162,189,248,214"/>
+<area shape="poly" id="edge43_Node000001_Node000008" title=" " alt="" coords="952,34,770,42,563,56,382,74,318,84,282,96,257,116,236,142,212,190,207,187,232,139,253,112,280,91,317,79,381,68,562,51,770,37,952,28"/>
+<area shape="rect" id="Node000009" href="$test__hub_8c.html" title="Hub testing Source File." alt="" coords="272,189,418,214"/>
+<area shape="poly" id="edge59_Node000001_Node000009" title=" " alt="" coords="952,36,715,58,602,75,556,85,522,96,507,104,496,114,472,135,418,167,371,191,368,186,416,162,469,131,493,110,504,100,520,91,555,79,601,69,714,52,952,31"/>
+<area shape="rect" id="Node000010" href="$sensor_8c.html" title="Sensor Source File." alt="" coords="2457,189,2580,214"/>
+<area shape="poly" id="edge63_Node000001_Node000010" title=" " alt="" coords="1171,29,1519,49,1734,67,1951,91,2199,128,2445,179,2476,186,2475,191,2444,184,2198,133,1950,96,1734,73,1518,55,1170,34"/>
+<area shape="rect" id="Node000012" href="$test__sensor_8c.html" title=" " alt="" coords="2604,189,2787,214"/>
+<area shape="poly" id="edge64_Node000001_Node000012" title=" " alt="" coords="1170,26,1494,32,1909,44,2288,63,2425,76,2506,91,2524,99,2536,109,2564,131,2671,186,2669,191,2561,136,2533,113,2521,104,2504,96,2424,81,2288,69,1909,49,1494,37,1170,31"/>
+<area shape="rect" id="Node000013" href="$bootloader__utils_8h.html" title="Bootloader Utilities Header File." alt="" coords="899,93,1090,133"/>
+<area shape="poly" id="edge12_Node000001_Node000013" title=" " alt="" coords="1040,58,1011,95,1007,91,1036,55"/>
+<area shape="rect" id="Node000014" href="$cusb_8c.html" title="Cusb Source File." alt="" coords="48,189,138,214"/>
+<area shape="poly" id="edge42_Node000001_Node000014" title=" " alt="" coords="952,32,704,41,409,55,156,73,74,84,49,90,37,95,31,106,30,117,40,143,59,167,80,187,77,190,55,171,35,145,25,118,26,104,34,91,47,85,73,79,155,68,408,49,704,36,952,27"/>
+<area shape="rect" id="Node000016" href="$hub__bootloader_8c.html" title="Hub Bootloader Source File." alt="" coords="375,269,536,295"/>
+<area shape="poly" id="edge44_Node000001_Node000016" title=" " alt="" coords="952,32,701,41,401,55,144,73,61,84,36,90,24,95,15,116,9,151,11,189,17,206,26,220,48,236,82,250,125,260,174,268,279,276,375,279,374,284,279,282,174,273,124,265,81,255,46,241,22,223,12,208,6,190,3,150,10,114,20,91,34,85,60,79,144,68,401,49,701,36,952,27"/>
+<area shape="rect" id="Node000017" href="$timers_8h.html" title="Timing and Power Management Header File." alt="" coords="1748,93,1939,133"/>
+<area shape="poly" id="edge19_Node000001_Node000017" title=" " alt="" coords="1170,36,1748,99,1748,104,1170,41"/>
+<area shape="rect" id="Node000018" href="$log_8c.html" title="Log Source File." alt="" coords="2812,189,2926,214"/>
+<area shape="poly" id="edge38_Node000001_Node000018" title=" " alt="" coords="1170,25,1504,32,1933,44,2327,63,2470,76,2554,91,2572,100,2585,110,2597,121,2614,131,2664,150,2705,160,2800,179,2827,186,2826,191,2799,184,2704,165,2663,155,2612,136,2594,125,2582,114,2570,104,2552,96,2469,81,2327,69,1933,49,1503,37,1170,31"/>
+<area shape="rect" id="Node000019" href="$memory_8c.html" title="Memory Source File." alt="" coords="2950,189,3097,214"/>
+<area shape="poly" id="edge39_Node000001_Node000019" title=" " alt="" coords="1170,25,1514,31,1959,44,2368,63,2516,76,2603,91,2622,100,2635,111,2647,121,2665,131,2739,154,2799,163,2861,167,2939,179,2974,186,2973,191,2938,184,2860,173,2798,168,2737,159,2663,136,2644,126,2631,115,2619,104,2601,96,2515,81,2368,68,1959,49,1514,37,1170,31"/>
+<area shape="rect" id="Node000020" href="$reset_8c.html" title=" " alt="" coords="3122,189,3248,214"/>
+<area shape="poly" id="edge40_Node000001_Node000020" title=" " alt="" coords="1170,25,1524,30,1985,42,2409,61,2562,75,2616,82,2652,91,2670,100,2682,111,2693,122,2710,131,2768,150,2818,161,2863,165,2906,167,2996,167,3048,170,3109,179,3143,186,3142,191,3108,184,3048,175,2996,172,2906,172,2862,171,2817,166,2766,155,2708,136,2690,126,2679,115,2667,104,2651,96,2615,88,2561,80,2408,66,1985,47,1524,36,1170,30"/>
+<area shape="rect" id="Node000023" href="$sim_8c.html" title="Sim Source File." alt="" coords="493,189,578,214"/>
+<area shape="poly" id="edge58_Node000001_Node000023" title=" " alt="" coords="991,52,591,184,570,191,568,186,589,179,989,47"/>
+<area shape="rect" id="Node000026" href="$cusb_8h.html" title="Hub USB driver header file." alt="" coords="48,101,218,126"/>
+<area shape="poly" id="edge45_Node000001_Node000026" title=" " alt="" coords="952,35,631,56,434,74,237,96,191,103,190,98,237,91,434,68,631,51,952,29"/>
+<area shape="rect" id="Node000027" href="$hub_8h.html" title="Hub Header File." alt="" coords="293,101,458,126"/>
+<area shape="poly" id="edge50_Node000001_Node000027" title=" " alt="" coords="952,40,733,63,477,96,434,103,433,98,477,91,732,58,952,34"/>
+<area shape="rect" id="Node000028" href="$sim_8h.html" title="SIM800 Module Interface Header File." alt="" coords="533,101,698,126"/>
+<area shape="poly" id="edge53_Node000001_Node000028" title=" " alt="" coords="953,50,675,103,674,98,952,45"/>
+<area shape="rect" id="Node000029" href="$sensor_8h.html" title="Sensor Module Header File." alt="" coords="2330,93,2493,133"/>
+<area shape="poly" id="edge60_Node000001_Node000029" title=" " alt="" coords="1170,29,1622,53,2206,91,2330,101,2330,107,2206,96,1622,58,1170,34"/>
+<area shape="rect" id="Node000005" href="$battery_8c.html" title="Battery Source File." alt="" coords="1462,189,1601,214"/>
+<area shape="poly" id="edge4_Node000004_Node000005" title=" " alt="" coords="1394,137,1507,186,1505,191,1392,141"/>
+<area shape="poly" id="edge5_Node000004_Node000006" title=" " alt="" coords="1276,141,1140,191,1139,186,1274,136"/>
+<area shape="rect" id="Node000007" href="$timers_8c.html" title=" " alt="" coords="1625,189,1761,214"/>
+<area shape="poly" id="edge6_Node000004_Node000007" title=" " alt="" coords="1430,134,1646,186,1645,191,1429,139"/>
+<area shape="poly" id="edge7_Node000004_Node000008" title=" " alt="" coords="1229,126,1101,136,973,142,864,144,678,143,589,144,494,150,386,162,260,184,234,191,233,186,259,179,386,157,493,144,589,139,678,137,863,139,972,137,1101,131,1229,121"/>
+<area shape="poly" id="edge8_Node000004_Node000009" title=" " alt="" coords="1229,126,1101,136,791,157,655,167,481,184,419,192,418,186,481,179,655,162,790,152,1101,131,1229,121"/>
+<area shape="poly" id="edge9_Node000004_Node000010" title=" " alt="" coords="1448,117,2008,147,2285,165,2445,179,2480,186,2479,191,2445,184,2285,170,2007,153,1447,123"/>
+<area shape="rect" id="Node000011" href="$sensor__bootloader_8c.html" title="Sensor Bootloader Source File." alt="" coords="1239,189,1438,214"/>
+<area shape="poly" id="edge10_Node000004_Node000011" title=" " alt="" coords="1341,147,1341,188,1336,188,1336,147"/>
+<area shape="poly" id="edge11_Node000004_Node000012" title=" " alt="" coords="1448,117,2109,151,2592,179,2640,186,2639,191,2591,184,2109,156,1448,123"/>
+<area shape="poly" id="edge13_Node000013_Node000002" title=" " alt="" coords="959,144,897,190,894,186,956,140"/>
+<area shape="poly" id="edge14_Node000013_Node000006" title=" " alt="" coords="1032,140,1095,186,1091,190,1029,144"/>
+<area shape="poly" id="edge18_Node000013_Node000011" title=" " alt="" coords="1083,134,1293,186,1292,191,1082,139"/>
+<area shape="poly" id="edge15_Node000013_Node000014" title=" " alt="" coords="885,124,465,154,265,171,151,184,124,191,123,186,150,179,265,165,464,149,885,119"/>
+<area shape="rect" id="Node000015" href="$hub__bootloader_8h.html" title="Hub Bootloader Header File." alt="" coords="603,181,756,221"/>
+<area shape="poly" id="edge16_Node000013_Node000015" title=" " alt="" coords="913,140,749,184,748,179,911,134"/>
+<area shape="poly" id="edge17_Node000015_Node000016" title=" " alt="" coords="614,228,490,272,488,267,612,223"/>
+<area shape="poly" id="edge21_Node000017_Node000002" title=" " alt="" coords="1735,123,1402,144,1196,162,991,184,941,191,941,186,990,179,1196,156,1401,139,1734,117"/>
+<area shape="poly" id="edge20_Node000017_Node000005" title=" " alt="" coords="1763,140,1574,191,1572,186,1761,134"/>
+<area shape="poly" id="edge26_Node000017_Node000006" title=" " alt="" coords="1735,127,1501,151,1227,184,1177,191,1176,186,1226,179,1500,146,1734,122"/>
+<area shape="poly" id="edge28_Node000017_Node000007" title=" " alt="" coords="1800,142,1714,191,1712,186,1797,138"/>
+<area shape="poly" id="edge29_Node000017_Node000008" title=" " alt="" coords="1735,123,1445,136,1185,142,851,146,517,158,374,168,260,184,234,191,233,186,259,179,374,163,517,152,851,141,1185,136,1445,131,1734,117"/>
+<area shape="poly" id="edge32_Node000017_Node000009" title=" " alt="" coords="1734,123,481,184,419,191,418,186,481,179,1734,117"/>
+<area shape="poly" id="edge34_Node000017_Node000010" title=" " alt="" coords="1953,120,2180,141,2313,158,2445,179,2478,186,2477,191,2444,184,2313,163,2180,146,1952,125"/>
+<area shape="poly" id="edge35_Node000017_Node000011" title=" " alt="" coords="1735,136,1406,191,1405,186,1734,130"/>
+<area shape="poly" id="edge36_Node000017_Node000012" title=" " alt="" coords="1953,119,2242,141,2417,158,2592,179,2638,186,2637,191,2591,184,2417,163,2242,146,1952,124"/>
+<area shape="poly" id="edge30_Node000017_Node000016" title=" " alt="" coords="1953,123,2023,136,2083,155,2104,168,2117,184,2117,203,2104,223,2080,234,2033,243,1880,257,1668,268,1420,275,910,282,536,283,536,278,910,277,1420,270,1668,263,1880,252,2032,238,2078,229,2101,219,2112,201,2112,186,2101,172,2081,160,2022,141,1952,128"/>
+<area shape="poly" id="edge22_Node000017_Node000018" title=" " alt="" coords="1953,117,2397,142,2630,159,2800,179,2832,186,2831,191,2799,184,2630,164,2397,147,1953,122"/>
+<area shape="poly" id="edge23_Node000017_Node000019" title=" " alt="" coords="1953,116,2464,142,2739,159,2939,179,2978,186,2977,191,2938,184,2738,165,2464,147,1952,122"/>
+<area shape="poly" id="edge24_Node000017_Node000020" title=" " alt="" coords="1953,117,2596,146,2921,164,3109,179,3145,186,3144,191,3109,184,2921,169,2596,151,1952,122"/>
+<area shape="rect" id="Node000021" href="$rfm_8c.html" title="Rfm Source File." alt="" coords="1785,189,1902,214"/>
+<area shape="poly" id="edge25_Node000017_Node000021" title=" " alt="" coords="1846,147,1846,188,1841,188,1841,147"/>
+<area shape="rect" id="Node000022" href="$test__rf_8c.html" title="Radio Module Testing Source File." alt="" coords="1927,189,2091,214"/>
+<area shape="poly" id="edge27_Node000017_Node000022" title=" " alt="" coords="1893,137,1988,186,1986,191,1891,142"/>
+<area shape="poly" id="edge31_Node000017_Node000023" title=" " alt="" coords="1734,123,1060,157,591,184,565,191,563,186,590,179,1060,152,1734,117"/>
+<area shape="rect" id="Node000024" href="$w25qxx_8c.html" title=" " alt="" coords="2166,189,2278,214"/>
+<area shape="poly" id="edge33_Node000017_Node000024" title=" " alt="" coords="1946,134,2148,179,2178,186,2177,191,2147,184,1945,139"/>
+<area shape="rect" id="Node000025" href="$tmp112_8c.html" title=" " alt="" coords="2302,189,2433,214"/>
+<area shape="poly" id="edge37_Node000017_Node000025" title=" " alt="" coords="1953,126,2113,148,2291,179,2324,186,2323,191,2290,184,2112,153,1952,131"/>
+<area shape="poly" id="edge47_Node000026_Node000008" title=" " alt="" coords="153,135,197,186,193,190,149,138"/>
+<area shape="poly" id="edge49_Node000026_Node000009" title=" " alt="" coords="175,129,317,186,315,191,173,134"/>
+<area shape="poly" id="edge46_Node000026_Node000014" title=" " alt="" coords="124,140,101,189,96,187,119,137"/>
+<area shape="poly" id="edge48_Node000026_Node000016" title=" " alt="" coords="98,135,69,153,44,174,35,186,31,197,31,208,38,220,59,236,92,249,133,259,181,267,282,276,375,279,375,284,282,281,180,272,132,264,91,254,57,240,34,223,26,210,25,196,30,183,40,171,66,148,96,130"/>
+<area shape="poly" id="edge51_Node000027_Node000008" title=" " alt="" coords="342,135,229,191,227,186,339,130"/>
+<area shape="poly" id="edge52_Node000027_Node000009" title=" " alt="" coords="369,140,352,189,347,187,364,138"/>
+<area shape="poly" id="edge54_Node000028_Node000008" title=" " alt="" coords="524,131,398,153,260,184,237,191,235,186,259,179,397,148,523,126"/>
+<area shape="poly" id="edge57_Node000028_Node000009" title=" " alt="" coords="567,133,382,191,380,186,565,128"/>
+<area shape="poly" id="edge55_Node000028_Node000016" title=" " alt="" coords="560,133,518,153,499,167,483,183,471,204,463,228,458,269,453,269,458,227,466,202,479,180,496,163,516,148,557,128"/>
+<area shape="poly" id="edge56_Node000028_Node000023" title=" " alt="" coords="597,138,549,190,545,186,594,134"/>
+<area shape="poly" id="edge61_Node000029_Node000010" title=" " alt="" coords="2448,140,2505,186,2502,190,2444,144"/>
+<area shape="poly" id="edge62_Node000029_Node000012" title=" " alt="" coords="2488,135,2659,186,2657,191,2486,140"/>
 </map>

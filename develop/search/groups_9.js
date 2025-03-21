@@ -1,12 +1,8 @@
 var searchData=
 [
-  ['sensor_0',['Sensor',['../group___s_e_n_s_o_r___f_i_l_e.html',1,'']]],
-  ['sensor_20api_1',['Sensor API',['../group___s_e_n_s_o_r___a_p_i.html',1,'']]],
-  ['sensor_20internal_2',['Sensor Internal',['../group___s_e_n_s_o_r___i_n_t.html',1,'']]],
-  ['sensor_5ftest_3',['Sensor_test',['../group___s_e_n_s_o_r___t_e_s_t___f_i_l_e.html',1,'']]],
-  ['sensor_5ftest_20api_4',['Sensor_test API',['../group___s_e_n_s_o_r___t_e_s_t___a_p_i.html',1,'']]],
-  ['sensor_5ftest_20internal_5',['Sensor_test Internal',['../group___s_e_n_s_o_r___t_e_s_t___i_n_t.html',1,'']]],
-  ['sim_6',['Sim',['../group___s_i_m___f_i_l_e.html',1,'']]],
-  ['sim_20api_7',['Sim API',['../group___s_i_m___a_p_i.html',1,'']]],
-  ['sim_20internal_8',['Sim Internal',['../group___s_i_m___i_n_t.html',1,'']]]
+  ['management_0',['management',['../group__battery__api.html',1,'Battery Management'],['../group__memory__api.html',1,'Memory Management'],['../group__reset__api.html',1,'Reset Management'],['../group__timers__api.html',1,'Timing and Power Management']]],
+  ['memory_20interface_1',['Flash Memory Interface',['../group__flash__api.html',1,'']]],
+  ['memory_20management_2',['Memory Management',['../group__memory__api.html',1,'']]],
+  ['module_3',['Radio Module',['../group__rfm__api.html',1,'']]],
+  ['module_20tests_4',['module tests',['../group__common__test.html',1,'Common Module Tests'],['../group__rf__test.html',1,'Radio Module Tests']]]
 ];

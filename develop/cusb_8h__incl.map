@@ -1,20 +1,22 @@
 <map id="hub/include/hub/cusb.h" name="hub/include/hub/cusb.h">
-<area shape="rect" id="Node000001" title="Hub USB driver header file." alt="" coords="80,5,251,31"/>
+<area shape="rect" id="Node000001" title="Hub USB driver header file." alt="" coords="140,5,311,31"/>
 <area shape="rect" id="Node000002" title=" " alt="" coords="5,152,88,177"/>
-<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="120,33,82,51,65,64,52,80,46,94,43,109,44,138,38,139,37,108,40,92,47,77,61,60,79,47,117,28"/>
-<area shape="rect" id="Node000003" title=" " alt="" coords="123,152,194,177"/>
-<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="175,30,188,63,192,84,191,105,176,141,171,139,185,103,187,84,183,64,170,32"/>
-<area shape="rect" id="Node000004" href="$log_8h.html" title="Log Header File." alt="" coords="61,79,176,104"/>
-<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="160,32,136,69,132,66,155,30"/>
-<area shape="rect" id="Node000005" href="$memory_8h.html" title="Memory Header File." alt="" coords="251,79,399,104"/>
-<area shape="poly" id="edge6_Node000001_Node000005" title=" " alt="" coords="192,28,288,71,286,75,190,33"/>
-<area shape="poly" id="edge4_Node000004_Node000002" title=" " alt="" coords="109,106,70,144,66,140,105,102"/>
-<area shape="poly" id="edge5_Node000004_Node000003" title=" " alt="" coords="128,103,148,139,143,141,123,106"/>
-<area shape="poly" id="edge9_Node000005_Node000003" title=" " alt="" coords="300,106,199,149,197,144,298,102"/>
-<area shape="rect" id="Node000006" title=" " alt="" coords="218,152,409,177"/>
-<area shape="poly" id="edge7_Node000005_Node000006" title=" " alt="" coords="326,105,320,139,315,138,321,104"/>
-<area shape="rect" id="Node000007" title=" " alt="" coords="433,152,612,177"/>
-<area shape="poly" id="edge8_Node000005_Node000007" title=" " alt="" coords="358,102,478,145,477,150,356,107"/>
-<area shape="rect" id="Node000008" title=" " alt="" coords="636,152,785,177"/>
-<area shape="poly" id="edge10_Node000005_Node000008" title=" " alt="" coords="388,101,635,147,634,152,387,107"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="189,33,145,52,102,81,77,110,59,141,55,138,73,107,98,77,142,48,187,28"/>
+<area shape="rect" id="Node000003" title=" " alt="" coords="243,152,314,177"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="232,30,272,138,267,140,227,32"/>
+<area shape="rect" id="Node000004" href="$log_8h.html" title="Logging System Header File." alt="" coords="112,79,227,104"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="218,33,189,69,185,66,214,29"/>
+<area shape="rect" id="Node000006" href="$memory_8h.html" title="Memory Management Header File." alt="" coords="359,79,507,104"/>
+<area shape="poly" id="edge7_Node000001_Node000006" title=" " alt="" coords="260,28,387,72,386,77,258,33"/>
+<area shape="poly" id="edge4_Node000004_Node000002" title=" " alt="" coords="151,106,80,147,77,143,148,102"/>
+<area shape="poly" id="edge5_Node000004_Node000003" title=" " alt="" coords="188,102,251,142,248,147,185,106"/>
+<area shape="rect" id="Node000005" title=" " alt="" coords="112,152,219,177"/>
+<area shape="poly" id="edge6_Node000004_Node000005" title=" " alt="" coords="171,104,169,139,164,138,166,104"/>
+<area shape="poly" id="edge10_Node000006_Node000003" title=" " alt="" coords="410,106,317,149,315,144,407,102"/>
+<area shape="rect" id="Node000007" title=" " alt="" coords="338,152,529,177"/>
+<area shape="poly" id="edge8_Node000006_Node000007" title=" " alt="" coords="436,104,436,138,431,138,431,104"/>
+<area shape="rect" id="Node000008" title=" " alt="" coords="553,152,732,177"/>
+<area shape="poly" id="edge9_Node000006_Node000008" title=" " alt="" coords="468,101,596,145,595,150,466,107"/>
+<area shape="rect" id="Node000009" title=" " alt="" coords="756,152,905,177"/>
+<area shape="poly" id="edge11_Node000006_Node000009" title=" " alt="" coords="498,101,753,147,752,152,497,107"/>
 </map>

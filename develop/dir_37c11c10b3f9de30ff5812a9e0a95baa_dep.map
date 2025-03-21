@@ -1,0 +1,11 @@
+<map id="hub/test" name="hub/test">
+<area shape="rect" id="node1" href="dir_3cd5d581e606684887738563ed215185.html" title="include" alt="" coords="120,136,189,161"/>
+<area shape="poly" id="edge1" href="dir_000012_000005.html" alt="" coords="158,88,158,123,152,122,153,88"/>
+<area shape="rect" id="edge1-headlabel" href="dir_000012_000005.html" title="3" alt="" coords="159,111,168,125"/>
+<area shape="rect" id="node4" href="dir_bdd9a5d540de89e9fe90efdfc6973a4f.html" title="common" alt="" coords="214,136,293,161"/>
+<area shape="poly" id="edge2" href="dir_000012_000000.html" alt="" coords="173,86,228,125,225,130,170,90"/>
+<area shape="rect" id="edge2-headlabel" href="dir_000012_000000.html" title="7" alt="" coords="223,111,232,126"/>
+<area shape="rect" id="node3" href="dir_fb3981c2588587b7fe165fc5abcd4496.html" title="support" alt="" coords="38,63,109,88"/>
+<area shape="rect" id="clust2" href="dir_37c11c10b3f9de30ff5812a9e0a95baa.html" alt="" coords="27,52,191,99"/>
+<area shape="rect" id="clust1" href="dir_250fdf8357c574c8111d2e544361d6ce.html" title="hub" alt="" coords="16,16,201,172"/>
+</map>

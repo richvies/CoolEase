@@ -1,22 +1,24 @@
 <map id="common/include/common/timers.h" name="common/include/common/timers.h">
-<area shape="rect" id="Node000001" title="Timers Header File." alt="" coords="83,5,274,45"/>
-<area shape="rect" id="Node000002" title=" " alt="" coords="16,167,98,192"/>
-<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="84,46,44,65,27,78,13,95,8,110,12,125,35,156,30,159,7,128,3,110,8,92,23,74,41,60,82,41"/>
-<area shape="rect" id="Node000003" title=" " alt="" coords="22,93,97,119"/>
-<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="151,48,90,88,87,84,148,43"/>
-<area shape="rect" id="Node000004" title=" " alt="" coords="168,167,239,192"/>
-<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="209,44,232,65,250,92,253,110,249,128,229,158,225,155,244,126,248,110,245,94,228,68,205,47"/>
-<area shape="rect" id="Node000005" href="$log_8h.html" title="Log Header File." alt="" coords="121,93,236,119"/>
-<area shape="poly" id="edge4_Node000001_Node000005" title=" " alt="" coords="181,46,181,79,176,79,176,46"/>
-<area shape="rect" id="Node000006" href="$memory_8h.html" title="Memory Header File." alt="" coords="311,93,459,119"/>
-<area shape="poly" id="edge7_Node000001_Node000006" title=" " alt="" coords="229,43,343,86,341,91,227,48"/>
-<area shape="poly" id="edge5_Node000005_Node000002" title=" " alt="" coords="160,121,90,162,87,157,158,116"/>
-<area shape="poly" id="edge6_Node000005_Node000004" title=" " alt="" coords="185,118,198,153,193,155,180,120"/>
-<area shape="poly" id="edge10_Node000006_Node000004" title=" " alt="" coords="357,121,247,164,245,159,355,116"/>
-<area shape="rect" id="Node000007" title=" " alt="" coords="263,167,454,192"/>
-<area shape="poly" id="edge8_Node000006_Node000007" title=" " alt="" coords="383,120,370,155,365,153,378,118"/>
-<area shape="rect" id="Node000008" title=" " alt="" coords="478,167,657,192"/>
-<area shape="poly" id="edge9_Node000006_Node000008" title=" " alt="" coords="415,116,526,159,524,164,413,121"/>
-<area shape="rect" id="Node000009" title=" " alt="" coords="681,167,830,192"/>
-<area shape="poly" id="edge11_Node000006_Node000009" title=" " alt="" coords="445,116,683,161,682,167,444,121"/>
+<area shape="rect" id="Node000001" title="Timing and Power Management Header File." alt="" coords="127,5,318,45"/>
+<area shape="rect" id="Node000002" title=" " alt="" coords="5,167,88,192"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="128,47,89,66,71,79,57,95,50,108,46,123,45,153,40,153,41,122,45,106,52,92,68,75,86,62,126,42"/>
+<area shape="rect" id="Node000003" title=" " alt="" coords="67,93,141,119"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="195,48,134,88,131,84,192,43"/>
+<area shape="rect" id="Node000004" title=" " alt="" coords="261,167,331,192"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="253,43,276,65,294,92,302,123,302,153,297,153,297,124,290,94,272,68,249,47"/>
+<area shape="rect" id="Node000005" href="$log_8h.html" title="Logging System Header File." alt="" coords="165,93,280,119"/>
+<area shape="poly" id="edge4_Node000001_Node000005" title=" " alt="" coords="225,46,225,79,220,79,220,46"/>
+<area shape="rect" id="Node000007" href="$memory_8h.html" title="Memory Management Header File." alt="" coords="377,93,525,119"/>
+<area shape="poly" id="edge8_Node000001_Node000007" title=" " alt="" coords="278,43,405,86,403,91,276,48"/>
+<area shape="poly" id="edge5_Node000005_Node000002" title=" " alt="" coords="195,121,89,164,87,159,193,116"/>
+<area shape="poly" id="edge6_Node000005_Node000004" title=" " alt="" coords="237,117,276,155,272,159,233,121"/>
+<area shape="rect" id="Node000006" title=" " alt="" coords="129,167,236,192"/>
+<area shape="poly" id="edge7_Node000005_Node000006" title=" " alt="" coords="218,120,198,156,194,153,214,118"/>
+<area shape="poly" id="edge11_Node000007_Node000004" title=" " alt="" coords="427,121,335,163,333,158,425,116"/>
+<area shape="rect" id="Node000008" title=" " alt="" coords="355,167,546,192"/>
+<area shape="poly" id="edge9_Node000007_Node000008" title=" " alt="" coords="453,119,453,153,448,153,448,119"/>
+<area shape="rect" id="Node000009" title=" " alt="" coords="571,167,749,192"/>
+<area shape="poly" id="edge10_Node000007_Node000009" title=" " alt="" coords="485,116,614,160,612,165,483,121"/>
+<area shape="rect" id="Node000010" title=" " alt="" coords="773,167,923,192"/>
+<area shape="poly" id="edge12_Node000007_Node000010" title=" " alt="" coords="515,116,771,162,770,167,514,121"/>
 </map>

@@ -1,7 +1,9 @@
 <map id="common/include/common/log.h" name="common/include/common/log.h">
-<area shape="rect" id="Node000001" title="Log Header File." alt="" coords="5,5,196,45"/>
-<area shape="rect" id="Node000002" title=" " alt="" coords="9,93,91,119"/>
-<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="91,47,67,83,63,80,86,44"/>
-<area shape="rect" id="Node000003" title=" " alt="" coords="116,93,187,119"/>
-<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="115,44,139,80,134,83,111,47"/>
+<area shape="rect" id="Node000001" title="Logging System Header File." alt="" coords="53,5,243,45"/>
+<area shape="rect" id="Node000002" title=" " alt="" coords="5,93,88,119"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="125,48,74,87,71,82,122,43"/>
+<area shape="rect" id="Node000003" title=" " alt="" coords="113,93,183,119"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="151,46,151,79,145,79,145,46"/>
+<area shape="rect" id="Node000004" title=" " alt="" coords="208,93,315,119"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="177,43,235,83,232,87,174,48"/>
 </map>
