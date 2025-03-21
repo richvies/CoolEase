@@ -50,7 +50,9 @@
 			"cusb.h": "c",
 			"aes.h": "c",
 			"timers.h": "c",
-			"crc.h": "c"
+			"crc.h": "c",
+			"freertos.h": "c",
+			"freertosconfig.h": "c"
 		},
 		"cortex-debug.variableUseNaturalFormat": true
 	}

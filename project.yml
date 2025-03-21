@@ -3,10 +3,10 @@
   :ceedling_version: 1.0.1
 
   :use_mocks: TRUE
-  :use_test_preprocessor: :none  # :none, :mocks, :tests, or :all
-  :use_deep_preprocessor: :none  # :none, :mocks, :tests, or :all
-  :use_backtrace: :simple        # :none, :simple, or :gdb
-  :use_decorators: :auto         # :auto, :all, or :none
+  :use_test_preprocessor: :none # :none, :mocks, :tests, or :all
+  :use_deep_preprocessor: :none # :none, :mocks, :tests, or :all
+  :use_backtrace: :simple # :none, :simple, or :gdb
+  :use_decorators: :auto # :auto, :all, or :none
 
   :build_root: build/ceedling
   :test_file_prefix: test_
@@ -57,10 +57,16 @@
 :paths:
   :test:
     - common/test/*
+    - FreeRTOS/test/*
   :source:
     - common/*
+    - FreeRTOS/*
+    - FreeRTOS/portable/posix/*
   :include:
     - common/include/*
+    - FreeRTOS/include/*
+    - FreeRTOS/portable/posix/*
+    - config/include/config/*
   :support:
     - common/test/support/*
   :libraries: []
@@ -74,47 +80,47 @@
   :plugins:
     - :ignore
     - :callback
-  :verbosity:  2
-  :when_no_prototypes:  :warn
+  :verbosity: 2
+  :when_no_prototypes: :warn
 
   # File configuration
-  :skeleton_path:  ''              # Subdirectory to store stubs when generated (default: '')
-  :mock_prefix:  'mock_'           # Prefix to append to filenames for mocks
-  :mock_suffix:  ''                # Suffix to append to filenames for mocks
+  :skeleton_path: "" # Subdirectory to store stubs when generated (default: '')
+  :mock_prefix: "mock_" # Prefix to append to filenames for mocks
+  :mock_suffix: "" # Suffix to append to filenames for mocks
 
   # Parser configuration
-  :strippables:  ['(?:__attribute__\s*\([ (]*.*?[ )]*\)+)']
+  :strippables: ['(?:__attribute__\s*\([ (]*.*?[ )]*\)+)']
   :attributes:
-     - __ramfunc
-     - __irq
-     - __fiq
-     - register
-     - extern
+    - __ramfunc
+    - __irq
+    - __fiq
+    - register
+    - extern
   :c_calling_conventions:
-     - __stdcall
-     - __cdecl
-     - __fastcall
-  :treat_externs:  :exclude        # the options being :include or :exclud
-  :treat_inlines:  :exclude        # the options being :include or :exclud
+    - __stdcall
+    - __cdecl
+    - __fastcall
+  :treat_externs: :exclude # the options being :include or :exclud
+  :treat_inlines: :exclude # the options being :include or :exclud
 
   # Type handling configuration
   #:unity_helper_path: ''          # specify a string of where to find a unity_helper.h file to discover custom type assertions
-  :treat_as:                       # optionally add additional types to map custom types
-    uint8:    HEX8
-    uint16:   HEX16
-    uint32:   UINT32
-    int8:     INT8
-    bool:     UINT8
+  :treat_as: # optionally add additional types to map custom types
+    uint8: HEX8
+    uint16: HEX16
+    uint32: UINT32
+    int8: INT8
+    bool: UINT8
   #:treat_as_array:  {}            # hint to cmock that these types are pointers to something
   #:treat_as_void:  []             # hint to cmock that these types are actually aliases of void
-  :memcmp_if_unknown:  true        # allow cmock to use the memory comparison assertions for unknown types
-  :when_ptr:  :compare_data        # hint to cmock how to handle pointers in general, the options being :compare_ptr, :compare_data, or :smart
+  :memcmp_if_unknown: true # allow cmock to use the memory comparison assertions for unknown types
+  :when_ptr: :compare_data # hint to cmock how to handle pointers in general, the options being :compare_ptr, :compare_data, or :smart
 
   # Mock generation configuration
-  :weak:  ''                       # Symbol to use to declare weak functions
-  :enforce_strict_ordering: true   # Do we want cmock to enforce ordering of all function calls?
-  :fail_on_unexpected_calls: true  # Do we want cmock to fail when it encounters a function call that wasn't expected?
-  :callback_include_count: true    # Do we want cmock to include the number of calls to this callback, when using callbacks?
+  :weak: "" # Symbol to use to declare weak functions
+  :enforce_strict_ordering: true # Do we want cmock to enforce ordering of all function calls?
+  :fail_on_unexpected_calls: true # Do we want cmock to fail when it encounters a function call that wasn't expected?
+  :callback_include_count: true # Do we want cmock to include the number of calls to this callback, when using callbacks?
   :callback_after_arg_check: false # Do we want cmock to enforce an argument check first when using a callback?
   #:includes: []                   # You can add additional includes here, or specify the location with the options below
   #:includes_h_pre_orig_header: []
@@ -123,7 +129,7 @@
   #:includes_c_post_header:  []
   #:array_size_type:  []            # Specify a type or types that should be used for array lengths
   #:array_size_name:  'size|len'    # Specify a name or names that CMock might automatically recognize as the length of an array
-  :exclude_setjmp_h:  false        # Don't use setjmp when running CMock. Note that this might result in late reporting or out-of-order failures.
+  :exclude_setjmp_h: false # Don't use setjmp when running CMock. Note that this might result in late reporting or out-of-order failures.
 
 :unity:
   :defines:
@@ -148,10 +154,10 @@
 # You will need to have gcov and gcovr both installed to make it work.
 # For more information on these options, see docs in plugins/gcov
 :gcov:
-  :summaries: TRUE                # Enable simple coverage summaries to console after tests
-  :report_task: FALSE             # Disabled dedicated report generation task (this enables automatic report generation)
+  :summaries: TRUE # Enable simple coverage summaries to console after tests
+  :report_task: FALSE # Disabled dedicated report generation task (this enables automatic report generation)
   :utilities:
-    - gcovr           # Use gcovr to create the specified reports (default).
+    - gcovr # Use gcovr to create the specified reports (default).
     #- ReportGenerator # Use ReportGenerator to create the specified reports.
   :reports: # Specify one or more reports to generate.
     # Make an HTML summary report.
@@ -182,7 +188,6 @@
     :html_high_threshold: 90
     # :html_absolute_paths: TRUE
     # :html_encoding: UTF-8
-
 # :module_generator:
 #   :naming: :snake #options: :bumpy, :camel, :caps, or :snake
 #   :includes:
@@ -304,4 +309,3 @@
 #     :arguments: []
 #     :name:
 #     :optional: FALSE
-...
