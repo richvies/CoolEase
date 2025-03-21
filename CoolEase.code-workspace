@@ -21,6 +21,8 @@
 		"ruff.interpreter": [
 			"/home/rick/.local/share/mise/shims/python"
 		],
+		"cortex-debug.gdbPath": "${userHome}/.local/share/mise/installs/gcc-arm-none-eabi/14.2.Rel1/bin/arm-none-eabi-gdb",
+		"cortex-debug.openocdPath": "/usr/bin/openocd",
 		"files.associations": {
 			"*.inc": "makefile",
 			"*.log": "log",
