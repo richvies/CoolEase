@@ -7,60 +7,20 @@
       "request": "launch",
       "servertype": "openocd",
       "cwd": "${workspaceFolder}",
-      "svdFile": "Tools/OpenOCD/STM32L052.svd",
+      "svdFile": "tools/openocd/STM32L052.svd",
       "configFiles": [
-        "Tools/OpenOCD/stlink.cfg",
-        "Tools/OpenOCD/stm32l0.cfg"
+        "interface/stlink.cfg",
+        "target/stm32l0.cfg"
       ],
-      "preLaunchTask": "Build hub",
-      "executable": "hub/bin/hub.elf"
-    },
-    {
-      "name": "Hub bootloader debug",
-      "type": "cortex-debug",
-      "request": "launch",
-      "servertype": "openocd",
-      "cwd": "${workspaceFolder}",
-      "svdFile": "Tools/OpenOCD/STM32L052.svd",
-      "configFiles": [
-        "Tools/OpenOCD/stlink.cfg",
-        "Tools/OpenOCD/stm32l0.cfg"
-      ],
-      "preLaunchTask": "Build hub",
-      "executable": "hub/bin/hub_bootloader.elf",
-      "gdbPath": "/usr/local/bin/arm-none-eabi-gdb"
-    },
-    {
-      "name": "Sensor debug",
-      "type": "cortex-debug",
-      "request": "launch",
-      "servertype": "openocd",
-      "cwd": "${workspaceFolder}",
-      "svdFile": "Tools/OpenOCD/STM32L052.svd",
-      "configFiles": [
-        "Tools/OpenOCD/stlink.cfg",
-        "Tools/OpenOCD/stm32l0.cfg"
-      ],
-      "preLaunchTask": "Build sensor",
-      "executable": "sensor/bin/sensor.elf"
-    },
-    {
-      "name": "Sensor bootloader debug",
-      "type": "cortex-debug",
-      "request": "launch",
-      "servertype": "openocd",
-      "cwd": "${workspaceFolder}",
-      "svdFile": "Tools/OpenOCD/STM32L052.svd",
-      "configFiles": [
-        "Tools/OpenOCD/stlink.cfg",
-        "Tools/OpenOCD/stm32l0.cfg"
-      ],
-      "preLaunchTask": "Build sensor",
-      "executable": "sensor/bin/sensor_bootloader.elf"
+      "preLaunchTask": "mise: build",
+      "executable": "build/Debug/hub/hub_Debug.elf",
+      "showDevDebugOutput": "vscode",
+      "device": "STM32L0xx",
+      "runToEntryPoint": "main"
     },
     {
       "name": "Debug current Python file",
-      "type": "python",
+      "type": "debugpy",
       "request": "launch",
       "cwd": "${workspaceFolder}",
       "program": "${file}",

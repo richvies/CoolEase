@@ -8,10 +8,6 @@
  ******************************************************************************
  */
 
-/*////////////////////////////////////////////////////////////////////////////*/
-// Includes
-/*////////////////////////////////////////////////////////////////////////////*/
-
 #include "common/memory.h"
 
 #include <stdbool.h>
@@ -25,10 +21,13 @@
 #include "common/timers.h"
 #include "config/board_defs.h"
 
-/** @addtogroup MEMORY_FILE
+/** @addtogroup common
  * @{
  */
 
+/** @addtogroup memory_api
+ * @{
+ */
 #define _RAM __attribute__((section(".data#"), noinline))
 
 #define STATE_FIRST_RUN (1 << 0)
@@ -37,14 +36,6 @@
 // Temperature readings saved in flash, 8Kb
 #define READINGS_START (FLASH_END - 8192)
 #define MAX_READINGS   2048
-
-/** @addtogroup MEMORY_INT
- * @{
- */
-
-/*////////////////////////////////////////////////////////////////////////////*/
-// Static Variables
-/*////////////////////////////////////////////////////////////////////////////*/
 
 static uint32_t next_reading_add = READINGS_START;
 
@@ -57,24 +48,10 @@ static uint32_t msg_num_add = 0x08080300;
 
 static uint32_t msg_num = 0;
 
-/*////////////////////////////////////////////////////////////////////////////*/
-// Static Function Declarations
-/*////////////////////////////////////////////////////////////////////////////*/
-
 static _RAM bool mem_flash_do_page_erase(uint32_t address);
 static _RAM bool
 mem_flash_do_write_half_page(uint32_t address,
                              uint32_t data[FLASH_PAGE_SIZE / 2]);
-
-/** @} */
-
-/** @addtogroup MEMORY_API
- * @{
- */
-
-/*////////////////////////////////////////////////////////////////////////////*/
-// Exported Function Definitions
-/*////////////////////////////////////////////////////////////////////////////*/
 
 void mem_init(void) {
     rcc_periph_clock_enable(RCC_MIF);
@@ -385,16 +362,6 @@ uint32_t mem_read_bkp_reg(uint8_t reg) {
     }
     return data;
 }
-
-/** @} */
-
-/** @addtogroup MEMORY_INT
- * @{
- */
-
-/*////////////////////////////////////////////////////////////////////////////*/
-// Static Function Definitions
-/*////////////////////////////////////////////////////////////////////////////*/
 
 /**
  * RAM-located function which actually performs page erases.

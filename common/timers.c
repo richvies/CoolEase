@@ -18,11 +18,17 @@
 #include "common/battery.h"
 #include "common/log.h"
 #include "common/reset.h"
-#include "common/rf_scan.h"
 #include "common/rfm.h"
-#include "common/test.h"
 #include "common/timers.h"
 #include "config/board_defs.h"
+
+/** @addtogroup common
+ * @{
+ */
+
+/** @addtogroup timers_api
+ * @{
+ */
 
 // Problems
 // LPTIM counter update using lptim_irq means it must have higher priority than
@@ -380,3 +386,6 @@ void lptim1_isr(void) {
     micros_counter += 1000;
     millis_counter++;
 }
+
+/** @} */ /* End of timers_api group */
+/** @} */ /* End of common group */

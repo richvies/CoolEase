@@ -36,6 +36,14 @@
 #include <stdbool.h>
 #include <stdint.h>
 
+/** @addtogroup common
+ * @{
+ */
+
+/** @addtogroup printf_api
+ * @{
+ */
+
 // 'ntoa' conversion buffer size, this must be big enough to hold one converted
 // numeric number including padded zeros (dynamically created on stack)
 // default: 32 byte
@@ -214,4 +222,5 @@ uint32_t _atoi(const char** str) {
     return i;
 }
 
-///////////////////////////////////////////////////////////////////////////////
+/** @} */ /* End of printf_api group */
+/** @} */ /* End of common group */

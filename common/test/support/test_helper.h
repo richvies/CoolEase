@@ -3,6 +3,17 @@
 
 #include "unity.h"
 
+/** @addtogroup testing
+ * @{
+ */
+
+/** @addtogroup common_test
+ * @{
+ */
+
 uint32_t generate_random_uint32(void);
+
+/** @} */
+/** @} */
 
 #endif

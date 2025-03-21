@@ -7,6 +7,18 @@
 #include "config/board_defs.h"
 #include "sensor/si7051.h"
 
+/** @addtogroup sensor
+ * @{
+ */
+
+/** @addtogroup temperature_api
+ * @{
+ */
+
+/** @addtogroup si7051_api
+ * @{
+ */
+
 // Helper functions for setting up i2c communication
 static void si7051_clock_setup(void);
 static void si7051_i2c_setup(void);
@@ -114,3 +126,7 @@ static void si7051_i2c_setup(void) {
     i2c_set_data_setup_time(TEMP_I2C, 2 - 1); // 1usecs
     i2c_peripheral_enable(TEMP_I2C);
 }
+
+/** @} */ /* End of si7051_api group */
+/** @} */ /* End of temperature_api group */
+/** @} */ /* End of sensor group */

@@ -8,10 +8,6 @@
  ******************************************************************************
  */
 
-/*////////////////////////////////////////////////////////////////////////////*/
-// Includes
-/*////////////////////////////////////////////////////////////////////////////*/
-
 #include "hub/sim.h"
 
 #include <stdbool.h>
@@ -30,7 +26,11 @@
 #include "common/timers.h"
 #include "config/board_defs.h"
 
-/** @addtogroup SIM_FILE
+/** @addtogroup hub
+ * @{
+ */
+
+/** @addtogroup sim_api
  * @{
  */
 
@@ -83,14 +83,6 @@
 
 // HTTP
 #define HTTP_ENABLE_SSL AT + HTTPSSL = 1
-
-/** @addtogroup SIM_INT
- * @{
- */
-
-/*////////////////////////////////////////////////////////////////////////////*/
-// Static Variables
-/*////////////////////////////////////////////////////////////////////////////*/
 
 #define RX_TIMEOUT_MS     100
 #define QUICK_RESPONSE_MS 100
@@ -194,12 +186,6 @@ static void usart_setup(void);
 static void clear_rx_buf(void);
 static void _putchar(char character);
 static void print_timestamp(void);
-
-/** @} */
-
-/** @addtogroup SIM_API
- * @{
- */
 
 /*////////////////////////////////////////////////////////////////////////////*/
 // Comms
@@ -1559,16 +1545,6 @@ bool sim_send_sms(const char* phone_number, const char* msg_str) {
     return result;
 }
 
-/** @} */
-
-/** @addtogroup SIM_INT
- * @{
- */
-
-/*////////////////////////////////////////////////////////////////////////////*/
-// Static Function Definitions
-/*////////////////////////////////////////////////////////////////////////////*/
-
 static void reset(void) {
     serial_printf("SIM: Reset\n");
     mcu_setup();
@@ -1703,16 +1679,6 @@ static void print_timestamp(void) {
     serial_printf("\n");
 }
 
-/** @} */
-
-/** @addtogroup SIM_API
- * @{
- */
-
-/*////////////////////////////////////////////////////////////////////////////*/
-// Interrupts
-/*////////////////////////////////////////////////////////////////////////////*/
-
 SIM_ISR() {
     // serial_printf("Sim ISR: %8x\n", USART2_ISR);
 
@@ -1746,4 +1712,5 @@ SIM_ISR() {
 }
 
 /** @} */
+
 /** @} */

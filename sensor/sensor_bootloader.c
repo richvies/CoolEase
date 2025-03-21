@@ -8,10 +8,6 @@
  ******************************************************************************
  */
 
-/*////////////////////////////////////////////////////////////////////////////*/
-// Includes
-/*////////////////////////////////////////////////////////////////////////////*/
-
 #include "sensor/sensor_bootloader.h"
 
 #include "common/aes.h"
@@ -19,21 +15,18 @@
 #include "common/bootloader_utils.h"
 #include "common/log.h"
 #include "common/reset.h"
-#include "common/rf_scan.h"
 #include "common/rfm.h"
-#include "common/test.h"
 #include "common/timers.h"
 #include "config/board_defs.h"
 
-#include "sensor/sensor_test.h"
 #include "sensor/si7051.h"
 #include "sensor/tmp112.h"
 
-/** @addtogroup SENSOR_BOOTLOADER_FILE
+/** @addtogroup sensor
  * @{
  */
 
-/** @addtogroup SENSOR_BOOTLOADER_INT
+/** @addtogroup bootloader_api
  * @{
  */
 
@@ -41,26 +34,8 @@
 #define BACKUP_VERSION  100
 #define BIN_HEADER_SIZE 64
 
-/*////////////////////////////////////////////////////////////////////////////*/
-// Static Variables
-/*////////////////////////////////////////////////////////////////////////////*/
-
-/*////////////////////////////////////////////////////////////////////////////*/
-// Static Function Declarations
-/*////////////////////////////////////////////////////////////////////////////*/
-
 static void init(void);
 static void deinit(void);
-
-/** @} */
-
-/** @addtogroup SENSOR_BOOTLOADER_API
- * @{
- */
-
-/*////////////////////////////////////////////////////////////////////////////*/
-// Exported Function Definitions
-/*////////////////////////////////////////////////////////////////////////////*/
 
 int main(void) {
     init();
@@ -142,16 +117,6 @@ int main(void) {
 
     return 0;
 }
-
-/** @} */
-
-/** @addtogroup SENSOR_BOOTLOADER_INT
- * @{
- */
-
-/*////////////////////////////////////////////////////////////////////////////*/
-// Static Function Definitions
-/*////////////////////////////////////////////////////////////////////////////*/
 
 static void init(void) {
     clock_setup_msi_2mhz();

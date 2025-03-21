@@ -8,10 +8,6 @@
  ******************************************************************************
  */
 
-/*////////////////////////////////////////////////////////////////////////////*/
-// Includes
-/*////////////////////////////////////////////////////////////////////////////*/
-
 #include <libopencm3/cm3/nvic.h>
 #include <libopencm3/cm3/scb.h>
 #include <libopencm3/cm3/systick.h>
@@ -24,37 +20,26 @@
 #include "common/log.h"
 #include "common/memory.h"
 #include "common/reset.h"
-#include "common/rf_scan.h"
 #include "common/rfm.h"
-#include "common/test.h"
 #include "common/timers.h"
 #include "config/board_defs.h"
 
 #include "sensor/sensor.h"
-#include "sensor/sensor_test.h"
 #include "sensor/si7051.h"
 #include "sensor/tmp112.h"
 
-/** @addtogroup SENSOR_FILE
+/** @addtogroup sensor
+ * @{
+ */
+
+/** @addtogroup sensor_api
  * @{
  */
 
 #define VERSION           100
 #define SENSOR_SLEEP_TIME 5
 
-/** @addtogroup SENSOR_INT
- * @{
- */
-
-/*////////////////////////////////////////////////////////////////////////////*/
-// Static Variables
-/*////////////////////////////////////////////////////////////////////////////*/
-
 static bool bad_reboot = false;
-
-/*////////////////////////////////////////////////////////////////////////////*/
-// Static Function Declarations
-/*////////////////////////////////////////////////////////////////////////////*/
 
 static void     init(void);
 static void     deinit(void);
@@ -66,16 +51,6 @@ static uint32_t xorshift32(void);
 static bool     report_pend = true;
 static uint32_t report_timer = 0;
 static uint32_t report_wait = 0;
-
-/** @} */
-
-/** @addtogroup SENSOR_API
- * @{
- */
-
-/*////////////////////////////////////////////////////////////////////////////*/
-// Exported Function Definitions
-/*////////////////////////////////////////////////////////////////////////////*/
 
 int main(void) {
     init();
@@ -217,16 +192,6 @@ void set_gpio_for_standby(void) {
     gpio_mode_setup(TEMP_I2C_SDA_PORT, GPIO_MODE_INPUT, GPIO_PUPD_PULLUP,
                     TEMP_I2C_SDA);
 }
-
-/** @} */
-
-/** @addtogroup SENSOR_INT
- * @{
- */
-
-/*////////////////////////////////////////////////////////////////////////////*/
-// Static Function Definitions
-/*////////////////////////////////////////////////////////////////////////////*/
 
 static void init(void) {
     clock_setup_msi_2mhz();
@@ -422,4 +387,5 @@ void rtc_isr(void) {
 }
 
 /** @} */
+
 /** @} */

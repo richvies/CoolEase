@@ -7,6 +7,14 @@
 #include "common/memory.h"
 #include "common/timers.h"
 
+/** @addtogroup common
+ * @{
+ */
+
+/** @addtogroup reset_api Reset
+ * @{
+ */
+
 #define RESET_WAKEUP_FLAG  (1 << 0)
 #define RESET_STANDBY_FLAG (1 << 1)
 
@@ -46,3 +54,6 @@ void reset_save_flags(void) {
 uint32_t reset_get_flags(void) {
     return mem_read_bkp_reg(BKUP_RESET_FLAGS);
 }
+
+/** @} */ /* End of reset_api group */
+/** @} */ /* End of common group */

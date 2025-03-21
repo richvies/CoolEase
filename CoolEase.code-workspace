@@ -21,6 +21,8 @@
 		"ruff.interpreter": [
 			"/home/rick/.local/share/mise/shims/python"
 		],
+		"cortex-debug.gdbPath": "${userHome}/.local/share/mise/installs/gcc-arm-none-eabi/14.2.Rel1/bin/arm-none-eabi-gdb",
+		"cortex-debug.openocdPath": "/usr/bin/openocd",
 		"files.associations": {
 			"*.inc": "makefile",
 			"*.log": "log",
@@ -38,7 +40,20 @@
 			"unity.h": "c",
 			"cmock.h": "c",
 			"test_helper.h": "c",
-			"crs.h": "c"
-		}
+			"crs.h": "c",
+			"reset.h": "c",
+			"rf_scan.h": "c",
+			"memory.h": "c",
+			"board_defs.h": "c",
+			"vector.h": "c",
+			"sim.h": "c",
+			"cusb.h": "c",
+			"aes.h": "c",
+			"timers.h": "c",
+			"crc.h": "c",
+			"freertos.h": "c",
+			"freertosconfig.h": "c"
+		},
+		"cortex-debug.variableUseNaturalFormat": true
 	}
 }

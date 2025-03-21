@@ -8,10 +8,6 @@
  ******************************************************************************
  */
 
-/*////////////////////////////////////////////////////////////////////////////*/
-// Includes
-/*////////////////////////////////////////////////////////////////////////////*/
-
 #include "common/battery.h"
 
 #include <libopencm3/cm3/nvic.h>
@@ -28,7 +24,15 @@
 #include "common/timers.h"
 #include "config/board_defs.h"
 
-#ifdef _HUB
+/** @addtogroup common
+ * @{
+ */
+
+/** @addtogroup battery_api
+ * @{
+ */
+
+#ifdef COOLEASE_DEVICE_HUB
 #define NUM_VOLTAGES 2
 #define PWR_VOLTAGE  0
 #define BATT_VOLTAGE 1
@@ -64,35 +68,9 @@ typedef enum {
     BATT_PLUGGED_OUT,
 } batt_state_t;
 
-/** @addtogroup BATTERY_FILE
- * @{
- */
-
-/** @addtogroup BATTERY_INT
- * @{
- */
-
-/*////////////////////////////////////////////////////////////////////////////*/
-// Static Variables
-/*////////////////////////////////////////////////////////////////////////////*/
-
 static uint16_t     adc_vals[3] = {0, 0, 0};
 static uint16_t     batt_voltages[NUM_VOLTAGES];
 static batt_state_t state = BATT_INIT;
-
-/*////////////////////////////////////////////////////////////////////////////*/
-// Static Function Declarations
-/*////////////////////////////////////////////////////////////////////////////*/
-
-/** @} */
-
-/** @addtogroup BATTERY_API
- * @{
- */
-
-/*////////////////////////////////////////////////////////////////////////////*/
-// Exported Function Definitions
-/*////////////////////////////////////////////////////////////////////////////*/
 
 void batt_init(void) {
     // Disable Interrupt
@@ -162,7 +140,7 @@ void batt_init(void) {
     ADC_CHSELR(ADC1) |= (1 << ADC_CHANNEL_VREF);
     ADC_CHSELR(ADC1) |= (1 << 0);
 
-#ifdef _HUB
+#ifdef COOLEASE_DEVICE_HUB
     gpio_mode_setup(PWR_SENS_PORT, GPIO_MODE_ANALOG, GPIO_PUPD_NONE, PWR_SENS);
     ADC_CHSELR(ADC1) |= (1 << 1);
 #endif
@@ -241,7 +219,7 @@ void batt_calculate_voltages(void) {
     }
 
 // For Hub : Measured voltage is half of actual
-#ifdef _HUB
+#ifdef COOLEASE_DEVICE_HUB
     for (uint8_t i = 0; i < NUM_VOLTAGES; i++) {
         batt_voltages[i] = batt_voltages[i] * 2;
     }
@@ -329,7 +307,7 @@ uint16_t batt_get_batt_voltage(void) {
 }
 
 uint16_t batt_get_pwr_voltage(void) {
-#ifdef _HUB
+#ifdef COOLEASE_DEVICE_HUB
     return batt_voltages[PWR_VOLTAGE];
 #else
     return 0;
@@ -390,17 +368,6 @@ bool batt_is_ready(void) {
     // return (state != BATT_INIT);
     return true;
 }
-/** @} */
-
-/** @addtogroup BATTERY_INT
- * @{
- */
-
-/*////////////////////////////////////////////////////////////////////////////*/
-// Static Function Definitions
-/*////////////////////////////////////////////////////////////////////////////*/
-
-/** @} */
 
 void dma1_channel1_isr(void) {
     static uint32_t     timer = 0;

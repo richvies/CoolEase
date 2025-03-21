@@ -8,10 +8,6 @@
  ******************************************************************************
  */
 
-/*////////////////////////////////////////////////////////////////////////////*/
-// Includes
-/*////////////////////////////////////////////////////////////////////////////*/
-
 #include <stdlib.h>
 #include <string.h>
 
@@ -30,31 +26,23 @@
 #include "common/timers.h"
 #include "config/board_defs.h"
 
-#ifdef _HUB
+#ifdef COOLEASE_DEVICE_HUB
 #include "hub/cusb.h"
 #endif
 
-/** @addtogroup LOG_FILE
+/** @addtogroup common
  * @{
  */
 
-/** @addtogroup LOG_INT
+/** @addtogroup log_api
  * @{
  */
-
-/*////////////////////////////////////////////////////////////////////////////*/
-// Static Variables
-/*////////////////////////////////////////////////////////////////////////////*/
 
 // Vars used during normal operation
 static uint16_t write_index;
 static uint16_t read_index;
 
 #define LOG_SIZE (EEPROM_LOG_SIZE - 8)
-
-/*////////////////////////////////////////////////////////////////////////////*/
-// Static Function Declarations
-/*////////////////////////////////////////////////////////////////////////////*/
 
 static void _putchar_main(char character);
 static void _putchar_mem(char character);
@@ -63,20 +51,10 @@ static void _putchar_mem(char character);
 static void usart_setup(void);
 static void usart_end(void);
 static void _putchar_spf(char character);
-#ifdef _HUB
+#ifdef COOLEASE_DEVICE_HUB
 static void _putchar_usb(char character);
 #endif
 #endif
-
-/** @} */
-
-/** @addtogroup LOG_API
- * @{
- */
-
-/*////////////////////////////////////////////////////////////////////////////*/
-// Exported Function Definitions
-/*////////////////////////////////////////////////////////////////////////////*/
 
 void log_init(void) {
     write_index = log_file->idx % LOG_SIZE;
@@ -179,29 +157,27 @@ void log_erase_backup(void) {
     }
 }
 
-/** @} */
-
-/** @addtogroup LOG_INT
- * @{
- */
-
-/*////////////////////////////////////////////////////////////////////////////*/
-// Static Function Definitions
-/*////////////////////////////////////////////////////////////////////////////*/
+void print_aes_key(app_info_t* info) {
+    serial_printf("AES Key:");
+    for (uint8_t i = 0; i < 16; i++) {
+        serial_printf(" %2x", info->aes_key[i]);
+    }
+    serial_printf("\n");
+}
 
 static void _putchar_main(char character) {
     _putchar_mem(character);
 
 #ifdef DEBUG
     _putchar_spf(character);
-#ifdef _HUB
+#ifdef COOLEASE_DEVICE_HUB
     _putchar_usb(character);
 #endif
 #endif
 }
 
 static void _putchar_mem(char character) {
-    mem_eeprom_write_byte((uint32_t) & (log_file->log[write_index]), character);
+    mem_eeprom_write_byte((uint32_t)&(log_file->log[write_index]), character);
 
     write_index = (write_index + 1) % LOG_SIZE;
 }
@@ -356,11 +332,11 @@ SPF_ISR() {
     }
 }
 
-#ifdef _HUB
+#ifdef COOLEASE_DEVICE_HUB
 static void _putchar_usb(char character) {
     cusb_send(character);
 }
-#endif // _HUB
+#endif // COOLEASE_DEVICE_HUB
 #endif // DEBUG
 
 /** @} */

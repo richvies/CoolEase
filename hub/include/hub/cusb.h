@@ -2,35 +2,19 @@
  ******************************************************************************
  * @file    cusb.h
  * @author  Richard Davies
- * @date    25/Dec/2020
+ * @date    04/Jan/2021
  * @brief   Hub USB driver header file
  *
- * @defgroup    CUSB_FILE  Cusb
- * @brief       Hub USB HID driver
- *
- * Manages the USB Device
- *
- * @note
- *
+ * @defgroup hub Hub
  * @{
- * @defgroup   CUSB_API  Cusb API
- * @brief      Programming interface and key macros
- *
- * @defgroup   CUSB_INT  Cusb Internal
- * @brief      Static Vars, Functions & Internal Macros
- *
- * @defgroup   CUSB_CFG  Cusb Configuration
- * @brief      USB HID descriptors
+ *   @defgroup cusb_api USB HID Driver
+ *   @brief    Hub USB HID driver interface for device management
  * @}
  ******************************************************************************
  */
 
 #ifndef CUSB_H
 #define CUSB_H
-
-/*////////////////////////////////////////////////////////////////////////////*/
-// Includes
-/*////////////////////////////////////////////////////////////////////////////*/
 
 #include <stdbool.h>
 #include <stdint.h>
@@ -42,48 +26,90 @@
 extern "C" {
 #endif
 
-/** @addtogroup CUSB_API
+/** @addtogroup hub
  * @{
  */
 
-/*////////////////////////////////////////////////////////////////////////////*/
+/** @addtogroup cusb_api
+ * @{
+ */
+
 // Exported Variables
-/*////////////////////////////////////////////////////////////////////////////*/
 
-/*////////////////////////////////////////////////////////////////////////////*/
 // Exported Function Declarations
-/*////////////////////////////////////////////////////////////////////////////*/
 
-/** @brief Initialize clock and interrupts */
+/**
+ * @brief Initialize USB clock and interrupts
+ * @return None
+ */
 void cusb_init(void);
 
+/**
+ * @brief Terminate USB operations
+ * @return None
+ */
 void cusb_end(void);
 
-/** @brief True if usb state is CONNECTED
+/**
+ * @brief Check if USB is in connected state
  *
- * Set by hid config callback after
- * host has requested HID configuration
+ * Set by HID config callback after host has requested HID configuration
  *
- * @ref usb_state \n
- * @ref hid_set_config()
+ * @return true if connected, false otherwise
  */
 bool cusb_connected(void);
+
+/**
+ * @brief Check if USB is in reset state
+ * @return true if reset, false otherwise
+ */
 bool cusb_reset(void);
+
+/**
+ * @brief Check if USB device is physically connected
+ * @return true if plugged in, false otherwise
+ */
 bool cusb_plugged_in(void);
 
+/**
+ * @brief Poll USB for events
+ * @return None
+ */
 void cusb_poll(void);
 
+/**
+ * @brief Send a character over USB
+ * @param character Character to send
+ * @return None
+ */
 void cusb_send(char character);
 
-/*////////////////////////////////////////////////////////////////////////////*/
-// Hook Functions
-/*////////////////////////////////////////////////////////////////////////////*/
-
+/**
+ * @brief Hook function for USB reset events
+ * @return None
+ */
 void cusb_hook_reset(void);
+
+/**
+ * @brief Hook function for HID OUT report events
+ *
+ * This is called when data is received from host.
+ *
+ * @return None
+ */
 void cusb_hook_hid_out_report(void);
+
+/**
+ * @brief Hook function for HID IN report events
+ *
+ * This is called when data is requested by host.
+ *
+ * @return None
+ */
 void cusb_hook_hid_in_report(void);
 
-/** @} */
+/** @} */ /* End of cusb_api group */
+/** @} */ /* End of hub group */
 
 #ifdef __cplusplus
 }

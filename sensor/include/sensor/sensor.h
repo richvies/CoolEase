@@ -3,31 +3,22 @@
  * @file    sensor.h
  * @author  Richard Davies
  * @date    18/Jan/2021
- * @brief   Sensor Header File
+ * @brief   Sensor Module Header File
  *
- * @defgroup   SENSOR_FILE  Sensor
- * @brief
- *
- * Description
- *
- * @note
- *
+ * @defgroup sensor Sensor
  * @{
- * @defgroup   SENSOR_API  Sensor API
- * @brief
+ *   @defgroup sensor_api Sensor Interface
+ *   @brief    Core sensor functionality and interfaces
  *
- * @defgroup   SENSOR_INT  Sensor Internal
- * @brief
+ *   The sensor module provides the core functionality for sensor devices,
+ *   including measurement, calibration, and communication capabilities.
+ *   It serves as the main interface for interacting with sensor hardware.
  * @}
  ******************************************************************************
  */
 
 #ifndef SENSOR_H
 #define SENSOR_H
-
-/*////////////////////////////////////////////////////////////////////////////*/
-// Includes
-/*////////////////////////////////////////////////////////////////////////////*/
 
 #include <stdbool.h>
 #include <stddef.h>
@@ -40,21 +31,23 @@
 extern "C" {
 #endif
 
-/** @addtogroup SENSOR_API
+/** @addtogroup sensor
  * @{
  */
 
-/*////////////////////////////////////////////////////////////////////////////*/
-// Exported Variables
-/*////////////////////////////////////////////////////////////////////////////*/
+/** @addtogroup sensor_api
+ * @{
+ */
 
+/**
+ * @brief Sensor firmware version number
+ */
 #define VERSION 100
 
-/*////////////////////////////////////////////////////////////////////////////*/
-// Exported Function Declarations
-/*////////////////////////////////////////////////////////////////////////////*/
+// Add sensor API functions here
 
-/** @} */
+/** @} */ /* End of sensor_api group */
+/** @} */ /* End of sensor group */
 
 #ifdef __cplusplus
 }

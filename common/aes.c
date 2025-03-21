@@ -33,15 +33,24 @@ NOTE:   String length must be evenly divisible by 16byte (str_len % 16 == 0)
 
 */
 
-/*****************************************************************************/
-// Includes:
-/*****************************************************************************/
 #include "common/aes.h"
 
 #include <string.h> // CBC mode, for memset
 
 #include "common/aes.h"
 #include "common/log.h"
+
+/** @addtogroup common
+ * @{
+ */
+
+/** @addtogroup crypto_api
+ * @{
+ */
+
+/** @addtogroup aes_api
+ * @{
+ */
 
 /*****************************************************************************/
 // Defines:
@@ -519,3 +528,7 @@ void aes_generate_random(uint8_t* buf, uint8_t len) {
     rcc_periph_clock_disable(RCC_DMA1);
     */
 }
+
+/** @} */ /* End of aes_api group */
+/** @} */ /* End of crypto_api group */
+/** @} */ /* End of common group */

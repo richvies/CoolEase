@@ -8,10 +8,6 @@
  ******************************************************************************
  */
 
-/*////////////////////////////////////////////////////////////////////////////*/
-// Includes
-/*////////////////////////////////////////////////////////////////////////////*/
-
 #include "hub/cusb.h"
 
 #include <stdbool.h>
@@ -36,26 +32,17 @@
 #include "common/memory.h"
 #include "config/board_defs.h"
 
-/** @addtogroup CUSB_FILE
+/** @addtogroup hub
+ * @{
+ */
+
+/** @addtogroup cusb_api
  * @{
  */
 
 /*////////////////////////////////////////////////////////////////////////////*/
 // USB Configuration & Descriptors
 /*////////////////////////////////////////////////////////////////////////////*/
-
-/** @addtogroup CUSB_CFG
- *
- * - Device
- * - Configuration
- * - Interface
- * - Endpoints
- * - Strings
- * - HID Function
- * - Report
- *
- * @{
- */
 
 /** @brief Interfaces used */
 enum dev_interfaces {
@@ -284,21 +271,11 @@ static const struct usb_config_descriptor cfg_desc = {
     .bConfigurationValue = 1,
     .iConfiguration = USB_CONFIGURATION_IDX,
     .bmAttributes =
-        0b10000000,   /**< Bit flags. 7: Must be set to 1. 6: Self Powered. 5:
-                         Supports remote wakeup. 4-0: Must be set to 0.*/
+        (1 << 7),     /**< Bit flags. 7: Must be set to 1. 6: Self Powered. 5:
+                 Supports remote wakeup. 4-0: Must be set to 0.*/
     .bMaxPower = 200, /**< mA / 2 */
     .interface = interfaces,
 };
-
-/** @} */
-
-/** @addtogroup CUSB_INT
- * @{
- */
-
-/*////////////////////////////////////////////////////////////////////////////*/
-// Static Variables
-/*////////////////////////////////////////////////////////////////////////////*/
 
 /** @brief USB device handle */
 static usbd_device* usbd_dev;
@@ -358,10 +335,6 @@ union {
 
 } hid_in_report;
 
-/*////////////////////////////////////////////////////////////////////////////*/
-// Static Function Declarations
-/*////////////////////////////////////////////////////////////////////////////*/
-
 /** @brief Setup CPU and peripheral clocks for usb */
 static void cusb_clock_init(void);
 
@@ -404,16 +377,6 @@ static void hid_out_report_callback(usbd_device* dev, uint8_t ea);
  * i.e. when usb CTR interrupt and transaction type is IN
  */
 static void hid_in_report_callback(usbd_device* dev, uint8_t ea);
-
-/** @} */
-
-/** @addtogroup CUSB_API
- * @{
- */
-
-/*////////////////////////////////////////////////////////////////////////////*/
-// Exported Function Definitions
-/*////////////////////////////////////////////////////////////////////////////*/
 
 void cusb_init(void) {
     if (usb_state == USB_OFF) {
@@ -481,16 +444,6 @@ void cusb_send(char character) {
         usbd_ep_write_packet(usbd_dev, ENDPOINT_HID_IN, &character, 1);
     }
 }
-
-/** @} */
-
-/** @addtogroup CUSB_INT
- * @{
- */
-
-/*////////////////////////////////////////////////////////////////////////////*/
-// Static Function Definitions
-/*////////////////////////////////////////////////////////////////////////////*/
 
 /* HSI16 must be sys_clk */
 static void cusb_clock_init(void) {
@@ -815,4 +768,5 @@ void usb_isr(void) {
 }
 
 /** @} */
+
 /** @} */
