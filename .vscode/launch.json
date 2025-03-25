@@ -2,7 +2,7 @@
   "version": "0.2.0",
   "configurations": [
     {
-      "name": "Hub debug",
+      "name": "ARM debug",
       "type": "cortex-debug",
       "request": "launch",
       "servertype": "openocd",
@@ -13,13 +13,13 @@
         "target/stm32l0.cfg"
       ],
       "preLaunchTask": "mise: build",
-      "executable": "build/Debug/hub/hub_Debug.elf",
+      "executable": "${input:arm-binary}",
       "showDevDebugOutput": "vscode",
       "device": "STM32L0xx",
       "runToEntryPoint": "main"
     },
     {
-      "name": "Debug current Python file",
+      "name": "Python debug file",
       "type": "debugpy",
       "request": "launch",
       "cwd": "${workspaceFolder}",
@@ -27,13 +27,30 @@
       "console": "integratedTerminal"
     },
     {
+      "name": "CMake: Configure debug",
       "type": "cmake",
       "request": "launch",
-      "name": "CMake: Configure project",
       "cmakeDebugType": "configure",
       "clean": true,
       "configureAll": false,
       "scriptPath": "${workspaceFolder}/CMakeLists.txt"
+    }
+  ],
+  "inputs": [
+    {
+      "id": "arm-binary",
+      "type": "pickString",
+      "description": "Hub or Sensor",
+      "options": [
+        {
+          "label": "Hub",
+          "value": "build/debug/hub/freestanding/hub_freestanding_Debug.elf"
+        },
+        {
+          "label": "Sensor",
+          "value": "build/debug/sensor/freestanding/sensor_freestanding_Debug.elf"
+        }
+      ]
     }
   ]
 }

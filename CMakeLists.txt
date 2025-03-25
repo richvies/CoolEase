@@ -57,9 +57,8 @@ foreach(DEVICE IN LISTS DEVICES)
 
     add_custom_target(${EXE_NAME}.lss ALL
       DEPENDS $<TARGET_FILE:${EXE_NAME}>
-      COMMAND ${CMAKE_COMMAND} -E echo "Generating ${EXE_NAME}.lss from ${EXE_NAME}.elf"
-      COMMAND ${CMAKE_OBJDUMP} -S $<TARGET_FILE:${EXE_NAME}>.elf >
-      $<TARGET_FILE:${EXE_NAME}>.lss)
+      COMMAND ${CMAKE_COMMAND} -E echo "Generating ${EXE_NAME}.lss from ${EXE_NAME}"
+      COMMAND ${CMAKE_OBJDUMP} -S $<TARGET_FILE:${EXE_NAME}> > $<TARGET_FILE_DIR:${EXE_NAME}>/${EXE_NAME}.lss)
 
     ################################################################################
     # Link flags and options
