@@ -25,6 +25,15 @@
       "cwd": "${workspaceFolder}",
       "program": "${file}",
       "console": "integratedTerminal"
+    },
+    {
+      "type": "cmake",
+      "request": "launch",
+      "name": "CMake: Configure project",
+      "cmakeDebugType": "configure",
+      "clean": true,
+      "configureAll": false,
+      "scriptPath": "${workspaceFolder}/CMakeLists.txt"
     }
   ]
 }

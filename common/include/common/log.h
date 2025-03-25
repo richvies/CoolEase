@@ -20,7 +20,7 @@
 #include <stdbool.h>
 #include <stdint.h>
 
-#include "board_defs.h"
+#include "config/board_defs.h"
 
 #ifdef __cplusplus
 extern "C" {

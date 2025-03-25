@@ -2,22 +2,28 @@
   "version": 3,
   "configurePresets": [
     {
-      "name": "debug",
-      "displayName": "Debug Build",
+      "name": "default",
+      "hidden": true,
       "generator": "Ninja",
-      "binaryDir": "build/Debug",
       "cacheVariables": {
-        "CMAKE_VERBOSE_MAKEFILE": "OFF",
+        "CMAKE_EXPORT_COMPILE_COMMANDS": "ON",
+        "CMAKE_VERBOSE_MAKEFILE": "OFF"
+      },
+      "toolchainFile": "${sourceDir}/cmake/gcc-arm-none-eabi.cmake"
+    },
+    {
+      "inherits": "default",
+      "name": "debug",
+      "binaryDir": "build/debug",
+      "cacheVariables": {
         "CMAKE_BUILD_TYPE": "Debug"
       }
     },
     {
+      "inherits": "default",
       "name": "release",
-      "displayName": "Release Build",
-      "generator": "Ninja",
-      "binaryDir": "build/Release",
+      "binaryDir": "build/release",
       "cacheVariables": {
-        "CMAKE_VERBOSE_MAKEFILE": "OFF",
         "CMAKE_BUILD_TYPE": "Release"
       }
     }

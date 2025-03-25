@@ -12,7 +12,7 @@
 			"**/node_modules": true,
 			"**/bower_components": true,
 			"**/*.code-search": true,
-			"docs/**/html": true
+			"docs/**": true
 		},
 		"ruff.path": [
 			"/home/rick/.local/share/mise/shims/ruff"
@@ -23,6 +23,9 @@
 		],
 		"cortex-debug.gdbPath": "${userHome}/.local/share/mise/installs/gcc-arm-none-eabi/14.2.Rel1/bin/arm-none-eabi-gdb",
 		"cortex-debug.openocdPath": "/usr/bin/openocd",
+		"cmake.automaticReconfigure": false,
+		"cmake.autoSelectActiveFolder": false,
+		"cmake.enableAutomaticKitScan": false,
 		"files.associations": {
 			"*.inc": "makefile",
 			"*.log": "log",
@@ -52,8 +55,13 @@
 			"timers.h": "c",
 			"crc.h": "c",
 			"freertos.h": "c",
-			"freertosconfig.h": "c"
+			"freertosconfig.h": "c",
+			"task.h": "c",
+			"event_groups.h": "c",
+			"stdlib.h": "c",
+			"ieeefp.h": "c",
+			"flash.h": "c"
 		},
-		"cortex-debug.variableUseNaturalFormat": true
+		"cortex-debug.variableUseNaturalFormat": true,
 	}
 }

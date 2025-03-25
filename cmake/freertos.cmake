@@ -1,45 +1,21 @@
-set(FREERTOS_DIR "${CMAKE_CURRENT_LIST_DIR}/../FreeRTOS")
-set(FREERTOS_INCLUDE "${FREERTOS_DIR}/include")
-
-if(NOT DEFINED SIMULATOR)
-  option(SIMULATOR "Run on POSIX" OFF)
+if(NOT DEFINED FREERTOS_SIMULATOR)
+  option(FREERTOS_SIMULATOR "Run on POSIX" OFF)
 endif()
 
-if(NOT TARGET FreeRTOS)
-  add_library(FreeRTOS STATIC
-    ${CMAKE_CURRENT_LIST_DIR}/../FreeRTOS/croutine.c
-    ${CMAKE_CURRENT_LIST_DIR}/../FreeRTOS/event_groups.c
-    ${CMAKE_CURRENT_LIST_DIR}/../FreeRTOS/list.c
-    ${CMAKE_CURRENT_LIST_DIR}/../FreeRTOS/queue.c
-    ${CMAKE_CURRENT_LIST_DIR}/../FreeRTOS/stream_buffer.c
-    ${CMAKE_CURRENT_LIST_DIR}/../FreeRTOS/tasks.c
-    ${CMAKE_CURRENT_LIST_DIR}/../FreeRTOS/timers.c
-    ${CMAKE_CURRENT_LIST_DIR}/../FreeRTOS/portable/MemMang/heap_4.c
-  )
+if(NOT DEFINED FREERTOS_CONFIG_INCLUDE)
+  message(FATAL_ERROR "Must set FREERTOS_CONFIG_INCLUDE before including ${CMAKE_CURRENT_LIST_FILE}")
+endif()
+message(STATUS "Using FreeRTOS config at: ${FREERTOS_CONFIG_INCLUDE}")
 
-  target_include_directories(FreeRTOS PUBLIC
-    ${CMAKE_CURRENT_LIST_DIR}/../FreeRTOS/include
-  )
+add_library(freertos_config INTERFACE)
+target_include_directories(freertos_config SYSTEM INTERFACE ${FREERTOS_CONFIG_INCLUDE})
 
-
-  if(DEFINED SIMULATOR)
-    message(NOTICE "Compiling FreeRTOS for POSIX")
-
-    target_include_directories(FreeRTOS PUBLIC
-      ${CMAKE_CURRENT_LIST_DIR}/../FreeRTOS/portable/posix
-    )
-    target_sources(FreeRTOS PRIVATE
-      ${CMAKE_CURRENT_LIST_DIR}/../FreeRTOS/portable/posix/port.c
-      ${CMAKE_CURRENT_LIST_DIR}/../FreeRTOS/portable/posix/utils/wait_for_event.c
-    )
-  else()
-    target_sources(FreeRTOS PRIVATE
-      ${CMAKE_CURRENT_LIST_DIR}/../FreeRTOS/portable/cm3/port.c
-    )
-    target_include_directories(FreeRTOS PUBLIC
-      ${CMAKE_CURRENT_LIST_DIR}/../FreeRTOS/portable/cm3
-      ${CMAKE_CURRENT_LIST_DIR}/../config/include/config
-    )
-  endif()
+if(FREERTOS_SIMULATOR)
+  message(NOTICE "Compiling freertos_kernel for POSIX")
+  set(FREERTOS_PORT UNIX CACHE STRING "")
+else()
+  message(NOTICE "Compiling freertos_kernel for STM32")
+  set(FREERTOS_PORT GCC_ARM_CM0 CACHE STRING "")
 endif()
 
+add_subdirectory("${CMAKE_CURRENT_LIST_DIR}/../FreeRTOS")

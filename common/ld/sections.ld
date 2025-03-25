@@ -119,6 +119,7 @@ SECTIONS
     PROVIDE ( end = . );
     PROVIDE ( _end = . );
     . = . + _min_heap_size;
+    PROVIDE ( _sstack = . );
     . = . + _min_stack_size;
     . = ALIGN(8);
   } >ram

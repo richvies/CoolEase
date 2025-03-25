@@ -1,24 +1,12 @@
 {
   "configurations": [
     {
-      "name": "workspace",
-      "intelliSenseMode": "gcc-arm",
-      "includePath": [
-        "${workspaceFolder}/**",
-        "${workspaceFolder}/build/ceedling/vendor/unity/src/**",
-        "${workspaceFolder}/build/ceedling/vendor/cmock/src/**"
-      ],
-      "browse": {
-        "path": [
-          "${workspaceFolder}",
-          "${workspaceFolder}/build/ceedling/vendor/unity/src/**",
-          "${workspaceFolder}/build/ceedling/vendor/cmock/src/**"
-        ],
-        "limitSymbolsToIncludedHeaders": true
-      },
-      "compilerPath": "${userHome}/.local/share/mise/installs/gcc-arm-none-eabi/14.2.Rel1/bin/arm-none-eabi-gcc",
-      "cStandard": "c11",
-      "compileCommands": "${workspaceFolder}/build/Debug/compile_commands.json"
+      "name": "debug",
+      "compileCommands": "${workspaceFolder}/build/debug/compile_commands.json"
+    },
+    {
+      "name": "release",
+      "compileCommands": "${workspaceFolder}/build/release/compile_commands.json"
     }
   ],
   "version": 4

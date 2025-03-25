@@ -35,19 +35,20 @@ run = "gem install ceedling"
 run = 'find config common sensor hub -name "*.c" -o -name "*.h" | xargs clang-format -i'
 
 [tasks.reconfigure]
-alias = "rconf"
-run = "cmake . --preset {{arg(name='preset', i=1, default='debug')}}"
+alias = "rc"
+run = "cmake . --preset debug && cmake . --preset release"
 
 [tasks.build]
 alias = "bu"
 depends = "reconfigure"
-run = 'cmake --build --preset {{arg(name="preset", i=1, default="debug")}}'
+run = 'cmake --build --preset debug && cmake --build --preset release'
 
-[tasks.fclean]
+[tasks.clean]
+alias = "cl"
 run = "rm -rf build"
 
 [tasks.ffclean]
-depends = "fclean"
+depends = "clean"
 run = "make -C libopencm3 clean"
 
 [tasks.gen-docs]

@@ -32,7 +32,7 @@ jobs:
             VERSION=${REF_NAME}-${COMMIT}
           fi
           echo "setting doxygen project number to ${VERSION}"
-          sed -i "s/PROJECT_NUMBER         =/PROJECT_NUMBER         = ${VERSION}/g" docs/doxygen/Doxyfile
+          sed -i 's/PROJECT_NUMBER         =/PROJECT_NUMBER         = ${VERSION}/g' docs/doxygen/Doxyfile
 
       - name: Generate Doxygen documentation
         run: doxygen docs/doxygen/Doxyfile
@@ -50,7 +50,7 @@ jobs:
           chmod 600 ~/.ssh/id_ed25519
           cat ~/.ssh/id_ed25519
           ssh-keyscan github.com >> ~/.ssh/known_hosts
-          git config --global user.email "richvies@gmail.com"
+          git config --global user.email "richvies@gmail.com"x
           git config --global user.name "rick-l480"
 
       - name: Deploy to GitHub Pages
