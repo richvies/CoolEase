@@ -3,15 +3,13 @@ set(COMMON_INCLUDE "${CMAKE_CURRENT_LIST_DIR}/include")
 
 add_library(${COMMON_LIB} STATIC
   aes.c
-  # battery.c
-  fake_battery.c
+  battery.c
   bootloader_utils.c
   log.c
   memory.c
   printf.c
   reset.c
-  # rfm.c
-  fake_rfm.c
+  rfm.c
   timers.c
   syscalls.c
   sysmem.c
