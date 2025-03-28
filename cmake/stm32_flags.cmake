@@ -8,7 +8,6 @@ if(NOT TARGET stm32_flags)
     -mcpu=cortex-m0plus
     -Wall -Wextra -Wpedantic
     -fdata-sections -ffunction-sections
-    -msoft-float
     -DSTM32L0
     -MD
     -MP
@@ -16,7 +15,9 @@ if(NOT TARGET stm32_flags)
 
   target_link_options("stm32_flags" INTERFACE
     -specs=nano.specs
-    # -nostartfiles
+    -mcpu=cortex-m0plus
+    -Wall -Wextra -Wpedantic
+    -fdata-sections -ffunction-sections
     -Wl,--gc-sections
     -Wl,--print-memory-usage
   )
