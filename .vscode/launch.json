@@ -2,7 +2,7 @@
   "version": "0.2.0",
   "configurations": [
     {
-      "name": "ARM debug",
+      "name": "STM32: debug",
       "type": "cortex-debug",
       "request": "launch",
       "servertype": "openocd",
@@ -19,7 +19,7 @@
       "runToEntryPoint": "main"
     },
     {
-      "name": "Python debug file",
+      "name": "Python: Debug file",
       "type": "debugpy",
       "request": "launch",
       "cwd": "${workspaceFolder}",
