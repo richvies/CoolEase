@@ -36,12 +36,12 @@ run = 'find config common sensor hub -name "*.c" -o -name "*.h" | xargs clang-fo
 
 [tasks.reconfigure]
 alias = "rc"
-run = "cmake . --preset debug && cmake . --preset release"
+run = "cmake . --preset {{arg(default='debug')}}"
 
 [tasks.build]
 alias = "bu"
 depends = "reconfigure"
-run = 'cmake --build --preset debug && cmake --build --preset release'
+run = "cmake --build --preset {{arg(default='debug')}}"
 
 [tasks.clean]
 alias = "cl"
@@ -63,3 +63,12 @@ run = "ceedling test:all"
 
 [tasks.act-push]
 run = 'act push --env PROJ_ACT_TOKEN="{{ env.PROJ_ACT_TOKEN }}"'
+
+[tasks.reset]
+alias = "rst"
+run = '{{env.STM_PROG}} -c port=SWD -rst'
+
+[tasks.flash]
+depends = "build"
+alias = "fl"
+run = "{{env.STM_PROG}} -c port=SWD -w build/debug/hub/freestanding/hub_freestanding_Debug.elf -v -rst"
