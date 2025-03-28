@@ -47,6 +47,10 @@
           "value": "build/debug/hub/freestanding/hub_freestanding_Debug.elf"
         },
         {
+          "label": "Hub Bootloader",
+          "value": "build/debug/hub/bootloader/hub_bootloader_Debug.elf"
+        },
+        {
           "label": "Sensor",
           "value": "build/debug/sensor/freestanding/sensor_freestanding_Debug.elf"
         }
