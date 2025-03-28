@@ -16,7 +16,7 @@ include(cmake/freertos.cmake)
 # Loop through available targets
 ################################################################################
 list(APPEND DEVICES hub sensor)
-list(APPEND EXE_TYPES freestanding app bootloader)
+list(APPEND EXE_TYPES freestanding bootloader)
 set(COMMON_LINKER_SCRIPTS_INCLUDE -L${CMAKE_CURRENT_LIST_DIR}/common/ld)
 
 foreach(DEVICE IN LISTS DEVICES)
